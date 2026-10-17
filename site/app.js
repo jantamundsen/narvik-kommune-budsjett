@@ -224,4 +224,91 @@ function drawTrend() {
   document.getElementById('trend-lead').textContent = `Netto driftsutgifter økte fra ${nb(first)} til ${nb(last)} millioner kroner fra ${y1} til ${y2}, ${nb((last / first - 1) * 100)} %. Folketallet var omtrent det samme, ${nb(DATA.population[y1])} mot ${nb(DATA.population[y2])}.`;
 }
 
+// Budget section: renders site/data/budsjett.json (written by scripts/fetch_budget.py). Stays hidden if the file is missing.
+async function startBudget() {
+  let B;
+  try {
+    const res = await fetch('data/budsjett.json', { cache: 'no-cache' });
+    if (!res.ok) return;
+    B = await res.json();
+  } catch (e) { return; }
+  const find = (kind, year) => B.series.find(x => x.kind === kind && (!year || x.year === year));
+  const last = kind => B.series.filter(x => x.kind === kind).at(-1);
+  const src = x => B.sources[x.source];
+  const mk = v => nb(v / 1000, Math.abs(v) < 10000 ? 1 : 0);
+  const signed = v => (v > 0 ? '+' : v < 0 ? '−' : '') + mk(Math.abs(v));
+  const cite = x => {
+    const a = el('a', { href: src(x).url, target: '_blank', rel: 'noopener' }, src(x).name);
+    const span = el('span');
+    span.append(a, `, ${B.table}, kolonne «${x.column}» (`);
+    span.append(el('a', { href: x.data_url, target: '_blank', rel: 'noopener' }, 'data'), ')');
+    return span;
+  };
+  const caption = (id, list, extra) => {
+    const c = document.getElementById(id); c.replaceChildren('Mill. kr, netto per tjenesteområde. Kilder: ');
+    [...new Map(list.map(x => [x.id, x])).values()].forEach((x, i) => { if (i) c.append('; '); c.append(cite(x)); });
+    c.append('. ' + (extra || ''));
+  };
+  const head = (cols) => {
+    const h = el('div', { class: 'ledger-head' });
+    cols.forEach((t, i) => h.appendChild(el('span', i > 1 ? { class: 'r' } : {}, t)));
+    return h;
+  };
+  const row = (name, bar, a, aLabel, b, chg, chgCls, total) => {
+    const r = el('div', { class: 'budget-row' + (total ? ' total' : '') });
+    const y1 = el('span', { class: 'r num c-y1' }); y1.append(el('span', { class: 'm-label' }, aLabel + ' '), a);
+    r.append(el('span', { class: 'c-name' }, name), bar || el('span', { class: 'c-share' }), y1, el('span', { class: 'r num c-amt' }, b), el('span', { class: 'r chg c-chg ' + chgCls }, chg));
+    return r;
+  };
+
+  // Planned against spent: the latest year with both an adopted budget and accounts.
+  const bud = [...B.series].reverse().find(x => x.kind === 'budsjett' && find('regnskap', x.year));
+  if (bud) {
+    const act = find('regnskap', bud.year), y = bud.year;
+    const diffs = B.areas.map(a => act['1000kr'][a.key] - bud['1000kr'][a.key]);
+    const maxDiff = Math.max(...diffs.map(Math.abs));
+    const led = document.getElementById('budget-actual');
+    led.replaceChildren(head(['Tjenesteområde', 'Avvik', `Budsjett ${y}`, `Regnskap ${y}`, 'Avvik']));
+    B.areas.forEach((a, i) => {
+      const d = diffs[i], bar = el('span', { class: 'c-share' }), dev = el('span', { class: 'dev', title: `${signed(d)} mill. kr` });
+      const fill = el('span', { class: d > 0 ? 'over' : 'under' }); fill.style.width = (Math.abs(d) / maxDiff * 50) + '%';
+      dev.appendChild(fill); bar.appendChild(dev);
+      led.appendChild(row(a.name, bar, mk(bud['1000kr'][a.key]), 'Budsjett', mk(act['1000kr'][a.key]), signed(d), d > 500 ? 'up' : d < -500 ? 'down' : ''));
+    });
+    const dt = act.total_1000kr - bud.total_1000kr;
+    led.appendChild(row('Sum', null, mk(bud.total_1000kr), 'Budsjett', mk(act.total_1000kr), signed(dt), dt > 0 ? 'up' : 'down', true));
+    document.getElementById('h-budget').textContent = `Planlagt og brukt i ${y}`;
+    const top = B.areas.map((a, i) => ({ a, d: diffs[i] })).sort((p, q) => q.d - p.d)[0];
+    document.getElementById('budget-lead').textContent = `Kommunestyret vedtok ${mk(bud.total_1000kr)} mill. kr til driften av tjenesteområdene i ${y}. Regnskapet endte på ${mk(act.total_1000kr)} mill. kr, ${mk(Math.abs(dt))} mill. kr ${dt >= 0 ? 'mer' : 'mindre'}. ${top.d > 0 ? `Største avvik var ${top.a.name.toLowerCase()}, ${signed(top.d)} mill. kr.` : ''}`;
+    caption('budget-actual-caption', [bud, act], `Budsjettet er det opprinnelige, slik det ble vedtatt i desember året før. Rammene justeres i løpet av året, for eksempel når lønnsoppgjøret fordeles fra fellesposten til tjenesteområdene, så avviket her er ikke det samme som et merforbruk.`);
+    document.getElementById('budget').hidden = false;
+  }
+
+  // Next year: the latest adopted budget against the newest proposal.
+  const base = last('budsjett'), next = base && B.series.find(x => x.kind === 'forslag' && x.year > base.year);
+  if (next) {
+    const led = document.getElementById('plan-ledger');
+    led.replaceChildren(head(['Tjenesteområde', 'Andel', `Vedtatt ${base.year}`, `Forslag ${next.year}`, 'Endring']));
+    const maxShare = Math.max(...B.areas.map(a => next['1000kr'][a.key] / next.total_1000kr));
+    B.areas.forEach(a => {
+      const v = next['1000kr'][a.key], p = pct(v, base['1000kr'][a.key]);
+      const bar = el('span', { class: 'share c-share' }), track = el('span', { class: 'share-track' }), fill = el('span', { class: 'share-fill' });
+      fill.style.display = 'block'; fill.style.width = Math.max(0, v / next.total_1000kr / maxShare * 100) + '%';
+      track.appendChild(fill); bar.append(track, el('small', {}, nb(v / next.total_1000kr * 100, 1) + ' %'));
+      led.appendChild(row(a.name, bar, mk(base['1000kr'][a.key]), `Vedtatt ${base.year}`, mk(v), chgText(p), p > 0.5 ? 'up' : p < -0.5 ? 'down' : ''));
+    });
+    const p = pct(next.total_1000kr, base.total_1000kr);
+    led.appendChild(row('Sum', null, mk(base.total_1000kr), `Vedtatt ${base.year}`, mk(next.total_1000kr), chgText(p), p > 0 ? 'up' : 'down', true));
+    const plan = B.series.filter(x => x.kind === 'forslag');
+    document.getElementById('h-plan').textContent = `Budsjettet for ${next.year}`;
+    document.getElementById('plan-lead').textContent = `Forslaget gir tjenesteområdene ${mk(next.total_1000kr)} mill. kr i ${next.year}, mot ${mk(base.total_1000kr)} mill. kr vedtatt for ${base.year}. Økonomiplanen ${plan.at(-1).total_1000kr < next.total_1000kr ? 'trapper ned til' : 'går til'} ${mk(plan.at(-1).total_1000kr)} mill. kr i ${plan.at(-1).year}.`;
+    document.getElementById('plan-status').textContent = src(next).status === 'vedtatt'
+      ? `Tallene for ${next.year} er kommunestyrets vedtak.`
+      : `Tallene for ${next.year} er kommunedirektørens forslag, ikke kommunestyrets vedtak. Kommunestyrets vedtak kan avvike fra forslaget.`;
+    caption('plan-caption', [base, next], `Endring er fra vedtatt ${base.year} til forslaget for ${next.year}, i løpende kroner.`);
+    document.getElementById('plan').hidden = false;
+  }
+}
+
 start();
+startBudget();

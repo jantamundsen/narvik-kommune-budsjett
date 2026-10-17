@@ -1,30 +1,193 @@
 {
- "title": "Budsjett 2026 og økonomiplan 2026–2029",
- "status": "forslag",
- "status_text": "Kommunedirektørens forslag. Kommunestyrets endelige behandling var satt til 11. desember 2025, og de vedtatte rammene kan avvike.",
- "source": {
-  "name": "Narvik kommunes budsjett 2026, økonomiplan 2026–2029, kommunedirektørens grunnlag",
-  "url": "https://www.narvik.kommune.no/_f/p1/i3c0f427e-5acf-4d5c-836a-5db986e5cdcb/narvik-kommunes-okonomiplan-2026-2029-1.pdf",
-  "page": 18,
-  "table": "Driftsutgifter per tjenesteområde"
- },
+ "generated": "2026-10-17T21:26:46+00:00",
  "unit": "1000 kr",
- "years": ["2026", "2027", "2028", "2029"],
- "total_1000kr": {"2026": 1777348, "2027": 1751846, "2028": 1734683, "2029": 1724674},
+ "table": "Bevilgningsoversikt drift etter § 5-4 andre ledd (1B)",
+ "sources": {
+  "vedtak-2025": {
+   "name": "Økonomiplan 2025–2028, kommunestyrets vedtak",
+   "url": "https://pub.framsikt.net/2025/narvik/bm-2025-budsjettvedtak_2025/",
+   "status": "vedtatt"
+  },
+  "forslag-2026": {
+   "name": "Budsjett 2026 og økonomiplan 2026–2029, kommunedirektørens forslag",
+   "url": "https://pub.framsikt.net/2026/narvik/bm-2026-rapport_plan/",
+   "status": "forslag"
+  }
+ },
  "areas": [
-  {"key": "politisk", "name": "Politisk ledelse",
-   "1000kr": {"2026": 8822, "2027": 10322, "2028": 8822, "2029": 10322}},
-  {"key": "radmannen", "name": "Rådmannen",
-   "1000kr": {"2026": 27311, "2027": 27311, "2028": 23311, "2029": 23311}},
-  {"key": "virksomhet", "name": "Virksomhetsstyring",
-   "1000kr": {"2026": 176071, "2027": 171196, "2028": 166121, "2029": 161146}},
-  {"key": "oppvekst", "name": "Oppvekst",
-   "1000kr": {"2026": 610998, "2027": 600996, "2028": 596098, "2029": 591204}},
-  {"key": "helse", "name": "Helse og omsorg",
-   "1000kr": {"2026": 736327, "2027": 729547, "2028": 727857, "2029": 726217}},
-  {"key": "plan", "name": "Plan, næring og teknisk",
-   "1000kr": {"2026": 196572, "2027": 196572, "2028": 196572, "2029": 196572}},
-  {"key": "felles", "name": "Fellesinntekter og kostnader",
-   "1000kr": {"2026": 21248, "2027": 15903, "2028": 15903, "2029": 15903}}
+  {
+   "key": "politisk",
+   "name": "Politisk ledelse"
+  },
+  {
+   "key": "radmannen",
+   "name": "Rådmannen"
+  },
+  {
+   "key": "virksomhet",
+   "name": "Virksomhetsstyring"
+  },
+  {
+   "key": "oppvekst",
+   "name": "Oppvekst"
+  },
+  {
+   "key": "helse",
+   "name": "Helse og omsorg"
+  },
+  {
+   "key": "plan",
+   "name": "Plan, næring og teknisk"
+  },
+  {
+   "key": "felles",
+   "name": "Fellesinntekter og kostnader"
+  }
+ ],
+ "series": [
+  {
+   "id": "regnskap-2023",
+   "kind": "regnskap",
+   "year": "2023",
+   "source": "vedtak-2025",
+   "data_url": "https://pub.framsikt.net/2025/narvik/bm-2025-budsjettvedtak_2025/content/data/summary/appdx/budgetforms1b2020.json",
+   "column": "Regnskap 2023",
+   "total_1000kr": 1661267,
+   "1000kr": {
+    "politisk": 11899,
+    "radmannen": 17593,
+    "virksomhet": 182362,
+    "oppvekst": 556410,
+    "helse": 720779,
+    "plan": 179666,
+    "felles": -7442
+   }
+  },
+  {
+   "id": "budsjett-2024",
+   "kind": "budsjett",
+   "year": "2024",
+   "source": "vedtak-2025",
+   "data_url": "https://pub.framsikt.net/2025/narvik/bm-2025-budsjettvedtak_2025/content/data/summary/appdx/budgetforms1b2020.json",
+   "column": "Oppr. budsjett 2024",
+   "total_1000kr": 1645313,
+   "1000kr": {
+    "politisk": 8397,
+    "radmannen": 21494,
+    "virksomhet": 182123,
+    "oppvekst": 530370,
+    "helse": 659993,
+    "plan": 177759,
+    "felles": 65178
+   }
+  },
+  {
+   "id": "regnskap-2024",
+   "kind": "regnskap",
+   "year": "2024",
+   "source": "forslag-2026",
+   "data_url": "https://pub.framsikt.net/2026/narvik/bm-2026-rapport_plan/content/data/summary/appdx/budgetforms1b2020.json",
+   "column": "Regnskap 2024",
+   "total_1000kr": 1789686,
+   "1000kr": {
+    "politisk": 10793,
+    "radmannen": 22957,
+    "virksomhet": 196233,
+    "oppvekst": 576186,
+    "helse": 772725,
+    "plan": 181954,
+    "felles": 28836
+   }
+  },
+  {
+   "id": "budsjett-2025",
+   "kind": "budsjett",
+   "year": "2025",
+   "source": "vedtak-2025",
+   "data_url": "https://pub.framsikt.net/2025/narvik/bm-2025-budsjettvedtak_2025/content/data/summary/appdx/budgetforms1b2020.json",
+   "column": "Øk.plan 2025",
+   "total_1000kr": 1747810,
+   "1000kr": {
+    "politisk": 10058,
+    "radmannen": 24155,
+    "virksomhet": 187985,
+    "oppvekst": 580456,
+    "helse": 706645,
+    "plan": 185599,
+    "felles": 52912
+   }
+  },
+  {
+   "id": "forslag-2026",
+   "kind": "forslag",
+   "year": "2026",
+   "source": "forslag-2026",
+   "data_url": "https://pub.framsikt.net/2026/narvik/bm-2026-rapport_plan/content/data/summary/appdx/budgetforms1b2020.json",
+   "column": "Øk.plan 2026",
+   "total_1000kr": 1822899,
+   "1000kr": {
+    "politisk": 8822,
+    "radmannen": 27311,
+    "virksomhet": 176071,
+    "oppvekst": 610998,
+    "helse": 736327,
+    "plan": 196572,
+    "felles": 66799
+   }
+  },
+  {
+   "id": "forslag-2027",
+   "kind": "forslag",
+   "year": "2027",
+   "source": "forslag-2026",
+   "data_url": "https://pub.framsikt.net/2026/narvik/bm-2026-rapport_plan/content/data/summary/appdx/budgetforms1b2020.json",
+   "column": "Øk.plan 2027",
+   "total_1000kr": 1806821,
+   "1000kr": {
+    "politisk": 10322,
+    "radmannen": 27311,
+    "virksomhet": 171196,
+    "oppvekst": 600996,
+    "helse": 729547,
+    "plan": 196572,
+    "felles": 70878
+   }
+  },
+  {
+   "id": "forslag-2028",
+   "kind": "forslag",
+   "year": "2028",
+   "source": "forslag-2026",
+   "data_url": "https://pub.framsikt.net/2026/narvik/bm-2026-rapport_plan/content/data/summary/appdx/budgetforms1b2020.json",
+   "column": "Øk.plan 2028",
+   "total_1000kr": 1782673,
+   "1000kr": {
+    "politisk": 8822,
+    "radmannen": 23311,
+    "virksomhet": 166121,
+    "oppvekst": 596098,
+    "helse": 727857,
+    "plan": 196572,
+    "felles": 63893
+   }
+  },
+  {
+   "id": "forslag-2029",
+   "kind": "forslag",
+   "year": "2029",
+   "source": "forslag-2026",
+   "data_url": "https://pub.framsikt.net/2026/narvik/bm-2026-rapport_plan/content/data/summary/appdx/budgetforms1b2020.json",
+   "column": "Øk.plan 2029",
+   "total_1000kr": 1765666,
+   "1000kr": {
+    "politisk": 10322,
+    "radmannen": 23311,
+    "virksomhet": 161146,
+    "oppvekst": 591204,
+    "helse": 726217,
+    "plan": 196572,
+    "felles": 56895
+   }
+  }
  ]
 }
