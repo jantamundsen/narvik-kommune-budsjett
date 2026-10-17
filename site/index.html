@@ -115,6 +115,10 @@ button:focus-visible, .row-btn:focus-visible { outline: 2px solid var(--accent);
 .detail td.sel, .detail th.sel { background: var(--accent-soft); }
 .detail p { font-size: 0.85rem; color: var(--ink-2); }
 .offsets { display: grid; gap: 4px; }
+.budget-row { display: grid; grid-template-columns: minmax(0, 1fr) 150px 96px 96px 80px; gap: 16px; align-items: center; padding: 14px 4px; border-bottom: 1px solid var(--rule); }
+.budget-row .r { text-align: right; }
+.budget-row.total { font-weight: 600; border-bottom: 0; }
+.status-note { font-size: 0.9rem; color: var(--ink); background: var(--accent-soft); border-left: 3px solid var(--accent); padding: 10px 14px; border-radius: 4px; max-width: none; }
 
 /* charts */
 .chart { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 16px 16px 8px; overflow-x: auto; }
@@ -138,6 +142,9 @@ footer { border-top: 1px solid var(--rule); padding-top: 20px; font-size: 0.85re
   .row-btn .c-name { grid-area: name; } .row-btn .c-amt { grid-area: amt; }
   .row-btn .c-share { grid-area: share; } .row-btn .c-pc { grid-area: pc; text-align: left; } .row-btn .c-chg { grid-area: chg; }
   .row-btn .c-pc::after { content: " per innb."; color: var(--ink-2); font-size: 0.82rem; }
+  .budget-row { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "name amt" "share share" "y2 chg"; gap: 6px 12px; }
+  .budget-row .c-name { grid-area: name; } .budget-row .c-amt { grid-area: amt; }
+  .budget-row .c-share { grid-area: share; } .budget-row .c-y2 { grid-area: y2; text-align: left; color: var(--ink-2); font-size: 0.88rem; } .budget-row .c-chg { grid-area: chg; }
   .detail { padding-left: 4px; }
   .note-bar button span { display: none; }
 }
@@ -204,10 +211,23 @@ footer { border-top: 1px solid var(--rule); padding-top: 20px; font-size: 0.85re
     <p class="caption">Løpende kroner, ikke justert for prisvekst. Narvik fikk ny kommunegrense i 2020, så serien starter etter sammenslåingen.</p>
   </section>
 
+  <section aria-labelledby="h-budget" id="budget" hidden>
+    <div class="section-head">
+      <div class="eyebrow">Fremover · kommunens budsjett</div>
+      <h2 id="h-budget"></h2>
+      <p class="lead" id="budget-lead"></p>
+    </div>
+    <p class="status-note" id="budget-status"></p>
+    <div class="ledger" id="budget-ledger">
+      <div class="ledger-head budget-head"><span>Tjenesteområde</span><span>Andel</span><span class="r" id="budget-y1"></span><span class="r" id="budget-y2"></span><span class="r">Endring</span></div>
+    </div>
+    <p class="caption" id="budget-caption"></p>
+  </section>
+
   <section aria-labelledby="h-notes">
     <h2 id="h-notes">Slik leser du tallene</h2>
     <div class="notes">
-      <div><h3>Regnskap, ikke budsjett</h3><p>Tallene viser hva kommunen faktisk brukte. Budsjettet for neste år finnes bare i kommunens egne dokumenter.</p></div>
+      <div><h3>Regnskap og budsjett</h3><p>Regnskapet viser hva kommunen faktisk brukte, fordelt på SSBs KOSTRA-funksjoner. Budsjettet viser hva kommunen planlegger å bruke, fordelt på kommunens egne tjenesteområder. Inndelingene er ulike, så tallene kan ikke sammenlignes direkte.</p></div>
       <div><h3>Hvorfor er vann og avløp negativt?</h3><p>Vann, avløp og renovasjon betales av gebyrer. Gebyrinntektene er større enn kostnadene som føres på disse funksjonene, så netto blir negativt.</p></div>
       <div><h3>Pensjonsposter</h3><p>Premieavvik og premiefond er regnskapsføringer som svinger med hundrevis av millioner mellom år. De er ikke en tjeneste og vises derfor for seg.</p></div>
       <div><h3>Høyt eller lavt?</h3><p>Narvik har mange eldre og store avstander. Det gir høyere kostnader til helse, brann og veier enn i tettbygde kommuner, uten at tjenesten nødvendigvis er dyrere drevet.</p></div>

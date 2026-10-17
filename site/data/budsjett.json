@@ -1,0 +1,30 @@
+{
+ "title": "Budsjett 2026 og økonomiplan 2026–2029",
+ "status": "forslag",
+ "status_text": "Kommunedirektørens forslag. Kommunestyrets endelige behandling var satt til 11. desember 2025, og de vedtatte rammene kan avvike.",
+ "source": {
+  "name": "Narvik kommunes budsjett 2026, økonomiplan 2026–2029, kommunedirektørens grunnlag",
+  "url": "https://www.narvik.kommune.no/_f/p1/i3c0f427e-5acf-4d5c-836a-5db986e5cdcb/narvik-kommunes-okonomiplan-2026-2029-1.pdf",
+  "page": 18,
+  "table": "Driftsutgifter per tjenesteområde"
+ },
+ "unit": "1000 kr",
+ "years": ["2026", "2027", "2028", "2029"],
+ "total_1000kr": {"2026": 1777348, "2027": 1751846, "2028": 1734683, "2029": 1724674},
+ "areas": [
+  {"key": "politisk", "name": "Politisk ledelse",
+   "1000kr": {"2026": 8822, "2027": 10322, "2028": 8822, "2029": 10322}},
+  {"key": "radmannen", "name": "Rådmannen",
+   "1000kr": {"2026": 27311, "2027": 27311, "2028": 23311, "2029": 23311}},
+  {"key": "virksomhet", "name": "Virksomhetsstyring",
+   "1000kr": {"2026": 176071, "2027": 171196, "2028": 166121, "2029": 161146}},
+  {"key": "oppvekst", "name": "Oppvekst",
+   "1000kr": {"2026": 610998, "2027": 600996, "2028": 596098, "2029": 591204}},
+  {"key": "helse", "name": "Helse og omsorg",
+   "1000kr": {"2026": 736327, "2027": 729547, "2028": 727857, "2029": 726217}},
+  {"key": "plan", "name": "Plan, næring og teknisk",
+   "1000kr": {"2026": 196572, "2027": 196572, "2028": 196572, "2029": 196572}},
+  {"key": "felles", "name": "Fellesinntekter og kostnader",
+   "1000kr": {"2026": 21248, "2027": 15903, "2028": 15903, "2029": 15903}}
+ ]
+}
