@@ -41,7 +41,7 @@ Hvis SSB innfører en ny funksjonskode, avslutter skriptet med en advarsel som n
 | Serie | Kilde | Kolonne |
 |---|---|---|
 | Regnskap 2023, opprinnelig budsjett 2024, vedtatt budsjett 2025 | [Økonomiplan 2025–2028, kommunestyrets vedtak](https://pub.framsikt.net/2025/narvik/bm-2025-budsjettvedtak_2025/) | Regnskap 2023, Oppr. budsjett 2024, Øk.plan 2025 |
-| Regnskap 2024, forslag 2026–2029 | [Budsjett 2026 og økonomiplan 2026–2029, kommunedirektørens forslag](https://pub.framsikt.net/2026/narvik/bm-2026-rapport_plan/) | Regnskap 2024, Øk.plan 2026–2029 |
+| Regnskap 2024, forslag 2026–2029 | [Budsjett 2026 og økonomiplan 2026–2029, kommunedirektørens forslag](https://pub.framsikt.net/2026/narvik/bm-2026-rapport_plan/) ([PDF](https://www.narvik.kommune.no/_f/p1/i3c0f427e-5acf-4d5c-836a-5db986e5cdcb/narvik-kommunes-okonomiplan-2026-2029-1.pdf), s. 93) | Regnskap 2024, Øk.plan 2026–2029 |
 
 Når kommunestyrets vedtak for 2026 eller regnskapet for 2025 blir publisert på Framsikt, legg publikasjonen til i `SOURCES` og kolonnene i `SERIES`, og kjør skriptet på nytt. Siden velger selv det siste året som har både budsjett og regnskap, og det første forslaget etter siste vedtatte budsjett. Mangler `budsjett.json`, skjules budsjettdelen.
 

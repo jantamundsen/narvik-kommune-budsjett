@@ -241,7 +241,9 @@ async function startBudget() {
     const a = el('a', { href: src(x).url, target: '_blank', rel: 'noopener' }, src(x).name);
     const span = el('span');
     span.append(a, `, ${B.table}, kolonne «${x.column}» (`);
-    span.append(el('a', { href: x.data_url, target: '_blank', rel: 'noopener' }, 'data'), ')');
+    span.append(el('a', { href: x.data_url, target: '_blank', rel: 'noopener' }, 'data'));
+    if (src(x).pdf) span.append(', ', el('a', { href: src(x).pdf, target: '_blank', rel: 'noopener' }, `PDF s. ${src(x).pdf_page}`));
+    span.append(')');
     return span;
   };
   const caption = (id, list, extra) => {

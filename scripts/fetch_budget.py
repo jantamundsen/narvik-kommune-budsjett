@@ -6,8 +6,9 @@ Narvik's budget documents on Framsikt (pub.framsikt.net). Each publication
 serves that table as JSON, and the table carries the accounts for two years
 back, the original budget for last year and the four plan years.
 
-Every series in the output names its publication, data URL and column, so a
-number on the site can be traced to the table it came from.
+Every series in the output names its publication, data URL and column, and the
+PDF page where the same table is printed when a PDF exists, so a number on the
+site can be traced to the table it came from.
 
 Only the standard library is used, so it runs anywhere Python 3.9+ runs.
 
@@ -40,6 +41,9 @@ SOURCES = {
         "name": "Budsjett 2026 og økonomiplan 2026–2029, kommunedirektørens forslag",
         "url": "https://pub.framsikt.net/2026/narvik/bm-2026-rapport_plan/",
         "status": "forslag",
+        # The same document as a PDF on narvik.kommune.no; the 1B table is on page 93.
+        "pdf": "https://www.narvik.kommune.no/_f/p1/i3c0f427e-5acf-4d5c-836a-5db986e5cdcb/narvik-kommunes-okonomiplan-2026-2029-1.pdf",
+        "pdf_page": 93,
     },
 }
 

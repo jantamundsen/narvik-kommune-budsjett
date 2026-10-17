@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-17T21:26:46+00:00",
+ "generated": "2026-10-17T21:32:20+00:00",
  "unit": "1000 kr",
  "table": "Bevilgningsoversikt drift etter § 5-4 andre ledd (1B)",
  "sources": {
@@ -11,7 +11,9 @@
   "forslag-2026": {
    "name": "Budsjett 2026 og økonomiplan 2026–2029, kommunedirektørens forslag",
    "url": "https://pub.framsikt.net/2026/narvik/bm-2026-rapport_plan/",
-   "status": "forslag"
+   "status": "forslag",
+   "pdf": "https://www.narvik.kommune.no/_f/p1/i3c0f427e-5acf-4d5c-836a-5db986e5cdcb/narvik-kommunes-okonomiplan-2026-2029-1.pdf",
+   "pdf_page": 93
   }
  },
  "areas": [
