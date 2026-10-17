@@ -69,15 +69,20 @@ SERIES = [
 # Narvik's tjenesteområder in the order the documents list them, keyed by display name.
 AREAS = {
     "Politisk ledelse": "politisk",
-    "Kommunedirektøren": "radmannen",
+    "Kommunedirektør og stab": "radmannen",
     "Virksomhetsstyring": "virksomhet",
     "Oppvekst": "oppvekst",
     "Helse og omsorg": "helse",
     "Plan, næring og teknisk": "plan",
     "Fellesinntekter og kostnader": "felles",
 }
-# Earlier names for the same area. Rådmannen is called Kommunedirektøren from 2026.
-ALIASES = {"Rådmannen": "Kommunedirektøren"}
+# Names the documents use for the same area. "Rådmannen" (until 2026) and "Kommunedirektøren" (Tertialrapport
+# 2/2026) read like one person's pay, but the area is the whole office, so the site uses a clearer name.
+ALIASES = {"Rådmannen": "Kommunedirektør og stab", "Kommunedirektøren": "Kommunedirektør og stab"}
+# Short explanations shown under an area's name, each taken from the page named.
+DESCRIPTIONS = {
+    "radmannen": "Kommunedirektøren og kommunedirektørens stab (ansvar 100 og 102). Heter «Rådmannen» eller «Kommunedirektøren» i dokumentene. Kilde: Tertialrapport 2/2026, s. 17.",
+}
 
 
 def fetch(url: str) -> dict:
@@ -173,7 +178,7 @@ def main() -> int:
         "unit": "1000 kr",
         "table": TABLE,
         "sources": {**SOURCES, **manual_sources},
-        "areas": [{"key": key, "name": name} for name, key in AREAS.items()],
+        "areas": [{"key": key, "name": name, **({"description": DESCRIPTIONS[key]} if key in DESCRIPTIONS else {})} for name, key in AREAS.items()],
         "series": series,
     }
     OUT.write_text(json.dumps(out, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")

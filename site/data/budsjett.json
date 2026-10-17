@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-17T21:39:48+00:00",
+ "generated": "2026-10-17T21:59:59+00:00",
  "unit": "1000 kr",
  "table": "Bevilgningsoversikt drift etter § 5-4 andre ledd (1B)",
  "sources": {
@@ -30,7 +30,8 @@
   },
   {
    "key": "radmannen",
-   "name": "Kommunedirektøren"
+   "name": "Kommunedirektør og stab",
+   "description": "Kommunedirektøren og kommunedirektørens stab (ansvar 100 og 102). Heter «Rådmannen» eller «Kommunedirektøren» i dokumentene. Kilde: Tertialrapport 2/2026, s. 17."
   },
   {
    "key": "virksomhet",

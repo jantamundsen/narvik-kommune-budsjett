@@ -24,7 +24,6 @@ async function startBudget() {
     span.append(')');
     return span;
   };
-  const RENAMED = 'Området Kommunedirektøren heter Rådmannen i dokumentene fra før 2026.';
   const caption = (id, list, extra) => {
     const c = document.getElementById(id); c.replaceChildren('Mill. kr, netto per tjenesteområde. Kilder: ');
     [...new Map(list.map(x => [x.id, x])).values()].forEach((x, i) => { if (i) c.append('; '); c.append(cite(x)); });
@@ -35,10 +34,13 @@ async function startBudget() {
     cols.forEach((t, i) => h.appendChild(el('span', i > 1 ? { class: 'r' } : {}, t)));
     return h;
   };
-  const row = (name, bar, a, aLabel, b, chg, chgCls, total) => {
+  const row = (area, bar, a, aLabel, b, chg, chgCls, total) => {
     const r = el('div', { class: 'budget-row' + (total ? ' total' : '') });
     const y1 = el('span', { class: 'r num c-y1' }); y1.append(el('span', { class: 'm-label' }, aLabel + ' '), a);
-    r.append(el('span', { class: 'c-name' }, name), bar || el('span', { class: 'c-share' }), y1, el('span', { class: 'r num c-amt' }, b), el('span', { class: 'r chg c-chg ' + chgCls }, chg));
+    const nm = el('span', { class: 'c-name row-name' });
+    nm.append(typeof area === 'string' ? area : area.name);
+    if (area.description) nm.appendChild(el('small', {}, area.description));
+    r.append(nm, bar || el('span', { class: 'c-share' }), y1, el('span', { class: 'r num c-amt' }, b), el('span', { class: 'r chg c-chg ' + chgCls }, chg));
     return r;
   };
 
@@ -54,14 +56,14 @@ async function startBudget() {
       const d = diffs[i], bar = el('span', { class: 'c-share' }), dev = el('span', { class: 'dev', title: `${signed(d)} mill. kr` });
       const fill = el('span', { class: d > 0 ? 'over' : 'under' }); fill.style.width = (Math.abs(d) / maxDiff * 50) + '%';
       dev.appendChild(fill); bar.appendChild(dev);
-      led.appendChild(row(a.name, bar, mk(bud['1000kr'][a.key]), 'Budsjett', mk(act['1000kr'][a.key]), signed(d), d > 500 ? 'up' : d < -500 ? 'down' : ''));
+      led.appendChild(row(a, bar, mk(bud['1000kr'][a.key]), 'Budsjett', mk(act['1000kr'][a.key]), signed(d), d > 500 ? 'up' : d < -500 ? 'down' : ''));
     });
     const dt = act.total_1000kr - bud.total_1000kr;
     led.appendChild(row('Sum', null, mk(bud.total_1000kr), 'Budsjett', mk(act.total_1000kr), signed(dt), dt > 0 ? 'up' : 'down', true));
     document.getElementById('h-budget').textContent = `Planlagt og brukt i ${y}`;
     const top = B.areas.map((a, i) => ({ a, d: diffs[i] })).sort((p, q) => q.d - p.d)[0];
     document.getElementById('budget-lead').textContent = `Kommunestyret vedtok ${mk(bud.total_1000kr)} mill. kr til driften av tjenesteområdene i ${y}. Regnskapet endte på ${mk(act.total_1000kr)} mill. kr, ${mk(Math.abs(dt))} mill. kr ${dt >= 0 ? 'mer' : 'mindre'}. ${top.d > 0 ? `Største avvik var ${top.a.name.toLowerCase()}, ${signed(top.d)} mill. kr.` : ''}`;
-    caption('budget-actual-caption', [bud, act], `Budsjettet er det opprinnelige, slik det ble vedtatt i desember året før. Rammene justeres i løpet av året, for eksempel når lønnsoppgjøret fordeles fra fellesposten til tjenesteområdene, så avviket her er ikke det samme som et merforbruk. ${RENAMED}`);
+    caption('budget-actual-caption', [bud, act], `Budsjettet er det opprinnelige, slik det ble vedtatt i desember året før. Rammene justeres i løpet av året, for eksempel når lønnsoppgjøret fordeles fra fellesposten til tjenesteområdene, så avviket her er ikke det samme som et merforbruk.`);
     document.getElementById('budget').hidden = false;
     const back = document.getElementById('accounts-link');
     back.href = './?aar=' + y; back.textContent = `Se hele regnskapet for ${y} →`;
@@ -98,7 +100,7 @@ async function startBudget() {
       const bar = el('span', { class: 'share c-share' }), track = el('span', { class: 'share-track' }), fill = el('span', { class: 'share-fill' });
       fill.style.display = 'block'; fill.style.width = Math.max(0, v / cur.total_1000kr / maxShare * 100) + '%';
       track.appendChild(fill); bar.append(track, el('small', {}, nb(v / cur.total_1000kr * 100, 1) + ' %'));
-      led.appendChild(row(a.name, bar, mk(base['1000kr'][a.key]), `Vedtatt ${base.year}`, mk(v), chgText(p), p > 0.5 ? 'up' : p < -0.5 ? 'down' : ''));
+      led.appendChild(row(a, bar, mk(base['1000kr'][a.key]), `Vedtatt ${base.year}`, mk(v), chgText(p), p > 0.5 ? 'up' : p < -0.5 ? 'down' : ''));
     });
     const p = pct(cur.total_1000kr, base.total_1000kr);
     led.appendChild(row('Sum', null, mk(base.total_1000kr), `Vedtatt ${base.year}`, mk(cur.total_1000kr), chgText(p), p > 0 ? 'up' : 'down', true));
@@ -110,7 +112,7 @@ async function startBudget() {
     status.textContent = adopted ? '' : `Tallene for ${cur.year} er kommunedirektørens forslag, ikke kommunestyrets vedtak. Kommunestyrets vedtak kan avvike fra forslaget.`;
     status.hidden = adopted;
     const extra = adopted
-      ? `Budsjettet for ${cur.year} er det opprinnelige, slik kommunestyret vedtok det. ${RENAMED}`
+      ? `Budsjettet for ${cur.year} er det opprinnelige, slik kommunestyret vedtok det.`
       : '';
     caption('plan-caption', adopted && prop ? [base, cur, prop] : [base, cur], `Endring er fra vedtatt ${base.year} til ${adopted ? 'vedtatt' : 'forslaget for'} ${cur.year}, i løpende kroner. ${extra}`);
     document.getElementById('plan').hidden = false;
