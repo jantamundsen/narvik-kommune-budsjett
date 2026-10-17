@@ -1,0 +1,192 @@
+{
+  "offset_categories": [
+    "var",
+    "pensjon"
+  ],
+  "categories": [
+    {
+      "key": "helse",
+      "name": "Helse og omsorg",
+      "description": "Sykehjem, hjemmetjenester, legevakt, helsestasjon, rehabilitering",
+      "functions": [
+        "232",
+        "233",
+        "234",
+        "241",
+        "253",
+        "254",
+        "256",
+        "257",
+        "258",
+        "261"
+      ]
+    },
+    {
+      "key": "skole",
+      "name": "Grunnskole",
+      "description": "Undervisning, SFO, skolebygg, skoleskyss, voksenopplæring",
+      "functions": [
+        "202",
+        "213",
+        "215",
+        "222",
+        "223"
+      ]
+    },
+    {
+      "key": "barnehage",
+      "name": "Barnehage",
+      "description": "Barnehager, styrket tilbud og barnehagebygg",
+      "functions": [
+        "201",
+        "211",
+        "221"
+      ]
+    },
+    {
+      "key": "sosial",
+      "name": "Sosialtjenester og NAV",
+      "description": "Sosialhjelp, rus, introduksjonsordning, kvalifisering",
+      "functions": [
+        "242",
+        "243",
+        "273",
+        "275",
+        "276",
+        "281",
+        "283"
+      ]
+    },
+    {
+      "key": "barnevern",
+      "name": "Barnevern",
+      "description": "Barneverntjenesten og tiltak for barn",
+      "functions": [
+        "244",
+        "251",
+        "252"
+      ]
+    },
+    {
+      "key": "admin",
+      "name": "Administrasjon og politikk",
+      "description": "Kommunestyret, revisjon, administrasjon, rådhus",
+      "functions": [
+        "100",
+        "110",
+        "120",
+        "121",
+        "130",
+        "180",
+        "190",
+        "290"
+      ]
+    },
+    {
+      "key": "veier",
+      "name": "Veier og samferdsel",
+      "description": "Kommunale veier, gatelys, parker og plasser",
+      "functions": [
+        "330",
+        "332",
+        "335"
+      ]
+    },
+    {
+      "key": "brann",
+      "name": "Brann og beredskap",
+      "description": "Brannvesen og forebygging",
+      "functions": [
+        "338",
+        "339"
+      ]
+    },
+    {
+      "key": "kultur",
+      "name": "Kultur og idrett",
+      "description": "Bibliotek, kulturskole, idrettsanlegg, kulturhus, fritid for unge",
+      "functions": [
+        "231",
+        "365",
+        "370",
+        "373",
+        "375",
+        "377",
+        "380",
+        "381",
+        "383",
+        "385",
+        "386"
+      ]
+    },
+    {
+      "key": "kirke",
+      "name": "Kirke og gravplasser",
+      "description": "Den norske kirke, trossamfunn, gravplasser",
+      "functions": [
+        "390",
+        "392",
+        "393"
+      ]
+    },
+    {
+      "key": "plan",
+      "name": "Plan, næring og natur",
+      "description": "Byggesak, kart, næringsutvikling, landbruk, friluftsliv",
+      "functions": [
+        "301",
+        "302",
+        "303",
+        "304",
+        "305",
+        "315",
+        "320",
+        "321",
+        "322",
+        "325",
+        "329",
+        "360"
+      ]
+    },
+    {
+      "key": "bolig",
+      "name": "Kommunale boliger",
+      "description": "Utleieboliger kommunen disponerer",
+      "functions": [
+        "265"
+      ]
+    },
+    {
+      "key": "var",
+      "name": "Vann, avløp og renovasjon",
+      "description": "Betales i hovedsak av gebyrer, derfor ofte negativ netto",
+      "functions": [
+        "340",
+        "345",
+        "350",
+        "353",
+        "354",
+        "355"
+      ]
+    },
+    {
+      "key": "pensjon",
+      "name": "Pensjonsjusteringer",
+      "description": "Regnskapsposter for pensjon, ikke en tjeneste",
+      "functions": [
+        "170",
+        "171",
+        "172",
+        "173"
+      ]
+    },
+    {
+      "key": "annet",
+      "name": "Annet",
+      "description": "Tjenester utenfor ordinært ansvarsområde",
+      "functions": [
+        "285"
+      ]
+    }
+  ]
+}

@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Pengene i Narvik
 
-## Getting Started
+Hvor går pengene i Narvik kommune? En enkel nettside som viser kommunens netto driftsutgifter fordelt på tjenester, år for år, og sammenlignet med landet og Nordland.
 
-First, run the development server:
+Tallene kommer fra SSBs KOSTRA-statistikk, [tabell 12362](https://www.ssb.no/statbank/table/12362), og viser regnskap (hva kommunen faktisk brukte), ikke budsjett.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Slik er det bygget
+
+```
+config/categories.json    KOSTRA-funksjoner gruppert i 15 tjenesteområder
+scripts/fetch_data.py     henter tall fra SSB og skriver site/data/narvik.json
+site/                     den statiske nettsiden (HTML, CSS og ren JavaScript)
+.github/workflows/        oppdaterer data fra SSB og publiserer til GitHub Pages
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ingen server, database eller byggesteg. Skriptet bruker bare Pythons standardbibliotek.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Kjøre lokalt
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```sh
+python scripts/fetch_data.py          # henter ferske tall fra SSB
+python -m http.server -d site 8000    # åpne http://localhost:8000
+```
 
-## Learn More
+Siden må åpnes via en webserver, siden den leser `data/narvik.json` med `fetch`.
 
-To learn more about Next.js, take a look at the following resources:
+## Kategoriene
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+SSB rapporterer rundt 80 KOSTRA-funksjoner (for eksempel 202 Grunnskole og 253 Helse- og omsorgstjenester i institusjon). `config/categories.json` samler dem i tjenesteområder folk kjenner igjen. Hver funksjon hører til nøyaktig én kategori, slik at summen alltid blir riktig.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Hvis SSB innfører en ny funksjonskode, avslutter skriptet med en advarsel som navngir koden. Legg den til i riktig kategori og kjør skriptet på nytt.
 
-## Deploy on Vercel
+## Begreper
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Netto driftsutgifter** (art AGD2): kostnaden for en tjeneste minus inntektene som hører til den (gebyrer, refusjoner, øremerkede tilskudd). Det er det kommunen betaler med frie inntekter.
+- **Per innbygger**: folketallet hentes ikke direkte, men beregnes fra SSBs beløp og beløp per innbygger.
+- **Vann, avløp og renovasjon** og **pensjonsposter** trekker fra i netto og vises for seg.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Publisering
+
+1. Under *Settings → Pages*, velg *GitHub Actions* som kilde.
+2. Arbeidsflyten *Publiser nettsiden* kjører ved hver endring i `site/`.
+3. *Oppdater data fra SSB* kjører 1. april og 20. juni, etter SSBs KOSTRA-publiseringer, og kan også startes manuelt under *Actions*.
+
+Laget som et åpent hobbyprosjekt, ikke av Narvik kommune.
