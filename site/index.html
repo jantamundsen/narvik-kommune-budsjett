@@ -9,164 +9,17 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap">
-<style>
-/* Layout: one calm column like a municipal report; ledger rows carry the detail, one oxide-red accent marks the selected year and Narvik. */
-:root {
-  --paper: #f4f6f7;
-  --surface: #ffffff;
-  --ink: #17212b;
-  --ink-2: #4c5966;
-  --rule: #d9dfe4;
-  --accent: #a3412a;
-  --accent-soft: rgba(163, 65, 42, 0.12);
-  --muted: #9aa6b1;
-  --good: #2f7a52;
-  --bad: #a3412a;
-  --font-display: "Familjen Grotesk", "Helvetica Neue", Arial, sans-serif;
-  --font-body: "Public Sans", "Segoe UI", system-ui, sans-serif;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --paper: #12181e; --surface: #1a222a; --ink: #e8edf1; --ink-2: #a4b0bb; --rule: #2c3741;
-    --accent: #e98a6f; --accent-soft: rgba(233, 138, 111, 0.16); --muted: #6c7a87; --good: #6cc394; --bad: #e98a6f;
-    color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --paper: #12181e; --surface: #1a222a; --ink: #e8edf1; --ink-2: #a4b0bb; --rule: #2c3741;
-  --accent: #e98a6f; --accent-soft: rgba(233, 138, 111, 0.16); --muted: #6c7a87; --good: #6cc394; --bad: #e98a6f;
-  color-scheme: dark;
-}
-* { box-sizing: border-box; }
-[hidden] { display: none !important; }
-body {
-  background: var(--paper); color: var(--ink);
-  font-family: var(--font-body); font-size: 16px; line-height: 1.55;
-  padding-left: max(16px, env(safe-area-inset-left, 0px));
-  padding-right: max(16px, env(safe-area-inset-right, 0px));
-  padding-block: 0 48px;
-}
-.wrap { max-width: 880px; margin: 0 auto; display: grid; gap: 56px; }
-.num { font-variant-numeric: tabular-nums; }
-h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; letter-spacing: -0.01em; }
-h1 { font-size: clamp(2rem, 6vw, 3.1rem); line-height: 1.05; font-weight: 700; }
-h2 { font-size: 1.5rem; line-height: 1.2; font-weight: 600; }
-p { margin: 0; max-width: 65ch; }
-.eyebrow { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.09em; color: var(--ink-2); font-weight: 600; }
-.lead { color: var(--ink-2); font-size: 1.075rem; }
-section { display: grid; gap: 20px; }
-.section-head { display: grid; gap: 8px; }
-
-/* header */
-header { display: grid; gap: 20px; padding-top: 40px; }
-.years { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
-.years span { font-size: 0.85rem; color: var(--ink-2); margin-right: 6px; }
-.years button {
-  font: 600 0.95rem var(--font-body); font-variant-numeric: tabular-nums;
-  border: 1px solid var(--rule); background: var(--surface); color: var(--ink);
-  padding: 6px 14px; border-radius: 999px; cursor: pointer;
-}
-.years button[aria-checked="true"] { background: var(--accent); border-color: var(--accent); color: var(--paper); }
-button:focus-visible, .row-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-
-/* summary */
-.summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; }
-.stat { background: var(--surface); padding: 18px 20px; display: grid; gap: 4px; align-content: start; }
-.stat .big { font-family: var(--font-display); font-size: 2rem; font-weight: 700; line-height: 1.1; }
-.stat .big small { font-size: 1rem; font-weight: 500; color: var(--ink-2); }
-.stat .sub { color: var(--ink-2); font-size: 0.9rem; }
-.equation { font-size: 0.92rem; color: var(--ink-2); max-width: none; }
-.equation b { color: var(--ink); font-weight: 600; }
-
-/* hundrelapp */
-.note-bar { display: flex; height: 64px; border-radius: 8px; overflow: hidden; border: 1px solid var(--rule); background: var(--surface); }
-.note-bar button { border: 0; padding: 0; cursor: pointer; border-right: 2px solid var(--surface); background: var(--accent); min-width: 0; display: flex; align-items: flex-end; justify-content: flex-start; color: var(--paper); font: 700 0.95rem var(--font-display); }
-.note-bar button span { padding: 0 0 8px 8px; white-space: nowrap; }
-.note-legend { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 6px 20px; margin: 0; padding: 0; list-style: none; }
-.note-legend li { display: grid; grid-template-columns: 52px 1fr; gap: 8px; align-items: baseline; font-size: 0.95rem; }
-.note-legend .kr { font-weight: 700; text-align: right; font-variant-numeric: tabular-nums; }
-
-/* ledger */
-.ledger { border-top: 2px solid var(--ink); }
-.ledger-head, .row-btn { display: grid; grid-template-columns: minmax(0, 1fr) 150px 96px 96px 80px; gap: 16px; align-items: center; }
-.ledger-head { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-2); font-weight: 600; padding: 10px 4px; border-bottom: 1px solid var(--rule); }
-.ledger-head .r, .row-btn .r { text-align: right; }
-.row { border-bottom: 1px solid var(--rule); }
-.row-btn { width: 100%; background: none; border: 0; color: inherit; font: inherit; text-align: left; padding: 14px 4px; cursor: pointer; }
-.row-btn:hover { background: var(--accent-soft); }
-.row-name { display: grid; gap: 2px; min-width: 0; }
-.row-name b { font-weight: 600; display: flex; gap: 8px; align-items: center; }
-.row-name b::before { content: "+"; display: inline-grid; place-items: center; width: 18px; height: 18px; border: 1px solid var(--rule); border-radius: 4px; font-size: 0.8rem; color: var(--ink-2); flex: none; }
-.row[data-open="true"] .row-name b::before { content: "\2212"; }
-.row-name small { color: var(--ink-2); font-size: 0.82rem; }
-.share { display: grid; gap: 4px; }
-.share-track { height: 8px; background: var(--rule); border-radius: 4px; overflow: hidden; }
-.share-fill { height: 100%; background: var(--accent); border-radius: 4px; }
-.share small { font-size: 0.8rem; color: var(--ink-2); font-variant-numeric: tabular-nums; }
-.chg.up { color: var(--bad); }
-.chg.down { color: var(--good); }
-.chg { font-size: 0.9rem; font-variant-numeric: tabular-nums; }
-.detail { padding: 4px 4px 20px 30px; display: grid; gap: 10px; }
-.detail-scroll { overflow-x: auto; }
-.detail table { width: 100%; border-collapse: collapse; font-size: 0.88rem; font-variant-numeric: tabular-nums; }
-.detail th, .detail td { padding: 6px 8px; border-bottom: 1px solid var(--rule); text-align: right; white-space: nowrap; }
-.detail th:first-child, .detail td:first-child { text-align: left; white-space: normal; min-width: 200px; }
-.detail th { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--ink-2); font-weight: 600; }
-.detail td.sel, .detail th.sel { background: var(--accent-soft); }
-.detail p { font-size: 0.85rem; color: var(--ink-2); }
-.offsets { display: grid; gap: 4px; }
-.budget-row { display: grid; grid-template-columns: minmax(0, 1fr) 150px 96px 96px 80px; gap: 16px; align-items: center; padding: 14px 4px; border-bottom: 1px solid var(--rule); }
-.budget-row .r { text-align: right; }
-.budget-row.total { font-weight: 600; border-bottom: 0; }
-.budget-row .m-label { display: none; }
-.dev { display: block; position: relative; height: 8px; background: var(--rule); border-radius: 4px; }
-.dev::before { content: ""; position: absolute; left: 50%; top: -3px; bottom: -3px; width: 1px; background: var(--ink-2); }
-.dev span { display: block; position: absolute; top: 0; bottom: 0; border-radius: 4px; }
-.dev .over { left: 50%; background: var(--bad); }
-.dev .under { right: 50%; background: var(--good); }
-.status-note { font-size: 0.9rem; color: var(--ink); background: var(--accent-soft); border-left: 3px solid var(--accent); padding: 10px 14px; border-radius: 4px; max-width: none; }
-
-/* charts */
-.chart { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 16px 16px 8px; overflow-x: auto; }
-.chart svg { display: block; width: 100%; min-width: 560px; height: auto; }
-.chart text { font-family: var(--font-body); }
-.legend { display: flex; flex-wrap: wrap; gap: 18px; font-size: 0.88rem; color: var(--ink-2); }
-.legend i { display: inline-block; width: 11px; height: 11px; border-radius: 50%; margin-right: 6px; vertical-align: -1px; }
-.caption { font-size: 0.82rem; color: var(--ink-2); }
-
-/* notes */
-.notes { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
-.notes div { display: grid; gap: 6px; align-content: start; }
-.notes h3 { font-size: 1.05rem; font-weight: 600; }
-.notes p { font-size: 0.92rem; color: var(--ink-2); }
-a { color: var(--accent); }
-footer { border-top: 1px solid var(--rule); padding-top: 20px; font-size: 0.85rem; color: var(--ink-2); display: grid; gap: 6px; }
-
-@media (max-width: 680px) {
-  .ledger-head { display: none; }
-  .row-btn { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "name amt" "share share" "pc chg"; gap: 6px 12px; }
-  .row-btn .c-name { grid-area: name; } .row-btn .c-amt { grid-area: amt; }
-  .row-btn .c-share { grid-area: share; } .row-btn .c-pc { grid-area: pc; text-align: left; } .row-btn .c-chg { grid-area: chg; }
-  .row-btn .c-pc::after { content: " per innb."; color: var(--ink-2); font-size: 0.82rem; }
-  .budget-row { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "name amt" "share share" "y1 chg"; gap: 6px 12px; }
-  .budget-row .c-name { grid-area: name; } .budget-row .c-amt { grid-area: amt; }
-  .budget-row .c-share { grid-area: share; } .budget-row .c-y1 { grid-area: y1; text-align: left; color: var(--ink-2); font-size: 0.88rem; } .budget-row .c-chg { grid-area: chg; }
-  .budget-row .m-label { display: inline; }
-  .detail { padding-left: 4px; }
-  .note-bar button span { display: none; }
-}
-@media (prefers-reduced-motion: no-preference) {
-  .share-fill, .note-bar button { transition: width 0.35s ease, flex-basis 0.35s ease; }
-}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="wrap">
+  <nav class="site-nav" aria-label="Sider"><a class="brand" href="./">Pengene i Narvik</a><a href="./" aria-current="page">Regnskap</a><a href="budsjett.html">Budsjett mot regnskap</a></nav>
   <header>
     <div class="eyebrow">Narvik kommune · regnskapstall fra SSB</div>
     <h1>Hvor går pengene i Narvik?</h1>
     <p class="lead">Kommunens netto driftsutgifter fordelt på tjenester, år for år, og sammenlignet med resten av landet. Netto betyr det kommunen betaler selv, etter gebyrer, refusjoner og øremerkede tilskudd.</p>
     <div class="years" role="radiogroup" aria-label="Velg år" id="years"><span>Regnskapsår</span></div>
+    <a class="cross-link" id="budget-link" href="budsjett.html" hidden></a>
   </header>
 
   <section aria-labelledby="h-sum">
@@ -218,30 +71,10 @@ footer { border-top: 1px solid var(--rule); padding-top: 20px; font-size: 0.85re
     <p class="caption">Løpende kroner, ikke justert for prisvekst. Narvik fikk ny kommunegrense i 2020, så serien starter etter sammenslåingen.</p>
   </section>
 
-  <section aria-labelledby="h-budget" id="budget" hidden>
-    <div class="section-head">
-      <div class="eyebrow">Kommunens budsjett · Narviks egne tjenesteområder</div>
-      <h2 id="h-budget"></h2>
-      <p class="lead" id="budget-lead"></p>
-    </div>
-    <div class="ledger" id="budget-actual"></div>
-    <p class="caption" id="budget-actual-caption"></p>
-  </section>
-
-  <section aria-labelledby="h-plan" id="plan" hidden>
-    <div class="section-head">
-      <h2 id="h-plan"></h2>
-      <p class="lead" id="plan-lead"></p>
-    </div>
-    <p class="status-note" id="plan-status"></p>
-    <div class="ledger" id="plan-ledger"></div>
-    <p class="caption" id="plan-caption"></p>
-  </section>
-
   <section aria-labelledby="h-notes">
     <h2 id="h-notes">Slik leser du tallene</h2>
     <div class="notes">
-      <div><h3>Regnskap og budsjett</h3><p>Tallene fra SSB øverst er fordelt på KOSTRA-funksjoner. Budsjettdelen bruker kommunens egne tjenesteområder, slik kommunestyret vedtar rammene. Inndelingene er ulike, så tallene i de to delene kan ikke sammenlignes direkte.</p></div>
+      <div><h3>Regnskap og budsjett</h3><p>Tallene her er SSBs regnskapstall, fordelt på KOSTRA-funksjoner. <a href="budsjett.html">Budsjett mot regnskap</a> bruker kommunens egne tjenesteområder, slik kommunestyret vedtar rammene. Inndelingene er ulike, så tallene på de to sidene kan ikke sammenlignes direkte.</p></div>
       <div><h3>Hvorfor er vann og avløp negativt?</h3><p>Vann, avløp og renovasjon betales av gebyrer. Gebyrinntektene er større enn kostnadene som føres på disse funksjonene, så netto blir negativt.</p></div>
       <div><h3>Pensjonsposter</h3><p>Premieavvik og premiefond er regnskapsføringer som svinger med hundrevis av millioner mellom år. De er ikke en tjeneste og vises derfor for seg.</p></div>
       <div><h3>Høyt eller lavt?</h3><p>Narvik har mange eldre og store avstander. Det gir høyere kostnader til helse, brann og veier enn i tettbygde kommuner, uten at tjenesten nødvendigvis er dyrere drevet.</p></div>
@@ -253,6 +86,7 @@ footer { border-top: 1px solid var(--rule); padding-top: 20px; font-size: 0.85re
     <span>Folketall er beregnet fra SSBs beløp per innbygger. Laget som et åpent hobbyprosjekt, ikke av Narvik kommune. <a href="https://github.com/jtkarlsen/narvik-kommune-budsjett" target="_blank" rel="noopener">Kildekode</a>.</span>
   </footer>
 </div>
+<script src="common.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
