@@ -1,0 +1,28 @@
+{
+ "_comment": "Budget series that are only published as PDF, typed in by hand from the page named. scripts/fetch_budget.py checks that the areas add up to the total.",
+ "sources": {
+  "tertial-2-2026": {
+   "name": "Tertialrapport 2/2026, formannskapet 15.10.2026 (sak 45/26)",
+   "url": "https://prod02.elementscloud.no/publikum/959469059_prod-959469059/Dmb",
+   "status": "vedtatt",
+   "pdf": "https://prod02.elementscloud.no/publikum/Documents/ShowDocument/c1d7f777-8235-4817-8203-ebd49ff36bb5/783/2230",
+   "pdf_page": 46
+  }
+ },
+ "series": [
+  {
+   "id": "budsjett-2026", "kind": "budsjett", "year": "2026", "source": "tertial-2-2026",
+   "column": "Oppr. bud. 2026",
+   "total_1000kr": 1837357,
+   "1000kr": {
+    "Politisk ledelse": 8822,
+    "Kommunedirektøren": 27311,
+    "Virksomhetsstyring": 180926,
+    "Oppvekst": 621824,
+    "Helse og omsorg": 740684,
+    "Plan, næring og teknisk": 195772,
+    "Fellesinntekter og kostnader": 62018
+   }
+  }
+ ]
+}

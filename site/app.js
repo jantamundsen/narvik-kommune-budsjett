@@ -1,16 +1,10 @@
-// Pengene i Narvik: renders site/data/narvik.json (written by scripts/fetch_data.py).
-const nb = (v, d = 0) => v.toLocaleString('nb-NO', { minimumFractionDigits: d, maximumFractionDigits: d });
+// Pengene i Narvik: renders site/data/narvik.json (written by scripts/fetch_data.py). Helpers are in common.js.
 const mill = v => nb(v / 1000, 0);
 const svgNS = 'http://www.w3.org/2000/svg';
 let DATA, YEARS, OFFSET_KEYS, services, offsets, year;
+let budgetYears = new Set(); // years with both a budget and accounts on budsjett.html
 const openRows = new Set();
 
-function el(tag, attrs = {}, text) {
-  const n = document.createElement(tag);
-  for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v);
-  if (text !== undefined) n.textContent = text;
-  return n;
-}
 function s(tag, attrs = {}, text) {
   const n = document.createElementNS(svgNS, tag);
   for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v);
@@ -18,8 +12,6 @@ function s(tag, attrs = {}, text) {
   return n;
 }
 const sum = (list, y) => list.reduce((t, c) => t + c.narvik_1000kr[y], 0);
-const pct = (a, b) => (b ? (a - b) / Math.abs(b) * 100 : null);
-const chgText = p => (p === null ? '–' : (p > 0 ? '+' : p < 0 ? '−' : '') + nb(Math.abs(p), 1) + ' %');
 const perCap = (v, y) => Math.round(v * 1000 / DATA.population[y]);
 
 async function start() {
@@ -37,6 +29,7 @@ async function start() {
   offsets = DATA.categories.filter(c => OFFSET_KEYS.includes(c.key));
   year = YEARS.at(-1);
   try { const y = localStorage.getItem('narvik-year'); if (YEARS.includes(y)) year = y; } catch (e) {}
+  if (YEARS.includes(urlYear())) year = urlYear();
   document.getElementById('generated').textContent = new Date(DATA.generated).toLocaleDateString('nb-NO', { day: 'numeric', month: 'long', year: 'numeric' });
   const yearsEl = document.getElementById('years');
   YEARS.forEach(y => {
@@ -45,11 +38,31 @@ async function start() {
     yearsEl.appendChild(b);
   });
   render();
+  loadBudgetYears();
 }
 
-function setYear(y) { year = y; try { localStorage.setItem('narvik-year', y); } catch (e) {} render(); }
+// Link to budsjett.html for the selected year when that page has a budget to compare with its accounts.
+async function loadBudgetYears() {
+  try {
+    const res = await fetch('data/budsjett.json', { cache: 'no-cache' });
+    if (!res.ok) return;
+    const B = await res.json();
+    const has = (k, y) => B.series.some(x => x.kind === k && x.year === y);
+    budgetYears = new Set(B.series.filter(x => x.kind === 'regnskap' && has('budsjett', x.year)).map(x => x.year));
+  } catch (e) { return; }
+  drawBudgetLink();
+}
+function drawBudgetLink() {
+  const a = document.getElementById('budget-link');
+  a.hidden = !budgetYears.has(year);
+  a.href = 'budsjett.html?aar=' + year;
+  a.textContent = `Se budsjett mot regnskap for ${year} →`;
+}
+
+function setYear(y) { year = y; try { localStorage.setItem('narvik-year', y); history.replaceState(null, '', '?aar=' + y); } catch (e) {} render(); }
 
 function render() {
+  drawBudgetLink();
   document.querySelectorAll('#years button').forEach(b => b.setAttribute('aria-checked', String(b.textContent === year)));
   const prev = YEARS[YEARS.indexOf(year) - 1];
   const total = DATA.total_1000kr[year];
