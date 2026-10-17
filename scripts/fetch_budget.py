@@ -6,6 +6,10 @@ Narvik's budget documents on Framsikt (pub.framsikt.net). Each publication
 serves that table as JSON, and the table carries the accounts for two years
 back, the original budget for last year and the four plan years.
 
+Budgets that are only published as PDF (for now the adopted 2026 budget, from
+the second tertial report) are typed into config/budsjett_manuelt.json with
+their page, and merged in after the same sum check.
+
 Every series in the output names its publication, data URL and column, and the
 PDF page where the same table is printed when a PDF exists, so a number on the
 site can be traced to the table it came from.
@@ -26,6 +30,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "site" / "data" / "budsjett.json"
+MANUAL = ROOT / "config" / "budsjett_manuelt.json"
 
 TABLE = "Bevilgningsoversikt drift etter § 5-4 andre ledd (1B)"
 TABLE_PATH = "content/data/summary/appdx/budgetforms1b2020.json"
@@ -47,28 +52,32 @@ SOURCES = {
     },
 }
 
-# (series id, kind, year, source, column title as Framsikt writes it)
+# (series id, kind, year, source, column title as Framsikt writes it). Kinds: regnskap (accounts),
+# budsjett (original budget as adopted), forslag (the kommunedirektør's proposal for its budget year)
+# and okonomiplan (the later plan years in a proposal).
 SERIES = [
     ("regnskap-2023", "regnskap", "2023", "vedtak-2025", "Regnskap  2023"),
     ("budsjett-2024", "budsjett", "2024", "vedtak-2025", "Oppr. budsjett 2024"),
     ("regnskap-2024", "regnskap", "2024", "forslag-2026", "Regnskap  2024"),
     ("budsjett-2025", "budsjett", "2025", "vedtak-2025", "Øk.plan 2025"),
     ("forslag-2026", "forslag", "2026", "forslag-2026", "Øk.plan 2026"),
-    ("forslag-2027", "forslag", "2027", "forslag-2026", "Øk.plan 2027"),
-    ("forslag-2028", "forslag", "2028", "forslag-2026", "Øk.plan 2028"),
-    ("forslag-2029", "forslag", "2029", "forslag-2026", "Øk.plan 2029"),
+    ("okonomiplan-2027", "okonomiplan", "2027", "forslag-2026", "Øk.plan 2027"),
+    ("okonomiplan-2028", "okonomiplan", "2028", "forslag-2026", "Øk.plan 2028"),
+    ("okonomiplan-2029", "okonomiplan", "2029", "forslag-2026", "Øk.plan 2029"),
 ]
 
-# Narvik's tjenesteområder in the order the documents list them.
+# Narvik's tjenesteområder in the order the documents list them, keyed by display name.
 AREAS = {
     "Politisk ledelse": "politisk",
-    "Rådmannen": "radmannen",
+    "Kommunedirektøren": "radmannen",
     "Virksomhetsstyring": "virksomhet",
     "Oppvekst": "oppvekst",
     "Helse og omsorg": "helse",
     "Plan, næring og teknisk": "plan",
     "Fellesinntekter og kostnader": "felles",
 }
+# Earlier names for the same area. Rådmannen is called Kommunedirektøren from 2026.
+ALIASES = {"Rådmannen": "Kommunedirektøren"}
 
 
 def fetch(url: str) -> dict:
@@ -103,8 +112,33 @@ def read_table(source: dict) -> tuple[dict[str, str], dict[str, dict]]:
     data = fetch(source["url"] + TABLE_PATH)
     cols = leaf_columns(data["column"])
     first = min(cols.values(), key=lambda f: int(f.removeprefix("column")))
-    rows = {text(r[first]): r for r in data["data"]}
+    rows = {}
+    for r in data["data"]:
+        name = text(r[first])
+        rows[ALIASES.get(name, name)] = r
     return cols, rows
+
+
+def check_total(label: str, values: dict[str, int], total: int) -> None:
+    # The published total is rounded on its own, so it can differ from the sum of the rows by a few thousand kroner.
+    if abs(sum(values.values()) - total) > len(values):
+        sys.exit(f"{label}: areas sum to {sum(values.values())}, table says {total}")
+
+
+def manual_series() -> tuple[dict, list[dict]]:
+    """Series typed in from PDFs, with the page they came from."""
+    data = json.loads(MANUAL.read_text(encoding="utf-8"))
+    series = []
+    for s in data["series"]:
+        named = {ALIASES.get(k, k): v for k, v in s["1000kr"].items()}
+        missing = [a for a in AREAS if a not in named]
+        if missing:
+            sys.exit(f"{MANUAL.name} {s['id']}: missing tjenesteområder {missing}")
+        values = {key: named[name] for name, key in AREAS.items()}
+        check_total(f"{MANUAL.name} {s['id']}", values, s["total_1000kr"])
+        src = data["sources"][s["source"]]
+        series.append({**s, "data_url": src["pdf"], "1000kr": values})
+    return data["sources"], series
 
 
 def main() -> int:
@@ -120,20 +154,25 @@ def main() -> int:
             sys.exit(f"{src}: missing tjenesteområder {missing}. Update AREAS if Narvik changed its structure.")
         values = {key: number(rows[name][field]) for name, key in AREAS.items()}
         total = number(rows[TOTAL_ROW][field])
-        # The published total is rounded on its own, so it can differ from the sum of the rows by a few thousand kroner.
-        if abs(sum(values.values()) - total) > len(values):
-            sys.exit(f"{src} {column}: areas sum to {sum(values.values())}, table says {total}")
+        check_total(f"{src} {column}", values, total)
         series.append({
             "id": sid, "kind": kind, "year": year, "source": src,
             "data_url": SOURCES[src]["url"] + TABLE_PATH, "column": column.replace("  ", " "),
             "total_1000kr": total, "1000kr": values,
         })
 
+    manual_sources, manual = manual_series()
+    taken = {(s["kind"], s["year"]) for s in series}
+    clash = [s["id"] for s in manual if (s["kind"], s["year"]) in taken]
+    if clash:
+        sys.exit(f"{MANUAL.name}: {clash} duplicate a series fetched from Framsikt")
+    series = sorted(series + manual, key=lambda s: (s["year"], ["regnskap", "budsjett", "forslag", "okonomiplan"].index(s["kind"])))
+
     out = {
         "generated": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
         "unit": "1000 kr",
         "table": TABLE,
-        "sources": SOURCES,
+        "sources": {**SOURCES, **manual_sources},
         "areas": [{"key": key, "name": name} for name, key in AREAS.items()],
         "series": series,
     }
