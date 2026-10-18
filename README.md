@@ -2,7 +2,7 @@
 
 Hvor går pengene i Narvik kommune? En enkel nettside som viser kommunens netto driftsutgifter fordelt på tjenester, år for år, og sammenlignet med landet og Nordland.
 
-Regnskapstallene kommer fra SSBs KOSTRA-statistikk, [tabell 12362](https://www.ssb.no/statbank/table/12362), og viser hva kommunen faktisk brukte. Åpner du et tjenesteområde, ser du hva pengene gikk til (lønn, kjøp, overføringer …) og hvilke inntekter som trekkes fra, fra [tabell 12367](https://www.ssb.no/statbank/table/12367).
+Regnskapstallene kommer fra SSBs KOSTRA-statistikk, [tabell 12362](https://www.ssb.no/statbank/table/12362), og viser hva kommunen faktisk brukte. Trykker du på et tjenesteområde, kommer du til områdesiden (`omrade.html`). Der kan du gå ned i tre nivåer: området, en tjeneste i det, og en kostnads- eller inntektstype i tjenesten, helt ned til SSBs enkelte arter i [tabell 12367](https://www.ssb.no/statbank/table/12367). Hvert nivå har sin egen adresse, for eksempel `omrade.html?omrade=helse&tjeneste=253&art=lonn&aar=2025`, så det kan deles.
 
 Siden *Budsjett mot regnskap* (`budsjett.html`) viser kommunens vedtatte budsjett ved siden av regnskapet, og det nyeste budsjettet mot året før. Den nås fra toppmenyen, og fra regnskapssiden for år som har både budsjett og regnskap (`budsjett.html?aar=2024`). Tallene kommer fra bevilgningsoversikten for drift (1B) i kommunens budsjettdokumenter på [Framsikt](https://pub.framsikt.net/2026/narvik/bm-2026-rapport_plan/), fordelt på Narviks egne tjenesteområder.
 
@@ -13,8 +13,8 @@ config/categories.json    KOSTRA-funksjoner gruppert i 15 tjenesteområder
 scripts/fetch_data.py     henter tall fra SSB og skriver site/data/narvik.json
 scripts/fetch_details.py  henter utgifts- og inntektsarter per funksjon fra SSB og skriver site/data/detaljer.json
 scripts/fetch_budget.py   henter budsjett og regnskap per tjenesteområde fra Framsikt og skriver site/data/budsjett.json
-site/                     den statiske nettsiden: index.html (regnskap, med details.js for artene), budsjett.html
-                          (budsjett mot regnskap), style.css og common.js er felles for begge
+site/                     den statiske nettsiden: index.html (regnskap), omrade.html (ett område, en tjeneste,
+                          en kostnadstype), budsjett.html (budsjett mot regnskap); style.css og common.js er felles
 .github/workflows/        oppdaterer data fra SSB og publiserer til GitHub Pages
 ```
 
@@ -34,6 +34,8 @@ Siden må åpnes via en webserver, siden den leser `data/narvik.json` med `fetch
 ## Kategoriene
 
 SSB rapporterer rundt 80 KOSTRA-funksjoner (for eksempel 202 Grunnskole og 253 Helse- og omsorgstjenester i institusjon). `config/categories.json` samler dem i tjenesteområder folk kjenner igjen. Hver funksjon hører til nøyaktig én kategori, slik at summen alltid blir riktig.
+
+En kategori kan ha `services`: tjenester med vanlige navn, som hver samler én eller flere funksjoner (for eksempel Hjemmetjenester = 254, 257 og 258). Det er de som listes på områdesiden. Funksjoner som ikke står i en tjeneste, vises med SSBs navn.
 
 Hvis SSB innfører en ny funksjonskode, avslutter skriptet med en advarsel som navngir koden. Legg den til i riktig kategori og kjør skriptet på nytt.
 
