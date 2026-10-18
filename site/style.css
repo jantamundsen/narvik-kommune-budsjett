@@ -1,13 +1,13 @@
 /* Shared by index.html and budsjett.html. */
-/* Layout: one calm column like a municipal report; ledger rows carry the detail, one oxide-red accent marks the selected year and Narvik. */
+/* Layout: one calm column like a municipal report; ledger rows carry the detail, one Narvik-blue accent (#005fbe, from the coat of arms) marks the selected year and Narvik; red is kept for over budget and increases. */
 :root {
   --paper: #f4f6f7;
   --surface: #ffffff;
   --ink: #17212b;
   --ink-2: #4c5966;
   --rule: #d9dfe4;
-  --accent: #a3412a;
-  --accent-soft: rgba(163, 65, 42, 0.12);
+  --accent: #005fbe;
+  --accent-soft: rgba(0, 95, 190, 0.10);
   --muted: #9aa6b1;
   --good: #2f7a52;
   --bad: #a3412a;
@@ -17,13 +17,13 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --paper: #12181e; --surface: #1a222a; --ink: #e8edf1; --ink-2: #a4b0bb; --rule: #2c3741;
-    --accent: #e98a6f; --accent-soft: rgba(233, 138, 111, 0.16); --muted: #6c7a87; --good: #6cc394; --bad: #e98a6f;
+    --accent: #6aacf2; --accent-soft: rgba(106, 172, 242, 0.16); --muted: #6c7a87; --good: #6cc394; --bad: #e98a6f;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --paper: #12181e; --surface: #1a222a; --ink: #e8edf1; --ink-2: #a4b0bb; --rule: #2c3741;
-  --accent: #e98a6f; --accent-soft: rgba(233, 138, 111, 0.16); --muted: #6c7a87; --good: #6cc394; --bad: #e98a6f;
+  --accent: #6aacf2; --accent-soft: rgba(106, 172, 242, 0.16); --muted: #6c7a87; --good: #6cc394; --bad: #e98a6f;
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
