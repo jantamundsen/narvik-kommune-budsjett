@@ -6,6 +6,8 @@ Regnskapstallene kommer fra SSBs KOSTRA-statistikk, [tabell 12362](https://www.s
 
 Siden *Budsjett mot regnskap* (`budsjett.html`) viser kommunens vedtatte budsjett ved siden av regnskapet, og det nyeste budsjettet mot året før. Den nås fra toppmenyen, og fra regnskapssiden for år som har både budsjett og regnskap (`budsjett.html?aar=2024`). Tallene kommer fra bevilgningsoversikten for drift (1B) i kommunens budsjettdokumenter på [Framsikt](https://pub.framsikt.net/2026/narvik/bm-2026-rapport_plan/), fordelt på Narviks egne tjenesteområder.
 
+Siden *Året så langt* (`lopende.html`) følger budsjettet og forbruket i inneværende år: brukt hittil, avvik og kommunedirektørens prognose per tjenesteområde, hvordan rammene er endret siden vedtaket, og inntektene. Tallene kommer fra tertialrapportene, som bare finnes som PDF og er skrevet inn i `config/lopende_2026.json` med side. I tillegg vises skatteinngangen måned for måned fra SSBs [tabell 07022](https://www.ssb.no/statbank/table/07022), som oppdateres automatisk.
+
 ## Slik er det bygget
 
 ```
@@ -13,8 +15,10 @@ config/categories.json    KOSTRA-funksjoner gruppert i 15 tjenesteområder
 scripts/fetch_data.py     henter tall fra SSB og skriver site/data/narvik.json
 scripts/fetch_details.py  henter utgifts- og inntektsarter per funksjon fra SSB og skriver site/data/detaljer.json
 scripts/fetch_budget.py   henter budsjett og regnskap per tjenesteområde fra Framsikt og skriver site/data/budsjett.json
+scripts/fetch_lopende.py  sjekker tertialtallene i config/lopende_2026.json, henter skatteinngang fra SSB 07022
+                          og skriver site/data/lopende.json
 site/                     den statiske nettsiden: index.html (regnskap), omrade.html (ett område, en tjeneste,
-                          en kostnadstype), budsjett.html (budsjett mot regnskap); style.css og common.js er felles
+                          en kostnadstype), budsjett.html (budsjett mot regnskap), lopende.html (året så langt); style.css og common.js er felles
 .github/workflows/        oppdaterer data fra SSB og publiserer til GitHub Pages
 ```
 
@@ -26,6 +30,7 @@ Ingen server, database eller byggesteg. Skriptet bruker bare Pythons standardbib
 python scripts/fetch_data.py          # henter ferske tall fra SSB
 python scripts/fetch_details.py       # henter utgifts- og inntektsarter fra SSB
 python scripts/fetch_budget.py        # henter budsjettall fra Framsikt
+python scripts/fetch_lopende.py       # tertialtall og månedlig skatteinngang for året så langt
 python -m http.server -d site 8000    # åpne http://localhost:8000
 ```
 
@@ -86,3 +91,7 @@ Budsjettet er det opprinnelige, slik kommunestyret vedtok det i desember året f
 3. *Oppdater data fra SSB* kjører 1. april og 20. juni, etter SSBs KOSTRA-publiseringer, og kan også startes manuelt under *Actions*.
 
 Laget som et åpent hobbyprosjekt, ikke av Narvik kommune.
+
+## Når en ny tertialrapport kommer
+
+Legg rapporten til i `reports` i `config/lopende_2026.json`, med tabellene «Totaloversikt drift – fordelt på rammeområder» og «Sentrale inntekter» skrevet av slik de står, og sidetallene. Kjør `python scripts/fetch_lopende.py`. Skriptet sjekker at hvert avvik er budsjett minus regnskap og at radene summerer til totalen, og siden viser den nyeste rapporten. For et nytt år lages en ny fil, og `CONFIG` i skriptet pekes til den.

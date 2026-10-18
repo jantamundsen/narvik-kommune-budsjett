@@ -1,0 +1,60 @@
+{
+ "_comment": "Tertial reports for the running year, typed in by hand from the pages named (1000 kr, as printed). scripts/fetch_lopende.py checks that each table adds up. The kommune's sign convention is kept: avvik is budget minus accounts, so a negative avvik is merforbruk; prognose_aarsavvik likewise.",
+ "year": "2026",
+ "reports": [
+  {
+   "id": "tertial-2-2026",
+   "name": "Tertialrapport 2/2026, formannskapet 15.10.2026 (sak 45/26)",
+   "period": "januar–august",
+   "months": 8,
+   "url": "https://prod02.elementscloud.no/publikum/959469059_prod-959469059/Dmb",
+   "pdf": "https://prod02.elementscloud.no/publikum/Documents/ShowDocument/c1d7f777-8235-4817-8203-ebd49ff36bb5/783/2230",
+   "areas": {
+    "_table": "Totaloversikt drift – fordelt på rammeområder",
+    "pdf_page": 9,
+    "columns": ["budsjett_hia", "regnskap_hia", "avvik_hia", "opprinnelig", "revidert", "prognose_aarsavvik"],
+    "rows": {
+     "Politisk ledelse": [5655, 7563, -1907, 8822, 8822, -1500],
+     "Kommunedirektøren": [13998, 17430, -3433, 27311, 22503, -1500],
+     "Virksomhetsstyring": [136107, 143823, -7716, 180926, 197676, -10000],
+     "Oppvekst": [414320, 409430, 4890, 621824, 625454, 5000],
+     "Helse og omsorg": [532225, 605644, -73419, 740684, 742215, -83930],
+     "Plan, næring og teknisk": [130031, 126199, 3832, 195772, 195772, 0],
+     "Fellesinntekter og kostnader": [69627, 97834, -28208, 62018, 124653, 0]
+    },
+    "total": [1301962, 1407923, -105961, 1837357, 1917095, -91930]
+   },
+   "income": {
+    "_table": "Sentrale inntekter",
+    "pdf_page": 7,
+    "columns": ["budsjett_hia", "regnskap_hia", "avvik_hia", "revidert"],
+    "rows": {
+     "Rammetilskudd": [-743988, -738147, -5842, -933654],
+     "Inntekts- og formuesskatt": [-622772, -630226, 7454, -877820],
+     "Eiendomsskatt": [-106849, -104996, -1854, -142653],
+     "Andre generelle driftsinntekter": [-59646, -74662, 15016, -163813]
+    },
+    "total": [-1533255, -1548030, 14775, -2117940]
+   },
+   "fund": {
+    "_text": "Disposisjonsfondet, Totaloversikt økonomi, s. 6",
+    "pdf_page": 6,
+    "saldo_naa_mill": 65,
+    "saldo_prognose_mill": 25,
+    "saldo_prognose_dato": "1.1.2027",
+    "bruk_mill": 40,
+    "strøket_avsetning_mill": 40.7
+   },
+   "regulations": {
+    "_text": "Forslag til budsjettregulering drift, s. 10",
+    "pdf_page": 10,
+    "items": [
+     "Lønnsoppgjøret for 2026: 33,6 mill. kr fordeles fra en sentral pott til tjenesteområdene.",
+     "Budsjettert avsetning til disposisjonsfond på 40,7 mill. kr strykes, og 40 mill. kr hentes fra fondet. Helse og omsorg får rammen styrket tilsvarende.",
+     "Sosialstønad til flyktninger hos NAV styrkes med 10 mill. kr, finansiert av økt integreringstilskudd."
+    ]
+   }
+  }
+ ],
+ "missing": "Tertialrapport 1/2026 (januar–april) ligger ikke i kommunens nye møtesystem, som bare har møter fra oktober 2026."
+}
