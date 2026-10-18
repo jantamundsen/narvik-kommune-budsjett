@@ -39,7 +39,7 @@ async function start() {
   if (grp) S = await optional('data/sammenligning.json');
   else M = await optional('data/malgruppe.json');
   page.innerHTML = grp ? typePage(svc, grp) : svc ? servicePage(svc) : areaPage();
-  document.title = [grp?.name, svc?.name, area.name, 'Pengene i Narvik'].filter(Boolean).join(' · ');
+  document.title = [grp?.name, svc?.name, area.name, 'Åpen økonomi i Narvik'].filter(Boolean).join(' · ');
 }
 
 // ---- data ----

@@ -1,4 +1,4 @@
-# Pengene i Narvik
+# Åpen økonomi i Narvik
 
 Hvor går pengene i Narvik kommune? En enkel nettside som viser kommunens netto driftsutgifter fordelt på tjenester, år for år, og sammenlignet med lignende kommuner.
 
