@@ -1,0 +1,206 @@
+{
+ "generated": "2026-10-18T17:21:18+00:00",
+ "year": "2026",
+ "unit": "1000 kr",
+ "areas": [
+  {
+   "key": "politisk",
+   "name": "Politisk ledelse"
+  },
+  {
+   "key": "radmannen",
+   "name": "Kommunedirektør og stab"
+  },
+  {
+   "key": "virksomhet",
+   "name": "Virksomhetsstyring"
+  },
+  {
+   "key": "oppvekst",
+   "name": "Oppvekst"
+  },
+  {
+   "key": "helse",
+   "name": "Helse og omsorg"
+  },
+  {
+   "key": "plan",
+   "name": "Plan, næring og teknisk"
+  },
+  {
+   "key": "felles",
+   "name": "Fellesinntekter og kostnader"
+  }
+ ],
+ "reports": [
+  {
+   "id": "tertial-2-2026",
+   "name": "Tertialrapport 2/2026, formannskapet 15.10.2026 (sak 45/26)",
+   "period": "januar–august",
+   "months": 8,
+   "url": "https://prod02.elementscloud.no/publikum/959469059_prod-959469059/Dmb",
+   "pdf": "https://prod02.elementscloud.no/publikum/Documents/ShowDocument/c1d7f777-8235-4817-8203-ebd49ff36bb5/783/2230",
+   "areas": {
+    "table": "Totaloversikt drift – fordelt på rammeområder",
+    "pdf_page": 9,
+    "rows": {
+     "politisk": {
+      "budsjett_hia": 5655,
+      "regnskap_hia": 7563,
+      "avvik_hia": -1907,
+      "opprinnelig": 8822,
+      "revidert": 8822,
+      "prognose_aarsavvik": -1500
+     },
+     "radmannen": {
+      "budsjett_hia": 13998,
+      "regnskap_hia": 17430,
+      "avvik_hia": -3433,
+      "opprinnelig": 27311,
+      "revidert": 22503,
+      "prognose_aarsavvik": -1500
+     },
+     "virksomhet": {
+      "budsjett_hia": 136107,
+      "regnskap_hia": 143823,
+      "avvik_hia": -7716,
+      "opprinnelig": 180926,
+      "revidert": 197676,
+      "prognose_aarsavvik": -10000
+     },
+     "oppvekst": {
+      "budsjett_hia": 414320,
+      "regnskap_hia": 409430,
+      "avvik_hia": 4890,
+      "opprinnelig": 621824,
+      "revidert": 625454,
+      "prognose_aarsavvik": 5000
+     },
+     "helse": {
+      "budsjett_hia": 532225,
+      "regnskap_hia": 605644,
+      "avvik_hia": -73419,
+      "opprinnelig": 740684,
+      "revidert": 742215,
+      "prognose_aarsavvik": -83930
+     },
+     "plan": {
+      "budsjett_hia": 130031,
+      "regnskap_hia": 126199,
+      "avvik_hia": 3832,
+      "opprinnelig": 195772,
+      "revidert": 195772,
+      "prognose_aarsavvik": 0
+     },
+     "felles": {
+      "budsjett_hia": 69627,
+      "regnskap_hia": 97834,
+      "avvik_hia": -28208,
+      "opprinnelig": 62018,
+      "revidert": 124653,
+      "prognose_aarsavvik": 0
+     }
+    },
+    "total": {
+     "budsjett_hia": 1301962,
+     "regnskap_hia": 1407923,
+     "avvik_hia": -105961,
+     "opprinnelig": 1837357,
+     "revidert": 1917095,
+     "prognose_aarsavvik": -91930
+    }
+   },
+   "income": {
+    "table": "Sentrale inntekter",
+    "pdf_page": 7,
+    "rows": {
+     "Rammetilskudd": {
+      "budsjett_hia": -743988,
+      "regnskap_hia": -738147,
+      "avvik_hia": -5842,
+      "revidert": -933654
+     },
+     "Inntekts- og formuesskatt": {
+      "budsjett_hia": -622772,
+      "regnskap_hia": -630226,
+      "avvik_hia": 7454,
+      "revidert": -877820
+     },
+     "Eiendomsskatt": {
+      "budsjett_hia": -106849,
+      "regnskap_hia": -104996,
+      "avvik_hia": -1854,
+      "revidert": -142653
+     },
+     "Andre generelle driftsinntekter": {
+      "budsjett_hia": -59646,
+      "regnskap_hia": -74662,
+      "avvik_hia": 15016,
+      "revidert": -163813
+     }
+    },
+    "total": {
+     "budsjett_hia": -1533255,
+     "regnskap_hia": -1548030,
+     "avvik_hia": 14775,
+     "revidert": -2117940
+    }
+   },
+   "fund": {
+    "pdf_page": 6,
+    "saldo_naa_mill": 65,
+    "saldo_prognose_mill": 25,
+    "saldo_prognose_dato": "1.1.2027",
+    "bruk_mill": 40,
+    "strøket_avsetning_mill": 40.7
+   },
+   "regulations": {
+    "pdf_page": 10,
+    "items": [
+     "Lønnsoppgjøret for 2026: 33,6 mill. kr fordeles fra en sentral pott til tjenesteområdene.",
+     "Budsjettert avsetning til disposisjonsfond på 40,7 mill. kr strykes, og 40 mill. kr hentes fra fondet. Helse og omsorg får rammen styrket tilsvarende.",
+     "Sosialstønad til flyktninger hos NAV styrkes med 10 mill. kr, finansiert av økt integreringstilskudd."
+    ]
+   }
+  }
+ ],
+ "missing": "Tertialrapport 1/2026 (januar–april) ligger ikke i kommunens nye møtesystem, som bare har møter fra oktober 2026.",
+ "tax": {
+  "name": "SSB tabell 07022, Skatterekneskapsstatistikk",
+  "label": "Ordinær skatt til primærkommunen",
+  "unit": "mill. kr, akkumulert",
+  "updated": "2026-10-16T06:00:00Z",
+  "url": "https://www.ssb.no/statbank/table/07022",
+  "data_url": "https://data.ssb.no/api/pxwebapi/v2/tables/07022/data?lang=no&valueCodes[Region]=1806&valueCodes[Skatteart]=06&valueCodes[ContentsCode]=Skatt&valueCodes[Tid]=2025M*,2026M*",
+  "months": {
+   "2025": [
+    93.4,
+    105.4,
+    246.4,
+    256.6,
+    403.4,
+    415.1,
+    516.9,
+    523.3,
+    667.9,
+    670.1,
+    823.8,
+    830.4
+   ],
+   "2026": [
+    147.4,
+    217.2,
+    289.7,
+    361.6,
+    448.8,
+    503.6,
+    560,
+    630.2,
+    705.8,
+    null,
+    null,
+    null
+   ]
+  }
+ }
+}

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Narvik kommunes budsjett og forbruk så langt i år, fra tertialrapportene og SSBs månedlige skattetall.">
+<title>Året så langt · Pengene i Narvik</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <nav class="site-nav" aria-label="Sider"><a class="brand" href="./">Pengene i Narvik</a><a href="./">Regnskap</a><a href="budsjett.html">Budsjett mot regnskap</a><a href="lopende.html" aria-current="page">Året så langt</a></nav>
+  <header>
+    <div class="eyebrow" id="eyebrow">Narvik kommune · løpende oversikt</div>
+    <h1 id="title">Året så langt</h1>
+    <p class="lead" id="lead"></p>
+    <div class="summary" id="summary" hidden></div>
+    <p class="status-note" id="status" hidden></p>
+  </header>
+
+  <section aria-labelledby="h-areas" id="areas" hidden>
+    <div class="section-head">
+      <h2 id="h-areas"></h2>
+      <p class="lead" id="areas-lead"></p>
+    </div>
+    <div class="ledger" id="areas-ledger"></div>
+    <p class="caption" id="areas-caption"></p>
+  </section>
+
+  <section aria-labelledby="h-changes" id="changes" hidden>
+    <div class="section-head">
+      <h2 id="h-changes">Budsjettet er endret underveis</h2>
+      <p class="lead" id="changes-lead"></p>
+    </div>
+    <div class="ledger" id="changes-ledger"></div>
+    <ul class="reg-list" id="reg-list"></ul>
+    <p class="caption" id="changes-caption"></p>
+  </section>
+
+  <section aria-labelledby="h-income" id="income" hidden>
+    <div class="section-head">
+      <h2 id="h-income">Inntektene</h2>
+      <p class="lead" id="income-lead"></p>
+    </div>
+    <div class="ledger" id="income-ledger"></div>
+    <p class="caption" id="income-caption"></p>
+  </section>
+
+  <section aria-labelledby="h-tax" id="tax" hidden>
+    <div class="section-head">
+      <h2 id="h-tax">Skatten måned for måned</h2>
+      <p class="lead" id="tax-lead"></p>
+    </div>
+    <div class="legend" id="tax-legend"></div>
+    <div class="chart tax-chart" id="tax-chart"></div>
+    <details class="all-numbers"><summary>Vis tallene</summary><div class="detail-scroll"><table class="num-table" id="tax-table"></table></div></details>
+    <p class="caption" id="tax-caption"></p>
+  </section>
+
+  <section aria-labelledby="h-notes">
+    <h2 id="h-notes">Slik leser du tallene</h2>
+    <div class="notes">
+      <div><h3>Tertialrapportene</h3><p>Kommunedirektøren rapporterer til formannskapet tre ganger i året: etter april, etter august og med årsregnskapet. Mellom rapportene finnes det ingen offentlige tall for forbruket per tjenesteområde.</p></div>
+      <div><h3>Budsjett hittil i år</h3><p>Budsjettet hittil er den delen av årsbudsjettet kommunen har fordelt på månedene så langt. Avviket hittil er det beløpet minus regnskapet.</p></div>
+      <div><h3>Prognosen</h3><p>Prognosen er kommunedirektørens anslag for hele året, gitt i tertialrapporten. Den er ikke et regnskap, og tiltak eller nye vedtak kan endre den.</p></div>
+      <div><h3>Hvor tallene kommer fra</h3><p>Tertialtallene er skrevet av fra rapportens tabeller. Under hver tabell står rapport og side. Skattetallene hentes automatisk fra SSB hver måned.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Kilder: Narvik kommunes tertialrapporter i kommunens <a href="https://prod02.elementscloud.no/publikum/959469059_prod-959469059/Dmb" target="_blank" rel="noopener">politiske møter</a>, og SSBs <a href="https://www.ssb.no/statbank/table/07022" target="_blank" rel="noopener">tabell 07022</a>.</span>
+    <span>Laget som et åpent hobbyprosjekt, ikke av Narvik kommune. <a href="https://github.com/jtkarlsen/narvik-kommune-budsjett" target="_blank" rel="noopener">Kildekode</a>.</span>
+  </footer>
+</div>
+<script src="common.js"></script>
+<script src="lopende.js"></script>
+</body>
+</html>

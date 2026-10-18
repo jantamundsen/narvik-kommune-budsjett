@@ -215,3 +215,18 @@ a.rank-row:hover { background: var(--accent-soft); }
   .bars5 { gap: 6px; }
   .flow-seg { font-size: 0.8rem; padding: 0 8px; }
 }
+
+/* lopende.html: the year so far */
+.used { display: grid; gap: 4px; }
+.used-track { position: relative; height: 8px; background: var(--rule); border-radius: 4px; }
+.used-fill { display: block; height: 100%; border-radius: 4px; }
+.used-fill.over { background: var(--bad); }
+.used-fill.under { background: var(--good); }
+.used-track i { position: absolute; top: -4px; bottom: -4px; width: 2px; margin-left: -1px; background: var(--ink); }
+.used small { font-size: 0.8rem; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.reg-list { margin: 0; padding-left: 20px; display: grid; gap: 6px; max-width: 65ch; }
+.chart { position: relative; }
+.chart-tip { position: absolute; pointer-events: none; background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 8px 10px; font-size: 0.85rem; display: grid; gap: 2px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12); font-variant-numeric: tabular-nums; }
+.legend span { display: inline-flex; align-items: center; }
+#summary { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+@media (max-width: 680px) { .budget-row .c-amt .m-label, .budget-row .c-chg .m-label { color: var(--ink-2); font-size: 0.82rem; font-weight: 400; } }
