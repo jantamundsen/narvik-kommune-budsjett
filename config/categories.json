@@ -19,6 +19,67 @@
         "257",
         "258",
         "261"
+      ],
+      "services": [
+        {
+          "key": "hjemmetjenester",
+          "name": "Hjemmetjenester",
+          "functions": [
+            "254",
+            "257",
+            "258"
+          ],
+          "note": "KOSTRA-funksjon 257 og 258. Før 2024 var de én funksjon, 254."
+        },
+        {
+          "key": "253",
+          "name": "Sykehjem og institusjon",
+          "functions": [
+            "253"
+          ]
+        },
+        {
+          "key": "241",
+          "name": "Behandling og rehabilitering",
+          "functions": [
+            "241"
+          ]
+        },
+        {
+          "key": "261",
+          "name": "Lokaler til institusjoner",
+          "functions": [
+            "261"
+          ]
+        },
+        {
+          "key": "234",
+          "name": "Aktivitet og service for eldre",
+          "functions": [
+            "234"
+          ]
+        },
+        {
+          "key": "232",
+          "name": "Helsestasjon og skolehelse",
+          "functions": [
+            "232"
+          ]
+        },
+        {
+          "key": "233",
+          "name": "Annet forebyggende arbeid",
+          "functions": [
+            "233"
+          ]
+        },
+        {
+          "key": "256",
+          "name": "Øyeblikkelig hjelp døgntilbud",
+          "functions": [
+            "256"
+          ]
+        }
       ]
     },
     {

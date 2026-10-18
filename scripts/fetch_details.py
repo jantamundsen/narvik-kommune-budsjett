@@ -50,7 +50,7 @@ DIM_CONTENTS = "ContentsCode"
 DIM_YEAR = "Tid"
 
 SCOPES = {
-    "konsern": {"code": "A", "name": "Hele kommunen (konsern)",
+    "konsern": {"code": "A", "name": "Hele kommunen",
                 "note": "Kommunen med kommunale foretak (Narvik Havn KF og Narvik Vann KF). Samme omfang som tallene ellers på siden."},
     "kasse": {"code": "B", "name": "Kommunekassen",
               "note": "Kommunen uten de kommunale foretakene."},
@@ -66,7 +66,8 @@ GROUPS = [
      "parts": ["A090", "A099"], "rest": "Lønn uten pensjon og arbeidsgiveravgift"},
     {"key": "egen", "side": "utgift", "name": "Varer og tjenester til egen drift", "arts": ["AGD50"],
      "parts": ["A260", "A270"], "rest": "Andre varer og tjenester"},
-    {"key": "kjop", "side": "utgift", "name": "Tjenester kjøpt i stedet for å lage dem selv", "arts": ["AGD51"],
+    {"key": "kjop", "side": "utgift", "name": "Kjøpte tjenester", "arts": ["AGD51"],
+     "note": "Tjenester kommunen kjøper i stedet for å lage dem selv, fra private eller andre offentlige.",
      "parts": ["AG2", "A370", "AG3"], "rest": "Annet kjøp"},
     {"key": "overforing", "side": "utgift", "name": "Overføringer og tilskudd ut", "arts": ["AG34"],
      "parts": ["AG4", "A470", "AG52"], "rest": "Andre overføringer"},
@@ -74,7 +75,7 @@ GROUPS = [
      "note": "Kompenseres av staten, se mva-kompensasjon under inntekter."},
     {"key": "avskrivning", "side": "utgift", "name": "Avskrivninger", "arts": ["A590"]},
     {"key": "fordelt", "side": "utgift", "name": "Fordelte utgifter og internsalg", "arts": ["AGD59"]},
-    {"key": "brukerbetaling", "side": "inntekt", "name": "Brukerbetalinger", "arts": ["A600"]},
+    {"key": "brukerbetaling", "side": "inntekt", "name": "Egenandeler fra brukerne", "arts": ["A600"]},
     {"key": "salg", "side": "inntekt", "name": "Salg og leie", "arts": ["AGD34"]},
     {"key": "refusjon", "side": "inntekt", "name": "Refusjoner", "arts": ["AG48"],
      "parts": ["A710", "AG9", "AD770", "AGD53"], "rest": "Andre refusjoner"},
@@ -82,6 +83,15 @@ GROUPS = [
     {"key": "tilskudd", "side": "inntekt", "name": "Tilskudd og overføringer inn", "arts": ["AGD49"],
      "parts": ["A890", "AGD54", "AGD56"], "rest": "Andre overføringer inn"},
 ]
+# Short names for SSB's sub-arts, shown on the site with SSB's own name as a tooltip.
+PART_NAMES = {
+    "A090": "Pensjon", "A099": "Arbeidsgiveravgift",
+    "A260": "Renhold og vask", "A270": "Andre tjenester til egen drift",
+    "AG2": "Fra andre offentlige", "A370": "Fra private", "AG3": "Fra særbedrifter",
+    "AG4": "Til andre offentlige", "A470": "Til andre", "AG52": "Til særbedrifter",
+    "A710": "Sykelønn fra NAV", "AG9": "Fra andre offentlige", "AD770": "Fra andre", "AGD53": "Salg til særbedrifter",
+    "A890": "Fra andre", "AGD54": "Fra andre kommuner", "AGD56": "Fra egne foretak og IKS",
+}
 NET = "AGD2"
 ARTS = [NET] + list(dict.fromkeys(a for g in GROUPS for a in g["arts"] + g.get("parts", [])))
 
@@ -149,6 +159,7 @@ def transform(ds: dict) -> tuple[dict, list[str]]:
         "net_art": NET,
         "groups": GROUPS,
         "arts": {a: art_names.get(a, a) for a in ARTS},
+        "part_names": PART_NAMES,
         "function_names": {f: fn_names.get(f, f).removeprefix(f + " ") for f in functions},
         "values": values,
     }, warnings

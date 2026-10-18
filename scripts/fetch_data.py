@@ -131,6 +131,7 @@ def transform(ds: dict, config: dict) -> dict:
             "name": cat["name"],
             "description": cat["description"],
             "functions": fs,
+            **({"services": cat["services"]} if cat.get("services") else {}),
             "narvik_1000kr": narvik_amount,
             "per_capita": per_capita,
         })

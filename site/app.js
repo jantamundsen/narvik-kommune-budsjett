@@ -3,7 +3,6 @@ const mill = v => nb(v / 1000, 0);
 const svgNS = 'http://www.w3.org/2000/svg';
 let DATA, YEARS, OFFSET_KEYS, services, offsets, year;
 let budgetYears = new Set(); // years with both a budget and accounts on budsjett.html
-const openRows = new Set();
 
 function s(tag, attrs = {}, text) {
   const n = document.createElementNS(svgNS, tag);
@@ -39,7 +38,6 @@ async function start() {
   });
   render();
   loadBudgetYears();
-  loadDetails().then(() => { if (DET) render(); });
 }
 
 // Link to budsjett.html for the selected year when that page has a budget to compare with its accounts.
@@ -105,11 +103,10 @@ function drawNote(svcTotal) {
   pos.forEach((c, i) => {
     const kr = c.narvik_1000kr[year] / posTotal * 100;
     const op = Math.max(0.22, 1 - i * 0.11);
-    const b = el('button', { type: 'button', title: `${c.name}: ${nb(kr, 1)} kr av 100`, 'aria-label': `${c.name}, ${nb(kr)} kroner av hundre` });
+    const b = el('a', { href: areaHref(c.key), title: `${c.name}: ${nb(kr, 1)} kr av 100`, 'aria-label': `${c.name}, ${nb(kr)} kroner av hundre` });
     b.style.flex = `0 0 ${kr}%`;
     b.style.background = `color-mix(in srgb, var(--accent) ${Math.round(op * 100)}%, var(--surface))`;
     if (kr >= 9) b.appendChild(el('span', {}, nb(kr) + ' kr'));
-    b.addEventListener('click', () => openRow(c.key));
     bar.appendChild(b);
     const li = el('li');
     li.appendChild(el('span', { class: 'kr' }, nb(kr, kr < 1 ? 1 : 0) + ' kr'));
@@ -118,11 +115,13 @@ function drawNote(svcTotal) {
   });
 }
 
+// Each area links to omrade.html, which drills down into its services and cost types.
+const areaHref = key => `omrade.html?omrade=${key}&aar=${year}`;
+
 function rowFor(c, svcTotal, maxShare, prev) {
   const v = c.narvik_1000kr[year];
-  const open = openRows.has(c.key);
-  const row = el('div', { class: 'row', id: 'row-' + c.key, 'data-open': String(open) });
-  const btn = el('button', { class: 'row-btn', type: 'button', 'aria-expanded': String(open), 'aria-controls': 'det-' + c.key });
+  const row = el('div', { class: 'row', id: 'row-' + c.key });
+  const btn = el('a', { class: 'row-btn', href: areaHref(c.key) });
   const name = el('span', { class: 'row-name c-name' });
   name.append(el('b', {}, c.name), el('small', {}, c.description));
   const share = el('span', { class: 'share c-share' });
@@ -137,45 +136,8 @@ function rowFor(c, svcTotal, maxShare, prev) {
     el('span', { class: 'r num c-amt' }, nb(v / 1000, Math.abs(v) < 10000 ? 1 : 0)),
     el('span', { class: 'r num c-pc' }, nb(perCap(v, year))),
     el('span', { class: 'r c-chg ' + cls }, prev ? chgText(p) : '–'));
-  btn.addEventListener('click', () => toggle(c.key));
   row.appendChild(btn);
-
-  const det = el('div', { class: 'detail', id: 'det-' + c.key });
-  det.hidden = !open;
-  det.appendChild(breakdownFor(c));
-  const scroll = el('div', { class: 'detail-scroll' });
-  const t = el('table');
-  det.appendChild(el('h3', {}, 'Netto per KOSTRA-funksjon'));
-  const hr = el('tr'); hr.appendChild(el('th', {}, 'KOSTRA-funksjon (1000 kr)'));
-  YEARS.forEach(y => hr.appendChild(el('th', y === year ? { class: 'sel' } : {}, y)));
-  t.appendChild(hr);
-  c.functions.filter(f => DATA.functions[f]).forEach(f => {
-    const vals = YEARS.map(y => DATA.functions[f].narvik_1000kr[y]);
-    if (vals.every(x => x === null || x === 0)) return;
-    const tr = el('tr'); tr.appendChild(el('td', {}, `${f} ${DATA.functions[f].name}`));
-    YEARS.forEach((y, i) => tr.appendChild(el('td', y === year ? { class: 'sel' } : {}, vals[i] === null ? '·' : nb(vals[i]))));
-    t.appendChild(tr);
-  });
-  const tot = el('tr'); tot.appendChild(el('td', { style: 'font-weight:600' }, 'Sum'));
-  YEARS.forEach(y => tot.appendChild(el('td', y === year ? { class: 'sel', style: 'font-weight:600' } : { style: 'font-weight:600' }, nb(c.narvik_1000kr[y]))));
-  t.appendChild(tot);
-  scroll.appendChild(t); det.appendChild(scroll);
-  if (c.functions.includes('257')) det.appendChild(el('p', {}, 'Fra 2024 er hjemmetjenester (254) delt i 257 og 258. Summen for området er sammenlignbar over tid.'));
-  det.appendChild(el('p', {}, '· betyr at funksjonen ikke fantes eller ikke er rapportert det året.'));
-  row.appendChild(det);
   return row;
-}
-
-function toggle(key) {
-  openRows.has(key) ? openRows.delete(key) : openRows.add(key);
-  const r = document.getElementById('row-' + key), open = openRows.has(key);
-  r.dataset.open = String(open);
-  r.querySelector('.row-btn').setAttribute('aria-expanded', String(open));
-  r.querySelector('.detail').hidden = !open;
-}
-function openRow(key) {
-  if (!openRows.has(key)) toggle(key);
-  document.getElementById('row-' + key).scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
 }
 
 function drawCompare() {
