@@ -156,3 +156,32 @@ footer { border-top: 1px solid var(--rule); padding-top: 20px; font-size: 0.85re
 @media (prefers-reduced-motion: no-preference) {
   .share-fill, .note-bar button { transition: width 0.35s ease, flex-basis 0.35s ease; }
 }
+
+/* breakdown by cost and income type (details.js) */
+.breakdown { display: grid; gap: 12px; padding-bottom: 8px; }
+.detail h3 { font-size: 1rem; font-weight: 600; }
+.bd-controls { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; }
+.bd-controls select { font: 0.9rem var(--font-body); color: var(--ink); background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 6px 8px; max-width: 100%; }
+.seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 999px; overflow: hidden; }
+.seg button { font: 600 0.85rem var(--font-body); border: 0; background: var(--surface); color: var(--ink-2); padding: 6px 12px; cursor: pointer; }
+.seg button[aria-checked="true"] { background: var(--ink); color: var(--paper); }
+.bd-bars { display: grid; gap: 6px; }
+.bd-line { display: grid; grid-template-columns: 76px 1fr auto; gap: 10px; align-items: center; font-size: 0.85rem; }
+.bd-label { color: var(--ink-2); }
+.bd-amt { font-weight: 600; min-width: 74px; text-align: right; }
+.bd-track { display: flex; height: 22px; background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; }
+.bd-seg { display: block; height: 100%; border-right: 1px solid var(--surface); }
+.bd-seg.utgift { background: color-mix(in srgb, var(--accent) var(--mix), var(--surface)); }
+.bd-seg.inntekt { background: color-mix(in srgb, var(--good) var(--mix), var(--surface)); }
+.bd-legend { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 0.8rem; color: var(--ink-2); }
+.bd-legend li { display: flex; align-items: center; gap: 6px; }
+.bd-legend i { width: 10px; height: 10px; border-radius: 2px; border: 0; }
+.detail .bd-table td.code, .detail .bd-table th.code { text-align: left; color: var(--ink-2); font-size: 0.78rem; min-width: 0; white-space: nowrap; }
+.bd-side td { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--ink-2); font-weight: 600; padding-top: 14px !important; }
+.bd-group td { font-weight: 600; }
+.bd-part td:first-child { padding-left: 22px; color: var(--ink-2); }
+.derived td:first-child, .derived td.code { font-style: italic; }
+.bd-sum td { font-weight: 700; border-top: 1px solid var(--ink-2); }
+.detail > *, .breakdown > *, .ledger { min-width: 0; }
+.bd-controls select { flex: 1 1 220px; min-width: 0; }
+@media (max-width: 560px) { .bd-line { grid-template-columns: 64px 1fr auto; gap: 6px; } }
