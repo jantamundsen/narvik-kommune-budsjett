@@ -40,7 +40,7 @@ async function startRunning() {
   const months = R.months, monthsShare = months / 12;
   const name = key => L.areas.find(a => a.key === key).name;
 
-  document.title = `${L.year} så langt · Pengene i Narvik`;
+  document.title = `${L.year} så langt · Åpen økonomi i Narvik`;
   document.getElementById('title').textContent = `${L.year} så langt`;
   document.getElementById('eyebrow').textContent = `Narvik kommune · budsjett og forbruk i ${L.year}, oppdatert med ${R.name.split(',')[0].toLowerCase()}`;
   const overNow = over(T.avvik_hia), overYear = over(T.prognose_aarsavvik);
