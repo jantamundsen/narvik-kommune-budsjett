@@ -2,6 +2,7 @@
 const mill = v => nb(v / 1000, 0);
 const svgNS = 'http://www.w3.org/2000/svg';
 let DATA, YEARS, OFFSET_KEYS, services, offsets, year;
+let ref = 'gruppe'; // comparison region key from DATA.compare (?mot=)
 let budgetYears = new Set(); // years with both a budget and accounts on budsjett.html
 
 function s(tag, attrs = {}, text) {
@@ -29,6 +30,8 @@ async function start() {
   year = YEARS.at(-1);
   try { const y = localStorage.getItem('narvik-year'); if (YEARS.includes(y)) year = y; } catch (e) {}
   if (YEARS.includes(urlYear())) year = urlYear();
+  const mot = new URLSearchParams(location.search).get('mot');
+  if (DATA.compare.some(r => r.key === mot)) ref = mot;
   document.getElementById('generated').textContent = new Date(DATA.generated).toLocaleDateString('nb-NO', { day: 'numeric', month: 'long', year: 'numeric' });
   const yearsEl = document.getElementById('years');
   YEARS.forEach(y => {
@@ -58,7 +61,13 @@ function drawBudgetLink() {
   a.textContent = `Se budsjett mot regnskap for ${year} →`;
 }
 
-function setYear(y) { year = y; try { localStorage.setItem('narvik-year', y); history.replaceState(null, '', '?aar=' + y); } catch (e) {} render(); }
+function setYear(y) { year = y; try { localStorage.setItem('narvik-year', y); } catch (e) {} writeUrl(); render(); }
+// The address carries the year and the comparison region, so a view can be shared.
+function writeUrl() {
+  const p = new URLSearchParams({ aar: year });
+  if (ref !== 'gruppe') p.set('mot', ref);
+  try { history.replaceState(null, '', '?' + p + location.hash); } catch (e) {}
+}
 
 function render() {
   drawBudgetLink();
@@ -140,41 +149,70 @@ function rowFor(c, svcTotal, maxShare, prev) {
   return row;
 }
 
+// Narvik per inhabitant against one comparison region (?mot=harstad), area by area, largest difference first.
+function setRef(k) { ref = k; writeUrl(); drawCompare(); }
 function drawCompare() {
-  // Use the selected year when SSB comparison figures exist for it, else the latest year that has them.
-  const has = y => services.some(c => c.per_capita.landet[y] !== null);
-  const cy = has(year) ? year : [...YEARS].reverse().find(has);
-  const cap = document.getElementById('cmp-caption');
-  if (!cy) { document.getElementById('cmp-chart').replaceChildren(); cap.textContent = 'Ingen sammenligningstall i datafilen.'; return; }
-  cap.textContent = `Netto driftsutgifter per innbygger, ${cy}.` + (cy !== year ? ` Sammenligningstall for ${year} mangler i datafilen, derfor vises ${cy}.` : '');
-  const pc = c => ({ narvik: perCap(c.narvik_1000kr[cy], cy), landet: c.per_capita.landet[cy], nordland: c.per_capita.nordland[cy] });
-  const cats = services.map(c => ({ c, p: pc(c) })).filter(x => x.p.landet > 0 && x.p.narvik > 0).sort((a, b) => b.p.narvik - a.p.narvik);
-  const W = 760, left = 210, right = 690, rowH = 30, y0 = 20, H = y0 + cats.length * rowH + 36;
-  const max = Math.ceil(Math.max(...cats.flatMap(x => [x.p.narvik, x.p.landet, x.p.nordland || 0])) / 10000) * 10000;
-  const X = v => left + v / max * (right - left);
-  const svg = s('svg', { viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': `Netto driftsutgifter per innbygger ${cy}, Narvik mot landet og Nordland` });
-  for (let t = 0; t <= max; t += 10000) {
-    svg.appendChild(s('line', { x1: X(t), x2: X(t), y1: y0 - 8, y2: H - 30, stroke: 'var(--rule)' }));
-    svg.appendChild(s('text', { x: X(t), y: H - 12, 'text-anchor': 'middle', 'font-size': 12, fill: 'var(--ink-2)' }, nb(t)));
-  }
-  cats.forEach(({ c, p }, i) => {
-    const y = y0 + i * rowH + 8;
-    const present = [p.narvik, p.landet, p.nordland].filter(v => v !== null);
-    const lo = Math.min(...present), hi = Math.max(...present);
-    svg.appendChild(s('text', { x: 0, y: y + 4, 'font-size': 13, fill: 'var(--ink)' }, c.name));
-    svg.appendChild(s('line', { x1: X(lo), x2: X(hi), y1: y, y2: y, stroke: 'var(--muted)', 'stroke-opacity': 0.5, 'stroke-width': 2 }));
-    const dot = (v, attrs, label) => { if (v === null) return; const d = s('circle', Object.assign({ cx: X(v), cy: y }, attrs)); d.appendChild(s('title', {}, `${c.name}, ${label}: ${nb(v)} kr per innbygger`)); svg.appendChild(d); };
-    dot(p.landet, { r: 5, fill: 'var(--muted)' }, 'landet');
-    dot(p.nordland, { r: 5, fill: 'var(--surface)', stroke: 'var(--muted)', 'stroke-width': 1.5 }, 'Nordland');
-    dot(p.narvik, { r: 6, fill: 'var(--accent)' }, 'Narvik');
-    svg.appendChild(s('text', { x: X(hi) + 12, y: y + 4, 'font-size': 12.5, 'font-weight': 600, fill: 'var(--ink)' }, nb(p.narvik)));
+  const C = DATA.compare;
+  const R = C.find(r => r.key === ref) || C[0];
+  const pick = document.getElementById('cmp-pick'); pick.replaceChildren();
+  C.forEach(r => {
+    const b = el('button', { type: 'button', 'aria-pressed': String(r === R) }, shortName(r));
+    b.addEventListener('click', () => setRef(r.key));
+    pick.appendChild(b);
   });
-  document.getElementById('cmp-chart').replaceChildren(svg);
-  const h = cats.find(x => x.c.key === 'helse');
-  document.getElementById('cmp-lead').textContent = h
-    ? `I ${cy} brukte Narvik ${nb(h.p.narvik)} kr per innbygger på helse og omsorg, ${nb(Math.abs(h.p.narvik / h.p.landet - 1) * 100)} % ${h.p.narvik >= h.p.landet ? 'mer' : 'mindre'} enn landsgjennomsnittet` + (h.p.nordland ? ` og ${nb(h.p.nordland)} kr i snitt i Nordland.` : '.')
+
+  // Use the selected year when SSB has figures for the region, else the latest year that has them.
+  const has = y => services.some(c => c.per_capita[R.key]?.[y] != null);
+  const cy = has(year) ? year : [...YEARS].reverse().find(has);
+  const list = document.getElementById('cmp-list'), cap = document.getElementById('cmp-caption');
+  if (!cy) { list.replaceChildren(); cap.textContent = 'Ingen sammenligningstall i datafilen.'; return; }
+  const rows = services.map(c => ({ c, n: c.per_capita.narvik[cy], r: c.per_capita[R.key][cy] }))
+    .filter(x => x.n != null && x.r != null).map(x => ({ ...x, d: x.n - x.r })).sort((a, b) => b.d - a.d);
+  const maxD = Math.max(...rows.map(x => Math.abs(x.d)), 1);
+  const sumN = rows.reduce((t, x) => t + x.n, 0), sumR = rows.reduce((t, x) => t + x.r, 0), sumD = sumN - sumR;
+  const pop = DATA.population[cy];
+  const signed = v => (v > 0 ? '+' : v < 0 ? '−' : '') + nb(Math.abs(v));
+
+  const head = el('div', { class: 'cmp-row cmp-head' });
+  head.append(el('span', {}, 'Område'), el('span', { class: 'r' }, 'Narvik'), el('span', { class: 'r' }, shortName(R)), el('span', {}, 'Forskjell'), el('span', { class: 'r' }, 'Kr'));
+  list.replaceChildren(head);
+  const line = (name, x, href, cls = '') => {
+    const row = el(href ? 'a' : 'div', Object.assign({ class: 'cmp-row ' + cls }, href ? { href } : {}));
+    const dev = el('span', { class: 'dev', title: `${signed(x.d)} kr per innbygger` });
+    const fill = el('span', { class: x.d >= 0 ? 'more' : 'less' });
+    fill.style.width = Math.min(50, Math.abs(x.d) / maxD * 50) + '%';
+    dev.appendChild(fill);
+    row.append(el('span', { class: 'c-name' }, name), el('span', { class: 'r num c-n' }, nb(x.n)), el('span', { class: 'r num c-r' }, nb(x.r)),
+      el('span', { class: 'c-dev' }, ''), el('span', { class: 'r num c-d' }, signed(x.d)));
+    row.children[3].appendChild(dev);
+    return row;
+  };
+  rows.forEach(x => list.appendChild(line(x.c.name, x, areaHref(x.c.key) + '#sammenligning')));
+  list.appendChild(line('Alle tjenesteområder', { n: sumN, r: sumR, d: sumD }, null, 'total'));
+
+  const who = R.kind === 'kommune' ? R.name : R.key === 'gruppe' ? `snittet i ${R.name}` : `snittet for ${lower1(R.name)}`;
+  const top = rows[0], bottom = rows.at(-1);
+  document.getElementById('cmp-lead').textContent =
+    `I ${cy} brukte Narvik ${nb(Math.abs(sumD))} kr ${sumD >= 0 ? 'mer' : 'mindre'} per innbygger på tjenestene enn ${who}.` +
+    (pop ? ` Med ${nb(pop)} innbyggere tilsvarer det ${nb(Math.abs(sumD) * pop / 1e6)} mill. kr.` : '') +
+    (top.d > 0 ? ` Den største forskjellen er ${lower1(top.c.name)}, ${nb(top.d)} kr per innbygger.` : '') +
+    (bottom.d < 0 ? ` På ${lower1(bottom.c.name)} bruker Narvik ${nb(-bottom.d)} kr mindre per innbygger.` : '');
+  cap.innerHTML = `Netto driftsutgifter per innbygger i kroner, ${cy}, kommunekonsern. ${esc1(R.name)}: ${esc1(regionNote(DATA, R, cy).toLowerCase())}.` +
+    (cy !== year ? ` SSB har ikke tall for ${esc1(R.name)} i ${year}, derfor vises ${cy}.` : '') +
+    ` Trykk på et område for å se alle sammenligningene for det. <a href="${esc1(ssbCompareUrl(DATA, services.flatMap(c => c.functions), [cy]))}" target="_blank" rel="noopener">Se tallene hos SSB</a> (tabell 12362, beløp per innbygger, summert per område).`;
+
+  // Every area against every region for the year.
+  const cols = [{ key: 'narvik', name: 'Narvik' }, ...C];
+  document.getElementById('cmp-table').innerHTML = `<table class="num-table"><tr><th>Kr per innbygger, ${cy}</th>${cols.map(r => `<th>${esc1(shortName(r))}</th>`).join('')}</tr>
+    ${services.map(c => `<tr><td><a href="${esc1(areaHref(c.key))}#sammenligning">${esc1(c.name)}</a></td>${cols.map(r => { const v = c.per_capita[r.key]?.[cy]; return `<td${r.key === 'narvik' ? ' class="sel"' : ''}>${v == null ? '·' : nb(v)}</td>`; }).join('')}</tr>`).join('')}</table>`;
+  const g = DATA.kostra_group;
+  document.getElementById('cmp-group').innerHTML = g
+    ? `${esc1(g.name)}: ${esc1(lower1(g.description))}. ${g.members.length} kommuner: ${esc1(g.members.map(m => m.name.split(' - ')[0]).join(', '))}. Kilde: <a href="${esc1(g.source.url)}" target="_blank" rel="noopener">${esc1(g.source.name)}</a>.`
     : '';
 }
+const shortName = r => r.name.replace('KOSTRA-gruppe', 'Gruppe');
+const lower1 = t => t.charAt(0).toLowerCase() + t.slice(1);
+const esc1 = t => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 
 function drawTrend() {
   const W = 760, H = 260, left = 56, right = 740, y0 = 20, base = 220;

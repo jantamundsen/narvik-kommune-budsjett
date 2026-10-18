@@ -18,6 +18,10 @@ hidden: the site shows it as its own line, marked as computed.
 
 Only the standard library is used, so it runs anywhere Python 3.9+ runs.
 
+It also writes site/data/sammenligning.json: the same cost and income groups for
+Narvik and the comparison regions in narvik.json (konsern only), summed per group,
+so the site can put them per inhabitant side by side.
+
     python scripts/fetch_details.py                 # fetch from SSB
     python scripts/fetch_details.py --from-file x   # use a saved JSON-stat response
 """
@@ -34,6 +38,7 @@ from fetch_data import FIRST_YEAR, cells, fetch, labels
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "site" / "data" / "detaljer.json"
+COMPARE_OUT = ROOT / "site" / "data" / "sammenligning.json"
 ACCOUNTS = ROOT / "site" / "data" / "narvik.json"
 
 TABLE = "12367"
@@ -96,13 +101,13 @@ NET = "AGD2"
 ARTS = [NET] + list(dict.fromkeys(a for g in GROUPS for a in g["arts"] + g.get("parts", [])))
 
 
-def build_url(functions: str = "*", scopes: str = "A,B") -> str:
+def build_url(functions: str = "*", scopes: str = "A,B", regions: str = REGION, arts: list | None = None) -> str:
     params = {
         "lang": "no",
-        f"valueCodes[{DIM_REGION}]": REGION,
+        f"valueCodes[{DIM_REGION}]": regions,
         f"valueCodes[{DIM_SCOPE}]": scopes,
         f"valueCodes[{DIM_FUNCTION}]": functions,
-        f"valueCodes[{DIM_ART}]": ",".join(ARTS),
+        f"valueCodes[{DIM_ART}]": ",".join(arts or ARTS),
         f"valueCodes[{DIM_CONTENTS}]": AMOUNT,
         f"valueCodes[{DIM_YEAR}]": f"from({FIRST_YEAR})",
     }
@@ -180,6 +185,51 @@ def check_against_accounts(data: dict) -> list[str]:
     return out
 
 
+def compare_regions() -> list[dict]:
+    """Narvik and the comparison regions from narvik.json, with old codes of renumbered kommuner."""
+    acc = json.loads(ACCOUNTS.read_text(encoding="utf-8"))
+    return [{"key": "narvik", "code": REGION}] + [
+        {"key": r["key"], "code": r["code"], "earlier": r.get("earlier", [])} for r in acc["compare"]]
+
+
+def transform_compare(ds: dict, regions: list[dict]) -> dict:
+    """Konsern cost and income groups per region, function and year, in 1000 kr (sum of each group's arts)."""
+    raw: dict = {}  # (region, function, art, year) -> 1000 kr
+    years: set = set()
+    for c, v in cells(ds):
+        years.add(c[DIM_YEAR])
+        if v is not None:
+            raw[(c[DIM_REGION], c[DIM_FUNCTION], c[DIM_ART], c[DIM_YEAR])] = v
+    years = sorted(years)
+    values = {}
+    for r in regions:
+        codes = [r["code"], *r.get("earlier", [])]
+        get = lambda f, a, y: next((raw[(c, f, a, y)] for c in codes if (c, f, a, y) in raw), None)
+        fs = sorted({f for (c, f, _a, _y) in raw if c in codes and f.isdigit()})
+        out = {}
+        for f in fs:
+            groups = {}
+            for g in GROUPS:
+                series = [sum(x for x in (get(f, a, y) for a in g["arts"]) if x is not None)
+                          if any(get(f, a, y) is not None for a in g["arts"]) else None for y in years]
+                if any(x not in (None, 0) for x in series):
+                    groups[g["key"]] = series
+            if groups:
+                out[f] = groups
+        values[r["key"]] = out
+    group_arts = list(dict.fromkeys(a for g in GROUPS for a in g["arts"]))
+    codes = ",".join(c for r in regions for c in [r["code"], *r.get("earlier", [])])
+    return {
+        "generated": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
+        "unit": "1000 kr",
+        "scope": "konsern",
+        "source": {"table": TABLE, "url": TABLE_URL, "api": API, "query": build_url("*", "A", codes, group_arts),
+                   "regions": codes, "scope": "A", "arts": group_arts},
+        "years": years,
+        "values": values,
+    }
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--from-file", type=Path, help="read a saved JSON-stat2 response instead of calling SSB")
@@ -203,6 +253,16 @@ def main() -> int:
         print(f"Merk: {w}. Vises som egen beregnet linje.", file=sys.stderr)
     for m in mismatch:
         print(f"ADVARSEL: netto avviker fra narvik.json: {m}", file=sys.stderr)
+
+    if not args.from_file and ACCOUNTS.exists():
+        regions = compare_regions()
+        codes = ",".join(c for r in regions for c in [r["code"], *r.get("earlier", [])])
+        url = build_url("*", "A", codes, list(dict.fromkeys(a for g in GROUPS for a in g["arts"])))
+        print(f"Henter {url}", file=sys.stderr)
+        cmp = transform_compare(fetch(url), regions)
+        COMPARE_OUT.write_text(json.dumps(cmp, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
+        print(f"Skrev {COMPARE_OUT.relative_to(ROOT)}: {', '.join(cmp['values'])}", file=sys.stderr)
+
     kasse = [w for w in warnings if w.startswith("kasse")]
     return 1 if kasse or mismatch else 0
 

@@ -17,7 +17,7 @@
   <header>
     <div class="eyebrow">Narvik kommune · regnskapstall fra SSB</div>
     <h1>Hvor går pengene i Narvik?</h1>
-    <p class="lead">Kommunens netto driftsutgifter fordelt på tjenester, år for år, og sammenlignet med resten av landet. Netto betyr det kommunen betaler selv, etter gebyrer, refusjoner og øremerkede tilskudd.</p>
+    <p class="lead">Kommunens netto driftsutgifter fordelt på tjenester, år for år, og sammenlignet med lignende kommuner. Netto betyr det kommunen betaler selv, etter gebyrer, refusjoner og øremerkede tilskudd.</p>
     <div class="years" role="radiogroup" aria-label="Velg år" id="years"><span>Regnskapsår</span></div>
     <a class="cross-link" id="budget-link" href="budsjett.html" hidden></a>
   </header>
@@ -52,14 +52,19 @@
     <div class="offsets" id="offsets"></div>
   </section>
 
-  <section aria-labelledby="h-cmp">
+  <section aria-labelledby="h-cmp" id="sammenligning">
     <div class="section-head">
-      <h2 id="h-cmp">Narvik mot landet og Nordland</h2>
+      <h2 id="h-cmp">Narvik mot sammenlignbare kommuner</h2>
       <p class="lead" id="cmp-lead"></p>
     </div>
-    <div class="legend"><span><i style="background:var(--accent)"></i>Narvik</span><span><i style="background:var(--muted)"></i>Landet</span><span><i style="border:1.5px solid var(--muted)"></i>Nordland</span></div>
-    <div class="chart" id="cmp-chart"></div>
+    <div class="seg cmp-pick" role="group" aria-label="Sammenlign med" id="cmp-pick"></div>
+    <div class="cmp-list" id="cmp-list"></div>
     <p class="caption" id="cmp-caption"></p>
+    <details class="all-numbers">
+      <summary>Vis alle sammenligningene</summary>
+      <div class="detail-scroll" id="cmp-table"></div>
+      <p class="caption" id="cmp-group"></p>
+    </details>
   </section>
 
   <section aria-labelledby="h-trend">
@@ -77,7 +82,8 @@
       <div><h3>Regnskap og budsjett</h3><p>Tallene her er SSBs regnskapstall, fordelt på KOSTRA-funksjoner. <a href="budsjett.html">Budsjett mot regnskap</a> bruker kommunens egne tjenesteområder, slik kommunestyret vedtar rammene. Inndelingene er ulike, så tallene på de to sidene kan ikke sammenlignes direkte.</p></div>
       <div><h3>Hvorfor er vann og avløp negativt?</h3><p>Vann, avløp og renovasjon betales av gebyrer. Gebyrinntektene er større enn kostnadene som føres på disse funksjonene, så netto blir negativt.</p></div>
       <div><h3>Pensjonsposter</h3><p>Premieavvik og premiefond er regnskapsføringer som svinger med hundrevis av millioner mellom år. De er ikke en tjeneste og vises derfor for seg.</p></div>
-      <div><h3>Høyt eller lavt?</h3><p>Narvik har mange eldre og store avstander. Det gir høyere kostnader til helse, brann og veier enn i tettbygde kommuner, uten at tjenesten nødvendigvis er dyrere drevet.</p></div>
+      <div><h3>Høyt eller lavt?</h3><p>Narvik har mange eldre og store avstander. Det gir høyere kostnader til helse, brann og veier enn i tettbygde kommuner, uten at tjenesten nødvendigvis er dyrere drevet. Kommuner organiserer også tjenester ulikt, for eksempel i interkommunale selskap, og det kan flytte utgifter mellom områder.</p></div>
+      <div><h3>Hvem Narvik sammenlignes med</h3><p>KOSTRA-gruppe 9 er SSBs gruppe for kommuner med 20 000 til 29 999 innbyggere. Harstad, Rana og Alta er i samme gruppe og ligger i Nord-Norge. Harstad og Rana har omtrent like stor andel over 80 år som Narvik, rundt 6 %, mens Alta har 4 % (<a href="https://www.ssb.no/statbank/table/07459" target="_blank" rel="noopener">SSB 07459</a>, 1.1.2026). Alle tall er per innbygger, slik at kommunenes størrelse ikke teller.</p></div>
     </div>
   </section>
 
