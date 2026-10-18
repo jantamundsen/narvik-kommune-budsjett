@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Søylediagram i sidens oksidrøde aksentfarge (--accent i style.css). -->
+  <rect width="64" height="64" rx="14" fill="#a3412a"/>
+  <g fill="#f4f6f7">
+    <rect x="10" y="30" width="12" height="20" rx="2"/>
+    <rect x="26" y="12" width="12" height="38" rx="2"/>
+    <rect x="42" y="22" width="12" height="28" rx="2"/>
+    <rect x="8" y="50" width="48" height="4" rx="2"/>
+  </g>
+</svg>
