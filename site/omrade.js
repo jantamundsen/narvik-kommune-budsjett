@@ -2,7 +2,7 @@
 // type in that service (&art=lonn), for one year (&aar=2025). Netto and per capita come from site/data/narvik.json
 // (SSB 12362); costs and income from site/data/detaljer.json (SSB 12367). Every number names its art code, or is
 // marked «beregnet» when it is computed here. Helpers are in common.js.
-let N, D, area, years, year, prev, scope;
+let N, D, S, area, years, year, prev, scope; // S: sammenligning.json, only loaded for a cost type page
 const q = new URLSearchParams(location.search);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 const mill = (v, d = 1) => (v == null ? '·' : nb(v / 1000, d));
@@ -34,6 +34,7 @@ async function start() {
 
   const svc = services().find(s => s.key === q.get('tjeneste'));
   const grp = svc && D.groups.find(g => g.key === q.get('art'));
+  if (grp) S = await fetch('data/sammenligning.json', { cache: 'no-cache' }).then(r => (r.ok ? r.json() : null)).catch(() => null);
   page.innerHTML = grp ? typePage(svc, grp) : svc ? servicePage(svc) : areaPage();
   document.title = [grp?.name, svc?.name, area.name, 'Pengene i Narvik'].filter(Boolean).join(' · ');
 }
@@ -171,7 +172,10 @@ function areaPage() {
     <p class="caption">Trykk på en tjeneste for å se hva den bruker pengene på og hva som kommer inn.</p></section>`;
 
   html += `<section class="drill-sec"><h2>Fem år</h2>${fiveYears(D.years.map(y => area.narvik_1000kr[y] ?? null))}<p class="caption">Netto driftsutgifter i mill. kr, løpende kroner.</p></section>`;
-  if (isService) html += compareSection();
+  if (isService) {
+    html += compareSection({ pcs: area.per_capita, what: lower(area.name), fs: area.functions.filter(f => N.functions[f]),
+      source: `<a href="${esc(ssbCompareUrl(N, area.functions, years))}" target="_blank" rel="noopener">Se tallene hos SSB</a> (tabell 12362, beløp per innbygger, summert over funksjonene).` });
+  }
 
   html += `<details class="drill-sec all-numbers"><summary>Vis alle tall per KOSTRA-funksjon</summary><div class="detail-scroll"><table class="num-table"><tr><th>KOSTRA-funksjon (1000 kr)</th>${years.map(y => `<th${y === year ? ' class="sel"' : ''}>${y}</th>`).join('')}</tr>
     ${all.filter(f => years.some(y => N.functions[f].narvik_1000kr[y])).map(f => `<tr><td>${f} ${esc(N.functions[f].name)}</td>${years.map(y => { const x = N.functions[f].narvik_1000kr[y]; return `<td${y === year ? ' class="sel"' : ''}>${x == null ? '·' : nb(x)}</td>`; }).join('')}</tr>`).join('')}
@@ -182,26 +186,29 @@ function areaPage() {
   return html;
 }
 
-// Narvik per inhabitant on this area against the comparison regions in narvik.json (SSB 12362, AGD2 per capita).
-function compareSection() {
-  const pcs = area.per_capita;
+// Narvik per inhabitant against the comparison regions in narvik.json, for an area, a service or a cost type.
+// pcs is {region key: {year: kr per inhabitant}}; fs the KOSTRA functions it covers; source the sentence naming where it comes from.
+function compareSection({ pcs, what, fs, source, verb = 'brukte', unit = 'Netto driftsutgifter per innbygger i kroner, kommunekonsern' }) {
   const rows = [{ key: 'narvik', name: 'Narvik', kind: 'narvik' }, ...N.compare]
     .map(r => ({ ...r, v: pcs[r.key]?.[year] })).filter(r => r.v != null).sort((a, b) => b.v - a.v);
-  if (rows.length < 2) return '';
+  if (rows.length < 2 || pcs.narvik?.[year] == null) return '';
   const me = pcs.narvik[year], g = N.compare.find(r => r.key === 'gruppe');
   const pctOf = b => `${nb(Math.abs(me / b - 1) * 100)} % ${me >= b ? 'mer' : 'mindre'}`;
   const higher = rows.findIndex(r => r.key === 'narvik');
-  let lead = `Narvik brukte ${nb(me)} kr per innbygger på ${esc(lower(area.name))} i ${year}`;
+  let lead = `Narvik ${verb} ${nb(me)} kr per innbygger ${verb === 'brukte' ? 'på' : 'i'} ${esc(what)} i ${year}`;
   if (pcs.gruppe?.[year]) lead += `, ${pctOf(pcs.gruppe[year])} enn snittet i ${esc(g.name)}`;
-  lead += '. ' + (higher === 0 ? 'Det er høyest av alle sammenligningene.' : higher === rows.length - 1 ? 'Det er lavest av alle sammenligningene.' : `${higher} av ${rows.length - 1} sammenligninger brukte mer.`);
+  lead += '. ' + (higher === 0 ? 'Det er høyest av alle sammenligningene.' : higher === rows.length - 1 ? 'Det er lavest av alle sammenligningene.' : `${higher} av ${rows.length - 1} sammenligninger lå høyere.`);
   const max = Math.max(...rows.map(r => r.v), 1);
-  const bars = `<div class="rank cmp-bars">${rows.map(r => `<div class="rank-row${r.key === 'narvik' ? ' me' : ''}"><span class="rank-name">${esc(r.name)}<small>${esc(r.key === 'narvik' ? `${nb(N.population[year])} innbyggere` : regionNote(N, r, year))}</small></span><span class="rank-track"><span class="rank-fill" style="width:${Math.max(0, r.v / max * 100)}%"></span></span><span class="rank-amt num">${nb(r.v)}</span><span class="rank-note num">${r.key === 'narvik' ? '' : chgText(pct(me, r.v)).replace(/^/, 'Narvik ')}</span><span></span></div>`).join('')}</div>`;
+  const bars = `<div class="rank cmp-bars">${rows.map(r => `<div class="rank-row${r.key === 'narvik' ? ' me' : ''}"><span class="rank-name">${esc(r.name)}<small>${esc(r.key === 'narvik' ? `${nb(N.population[year])} innbyggere` : regionNote(N, r, year))}</small></span><span class="rank-track"><span class="rank-fill" style="width:${Math.max(0, r.v / max * 100)}%"></span></span><span class="rank-amt num">${nb(r.v)}</span><span class="rank-note num">${r.key === 'narvik' || !r.v ? '' : 'Narvik ' + chgText(pct(me, r.v))}</span><span></span></div>`).join('')}</div>`;
   const cols = [{ key: 'narvik', name: 'Narvik' }, ...N.compare];
   const table = `<details class="all-numbers"><summary>Vis alle år</summary><div class="detail-scroll"><table class="num-table"><tr><th>Kr per innbygger</th>${years.map(y => `<th${y === year ? ' class="sel"' : ''}>${y}</th>`).join('')}</tr>
-    ${cols.map(r => `<tr${r.key === 'narvik' ? ' class="sum"' : ''}><td>${esc(r.name)}</td>${years.map(y => { const v = pcs[r.key]?.[y]; return `<td${y === year ? ' class="sel"' : ''}>${v == null ? '·' : nb(v)}</td>`; }).join('')}</tr>`).join('')}</table></div></details>`;
+    ${cols.map(r => `<tr${r.key === 'narvik' ? ' class="sum"' : ''}><td>${esc(r.name)}</td>${years.map(y => { const v = pcs[r.key]?.[y]; return `<td${y === year ? ' class="sel"' : ''}>${v == null ? '·' : nb(v)}</td>`; }).join('')}</tr>`).join('')}</table></div>
+    <p class="caption">· betyr at SSB ikke har tall for funksjonen det året.</p></details>`;
   return `<section class="drill-sec" id="sammenligning"><h2>Sammenlignet med andre</h2><p class="lead">${lead}</p>${bars}${table}
-    <p class="caption">Netto driftsutgifter per innbygger i kroner, kommunekonsern, KOSTRA-funksjon ${esc(codes(area.functions.filter(f => N.functions[f])))}. Prosenten viser hvor mye mer eller mindre Narvik brukte. Forskjeller kan skyldes alder, avstander og hvordan kommunene organiserer tjenestene, ikke bare hvor dyrt de drives. <a href="${esc(ssbCompareUrl(N, area.functions, years))}" target="_blank" rel="noopener">Se tallene hos SSB</a> (tabell 12362, beløp per innbygger, summert over funksjonene). <a href="./?aar=${year}#sammenligning">Alle områder sammenlignet</a>.</p></section>`;
+    <p class="caption">${unit}, KOSTRA-funksjon ${esc(codes(fs))}. Prosenten viser hvor mye mer eller mindre Narvik hadde. Forskjeller kan skyldes alder, avstander og hvordan kommunene organiserer tjenestene, ikke bare hvor dyrt de drives. ${source} <a href="./?aar=${year}#sammenligning">Alle områder sammenlignet</a>.</p></section>`;
 }
+// Sum a per-year value over functions; null when no function has it.
+const sumOver = (fs, get) => Object.fromEntries(years.map(y => [y, fs.reduce((t, f) => { const v = get(f, y); return v == null ? t : (t ?? 0) + v; }, null)]));
 
 function gapNote(b) {
   const g = at(b.gap, year);
@@ -234,6 +241,9 @@ function servicePage(s) {
   html += `<section class="drill-sec"><h2>Hva pengene går til</h2><p class="lead">Hele kostnaden var ${mill(cost)} mill. kr. Trykk på en linje for å se hva den består av.</p>${rankList(rowsOf(costs))}</section>`;
   if (incomes.length) html += `<section class="drill-sec"><h2>Hva som kommer inn</h2><p class="lead">${mill(income)} mill. kr ble dekket av andre enn kommunen.</p>${rankList(rowsOf(incomes), 'income')}</section>`;
   html += `<section class="drill-sec"><h2>Fem år</h2>${fiveYears(b.netto)}<p class="caption">Det kommunen betalte, i mill. kr, løpende kroner.</p></section>`;
+  const pcs = Object.fromEntries(['narvik', ...N.compare.map(r => r.key)].map(k => [k, sumOver(s.functions, (f, y) => N.functions[f].per_capita?.[k]?.[y])]));
+  html += compareSection({ pcs, what: lower(s.name), fs: s.functions,
+    source: `<a href="${esc(ssbCompareUrl(N, s.functions, years))}" target="_blank" rel="noopener">Se tallene hos SSB</a> (tabell 12362, beløp per innbygger${s.functions.length > 1 ? ', summert over funksjonene' : ''}).` });
   html += sourceBox(s, [D.net_art, ...D.groups.flatMap(g => g.arts)], `Hver linje over er én eller flere av SSBs arter. Trykk på en linje for å se artskodene.${gapNote(b)}`, { tjeneste: s.key });
   return html;
 }
@@ -273,11 +283,33 @@ function typePage(s, g) {
     ${g.note ? `<p class="caption">${esc(g.note)}</p>` : ''}</section>`;
 
   const derived = parts.find(p => p.derived);
+  html += typeCompare(s, g);
   html += sourceBox(s, [...g.arts, ...(g.parts || [])], parts.length
     ? `${esc(parts.filter(p => !p.derived).map(p => `${p.name} (${p.code})`).join(', '))} er SSBs egne arter.${derived ? ` «${esc(derived.name)}» er regnet ut her: ${esc(derived.derived)}.` : ''}`
     : `Beløpet er art ${g.arts.join(' + ')}, ${esc(D.arts[g.arts[0]])}.`, { tjeneste: s.key, art: g.key });
   html += `<section class="ssb-end"><span class="eyebrow">Her slutter SSB</span><p>Mer detaljer, for eksempel per sykehjem, skole eller avdeling, finnes ikke i KOSTRA. Det krever kommunens eget regnskap per enhet.</p></section>`;
   return html;
+}
+
+// A cost or income type per inhabitant: SSB 12367 konsern amounts for each region, divided by the population
+// narvik.json derives from SSB 12362. The division is ours, so the section says it is calculated.
+function typeCompare(s, g) {
+  if (!S) return '';
+  const pop = k => (k === 'narvik' ? N.population : N.compare.find(r => r.key === k)?.population) || {};
+  const idx = y => S.years.indexOf(y);
+  const pcs = Object.fromEntries(Object.keys(S.values).map(k => {
+    const sum = sumOver(s.functions, (f, y) => S.values[k][f]?.[g.key]?.[idx(y)]);
+    return [k, Object.fromEntries(years.map(y => [y, sum[y] == null || !pop(k)[y] ? null : Math.round(sum[y] * 1000 / pop(k)[y])]))];
+  }));
+  const regions = S.source.regions;
+  const p = new URLSearchParams({ lang: 'no' }), d = D.source.dims;
+  p.set(`valueCodes[${d.region}]`, regions); p.set(`valueCodes[${d.scope}]`, 'A'); p.set(`valueCodes[${d.function}]`, s.functions.join(','));
+  p.set(`valueCodes[${d.art}]`, g.arts.join(',')); p.set(`valueCodes[${d.contents}]`, D.source.contents); p.set(`valueCodes[${d.year}]`, years.join(','));
+  const url = D.source.api + '?' + decodeURIComponent(p.toString()) + '&outputFormat=html';
+  const inc = g.side === 'inntekt';
+  return compareSection({ pcs, what: `${lower(g.name)} ${inc ? 'for' : 'i'} ${lower(s.name)}`, fs: s.functions, verb: inc ? 'fikk' : 'brukte',
+    unit: `${esc(g.name)} per innbygger i kroner, kommunekonsern (art ${esc(g.arts.join(' + '))})`,
+    source: `${scope === 'kasse' ? 'Sammenligningen bruker hele kommunen, også når du ser på kommunekassen over. ' : ''}Beløpene er fra SSB tabell 12367 og <b>beregnet</b> per innbygger her, med folketallet SSB bruker i tabell 12362. <a href="${esc(url)}" target="_blank" rel="noopener">Se beløpene hos SSB</a> (1000 kr).` });
 }
 
 start();

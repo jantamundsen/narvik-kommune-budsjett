@@ -187,8 +187,9 @@ def transform(ds: dict, config: dict, compare: list, group: dict | None) -> dict
                    "dims": {"region": DIM_REGION, "function": DIM_FUNCTION, "art": DIM_ART, "contents": DIM_CONTENTS, "year": DIM_YEAR},
                    "per_capita": PER_CAPITA},
         # Per capita for these regions is SSB's own "beløp per innbygger", summed over the functions of each area.
+        # Population is derived like Narvik's, and used to put SSB 12367 amounts per inhabitant.
         "compare": [
-            {**r, **({"population": population_of(r["code"])} if r["kind"] == "kommune" else {})}
+            {**r, "population": population_of(r["code"])}
             for r in compare
         ],
         "kostra_group": group,
@@ -199,7 +200,10 @@ def transform(ds: dict, config: dict, compare: list, group: dict | None) -> dict
         "categories": categories,
         "functions": {
             f: {"name": fn_labels.get(f, "").split(" ", 1)[-1] if fn_labels.get(f, "").startswith(f) else fn_labels.get(f, ""),
-                "narvik_1000kr": {y: amount.get((narvik, f, y)) for y in years}}
+                "narvik_1000kr": {y: amount.get((narvik, f, y)) for y in years},
+                # SSB's "beløp per innbygger" for Narvik and each comparison region, for the service level.
+                "per_capita": {k: {y: per_cap.get((code, f, y)) for y in years}
+                               for k, code in [("narvik", narvik), *((r["key"], r["code"]) for r in compare)]}}
             for f in functions
         },
         "unmapped": unmapped,
