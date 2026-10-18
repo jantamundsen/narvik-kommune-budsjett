@@ -2,7 +2,7 @@
 
 Hvor går pengene i Narvik kommune? En enkel nettside som viser kommunens netto driftsutgifter fordelt på tjenester, år for år, og sammenlignet med landet og Nordland.
 
-Regnskapstallene kommer fra SSBs KOSTRA-statistikk, [tabell 12362](https://www.ssb.no/statbank/table/12362), og viser hva kommunen faktisk brukte.
+Regnskapstallene kommer fra SSBs KOSTRA-statistikk, [tabell 12362](https://www.ssb.no/statbank/table/12362), og viser hva kommunen faktisk brukte. Åpner du et tjenesteområde, ser du hva pengene gikk til (lønn, kjøp, overføringer …) og hvilke inntekter som trekkes fra, fra [tabell 12367](https://www.ssb.no/statbank/table/12367).
 
 Siden *Budsjett mot regnskap* (`budsjett.html`) viser kommunens vedtatte budsjett ved siden av regnskapet, og det nyeste budsjettet mot året før. Den nås fra toppmenyen, og fra regnskapssiden for år som har både budsjett og regnskap (`budsjett.html?aar=2024`). Tallene kommer fra bevilgningsoversikten for drift (1B) i kommunens budsjettdokumenter på [Framsikt](https://pub.framsikt.net/2026/narvik/bm-2026-rapport_plan/), fordelt på Narviks egne tjenesteområder.
 
@@ -11,9 +11,10 @@ Siden *Budsjett mot regnskap* (`budsjett.html`) viser kommunens vedtatte budsjet
 ```
 config/categories.json    KOSTRA-funksjoner gruppert i 15 tjenesteområder
 scripts/fetch_data.py     henter tall fra SSB og skriver site/data/narvik.json
+scripts/fetch_details.py  henter utgifts- og inntektsarter per funksjon fra SSB og skriver site/data/detaljer.json
 scripts/fetch_budget.py   henter budsjett og regnskap per tjenesteområde fra Framsikt og skriver site/data/budsjett.json
-site/                     den statiske nettsiden: index.html (regnskap), budsjett.html (budsjett mot regnskap),
-                          style.css og common.js er felles for begge
+site/                     den statiske nettsiden: index.html (regnskap, med details.js for artene), budsjett.html
+                          (budsjett mot regnskap), style.css og common.js er felles for begge
 .github/workflows/        oppdaterer data fra SSB og publiserer til GitHub Pages
 ```
 
@@ -23,6 +24,7 @@ Ingen server, database eller byggesteg. Skriptet bruker bare Pythons standardbib
 
 ```sh
 python scripts/fetch_data.py          # henter ferske tall fra SSB
+python scripts/fetch_details.py       # henter utgifts- og inntektsarter fra SSB
 python scripts/fetch_budget.py        # henter budsjettall fra Framsikt
 python -m http.server -d site 8000    # åpne http://localhost:8000
 ```
@@ -34,6 +36,26 @@ Siden må åpnes via en webserver, siden den leser `data/narvik.json` med `fetch
 SSB rapporterer rundt 80 KOSTRA-funksjoner (for eksempel 202 Grunnskole og 253 Helse- og omsorgstjenester i institusjon). `config/categories.json` samler dem i tjenesteområder folk kjenner igjen. Hver funksjon hører til nøyaktig én kategori, slik at summen alltid blir riktig.
 
 Hvis SSB innfører en ny funksjonskode, avslutter skriptet med en advarsel som navngir koden. Legg den til i riktig kategori og kjør skriptet på nytt.
+
+## Hva pengene går til
+
+`scripts/fetch_details.py` henter SSBs [tabell 12367](https://www.ssb.no/statbank/table/12367) for Narvik: hver KOSTRA-funksjon delt på arter, både for hele kommunen (konsern, omfang A, samme omfang som resten av siden) og for kommunekassen (omfang B, uten Narvik Havn KF og Narvik Vann KF). Hvert tall i `site/data/detaljer.json` er én celle i tabellen, adressert med omfang, funksjon, art og år, og siden lenker til SSB-spørringen som gir de samme tallene.
+
+`GROUPS` i skriptet sier hvilke arter som legges sammen. Netto (AGD2) er utgiftsgruppene minus inntektsgruppene:
+
+| Gruppe | Arter |
+|---|---|
+| Lønn, pensjon og arbeidsgiveravgift | AG16 + A710 (lønn før sykelønnsrefusjon), herav A090 pensjon og A099 arbeidsgiveravgift |
+| Varer og tjenester til egen drift | AGD50, herav A260 og A270 |
+| Tjenester kjøpt i stedet for å lage dem selv | AGD51, herav AG2, A370 og AG3 |
+| Overføringer og tilskudd ut | AG34, herav AG4, A470 og AG52 |
+| Merverdiavgift, avskrivninger, fordelte utgifter | A429, A590, AGD59 |
+| Brukerbetalinger, salg og leie | A600, AGD34 |
+| Refusjoner | AG48, herav A710 sykelønnsrefusjon, AG9, AD770 og AGD53 |
+| Mva-kompensasjon | AD729 |
+| Tilskudd og overføringer inn | AGD49, herav A890, AGD54 og AGD56 |
+
+Det SSBs underarter ikke dekker av gruppen, og forskjellen mellom artene og AGD2, vises som egne linjer merket «beregnet». I kommunekassen går artene opp i AGD2 for alle funksjoner og år. I konsernet gjør de ikke det for funksjon 338 og 339 (alle år) og 110 (2025). Skriptet skriver disse avvikene ut, og feiler hvis kommunekassen ikke går opp eller konsernets netto avviker fra `narvik.json`.
 
 ## Budsjettet
 

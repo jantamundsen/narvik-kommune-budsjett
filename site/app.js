@@ -39,6 +39,7 @@ async function start() {
   });
   render();
   loadBudgetYears();
+  loadDetails().then(() => { if (DET) render(); });
 }
 
 // Link to budsjett.html for the selected year when that page has a budget to compare with its accounts.
@@ -141,8 +142,10 @@ function rowFor(c, svcTotal, maxShare, prev) {
 
   const det = el('div', { class: 'detail', id: 'det-' + c.key });
   det.hidden = !open;
+  det.appendChild(breakdownFor(c));
   const scroll = el('div', { class: 'detail-scroll' });
   const t = el('table');
+  det.appendChild(el('h3', {}, 'Netto per KOSTRA-funksjon'));
   const hr = el('tr'); hr.appendChild(el('th', {}, 'KOSTRA-funksjon (1000 kr)'));
   YEARS.forEach(y => hr.appendChild(el('th', y === year ? { class: 'sel' } : {}, y)));
   t.appendChild(hr);
