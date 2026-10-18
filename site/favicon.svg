@@ -1,4 +1,4 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <!-- Stetind fra Narviks kommunevåpen (2020), bygget av søyler. -->
-  <defs><clipPath id="m"><path transform="translate(3 4)" d="M-4.5 72L20.57 25.35L23.25 11.65L31.05 9.06L34.28 22.17L36.88 20.14L61.5 72Z"/></clipPath></defs><rect width="64" height="64" rx="14" fill="#005FBE"/><g fill="#fff" clip-path="url(#m)"><rect x="6" y="0" width="8" height="54"/><rect x="17" y="0" width="8" height="54"/><rect x="28" y="0" width="8" height="54"/><rect x="39" y="0" width="8" height="54"/><rect x="50" y="0" width="8" height="54"/></g></svg>
+  <defs><clipPath id="m"><path d="M-2 70L19 26L22 8L33 5L37 22L41 19L66 70Z"/></clipPath></defs><rect width="64" height="64" rx="14" fill="#005FBE"/><g fill="#fff"><g clip-path="url(#m)"><rect x="6" y="0" width="7" height="51"/><rect x="15" y="0" width="7" height="51"/><rect x="24" y="0" width="7" height="51"/><rect x="33" y="0" width="7" height="51"/><rect x="42" y="0" width="7" height="51"/><rect x="51" y="0" width="7" height="51"/></g><rect x="6" y="53" width="52" height="3" rx="1.5"/></g></svg>
 
