@@ -158,6 +158,8 @@ footer { border-top: 1px solid var(--rule); padding-top: 20px; font-size: 0.85re
 .drill-head h1 { font-size: clamp(1.8rem, 5vw, 2.6rem); line-height: 1.08; }
 .years .chip { font: 600 0.95rem var(--font-body); font-variant-numeric: tabular-nums; border: 1px solid var(--rule); background: var(--surface); color: var(--ink); padding: 6px 14px; border-radius: 999px; text-decoration: none; }
 .years .chip[aria-current] { background: var(--accent); border-color: var(--accent); color: var(--paper); }
+.measures { margin: 4px 0 14px; }
+.measures .chip { font-size: 0.85rem; padding: 6px 12px; }
 .drill-sec { display: grid; gap: 14px; }
 .drill-sec .lead { font-size: 0.98rem; }
 .flow-bar { display: flex; height: 56px; border-radius: 8px; overflow: hidden; border: 1px solid var(--rule); background: var(--surface); }
