@@ -40,8 +40,30 @@ async function start() {
   const [facts, extra] = await Promise.all([optional('data/fakta.json'), optional(grp ? 'data/sammenligning.json' : 'data/malgruppe.json')]);
   F = facts;
   if (grp) S = extra; else M = extra;
-  page.innerHTML = grp ? typePage(svc, grp) : svc ? servicePage(svc) : areaPage();
+  const render = () => { page.innerHTML = grp ? typePage(svc, grp) : svc ? servicePage(svc) : areaPage(); };
+  render();
   document.title = [grp?.name, svc?.name, area.name, 'Åpen økonomi i Narvik'].filter(Boolean).join(' · ');
+  // The page is drawn after the data has loaded, so the browser cannot jump to #sammenligning by itself.
+  if (location.hash) document.getElementById(location.hash.slice(1))?.scrollIntoView();
+
+  // «Sammenlign per» only changes ?maal=, so redraw in place and keep the scroll position instead of loading
+  // the page again from the top. The URL is updated, so the choice can still be shared and Back still works.
+  const redraw = search => {
+    const y = scrollY;
+    [...q.keys()].forEach(k => q.delete(k));
+    new URLSearchParams(search).forEach((v, k) => q.set(k, v));
+    render();
+    scrollTo(0, y);
+  };
+  page.addEventListener('click', e => {
+    const a = e.target.closest('.measures a.chip');
+    if (!a || e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
+    e.preventDefault();
+    const u = new URL(a.href);
+    history.pushState(null, '', u.pathname + u.search + u.hash);
+    redraw(u.search);
+  });
+  addEventListener('popstate', () => redraw(location.search));
 }
 
 // ---- data ----
