@@ -787,6 +787,80 @@
    }
   },
   {
+   "id": "sykefravaer-oppvekst-2025",
+   "type": "tall",
+   "tema": "Sykefravær",
+   "aar": "2025",
+   "periode": "januar–august",
+   "kommunalomrade": "Oppvekst",
+   "omrader": [
+    "skole",
+    "barnehage",
+    "barnevern"
+   ],
+   "tekst": "Sykefraværet i Oppvekst var 10,1 % fra januar til august 2025, ned fra 11,9 % i de samme månedene i 2024.",
+   "verdier": {
+    "enhet": "%",
+    "2024": 11.9,
+    "2025": 10.1
+   },
+   "kilde": {
+    "id": "t2-2025",
+    "side": 4,
+    "del": "figur over sykefravær per kommunalområde"
+   },
+   "merknad": "Årsrapporten oppgir ikke sykefravær for dette kommunalområdet, så tallet er for januar–august."
+  },
+  {
+   "id": "sykefravaer-virksomhet-2025",
+   "type": "tall",
+   "tema": "Sykefravær",
+   "aar": "2025",
+   "periode": "januar–august",
+   "kommunalomrade": "Virksomhetsstyring",
+   "omrader": [
+    "sosial",
+    "admin",
+    "kultur"
+   ],
+   "tekst": "Sykefraværet i Virksomhetsstyring var 8,6 % fra januar til august 2025, omtrent som i 2024 (8,8 %).",
+   "verdier": {
+    "enhet": "%",
+    "2024": 8.8,
+    "2025": 8.6
+   },
+   "kilde": {
+    "id": "t2-2025",
+    "side": 4,
+    "del": "figur over sykefravær per kommunalområde"
+   },
+   "merknad": "Årsrapporten oppgir ikke sykefravær for dette kommunalområdet, så tallet er for januar–august."
+  },
+  {
+   "id": "sykefravaer-teknisk-2025",
+   "type": "tall",
+   "tema": "Sykefravær",
+   "aar": "2025",
+   "periode": "januar–august",
+   "kommunalomrade": "Plan, næring og teknisk",
+   "omrader": [
+    "veier",
+    "plan"
+   ],
+   "tekst": "Sykefraværet i Plan, næring og teknisk var 8,4 % fra januar til august 2025, ned fra 9,6 % i de samme månedene i 2024.",
+   "verdier": {
+    "enhet": "%",
+    "2024": 9.6,
+    "2025": 8.4
+   },
+   "kilde": {
+    "id": "t2-2025",
+    "side": 4,
+    "del": "figur over sykefravær per kommunalområde"
+   },
+   "merknad": "Årsrapporten oppgir ikke sykefravær for dette kommunalområdet, så tallet er for januar–august."
+  },
+  {
    "id": "sykefravaer-kommunen-2024-ar",
    "type": "tall",
    "tema": "Sykefravær",
@@ -1214,6 +1288,99 @@
    "kilde": {
     "id": "t2-2024",
     "side": 24
+   }
+  },
+  {
+   "id": "sykefravaer-helse-2024",
+   "type": "tall",
+   "tema": "Sykefravær",
+   "aar": "2024",
+   "periode": "januar–august",
+   "kommunalomrade": "Helse og omsorg",
+   "omrader": [
+    "helse"
+   ],
+   "tekst": "Sykefraværet i Helse og omsorg var 14,5 % fra januar til august 2024.",
+   "merknad": "Tallet er fra tertialrapporten for 2025, som sammenligner med 2024. Verken tertialrapporten eller årsrapporten for 2024 oppgir sykefravær per kommunalområde.",
+   "verdier": {
+    "enhet": "%",
+    "2024": 14.5
+   },
+   "kilde": {
+    "id": "t2-2025",
+    "side": 4,
+    "del": "figur over sykefravær per kommunalområde"
+   }
+  },
+  {
+   "id": "sykefravaer-oppvekst-2024",
+   "type": "tall",
+   "tema": "Sykefravær",
+   "aar": "2024",
+   "periode": "januar–august",
+   "kommunalomrade": "Oppvekst",
+   "omrader": [
+    "skole",
+    "barnehage",
+    "barnevern"
+   ],
+   "tekst": "Sykefraværet i Oppvekst var 11,9 % fra januar til august 2024.",
+   "merknad": "Tallet er fra tertialrapporten for 2025, som sammenligner med 2024. Verken tertialrapporten eller årsrapporten for 2024 oppgir sykefravær per kommunalområde.",
+   "verdier": {
+    "enhet": "%",
+    "2024": 11.9
+   },
+   "kilde": {
+    "id": "t2-2025",
+    "side": 4,
+    "del": "figur over sykefravær per kommunalområde"
+   }
+  },
+  {
+   "id": "sykefravaer-virksomhet-2024",
+   "type": "tall",
+   "tema": "Sykefravær",
+   "aar": "2024",
+   "periode": "januar–august",
+   "kommunalomrade": "Virksomhetsstyring",
+   "omrader": [
+    "sosial",
+    "admin",
+    "kultur"
+   ],
+   "tekst": "Sykefraværet i Virksomhetsstyring var 8,8 % fra januar til august 2024.",
+   "merknad": "Tallet er fra tertialrapporten for 2025, som sammenligner med 2024. Verken tertialrapporten eller årsrapporten for 2024 oppgir sykefravær per kommunalområde.",
+   "verdier": {
+    "enhet": "%",
+    "2024": 8.8
+   },
+   "kilde": {
+    "id": "t2-2025",
+    "side": 4,
+    "del": "figur over sykefravær per kommunalområde"
+   }
+  },
+  {
+   "id": "sykefravaer-teknisk-2024",
+   "type": "tall",
+   "tema": "Sykefravær",
+   "aar": "2024",
+   "periode": "januar–august",
+   "kommunalomrade": "Plan, næring og teknisk",
+   "omrader": [
+    "veier",
+    "plan"
+   ],
+   "tekst": "Sykefraværet i Plan, næring og teknisk var 9,6 % fra januar til august 2024.",
+   "merknad": "Tallet er fra tertialrapporten for 2025, som sammenligner med 2024. Verken tertialrapporten eller årsrapporten for 2024 oppgir sykefravær per kommunalområde.",
+   "verdier": {
+    "enhet": "%",
+    "2024": 9.6
+   },
+   "kilde": {
+    "id": "t2-2025",
+    "side": 4,
+    "del": "figur over sykefravær per kommunalområde"
    }
   },
   {
@@ -2525,6 +2692,104 @@
     "id": "t2-2021",
     "side": 10
    }
+  },
+  {
+   "id": "sykefravaer-omsorg-2021",
+   "type": "tall",
+   "tema": "Sykefravær",
+   "aar": "2021",
+   "periode": "januar–august",
+   "kommunalomrade": "Omsorg og mestring",
+   "omrader": [
+    "helse"
+   ],
+   "tekst": "Sykefraværet i Omsorg og mestring var 11,9 % fra januar til august 2021, ned fra 15,0 % i de samme månedene i 2020.",
+   "verdier": {
+    "enhet": "%",
+    "2020": 15.01,
+    "2021": 11.93
+   },
+   "kilde": {
+    "id": "t2-2021",
+    "side": 8,
+    "del": "figur over sykefravær per kommunalområde"
+   },
+   "merknad": "Årsrapporten oppgir ikke sykefravær for dette kommunalområdet, så tallet er for januar–august."
+  },
+  {
+   "id": "sykefravaer-helse-velferd-2021",
+   "type": "tall",
+   "tema": "Sykefravær",
+   "aar": "2021",
+   "periode": "januar–august",
+   "kommunalomrade": "Helse og velferd",
+   "omrader": [
+    "helse",
+    "barnevern",
+    "sosial"
+   ],
+   "tekst": "Sykefraværet i Helse og velferd var 8,3 % fra januar til august 2021, ned fra 13,3 % i de samme månedene i 2020.",
+   "verdier": {
+    "enhet": "%",
+    "2020": 13.32,
+    "2021": 8.33
+   },
+   "kilde": {
+    "id": "t2-2021",
+    "side": 8,
+    "del": "figur over sykefravær per kommunalområde"
+   },
+   "merknad": "Årsrapporten oppgir ikke sykefravær for dette kommunalområdet, så tallet er for januar–august."
+  },
+  {
+   "id": "sykefravaer-oppvekst-2021",
+   "type": "tall",
+   "tema": "Sykefravær",
+   "aar": "2021",
+   "periode": "januar–august",
+   "kommunalomrade": "Oppvekst",
+   "omrader": [
+    "skole",
+    "barnehage",
+    "barnevern"
+   ],
+   "tekst": "Sykefraværet i Oppvekst var 11,5 % fra januar til august 2021, ned fra 12,5 % i de samme månedene i 2020.",
+   "verdier": {
+    "enhet": "%",
+    "2020": 12.53,
+    "2021": 11.52
+   },
+   "kilde": {
+    "id": "t2-2021",
+    "side": 8,
+    "del": "figur over sykefravær per kommunalområde"
+   },
+   "merknad": "Årsrapporten oppgir ikke sykefravær for dette kommunalområdet, så tallet er for januar–august."
+  },
+  {
+   "id": "sykefravaer-pnkt-2021",
+   "type": "tall",
+   "tema": "Sykefravær",
+   "aar": "2021",
+   "periode": "januar–august",
+   "kommunalomrade": "Plan, næring, kultur og teknisk drift",
+   "omrader": [
+    "veier",
+    "plan",
+    "kultur"
+   ],
+   "tekst": "Sykefraværet i Plan, næring, kultur og teknisk drift var 9,0 % fra januar til august 2021, ned fra 9,7 % i de samme månedene i 2020.",
+   "verdier": {
+    "enhet": "%",
+    "2020": 9.71,
+    "2021": 9.01
+   },
+   "kilde": {
+    "id": "t2-2021",
+    "side": 8,
+    "del": "figur over sykefravær per kommunalområde"
+   },
+   "merknad": "Årsrapporten oppgir ikke sykefravær for dette kommunalområdet, så tallet er for januar–august."
   }
  ]
 }
