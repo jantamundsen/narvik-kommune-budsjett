@@ -12,7 +12,7 @@ Siden *Budsjett mot regnskap* (`budsjett.html`) viser kommunens vedtatte budsjet
 
 Siden *Året så langt* (`lopende.html`) følger budsjettet og forbruket i inneværende år: brukt hittil, avvik og kommunedirektørens prognose per tjenesteområde, hvordan rammene er endret siden vedtaket, og inntektene. Tallene kommer fra tertialrapportene, som bare finnes som PDF og er skrevet inn i `config/lopende_2026.json` med side. I tillegg vises skatteinngangen måned for måned fra SSBs [tabell 07022](https://www.ssb.no/statbank/table/07022), som oppdateres automatisk.
 
-*Bak tallene* forklarer tallene med det kommunens egne rapporter sier: sykefravær, utgifter til vikarbyrå og overtid, investeringer som skolegårder, og kommunens egne forklaringer på avvik. Hvert punkt er skrevet av fra en rapport og lenker til siden det står på. Punktene vises på områdesidene (for regnskapsåret de gjelder, og på det siste regnskapsåret når de er nyere) og på *Året så langt*. Rapportene følger kommunens egne kommunalområder, som ikke er de samme som KOSTRA-områdene, så hvert punkt sier hvilket kommunalområde det gjelder.
+*Bak tallene* forklarer tallene med det kommunens egne rapporter sier: sykefravær, utgifter til vikarbyrå og overtid, investeringer som skolegårder, og kommunens egne forklaringer på avvik. Hvert punkt er skrevet av fra en rapport og lenker til siden det står på. Punktene vises på områdesidene for regnskapsåret de gjelder, og punktene for året som pågår vises på *Året så langt*. Rapportene følger kommunens egne kommunalområder, som ikke er de samme som KOSTRA-områdene, så hvert punkt sier hvilket kommunalområde det gjelder.
 
 ## Slik er det bygget
 
@@ -117,4 +117,4 @@ Les også rapporten etter tall som forklarer avvikene (sykefravær, vikarbyrå, 
 
 For år som er avsluttet brukes årsrapporten (vedlegg til årsregnskapet i formannskapet i juni), fordi den gjelder hele året slik regnskapet på siden gjør. Punkter fra tertialrapporten for et avsluttet år står bare der årsrapporten ikke sier noe om temaet, for eksempel sykefravær per kommunalområde. Når årsrapporten for året kommer, bytt ut tertialpunktene den dekker.
 
-Kjør `python scripts/build_fakta.py`. Skriptet stopper med en feilmelding hvis et punkt mangler kilde eller side, eller peker på et område som ikke finnes. Punktene vises i den rekkefølgen de står i filen (det valgte året først), og de tre første for hvert område vises uten å trykke.
+Kjør `python scripts/build_fakta.py`. Skriptet stopper med en feilmelding hvis et punkt mangler kilde eller side, eller peker på et område som ikke finnes. Punktene vises i den rekkefølgen de står i filen, og de tre første for hvert område vises uten å trykke.
