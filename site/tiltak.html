@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Innsparingene i Narvik kommunes budsjett, hvilke kommunestyret tok ut igjen, og hva kommunens egne rapporter sier skjedde med dem.">
+<title>Innsparinger · Åpen økonomi i Narvik</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <nav class="site-nav" aria-label="Sider"><a class="brand" href="./">Åpen økonomi i Narvik</a><a href="./">Regnskap</a><a href="budsjett.html">Budsjett mot regnskap</a><a href="lopende.html">Året så langt</a><a href="tiltak.html" aria-current="page">Innsparinger</a></nav>
+  <header>
+    <div class="eyebrow">Narvik kommune · tiltak fra kommunens budsjettdokumenter</div>
+    <h1>Innsparinger</h1>
+    <p class="lead">Kuttene som ble lagt inn i budsjettet, hvilke kommunestyret tok ut igjen, og hva kommunens egne tertial- og årsrapporter sier skjedde med dem.</p>
+    <div class="years" role="radiogroup" aria-label="Velg budsjettår" id="years" hidden><span>Budsjettår</span></div>
+  </header>
+
+  <section aria-labelledby="h-sum" id="sum" hidden>
+    <div class="section-head">
+      <h2 id="h-sum"></h2>
+      <p class="lead" id="sum-lead"></p>
+    </div>
+    <p class="status-note" id="sum-status" hidden></p>
+    <div class="summary" id="summary"></div>
+    <p class="caption" id="sum-caption"></p>
+  </section>
+
+  <section aria-labelledby="h-areas" id="areas" hidden>
+    <div class="section-head">
+      <h2 id="h-areas">Tiltak for tiltak</h2>
+      <p class="lead">Hvert kutt med beløpet for budsjettåret i mill. kr, status fra rapportene og lenke til kilden. Områdene med størst kutt står først. Trykk «Beskrivelse i Framsikt» for å lese hva tiltaket gikk ut på.</p>
+    </div>
+    <div class="fact-groups" id="area-list"></div>
+  </section>
+
+  <section aria-labelledby="h-fix" id="fix" hidden>
+    <div class="section-head">
+      <h2 id="h-fix">Penger lagt inn igjen for kutt som ikke virket</h2>
+      <p class="lead" id="fix-lead"></p>
+    </div>
+    <ul class="fact-list" id="fix-list"></ul>
+  </section>
+
+  <section aria-labelledby="h-bridge" id="bridge" hidden>
+    <div class="section-head">
+      <h2 id="h-bridge"></h2>
+      <p class="lead" id="bridge-lead"></p>
+    </div>
+    <div class="fact-groups" id="bridge-list"></div>
+  </section>
+
+  <section aria-labelledby="h-notes">
+    <h2 id="h-notes">Slik leser du tallene</h2>
+    <div class="notes">
+      <div><h3>Hva som regnes som innsparing</h3><p>Alle linjer under Framsikts kategori «Innsparingstiltak», kutt kommunestyret selv la inn, og tidligere vedtatte kutt og omstillingsmål som videreføres i året. Flytting mellom områder og bytte av inntektskilde regnes ikke med.</p></div>
+      <div><h3>Status fra rapportene</h3><p>Kommunen rapporterer status bare for noen tiltak. Står det «Ingen status i rapportene», har vi ikke funnet tiltaket omtalt i tertialrapport 2 eller årsrapporten for året. Det betyr ikke at kuttet ikke ble gjort.</p></div>
+      <div><h3>Hvor tallene kommer fra</h3><p>Tiltakene og beløpene er fra siden «Endring driftsbudsjett» i kommunens budsjettdokumenter på Framsikt. Statusene er skrevet inn for hånd fra rapportene, med side.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Kilder: Narvik kommunes budsjettdokumenter på <a href="https://pub.framsikt.net/2026/narvik/bm-2026-rapport_plan/#/bmproposals" target="_blank" rel="noopener">Framsikt</a>, tertialrapporter og årsrapporter. <a href="https://github.com/jtkarlsen/narvik-kommune-budsjett" target="_blank" rel="noopener">Kildekode</a>.</span>
+    <span>Et åpent hobbyprosjekt laget av <a href="https://janamundsen.dev" target="_blank" rel="noopener">Jan Amundsen</a>, ikke av Narvik kommune.</span>
+  </footer>
+</div>
+<script src="common.js"></script>
+<script src="tiltak.js"></script>
+</body>
+</html>
