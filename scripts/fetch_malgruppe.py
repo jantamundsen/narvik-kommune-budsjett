@@ -4,8 +4,14 @@
 Per inhabitant says little about a school or a kindergarten when kommuner have different shares of
 children. SSB's KOSTRA key figures put the same spending per user instead: per pupil, per child in a
 kommunal kindergarten, per child in the child welfare service, or per inhabitant of the age the service is for.
-Each measure below is one ContentsCode in one SSB table (and for 12235 one function), fetched for Narvik
-and the comparison regions in narvik.json, as SSB publishes it. Nothing is computed here.
+Each measure in MEASURES is one ContentsCode in one SSB table (and for 12235 one function), fetched for Narvik
+and the comparison regions in narvik.json, as SSB publishes it. Nothing is computed for those.
+
+SSB no longer publishes helse og omsorg per inhabitant of an age group, so AGE_MEASURES are computed here and
+marked «beregnet» on the page: netto driftsutgifter (SSB 12362, the same as the rest of the site) divided by the
+inhabitants in the age group on 1 January the year after (SSB 07459, which is the date KOSTRA's own per-inhabitant
+figures use). 07459 has no KOSTRA groups, so Landet uten Oslo is Hele landet minus Oslo, and the KOSTRA group is
+the sum of its member kommuner from narvik.json, with their numbers before the 2024 renumbering taken from KLASS.
 
 Only the standard library is used, so it runs anywhere Python 3.9+ runs.
 
@@ -20,7 +26,7 @@ import sys
 import urllib.parse
 from pathlib import Path
 
-from fetch_data import FIRST_YEAR, cells, fetch, labels
+from fetch_data import FIRST_YEAR, KLASS, KLASS_KOMMUNER, cells, fetch, labels
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "site" / "data" / "malgruppe.json"
@@ -71,6 +77,31 @@ MEASURES = [
 ]
 
 
+# Helse og omsorg per inhabitant in an age group, computed (see the docstring). ages is the age range (to None = and
+# over). what replaces the area or service name in the sentence when the measure covers only part of it.
+OMSORG = ["234", "253", "254", "257", "258", "261"]
+AGE_MEASURES = [
+    {"area": "helse", "service": None, "key": "67", "per": "innbygger 67 år og over", "ages": [67, None],
+     "functions": OMSORG, "what": "omsorgstjenestene"},
+    {"area": "helse", "service": None, "key": "80", "per": "innbygger 80 år og over", "ages": [80, None],
+     "functions": OMSORG, "what": "omsorgstjenestene"},
+    {"area": "helse", "service": "hjemmetjenester", "key": "67", "per": "innbygger 67 år og over", "ages": [67, None],
+     "functions": ["254", "257", "258"]},
+    {"area": "helse", "service": "hjemmetjenester", "key": "80", "per": "innbygger 80 år og over", "ages": [80, None],
+     "functions": ["254", "257", "258"]},
+    {"area": "helse", "service": "253", "key": "67", "per": "innbygger 67 år og over", "ages": [67, None], "functions": ["253"]},
+    {"area": "helse", "service": "253", "key": "80", "per": "innbygger 80 år og over", "ages": [80, None], "functions": ["253"]},
+    {"area": "helse", "service": "261", "key": "67", "per": "innbygger 67 år og over", "ages": [67, None], "functions": ["261"]},
+    {"area": "helse", "service": "261", "key": "80", "per": "innbygger 80 år og over", "ages": [80, None], "functions": ["261"]},
+    {"area": "helse", "service": "234", "key": "67", "per": "innbygger 67 år og over", "ages": [67, None], "functions": ["234"]},
+    # Helsestasjon og skolehelsetjenesten is for 0–20 år, the age group SSB uses for its staffing figure in 12209.
+    {"area": "helse", "service": "232", "key": "0-20", "per": "innbygger 0–20 år", "ages": [0, 20], "functions": ["232"]},
+]
+POP_TABLE = "07459"
+AMOUNT_TABLE = "12362"
+NORWAY, OSLO, NORDLAND = "0", "0301", "18"
+
+
 def api(table: str) -> str:
     return f"https://data.ssb.no/api/pxwebapi/v2/tables/{table}/data"
 
@@ -88,6 +119,91 @@ def compare_regions() -> list[dict]:
     acc = json.loads(ACCOUNTS.read_text(encoding="utf-8"))
     return [{"key": "narvik", "code": REGION}] + [
         {"key": r["key"], "code": r["code"], "earlier": r.get("earlier", [])} for r in acc["compare"]]
+
+
+def pop_query(regions: list[str], years: list[str]) -> str:
+    params = {"lang": "no", "valueCodes[Region]": ",".join(regions), "valueCodes[Kjonn]": "1,2", "valueCodes[Alder]": "*",
+              "valueCodes[ContentsCode]": "Personer1", "valueCodes[Tid]": ",".join(years)}
+    return api(POP_TABLE) + "?" + urllib.parse.urlencode(params, safe="[]*,")
+
+
+def amount_query(regions: str, functions: list[str], years: str) -> str:
+    params = {"lang": "no", f"valueCodes[{DIM_REGION}]": regions, f"valueCodes[{DIM_FUNCTION}]": ",".join(functions),
+              "valueCodes[KOKart0000]": "AGD2", f"valueCodes[{DIM_CONTENTS}]": "KOSbelop0000", f"valueCodes[{DIM_YEAR}]": years}
+    return api(AMOUNT_TABLE) + "?" + urllib.parse.urlencode(params, safe="[](),")
+
+
+def age_measures(regions: list[dict], codes: str) -> list[dict]:
+    """AGE_MEASURES for Narvik and the comparison regions: netto from 12362 divided by inhabitants in the age group."""
+    acc = json.loads(ACCOUNTS.read_text(encoding="utf-8"))
+    years = acc["years"]
+    functions = list(dict.fromkeys(f for m in AGE_MEASURES for f in m["functions"]))
+    url = amount_query(codes, functions, ",".join(years))
+    print(f"Henter {url}", file=sys.stderr)
+    amount = {}
+    for c, v in cells(fetch(url)):
+        if v is not None:
+            amount[(c[DIM_REGION], c[DIM_FUNCTION], c[DIM_YEAR])] = v
+
+    # Which 07459 regions make up each comparison region. A kommune that got a new number keeps its old one too.
+    changes = fetch(f"{KLASS}/classifications/{KLASS_KOMMUNER}/changes?from={FIRST_YEAR}-01-01&to={dt.date.today().isoformat()}")
+    before = {}
+    for ch in changes["codeChanges"]:
+        if ch["oldCode"] != ch["newCode"]:
+            before.setdefault(ch["newCode"], []).append(ch["oldCode"])
+    members = [m["code"] for m in acc["kostra_group"]["members"]]
+    parts = {}
+    for r in regions:
+        kind = next((c["kind"] for c in acc["compare"] if c["key"] == r["key"]), "kommune")
+        if r["key"] == "landet":
+            parts[r["key"]] = ([NORWAY], [OSLO])
+        elif r["key"] == "nordland":
+            parts[r["key"]] = ([NORDLAND], [])
+        elif kind == "gruppe":
+            parts[r["key"]] = ([c for m in members for c in [m, *before.get(m, [])]], [])
+        else:
+            parts[r["key"]] = ([r["code"], *r.get("earlier", [])], [])
+    pop_regions = list(dict.fromkeys(c for plus, minus in parts.values() for c in plus + minus))
+    pop_years = [str(int(y) + 1) for y in years]
+    url = pop_query(pop_regions, pop_years)
+    print(f"Henter {url}", file=sys.stderr)
+    people = {}  # (region, 07459 year, age) -> persons
+    for c, v in cells(fetch(url)):
+        if v:
+            age = 105 if c["Alder"] == "105+" else int(c["Alder"])
+            key = (c["Region"], c["Tid"], age)
+            people[key] = people.get(key, 0) + v
+
+    def population(key, y, lo, hi):
+        plus, minus = parts[key]
+        count = lambda rs: sum(n for (r, t, a), n in people.items() if r in rs and t == str(int(y) + 1) and a >= lo and (hi is None or a <= hi))
+        return count(plus) - count(minus) or None
+
+    # The whole population summed the same way should match the one KOSTRA uses; warn if a member kommune is missing.
+    for r in acc["compare"]:
+        for y in years:
+            mine, theirs = population(r["key"], y, 0, None), r["population"].get(y)
+            if mine and theirs and abs(mine / theirs - 1) > 0.005:
+                print(f"Merk: {r['name']} {y} har {mine} innbyggere i 07459, men {theirs} i KOSTRA", file=sys.stderr)
+
+    out = []
+    for m in AGE_MEASURES:
+        values, pops = {}, {}
+        for r in regions:
+            rc = [r["code"], *r.get("earlier", [])]
+            values[r["key"]], pops[r["key"]] = {}, {}
+            for y in years:
+                vals = [amount[k] for k in ((c, f, y) for f in m["functions"] for c in rc) if k in amount]
+                n = population(r["key"], y, *m["ages"])
+                pops[r["key"]][y] = n
+                values[r["key"]][y] = round(sum(vals) * 1000 / n) if vals and n else None
+        out.append({**{k: v for k, v in m.items() if k != "ages"}, "basis": "netto", "beregnet": True,
+                    "ssb": "Netto driftsutgifter", "table": AMOUNT_TABLE, "url": f"https://www.ssb.no/statbank/table/{AMOUNT_TABLE}",
+                    "query": amount_query(codes, m["functions"], ",".join(years)),
+                    "population": {"table": POP_TABLE, "url": f"https://www.ssb.no/statbank/table/{POP_TABLE}",
+                                   "query": pop_query(parts["narvik"][0], pop_years), "values": pops},
+                    "values": values})
+    return out
 
 
 def main() -> int:
@@ -125,10 +241,12 @@ def main() -> int:
             if values["narvik"].get(max(years)) is None:
                 print(f"Merk: Narvik mangler {table} {m['contents']} for {max(years)}", file=sys.stderr)
 
+    measures += age_measures(regions, codes)
+
     data = {
         "generated": dt.date.today().isoformat(),
         "regions": codes,
-        "years": sorted(years),
+        "years": sorted(years | set(json.loads(ACCOUNTS.read_text(encoding="utf-8"))["years"])),
         "measures": measures,
     }
     args.out.write_text(json.dumps(data, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")

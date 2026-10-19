@@ -2,7 +2,7 @@
 // type in that service (&art=lonn), for one year (&aar=2025). Netto and per capita come from site/data/narvik.json
 // (SSB 12362); costs and income from site/data/detaljer.json (SSB 12367). Every number names its art code, or is
 // marked «beregnet» when it is computed here. Per pupil, per child and per inhabitant in an age group come from
-// site/data/malgruppe.json (SSB's own key figures). Facts from the kommune's own reports come from site/data/fakta.json.
+// site/data/malgruppe.json (SSB's own key figures, and for helse og omsorg netto per inhabitant in an age group, «beregnet»). Facts from the kommune's own reports come from site/data/fakta.json.
 // Helpers are in common.js.
 let N, D, S, M, F, area, years, year, prev, scope; // S: sammenligning.json, only loaded for a cost type page; M: malgruppe.json; F: fakta.json
 const q = new URLSearchParams(location.search);
@@ -40,8 +40,30 @@ async function start() {
   const [facts, extra] = await Promise.all([optional('data/fakta.json'), optional(grp ? 'data/sammenligning.json' : 'data/malgruppe.json')]);
   F = facts;
   if (grp) S = extra; else M = extra;
-  page.innerHTML = grp ? typePage(svc, grp) : svc ? servicePage(svc) : areaPage();
+  const render = () => { page.innerHTML = grp ? typePage(svc, grp) : svc ? servicePage(svc) : areaPage(); };
+  render();
   document.title = [grp?.name, svc?.name, area.name, 'Åpen økonomi i Narvik'].filter(Boolean).join(' · ');
+  // The page is drawn after the data has loaded, so the browser cannot jump to #sammenligning by itself.
+  if (location.hash) document.getElementById(location.hash.slice(1))?.scrollIntoView();
+
+  // «Sammenlign per» only changes ?maal=, so redraw in place and keep the scroll position instead of loading
+  // the page again from the top. The URL is updated, so the choice can still be shared and Back still works.
+  const redraw = search => {
+    const y = scrollY;
+    [...q.keys()].forEach(k => q.delete(k));
+    new URLSearchParams(search).forEach((v, k) => q.set(k, v));
+    render();
+    scrollTo(0, y);
+  };
+  page.addEventListener('click', e => {
+    const a = e.target.closest('.measures a.chip');
+    if (!a || e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
+    e.preventDefault();
+    const u = new URL(a.href);
+    history.pushState(null, '', u.pathname + u.search + u.hash);
+    redraw(u.search);
+  });
+  addEventListener('popstate', () => redraw(location.search));
 }
 
 // ---- data ----
@@ -194,7 +216,8 @@ function areaPage() {
 
 // Narvik per inhabitant against the comparison regions in narvik.json, for an area, a service or a cost type.
 // pcs is {region key: {year: kr per inhabitant}}; fs the KOSTRA functions it covers; source the sentence naming where it comes from.
-function compareSection({ pcs, what, fs, source, verb = 'brukte', per = 'innbygger', toggle = '', note = '', unit = 'Netto driftsutgifter per innbygger i kroner, kommunekonsern' }) {
+// popNote, when given, says how many the figure is divided by for a region (an age group), in place of all inhabitants.
+function compareSection({ pcs, what, fs, source, verb = 'brukte', per = 'innbygger', toggle = '', note = '', unit = 'Netto driftsutgifter per innbygger i kroner, kommunekonsern', popNote = null }) {
   const rows = [{ key: 'narvik', name: 'Narvik', kind: 'narvik' }, ...N.compare]
     .map(r => ({ ...r, v: pcs[r.key]?.[year] })).filter(r => r.v != null).sort((a, b) => b.v - a.v);
   if (rows.length < 2 || pcs.narvik?.[year] == null) return '';
@@ -205,7 +228,7 @@ function compareSection({ pcs, what, fs, source, verb = 'brukte', per = 'innbygg
   if (pcs.gruppe?.[year]) lead += `, ${pctOf(pcs.gruppe[year])} enn snittet i ${esc(g.name)}`;
   lead += '. ' + (higher === 0 ? 'Det er høyest av alle sammenligningene.' : higher === rows.length - 1 ? 'Det er lavest av alle sammenligningene.' : `${higher} av ${rows.length - 1} sammenligninger lå høyere.`);
   const max = Math.max(...rows.map(r => r.v), 1);
-  const bars = `<div class="rank cmp-bars">${rows.map(r => `<div class="rank-row${r.key === 'narvik' ? ' me' : ''}"><span class="rank-name">${esc(r.name)}<small>${esc(r.key === 'narvik' ? `${nb(N.population[year])} innbyggere` : regionNote(N, r, year))}</small></span><span class="rank-track"><span class="rank-fill" style="width:${Math.max(0, r.v / max * 100)}%"></span></span><span class="rank-amt num">${nb(r.v)}</span><span class="rank-note num">${r.key === 'narvik' || !r.v ? '' : 'Narvik ' + chgText(pct(me, r.v))}</span><span></span></div>`).join('')}</div>`;
+  const bars = `<div class="rank cmp-bars">${rows.map(r => `<div class="rank-row${r.key === 'narvik' ? ' me' : ''}"><span class="rank-name">${esc(r.name)}<small>${esc(popNote?.(r) ?? (r.key === 'narvik' ? `${nb(N.population[year])} innbyggere` : regionNote(N, r, year)))}</small></span><span class="rank-track"><span class="rank-fill" style="width:${Math.max(0, r.v / max * 100)}%"></span></span><span class="rank-amt num">${nb(r.v)}</span><span class="rank-note num">${r.key === 'narvik' || !r.v ? '' : 'Narvik ' + chgText(pct(me, r.v))}</span><span></span></div>`).join('')}</div>`;
   const cols = [{ key: 'narvik', name: 'Narvik' }, ...N.compare];
   const table = `<details class="all-numbers"><summary>Vis alle år</summary><div class="detail-scroll"><table class="num-table"><tr><th>Kr per ${esc(per)}</th>${years.map(y => `<th${y === year ? ' class="sel"' : ''}>${y}</th>`).join('')}</tr>
     ${cols.map(r => `<tr${r.key === 'narvik' ? ' class="sum"' : ''}><td>${esc(r.name)}</td>${years.map(y => { const v = pcs[r.key]?.[y]; return `<td${y === year ? ' class="sel"' : ''}>${v == null ? '·' : nb(v)}</td>`; }).join('')}</tr>`).join('')}</table></div>
@@ -223,12 +246,29 @@ function withMeasures(base, s) {
   const label = x => x.per.charAt(0).toUpperCase() + x.per.slice(1);
   const opt = (label, key, on) => `<a class="chip" href="${esc(link({ ...extra, maal: key }))}#sammenligning"${on ? ' aria-current="true"' : ''}>${esc(label)}</a>`;
   const toggle = `<div class="years measures" role="group" aria-label="Sammenlign per"><span>Sammenlign per</span>${opt('Innbygger', '', !m)}${ms.map(x => opt(label(x), x.key, x === m)).join('')}</div>`;
-  if (!m) return { ...base, toggle, note: ` Velg ${ms.map(x => `«${esc(label(x))}»`).join(' eller ')} over for å ta hensyn til at kommunene har ulikt mange ${area.key === 'skole' ? 'skolebarn' : 'barn'}.` };
+  const who = area.key === 'skole' ? 'skolebarn' : area.key !== 'helse' ? 'barn' : s?.key === '232' ? 'barn og unge' : 'eldre';
+  if (!m) return { ...base, toggle, note: ` Velg ${ms.map(x => `«${esc(label(x))}»`).join(' eller ')} over for å ta hensyn til at kommunene har ulikt mange ${who}.` };
+  if (m.beregnet) return ageMeasure(m, base, toggle);
   return { pcs: m.values, what: base.what, fs: m.functions, per: m.per, toggle,
     unit: `${esc(m.ssb.replace(/\s+/g, ' '))}, SSB tabell ${m.table}`,
     note: m.basis === 'netto' ? ' Samme netto som resten av siden, men delt på en annen gruppe enn alle innbyggerne.'
       : ` Dette er ${m.basis === 'brutto' ? 'brutto' : 'korrigerte brutto'} driftsutgifter: kostnaden før inntekter som refusjoner og egenbetaling er trukket fra. Tallet kan derfor ikke sammenlignes direkte med netto ellers på siden.`,
     source: `Tallet er SSBs eget nøkkeltall, ikke beregnet her. <a href="${esc(m.query)}&outputFormat=html" target="_blank" rel="noopener">Se tallene hos SSB</a> (<a href="${esc(m.url)}" target="_blank" rel="noopener">tabell ${m.table}</a>, der definisjonene står).` };
+}
+
+// Helse og omsorg per inhabitant in an age group. SSB has no key figure for it, so fetch_malgruppe.py divides netto
+// (12362) by the inhabitants in the age group on 1 January the year after (07459), and the page says so.
+function ageMeasure(m, base, toggle) {
+  const pop = m.population;
+  // Home care and other omsorg services also serve younger people, which an age group of the old leaves out.
+  const young = m.functions.includes('232') ? '' : ' Også yngre brukere får omsorgstjenester, så en kommune med mange yngre brukere får et høyere tall per eldre innbygger.';
+  const many = m.per.replace(/^innbygger/, 'innbyggere');
+  const part = m.what ? ` Bare omsorgstjenestene er tatt med (sykehjem, hjemmetjenester, aktivitet og service for eldre og lokaler til institusjoner), ikke legevakt, helsestasjon og annen kommunehelse.` : '';
+  return { pcs: m.values, what: m.what || base.what, fs: m.functions, per: m.per, toggle,
+    unit: `Netto driftsutgifter, kommunekonsern (SSB tabell ${m.table}), delt på ${esc(many)} 1. januar året etter (SSB tabell ${pop.table}), beregnet`,
+    popNote: r => (pop.values[r.key]?.[year] ? `${nb(pop.values[r.key][year])} ${many}` : null),
+    note: ` Samme netto som resten av siden, men delt på ${esc(many)} i stedet for alle innbyggerne.${part}${young} Landet uten Oslo er hele landet minus Oslo, og ${esc(N.compare.find(r => r.key === 'gruppe')?.name || 'KOSTRA-gruppen')} er summen av kommunene i gruppen.`,
+    source: `SSB publiserer ikke lenger dette som eget nøkkeltall, så det er beregnet her. <a href="${esc(m.query)}&outputFormat=html" target="_blank" rel="noopener">Se netto hos SSB</a> (<a href="${esc(m.url)}" target="_blank" rel="noopener">tabell ${m.table}</a>) og <a href="${esc(pop.query)}&outputFormat=html" target="_blank" rel="noopener">innbyggerne i Narvik etter alder</a> (<a href="${esc(pop.url)}" target="_blank" rel="noopener">tabell ${pop.table}</a>).` };
 }
 
 // Sum a per-year value over functions; null when no function has it.
