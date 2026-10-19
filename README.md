@@ -111,7 +111,8 @@ Les også rapporten etter tall som forklarer avvikene (sykefravær, vikarbyrå, 
 - `tekst`: én eller to setninger med tallene slik rapporten oppgir dem, og `type` `tall`, eller `forklaring` med kommunens egne ord i `sitat`
 - `kilde`: rapporten (en nøkkel i `kilder`) og sidetallet, og eventuelt tabellen i `del`
 - `aar` og `periode`, for eksempel `2026` og `januar–august`
-- `rammeomrade`: kommunalområdet i rapporten (`helse`, `oppvekst` og så videre, eller `hele`), og `omrader`: områdene på denne siden det hører til (`helse`, `skole` …)
+- `kommunalomrade`: kommunalområdet slik rapporten skriver det (for eksempel «Helse og omsorg», eller «Hele kommunen»), og `omrader`: områdene på denne siden det hører til (`helse`, `skole` …). Kommunen har organisert seg om flere ganger, så eldre rapporter har andre navn, som «Omsorg og mestring» og «Helse og velferd».
 - eventuelt `tjeneste` eller `art` for å vise punktet bare på én tjeneste eller én kostnadstype
+- eventuelt `merknad`, for eksempel når en senere rapport oppgir et annet tall for samme periode. Begge tallene vises da, med kilde, i stedet for at ett velges i stillhet.
 
-Kjør `python scripts/build_fakta.py`. Skriptet stopper med en feilmelding hvis et punkt mangler kilde eller side, eller peker på et område som ikke finnes. Punktene vises i den rekkefølgen de står i filen, og de tre første for hvert område vises uten å trykke.
+Kjør `python scripts/build_fakta.py`. Skriptet stopper med en feilmelding hvis et punkt mangler kilde eller side, eller peker på et område som ikke finnes. Punktene vises i den rekkefølgen de står i filen (det valgte året først), og de tre første for hvert område vises uten å trykke.

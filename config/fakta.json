@@ -1,6 +1,36 @@
 {
- "_comment": "Facts that explain the numbers on the site, typed in by hand from the documents in «kilder». Every fact names its document and page. scripts/build_fakta.py checks this file and writes site/data/fakta.json. «omrader» are the site's areas (config/categories.json), «rammeomrade» is the kommune's own area as in config/lopende_2026.json (or «hele» for the whole kommune), «tjeneste» and «art» are optional and narrow a fact to one service or cost type. «type» is «tall» for a figure the document states, or «forklaring» for the kommune's own explanation, quoted in «sitat».",
+ "_comment": "Facts that explain the numbers on the site, typed in by hand from the documents in «kilder». Every fact names its document and page. scripts/build_fakta.py checks this file and writes site/data/fakta.json. «omrader» are the site's areas (config/categories.json), «kommunalomrade» is the kommune's own area, named as in the report (or «Hele kommunen»); the kommune has reorganised, so older reports have other names, «tjeneste» and «art» are optional and narrow a fact to one service or cost type. «type» is «tall» for a figure the document states, or «forklaring» for the kommune's own explanation, quoted in «sitat».",
  "kilder": {
+  "t2-2021": {
+   "navn": "Tertialrapport 2/2021",
+   "full": "Tertialrapport 2/2021, formannskapet 28.10.2021 (sak 032/21)",
+   "url": "https://www.narvik.kommune.no/innsyn.aspx?response=mote&moteid=123&scripturi=/innsyn.aspx&Mid1=396",
+   "pdf": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2021059113&dokid=1544634&versjon=3&variant=A"
+  },
+  "t2-2022": {
+   "navn": "Tertialrapport 2/2022",
+   "full": "Tertialrapport 2/2022, formannskapet 20.10.2022 (sak 026/22)",
+   "url": "https://www.narvik.kommune.no/innsyn.aspx?response=mote&moteid=237&scripturi=/innsyn.aspx&Mid1=396",
+   "pdf": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022054491&dokid=1663462&versjon=1&variant=A"
+  },
+  "t2-2023": {
+   "navn": "Tertialrapport 2/2023",
+   "full": "Tertialrapport 2/2023, formannskapet 02.11.2023 (sak 015/23)",
+   "url": "https://www.narvik.kommune.no/innsyn.aspx?response=mote&moteid=406&scripturi=/innsyn.aspx&Mid1=396",
+   "pdf": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022166103&dokid=1825716&versjon=2&variant=A"
+  },
+  "t2-2024": {
+   "navn": "Tertialrapport 2/2024",
+   "full": "Tertialrapport 2/2024, formannskapet 17.10.2024 (sak 023/24)",
+   "url": "https://www.narvik.kommune.no/innsyn.aspx?response=mote&moteid=467&scripturi=/innsyn.aspx&Mid1=396",
+   "pdf": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022207373&dokid=1916684&versjon=1&variant=A"
+  },
+  "t2-2025": {
+   "navn": "Tertialrapport 2/2025",
+   "full": "Tertialrapport 2/2025, formannskapet 16.10.2025 (sak 018/25)",
+   "url": "https://www.narvik.kommune.no/innsyn.aspx?response=mote&moteid=547&scripturi=/innsyn.aspx&Mid1=396",
+   "pdf": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022244076&dokid=2003716&versjon=1&variant=A"
+  },
   "tertial-2-2026": {
    "navn": "Tertialrapport 2/2026",
    "full": "Tertialrapport 2/2026, formannskapet 15.10.2026 (sak 45/26)",
@@ -15,7 +45,7 @@
    "tema": "Sykefravær",
    "aar": "2026",
    "periode": "januar–august",
-   "rammeomrade": "hele",
+   "kommunalomrade": "Hele kommunen",
    "omrader": [],
    "tekst": "Sykefraværet i hele kommunen var 11,1 % fra januar til august 2026, mot 10,5 % i de samme månedene i 2025.",
    "verdier": {
@@ -35,7 +65,7 @@
    "tema": "Budsjettet",
    "aar": "2026",
    "periode": "hele året",
-   "rammeomrade": "helse",
+   "kommunalomrade": "Helse og omsorg",
    "omrader": [
     "helse"
    ],
@@ -51,7 +81,7 @@
    "tema": "Sykefravær",
    "aar": "2026",
    "periode": "januar–august",
-   "rammeomrade": "helse",
+   "kommunalomrade": "Helse og omsorg",
    "omrader": [
     "helse"
    ],
@@ -73,7 +103,7 @@
    "tema": "Vikarbyrå og overtid",
    "aar": "2026",
    "periode": "januar–august",
-   "rammeomrade": "helse",
+   "kommunalomrade": "Helse og omsorg",
    "omrader": [
     "helse"
    ],
@@ -97,7 +127,7 @@
    "tema": "Hva merforbruket består av",
    "aar": "2026",
    "periode": "januar–august",
-   "rammeomrade": "helse",
+   "kommunalomrade": "Helse og omsorg",
    "omrader": [
     "helse"
    ],
@@ -113,7 +143,7 @@
    "tema": "Sommervikarer",
    "aar": "2026",
    "periode": "sommeren",
-   "rammeomrade": "helse",
+   "kommunalomrade": "Helse og omsorg",
    "omrader": [
     "helse"
    ],
@@ -130,7 +160,7 @@
    "tema": "Sykefravær",
    "aar": "2026",
    "periode": "januar–august",
-   "rammeomrade": "helse",
+   "kommunalomrade": "Helse og omsorg",
    "omrader": [
     "helse"
    ],
@@ -146,7 +176,7 @@
    "tema": "Sykefravær",
    "aar": "2026",
    "periode": "januar–august",
-   "rammeomrade": "helse",
+   "kommunalomrade": "Helse og omsorg",
    "omrader": [
     "helse"
    ],
@@ -162,7 +192,7 @@
    "tema": "Kjøpsvik omsorg",
    "aar": "2026",
    "periode": "januar–august",
-   "rammeomrade": "helse",
+   "kommunalomrade": "Helse og omsorg",
    "omrader": [
     "helse"
    ],
@@ -178,7 +208,7 @@
    "tema": "Utskrivningsklare pasienter",
    "aar": "2026",
    "periode": "januar–august",
-   "rammeomrade": "helse",
+   "kommunalomrade": "Helse og omsorg",
    "omrader": [
     "helse"
    ],
@@ -194,7 +224,7 @@
    "tema": "Kapasitet",
    "aar": "2026",
    "periode": "august",
-   "rammeomrade": "helse",
+   "kommunalomrade": "Helse og omsorg",
    "omrader": [
     "helse"
    ],
@@ -211,7 +241,7 @@
    "tema": "Barnevernet",
    "aar": "2026",
    "periode": "januar–august",
-   "rammeomrade": "oppvekst",
+   "kommunalomrade": "Oppvekst",
    "omrader": [
     "barnevern"
    ],
@@ -228,7 +258,7 @@
    "tema": "Mindreforbruk",
    "aar": "2026",
    "periode": "januar–august",
-   "rammeomrade": "oppvekst",
+   "kommunalomrade": "Oppvekst",
    "omrader": [
     "skole",
     "barnehage",
@@ -247,7 +277,7 @@
    "tema": "Investering: skolegårder",
    "aar": "2026",
    "periode": "januar–august",
-   "rammeomrade": "oppvekst",
+   "kommunalomrade": "Oppvekst",
    "omrader": [
     "skole"
    ],
@@ -265,7 +295,7 @@
    "tema": "Sykefravær",
    "aar": "2026",
    "periode": "januar–august",
-   "rammeomrade": "oppvekst",
+   "kommunalomrade": "Oppvekst",
    "omrader": [
     "skole",
     "barnehage",
@@ -289,7 +319,7 @@
    "tema": "Elever",
    "aar": "2026",
    "periode": "august",
-   "rammeomrade": "oppvekst",
+   "kommunalomrade": "Oppvekst",
    "omrader": [
     "skole"
    ],
@@ -305,7 +335,7 @@
    "tema": "Investering: skolebygg",
    "aar": "2026",
    "periode": "januar–august",
-   "rammeomrade": "oppvekst",
+   "kommunalomrade": "Oppvekst",
    "omrader": [
     "skole"
    ],
@@ -322,7 +352,7 @@
    "tema": "Barn i barnehage",
    "aar": "2026",
    "periode": "august",
-   "rammeomrade": "oppvekst",
+   "kommunalomrade": "Oppvekst",
    "omrader": [
     "barnehage"
    ],
@@ -338,7 +368,7 @@
    "tema": "Sosialhjelp og bosetting",
    "aar": "2026",
    "periode": "januar–august",
-   "rammeomrade": "virksomhet",
+   "kommunalomrade": "Virksomhetsstyring",
    "omrader": [
     "sosial"
    ],
@@ -355,7 +385,7 @@
    "tema": "Sykefravær",
    "aar": "2026",
    "periode": "januar–august",
-   "rammeomrade": "virksomhet",
+   "kommunalomrade": "Virksomhetsstyring",
    "omrader": [
     "sosial",
     "admin",
@@ -379,7 +409,7 @@
    "tema": "Sykefravær",
    "aar": "2026",
    "periode": "januar–august",
-   "rammeomrade": "plan",
+   "kommunalomrade": "Plan, næring og teknisk",
    "omrader": [
     "veier",
     "plan"
@@ -394,6 +424,932 @@
     "id": "tertial-2-2026",
     "side": 4,
     "del": "figur over sykefravær per kommunalområde"
+   }
+  },
+  {
+   "id": "ramme-helse-2025",
+   "type": "tall",
+   "tema": "Budsjettet",
+   "aar": "2025",
+   "periode": "januar–august",
+   "kommunalomrade": "Helse og omsorg",
+   "omrader": [
+    "helse"
+   ],
+   "tekst": "Helse og omsorg hadde brukt 57,9 mill. kr mer enn budsjettert per august 2025, og kommunedirektøren ventet 65 mill. kr i merforbruk for hele året.",
+   "kilde": {
+    "id": "t2-2025",
+    "side": 9,
+    "del": "tabell «Totaloversikt drift – fordelt på rammeområder»"
+   }
+  },
+  {
+   "id": "sykefravaer-helse-2025",
+   "type": "tall",
+   "tema": "Sykefravær",
+   "aar": "2025",
+   "periode": "januar–august",
+   "kommunalomrade": "Helse og omsorg",
+   "omrader": [
+    "helse"
+   ],
+   "tekst": "Sykefraværet i Helse og omsorg var 11,8 % fra januar til august 2025, ned fra 14,5 % i de samme månedene i 2024. For hele kommunen var det 10,5 %, ned fra 12,4 %.",
+   "verdier": {
+    "enhet": "%",
+    "2024": 14.5,
+    "2025": 11.8
+   },
+   "kilde": {
+    "id": "t2-2025",
+    "side": 4,
+    "del": "figur over sykefravær per kommunalområde"
+   }
+  },
+  {
+   "id": "vikarbyra-helse-2025",
+   "type": "tall",
+   "tema": "Vikarbyrå og overtid",
+   "aar": "2025",
+   "periode": "januar–august",
+   "kommunalomrade": "Helse og omsorg",
+   "omrader": [
+    "helse"
+   ],
+   "tekst": "Helse og omsorg brukte 19,1 mill. kr på vikarbyrå til og med august 2025, mot 26,0 mill. kr på samme tid i 2024. Overtiden økte fra 12,8 til 14,8 mill. kr.",
+   "merknad": "Tertialrapport 2/2026 oppgir 18,1 mill. kr i vikartjenester for de samme månedene i 2025 (s. 32).",
+   "verdier": {
+    "enhet": "kr",
+    "vikarbyra_2024": 26034261,
+    "vikarbyra_2025": 19073971,
+    "overtid_2024": 12829052,
+    "overtid_2025": 14758072
+   },
+   "kilde": {
+    "id": "t2-2025",
+    "side": 27,
+    "del": "tabell over vikarbyrå og overtid per enhet"
+   }
+  },
+  {
+   "id": "vikarbyra-forklaring-2025",
+   "type": "forklaring",
+   "tema": "Vikarbyrå og overtid",
+   "aar": "2025",
+   "periode": "januar–august",
+   "kommunalomrade": "Hele kommunen",
+   "omrader": [
+    "helse"
+   ],
+   "tekst": "Kommunedirektøren forklarer hvorfor bruken av vikarbyrå gikk ned.",
+   "sitat": "Reduksjonen i bruk av vikarbyråer er ikke bare på grunn av lavere sykefravær, men en kombinasjon av vellykket rekruttering i stillinger og økt bruk av overtid. Sist nevnte er ikke bærekraftig over tid, da mye overtid sliter på de ansatte over tid.",
+   "kilde": {
+    "id": "t2-2025",
+    "side": 3
+   }
+  },
+  {
+   "id": "sommervikarer-helse-2025",
+   "type": "forklaring",
+   "tema": "Sommervikarer",
+   "aar": "2025",
+   "periode": "sommeren",
+   "kommunalomrade": "Helse og omsorg",
+   "omrader": [
+    "helse"
+   ],
+   "tekst": "Sektor institusjon og distrikt leide boliger til sommervikarer uten at det var budsjettert for det.",
+   "sitat": "Midlertidig leie av boliger til sommervikarer uten budsjettdekning.",
+   "kilde": {
+    "id": "t2-2025",
+    "side": 30
+   }
+  },
+  {
+   "id": "overliggere-helse-2025",
+   "type": "tall",
+   "tema": "Utskrivningsklare pasienter",
+   "aar": "2025",
+   "periode": "januar–august",
+   "kommunalomrade": "Helse og omsorg",
+   "omrader": [
+    "helse"
+   ],
+   "tekst": "Kommunen hadde 864 overliggerdøgn ut august 2025, mot 380 i samme periode i 2024, og 311 av dem var i august. Rapporten peker på færre ledige sykehjemsplasser, flere innleggelser på sykehuset og at korttidsplassene ikke var i full drift.",
+   "kilde": {
+    "id": "t2-2025",
+    "side": 26
+   }
+  },
+  {
+   "id": "sykefravaer-oppvekst-2025",
+   "type": "tall",
+   "tema": "Sykefravær",
+   "aar": "2025",
+   "periode": "januar–august",
+   "kommunalomrade": "Oppvekst",
+   "omrader": [
+    "skole",
+    "barnehage",
+    "barnevern"
+   ],
+   "tekst": "Sykefraværet i Oppvekst var 10,1 % fra januar til august 2025, ned fra 11,9 % i de samme månedene i 2024. For hele kommunen var det 10,5 %, ned fra 12,4 %.",
+   "verdier": {
+    "enhet": "%",
+    "2024": 11.9,
+    "2025": 10.1
+   },
+   "kilde": {
+    "id": "t2-2025",
+    "side": 4,
+    "del": "figur over sykefravær per kommunalområde"
+   }
+  },
+  {
+   "id": "skolegarder-2025",
+   "type": "tall",
+   "tema": "Investering: skolegårder",
+   "aar": "2025",
+   "periode": "januar–august",
+   "kommunalomrade": "Oppvekst",
+   "omrader": [
+    "skole"
+   ],
+   "tekst": "Oppgraderingen av skolegårdene hadde kostet 6,1 mill. kr per august 2025. Budsjettet var 17 mill. kr, og prognosen ble satt ned til 10 mill. kr (s. 10). Kommunestyret satte av 22 mill. kr i 2023 (sak 058/23), men spillemidlene det var regnet med, så ikke ut til å komme. Investeringer er ikke med i driftsutgiftene ellers på denne siden.",
+   "kilde": {
+    "id": "t2-2025",
+    "side": 11,
+    "del": "prosjektstatus, og bevilgningsoversikt investering s. 13"
+   }
+  },
+  {
+   "id": "sosialhjelp-2025",
+   "type": "forklaring",
+   "tema": "Sosialhjelp og bosetting",
+   "aar": "2025",
+   "periode": "januar–august",
+   "kommunalomrade": "Virksomhetsstyring",
+   "omrader": [
+    "sosial"
+   ],
+   "tekst": "Sosialstønaden foreslås økt med 12,6 mill. kr, betalt av integreringstilskuddet (s. 9).",
+   "sitat": "Økningen i sosiale utgifter er utelukkende knyttet til vårt arbeid med å bosette flyktninger. Selv om vi har fått en økning i disse utgiftene, har Narvik en lavere vekst i sosiale utgifter enn sammenlignbare kommuner som mottar flyktninger.",
+   "kilde": {
+    "id": "t2-2025",
+    "side": 17
+   }
+  },
+  {
+   "id": "sykefravaer-virksomhet-2025",
+   "type": "tall",
+   "tema": "Sykefravær",
+   "aar": "2025",
+   "periode": "januar–august",
+   "kommunalomrade": "Virksomhetsstyring",
+   "omrader": [
+    "sosial",
+    "admin",
+    "kultur"
+   ],
+   "tekst": "Sykefraværet i Virksomhetsstyring var 8,6 % fra januar til august 2025, omtrent som i 2024 (8,8 %). For hele kommunen var det 10,5 %, ned fra 12,4 %.",
+   "verdier": {
+    "enhet": "%",
+    "2024": 8.8,
+    "2025": 8.6
+   },
+   "kilde": {
+    "id": "t2-2025",
+    "side": 4,
+    "del": "figur over sykefravær per kommunalområde"
+   }
+  },
+  {
+   "id": "sykefravaer-teknisk-2025",
+   "type": "tall",
+   "tema": "Sykefravær",
+   "aar": "2025",
+   "periode": "januar–august",
+   "kommunalomrade": "Plan, næring og teknisk",
+   "omrader": [
+    "veier",
+    "plan"
+   ],
+   "tekst": "Sykefraværet i Plan, næring og teknisk var 8,4 % fra januar til august 2025, ned fra 9,6 % i de samme månedene i 2024. For hele kommunen var det 10,5 %, ned fra 12,4 %.",
+   "verdier": {
+    "enhet": "%",
+    "2024": 9.6,
+    "2025": 8.4
+   },
+   "kilde": {
+    "id": "t2-2025",
+    "side": 4,
+    "del": "figur over sykefravær per kommunalområde"
+   }
+  },
+  {
+   "id": "vikarbyra-helse-2024",
+   "type": "tall",
+   "tema": "Vikarbyrå og overtid",
+   "aar": "2024",
+   "periode": "januar–august",
+   "kommunalomrade": "Helse og omsorg",
+   "omrader": [
+    "helse"
+   ],
+   "tekst": "Helse og omsorg brukte 28,9 mill. kr på vikarbyrå til og med august 2024, mot 22,9 mill. kr på samme tid i 2023. Overtiden var 12,7 mill. kr, omtrent som året før (12,4 mill. kr).",
+   "merknad": "Tertialrapport 2/2025 oppgir 26,0 mill. kr til vikarbyrå og 12,8 mill. kr til overtid for de samme månedene i 2024 (s. 27).",
+   "verdier": {
+    "enhet": "kr",
+    "vikarbyra_2023": 22874916,
+    "vikarbyra_2024": 28936024,
+    "overtid_2023": 12404797,
+    "overtid_2024": 12687010
+   },
+   "kilde": {
+    "id": "t2-2024",
+    "side": 22,
+    "del": "tabell over overtid og vikarbyrå"
+   }
+  },
+  {
+   "id": "sykefravaer-helse-2024",
+   "type": "tall",
+   "tema": "Sykefravær",
+   "aar": "2024",
+   "periode": "januar–august",
+   "kommunalomrade": "Helse og omsorg",
+   "omrader": [
+    "helse"
+   ],
+   "tekst": "Sykefraværet i Helse og omsorg var 14,5 % fra januar til august 2024. For hele kommunen var det 12,4 %.",
+   "merknad": "Tallene er fra tertialrapporten for 2025, som sammenligner med 2024. Rapporten for 2024 har ingen tall for sykefraværet.",
+   "verdier": {
+    "enhet": "%",
+    "2024": 14.5
+   },
+   "kilde": {
+    "id": "t2-2025",
+    "side": 4,
+    "del": "figur over sykefravær per kommunalområde"
+   }
+  },
+  {
+   "id": "tilreisende-vikarer-2024",
+   "type": "forklaring",
+   "tema": "Sommervikarer",
+   "aar": "2024",
+   "periode": "sommeren",
+   "kommunalomrade": "Helse og omsorg",
+   "omrader": [
+    "helse"
+   ],
+   "tekst": "En avtale om utvidet arbeidstid om sommeren kostet 1,2 mill. kr, som kommunen regner som rimeligere enn vikar fra byrå (s. 22).",
+   "sitat": "For å kunne ha full drift gjennom sommeren er det benyttet egne vikarer, sommeravtale, vikarer fra byrå og overtid. Mange av de tilreisende vikarene har fått dekket husleie og reise som et rekrutteringstiltak.",
+   "kilde": {
+    "id": "t2-2024",
+    "side": 20
+   }
+  },
+  {
+   "id": "helsehus-2024",
+   "type": "tall",
+   "tema": "Helsehuset",
+   "aar": "2024",
+   "periode": "januar–august",
+   "kommunalomrade": "Hele kommunen",
+   "omrader": [
+    "helse"
+   ],
+   "tekst": "Det nye Helsehuset på Furumoen kostet 460 mill. kr brutto og 296,5 mill. kr for kommunen etter momsrefusjon og tilskudd fra Husbanken. Rådmannen skrev at kommunen ikke kunne ta det fullt i bruk uten å redusere andre tjenester.",
+   "kilde": {
+    "id": "t2-2024",
+    "side": 3
+   }
+  },
+  {
+   "id": "overliggere-helse-2024",
+   "type": "tall",
+   "tema": "Utskrivningsklare pasienter",
+   "aar": "2024",
+   "periode": "januar–august",
+   "kommunalomrade": "Helse og omsorg",
+   "omrader": [
+    "helse"
+   ],
+   "tekst": "Kommunen hadde 383 overliggerdøgn ut august 2024, mot 580 i samme periode i 2023.",
+   "kilde": {
+    "id": "t2-2024",
+    "side": 20
+   }
+  },
+  {
+   "id": "legesenter-husleie-2024",
+   "type": "tall",
+   "tema": "Husleie",
+   "aar": "2024",
+   "periode": "januar–august",
+   "kommunalomrade": "Helse og omsorg",
+   "omrader": [
+    "helse"
+   ],
+   "tekst": "Husleien for Torvet legesenter er om lag dobbelt så høy som budsjettert. Den var en del av løftet om fastlegeordningen kommunestyret vedtok i 2022, men ble ikke fullt finansiert.",
+   "kilde": {
+    "id": "t2-2024",
+    "side": 24
+   }
+  },
+  {
+   "id": "agenda-kaupang-2024",
+   "type": "forklaring",
+   "tema": "Sammenlignet med andre",
+   "aar": "2024",
+   "periode": "januar–august",
+   "kommunalomrade": "Hele kommunen",
+   "omrader": [
+    "helse",
+    "skole",
+    "barnehage"
+   ],
+   "tekst": "En rapport fra Agenda Kaupang i juni 2024 sammenlignet Narvik med lignende kommuner. Rådmannen la til at Narvik samtidig har høyere frie inntekter per innbygger enn de samme kommunene.",
+   "sitat": "Rapporten viser at vi bruker mer penger og er mindre effektive enn sammenlignbare kommuner.",
+   "kilde": {
+    "id": "t2-2024",
+    "side": 4
+   }
+  },
+  {
+   "id": "sykefravaer-oppvekst-2024",
+   "type": "tall",
+   "tema": "Sykefravær",
+   "aar": "2024",
+   "periode": "januar–august",
+   "kommunalomrade": "Oppvekst",
+   "omrader": [
+    "skole",
+    "barnehage",
+    "barnevern"
+   ],
+   "tekst": "Sykefraværet i Oppvekst var 11,9 % fra januar til august 2024. For hele kommunen var det 12,4 %.",
+   "merknad": "Tallene er fra tertialrapporten for 2025, som sammenligner med 2024. Rapporten for 2024 har ingen tall for sykefraværet.",
+   "verdier": {
+    "enhet": "%",
+    "2024": 11.9
+   },
+   "kilde": {
+    "id": "t2-2025",
+    "side": 4,
+    "del": "figur over sykefravær per kommunalområde"
+   }
+  },
+  {
+   "id": "barnehage-2024",
+   "type": "forklaring",
+   "tema": "Barnehage",
+   "aar": "2024",
+   "periode": "januar–august",
+   "kommunalomrade": "Oppvekst",
+   "omrader": [
+    "barnehage"
+   ],
+   "tekst": "Oppvekst brukte mer enn budsjettert på spesialundervisning og på tilskudd til private barnehager.",
+   "sitat": "Driftsmessig er de kommunale barnehagene kostnadseffektive, men inntak av barn som ikke har rettigheter etter barnehageloven har økt utgiftene til sektoren.",
+   "kilde": {
+    "id": "t2-2024",
+    "side": 4
+   }
+  },
+  {
+   "id": "skolegarder-2024",
+   "type": "tall",
+   "tema": "Investering: skolegårder",
+   "aar": "2024",
+   "periode": "januar–august",
+   "kommunalomrade": "Oppvekst",
+   "omrader": [
+    "skole"
+   ],
+   "tekst": "Det var lagt inn 16,4 mill. kr i budsjettet for 2024 til å oppgradere skolegårdene, etter et vedtak i kommunestyret i 2023 (sak 058/23). Prosjektet ble forsinket, budsjettet ble satt ned til 1,85 mill. kr, og 0,15 mill. kr var brukt per august. Lekeapparater til alle 7 skolene var bestilt. Investeringer er ikke med i driftsutgiftene ellers på denne siden.",
+   "kilde": {
+    "id": "t2-2024",
+    "side": 32,
+    "del": "prosjektstatus, og bevilgningsoversikt investering s. 35"
+   }
+  },
+  {
+   "id": "sosialhjelp-2024",
+   "type": "tall",
+   "tema": "Sosialhjelp og bosetting",
+   "aar": "2024",
+   "periode": "januar–august",
+   "kommunalomrade": "Virksomhetsstyring",
+   "omrader": [
+    "sosial"
+   ],
+   "tekst": "NAV hadde fått om lag halvparten av flyktningene i arbeid, og sosialhjelpen økte derfor mindre enn planlagt.",
+   "kilde": {
+    "id": "t2-2024",
+    "side": 14
+   }
+  },
+  {
+   "id": "sykefravaer-virksomhet-2024",
+   "type": "tall",
+   "tema": "Sykefravær",
+   "aar": "2024",
+   "periode": "januar–august",
+   "kommunalomrade": "Virksomhetsstyring",
+   "omrader": [
+    "sosial",
+    "admin",
+    "kultur"
+   ],
+   "tekst": "Sykefraværet i Virksomhetsstyring var 8,8 % fra januar til august 2024. For hele kommunen var det 12,4 %.",
+   "merknad": "Tallene er fra tertialrapporten for 2025, som sammenligner med 2024. Rapporten for 2024 har ingen tall for sykefraværet.",
+   "verdier": {
+    "enhet": "%",
+    "2024": 8.8
+   },
+   "kilde": {
+    "id": "t2-2025",
+    "side": 4,
+    "del": "figur over sykefravær per kommunalområde"
+   }
+  },
+  {
+   "id": "sykefravaer-teknisk-2024",
+   "type": "tall",
+   "tema": "Sykefravær",
+   "aar": "2024",
+   "periode": "januar–august",
+   "kommunalomrade": "Plan, næring og teknisk",
+   "omrader": [
+    "veier",
+    "plan"
+   ],
+   "tekst": "Sykefraværet i Plan, næring og teknisk var 9,6 % fra januar til august 2024. For hele kommunen var det 12,4 %.",
+   "merknad": "Tallene er fra tertialrapporten for 2025, som sammenligner med 2024. Rapporten for 2024 har ingen tall for sykefraværet.",
+   "verdier": {
+    "enhet": "%",
+    "2024": 9.6
+   },
+   "kilde": {
+    "id": "t2-2025",
+    "side": 4,
+    "del": "figur over sykefravær per kommunalområde"
+   }
+  },
+  {
+   "id": "sykefravaer-omsorg-2023",
+   "type": "tall",
+   "tema": "Sykefravær",
+   "aar": "2023",
+   "periode": "januar–august",
+   "kommunalomrade": "Omsorg og mestring",
+   "omrader": [
+    "helse"
+   ],
+   "tekst": "Sykefraværet i Omsorg og mestring var 13,8 % fra januar til august 2023, opp fra 12,4 % i de samme månedene i 2022. For hele kommunen var det 11,4 %, opp fra 11,0 %.",
+   "merknad": "Teksten på s. 7 oppgir 11,1 % hittil i år for hele kommunen.",
+   "verdier": {
+    "enhet": "%",
+    "2022": 12.38,
+    "2023": 13.77
+   },
+   "kilde": {
+    "id": "t2-2023",
+    "side": 8,
+    "del": "figur over sykefravær per kommunalområde"
+   }
+  },
+  {
+   "id": "vikarbyra-omsorg-2023",
+   "type": "tall",
+   "tema": "Vikarbyrå og overtid",
+   "aar": "2023",
+   "periode": "januar–august",
+   "kommunalomrade": "Omsorg og mestring",
+   "omrader": [
+    "helse"
+   ],
+   "tekst": "Omsorg og mestring brukte 16,8 mill. kr på vikarbyrå og 11,9 mill. kr på overtid til og med august 2023. På samme tid i 2022 var det 20,7 og 9,8 mill. kr, og i 2021 11,8 og 7,9 mill. kr.",
+   "merknad": "Tertialrapport 2/2024 oppgir 22,9 mill. kr til vikarbyrå og 12,4 mill. kr til overtid per august 2023 (s. 22).",
+   "verdier": {
+    "enhet": "kr",
+    "vikarbyra_2021": 11763079,
+    "vikarbyra_2022": 20683958,
+    "vikarbyra_2023": 16764204,
+    "overtid_2021": 7888745,
+    "overtid_2022": 9825093,
+    "overtid_2023": 11856890
+   },
+   "kilde": {
+    "id": "t2-2023",
+    "side": 15,
+    "del": "tabell «Regnskap pr august pr år»"
+   }
+  },
+  {
+   "id": "svenske-vikarer-2023",
+   "type": "forklaring",
+   "tema": "Sommervikarer",
+   "aar": "2023",
+   "periode": "sommeren",
+   "kommunalomrade": "Omsorg og mestring",
+   "omrader": [
+    "helse"
+   ],
+   "tekst": "Fem av fjorten enheter brukte vikarbyrå i sommer, mest Furumoen og Prestegårdstunet sykehjem.",
+   "sitat": "Heldigvis er det noen lyspunkt der feks Hjemmesykepleien Narvik lyktes i å egenrekruttere svenske legevikarer, og dermed reduserte bruk av vikarbyrå kraftig.",
+   "kilde": {
+    "id": "t2-2023",
+    "side": 15
+   }
+  },
+  {
+   "id": "helse-velferd-2023",
+   "type": "tall",
+   "tema": "Budsjettet",
+   "aar": "2023",
+   "periode": "januar–august",
+   "kommunalomrade": "Helse og velferd",
+   "omrader": [
+    "helse",
+    "barnevern",
+    "sosial"
+   ],
+   "tekst": "Helse og velferd ventet 25,4 mill. kr i merforbruk i 2023, mest i barnevernet, på REO og i legetjenesten, i tillegg til utgifter til flyktninger.",
+   "kilde": {
+    "id": "t2-2023",
+    "side": 18
+   }
+  },
+  {
+   "id": "sykefravaer-helse-velferd-2023",
+   "type": "tall",
+   "tema": "Sykefravær",
+   "aar": "2023",
+   "periode": "januar–august",
+   "kommunalomrade": "Helse og velferd",
+   "omrader": [
+    "helse",
+    "barnevern",
+    "sosial"
+   ],
+   "tekst": "Sykefraværet i Helse og velferd var 10,4 % fra januar til august 2023, omtrent som i 2022 (10,2 %). For hele kommunen var det 11,4 %.",
+   "verdier": {
+    "enhet": "%",
+    "2022": 10.24,
+    "2023": 10.38
+   },
+   "kilde": {
+    "id": "t2-2023",
+    "side": 8,
+    "del": "figur over sykefravær per kommunalområde"
+   }
+  },
+  {
+   "id": "sykefravaer-oppvekst-2023",
+   "type": "tall",
+   "tema": "Sykefravær",
+   "aar": "2023",
+   "periode": "januar–august",
+   "kommunalomrade": "Oppvekst",
+   "omrader": [
+    "skole",
+    "barnehage",
+    "barnevern"
+   ],
+   "tekst": "Sykefraværet i Oppvekst var 11,2 % fra januar til august 2023, opp fra 10,8 % i de samme månedene i 2022. For hele kommunen var det 11,4 %.",
+   "verdier": {
+    "enhet": "%",
+    "2022": 10.75,
+    "2023": 11.2
+   },
+   "kilde": {
+    "id": "t2-2023",
+    "side": 8,
+    "del": "figur over sykefravær per kommunalområde"
+   }
+  },
+  {
+   "id": "sfo-2023",
+   "type": "tall",
+   "tema": "SFO",
+   "aar": "2023",
+   "periode": "januar–august",
+   "kommunalomrade": "Oppvekst",
+   "omrader": [
+    "skole"
+   ],
+   "tekst": "Gratis kjernetid i SFO og søskenmoderasjon ga flere barn i SFO og behov for flere ansatte enn budsjettert. Oppvekst ventet 12,7 mill. kr i merforbruk for året (s. 13).",
+   "kilde": {
+    "id": "t2-2023",
+    "side": 7
+   }
+  },
+  {
+   "id": "skolegarder-2023",
+   "type": "tall",
+   "tema": "Investering: skolegårder",
+   "aar": "2023",
+   "periode": "januar–august",
+   "kommunalomrade": "Oppvekst",
+   "omrader": [
+    "skole"
+   ],
+   "tekst": "Kommunestyret vedtok i 2023 å oppgradere skolegårdene, og det ble foreslått å flytte 2,5 mill. kr fra disposisjonsfondet til prosjektet. Investeringer er ikke med i driftsutgiftene ellers på denne siden.",
+   "kilde": {
+    "id": "t2-2023",
+    "side": 23
+   }
+  },
+  {
+   "id": "sykefravaer-pnkt-2023",
+   "type": "tall",
+   "tema": "Sykefravær",
+   "aar": "2023",
+   "periode": "januar–august",
+   "kommunalomrade": "Plan, næring, kultur og teknisk drift",
+   "omrader": [
+    "veier",
+    "plan",
+    "kultur"
+   ],
+   "tekst": "Sykefraværet i Plan, næring, kultur og teknisk drift var 8,0 % fra januar til august 2023, ned fra 10,5 % i de samme månedene i 2022. For hele kommunen var det 11,4 %.",
+   "verdier": {
+    "enhet": "%",
+    "2022": 10.45,
+    "2023": 8.04
+   },
+   "kilde": {
+    "id": "t2-2023",
+    "side": 8,
+    "del": "figur over sykefravær per kommunalområde"
+   }
+  },
+  {
+   "id": "sykefravaer-virksomhet-2023",
+   "type": "tall",
+   "tema": "Sykefravær",
+   "aar": "2023",
+   "periode": "januar–august",
+   "kommunalomrade": "Virksomhetsstyring",
+   "omrader": [
+    "admin"
+   ],
+   "tekst": "Sykefraværet i Virksomhetsstyring var 6,6 % fra januar til august 2023, ned fra 8,0 % i de samme månedene i 2022. For hele kommunen var det 11,4 %.",
+   "verdier": {
+    "enhet": "%",
+    "2022": 8.03,
+    "2023": 6.6
+   },
+   "kilde": {
+    "id": "t2-2023",
+    "side": 8,
+    "del": "figur over sykefravær per kommunalområde"
+   }
+  },
+  {
+   "id": "vikarbyra-omsorg-2022",
+   "type": "tall",
+   "tema": "Vikarbyrå og overtid",
+   "aar": "2022",
+   "periode": "januar–august",
+   "kommunalomrade": "Omsorg og mestring",
+   "omrader": [
+    "helse"
+   ],
+   "tekst": "Omsorg og mestring brukte 20,5 mill. kr på vikarer fra byrå til og med august 2022, mest på Furumoen sykehjem. Overtiden var 15,1 mill. kr, og 5,4 mill. kr av det var etter en egen koronaavtale. På Furumoen var overtiden 13,1 % av fastlønnen.",
+   "kilde": {
+    "id": "t2-2022",
+    "side": 19,
+    "del": "tekst og tabell over overtid per enhet"
+   }
+  },
+  {
+   "id": "legevikarer-2022",
+   "type": "forklaring",
+   "tema": "Vikarer",
+   "aar": "2022",
+   "periode": "januar–august",
+   "kommunalomrade": "Hele kommunen",
+   "omrader": [
+    "helse"
+   ],
+   "tekst": "Tjenesteområdene hadde brukt 101 mill. kr mer enn budsjettert per august 2022, og 12 mill. kr av det var koronautgifter (s. 6).",
+   "sitat": "Det er spesielt kostnader knyttet til legetjenester, der vi må leie inn vikarer i påvente av å få tilsatt egne leger, som øker. Innenfor omsorg og mestring har ferieavviklingen generert merkostnader gjennom økt bruk av overtid og innleie fra vikarbyråer.",
+   "kilde": {
+    "id": "t2-2022",
+    "side": 3
+   }
+  },
+  {
+   "id": "sykefravaer-hele-2022",
+   "type": "tall",
+   "tema": "Sykefravær",
+   "aar": "2022",
+   "periode": "januar–august",
+   "kommunalomrade": "Hele kommunen",
+   "omrader": [
+    "helse",
+    "skole",
+    "barnehage"
+   ],
+   "tekst": "Sykefraværet i hele kommunen var 10,7 % fra januar til august 2022, nesten som i 2021 (10,6 %). Snittet for kommunene i Norge var om lag 7,5 %, og målet var å komme 3 prosentpoeng ned i økonomiplanperioden.",
+   "merknad": "Rapporten for 2022 har ikke sykefraværet per kommunalområde. Tertialrapport 2/2023 oppgir 11,0 % for hele kommunen i de samme månedene (s. 8).",
+   "verdier": {
+    "enhet": "%",
+    "2021": 10.6,
+    "2022": 10.7
+   },
+   "kilde": {
+    "id": "t2-2022",
+    "side": 9
+   }
+  },
+  {
+   "id": "ukraina-2022",
+   "type": "tall",
+   "tema": "Bosetting",
+   "aar": "2022",
+   "periode": "januar–august",
+   "kommunalomrade": "Hele kommunen",
+   "omrader": [
+    "sosial",
+    "skole",
+    "barnehage"
+   ],
+   "tekst": "Kommunen la til rette for å bosette 240 flyktninger fra Ukraina etter en forespørsel fra IMDi, mot de 25 kommunestyret hadde vedtatt i februar. Om lag 140 ventet å bli bosatt i løpet av 2022.",
+   "kilde": {
+    "id": "t2-2022",
+    "side": 3
+   }
+  },
+  {
+   "id": "sykefravaer-omsorg-2021",
+   "type": "tall",
+   "tema": "Sykefravær",
+   "aar": "2021",
+   "periode": "januar–august",
+   "kommunalomrade": "Omsorg og mestring",
+   "omrader": [
+    "helse"
+   ],
+   "tekst": "Sykefraværet i Omsorg og mestring var 11,9 % fra januar til august 2021, ned fra 15,0 % i de samme månedene i 2020. For hele kommunen var det 10,5 %, ned fra 13,1 %.",
+   "verdier": {
+    "enhet": "%",
+    "2020": 15.01,
+    "2021": 11.93
+   },
+   "kilde": {
+    "id": "t2-2021",
+    "side": 8,
+    "del": "figur over sykefravær per kommunalområde"
+   }
+  },
+  {
+   "id": "vikarbyra-omsorg-2021",
+   "type": "tall",
+   "tema": "Vikarbyrå og overtid",
+   "aar": "2021",
+   "periode": "januar–august",
+   "kommunalomrade": "Omsorg og mestring",
+   "omrader": [
+    "helse"
+   ],
+   "tekst": "Omsorg og mestring brukte 11,0 mill. kr på vikarbyrå til og med august 2021, ned fra 15,1 mill. kr i 2020, mest på sykehjemmene. Overtiden var 7,8 mill. kr (6,9 mill. kr i 2020), 3,2 % av fastlønnen.",
+   "merknad": "Tertialrapport 2/2023 oppgir 11,8 mill. kr til vikarbyrå per august 2021 (s. 15).",
+   "verdier": {
+    "enhet": "kr",
+    "vikarbyra_2020": 15065536,
+    "vikarbyra_2021": 10972012,
+    "overtid_2020": 6900970,
+    "overtid_2021": 7779907
+   },
+   "kilde": {
+    "id": "t2-2021",
+    "side": 15,
+    "del": "tabell «Overtid og vikarbyrå»"
+   }
+  },
+  {
+   "id": "korona-2021",
+   "type": "tall",
+   "tema": "Korona",
+   "aar": "2021",
+   "periode": "januar–august",
+   "kommunalomrade": "Hele kommunen",
+   "omrader": [
+    "helse"
+   ],
+   "tekst": "Kommunen fikk 35,1 mill. kr i kompensasjon for koronautgifter og tapte inntekter i 2021. Merutgiftene var 21 mill. kr per august.",
+   "kilde": {
+    "id": "t2-2021",
+    "side": 3
+   }
+  },
+  {
+   "id": "sykefravaer-helse-velferd-2021",
+   "type": "tall",
+   "tema": "Sykefravær",
+   "aar": "2021",
+   "periode": "januar–august",
+   "kommunalomrade": "Helse og velferd",
+   "omrader": [
+    "helse",
+    "barnevern",
+    "sosial"
+   ],
+   "tekst": "Sykefraværet i Helse og velferd var 8,3 % fra januar til august 2021, ned fra 13,3 % i de samme månedene i 2020. For hele kommunen var det 10,5 %, ned fra 13,1 %.",
+   "verdier": {
+    "enhet": "%",
+    "2020": 13.32,
+    "2021": 8.33
+   },
+   "kilde": {
+    "id": "t2-2021",
+    "side": 8,
+    "del": "figur over sykefravær per kommunalområde"
+   }
+  },
+  {
+   "id": "sykefravaer-oppvekst-2021",
+   "type": "tall",
+   "tema": "Sykefravær",
+   "aar": "2021",
+   "periode": "januar–august",
+   "kommunalomrade": "Oppvekst",
+   "omrader": [
+    "skole",
+    "barnehage",
+    "barnevern"
+   ],
+   "tekst": "Sykefraværet i Oppvekst var 11,5 % fra januar til august 2021, ned fra 12,5 % i de samme månedene i 2020. For hele kommunen var det 10,5 %, ned fra 13,1 %.",
+   "verdier": {
+    "enhet": "%",
+    "2020": 12.53,
+    "2021": 11.52
+   },
+   "kilde": {
+    "id": "t2-2021",
+    "side": 8,
+    "del": "figur over sykefravær per kommunalområde"
+   }
+  },
+  {
+   "id": "administrasjon-2021",
+   "type": "forklaring",
+   "tema": "Administrasjon",
+   "aar": "2021",
+   "periode": "januar–august",
+   "kommunalomrade": "Virksomhetsstyring",
+   "omrader": [
+    "admin"
+   ],
+   "tekst": "Rådmannen begrunnet en større administrasjon enn i sammenlignbare kommuner med arbeidet mot sykefraværet. Sykefraværet i Virksomhetsstyring var 6,8 % fra januar til august 2021, ned fra 10,2 % (s. 8).",
+   "sitat": "HR er større enn sammenlignbare kommuner, men ingen andre kommuner har de samme utfordringene til sykefravær som oss.",
+   "kilde": {
+    "id": "t2-2021",
+    "side": 10
+   }
+  },
+  {
+   "id": "sykefravaer-pnkt-2021",
+   "type": "tall",
+   "tema": "Sykefravær",
+   "aar": "2021",
+   "periode": "januar–august",
+   "kommunalomrade": "Plan, næring, kultur og teknisk drift",
+   "omrader": [
+    "veier",
+    "plan",
+    "kultur"
+   ],
+   "tekst": "Sykefraværet i Plan, næring, kultur og teknisk drift var 9,0 % fra januar til august 2021, ned fra 9,7 % i de samme månedene i 2020. For hele kommunen var det 10,5 %, ned fra 13,1 %.",
+   "verdier": {
+    "enhet": "%",
+    "2020": 9.71,
+    "2021": 9.01
+   },
+   "kilde": {
+    "id": "t2-2021",
+    "side": 8,
+    "del": "figur over sykefravær per kommunalområde"
+   }
+  },
+  {
+   "id": "flyktninger-2021",
+   "type": "tall",
+   "tema": "Bosetting",
+   "aar": "2021",
+   "periode": "januar–august",
+   "kommunalomrade": "Hele kommunen",
+   "omrader": [
+    "sosial"
+   ],
+   "tekst": "Kommunen bosatte 1 flyktning i 2020 og 14 så langt i 2021, og ventet derfor 8 mill. kr mindre i integreringstilskudd enn budsjettert.",
+   "kilde": {
+    "id": "t2-2021",
+    "side": 5
    }
   }
  ]

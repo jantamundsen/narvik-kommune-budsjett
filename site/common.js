@@ -34,7 +34,7 @@ function factItems(F, list, showArea) {
   return list.map(f => {
     const k = F.kilder[f.kilde.id];
     const src = `<a href="${h(k.pdf)}#page=${f.kilde.side}" target="_blank" rel="noopener" title="${h(k.full)}${f.kilde.del ? ', ' + h(f.kilde.del) : ''}">${h(k.navn)}, s. ${f.kilde.side}</a>`;
-    const area = showArea ? ` · ${f.rammeomrade === 'hele' ? 'Gjelder hele kommunen' : `Gjelder kommunalområdet ${h(F.rammeomrader[f.rammeomrade])}`}` : '';
+    const area = showArea ? ` · ${f.kommunalomrade === 'Hele kommunen' ? 'Gjelder hele kommunen' : `Gjelder kommunalområdet ${h(f.kommunalomrade)}`}` : '';
     return `<li class="fact"><span class="eyebrow">${h(f.tema)} · ${h(f.periode)} ${h(f.aar)}</span><p>${h(f.tekst)}</p>`
       + (f.sitat ? `<blockquote class="fact-quote"><span class="eyebrow">Kommunens forklaring</span><p>«${h(f.sitat)}»</p></blockquote>` : '')
       + (f.merknad ? `<p class="caption">${h(f.merknad)}</p>` : '')

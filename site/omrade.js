@@ -244,12 +244,15 @@ function gapNote(b) {
 // shown in the order config/fakta.json lists them.
 function factsSection(match) {
   const latest = year === years.at(-1);
-  const list = (F?.fakta || []).filter(f => f.omrader.includes(area.key) && match(f) && (f.aar === year || (latest && f.aar > year)));
+  const all = (F?.fakta || []).filter(f => f.omrader.includes(area.key) && match(f));
+  // The selected year comes first, so newer reports don't push its own facts behind the button.
+  const same = all.filter(f => f.aar === year), later = latest ? all.filter(f => f.aar > year) : [];
+  const list = [...same, ...later];
   if (!list.length) return '';
-  const newer = [...new Set(list.filter(f => f.aar > year).map(f => f.aar))];
-  const lead = newer.length
-    ? `Regnskapet over er for ${year}. Dette sier kommunens egne rapporter om ${newer.join(' og ')} så langt.`
-    : `Dette sier kommunens egne rapporter om ${year}.`;
+  const newer = [...new Set(later.map(f => f.aar))].join(' og ');
+  const lead = !newer ? `Dette sier kommunens egne rapporter om ${year}.`
+    : same.length ? `Dette sier kommunens egne rapporter om ${year}, og om ${newer} så langt.`
+    : `Regnskapet over er for ${year}. Dette sier kommunens egne rapporter om ${newer} så langt.`;
   // The first few are shown; the rest are one tap away, so the numbers further down stay close.
   const more = list.slice(3);
   return `<section class="drill-sec facts" id="bak-tallene"><h2>Bak tallene</h2><p class="lead">${lead}</p><ul class="fact-list">${factItems(F, list.slice(0, 3), true)}</ul>

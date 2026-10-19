@@ -18,7 +18,6 @@ import sys
 from pathlib import Path
 
 from fetch_details import GROUPS
-from fetch_lopende import AREAS
 
 ROOT = Path(__file__).resolve().parent.parent
 CONFIG = ROOT / "config" / "fakta.json"
@@ -26,7 +25,7 @@ CATEGORIES = ROOT / "config" / "categories.json"
 OUT = ROOT / "site" / "data" / "fakta.json"
 
 TYPES = {"tall", "forklaring"}
-REQUIRED = ["id", "type", "tema", "aar", "periode", "rammeomrade", "omrader", "tekst", "kilde"]
+REQUIRED = ["id", "type", "tema", "aar", "periode", "kommunalomrade", "omrader", "tekst", "kilde"]
 
 
 def main() -> int:
@@ -35,7 +34,6 @@ def main() -> int:
     areas = {c["key"]: c for c in cats}
     # A service is one named in categories.json, or a single KOSTRA function shown with SSB's name.
     services = {k: {s["key"] for s in c.get("services", [])} | set(c["functions"]) for k, c in areas.items()}
-    rammer = {"hele", *AREAS.values()}
     arts = {g["key"] for g in GROUPS}
     sources = cfg["kilder"]
 
@@ -55,8 +53,6 @@ def main() -> int:
             err("en forklaring må ha «sitat», kommunens egne ord")
         if not str(f.get("aar", "")).isdigit():
             err("aar må være et årstall")
-        if f.get("rammeomrade") not in rammer:
-            err(f"ukjent rammeomrade «{f.get('rammeomrade')}», bruk en av {sorted(rammer)}")
         for a in f.get("omrader", []):
             if a not in areas:
                 err(f"ukjent område «{a}»")
@@ -80,9 +76,7 @@ def main() -> int:
         print("config/fakta.json har feil:", *errors, sep="\n  ", file=sys.stderr)
         return 1
 
-    # The kommune's own area names, so a page can say which one a fact is about.
-    names = {"hele": "Hele kommunen", **{k: n for n, k in AREAS.items()}}
-    out = {"kilder": sources, "rammeomrader": names, "fakta": cfg["fakta"]}
+    out = {"kilder": sources, "fakta": cfg["fakta"]}
     OUT.write_text(json.dumps(out, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     print(f"Wrote {OUT.relative_to(ROOT)}: {len(cfg['fakta'])} facts from {len(sources)} source(s).")
     return 0
