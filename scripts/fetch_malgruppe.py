@@ -38,17 +38,10 @@ DIM_YEAR = "Tid"
 # basis says which spending SSB divides: netto (as the rest of the site), or korrigert brutto / brutto,
 # which is before income is subtracted. functions are the KOSTRA functions the measure covers.
 MEASURES = [
-    # Grunnskole
+    # Grunnskole. Per elev is left out: the pupil count comes from the schools' own reporting (GSI) and the cost per
+    # pupil has to be corrected for buying from and selling to other kommuner, so per inhabitant 6–15 år is the safer basis.
     {"area": "skole", "service": None, "key": "innb", "per": "innbygger 6–15 år", "basis": "netto",
      "table": "12255", "contents": "KOSregnind20000", "functions": ["202", "215", "222", "223"]},
-    {"area": "skole", "service": None, "key": "elev", "per": "elev", "basis": "korrigert brutto",
-     "table": "12235", "function": "FGK8a", "contents": "KOSKBDUperelev0000", "functions": ["202", "222", "223"]},
-    {"area": "skole", "service": "202", "key": "elev", "per": "elev", "basis": "korrigert brutto",
-     "table": "12235", "function": "202", "contents": "KOSKBDUperelev0000", "functions": ["202"]},
-    {"area": "skole", "service": "215", "key": "elev", "per": "elev", "basis": "korrigert brutto",
-     "table": "12235", "function": "215", "contents": "KOSKBDUperelev0000", "functions": ["215"]},
-    {"area": "skole", "service": "222", "key": "elev", "per": "elev", "basis": "korrigert brutto",
-     "table": "12235", "function": "222", "contents": "KOSKBDUperelev0000", "functions": ["222"]},
     {"area": "skole", "service": "223", "key": "skyss", "per": "elev med skoleskyss", "basis": "korrigert brutto",
      "table": "12235", "function": "223", "contents": "KOSKBDUperskyss0000", "functions": ["223"]},
     # Barnehage
