@@ -91,6 +91,7 @@ async function startRunning() {
     : `Streken i hver stolpe viser hvor mye som var budsjettert brukt per ${R.period.split('–').at(-1)}.`;
   cite('areas-caption', A.pdf_page, A.table, `Pluss betyr merforbruk, minus mindreforbruk. Årsbudsjettet er revidert budsjett per ${R.period.split('–').at(-1)}, før reguleringene rapporten foreslår (se rapportens s. 46 for budsjettet etter dem). «Avvik hittil» måles mot budsjettet for de samme månedene. Kommunedirektør og stab heter «Kommunedirektøren» i rapporten.`);
   document.getElementById('areas').hidden = false;
+  showFacts(L, worst.a.name);
 
   // How the budget has changed since it was adopted.
   labels = ['Nå', 'Endring'];
@@ -120,6 +121,24 @@ async function startRunning() {
   document.getElementById('income').hidden = false;
 
   drawTax(L.tax, L.year, I.rows['Inntekts- og formuesskatt']);
+}
+
+// «Bak tallene»: what the kommune's own reports say behind this year's numbers, per area, from data/fakta.json.
+// The area with the largest expected overspending comes first, after the facts about the whole kommune. Each area
+// shows two facts, and the rest behind a tap, so the page stays short.
+async function showFacts(L, first) {
+  const F = await fetch('data/fakta.json', { cache: 'no-cache' }).then(r => (r.ok ? r.json() : null)).catch(() => null);
+  const facts = (F?.fakta || []).filter(f => f.aar === L.year);
+  if (!facts.length) return;
+  // The reports name the areas as the kommune does that year; any name not in this year's table comes last.
+  const names = ['Hele kommunen', first, ...L.areas.map(a => a.name).filter(n => n !== first)];
+  const order = n => (names.indexOf(n) + 1 || names.length + 1);
+  const groups = [...new Set(facts.map(f => f.kommunalomrade))].sort((a, b) => order(a) - order(b)).map(n => [n, facts.filter(f => f.kommunalomrade === n)]);
+  document.getElementById('facts-groups').innerHTML = groups.map(([k, list]) =>
+    `<div class="fact-group"><h3>${k}</h3><ul class="fact-list">${factItems(F, list.slice(0, 2), false)}</ul>`
+    + (list.length > 2 ? `<details class="all-numbers"><summary>Vis ${list.length - 2} til</summary><ul class="fact-list">${factItems(F, list.slice(2), false)}</ul></details>` : '') + '</div>').join('');
+  document.getElementById('facts-lead').textContent = `Tallene over sier hvor mye som er brukt, men ikke hvorfor. Dette er noe av det kommunens egne rapporter forteller om ${L.year}: sykefravær, vikarer, investeringer og kommunens egne forklaringer.`;
+  document.getElementById('facts').hidden = false;
 }
 
 // Paid-in tax, accumulated per month: this year against last year, with this year's budget as a reference.

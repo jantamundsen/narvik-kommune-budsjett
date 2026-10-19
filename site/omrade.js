@@ -2,8 +2,9 @@
 // type in that service (&art=lonn), for one year (&aar=2025). Netto and per capita come from site/data/narvik.json
 // (SSB 12362); costs and income from site/data/detaljer.json (SSB 12367). Every number names its art code, or is
 // marked «beregnet» when it is computed here. Per pupil, per child and per inhabitant in an age group come from
-// site/data/malgruppe.json (SSB's own key figures). Helpers are in common.js.
-let N, D, S, M, area, years, year, prev, scope; // S: sammenligning.json, only loaded for a cost type page; M: malgruppe.json
+// site/data/malgruppe.json (SSB's own key figures). Facts from the kommune's own reports come from site/data/fakta.json.
+// Helpers are in common.js.
+let N, D, S, M, F, area, years, year, prev, scope; // S: sammenligning.json, only loaded for a cost type page; M: malgruppe.json; F: fakta.json
 const q = new URLSearchParams(location.search);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 const mill = (v, d = 1) => (v == null ? '·' : nb(v / 1000, d));
@@ -36,8 +37,9 @@ async function start() {
   const svc = services().find(s => s.key === q.get('tjeneste'));
   const grp = svc && D.groups.find(g => g.key === q.get('art'));
   const optional = u => fetch(u, { cache: 'no-cache' }).then(r => (r.ok ? r.json() : null)).catch(() => null);
-  if (grp) S = await optional('data/sammenligning.json');
-  else M = await optional('data/malgruppe.json');
+  const [facts, extra] = await Promise.all([optional('data/fakta.json'), optional(grp ? 'data/sammenligning.json' : 'data/malgruppe.json')]);
+  F = facts;
+  if (grp) S = extra; else M = extra;
   page.innerHTML = grp ? typePage(svc, grp) : svc ? servicePage(svc) : areaPage();
   document.title = [grp?.name, svc?.name, area.name, 'Åpen økonomi i Narvik'].filter(Boolean).join(' · ');
 }
@@ -162,6 +164,7 @@ function areaPage() {
   html += `<div class="summary">${stat('Netto driftsutgifter', mill(v), 'mill. kr', prev ? `${chgSpan(v, pv)} fra ${prev}` : 'Første år i serien')}
     ${stat('Per innbygger', nb(pc), 'kr', [cmp(pc, 'gruppe'), cmp(pc, 'landet')].filter(Boolean).join(', ') || 'Ingen sammenligningstall')}
     ${isService ? stat('Andel av tjenestene', nb(share), '%', rank === 1 ? 'Største område' : `Nr. ${rank} av ${svcAreas.length} områder`) : ''}</div>`;
+  html += factsSection(f => !f.tjeneste && !f.art);
 
   if (at(b.cost, year)) {
     html += `<section class="drill-sec"><h2>Fra hele kostnaden til det kommunen betaler</h2>
@@ -236,6 +239,21 @@ function gapNote(b) {
   return g ? ` For konsernet oppgir SSB et netto som er ${mill(Math.abs(g))} mill. kr ${g > 0 ? 'høyere' : 'lavere'} enn kostnadene minus inntektene. I kommunekassen går tallene opp.` : '';
 }
 
+// «Bak tallene»: facts from the kommune's own reports about this area, narrowed by match to the level shown. The
+// accounts stop at the last KOSTRA year, so on that year's page newer facts (the running year) are shown too. They are
+// shown in the order config/fakta.json lists them.
+function factsSection(match) {
+  // Only the selected year: the reports for the year still running are on «Året så langt».
+  const list = (F?.fakta || []).filter(f => f.omrader.includes(area.key) && match(f) && f.aar === year);
+  if (!list.length) return '';
+  const lead = `Dette sier kommunens egne rapporter om ${year}.`;
+  // The first few are shown; the rest are one tap away, so the numbers further down stay close.
+  const more = list.slice(3);
+  return `<section class="drill-sec facts" id="bak-tallene"><h2>Bak tallene</h2><p class="lead">${lead}</p><ul class="fact-list">${factItems(F, list.slice(0, 3), true)}</ul>
+    ${more.length ? `<details class="all-numbers"><summary>Vis ${more.length} til</summary><ul class="fact-list">${factItems(F, more, true)}</ul></details>` : ''}
+    <p class="caption">Rapportene følger kommunens egen organisasjon, som ikke er helt den samme som KOSTRA-områdene på denne siden. Derfor står det ved hvert punkt hvilket kommunalområde det gjelder. Tallene er skrevet av fra rapportene, med side.</p></section>`;
+}
+
 // ---- level 2: one service ----
 
 function servicePage(s) {
@@ -257,6 +275,7 @@ function servicePage(s) {
   html += `<div class="summary">${stat('Kommunen betalte', mill(v), 'mill. kr', prev ? `${chgSpan(v, pv)} fra ${prev}` : 'Første år i serien')}
     ${top ? stat('Største kostnad', nb(ptop), '%', `${esc(top.name)}, ${mill(at(top.v, year))} av ${mill(cost)} mill. kr`) : ''}
     ${topIn ? stat(esc(topIn.name), mill(at(topIn.v, year)), 'mill. kr', prev ? `${chgSpan(at(topIn.v, year), at(topIn.v, prev), true)} fra ${prev}` : '') : ''}</div>`;
+  html += factsSection(f => f.tjeneste === s.key && !f.art);
 
   const rowsOf = list => list.map(g => ({ name: g.name, v: at(g.v, year), note: `${nb(at(g.v, year) / (g.side === 'utgift' ? cost : income) * 100)} %`, href: link({ tjeneste: s.key, art: g.key }) }));
   html += `<section class="drill-sec"><h2>Hva pengene går til</h2><p class="lead">Hele kostnaden var ${mill(cost)} mill. kr. Trykk på en linje for å se hva den består av.</p>${rankList(rowsOf(costs))}</section>`;
@@ -304,6 +323,7 @@ function typePage(s, g) {
     ${g.note ? `<p class="caption">${esc(g.note)}</p>` : ''}</section>`;
 
   const derived = parts.find(p => p.derived);
+  html += factsSection(f => f.art === g.key && (!f.tjeneste || f.tjeneste === s.key));
   html += typeCompare(s, g);
   html += sourceBox(s, [...g.arts, ...(g.parts || [])], parts.length
     ? `${esc(parts.filter(p => !p.derived).map(p => `${p.name} (${p.code})`).join(', '))} er SSBs egne arter.${derived ? ` «${esc(derived.name)}» er regnet ut her: ${esc(derived.derived)}.` : ''}`

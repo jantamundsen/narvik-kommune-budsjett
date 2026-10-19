@@ -1,4 +1,4 @@
-// Helpers shared by app.js (index.html) and budsjett.js (budsjett.html).
+// Helpers shared by app.js (index.html), budsjett.js (budsjett.html), omrade.js and lopende.js.
 const nb = (v, d = 0) => v.toLocaleString('nb-NO', { minimumFractionDigits: d, maximumFractionDigits: d });
 function el(tag, attrs = {}, text) {
   const n = document.createElement(tag);
@@ -26,4 +26,18 @@ function regionNote(N, r, y) {
   if (r.kind === 'kommune') return r.population?.[y] ? `${nb(r.population[y])} innbyggere` : 'Kommune';
   if (r.kind === 'gruppe') return N.kostra_group ? `Snitt av ${N.kostra_group.members.length} kommuner` : 'Snitt';
   return r.key === 'landet' ? 'Snitt av alle kommuner utenom Oslo' : 'Snitt av kommunene i fylket';
+}
+// «Bak tallene»: facts from data/fakta.json (typed in from the kommune's own reports by scripts/build_fakta.py),
+// as list items. F is fakta.json; showArea adds which of the kommune's own areas a fact is about.
+function factItems(F, list, showArea) {
+  const h = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+  return list.map(f => {
+    const k = F.kilder[f.kilde.id];
+    const src = `<a href="${h(k.pdf)}#page=${f.kilde.side}" target="_blank" rel="noopener" title="${h(k.full)}${f.kilde.del ? ', ' + h(f.kilde.del) : ''}">${h(k.navn)}, s. ${f.kilde.side}</a>`;
+    const area = showArea ? ` · ${f.kommunalomrade === 'Hele kommunen' ? 'Gjelder hele kommunen' : `Gjelder kommunalområdet ${h(f.kommunalomrade)}`}` : '';
+    return `<li class="fact"><span class="eyebrow">${h(f.tema)} · ${h(f.periode)} ${h(f.aar)}</span><p>${h(f.tekst)}</p>`
+      + (f.sitat ? `<blockquote class="fact-quote"><span class="eyebrow">Kommunens forklaring</span><p>«${h(f.sitat)}»</p></blockquote>` : '')
+      + (f.merknad ? `<p class="caption">${h(f.merknad)}</p>` : '')
+      + `<p class="caption fact-src">Kilde: ${src}${area}</p></li>`;
+  }).join('');
 }
