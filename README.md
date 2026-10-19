@@ -12,6 +12,8 @@ Siden *Budsjett mot regnskap* (`budsjett.html`) viser kommunens vedtatte budsjet
 
 Siden *Året så langt* (`lopende.html`) følger budsjettet og forbruket i inneværende år: brukt hittil, avvik og kommunedirektørens prognose per tjenesteområde, hvordan rammene er endret siden vedtaket, og inntektene. Tallene kommer fra tertialrapportene, som bare finnes som PDF og er skrevet inn i `config/lopende_2026.json` med side. I tillegg vises skatteinngangen måned for måned fra SSBs [tabell 07022](https://www.ssb.no/statbank/table/07022), som oppdateres automatisk.
 
+*Bak tallene* forklarer tallene med det kommunens egne rapporter sier: sykefravær, utgifter til vikarbyrå og overtid, investeringer som skolegårder, og kommunens egne forklaringer på avvik. Hvert punkt er skrevet av fra en rapport og lenker til siden det står på. Punktene vises på områdesidene (for regnskapsåret de gjelder, og på det siste regnskapsåret når de er nyere) og på *Året så langt*. Rapportene følger kommunens egne kommunalområder, som ikke er de samme som KOSTRA-områdene, så hvert punkt sier hvilket kommunalområde det gjelder.
+
 ## Slik er det bygget
 
 ```
@@ -22,6 +24,7 @@ scripts/fetch_budget.py   henter budsjett og regnskap per tjenesteområde fra Fr
 scripts/fetch_malgruppe.py henter SSBs nøkkeltall per elev, per barn og per innbygger i aldersgruppen og skriver site/data/malgruppe.json
 scripts/fetch_lopende.py  sjekker tertialtallene i config/lopende_2026.json, henter skatteinngang fra SSB 07022
                           og skriver site/data/lopende.json
+scripts/build_fakta.py    sjekker punktene i config/fakta.json (kilde, side, område) og skriver site/data/fakta.json
 site/                     den statiske nettsiden: index.html (regnskap), omrade.html (ett område, en tjeneste,
                           en kostnadstype), budsjett.html (budsjett mot regnskap), lopende.html (året så langt); style.css og common.js er felles
 .github/workflows/        oppdaterer data fra SSB og publiserer til GitHub Pages
@@ -37,6 +40,7 @@ python scripts/fetch_details.py       # henter utgifts- og inntektsarter fra SSB
 python scripts/fetch_budget.py        # henter budsjettall fra Framsikt
 python scripts/fetch_malgruppe.py     # utgifter per elev, per barn og per innbygger i aldersgruppen
 python scripts/fetch_lopende.py       # tertialtall og månedlig skatteinngang for året så langt
+python scripts/build_fakta.py         # sjekker og skriver punktene i «Bak tallene»
 python -m http.server -d site 8000    # åpne http://localhost:8000
 ```
 
@@ -101,3 +105,13 @@ Laget som et åpent hobbyprosjekt, ikke av Narvik kommune.
 ## Når en ny tertialrapport kommer
 
 Legg rapporten til i `reports` i `config/lopende_2026.json`, med tabellene «Totaloversikt drift – fordelt på rammeområder» og «Sentrale inntekter» skrevet av slik de står, og sidetallene. Kjør `python scripts/fetch_lopende.py`. Skriptet sjekker at hvert avvik er budsjett minus regnskap og at radene summerer til totalen, og siden viser den nyeste rapporten. For et nytt år lages en ny fil, og `CONFIG` i skriptet pekes til den.
+
+Les også rapporten etter tall som forklarer avvikene (sykefravær, vikarbyrå, overtid, investeringer) og legg dem i `config/fakta.json`. Hvert punkt har:
+
+- `tekst`: én eller to setninger med tallene slik rapporten oppgir dem, og `type` `tall`, eller `forklaring` med kommunens egne ord i `sitat`
+- `kilde`: rapporten (en nøkkel i `kilder`) og sidetallet, og eventuelt tabellen i `del`
+- `aar` og `periode`, for eksempel `2026` og `januar–august`
+- `rammeomrade`: kommunalområdet i rapporten (`helse`, `oppvekst` og så videre, eller `hele`), og `omrader`: områdene på denne siden det hører til (`helse`, `skole` …)
+- eventuelt `tjeneste` eller `art` for å vise punktet bare på én tjeneste eller én kostnadstype
+
+Kjør `python scripts/build_fakta.py`. Skriptet stopper med en feilmelding hvis et punkt mangler kilde eller side, eller peker på et område som ikke finnes. Punktene vises i den rekkefølgen de står i filen, og de tre første for hvert område vises uten å trykke.

@@ -1,0 +1,409 @@
+{
+ "kilder": {
+  "tertial-2-2026": {
+   "navn": "Tertialrapport 2/2026",
+   "full": "Tertialrapport 2/2026, formannskapet 15.10.2026 (sak 45/26)",
+   "url": "https://prod02.elementscloud.no/publikum/959469059_prod-959469059/Dmb",
+   "pdf": "https://prod02.elementscloud.no/publikum/Documents/ShowDocument/c1d7f777-8235-4817-8203-ebd49ff36bb5/783/2230"
+  }
+ },
+ "rammeomrader": {
+  "hele": "Hele kommunen",
+  "politisk": "Politisk ledelse",
+  "radmannen": "Kommunedirektør og stab",
+  "virksomhet": "Virksomhetsstyring",
+  "oppvekst": "Oppvekst",
+  "helse": "Helse og omsorg",
+  "plan": "Plan, næring og teknisk",
+  "felles": "Fellesinntekter og kostnader"
+ },
+ "fakta": [
+  {
+   "id": "sykefravaer-hele-2026",
+   "type": "tall",
+   "tema": "Sykefravær",
+   "aar": "2026",
+   "periode": "januar–august",
+   "rammeomrade": "hele",
+   "omrader": [],
+   "tekst": "Sykefraværet i hele kommunen var 11,1 % fra januar til august 2026, mot 10,5 % i de samme månedene i 2025.",
+   "verdier": {
+    "enhet": "%",
+    "2025": 10.5,
+    "2026": 11.1
+   },
+   "kilde": {
+    "id": "tertial-2-2026",
+    "side": 4,
+    "del": "figur over sykefravær per kommunalområde"
+   }
+  },
+  {
+   "id": "ramme-helse-2026",
+   "type": "tall",
+   "tema": "Budsjettet",
+   "aar": "2026",
+   "periode": "hele året",
+   "rammeomrade": "helse",
+   "omrader": [
+    "helse"
+   ],
+   "tekst": "Helse og omsorg fikk en ramme på 742 mill. kr for 2026, selv om regnskapet for 2025 viste et forbruk på 800 mill. kr. Kommunedirektøren venter nå 84 mill. kr i merforbruk.",
+   "kilde": {
+    "id": "tertial-2-2026",
+    "side": 31
+   }
+  },
+  {
+   "id": "sykefravaer-helse-2026",
+   "type": "tall",
+   "tema": "Sykefravær",
+   "aar": "2026",
+   "periode": "januar–august",
+   "rammeomrade": "helse",
+   "omrader": [
+    "helse"
+   ],
+   "tekst": "Sykefraværet i Helse og omsorg var 14,5 % fra januar til august 2026, mot 11,8 % i de samme månedene i 2025. Det er høyest av kommunalområdene.",
+   "verdier": {
+    "enhet": "%",
+    "2025": 11.8,
+    "2026": 14.5
+   },
+   "kilde": {
+    "id": "tertial-2-2026",
+    "side": 4,
+    "del": "figur over sykefravær per kommunalområde"
+   }
+  },
+  {
+   "id": "vikartjenester-helse-2026",
+   "type": "tall",
+   "tema": "Vikarbyrå og overtid",
+   "aar": "2026",
+   "periode": "januar–august",
+   "rammeomrade": "helse",
+   "omrader": [
+    "helse"
+   ],
+   "tekst": "Helse og omsorg brukte 15,4 mill. kr på vikartjenester fra byrå til og med august 2026, mot 18,1 mill. kr på samme tid i 2025. Overtidslønnen var 14,8 mill. kr, omtrent som året før (14,7 mill. kr).",
+   "verdier": {
+    "enhet": "kr",
+    "vikar_2025": 18059682,
+    "vikar_2026": 15441997,
+    "overtid_2025": 14652711,
+    "overtid_2026": 14831056
+   },
+   "kilde": {
+    "id": "tertial-2-2026",
+    "side": 32,
+    "del": "tabell «Regnskap overtidslønn» og «Regnskap vikartjenester» per enhet"
+   }
+  },
+  {
+   "id": "merforbruk-helse-2026",
+   "type": "tall",
+   "tema": "Hva merforbruket består av",
+   "aar": "2026",
+   "periode": "januar–august",
+   "rammeomrade": "helse",
+   "omrader": [
+    "helse"
+   ],
+   "tekst": "Per august brukte Helse og omsorg 29,7 mill. kr mer enn budsjettert på lønn (blant annet 12,6 mill. til overtid og sommeravtaler), 27,8 mill. mer på drift (blant annet 13,5 mill. til vikarbyrå og 1,8 mill. til husleie) og 23 mill. mer på kjøpte tjenester (blant annet 15,3 mill. til kjøpte individtiltak).",
+   "kilde": {
+    "id": "tertial-2-2026",
+    "side": 31
+   }
+  },
+  {
+   "id": "sommervikarer-helse-2026",
+   "type": "forklaring",
+   "tema": "Sommervikarer",
+   "aar": "2026",
+   "periode": "sommeren",
+   "rammeomrade": "helse",
+   "omrader": [
+    "helse"
+   ],
+   "tekst": "Sommervikarer fra Sverige måtte ha bolig og delvis dekket reise. Kommunen vil sammen med eiendomsenheten finne rimeligere boliger til sommervikarer (s. 34).",
+   "sitat": "Lokalt rekrutterte sommervikarer er en mangelvare, men vi fikk rekruttert inn mange svenske ferievikarer for sommeren (lege/sykepleiestudenter). Disse krever losji og delvis dekket reise som et vilkår for å arbeide hos oss. Samlet betyr dette økte kostnader gjennom sommeren, selv om vi har budsjettert for selve lønnen til vikarene.",
+   "kilde": {
+    "id": "tertial-2-2026",
+    "side": 26
+   }
+  },
+  {
+   "id": "sykefravaer-kostnad-helse-2026",
+   "type": "tall",
+   "tema": "Sykefravær",
+   "aar": "2026",
+   "periode": "januar–august",
+   "rammeomrade": "helse",
+   "omrader": [
+    "helse"
+   ],
+   "tekst": "BIs fraværskalkulator anslår at fraværet koster Helse og omsorg 1,9 mill. kr i måneden. Merkostnaden når fraværet dekkes med vikar fra byrå, kommer i tillegg.",
+   "kilde": {
+    "id": "tertial-2-2026",
+    "side": 32
+   }
+  },
+  {
+   "id": "sykefravaer-helse-enheter-2026",
+   "type": "tall",
+   "tema": "Sykefravær",
+   "aar": "2026",
+   "periode": "januar–august",
+   "rammeomrade": "helse",
+   "omrader": [
+    "helse"
+   ],
+   "tekst": "Sektor institusjon og distrikt har det høyeste fraværet, 15,5 % hittil i år. Enhetene spenner fra 7 % til 28,5 %, og fraværet er lavere der driften er mest på dagtid.",
+   "kilde": {
+    "id": "tertial-2-2026",
+    "side": 25
+   }
+  },
+  {
+   "id": "kjopsvik-helse-2026",
+   "type": "tall",
+   "tema": "Kjøpsvik omsorg",
+   "aar": "2026",
+   "periode": "januar–august",
+   "rammeomrade": "helse",
+   "omrader": [
+    "helse"
+   ],
+   "tekst": "I Kjøpsvik gikk vikarbyråkostnadene ned med om lag 3 mill. kr per august etter omstillingen, der Prestegårdstunet ble redusert fra 16 til 12 plasser og sykepleierne fikk felles turnus. Tjenesten hadde likevel 4,1 mill. kr i merforbruk per juli, med sykefravær på 13,7 % i hjemmetjenesten og 16,5 % på Prestegårdstunet.",
+   "kilde": {
+    "id": "tertial-2-2026",
+    "side": 27
+   }
+  },
+  {
+   "id": "overliggere-helse-2026",
+   "type": "tall",
+   "tema": "Utskrivningsklare pasienter",
+   "aar": "2026",
+   "periode": "januar–august",
+   "rammeomrade": "helse",
+   "omrader": [
+    "helse"
+   ],
+   "tekst": "Kommunen har hatt 618 overliggere hittil i 2026, altså pasientdøgn der utskrivningsklare pasienter ligger på sykehuset og venter på et kommunalt tilbud. Det er i snitt 2,5 pasienter per døgn, og målet for 2027 er 1. Overliggerne kostet 2,6 mill. kr mer enn budsjettert per august (s. 31).",
+   "kilde": {
+    "id": "tertial-2-2026",
+    "side": 26
+   }
+  },
+  {
+   "id": "sykehjemsplasser-2026",
+   "type": "tall",
+   "tema": "Kapasitet",
+   "aar": "2026",
+   "periode": "august",
+   "rammeomrade": "helse",
+   "omrader": [
+    "helse"
+   ],
+   "tjeneste": "253",
+   "tekst": "Kommunen drifter 199 sykehjemsplasser, 179 av dem i sektor institusjon og distrikt (Bjerkvik, Furumoen, Ballangen og Kjøpsvik). Helsehuset har i tillegg 20 korttidsplasser.",
+   "kilde": {
+    "id": "tertial-2-2026",
+    "side": 25
+   }
+  },
+  {
+   "id": "barnevern-2026",
+   "type": "forklaring",
+   "tema": "Barnevernet",
+   "aar": "2026",
+   "periode": "januar–august",
+   "rammeomrade": "oppvekst",
+   "omrader": [
+    "barnevern"
+   ],
+   "tekst": "Barnevernet har ny bemanningsplan, endret vaktordning og nytt fagsystem (s. 22).",
+   "sitat": "Hvis man skal trekke fram et enkeltresultat er det Barnevernet som for første gang leverer på budsjett, samtidig som de også leverer godt faglig.",
+   "kilde": {
+    "id": "tertial-2-2026",
+    "side": 3
+   }
+  },
+  {
+   "id": "mindreforbruk-oppvekst-2026",
+   "type": "forklaring",
+   "tema": "Mindreforbruk",
+   "aar": "2026",
+   "periode": "januar–august",
+   "rammeomrade": "oppvekst",
+   "omrader": [
+    "skole",
+    "barnehage",
+    "barnevern"
+   ],
+   "tekst": "Oppvekst venter 5 mill. kr i mindreforbruk i 2026, men ikke fordi tjenestene er blitt billigere å drive.",
+   "sitat": "Mindreforbruket skyldes i hovedsak begrenset tilgang på vikarer og rekrutteringsutfordringer knyttet til ledige stillinger.",
+   "kilde": {
+    "id": "tertial-2-2026",
+    "side": 23
+   }
+  },
+  {
+   "id": "skolegarder-2026",
+   "type": "tall",
+   "tema": "Investering: skolegårder",
+   "aar": "2026",
+   "periode": "januar–august",
+   "rammeomrade": "oppvekst",
+   "omrader": [
+    "skole"
+   ],
+   "tekst": "Oppgraderingen av skolegårdene (prosjekt 842031) er ferdig. Prosjektet har kostet 1,9 mill. kr i 2026, mot et revidert budsjett på 1,0 mill. kr. Investeringer er ikke med i driftsutgiftene ellers på denne siden.",
+   "merknad": "Rapporten oppgir opprinnelig budsjett som 2,5 mill. kr i tabellen på s. 47 og 2,7 mill. kr på s. 10.",
+   "kilde": {
+    "id": "tertial-2-2026",
+    "side": 47,
+    "del": "bevilgningsoversikt investering, og prosjektstatus s. 12"
+   }
+  },
+  {
+   "id": "sykefravaer-oppvekst-2026",
+   "type": "tall",
+   "tema": "Sykefravær",
+   "aar": "2026",
+   "periode": "januar–august",
+   "rammeomrade": "oppvekst",
+   "omrader": [
+    "skole",
+    "barnehage",
+    "barnevern"
+   ],
+   "tekst": "Sykefraværet i Oppvekst var 10,0 % fra januar til august 2026, omtrent som i de samme månedene i 2025 (10,1 %).",
+   "verdier": {
+    "enhet": "%",
+    "2025": 10.1,
+    "2026": 10.0
+   },
+   "kilde": {
+    "id": "tertial-2-2026",
+    "side": 4,
+    "del": "figur over sykefravær per kommunalområde"
+   }
+  },
+  {
+   "id": "elever-2026",
+   "type": "tall",
+   "tema": "Elever",
+   "aar": "2026",
+   "periode": "august",
+   "rammeomrade": "oppvekst",
+   "omrader": [
+    "skole"
+   ],
+   "tekst": "Ved utgangen av august 2026 gikk 2 111 elever i de 9 kommunale skolene og om lag 75 i en privat barneskole. Skjomen skole og barnehage ble lagt ned fra 1. august 2026.",
+   "kilde": {
+    "id": "tertial-2-2026",
+    "side": 21
+   }
+  },
+  {
+   "id": "skolebygg-2026",
+   "type": "tall",
+   "tema": "Investering: skolebygg",
+   "aar": "2026",
+   "periode": "januar–august",
+   "rammeomrade": "oppvekst",
+   "omrader": [
+    "skole"
+   ],
+   "tekst": "Ny barneskole på Frydenlund har kostet 80,7 mill. kr hittil i 2026. Årets budsjett foreslås økt fra 70,6 til 137,5 mill. kr fordi det var feilbudsjettert (s. 10). Kjøpsvik oppvekstsenter har kostet 62,4 mill. kr av 125 mill. kr budsjettert i år.",
+   "kilde": {
+    "id": "tertial-2-2026",
+    "side": 47,
+    "del": "bevilgningsoversikt investering"
+   }
+  },
+  {
+   "id": "barnehagebarn-2026",
+   "type": "tall",
+   "tema": "Barn i barnehage",
+   "aar": "2026",
+   "periode": "august",
+   "rammeomrade": "oppvekst",
+   "omrader": [
+    "barnehage"
+   ],
+   "tekst": "383 av 848 barnehagebarn gikk i kommunale barnehager ved utgangen av august 2026. Resten går i private barnehager, som kommunen gir tilskudd til.",
+   "kilde": {
+    "id": "tertial-2-2026",
+    "side": 21
+   }
+  },
+  {
+   "id": "sosialhjelp-2026",
+   "type": "forklaring",
+   "tema": "Sosialhjelp og bosetting",
+   "aar": "2026",
+   "periode": "januar–august",
+   "rammeomrade": "virksomhet",
+   "omrader": [
+    "sosial"
+   ],
+   "tekst": "NAV bruker mer enn budsjettert på sosialhjelp fordi kommunen har bosatt mange flyktninger: 58 fra Ukraina og 3 fra andre land hittil i år (s. 18). Inntektene for bosettingen går ikke til NAV. Sosialstønaden til flyktninger foreslås økt med 10 mill. kr, betalt av integreringstilskuddet (s. 10).",
+   "sitat": "Økte boutgifter skyldes både de høye bosettingstallene de siste årene, men også et økt press i boligmarkedet med høyere leiepriser. Høyere markedsleie gir direkte utslag i økte sosialhjelpsutbetalinger til bolig.",
+   "kilde": {
+    "id": "tertial-2-2026",
+    "side": 19
+   }
+  },
+  {
+   "id": "sykefravaer-virksomhet-2026",
+   "type": "tall",
+   "tema": "Sykefravær",
+   "aar": "2026",
+   "periode": "januar–august",
+   "rammeomrade": "virksomhet",
+   "omrader": [
+    "sosial",
+    "admin",
+    "kultur"
+   ],
+   "tekst": "Sykefraværet i Virksomhetsstyring, som blant annet har NAV, kultur og stab, var 6,4 % fra januar til august 2026, ned fra 8,6 % i de samme månedene i 2025.",
+   "verdier": {
+    "enhet": "%",
+    "2025": 8.6,
+    "2026": 6.4
+   },
+   "kilde": {
+    "id": "tertial-2-2026",
+    "side": 4,
+    "del": "figur over sykefravær per kommunalområde"
+   }
+  },
+  {
+   "id": "sykefravaer-teknisk-2026",
+   "type": "tall",
+   "tema": "Sykefravær",
+   "aar": "2026",
+   "periode": "januar–august",
+   "rammeomrade": "plan",
+   "omrader": [
+    "veier",
+    "plan"
+   ],
+   "tekst": "Sykefraværet i Plan, næring og teknisk var 10,0 % fra januar til august 2026, mot 8,4 % i de samme månedene i 2025.",
+   "verdier": {
+    "enhet": "%",
+    "2025": 8.4,
+    "2026": 10.0
+   },
+   "kilde": {
+    "id": "tertial-2-2026",
+    "side": 4,
+    "del": "figur over sykefravær per kommunalområde"
+   }
+  }
+ ]
+}
