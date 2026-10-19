@@ -115,6 +115,6 @@ Les også rapporten etter tall som forklarer avvikene (sykefravær, vikarbyrå, 
 - eventuelt `tjeneste` eller `art` for å vise punktet bare på én tjeneste eller én kostnadstype
 - eventuelt `merknad`, for eksempel når en senere rapport oppgir et annet tall for samme periode. Begge tallene vises da, med kilde, i stedet for at ett velges i stillhet.
 
-For år som er avsluttet brukes årsrapporten (vedlegg til årsregnskapet i formannskapet i juni), fordi den gjelder hele året slik regnskapet på siden gjør. Punkter fra tertialrapporten for et avsluttet år står bare der årsrapporten ikke sier noe om temaet, for eksempel sykefravær per kommunalområde. Når årsrapporten for året kommer, bytt ut tertialpunktene den dekker.
+For år som er avsluttet brukes årsrapporten (vedlegg til årsregnskapet i formannskapet i juni), fordi den gjelder hele året slik regnskapet på siden gjør. Punkter fra tertialrapporten for et avsluttet år står bare der årsrapporten ikke sier noe om temaet, for eksempel husleie for sommervikarer. Gir årsrapporten sykefravær bare for hele kommunen, fjernes også tertialtallene per kommunalområde. Når årsrapporten for året kommer, bytt ut tertialpunktene den dekker.
 
 Kjør `python scripts/build_fakta.py`. Skriptet stopper med en feilmelding hvis et punkt mangler kilde eller side, eller peker på et område som ikke finnes. Punktene vises i den rekkefølgen de står i filen, og de tre første for hvert område vises uten å trykke.
