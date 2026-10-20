@@ -1,0 +1,736 @@
+{
+ "generated": "2026-10-20",
+ "regioner": {
+  "narvik": "Narvik",
+  "harstad": "Harstad",
+  "rana": "Rana",
+  "alta": "Alta",
+  "gruppe": "KOSTRA-gruppe 9",
+  "landet": "Landet uten Oslo",
+  "nordland": "Nordland",
+  "norge": "Hele landet"
+ },
+ "sider": {
+  "utgifter": {
+   "navn": "Utgifter",
+   "href": "./"
+  },
+  "inntekter": {
+   "navn": "Inntekter",
+   "href": "inntekter"
+  },
+  "gjeld": {
+   "navn": "Gjeld og investeringer",
+   "href": "gjeld"
+  },
+  "budsjett": {
+   "navn": "Budsjett",
+   "href": "budsjett"
+  },
+  "tiltak": {
+   "navn": "Innsparinger",
+   "href": "tiltak"
+  },
+  "lopende": {
+   "navn": "Året så langt",
+   "href": "lopende"
+  },
+  "befolkning": {
+   "navn": "Befolkning",
+   "href": "befolkning"
+  },
+  "bolig": {
+   "navn": "Bolig",
+   "href": "bolig"
+  },
+  "omrade:helse": {
+   "navn": "Helse og omsorg",
+   "href": "omrade?omrade=helse"
+  },
+  "omrade:skole": {
+   "navn": "Grunnskole",
+   "href": "omrade?omrade=skole"
+  },
+  "omrade:bolig": {
+   "navn": "Kommunale boliger",
+   "href": "omrade?omrade=bolig"
+  }
+ },
+ "grense": {
+  "niva_prosent": 15,
+  "endring_poeng": 2.0
+ },
+ "lenker": [
+  {
+   "id": "eldre-helse",
+   "fra": "befolkning",
+   "til": [
+    "omrade:helse",
+    "utgifter",
+    "budsjett",
+    "tiltak"
+   ],
+   "tittel": "Antall eldre og utgiftene til helse og omsorg",
+   "tekst": "Sykehjem og hjemmetjenester brukes mest av de eldste, så hvor mange eldre det er, kan påvirke hva helse og omsorg koster.",
+   "maal": [
+    {
+     "navn": "Innbyggere 80 år og over, andel",
+     "aar": "2026",
+     "enhet": "%",
+     "desimaler": 1,
+     "verdier": {
+      "narvik": 6.3,
+      "harstad": 6.0,
+      "rana": 6.3,
+      "alta": 3.8,
+      "gruppe": 5.2,
+      "landet": 5.3
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 21,
+      "out": true,
+      "points": 1.1
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 07459",
+      "url": "https://www.ssb.no/statbank/table/07459"
+     }
+    },
+    {
+     "navn": "Helse og omsorg, netto per innbygger",
+     "aar": "2025",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 43732,
+      "harstad": 39367,
+      "rana": 35650,
+      "alta": 43269,
+      "gruppe": 33192,
+      "landet": 33788
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 32,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12362",
+      "url": "https://www.ssb.no/statbank/table/12362"
+     }
+    },
+    {
+     "navn": "Helse og omsorg, netto per innbygger 80 år og over",
+     "aar": "2025",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 591028,
+      "gruppe": 536532,
+      "landet": 537145,
+      "harstad": 537693,
+      "rana": 469587,
+      "alta": 946349
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 10,
+      "out": false
+     },
+     "beregnet": true,
+     "kilde": {
+      "tekst": "SSB, tabell 12362, delt på innbyggere 80+ fra tabell 07459",
+      "url": "https://www.ssb.no/statbank/table/12362"
+     }
+    }
+   ],
+   "merknad": "SSB anslår at Narvik har 2 091 innbyggere 80 år og over i 2040, mot 1 370 i 2026 (tabell 14746, hovedalternativet).",
+   "skiller_seg_ut": true
+  },
+  {
+   "id": "barn-skole",
+   "fra": "befolkning",
+   "til": [
+    "omrade:skole",
+    "utgifter"
+   ],
+   "tittel": "Antall barn og utgiftene til grunnskole",
+   "tekst": "Grunnskolen er for barn fra 6 til 15 år, så hvor mange barn det er, kan påvirke hva skolen koster per innbygger.",
+   "maal": [
+    {
+     "navn": "Innbyggere under 16 år, andel",
+     "aar": "2026",
+     "enhet": "%",
+     "desimaler": 1,
+     "verdier": {
+      "narvik": 15.7,
+      "harstad": 16.3,
+      "rana": 15.8,
+      "alta": 19.6,
+      "gruppe": 17.7,
+      "landet": 17.3
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": -11,
+      "out": false,
+      "points": -2.0
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 07459",
+      "url": "https://www.ssb.no/statbank/table/07459"
+     }
+    },
+    {
+     "navn": "Grunnskole, netto per innbygger",
+     "aar": "2025",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 18051,
+      "harstad": 18258,
+      "rana": 16397,
+      "alta": 21607,
+      "gruppe": 19214,
+      "landet": 18915
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": -6,
+      "out": false
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12362",
+      "url": "https://www.ssb.no/statbank/table/12362"
+     }
+    },
+    {
+     "navn": "Grunnskole, netto per innbygger 6–15 år",
+     "aar": "2025",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 170829,
+      "gruppe": 159476,
+      "landet": 161906,
+      "harstad": 167982,
+      "rana": 155074,
+      "alta": 167304
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 7,
+      "out": false
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12255",
+      "url": "https://www.ssb.no/statbank/table/12255"
+     }
+    }
+   ],
+   "skiller_seg_ut": false
+  },
+  {
+   "id": "folketall-inntekter",
+   "fra": "befolkning",
+   "til": [
+    "inntekter",
+    "budsjett"
+   ],
+   "tittel": "Folketallet og inntektene",
+   "tekst": "Skatt og rammetilskudd følger i stor grad antall innbyggere, så endringer i folketallet kan påvirke hvor mye kommunen får inn.",
+   "maal": [
+    {
+     "navn": "Endring i folketallet 2020–2026",
+     "aar": "2026",
+     "enhet": "%",
+     "desimaler": 1,
+     "verdier": {
+      "narvik": -0.9,
+      "harstad": 2.0,
+      "rana": -1.3,
+      "alta": 6.2,
+      "gruppe": 4.9,
+      "landet": 4.8
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "points": -5.8,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 07459",
+      "url": "https://www.ssb.no/statbank/table/07459"
+     }
+    },
+    {
+     "navn": "Frie inntekter per innbygger",
+     "aar": "2025",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 80590,
+      "harstad": 80338,
+      "rana": 77116,
+      "alta": 86304,
+      "gruppe": 76252,
+      "landet": 77629
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 6,
+      "out": false
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12137",
+      "url": "https://www.ssb.no/statbank/table/12137"
+     }
+    },
+    {
+     "navn": "Rammetilskudd per innbygger",
+     "aar": "2025",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 42228,
+      "harstad": 39400,
+      "rana": 39037,
+      "alta": 50113,
+      "gruppe": 38026,
+      "landet": 37540
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 11,
+      "out": false
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12137",
+      "url": "https://www.ssb.no/statbank/table/12137"
+     }
+    }
+   ],
+   "skiller_seg_ut": true
+  },
+  {
+   "id": "gjeld-drift",
+   "fra": "gjeld",
+   "til": [
+    "utgifter",
+    "budsjett",
+    "lopende",
+    "tiltak"
+   ],
+   "tittel": "Gjelden og pengene til tjenester",
+   "tekst": "Renter og avdrag betales fra driften, så gjelden kan påvirke hvor mye som er igjen til tjenester.",
+   "maal": [
+    {
+     "navn": "Netto lånegjeld per innbygger",
+     "aar": "2025",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 151892,
+      "harstad": 186184,
+      "rana": 103646,
+      "alta": 103162,
+      "gruppe": 111873,
+      "landet": 108077
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 36,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12137",
+      "url": "https://www.ssb.no/statbank/table/12137"
+     }
+    },
+    {
+     "navn": "Netto finansutgifter, andel av driftsinntektene",
+     "aar": "2025",
+     "enhet": "%",
+     "desimaler": 1,
+     "verdier": {
+      "narvik": 8.3,
+      "harstad": 9.8,
+      "rana": 4.9,
+      "alta": 5.9,
+      "gruppe": 6.3,
+      "landet": 5.6
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 32,
+      "out": true,
+      "points": 2.0
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12143",
+      "url": "https://www.ssb.no/statbank/table/12143"
+     }
+    },
+    {
+     "navn": "Renteeksponert gjeld, andel av driftsinntektene",
+     "aar": "2025",
+     "enhet": "%",
+     "desimaler": 1,
+     "verdier": {
+      "narvik": 79.6,
+      "harstad": 109.4,
+      "rana": 54.9,
+      "alta": 58.4,
+      "gruppe": 69.2,
+      "landet": 66.1
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 15,
+      "out": true,
+      "points": 10.4
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12143",
+      "url": "https://www.ssb.no/statbank/table/12143"
+     }
+    }
+   ],
+   "skiller_seg_ut": true
+  },
+  {
+   "id": "fond-aaret",
+   "fra": "inntekter",
+   "til": [
+    "lopende",
+    "budsjett"
+   ],
+   "tittel": "Disposisjonsfondet og året så langt",
+   "tekst": "Disposisjonsfondet er sparepenger kommunen kan bruke når utgiftene blir høyere eller inntektene lavere enn budsjettert, så størrelsen kan påvirke hvor stort underskudd kommunen kan dekke selv.",
+   "maal": [
+    {
+     "navn": "Disposisjonsfond, andel av driftsinntektene",
+     "aar": "2025",
+     "enhet": "%",
+     "desimaler": 1,
+     "verdier": {
+      "narvik": 4.5,
+      "harstad": 5.4,
+      "rana": 12.1,
+      "alta": 1,
+      "gruppe": 8.5,
+      "landet": 11.9
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": -47,
+      "out": true,
+      "points": -4.0
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12143",
+      "url": "https://www.ssb.no/statbank/table/12143"
+     }
+    },
+    {
+     "navn": "Netto driftsresultat, andel av driftsinntektene",
+     "aar": "2025",
+     "enhet": "%",
+     "desimaler": 1,
+     "verdier": {
+      "narvik": 0.3,
+      "harstad": -0.2,
+      "rana": 5.5,
+      "alta": -0.7,
+      "gruppe": 1.6,
+      "landet": 2.1
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "points": -1.3,
+      "out": false
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12143",
+      "url": "https://www.ssb.no/statbank/table/12143"
+     }
+    }
+   ],
+   "skiller_seg_ut": true
+  },
+  {
+   "id": "inntekter-utgifter",
+   "fra": "inntekter",
+   "til": [
+    "utgifter",
+    "budsjett"
+   ],
+   "tittel": "Inntektene og utgiftene",
+   "tekst": "Kommunen kan bare bruke det den får inn, låner eller tar av fond, så inntektene kan påvirke hvor mye som går til tjenester.",
+   "maal": [
+    {
+     "navn": "Driftsinntekter per innbygger",
+     "aar": "2025",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 137368,
+      "harstad": 129955,
+      "rana": 115670,
+      "alta": 140215,
+      "gruppe": 114828,
+      "landet": 118564
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 20,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12137",
+      "url": "https://www.ssb.no/statbank/table/12137"
+     }
+    },
+    {
+     "navn": "Eiendomsskatt per innbygger",
+     "aar": "2025",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 6762,
+      "harstad": 4717,
+      "rana": 4577,
+      "alta": 4496,
+      "gruppe": 2649,
+      "landet": 3275
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 155,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12137",
+      "url": "https://www.ssb.no/statbank/table/12137"
+     }
+    }
+   ],
+   "skiller_seg_ut": true
+  },
+  {
+   "id": "boliger-folketall",
+   "fra": "bolig",
+   "til": [
+    "befolkning"
+   ],
+   "tittel": "Nye boliger og folketallet",
+   "tekst": "Nye boliger gir plass til flere husholdninger, så hvor mye som bygges, kan påvirke hvor mange som kan flytte til eller bli boende.",
+   "maal": [
+    {
+     "navn": "Fullførte boliger 2021–2025 per 1000 innbyggere",
+     "aar": "2025",
+     "enhet": "",
+     "desimaler": 1,
+     "verdier": {
+      "narvik": 6.3,
+      "harstad": 13.1,
+      "rana": 9.9,
+      "alta": 24.1,
+      "nordland": 14.8
+     },
+     "mot": "nordland",
+     "avvik": {
+      "share": -57,
+      "out": true
+     },
+     "beregnet": true,
+     "kilde": {
+      "tekst": "SSB, tabell 05940, delt på folketallet",
+      "url": "https://www.ssb.no/statbank/table/05940"
+     }
+    },
+    {
+     "navn": "Endring i folketallet 2020–2026",
+     "aar": "2026",
+     "enhet": "%",
+     "desimaler": 1,
+     "verdier": {
+      "narvik": -0.9,
+      "harstad": 2.0,
+      "rana": -1.3,
+      "alta": 6.2,
+      "gruppe": 4.9,
+      "landet": 4.8
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "points": -5.8,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 07459",
+      "url": "https://www.ssb.no/statbank/table/07459"
+     }
+    }
+   ],
+   "skiller_seg_ut": true
+  },
+  {
+   "id": "husholdninger-boliger",
+   "fra": "befolkning",
+   "til": [
+    "bolig"
+   ],
+   "tittel": "Husholdningene og boligene",
+   "tekst": "Hvem folk bor sammen med, kan påvirke hvilke boliger det er behov for, for eksempel små leiligheter for dem som bor alene.",
+   "maal": [
+    {
+     "navn": "Husholdninger der én bor alene, andel",
+     "aar": "2026",
+     "enhet": "%",
+     "desimaler": 1,
+     "verdier": {
+      "narvik": 43.9,
+      "landet": 41.3
+     },
+     "mot": "landet",
+     "avvik": {
+      "share": 6,
+      "out": false,
+      "points": 2.6
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 06070",
+      "url": "https://www.ssb.no/statbank/table/06070"
+     }
+    },
+    {
+     "navn": "Boliger i blokk, andel",
+     "aar": "2026",
+     "enhet": "%",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 15,
+      "harstad": 14,
+      "rana": 18,
+      "alta": 11,
+      "nordland": 13
+     },
+     "mot": "nordland",
+     "avvik": {
+      "share": 15,
+      "out": true,
+      "points": 2
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12941",
+      "url": "https://www.ssb.no/statbank/table/12941"
+     }
+    }
+   ],
+   "skiller_seg_ut": true
+  },
+  {
+   "id": "kommunale-boliger",
+   "fra": "bolig",
+   "til": [
+    "omrade:bolig",
+    "utgifter"
+   ],
+   "tittel": "Kommunale boliger og hva de koster",
+   "tekst": "Hvor mange boliger kommunen disponerer, og om den eier dem eller leier dem inn, kan påvirke hva boligtjenesten koster.",
+   "maal": [
+    {
+     "navn": "Kommunalt disponerte boliger per 1000 innbyggere",
+     "aar": "2025",
+     "enhet": "",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 23,
+      "harstad": 22,
+      "rana": 22,
+      "alta": 27,
+      "gruppe": 19,
+      "landet": 21
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 21,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12008",
+      "url": "https://www.ssb.no/statbank/table/12008"
+     }
+    },
+    {
+     "navn": "Andel leid inn fra andre",
+     "aar": "2025",
+     "enhet": "%",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 86,
+      "harstad": 4,
+      "rana": 14,
+      "alta": 74,
+      "gruppe": 18,
+      "landet": 17
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 378,
+      "out": true,
+      "points": 68
+     },
+     "beregnet": true,
+     "kilde": {
+      "tekst": "SSB, tabell 12008, regnet ut her",
+      "url": "https://www.ssb.no/statbank/table/12008"
+     }
+    },
+    {
+     "navn": "Kommunale boliger, netto per innbygger",
+     "aar": "2025",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": -21,
+      "harstad": -121,
+      "rana": 372,
+      "alta": 1329,
+      "gruppe": 158,
+      "landet": 102
+     },
+     "mot": "gruppe",
+     "avvik": null,
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12362",
+      "url": "https://www.ssb.no/statbank/table/12362"
+     }
+    }
+   ],
+   "skiller_seg_ut": true
+  }
+ ]
+}

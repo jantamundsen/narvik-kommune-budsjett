@@ -464,3 +464,20 @@ details .fact-list { margin-top: 4px; }
 .panel.bars-panel { align-content: start; }
 .hbars .hb.bo { grid-template-columns: minmax(96px, 180px) minmax(40px, 1fr) 52px 40px; }
 @media (max-width: 900px) { #summary.stats3 > :last-child:nth-child(odd) { grid-column: 1 / -1; } }
+
+/* «Henger sammen med» (common.js, data/sammenhenger.json) */
+.link-group { display: grid; gap: 12px; }
+.link-group h3 { font-size: 1.05rem; font-weight: 600; }
+.link-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 400px), 1fr)); gap: 12px; align-items: start; }
+.link-card { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 18px 20px; display: grid; gap: 10px; }
+.link-card h4 { font-size: 1.05rem; font-weight: 600; margin: 0; }
+.link-card p { max-width: none; }
+.lm-list { list-style: none; margin: 0; padding: 0; display: grid; }
+.lm { display: grid; gap: 4px; padding: 10px 0; border-top: 1px solid var(--rule); }
+.lm-name { font-size: 0.9rem; font-weight: 600; }
+.lm-vals { display: flex; flex-wrap: wrap; gap: 4px 20px; align-items: center; }
+.lm-vals span:not(.badge) { display: grid; }
+.lm-vals small { font-size: 0.75rem; color: var(--ink-2); }
+.lm-vals b { font-size: 1.15rem; }
+.lm-vals span:nth-child(2) b { color: var(--ink-2); font-weight: 600; }
+.lm.out .lm-vals span:first-child b { color: var(--accent); }

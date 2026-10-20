@@ -1,0 +1,251 @@
+#!/usr/bin/env python3
+"""Write site/data/sammenhenger.json: numbers on one page that can affect numbers on another.
+
+Each link names two areas of the site, says in one neutral sentence how the one can affect the other,
+and shows a few numbers for each side: Narvik next to Harstad, Rana, Alta and an average. A number is
+marked when Narvik differs clearly from the average it is compared with, so the reader sees where Narvik
+stands out. The sentences say what can affect what, never why Narvik's numbers are as they are.
+
+Nothing is fetched. Every number is read from the data files the other scripts write, so it is the same
+number, with the same source, as on the page it comes from. Run it after them:
+
+    python scripts/build_sammenhenger.py
+"""
+from __future__ import annotations
+
+import json
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+DATA = ROOT / "site" / "data"
+OUT = DATA / "sammenhenger.json"
+
+# Narvik is marked as standing out when it is this far from the average it is compared with: as a share of
+# that average for levels, in percentage points for changes.
+LEVEL = 0.15
+POINTS = 2.0
+
+REGIONS = {"narvik": "Narvik", "harstad": "Harstad", "rana": "Rana", "alta": "Alta",
+           "gruppe": "KOSTRA-gruppe 9", "landet": "Landet uten Oslo", "nordland": "Nordland", "norge": "Hele landet"}
+
+# The pages a link can stand on: key → (name, address).
+PAGES = {
+    "utgifter": ("Utgifter", "./"),
+    "inntekter": ("Inntekter", "inntekter"),
+    "gjeld": ("Gjeld og investeringer", "gjeld"),
+    "budsjett": ("Budsjett", "budsjett"),
+    "tiltak": ("Innsparinger", "tiltak"),
+    "lopende": ("Året så langt", "lopende"),
+    "befolkning": ("Befolkning", "befolkning"),
+    "bolig": ("Bolig", "bolig"),
+    "omrade:helse": ("Helse og omsorg", "omrade?omrade=helse"),
+    "omrade:skole": ("Grunnskole", "omrade?omrade=skole"),
+    "omrade:bolig": ("Kommunale boliger", "omrade?omrade=bolig"),
+}
+
+
+def load(name: str) -> dict:
+    return json.loads((DATA / f"{name}.json").read_text(encoding="utf-8"))
+
+
+def measure(name, year, values, *, unit, against, kind="level", decimals=0, source, computed=False):
+    """One number for Narvik and the comparison, and how far Narvik is from the average in against."""
+    values = {k: v for k, v in values.items() if v is not None}
+    me, ref = values.get("narvik"), values.get(against)
+    diff = None
+    if me is not None and ref is not None:
+        if kind == "change":
+            diff = {"points": round(me - ref, 1), "out": abs(me - ref) >= POINTS}
+        elif ref > 0 and me >= 0:
+            rel = me / ref - 1
+            diff = {"share": round(rel * 100), "out": abs(rel) >= LEVEL}
+            if unit == "%":
+                diff["points"] = round(me - ref, 1)
+    return {"navn": name, "aar": year, "enhet": unit, "desimaler": decimals, "verdier": values,
+            "mot": against, "avvik": diff, "beregnet": computed, "kilde": source}
+
+
+def nb(n: int) -> str:
+    return f"{n:,}".replace(",", "\u00a0")
+
+
+def ssb(table: str, what: str = "") -> dict:
+    return {"tekst": f"SSB, tabell {table}{', ' + what if what else ''}", "url": f"https://www.ssb.no/statbank/table/{table}"}
+
+
+def main() -> int:
+    try:
+        N, B, F, H, M = (load(n) for n in ("narvik", "befolkning", "finans", "bolig", "malgruppe"))
+    except FileNotFoundError as e:
+        print(f"Mangler datafil: {e.filename}. Kjør de andre skriptene først.", file=sys.stderr)
+        return 1
+
+    y = N["years"][-1]
+    fy = F["years"][-1]
+    cats = {c["key"]: c for c in N["categories"]}
+    kostra = ["narvik", "harstad", "rana", "alta", "gruppe", "landet"]
+
+    def area_pc(key):
+        return {k: cats[key]["per_capita"].get(k, {}).get(y) for k in kostra}
+
+    def target(area, service, key):
+        m = next(m for m in M["measures"] if (m["area"], m["service"], m["key"]) == (area, service, key))
+        return {k: (round(v[y]) if v.get(y) is not None else None) for k, v in m["values"].items() if k in kostra}
+
+    cmp = {r["key"]: r for r in B["compare"]["rows"]}
+    by = B["compare"]["year"]
+
+    def pop(field):
+        return {k: cmp[k][field] for k in kostra if k in cmp}
+
+    def fin(table, art):
+        part = F["per_capita"] if table == "12137" else F["share"]
+        return {k: part.get(k, {}).get(art, {}).get(fy) for k in kostra}
+
+    older = B["older"]
+    projected = max(k for k in older if int(k) <= 2040)
+
+    links = [
+        {
+            "id": "eldre-helse",
+            "fra": "befolkning", "til": ["omrade:helse", "utgifter", "budsjett", "tiltak"],
+            "tittel": "Antall eldre og utgiftene til helse og omsorg",
+            "tekst": "Sykehjem og hjemmetjenester brukes mest av de eldste, så hvor mange eldre det er, kan påvirke hva helse og omsorg koster.",
+            "maal": [
+                measure("Innbyggere 80 år og over, andel", by, pop("over80"), unit="%", decimals=1, against="gruppe", source=ssb("07459")),
+                measure("Helse og omsorg, netto per innbygger", y, area_pc("helse"), unit="kr", against="gruppe", source=ssb("12362")),
+                measure("Helse og omsorg, netto per innbygger 80 år og over", y, target("helse", None, "80"), unit="kr", against="gruppe",
+                        source=ssb("12362", "delt på innbyggere 80+ fra tabell 07459"), computed=True),
+            ],
+            "merknad": f"SSB anslår at Narvik har {nb(older[projected]['80'])} innbyggere 80 år og over i {projected}, mot {nb(older[B['last']]['80'])} i {B['last']} (tabell 14746, hovedalternativet).",
+        },
+        {
+            "id": "barn-skole",
+            "fra": "befolkning", "til": ["omrade:skole", "utgifter"],
+            "tittel": "Antall barn og utgiftene til grunnskole",
+            "tekst": "Grunnskolen er for barn fra 6 til 15 år, så hvor mange barn det er, kan påvirke hva skolen koster per innbygger.",
+            "maal": [
+                measure("Innbyggere under 16 år, andel", by, pop("under16"), unit="%", decimals=1, against="gruppe", source=ssb("07459")),
+                measure("Grunnskole, netto per innbygger", y, area_pc("skole"), unit="kr", against="gruppe", source=ssb("12362")),
+                measure("Grunnskole, netto per innbygger 6–15 år", y, target("skole", None, "innb"), unit="kr", against="gruppe", source=ssb("12255")),
+            ],
+        },
+        {
+            "id": "folketall-inntekter",
+            "fra": "befolkning", "til": ["inntekter", "budsjett"],
+            "tittel": "Folketallet og inntektene",
+            "tekst": "Skatt og rammetilskudd følger i stor grad antall innbyggere, så endringer i folketallet kan påvirke hvor mye kommunen får inn.",
+            "maal": [
+                measure(f"Endring i folketallet {B['compare']['first']}–{by}", by, pop("change"), unit="%", decimals=1, kind="change", against="gruppe", source=ssb("07459")),
+                measure("Frie inntekter per innbygger", fy, fin("12137", "AG11"), unit="kr", against="gruppe", source=ssb("12137")),
+                measure("Rammetilskudd per innbygger", fy, fin("12137", "A800"), unit="kr", against="gruppe", source=ssb("12137")),
+            ],
+        },
+        {
+            "id": "gjeld-drift",
+            "fra": "gjeld", "til": ["utgifter", "budsjett", "lopende", "tiltak"],
+            "tittel": "Gjelden og pengene til tjenester",
+            "tekst": "Renter og avdrag betales fra driften, så gjelden kan påvirke hvor mye som er igjen til tjenester.",
+            "maal": [
+                measure("Netto lånegjeld per innbygger", fy, fin("12137", "KG31"), unit="kr", against="gruppe", source=ssb("12137")),
+                measure("Netto finansutgifter, andel av driftsinntektene", fy, fin("12143", "AGD86"), unit="%", decimals=1, against="gruppe", source=ssb("12143")),
+                measure("Renteeksponert gjeld, andel av driftsinntektene", fy, fin("12143", "KG39"), unit="%", decimals=1, against="gruppe", source=ssb("12143")),
+            ],
+        },
+        {
+            "id": "fond-aaret",
+            "fra": "inntekter", "til": ["lopende", "budsjett"],
+            "tittel": "Disposisjonsfondet og året så langt",
+            "tekst": "Disposisjonsfondet er sparepenger kommunen kan bruke når utgiftene blir høyere eller inntektene lavere enn budsjettert, så størrelsen kan påvirke hvor stort underskudd kommunen kan dekke selv.",
+            "maal": [
+                measure("Disposisjonsfond, andel av driftsinntektene", fy, fin("12143", "56"), unit="%", decimals=1, against="gruppe", source=ssb("12143")),
+                measure("Netto driftsresultat, andel av driftsinntektene", fy, fin("12143", "AGD23"), unit="%", decimals=1, kind="change", against="gruppe", source=ssb("12143")),
+            ],
+        },
+        {
+            "id": "inntekter-utgifter",
+            "fra": "inntekter", "til": ["utgifter", "budsjett"],
+            "tittel": "Inntektene og utgiftene",
+            "tekst": "Kommunen kan bare bruke det den får inn, låner eller tar av fond, så inntektene kan påvirke hvor mye som går til tjenester.",
+            "maal": [
+                measure("Driftsinntekter per innbygger", fy, fin("12137", "AGD13"), unit="kr", against="gruppe", source=ssb("12137")),
+                measure("Eiendomsskatt per innbygger", fy, fin("12137", "AG10"), unit="kr", against="gruppe", source=ssb("12137")),
+            ],
+        },
+    ]
+
+    # Housing: SSB's own comparison regions differ by table, so each number names its own average.
+    hreg = {r["key"]: r for r in H["regions"]}
+    hy = sorted(H["built"]["narvik"])
+    span = hy[-5:]
+
+    def built(k):
+        p = hreg.get(k, {}).get("population", {}).get(hy[-1])
+        if k not in H["built"] or not p:
+            return None
+        return round(sum(H["built"][k].get(t, {}).get("Fullforte") or 0 for t in span) / p * 1000, 1)
+
+    hk = ["narvik", "harstad", "rana", "alta", "nordland"]
+    mun_y = max(H["municipal"]["narvik"])
+    mun = {k: H["municipal"][k].get(mun_y) for k in kostra if k in H["municipal"]}
+    blokk = {k: H["shares"][k].get("04") for k in hk if k in H["shares"]}
+    hh = {r["key"]: r for r in B["households"]["rows"]}
+    links += [
+        {
+            "id": "boliger-folketall",
+            "fra": "bolig", "til": ["befolkning"],
+            "tittel": "Nye boliger og folketallet",
+            "tekst": "Nye boliger gir plass til flere husholdninger, så hvor mye som bygges, kan påvirke hvor mange som kan flytte til eller bli boende.",
+            "maal": [
+                measure(f"Fullførte boliger {span[0]}–{span[-1]} per 1000 innbyggere", span[-1], {k: built(k) for k in hk}, unit="", decimals=1,
+                        against="nordland", source=ssb("05940", "delt på folketallet"), computed=True),
+                measure(f"Endring i folketallet {B['compare']['first']}–{by}", by, pop("change"), unit="%", decimals=1, kind="change", against="gruppe", source=ssb("07459")),
+            ],
+        },
+        {
+            "id": "husholdninger-boliger",
+            "fra": "befolkning", "til": ["bolig"],
+            "tittel": "Husholdningene og boligene",
+            "tekst": "Hvem folk bor sammen med, kan påvirke hvilke boliger det er behov for, for eksempel små leiligheter for dem som bor alene.",
+            "maal": [
+                measure("Husholdninger der én bor alene, andel", B["households"]["year"],
+                        {"narvik": hh["alene"]["share"], "landet": hh["alene"]["landet"]}, unit="%", decimals=1, against="landet", source=ssb("06070")),
+                measure("Boliger i blokk, andel", H["year"], blokk, unit="%", against="nordland", source=ssb("12941")),
+            ],
+        },
+        {
+            "id": "kommunale-boliger",
+            "fra": "bolig", "til": ["omrade:bolig", "utgifter"],
+            "tittel": "Kommunale boliger og hva de koster",
+            "tekst": "Hvor mange boliger kommunen disponerer, og om den eier dem eller leier dem inn, kan påvirke hva boligtjenesten koster.",
+            "maal": [
+                measure("Kommunalt disponerte boliger per 1000 innbyggere", mun_y, {k: v.get("per_1000") for k, v in mun.items()}, unit="", against="gruppe", source=ssb("12008")),
+                measure("Andel leid inn fra andre", mun_y, {k: round(v["rented_in"] / v["total"] * 100) for k, v in mun.items() if v.get("total")},
+                        unit="%", against="gruppe", source=ssb("12008", "regnet ut her"), computed=True),
+                measure("Kommunale boliger, netto per innbygger", y, area_pc("bolig"), unit="kr", against="gruppe", source=ssb("12362")),
+            ],
+        },
+    ]
+
+    for link in links:
+        link["skiller_seg_ut"] = any((m["avvik"] or {}).get("out") for m in link["maal"])
+        for side in [link["fra"], *link["til"]]:
+            if side not in PAGES:
+                print(f"Ukjent side «{side}» i {link['id']}", file=sys.stderr)
+                return 1
+
+    out = {
+        "generated": N["generated"],
+        "regioner": REGIONS,
+        "sider": {k: {"navn": n, "href": h} for k, (n, h) in PAGES.items()},
+        "grense": {"niva_prosent": round(LEVEL * 100), "endring_poeng": POINTS},
+        "lenker": links,
+    }
+    OUT.write_text(json.dumps(out, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    print(f"Skrev {OUT.relative_to(ROOT)}: {len(links)} sammenhenger, {sum(l['skiller_seg_ut'] for l in links)} der Narvik skiller seg ut.")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
