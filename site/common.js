@@ -103,6 +103,12 @@ document.addEventListener('keydown', e => {
     }
     return a.share === 0 ? `Likt med ${refName(m.mot)}` : `${nb(Math.abs(a.share))} % ${a.share > 0 ? 'over' : 'under'} ${refName(m.mot)}`;
   };
+  // Over or under the average as an arrow next to the text. No red or green: whether a number above the
+  // average is good or bad is a judgement, and the site leaves that to the reader.
+  const arrow = m => {
+    const a = m.avvik, v = a && (a.points != null && (m.enhet === '%' || a.share == null) ? a.points : a.share);
+    return v ? `<span class="arrow" aria-hidden="true">${v > 0 ? '▲' : '▼'}</span> ` : '';
+  };
   const src = m => `<a href="${h(m.kilde.url)}" target="_blank" rel="noopener">${h(m.kilde.tekst)}</a>`;
 
   const list = outSec && S.skiller_seg_ut?.[sideOf(outSec)];
@@ -112,7 +118,7 @@ document.addEventListener('keydown', e => {
       <ul class="so-list">${list.map(m => `<li class="so">
         <span class="so-name">${h(m.navn)} <span class="caption">${h(m.aar)}</span>${m.beregnet ? ' <span class="tag">beregnet</span>' : ''}</span>
         <b class="so-me num">${val(m, m.verdier.narvik)}</b>
-        <span class="so-diff">${h(diff(m))}</span>
+        <span class="so-diff">${arrow(m)}${h(diff(m))}</span>
         <span class="caption">${h(name(m.mot))}: ${val(m, m.verdier[m.mot])}. Kilde: ${src(m)}.</span>
       </li>`).join('')}</ul>`;
     outSec.setAttribute('aria-labelledby', 'h-out');
@@ -129,8 +135,8 @@ document.addEventListener('keydown', e => {
     const d = diff(m);
     return `<li class="lm">
       <div class="lm-name">${h(m.navn)} <span class="caption">${h(m.aar)}</span>${m.beregnet ? ' <span class="tag">beregnet</span>' : ''}</div>
-      <div class="lm-vals num"><span><small>Narvik</small><b>${val(m, m.verdier.narvik)}</b></span><span><small>${h(name(m.mot))}</small><b>${val(m, m.verdier[m.mot])}</b></span></div>
-      <p class="caption">${d ? h(d) + '. ' : ''}${others ? h(others) + '. ' : ''}Kilde: ${src(m)}.</p>
+      <div class="lm-vals num"><span><small>Narvik</small><b>${val(m, m.verdier.narvik)}</b></span><span><small>${h(name(m.mot))}</small><b>${val(m, m.verdier[m.mot])}</b></span>${d ? `<span class="lm-diff">${arrow(m)}${h(d)}</span>` : ''}</div>
+      <p class="caption">${others ? h(others) + '. ' : ''}Kilde: ${src(m)}.</p>
     </li>`;
   };
   const card = (l, dir) => {
