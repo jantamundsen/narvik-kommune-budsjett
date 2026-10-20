@@ -1,0 +1,948 @@
+{
+ "kilder": {
+  "ar-2024": {
+   "navn": "Årsrapport 2024",
+   "full": "Årsrapport 2024, vedlegg til årsregnskapet, formannskapet 05.06.2025 (sak 013/25)",
+   "url": "https://www.narvik.kommune.no/innsyn.aspx?response=mote&moteid=545&scripturi=/innsyn.aspx&Mid1=396",
+   "pdf": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022231291&dokid=1975053&versjon=1&variant=A"
+  },
+  "ar-2025": {
+   "navn": "Årsrapport 2025",
+   "full": "Årsrapport 2025, vedlegg til årsregnskapet, formannskapet 04.06.2026 (sak 025/26)",
+   "url": "https://www.narvik.kommune.no/innsyn.aspx?response=mote&moteid=642&scripturi=/innsyn.aspx&Mid1=396",
+   "pdf": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022268851&dokid=2060599&versjon=1&variant=A"
+  },
+  "kjolevann-2026": {
+   "navn": "Referat, oppstartsmøte kjølevannsanlegg Bjerkvik",
+   "full": "Narvik kommune, referat fra oppstartsmøte for detaljregulering for kjølevannsanlegg Bjerkvik, plan-ID 2026007, møte 03.07.2026 (arkivsak 26/1700)",
+   "pdf": "https://www.narvik.kommune.no/_f/p1/i5c711bb0-acb3-400e-9995-8f972f1d26fc/referat-fra-oppstartsmote-detaljregulering-for-kjolevannsanlegg-bjerkvik.pdf"
+  },
+  "nordkraft-2026": {
+   "navn": "Nordkraft Industrinett, svar på høringsuttalelser 17.02.2026",
+   "full": "Nordkraft Industrinett AS, svar på høringsuttalelser til «Nye Skoglund transformatorstasjon med 420 kV tilknytning fra Kvandal», 17.02.2026 (NVE-sak 202503343)",
+   "pdf": "https://webfileservice.nve.no/API/PublishedFiles/Download/bb677b66-2d0a-49d8-b50e-f8d62b0d61cc/202503343/3449842"
+  },
+  "nve-brev-2025": {
+   "navn": "NVE, vedtaksbrev 08.12.2025",
+   "full": "NVE, «NVE gir konsesjon til elektriske anlegg til forsyning av datasenter i Bjerkvik i Narvik kommune», brev til Aker Nscale AS 08.12.2025 (NVE-ref. 202521094-3)",
+   "url": "https://www.nve.no/25817/A",
+   "pdf": "https://webfileservice.nve.no/API/PublishedFiles/Download/6c3aaada-b591-47e6-b131-8047670a6867/202521094/3448578"
+  },
+  "nve-konsesjon-2025": {
+   "navn": "NVE, anleggskonsesjon 08.12.2025",
+   "full": "NVE, anleggskonsesjon til Aker Nscale AS 08.12.2025 (NVE-ref. 202521094-4)",
+   "url": "https://www.nve.no/25817/A",
+   "pdf": "https://webfileservice.nve.no/API/PublishedFiles/Download/7c083275-d1db-4075-84ba-fd2f9de44cf1/202521094/3448577"
+  },
+  "okplan-2026": {
+   "navn": "Økonomiplan 2026–2029",
+   "full": "Budsjett 2026 og økonomiplan 2026–2029, kommunedirektørens forslag",
+   "pdf": "https://www.narvik.kommune.no/_f/p1/i3c0f427e-5acf-4d5c-836a-5db986e5cdcb/narvik-kommunes-okonomiplan-2026-2029-1.pdf"
+  },
+  "plan-datasenter-2021": {
+   "navn": "Reguleringsbestemmelser datasenter Bjerkvik",
+   "full": "Detaljreguleringsplan for datasenter Bjerkvik, reguleringsbestemmelser, plan-ID 2019002, vedtatt 29.04.2021 (sak 037/21)",
+   "pdf": "https://oldweb.narvik.kommune.no/_f/p-1/i58356c87-6fb6-4f25-a78b-b08a54c176cd/planbestemmelser-1806_2019002_vedtatt_2021-04-29.pdf"
+  },
+  "plan-fagernesfjellet-2025": {
+   "navn": "Planbeskrivelse Fagernesfjellet 2025",
+   "full": "Planbeskrivelse til reguleringsendring, plan 2012015 Områderegulering for Fagernesfjellet, vedtatt i kommunestyret 19.06.2025",
+   "pdf": "https://www.narvik.kommune.no/_f/p1/i8a9b3ce6-b249-4b56-bdd6-e82b0cf04972/vedtatt-planbeskrivelse-opf-19062025.pdf"
+  },
+  "statnett-2026": {
+   "navn": "Statnett, høringssvar 05.02.2026",
+   "full": "Statnett, høringssvar til Nordkraft Industrinetts søknad om ny Skoglund transformatorstasjon og 420 kV tilknytning til Kvandal, 05.02.2026 (NVE-sak 202503343)",
+   "pdf": "https://webfileservice.nve.no/API/PublishedFiles/Download/9de9f57b-e38e-43de-a72a-027af8cdf7dc/202503343/3449662"
+  },
+  "t2-2024": {
+   "navn": "Tertialrapport 2/2024",
+   "full": "Tertialrapport 2/2024, formannskapet 17.10.2024 (sak 023/24)",
+   "url": "https://www.narvik.kommune.no/innsyn.aspx?response=mote&moteid=467&scripturi=/innsyn.aspx&Mid1=396",
+   "pdf": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022207373&dokid=1916684&versjon=1&variant=A"
+  },
+  "t2-2025": {
+   "navn": "Tertialrapport 2/2025",
+   "full": "Tertialrapport 2/2025, formannskapet 16.10.2025 (sak 018/25)",
+   "url": "https://www.narvik.kommune.no/innsyn.aspx?response=mote&moteid=547&scripturi=/innsyn.aspx&Mid1=396",
+   "pdf": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022244076&dokid=2003716&versjon=1&variant=A"
+  },
+  "tertial-2-2026": {
+   "navn": "Tertialrapport 2/2026",
+   "full": "Tertialrapport 2/2026, formannskapet 15.10.2026 (sak 45/26)",
+   "url": "https://prod02.elementscloud.no/publikum/959469059_prod-959469059/Dmb",
+   "pdf": "https://prod02.elementscloud.no/publikum/Documents/ShowDocument/c1d7f777-8235-4817-8203-ebd49ff36bb5/783/2230"
+  },
+  "vm-organisering": {
+   "navn": "Narvik kommune: Slik er VM-arbeidet organisert",
+   "full": "Narvik kommune, nettsiden «Slik er VM-arbeidet i Narvik organisert», intervju med ordføreren (udatert)",
+   "url": "https://www.narvik.kommune.no/vm-alpin-2029/slik-er-vm-arbeidet-i-narvik-organisert.2639.aspx"
+  }
+ },
+ "saker": [
+  {
+   "id": "helse-og-omsorg",
+   "tittel": "Merforbruk i helse og omsorg",
+   "ingress": "Helse og omsorg har brukt mer enn budsjettert hvert år siden kommunalområdet fikk dagens inndeling i 2024. For 2026 venter kommunedirektøren et merforbruk på 84 mill. kr. Her er tallene fra kommunens egne rapporter samlet, med det rapportene sier om årsakene.",
+   "kontrollert": "2026-10-20",
+   "nokkeltall": [
+    {
+     "navn": "Venter merforbruk i 2026",
+     "verdi": "83,9 mill. kr",
+     "tekst": "kommunedirektørens prognose for hele året, per august",
+     "kilde": {
+      "id": "tertial-2-2026",
+      "side": 9
+     }
+    },
+    {
+     "navn": "Brukte mer enn budsjettert i 2025",
+     "verdi": "20,0 mill. kr",
+     "tekst": "801,4 mill. kr brukt mot et revidert budsjett på 781,4",
+     "kilde": {
+      "id": "ar-2025",
+      "side": 46
+     }
+    },
+    {
+     "navn": "Brukte mer enn budsjettert i 2024",
+     "verdi": "67,5 mill. kr",
+     "tekst": "770,3 mill. kr brukt mot et revidert budsjett på 702,8",
+     "kilde": {
+      "id": "ar-2024",
+      "side": 46
+     }
+    }
+   ],
+   "tabell": {
+    "tittel": "Budsjett og regnskap for kommunalområdet Helse og omsorg, mill. kr",
+    "kolonner": [
+     "År",
+     "Opprinnelig budsjett",
+     "Revidert budsjett",
+     "Regnskap",
+     "Mer enn revidert budsjett",
+     "Kilde"
+    ],
+    "rader": [
+     {
+      "celler": [
+       "2024",
+       "660,0",
+       "702,8",
+       "770,3",
+       "67,5"
+      ],
+      "kilde": {
+       "id": "ar-2024",
+       "side": 46
+      }
+     },
+     {
+      "celler": [
+       "2025",
+       "709,4",
+       "781,4",
+       "801,4",
+       "20,0"
+      ],
+      "kilde": {
+       "id": "ar-2025",
+       "side": 46
+      }
+     },
+     {
+      "celler": [
+       "2026",
+       "740,7",
+       "742,2",
+       "605,6 per august",
+       "83,9 (prognose)"
+      ],
+      "kilde": {
+       "id": "tertial-2-2026",
+       "side": 9
+      }
+     }
+    ],
+    "merknad": "Kommunalområdet fikk dagens inndeling i 2024. Før det het det Helse og velferd og hadde andre tjenester, så tallene for 2021–2023 kan ikke settes i samme rad. Regnskapet her følger kommunens egen inndeling og er ikke det samme som KOSTRA-tallene for helse og omsorg på Utgifter-siden."
+   },
+   "rolle": [
+    {
+     "tekst": "Rammen for 2026 ble satt til 742 mill. kr, mens regnskapet for 2025 viste et forbruk på 800 mill. kr.",
+     "kilde": {
+      "id": "tertial-2-2026",
+      "side": 31
+     }
+    },
+    {
+     "tekst": "Per august 2026 hadde Helse og omsorg brukt 605,6 mill. kr, 73,4 mill. kr mer enn budsjettert for de samme månedene.",
+     "kilde": {
+      "id": "tertial-2-2026",
+      "side": 9
+     }
+    }
+   ],
+   "tidslinje": [
+    {
+     "dato": "2024",
+     "tekst": "Regnskapet for 2024 viser 67,5 mill. kr (9,6 %) mer enn revidert budsjett. Mest i sektor institusjon og distrikt.",
+     "kilde": {
+      "id": "ar-2024",
+      "side": 46
+     }
+    },
+    {
+     "dato": "2025",
+     "tekst": "Regnskapet for 2025 viser 20,0 mill. kr mer enn revidert budsjett. Alle tre sektorene gikk med merforbruk.",
+     "kilde": {
+      "id": "ar-2025",
+      "side": 46
+     }
+    },
+    {
+     "dato": "04.06.2026",
+     "tekst": "Årsrapport 2025 lagt fram for formannskapet (sak 025/26).",
+     "kilde": {
+      "id": "ar-2025"
+     }
+    },
+    {
+     "dato": "15.10.2026",
+     "tekst": "Tertialrapport 2/2026 lagt fram for formannskapet (sak 45/26), med en prognose på 83,9 mill. kr i merforbruk for året.",
+     "kilde": {
+      "id": "tertial-2-2026",
+      "side": 9
+     }
+    }
+   ],
+   "lenker": [
+    {
+     "href": "omrade?omrade=helse&maal=80#sammenligning",
+     "navn": "Helse og omsorg per innbygger 80 år og over",
+     "tekst": "Utgiftene sammenlignet med andre kommuner, per eldre innbygger."
+    },
+    {
+     "href": "lopende",
+     "navn": "Året så langt",
+     "tekst": "Alle tjenesteområder i 2026 etter tertialrapportene."
+    },
+    {
+     "href": "budsjett",
+     "navn": "Budsjett",
+     "tekst": "Budsjett mot regnskap for alle tjenesteområder."
+    },
+    {
+     "href": "befolkning?aar=2040#pyramide",
+     "navn": "Befolkning i 2040",
+     "tekst": "SSBs framskriving av hvor mange eldre det blir."
+    }
+   ],
+   "fakta": [
+    {
+     "id": "ramme-helse-2026",
+     "type": "tall",
+     "tema": "Budsjettet",
+     "aar": "2026",
+     "periode": "hele året",
+     "kommunalomrade": "Helse og omsorg",
+     "omrader": [
+      "helse"
+     ],
+     "tekst": "Helse og omsorg fikk en ramme på 742 mill. kr for 2026, selv om regnskapet for 2025 viste et forbruk på 800 mill. kr. Kommunedirektøren venter nå 84 mill. kr i merforbruk.",
+     "kilde": {
+      "id": "tertial-2-2026",
+      "side": 31
+     }
+    },
+    {
+     "id": "merforbruk-helse-2026",
+     "type": "tall",
+     "tema": "Hva merforbruket består av",
+     "aar": "2026",
+     "periode": "januar–august",
+     "kommunalomrade": "Helse og omsorg",
+     "omrader": [
+      "helse"
+     ],
+     "tekst": "Per august brukte Helse og omsorg 29,7 mill. kr mer enn budsjettert på lønn (blant annet 12,6 mill. til overtid og sommeravtaler), 27,8 mill. mer på drift (blant annet 13,5 mill. til vikarbyrå og 1,8 mill. til husleie) og 23 mill. mer på kjøpte tjenester (blant annet 15,3 mill. til kjøpte individtiltak).",
+     "kilde": {
+      "id": "tertial-2-2026",
+      "side": 31
+     }
+    },
+    {
+     "id": "sykehjemsplasser-2026",
+     "type": "tall",
+     "tema": "Kapasitet",
+     "aar": "2026",
+     "periode": "august",
+     "kommunalomrade": "Helse og omsorg",
+     "omrader": [
+      "helse"
+     ],
+     "tjeneste": "253",
+     "tekst": "Kommunen drifter 199 sykehjemsplasser, 179 av dem i sektor institusjon og distrikt (Bjerkvik, Furumoen, Ballangen og Kjøpsvik). Helsehuset har i tillegg 20 korttidsplasser.",
+     "kilde": {
+      "id": "tertial-2-2026",
+      "side": 25
+     }
+    },
+    {
+     "id": "kjopsvik-helse-2026",
+     "type": "tall",
+     "tema": "Kjøpsvik omsorg",
+     "aar": "2026",
+     "periode": "januar–august",
+     "kommunalomrade": "Helse og omsorg",
+     "omrader": [
+      "helse"
+     ],
+     "tekst": "I Kjøpsvik gikk vikarbyråkostnadene ned med om lag 3 mill. kr per august etter omstillingen, der Prestegårdstunet ble redusert fra 16 til 12 plasser og sykepleierne fikk felles turnus. Tjenesten hadde likevel 4,1 mill. kr i merforbruk per juli, med sykefravær på 13,7 % i hjemmetjenesten og 16,5 % på Prestegårdstunet.",
+     "kilde": {
+      "id": "tertial-2-2026",
+      "side": 27
+     }
+    },
+    {
+     "id": "sommervikarer-helse-2026",
+     "type": "forklaring",
+     "tema": "Sommervikarer",
+     "aar": "2026",
+     "periode": "sommeren",
+     "kommunalomrade": "Helse og omsorg",
+     "omrader": [
+      "helse"
+     ],
+     "tekst": "Sommervikarer fra Sverige måtte ha bolig og delvis dekket reise. Kommunen vil sammen med eiendomsenheten finne rimeligere boliger til sommervikarer (s. 34).",
+     "sitat": "Lokalt rekrutterte sommervikarer er en mangelvare, men vi fikk rekruttert inn mange svenske ferievikarer for sommeren (lege/sykepleiestudenter). Disse krever losji og delvis dekket reise som et vilkår for å arbeide hos oss. Samlet betyr dette økte kostnader gjennom sommeren, selv om vi har budsjettert for selve lønnen til vikarene.",
+     "kilde": {
+      "id": "tertial-2-2026",
+      "side": 26
+     }
+    },
+    {
+     "id": "sykefravaer-helse-2026",
+     "type": "tall",
+     "tema": "Sykefravær",
+     "aar": "2026",
+     "periode": "januar–august",
+     "kommunalomrade": "Helse og omsorg",
+     "omrader": [
+      "helse"
+     ],
+     "tekst": "Sykefraværet i Helse og omsorg var 14,5 % fra januar til august 2026, mot 11,8 % i de samme månedene i 2025. Det er høyest av kommunalområdene.",
+     "verdier": {
+      "enhet": "%",
+      "2025": 11.8,
+      "2026": 14.5
+     },
+     "kilde": {
+      "id": "tertial-2-2026",
+      "side": 4,
+      "del": "figur over sykefravær per kommunalområde"
+     }
+    },
+    {
+     "id": "sykefravaer-kostnad-helse-2026",
+     "type": "tall",
+     "tema": "Sykefravær",
+     "aar": "2026",
+     "periode": "januar–august",
+     "kommunalomrade": "Helse og omsorg",
+     "omrader": [
+      "helse"
+     ],
+     "tekst": "BIs fraværskalkulator anslår at fraværet koster Helse og omsorg 1,9 mill. kr i måneden. Merkostnaden når fraværet dekkes med vikar fra byrå, kommer i tillegg.",
+     "kilde": {
+      "id": "tertial-2-2026",
+      "side": 32
+     }
+    },
+    {
+     "id": "sykefravaer-helse-enheter-2026",
+     "type": "tall",
+     "tema": "Sykefravær",
+     "aar": "2026",
+     "periode": "januar–august",
+     "kommunalomrade": "Helse og omsorg",
+     "omrader": [
+      "helse"
+     ],
+     "tekst": "Sektor institusjon og distrikt har det høyeste fraværet, 15,5 % hittil i år. Enhetene spenner fra 7 % til 28,5 %, og fraværet er lavere der driften er mest på dagtid.",
+     "kilde": {
+      "id": "tertial-2-2026",
+      "side": 25
+     }
+    },
+    {
+     "id": "overliggere-helse-2026",
+     "type": "tall",
+     "tema": "Utskrivningsklare pasienter",
+     "aar": "2026",
+     "periode": "januar–august",
+     "kommunalomrade": "Helse og omsorg",
+     "omrader": [
+      "helse"
+     ],
+     "tekst": "Kommunen har hatt 618 overliggere hittil i 2026, altså pasientdøgn der utskrivningsklare pasienter ligger på sykehuset og venter på et kommunalt tilbud. Det er i snitt 2,5 pasienter per døgn, og målet for 2027 er 1. Overliggerne kostet 2,6 mill. kr mer enn budsjettert per august (s. 31).",
+     "kilde": {
+      "id": "tertial-2-2026",
+      "side": 26
+     }
+    },
+    {
+     "id": "vikartjenester-helse-2026",
+     "type": "tall",
+     "tema": "Vikarbyrå og overtid",
+     "aar": "2026",
+     "periode": "januar–august",
+     "kommunalomrade": "Helse og omsorg",
+     "omrader": [
+      "helse"
+     ],
+     "tekst": "Helse og omsorg brukte 15,4 mill. kr på vikartjenester fra byrå til og med august 2026, mot 18,1 mill. kr på samme tid i 2025. Overtidslønnen var 14,8 mill. kr, omtrent som året før (14,7 mill. kr).",
+     "verdier": {
+      "enhet": "kr",
+      "vikar_2025": 18059682,
+      "vikar_2026": 15441997,
+      "overtid_2025": 14652711,
+      "overtid_2026": 14831056
+     },
+     "kilde": {
+      "id": "tertial-2-2026",
+      "side": 32,
+      "del": "tabell «Regnskap overtidslønn» og «Regnskap vikartjenester» per enhet"
+     }
+    },
+    {
+     "id": "ramme-helse-ar-2025",
+     "type": "tall",
+     "tema": "Budsjettet",
+     "aar": "2025",
+     "periode": "hele året",
+     "kommunalomrade": "Helse og omsorg",
+     "omrader": [
+      "helse"
+     ],
+     "tekst": "Helse og omsorg brukte 801,4 mill. kr i 2025, 20,0 mill. kr mer enn revidert budsjett på 781,4 mill. kr. Opprinnelig budsjett var 709,4 mill. kr. Kommunen forklarer avviket med utskrivningsklare pasienter, høyt sykefravær med overtid og vikarbyrå, ekstra døgnbemanning i perioder, videreført kjøkkendrift, nye kjøpte oppdrag og forsinkede innsparingstiltak (s. 9). Mot slutten av året ble 60 mill. kr saldert inn på fellesområdet.",
+     "merknad": "Tabellen «Totaloversikt drift – fordelt på rammeområder» på s. 9 oppgir andre tall for Helse og omsorg: budsjett 789,5 mill. kr og regnskap 807,9 mill. kr (avvik −2,3 %).",
+     "kilde": {
+      "id": "ar-2025",
+      "side": 46,
+      "del": "Status økonomi i rammeområdet"
+     }
+    },
+    {
+     "id": "sektorer-helse-ar-2025",
+     "type": "tall",
+     "tema": "Budsjettet",
+     "aar": "2025",
+     "periode": "hele året",
+     "kommunalomrade": "Helse og omsorg",
+     "omrader": [
+      "helse"
+     ],
+     "tekst": "Alle tre sektorene i Helse og omsorg gikk med merforbruk: hjemmebaserte tjenester 21 mill. kr, institusjon og distrikt om lag 17 mill. kr og mestring og oppfølging 27 mill. kr brutto (17 mill. kr når inntektene tas med). I mestring og oppfølging ga kjøpte tjenester som ikke lå i budsjettet en bruttokostnad på 16,25 mill. kr, og BPA økte med 2,7 mill. kr (s. 48).",
+     "kilde": {
+      "id": "ar-2025",
+      "side": 46,
+      "del": "Kommentar til status økonomi, s. 46–48"
+     }
+    },
+    {
+     "id": "sommervikarer-helse-2025",
+     "type": "forklaring",
+     "tema": "Sommervikarer",
+     "aar": "2025",
+     "periode": "sommeren",
+     "kommunalomrade": "Helse og omsorg",
+     "omrader": [
+      "helse"
+     ],
+     "tekst": "Sektor institusjon og distrikt leide boliger til sommervikarer uten at det var budsjettert for det.",
+     "sitat": "Midlertidig leie av boliger til sommervikarer uten budsjettdekning.",
+     "kilde": {
+      "id": "t2-2025",
+      "side": 30
+     }
+    },
+    {
+     "id": "sykefravaer-helse-ar-2025",
+     "type": "tall",
+     "tema": "Sykefravær",
+     "aar": "2025",
+     "periode": "hele året",
+     "kommunalomrade": "Helse og omsorg",
+     "omrader": [
+      "helse"
+     ],
+     "tekst": "Sykefraværet i sektor institusjon og distrikt i Helse og omsorg gikk ned fra 14,88 % i 2024 til 11,52 % i 2025. Sektoren hadde likevel 18,5 vakante stillinger gjennom året, og sammen med mangel på sykepleiere ga det økt bruk av overtid og bemanningsbyrå.",
+     "verdier": {
+      "enhet": "%",
+      "2024": 14.88,
+      "2025": 11.52
+     },
+     "kilde": {
+      "id": "ar-2025",
+      "side": 43,
+      "del": "Sektor institusjon og distrikt"
+     }
+    },
+    {
+     "id": "overliggere-helse-ar-2025",
+     "type": "tall",
+     "tema": "Utskrivningsklare pasienter",
+     "aar": "2025",
+     "periode": "hele året",
+     "kommunalomrade": "Helse og omsorg",
+     "omrader": [
+      "helse"
+     ],
+     "tekst": "Antall døgn med utskrivningsklare pasienter økte fra 715 i 2024 til 1125 i 2025 (ikke hensyntatt klager). Utgiften til utskrivningsklare pasienter ble 6,6 mill. kr, mot et budsjett på 1,6 mill. kr (s. 46).",
+     "verdier": {
+      "enhet": "døgn",
+      "2024": 715,
+      "2025": 1125
+     },
+     "kilde": {
+      "id": "ar-2025",
+      "side": 45,
+      "del": "Utvalgte resultater, felles"
+     }
+    },
+    {
+     "id": "vikarbyra-helse-ar-2025",
+     "type": "tall",
+     "tema": "Vikarbyrå og overtid",
+     "aar": "2025",
+     "periode": "hele året",
+     "kommunalomrade": "Helse og omsorg",
+     "omrader": [
+      "helse"
+     ],
+     "tekst": "Helse og omsorg brukte 30,6 mill. kr på vikarbyrå i 2025, ned fra 45,9 mill. kr i 2024. Overtiden økte fra 21,2 til 23,8 mill. kr. Mest gikk ned i sektor institusjon og distrikt, der vikarbyrå falt fra 30,7 til 18,4 mill. kr, mens overtiden var 10,1 mill. kr begge år.",
+     "merknad": "I tabellen summerer ikke vikarbyrå-tallene per enhet seg til sektortotalene for Hjemmebaserte tjenester og Mestring og oppfølging. Teksten på s. 48 sier at Mestring og oppfølging brukte 15 mill. kr mindre på vikarbyrå enn i 2024, mens tabellen viser en økning fra 0,3 til 1,4 mill. kr. Årsrapport 2024 oppgir 43,1 mill. kr til vikarbyrå i 2024 (s. 47).",
+     "verdier": {
+      "enhet": "kr",
+      "vikarbyra_2024": 45850786,
+      "vikarbyra_2025": 30627294,
+      "overtid_2024": 21197064,
+      "overtid_2025": 23821708
+     },
+     "kilde": {
+      "id": "ar-2025",
+      "side": 49,
+      "del": "tabell over vikarbyrå og overtid per enhet"
+     }
+    },
+    {
+     "id": "vikarbyra-forklaring-ar-2025",
+     "type": "forklaring",
+     "tema": "Vikarbyrå og overtid",
+     "aar": "2025",
+     "periode": "hele året",
+     "kommunalomrade": "Helse og omsorg",
+     "omrader": [
+      "helse"
+     ],
+     "tekst": "Sektor institusjon og distrikt forklarer hvordan mindre vikarbyrå er blitt erstattet.",
+     "sitat": "Sammenlignet med 2024 er det en betydelig reduksjon i bruk av vikarbyrå, fra om lag kr 30,6 millioner til kr 18,2 millioner i 2025, en reduksjon på om lag kr 12,4 millioner. Samtidig er overtidsnivået tilnærmet uendret fra 2024, noe som viser at redusert bruk av vikarbyrå i stor grad er erstattet med økt bruk av egne ansatte.",
+     "kilde": {
+      "id": "ar-2025",
+      "side": 47
+     }
+    },
+    {
+     "id": "ramme-helse-2024-ar",
+     "type": "tall",
+     "tema": "Budsjettet",
+     "aar": "2024",
+     "periode": "hele året",
+     "kommunalomrade": "Helse og omsorg",
+     "omrader": [
+      "helse"
+     ],
+     "tekst": "Helse og omsorg brukte 770,3 mill. kr i 2024, 67,5 mill. kr (9,6 %) mer enn revidert budsjett på 702,8 mill. kr. Merforbruket var størst i sektor institusjon og distrikt (31,3 mill. kr), mestring og oppfølging (14,5 mill. kr) og hjemmebaserte tjenester (13,3 mill. kr). Fellesområdet hadde også merforbruk, blant annet fordi 16 mill. kr i vedtatte strukturtiltak fortsatt ikke er innfridd.",
+     "merknad": "Tabellen viser 8,3 mill. kr i merforbruk på fellesområdet (sektor 30), mens teksten på samme side sier 7,7 mill. kr.",
+     "kilde": {
+      "id": "ar-2024",
+      "side": 46,
+      "del": "tabell «Status økonomi i rammeområdet»"
+     }
+    },
+    {
+     "id": "legesenter-husleie-2024",
+     "type": "tall",
+     "tema": "Husleie",
+     "aar": "2024",
+     "periode": "januar–august",
+     "kommunalomrade": "Helse og omsorg",
+     "omrader": [
+      "helse"
+     ],
+     "tekst": "Husleien for Torvet legesenter er om lag dobbelt så høy som budsjettert. Den var en del av løftet om fastlegeordningen kommunestyret vedtok i 2022, men ble ikke fullt finansiert.",
+     "kilde": {
+      "id": "t2-2024",
+      "side": 24
+     }
+    },
+    {
+     "id": "hjemmebaserte-2024-ar",
+     "type": "tall",
+     "tema": "Sommervikarer",
+     "aar": "2024",
+     "periode": "hele året",
+     "kommunalomrade": "Helse og omsorg",
+     "omrader": [
+      "helse"
+     ],
+     "tekst": "Sektor hjemmebaserte tjenester brukte i overkant av 13 mill. kr (6,4 %) mer enn budsjettert. Narvik hjemmesykepleie klarte sommeren nesten uten vikarer fra byrå, men endte likevel med 7 mill. kr i merforbruk til overtid, ekstrahjelp, ferievikarer og vikarbyrå. Legetjenesten fikk 5 mill. kr ekstra i andre tertial til leger ved fravær.",
+     "kilde": {
+      "id": "ar-2024",
+      "side": 46
+     }
+    },
+    {
+     "id": "tilreisende-vikarer-2024",
+     "type": "forklaring",
+     "tema": "Sommervikarer",
+     "aar": "2024",
+     "periode": "sommeren",
+     "kommunalomrade": "Helse og omsorg",
+     "omrader": [
+      "helse"
+     ],
+     "tekst": "En avtale om utvidet arbeidstid om sommeren kostet 1,2 mill. kr, som kommunen regner som rimeligere enn vikar fra byrå (s. 22).",
+     "sitat": "For å kunne ha full drift gjennom sommeren er det benyttet egne vikarer, sommeravtale, vikarer fra byrå og overtid. Mange av de tilreisende vikarene har fått dekket husleie og reise som et rekrutteringstiltak.",
+     "kilde": {
+      "id": "t2-2024",
+      "side": 20
+     }
+    },
+    {
+     "id": "sykefravaer-helse-2024",
+     "type": "tall",
+     "tema": "Sykefravær",
+     "aar": "2024",
+     "periode": "januar–august",
+     "kommunalomrade": "Helse og omsorg",
+     "omrader": [
+      "helse"
+     ],
+     "tekst": "Sykefraværet i Helse og omsorg var 14,5 % fra januar til august 2024.",
+     "merknad": "Tallet er fra tertialrapporten for 2025, som sammenligner med 2024. Verken tertialrapporten eller årsrapporten for 2024 oppgir sykefravær per kommunalområde.",
+     "verdier": {
+      "enhet": "%",
+      "2024": 14.5
+     },
+     "kilde": {
+      "id": "t2-2025",
+      "side": 4,
+      "del": "figur over sykefravær per kommunalområde"
+     }
+    },
+    {
+     "id": "overliggere-helse-2024-ar",
+     "type": "tall",
+     "tema": "Utskrivningsklare pasienter",
+     "aar": "2024",
+     "periode": "hele året",
+     "kommunalomrade": "Helse og omsorg",
+     "omrader": [
+      "helse"
+     ],
+     "tekst": "Kommunen hadde 715 overliggerdøgn ved UNN Narvik i 2024, nesten 100 færre enn i 2023. Rapporten oppgir ikke hva det kostet.",
+     "kilde": {
+      "id": "ar-2024",
+      "side": 44
+     }
+    },
+    {
+     "id": "vikarbyra-helse-2024-ar",
+     "type": "tall",
+     "tema": "Vikarbyrå og overtid",
+     "aar": "2024",
+     "periode": "hele året",
+     "kommunalomrade": "Helse og omsorg",
+     "omrader": [
+      "helse"
+     ],
+     "tekst": "Helse og omsorg brukte 43,1 mill. kr på vikarbyrå i 2024, og om lag 21 mill. kr på overtid (s. 9). Sektor institusjon og distrikt sto for 34,4 mill. kr av vikarbyråbruken, mest Furumoen sykehjem med 10,3 mill. kr. Hjemmebaserte tjenester brukte 8,5 mill. kr og mestring og oppfølging 0,3 mill. kr.",
+     "verdier": {
+      "enhet": "kr",
+      "vikarbyra_2024": 43138309
+     },
+     "kilde": {
+      "id": "ar-2024",
+      "side": 47,
+      "del": "tabell «Vikarbyråbruk 2024»"
+     }
+    },
+    {
+     "id": "institusjon-distrikt-2024-ar",
+     "type": "forklaring",
+     "tema": "Vikarbyrå og overtid",
+     "aar": "2024",
+     "periode": "hele året",
+     "kommunalomrade": "Helse og omsorg",
+     "omrader": [
+      "helse"
+     ],
+     "tekst": "Sektor institusjon og distrikt, som omfatter sykehjemmene og hjemmetjenesten i distriktene, brukte litt over 31 mill. kr (10,8 %) mer enn budsjettert. Kjøpsvik omsorg hadde det klart høyeste merforbruket.",
+     "sitat": "Enhetene melder om økte personellkostnader på grunn av mangel på fast arbeidskraft og få tilgjengelige vikarer. Dette medfører bruk av dyre løsninger for å sikre tilstrekkelig med personell ut i fra den tjenesteproduksjonen de har i oppdrag. Dette er den sektoren som bruker mest vikarbyrå og overtid.",
+     "kilde": {
+      "id": "ar-2024",
+      "side": 47
+     }
+    }
+   ]
+  },
+  {
+   "id": "datasenter-bjerkvik",
+   "tittel": "Datasenteret i Bjerkvik",
+   "ingress": "Aker Nscale bygger datasentre på Skoglund industriområde i Bjerkvik. Kommunen har regulert området og er høringsinstans, mens strømtillatelsene gis av NVE. Her er vedtakene og tallene fra plandokumentene og NVE-sakene.",
+   "kontrollert": "2026-10-20",
+   "nokkeltall": [
+    {
+     "navn": "Strøm tildelt Aker Nscale",
+     "verdi": "130 MW",
+     "tekst": "tildelt av Nordkraft Industrinett fra Skoglund transformatorstasjon",
+     "kilde": {
+      "id": "nve-brev-2025",
+      "side": 2
+     }
+    },
+    {
+     "navn": "Reservert hos Statnett",
+     "verdi": "230 MW",
+     "tekst": "under Kvandal transformatorstasjon, 100 MW av dem med særlige vilkår",
+     "kilde": {
+      "id": "statnett-2026",
+      "side": 2
+     }
+    },
+    {
+     "navn": "Ny 420 kV-tilknytning",
+     "verdi": "2029",
+     "tekst": "når anleggene skal kunne være i drift etter søknadens framdriftsplan",
+     "kilde": {
+      "id": "statnett-2026",
+      "side": 1
+     }
+    }
+   ],
+   "rolle": [
+    {
+     "tekst": "Kommunestyret vedtok detaljreguleringsplanen for datasenter Bjerkvik 29.04.2021. Formålet er å legge til rette for datasenter eller annen kraftkrevende næring.",
+     "kilde": {
+      "id": "plan-datasenter-2021",
+      "side": 1
+     }
+    },
+    {
+     "tekst": "Kommunen var høringsinstans for søknaden om ny 420 kV-tilknytning og hadde ingen merknader.",
+     "kilde": {
+      "id": "nordkraft-2026",
+      "side": 2
+     }
+    },
+    {
+     "tekst": "Nscale har startet arbeidet med en reguleringsplan for kjølevann til datasenteret, med inntak og utslipp i sjøen ved Bjerkvik eller på Lallasletta. Planen skal behandles av kommunen.",
+     "kilde": {
+      "id": "kjolevann-2026",
+      "side": 1
+     }
+    },
+    {
+     "tekst": "Datasenteret står ikke blant investeringsprosjektene i kommunens økonomiplan for 2026–2029.",
+     "kilde": {
+      "id": "okplan-2026",
+      "side": 14
+     }
+    }
+   ],
+   "tidslinje": [
+    {
+     "dato": "29.04.2021",
+     "tekst": "Kommunestyret vedtar detaljreguleringsplan for datasenter Bjerkvik (sak 037/21, plan-ID 2019002).",
+     "kilde": {
+      "id": "plan-datasenter-2021",
+      "side": 1
+     }
+    },
+    {
+     "dato": "2024",
+     "tekst": "Skoglund transformatorstasjon blir ferdig. Nordkraft Industrinett eier stasjonen og har reservert kapasitet hos Statnett.",
+     "kilde": {
+      "id": "nve-brev-2025",
+      "side": 2
+     }
+    },
+    {
+     "dato": "16.10.2025",
+     "tekst": "Aker Nscale søker NVE om konsesjon for strømanlegg til to datasentre, med et effektbehov på 130 MW.",
+     "kilde": {
+      "id": "nve-brev-2025",
+      "side": 2
+     }
+    },
+    {
+     "dato": "08.12.2025",
+     "tekst": "NVE gir Aker Nscale anleggskonsesjon. Anleggene skal være i drift innen to år, og konsesjonen gjelder til 2075.",
+     "kilde": {
+      "id": "nve-konsesjon-2025",
+      "side": 1
+     }
+    },
+    {
+     "dato": "06.01.2026",
+     "tekst": "NVE sender Nordkraft Industrinetts søknad om ny Skoglund transformatorstasjon med 420 kV-kabler fra Kvandal på høring.",
+     "kilde": {
+      "id": "statnett-2026",
+      "side": 1
+     }
+    },
+    {
+     "dato": "05.02.2026",
+     "tekst": "Statnett bekrefter i høringssvaret at 230 MW er reservert under Kvandal.",
+     "kilde": {
+      "id": "statnett-2026",
+      "side": 2
+     }
+    },
+    {
+     "dato": "22.06.2026",
+     "tekst": "Nordland fylkeskommune opprettholder innsigelsen til reguleringsplanen for Skoglund–Lallasletta etter kommunestyrets planvedtak.",
+     "kilde": {
+      "id": "kjolevann-2026",
+      "side": 7
+     }
+    },
+    {
+     "dato": "03.07.2026",
+     "tekst": "Oppstartsmøte hos kommunen for detaljregulering av kjølevannsanlegg Bjerkvik (plan-ID 2026007). Området som varsles er på om lag 6 200 dekar.",
+     "kilde": {
+      "id": "kjolevann-2026",
+      "side": 2
+     }
+    }
+   ],
+   "lenker": [
+    {
+     "href": "arbeid",
+     "navn": "Arbeid",
+     "tekst": "Ledighet, ledige stillinger og hvor folk i Narvik jobber."
+    },
+    {
+     "href": "inntekter",
+     "navn": "Inntekter",
+     "tekst": "Kommunens inntekter, blant annet eiendomsskatt."
+    },
+    {
+     "href": "befolkning",
+     "navn": "Befolkning",
+     "tekst": "Folketall og flytting, også for Bjerkvik som delområde."
+    }
+   ]
+  },
+  {
+   "id": "alpin-vm-2029",
+   "tittel": "Alpin-VM 2029",
+   "ingress": "Narvik skal arrangere VM i alpint i 2029. Arrangementet og utbyggingen i Narvikfjellet ligger i egne selskaper, ikke i kommunen. Her er det kommunen selv har vedtatt og satt av penger til, fra økonomiplanen og plansakene.",
+   "kontrollert": "2026-10-20",
+   "nokkeltall": [
+    {
+     "navn": "Kommunens bidrag til VM-anlegget",
+     "verdi": "31,25 mill. kr",
+     "tekst": "satt av i 2027 i investeringsbudsjettet, prosjekt 832028",
+     "kilde": {
+      "id": "okplan-2026",
+      "side": 14
+     }
+    },
+    {
+     "navn": "Reguleringsplan for VM-anlegget",
+     "verdi": "19.06.2025",
+     "tekst": "kommunestyret vedtok endret områderegulering for Fagernesfjellet",
+     "kilde": {
+      "id": "plan-fagernesfjellet-2025",
+      "side": 1
+     }
+    }
+   ],
+   "rolle": [
+    {
+     "tekst": "Narvikfjellet Allmenn AS bygger ut anlegget, og arrangørselskapet (LOC) gjennomfører mesterskapet. Kommunen oppgir at det ikke går penger fra kommunen inn i de to selskapene, verken til drift eller investering, utenom bidraget i økonomiplanen.",
+     "kilde": {
+      "id": "vm-organisering"
+     }
+    },
+    {
+     "tekst": "Bidraget var opprinnelig en kulvert. Etter endringer i løypene trengs ikke kulverten, og kommunedirektøren foreslår å bruke det samme beløpet på en lett nedfart og serviceløype.",
+     "kilde": {
+      "id": "okplan-2026",
+      "side": 12
+     }
+    },
+    {
+     "tekst": "Kultur har det operative ansvaret for kommunens vertskapsrolle under VM.",
+     "kilde": {
+      "id": "okplan-2026",
+      "side": 27
+     }
+    },
+    {
+     "tekst": "Veg og park har prioritert uttalelser til reguleringsplanene for VM.",
+     "kilde": {
+      "id": "tertial-2-2026",
+      "side": 41
+     }
+    }
+   ],
+   "tidslinje": [
+    {
+     "dato": "04.01.2024",
+     "tekst": "Narvikfjellet Allmenn AS varsler endring av områdereguleringen for Fagernesfjellet for å bygge anlegget til VM 2029.",
+     "kilde": {
+      "id": "plan-fagernesfjellet-2025",
+      "side": 4
+     }
+    },
+    {
+     "dato": "19.06.2025",
+     "tekst": "Kommunestyret vedtar reguleringsendringen for Fagernesfjellet (plan 2012015), med nye VM-traseer, målområde og ny stolheis.",
+     "kilde": {
+      "id": "plan-fagernesfjellet-2025",
+      "side": 1
+     }
+    },
+    {
+     "dato": "2027",
+     "tekst": "Kommunens bidrag på 31,25 mill. kr ligger i økonomiplanen for 2027.",
+     "kilde": {
+      "id": "okplan-2026",
+      "side": 14
+     }
+    }
+   ],
+   "mangler": "Statens bidrag til anlegget og vedtakene i Stortinget er ikke med ennå.",
+   "lenker": [
+    {
+     "href": "gjeld",
+     "navn": "Gjeld og investeringer",
+     "tekst": "Kommunens største investeringer år for år."
+    },
+    {
+     "href": "arbeid",
+     "navn": "Arbeid",
+     "tekst": "Ledighet og ledige stillinger måned for måned."
+    },
+    {
+     "href": "befolkning",
+     "navn": "Befolkning",
+     "tekst": "Folketall og SSBs framskriving."
+    }
+   ]
+  }
+ ]
+}
