@@ -167,16 +167,6 @@ def main() -> int:
                 measure("Kommunens netto driftsresultat (overskudd), andel av driftsinntektene", fy, fin("12143", "AGD23"), unit="%", decimals=1, kind="change", against="gruppe", source=ssb("12143")),
             ],
         },
-        {
-            "id": "inntekter-utgifter",
-            "fra": "inntekter", "til": ["utgifter", "budsjett"],
-            "tittel": "Inntektene og utgiftene",
-            "tekst": "Kommunen kan bare bruke det den får inn, låner eller tar av fond, så inntektene kan påvirke hvor mye som går til tjenester.",
-            "maal": [
-                measure("Kommunens driftsinntekter per innbygger", fy, fin("12137", "AGD13"), unit="kr", against="gruppe", source=ssb("12137")),
-                measure("Eiendomsskatt kommunen får inn, per innbygger", fy, fin("12137", "AG10"), unit="kr", against="gruppe", source=ssb("12137")),
-            ],
-        },
     ]
 
     # Housing: SSB's own comparison regions differ by table, so each number names its own average.
@@ -290,6 +280,9 @@ def main() -> int:
             continue
         pool.append(measure(f"Kommunens netto utgifter til {c['name'][0].lower() + c['name'][1:]} per innbygger", y, area_pc(key), unit="kr", against="gruppe", source=ssb("12362")))
         pool[-1]["sider"] = ["utgifter"]
+    for art, label in [("AGD13", "Kommunens driftsinntekter per innbygger"), ("AG10", "Eiendomsskatt kommunen får inn, per innbygger")]:
+        pool.append(measure(label, fy, fin("12137", art), unit="kr", against="gruppe", source=ssb("12137")))
+        pool[-1]["sider"] = ["inntekter"]
     pool.append(measure("Kommunens pensjonsforpliktelser til ansatte, per innbygger", fy, fin("12137", "40"), unit="kr", against="gruppe", source=ssb("12137")))
     pool[-1]["sider"] = ["gjeld"]
     standout: dict = {}

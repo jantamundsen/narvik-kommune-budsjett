@@ -481,67 +481,6 @@
    "skiller_seg_ut": true
   },
   {
-   "id": "inntekter-utgifter",
-   "fra": "inntekter",
-   "til": [
-    "utgifter",
-    "budsjett"
-   ],
-   "tittel": "Inntektene og utgiftene",
-   "tekst": "Kommunen kan bare bruke det den får inn, låner eller tar av fond, så inntektene kan påvirke hvor mye som går til tjenester.",
-   "maal": [
-    {
-     "navn": "Kommunens driftsinntekter per innbygger",
-     "aar": "2025",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 137368,
-      "harstad": 129955,
-      "rana": 115670,
-      "alta": 140215,
-      "gruppe": 114828,
-      "landet": 118564
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 20,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12137",
-      "url": "https://www.ssb.no/statbank/table/12137"
-     }
-    },
-    {
-     "navn": "Eiendomsskatt kommunen får inn, per innbygger",
-     "aar": "2025",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 6762,
-      "harstad": 4717,
-      "rana": 4577,
-      "alta": 4496,
-      "gruppe": 2649,
-      "landet": 3275
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 155,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12137",
-      "url": "https://www.ssb.no/statbank/table/12137"
-     }
-    }
-   ],
-   "skiller_seg_ut": true
-  },
-  {
    "id": "boliger-folketall",
    "fra": "bolig",
    "til": [
