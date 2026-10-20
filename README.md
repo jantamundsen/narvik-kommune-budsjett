@@ -37,7 +37,7 @@ scripts/build_fakta.py    sjekker punktene i config/fakta.json (kilde, side, omr
 site/                     den statiske nettsiden: index.html (regnskap), omrade.html (ett område, en tjeneste,
                           en kostnadstype), budsjett.html (budsjett mot regnskap), lopende.html (året så langt),
                           tiltak.html (innsparinger), befolkning.html (befolkning), om.html (om siden og hvordan
-                          man melder fra om feil); style.css og common.js er felles. og.png er bildet som vises
+                          man melder fra om feil på e-post); style.css og common.js er felles. og.png er bildet som vises
                           når en lenke deles (Open Graph); lag det på nytt hvis tittelen endres
 .github/workflows/        oppdaterer data fra SSB og publiserer til GitHub Pages
 ```
