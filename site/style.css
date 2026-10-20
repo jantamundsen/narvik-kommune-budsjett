@@ -406,9 +406,6 @@ details .fact-list { margin-top: 4px; }
 .line-chart .dot { fill: var(--accent); }
 .line-chart text { fill: var(--ink-2); font-size: 12px; }
 .line-chart text.v { fill: var(--ink); }
-.later { border: 1px dashed var(--muted); border-radius: 10px; padding: 18px 20px; display: grid; gap: 6px; }
-.later h3 { font-size: 1rem; font-weight: 600; }
-.later p { font-size: 0.92rem; color: var(--ink-2); }
 @media (max-width: 900px) and (min-width: 681px) { #summary.stats3 { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 680px) {
   #summary.stats3 { grid-template-columns: repeat(2, 1fr); }

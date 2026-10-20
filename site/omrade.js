@@ -278,7 +278,7 @@ function outlook(lo) {
   const O = B?.older, now = O?.[B?.last]?.[lo];
   const to = O?.['2040'] ? '2040' : Object.keys(O || {}).sort().at(-1);
   if (now == null || !to || to === B.last || O[to][lo] == null) return '';
-  return `<div class="status-note outlook"><p><strong>Hvor mange blir de?</strong> 1. januar ${B.last} bodde det ${nb(now)} innbyggere ${lo} år og over i Narvik. SSBs framskriving venter rundt ${nb(Math.round(O[to][lo] / 10) * 10)} i ${to}. <a href="befolkning.html?aar=${to}#pyramide">Se befolkningspyramiden for ${to}</a>.</p></div>`;
+  return `<div class="status-note outlook"><p><strong>Hvor mange blir de?</strong> 1. januar ${B.last} bodde det ${nb(now)} innbyggere ${lo} år og over i Narvik. SSBs framskriving venter rundt ${nb(Math.round(O[to][lo] / 10) * 10)} i ${to}. <a href="befolkning?aar=${to}#pyramide">Se befolkningspyramiden for ${to}</a>.</p></div>`;
 }
 
 // Sum a per-year value over functions; null when no function has it.

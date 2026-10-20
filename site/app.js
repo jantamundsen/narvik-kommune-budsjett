@@ -57,7 +57,7 @@ async function loadBudgetYears() {
 function drawBudgetLink() {
   const a = document.getElementById('budget-link');
   a.hidden = !budgetYears.has(year);
-  a.href = 'budsjett.html?aar=' + year;
+  a.href = 'budsjett?aar=' + year;
   a.textContent = `Se budsjett mot regnskap for ${year} →`;
 }
 
@@ -125,7 +125,7 @@ function drawNote(svcTotal) {
 }
 
 // Each area links to omrade.html, which drills down into its services and cost types.
-const areaHref = key => `omrade.html?omrade=${key}&aar=${year}`;
+const areaHref = key => `omrade?omrade=${key}&aar=${year}`;
 
 function rowFor(c, svcTotal, maxShare, prev) {
   const v = c.narvik_1000kr[year];
