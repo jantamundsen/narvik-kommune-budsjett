@@ -427,6 +427,8 @@ details .fact-list { margin-top: 4px; }
   #cmp-table table.stack tr { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .ptable table.stack .chg-bar { display: none; }
   .ptable table.stack td[data-label]::before { content: attr(data-label); display: block; font-size: 0.72rem; font-weight: 500; color: var(--ink-2); }
+  /* naering.html: the industry text is long, so it gets its own line in the card. */
+  #big-list.stack td:nth-child(3) { grid-column: 1 / -1; order: 1; }
   .ptable table.stack tr.me { background: var(--accent-soft); }
   .ptable table.stack tr.total { background: var(--paper); }
   .ptable table.stack tr.krets { background: var(--paper); margin-left: 16px; padding: 8px 12px; }

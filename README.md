@@ -18,6 +18,8 @@ Siden *Bolig* (`bolig.html`) viser boligene i Narvik etter bygningstype og bygge
 
 Siden *Arbeid* (`arbeid.html`) viser helt ledige og nye ledige stillinger måned for måned fra Nav, og fra SSB hvor mange som har arbeid, hvem som står utenfor arbeid, hvor folk jobber etter sektor og næring, og pendling, sammenlignet med de samme kommunene som ellers på siden. Navs tall er Excel-filene HL060 (helt ledige per kommune, fra 2020) og STIL030 (nye ledige stillinger per kommune, fra 2021) på [nav.no](https://www.nav.no/no/nav-og-samfunn/statistikk/arbeidssokere-og-stillinger-statistikk). Lenkene endres hver måned, så `scripts/fetch_arbeid.py` finner dem på sidene og i Navs arkiv for hvert år. Kan ikke nav.no leses, beholdes forrige måneds tall. SSB-tallene er tabellene [06445](https://www.ssb.no/statbank/table/06445), [13563](https://www.ssb.no/statbank/table/13563), [13472](https://www.ssb.no/statbank/table/13472), [11616](https://www.ssb.no/statbank/table/11616) og [03321](https://www.ssb.no/statbank/table/03321). Alt skrives til `site/data/arbeid.json`. Andeler og snitt som regnes ut på siden, merkes «beregnet».
 
+Siden *Næringsliv* (`naering.html`) viser bedrifter etter næring og antall ansatte, nye foretak og konkurser kvartal for kvartal, hvor mange nye foretak som fortsatt er i drift etter ett til tre år, og overnattinger, fra SSB-tabellene [10309](https://www.ssb.no/statbank/table/10309), [08076](https://www.ssb.no/statbank/table/08076), [07165](https://www.ssb.no/statbank/table/07165), [13701](https://www.ssb.no/statbank/table/13701) og [12894](https://www.ssb.no/statbank/table/12894), med folketall fra [07459](https://www.ssb.no/statbank/table/07459). De største arbeidsplassene (underenheter med minst 50 ansatte) hentes fra [Enhetsregisteret](https://data.brreg.no/enhetsregisteret/api/docs/index.html) hos Brønnøysundregistrene; enkeltpersonforetak er ikke med. Kan ikke Enhetsregisteret leses, beholdes forrige liste. `scripts/fetch_naering.py` skriver alt til `site/data/naering.json`.
+
 Siden *Året så langt* (`lopende.html`) følger budsjettet og forbruket i inneværende år: brukt hittil, avvik og kommunedirektørens prognose per tjenesteområde, hvordan rammene er endret siden vedtaket, og inntektene. Tallene kommer fra tertialrapportene, som bare finnes som PDF og er skrevet inn i `config/lopende_2026.json` med side. I tillegg vises skatteinngangen måned for måned fra SSBs [tabell 07022](https://www.ssb.no/statbank/table/07022), som oppdateres automatisk.
 
 Siden *Innsparinger* (`tiltak.html`) viser kuttene som ble lagt inn i budsjettet tiltak for tiltak, hvilke kommunestyret tok ut igjen i samme vedtak, og hva tertialrapporter og årsrapporter sier skjedde med dem. Den viser også hele endringen i rammen til hvert tjenesteområde, slik Framsikt forklarer den.
@@ -45,6 +47,8 @@ scripts/fetch_finans.py   henter inntekter, resultat, fond, gjeld og investering
 scripts/fetch_bolig.py    henter boligtall fra SSB og skriver site/data/bolig.json
 scripts/fetch_arbeid.py   henter ledighet og ledige stillinger fra Nav og arbeidsmarkedstall fra SSB, og skriver
                           site/data/arbeid.json
+scripts/fetch_naering.py  henter bedrifter, nye foretak, konkurser og overnattinger fra SSB og de største
+                          arbeidsplassene fra Enhetsregisteret, og skriver site/data/naering.json
 scripts/build_fakta.py    sjekker punktene i config/fakta.json (kilde, side, område) og skriver site/data/fakta.json
 scripts/build_saker.py    sjekker sakene i config/saker.json (kilde, side, dato) og skriver site/data/saker.json
 site/                     den statiske nettsiden: index.html (regnskap), omrade.html (ett område, en tjeneste,
@@ -72,6 +76,7 @@ python scripts/fetch_befolkning.py    # befolkningstall og framskriving fra SSB
 python scripts/fetch_finans.py        # inntekter, gjeld og investeringer fra SSB
 python scripts/fetch_bolig.py         # boligtall fra SSB
 python scripts/fetch_arbeid.py        # ledighet og stillinger fra Nav, arbeidsmarked fra SSB
+python scripts/fetch_naering.py       # bedrifter og foretak fra SSB, store arbeidsplasser fra Brreg
 python -m http.server -d site 8000    # åpne http://localhost:8000
 ```
 
