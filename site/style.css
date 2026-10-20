@@ -459,3 +459,8 @@ details .fact-list { margin-top: 4px; }
 .rank.inv .rank-row.total .rank-name { font-weight: 700; }
 @media (max-width: 680px) { .rank.inv .rank-row { grid-template-columns: minmax(0, 1fr) auto 0; } }
 .rank.inv .rank-row.rest .rank-fill { background: var(--rule); }
+
+/* bolig.html: bar lists in half-width panels. */
+.panel.bars-panel { align-content: start; }
+.hbars .hb.bo { grid-template-columns: minmax(96px, 180px) minmax(40px, 1fr) 52px 40px; }
+@media (max-width: 900px) { #summary.stats3 > :last-child:nth-child(odd) { grid-column: 1 / -1; } }
