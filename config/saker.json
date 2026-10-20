@@ -63,6 +63,17 @@
       "full": "Kontrollutvalget i Narvik, protokoll fra møtet 23.02.2026, sak 05/26 «Narvik kommunes økonomiske forpliktelser i tilknytning til Alpin-VM 2029 – kommunedirektørens svar»",
       "pdf": "https://www.narvik.kommune.no/~/_f/p1/i1a533e5c-7dc4-44e9-9d5c-da1987e3e398/protokoll-narvik-kontrollutvalg-20260223.PDF"
     },
+    "nve-skoglund-2026": {
+      "navn": "NVE, vedtaksbrev 11.03.2026",
+      "full": "NVE, «NVE gir Nordkraft Industrinett tillatelse til ny transformatorstasjon for 420 kV ved Skoglund i Narvik», brev 11.03.2026 (NVE-ref. 202503343-17)",
+      "url": "https://www.nve.no/22622/A",
+      "pdf": "https://webfileservice.nve.no/API/PublishedFiles/Download/ef898a5b-14a7-4d5e-8dfa-51fc72100e4a/202503343/3450303"
+    },
+    "nve-tvangsmulkt-2026": {
+      "navn": "NVE: NVE gir Nscale varsel om tvangsmulkt",
+      "full": "NVE, nyhetssak «NVE gir Nscale varsel om tvangsmulkt», 29.09.2026",
+      "url": "https://www.nve.no/nytt-fra-nve/nyheter-energi/nve-gir-nscale-varsel-om-tvangsmulkt/"
+    },
     "trafikk-datasenter-2020": {
       "navn": "Trafikkanalyse, datasenter Bjerkvik",
       "full": "Multiconsult for Nordkraft, trafikkanalyse til detaljregulering datasenter Bjerkvik, 07.10.2020 (vedlegg til reguleringsplanen)",
@@ -136,7 +147,7 @@
         { "navn": "Nscale", "rolle": "Står bak forslaget til reguleringsplan for kjølevann til datasenteret.", "kilde": { "id": "kjolevann-2026", "side": 1 } },
         { "navn": "Nordkraft Industrinett AS", "rolle": "Eier Skoglund transformatorstasjon, har tildelt 130 MW til Aker Nscale og har søkt om ny 420 kV-tilknytning fra Kvandal.", "kilde": [{ "id": "nve-brev-2025", "side": 2 }, { "id": "statnett-2026", "side": 1 }] },
         { "navn": "Statnett", "rolle": "Eier transmisjonsnettet. Har reservert 230 MW under Kvandal transformatorstasjon.", "kilde": [{ "id": "nve-brev-2025", "side": 2 }, { "id": "statnett-2026", "side": 2 }] },
-        { "navn": "NVE", "rolle": "Gir konsesjon til strømanleggene.", "kilde": { "id": "nve-konsesjon-2025", "side": 1 } },
+        { "navn": "NVE", "rolle": "Gir konsesjon til strømanleggene og godkjenner analysen av overskuddsvarme.", "kilde": [{ "id": "nve-konsesjon-2025", "side": 1 }, { "id": "nve-tvangsmulkt-2026" }] },
         { "navn": "Narvik kommune", "rolle": "Planmyndighet: vedtok reguleringsplanen i 2021 og skal behandle kjølevannsplanen. Høringsinstans i NVE-saken om ny 420 kV-tilknytning.", "kilde": [{ "id": "plan-datasenter-2021", "side": 1 }, { "id": "nordkraft-2026", "side": 2 }] },
         { "navn": "Nordland fylkeskommune", "rolle": "Har innsigelse til reguleringsplanen for Skoglund–Lallasletta.", "kilde": { "id": "kjolevann-2026", "side": 7 } }
       ],
@@ -156,6 +167,8 @@
           { "tekst": "Støy fra vifter og kjøleanlegg skal holde seg innenfor statens retningslinje for støy (T-1442), og støy fra driften skal være beregnet før det gis igangsettingstillatelse.", "kilde": { "id": "plan-datasenter-2021", "side": 5 } }
         ] },
         { "tittel": "Overskuddsvarme", "punkter": [
+          { "tekst": "Etter energiloven § 7-2 må datasentre over 2 MW lage en kost-nytteanalyse av mulighetene for å bruke overskuddsvarmen, og NVE må godkjenne den før byggestart. Regelen har gjeldt siden 1. april 2025. Den krever at muligheten vurderes; NVE skriver at det er lovpålagt «å vurdere om overskuddsvarmen kan benyttes».", "kilde": { "id": "nve-tvangsmulkt-2026" } },
+          { "tekst": "NVE skriver at Nscale Norway AS startet byggingen uten å ha levert analysen, og at det er et brudd på energiloven. NVE har pålagt Nscale å levere den og varslet tvangsmulkt hvis den ikke er kommet innen 15. november 2026.", "kilde": { "id": "nve-tvangsmulkt-2026" } },
           { "tekst": "Kjølevannsplanen skal også legge til rette for at overskuddsvarmen kan brukes, for eksempel på Lallasletta eller langs traseen. Nscale opplyser at de er i dialog med Futurum og kommunen om dette.", "kilde": { "id": "kjolevann-2026", "side": 8 } }
         ] }
       ],
@@ -166,8 +179,10 @@
         { "dato": "08.12.2025", "tekst": "NVE gir Aker Nscale anleggskonsesjon. Anleggene skal være i drift innen to år, og konsesjonen gjelder til 2075.", "kilde": { "id": "nve-konsesjon-2025", "side": 1 } },
         { "dato": "06.01.2026", "tekst": "NVE sender Nordkraft Industrinetts søknad om ny Skoglund transformatorstasjon med 420 kV-kabler fra Kvandal på høring.", "kilde": { "id": "statnett-2026", "side": 1 } },
         { "dato": "05.02.2026", "tekst": "Statnett bekrefter i høringssvaret at 230 MW er reservert under Kvandal.", "kilde": { "id": "statnett-2026", "side": 2 } },
+        { "dato": "11.03.2026", "tekst": "NVE gir Nordkraft Industrinett konsesjon til ny transformatorstasjon for 420 kV på Skoglund, med to 1,6 km lange jordkabler fra Kvandal. Aker Nscale blir eneste kunde.", "kilde": { "id": "nve-skoglund-2026", "side": 1 } },
         { "dato": "22.06.2026", "tekst": "Nordland fylkeskommune opprettholder innsigelsen til reguleringsplanen for Skoglund–Lallasletta etter kommunestyrets planvedtak.", "kilde": { "id": "kjolevann-2026", "side": 7 } },
-        { "dato": "03.07.2026", "tekst": "Oppstartsmøte hos kommunen for detaljregulering av kjølevannsanlegg Bjerkvik (plan-ID 2026007). Området som varsles er på om lag 6 200 dekar.", "kilde": { "id": "kjolevann-2026", "side": 2 } }
+        { "dato": "03.07.2026", "tekst": "Oppstartsmøte hos kommunen for detaljregulering av kjølevannsanlegg Bjerkvik (plan-ID 2026007). Området som varsles er på om lag 6 200 dekar.", "kilde": { "id": "kjolevann-2026", "side": 2 } },
+        { "dato": "29.09.2026", "tekst": "NVE varsler Nscale om tvangsmulkt hvis analysen av overskuddsvarme ikke er levert innen 15. november 2026.", "kilde": { "id": "nve-tvangsmulkt-2026" } }
       ],
       "lenker": [
         { "href": "arbeid", "navn": "Arbeid", "tekst": "Ledighet, ledige stillinger og hvor folk i Narvik jobber." },

@@ -49,6 +49,17 @@
    "url": "https://www.nve.no/25817/A",
    "pdf": "https://webfileservice.nve.no/API/PublishedFiles/Download/7c083275-d1db-4075-84ba-fd2f9de44cf1/202521094/3448577"
   },
+  "nve-skoglund-2026": {
+   "navn": "NVE, vedtaksbrev 11.03.2026",
+   "full": "NVE, «NVE gir Nordkraft Industrinett tillatelse til ny transformatorstasjon for 420 kV ved Skoglund i Narvik», brev 11.03.2026 (NVE-ref. 202503343-17)",
+   "url": "https://www.nve.no/22622/A",
+   "pdf": "https://webfileservice.nve.no/API/PublishedFiles/Download/ef898a5b-14a7-4d5e-8dfa-51fc72100e4a/202503343/3450303"
+  },
+  "nve-tvangsmulkt-2026": {
+   "navn": "NVE: NVE gir Nscale varsel om tvangsmulkt",
+   "full": "NVE, nyhetssak «NVE gir Nscale varsel om tvangsmulkt», 29.09.2026",
+   "url": "https://www.nve.no/nytt-fra-nve/nyheter-energi/nve-gir-nscale-varsel-om-tvangsmulkt/"
+  },
   "okplan-2026": {
    "navn": "Økonomiplan 2026–2029",
    "full": "Budsjett 2026 og økonomiplan 2026–2029, kommunedirektørens forslag",
@@ -852,11 +863,16 @@
     },
     {
      "navn": "NVE",
-     "rolle": "Gir konsesjon til strømanleggene.",
-     "kilde": {
-      "id": "nve-konsesjon-2025",
-      "side": 1
-     }
+     "rolle": "Gir konsesjon til strømanleggene og godkjenner analysen av overskuddsvarme.",
+     "kilde": [
+      {
+       "id": "nve-konsesjon-2025",
+       "side": 1
+      },
+      {
+       "id": "nve-tvangsmulkt-2026"
+      }
+     ]
     },
     {
      "navn": "Narvik kommune",
@@ -954,6 +970,18 @@
      "tittel": "Overskuddsvarme",
      "punkter": [
       {
+       "tekst": "Etter energiloven § 7-2 må datasentre over 2 MW lage en kost-nytteanalyse av mulighetene for å bruke overskuddsvarmen, og NVE må godkjenne den før byggestart. Regelen har gjeldt siden 1. april 2025. Den krever at muligheten vurderes; NVE skriver at det er lovpålagt «å vurdere om overskuddsvarmen kan benyttes».",
+       "kilde": {
+        "id": "nve-tvangsmulkt-2026"
+       }
+      },
+      {
+       "tekst": "NVE skriver at Nscale Norway AS startet byggingen uten å ha levert analysen, og at det er et brudd på energiloven. NVE har pålagt Nscale å levere den og varslet tvangsmulkt hvis den ikke er kommet innen 15. november 2026.",
+       "kilde": {
+        "id": "nve-tvangsmulkt-2026"
+       }
+      },
+      {
        "tekst": "Kjølevannsplanen skal også legge til rette for at overskuddsvarmen kan brukes, for eksempel på Lallasletta eller langs traseen. Nscale opplyser at de er i dialog med Futurum og kommunen om dette.",
        "kilde": {
         "id": "kjolevann-2026",
@@ -1013,6 +1041,14 @@
      }
     },
     {
+     "dato": "11.03.2026",
+     "tekst": "NVE gir Nordkraft Industrinett konsesjon til ny transformatorstasjon for 420 kV på Skoglund, med to 1,6 km lange jordkabler fra Kvandal. Aker Nscale blir eneste kunde.",
+     "kilde": {
+      "id": "nve-skoglund-2026",
+      "side": 1
+     }
+    },
+    {
      "dato": "22.06.2026",
      "tekst": "Nordland fylkeskommune opprettholder innsigelsen til reguleringsplanen for Skoglund–Lallasletta etter kommunestyrets planvedtak.",
      "kilde": {
@@ -1026,6 +1062,13 @@
      "kilde": {
       "id": "kjolevann-2026",
       "side": 2
+     }
+    },
+    {
+     "dato": "29.09.2026",
+     "tekst": "NVE varsler Nscale om tvangsmulkt hvis analysen av overskuddsvarme ikke er levert innen 15. november 2026.",
+     "kilde": {
+      "id": "nve-tvangsmulkt-2026"
      }
     }
    ],
