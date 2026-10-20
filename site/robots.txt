@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://narviktall.no/sitemap.xml
