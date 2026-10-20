@@ -4,9 +4,9 @@ on:
   schedule:
     # SSB publiserer KOSTRA-regnskap i mars (foreløpig) og juni (endelig), og skatteinngangen (tabell 07022) midt i hver måned.
     # Nav publiserer ledighet og ledige stillinger tidlig i hver måned.
-    # Kjører 1. april og den 20. hver måned.
-    - cron: "0 6 1 4 *"
-    - cron: "0 6 20 * *"
+    # Kjører hver fredag morgen (06:00 UTC), så nye tall er inne før den ukentlige dokumentsjekken kl. 13.
+    # Det blir bare en commit når tallene faktisk er endret.
+    - cron: "0 6 * * 5"
   workflow_dispatch:
 
 permissions:
@@ -34,6 +34,8 @@ jobs:
           python scripts/fetch_arbeid.py
           python scripts/fetch_naering.py
           python scripts/build_sammenhenger.py
+      - name: Behold filer der bare datoen er endret
+        run: python scripts/keep_unchanged.py site/data/*.json
       - name: Commit hvis dataene er endret
         run: |
           git config user.name "github-actions[bot]"
