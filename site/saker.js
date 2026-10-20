@@ -16,6 +16,12 @@ const dateText = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nb-NO', 
     const href = s.pdf ? s.pdf + (k.side ? '#page=' + k.side : '') : s.url;
     return `<a href="${esc(href)}" target="_blank" rel="noopener" title="${esc(s.full)}">${esc(s.navn)}${k.side ? ', s. ' + k.side : ''}</a>`;
   };
+  // Several pages in one document as «Kontrollutvalget 01.12.2025, s. 35, 36», each page its own link.
+  const srcGroup = ks => [...ks.reduce((m, k) => m.set(k.id, [...(m.get(k.id) || []), k]), new Map())].map(([kid, list]) => {
+    const s = D.kilder[kid], pages = list.filter(k => k.side);
+    if (!pages.length) return src(list[0]);
+    return `<span title="${esc(s.full)}">${esc(s.navn)}, s. ${pages.map(k => `<a href="${esc(s.pdf)}#page=${k.side}" target="_blank" rel="noopener">${k.side}</a>`).join(', ')}</span>`;
+  }).join('; ');
   const id = new URLSearchParams(location.search).get('sak');
   const S = D.saker.find(s => s.id === id);
   if (!S) return list(main, D);
@@ -26,6 +32,12 @@ const dateText = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nb-NO', 
   const note = k => { sources.set(k.id, D.kilder[k.id]); return src(k); };
 
   const stats = S.nokkeltall.map(n => `<div class="stat"><span class="sub">${esc(n.navn)}</span><span class="big num">${esc(n.verdi)}</span><span class="sub">${esc(n.tekst)}</span><span class="caption">Kilde: ${note(n.kilde)}</span></div>`).join('');
+  // Who is involved: one row per actor, its role in a sentence or two, and the pages that say so.
+  S.aktorer?.forEach(a => [].concat(a.kilde).forEach(k => sources.set(k.id, D.kilder[k.id])));
+  const actors = S.aktorer?.length ? `<section aria-labelledby="h-actors">
+      <div class="section-head"><h2 id="h-actors">Hvem er involvert</h2></div>
+      <dl class="actors">${S.aktorer.map(a => `<div><dt>${esc(a.navn)}</dt><dd>${esc(a.rolle)} <span class="caption">Kilde: ${srcGroup([].concat(a.kilde))}</span></dd></div>`).join('')}</dl>
+    </section>` : '';
   const tab = S.tabell ? `<section aria-labelledby="h-tab">
       <div class="section-head"><h2 id="h-tab">Budsjett og regnskap</h2></div>
       <div class="ptable"><table id="sak-table"><caption class="sr-only">${esc(S.tabell.tittel)}</caption>
@@ -76,7 +88,7 @@ const dateText = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nb-NO', 
       ${S.mangler ? `<p class="status-note">${esc(S.mangler)}</p>` : ''}
     </header>
     <section aria-label="Nøkkeltall"><div class="stats3 sak-stats" style="--n:${S.nokkeltall.length}">${stats}</div></section>
-    ${tab}${role}${time}${facts}${links}${docs}`;
+    ${actors}${tab}${role}${time}${facts}${links}${docs}`;
   document.getElementById('tl-more')?.addEventListener('click', e => {
     document.querySelectorAll('#timeline li[hidden]').forEach(li => { li.hidden = false; });
     e.currentTarget.remove();

@@ -70,6 +70,12 @@ def main() -> int:
                 if not n.get(k):
                     err(f"nøkkeltall {i + 1}: mangler «{k}»")
             check_src(f"nøkkeltall {i + 1}", n.get("kilde"))
+        for i, a in enumerate(s.get("aktorer", [])):
+            if not a.get("navn") or not a.get("rolle"):
+                err(f"aktør {i + 1}: mangler navn eller rolle")
+            # A role can rest on more than one page, so «kilde» may be a list.
+            for k in a.get("kilde") if isinstance(a.get("kilde"), list) else [a.get("kilde")]:
+                check_src(f"aktør {i + 1}", k)
         for i, r in enumerate(s.get("rolle", [])):
             check_src(f"rolle {i + 1}", r.get("kilde"))
         for i, t in enumerate(s.get("tidslinje", [])):

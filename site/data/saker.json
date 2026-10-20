@@ -133,6 +133,55 @@
      }
     }
    ],
+   "aktorer": [
+    {
+     "navn": "Helse og omsorg",
+     "rolle": "Kommunalområdet med budsjettet. Tre sektorer: hjemmebaserte tjenester, institusjon og distrikt, og mestring og oppfølging, pluss et fellesområde.",
+     "kilde": {
+      "id": "ar-2025",
+      "side": 46
+     }
+    },
+    {
+     "navn": "Tildelingskontoret",
+     "rolle": "Bestemmer hvem som får hvilke helse- og omsorgstjenester. Ligger i fellesområdet til Helse og omsorg.",
+     "kilde": {
+      "id": "ar-2025",
+      "side": 46
+     }
+    },
+    {
+     "navn": "Kommunedirektøren",
+     "rolle": "Legger fram tertialrapportene med prognose for året og årsrapporten.",
+     "kilde": {
+      "id": "tertial-2-2026",
+      "side": 9
+     }
+    },
+    {
+     "navn": "Formannskapet",
+     "rolle": "Behandler tertialrapportene og årsrapporten.",
+     "kilde": {
+      "id": "tertial-2-2026"
+     }
+    },
+    {
+     "navn": "UNN Narvik",
+     "rolle": "Sykehuset. Pasienter som er utskrivningsklare men venter på et kommunalt tilbud, blir liggende der, og kommunen betaler for døgnene.",
+     "kilde": {
+      "id": "ar-2024",
+      "side": 44
+     }
+    },
+    {
+     "navn": "Vikarbyråer",
+     "rolle": "Leier ut sykepleiere og annet personell når kommunen mangler folk.",
+     "kilde": {
+      "id": "tertial-2-2026",
+      "side": 32
+     }
+    }
+   ],
    "tabell": {
     "tittel": "Budsjett og regnskap for kommunalområdet Helse og omsorg, mill. kr",
     "kolonner": [
@@ -751,6 +800,82 @@
      }
     }
    ],
+   "aktorer": [
+    {
+     "navn": "Aker Nscale AS",
+     "rolle": "Bygger datasentrene på Skoglund industriområde og har konsesjon for strømanleggene inne på området.",
+     "kilde": {
+      "id": "nve-brev-2025",
+      "side": 2
+     }
+    },
+    {
+     "navn": "Nscale",
+     "rolle": "Står bak forslaget til reguleringsplan for kjølevann til datasenteret.",
+     "kilde": {
+      "id": "kjolevann-2026",
+      "side": 1
+     }
+    },
+    {
+     "navn": "Nordkraft Industrinett AS",
+     "rolle": "Eier Skoglund transformatorstasjon, har tildelt 130 MW til Aker Nscale og har søkt om ny 420 kV-tilknytning fra Kvandal.",
+     "kilde": [
+      {
+       "id": "nve-brev-2025",
+       "side": 2
+      },
+      {
+       "id": "statnett-2026",
+       "side": 1
+      }
+     ]
+    },
+    {
+     "navn": "Statnett",
+     "rolle": "Eier transmisjonsnettet. Har reservert 230 MW under Kvandal transformatorstasjon.",
+     "kilde": [
+      {
+       "id": "nve-brev-2025",
+       "side": 2
+      },
+      {
+       "id": "statnett-2026",
+       "side": 2
+      }
+     ]
+    },
+    {
+     "navn": "NVE",
+     "rolle": "Gir konsesjon til strømanleggene.",
+     "kilde": {
+      "id": "nve-konsesjon-2025",
+      "side": 1
+     }
+    },
+    {
+     "navn": "Narvik kommune",
+     "rolle": "Planmyndighet: vedtok reguleringsplanen i 2021 og skal behandle kjølevannsplanen. Høringsinstans i NVE-saken om ny 420 kV-tilknytning.",
+     "kilde": [
+      {
+       "id": "plan-datasenter-2021",
+       "side": 1
+      },
+      {
+       "id": "nordkraft-2026",
+       "side": 2
+      }
+     ]
+    },
+    {
+     "navn": "Nordland fylkeskommune",
+     "rolle": "Har innsigelse til reguleringsplanen for Skoglund–Lallasletta.",
+     "kilde": {
+      "id": "kjolevann-2026",
+      "side": 7
+     }
+    }
+   ],
    "rolle": [
     {
      "tekst": "Kommunestyret vedtok detaljreguleringsplanen for datasenter Bjerkvik 29.04.2021. Formålet er å legge til rette for datasenter eller annen kraftkrevende næring.",
@@ -896,6 +1021,86 @@
      "kilde": {
       "id": "plan-fagernesfjellet-2025",
       "side": 1
+     }
+    }
+   ],
+   "aktorer": [
+    {
+     "navn": "FIS",
+     "rolle": "Det internasjonale skiforbundet. Motpart i vertskapsavtalen med Skiforbundet og kommunen. Har solgt sponsorrettighetene til mesterskapet.",
+     "kilde": [
+      {
+       "id": "ku-2025-12-01",
+       "side": 29
+      },
+      {
+       "id": "ku-2025-12-01",
+       "side": 36
+      }
+     ]
+    },
+    {
+     "navn": "Norges Skiforbund",
+     "rolle": "Tildelt VM sammen med kommunen. Part i vertskapsavtalen, har hovedansvaret for arrangementet og eier 60 % av arrangørselskapet.",
+     "kilde": {
+      "id": "ku-2025-12-01",
+      "side": 35
+     }
+    },
+    {
+     "navn": "Alpin VM Narvik 2029 AS (LOC)",
+     "rolle": "Arrangørselskapet som gjennomfører mesterskapet. Får om lag 500 mill. kr fra FIS til arrangementet.",
+     "kilde": {
+      "id": "ku-2025-12-01",
+      "side": 36
+     }
+    },
+    {
+     "navn": "Narvikfjellet Allmenn AS",
+     "rolle": "Bygger ut anlegget og søkte staten om støtte. Eier 40 % av arrangørselskapet. Kommunen sitter i styret.",
+     "kilde": [
+      {
+       "id": "innst-85s-2024",
+       "side": 2
+      },
+      {
+       "id": "ku-2025-12-01",
+       "side": 35
+      },
+      {
+       "id": "ku-2025-12-01",
+       "side": 36
+      }
+     ]
+    },
+    {
+     "navn": "Narvik kommune",
+     "rolle": "Vertsby og part i vertskapsavtalen, med solidarisk ansvar. Bidrar med 31,25 mill. kr til anlegget.",
+     "kilde": [
+      {
+       "id": "ku-2025-12-01",
+       "side": 30
+      },
+      {
+       "id": "okplan-2026",
+       "side": 14
+      }
+     ]
+    },
+    {
+     "navn": "Staten",
+     "rolle": "Dekker deler av anleggsutbyggingen med inntil 342 mill. kr i 2025–2028, gjennom Kultur- og likestillingsdepartementet.",
+     "kilde": {
+      "id": "innst-85s-2024",
+      "side": 7
+     }
+    },
+    {
+     "navn": "Kontrollutvalget",
+     "rolle": "Kommunens eget kontrollorgan. Har fulgt opp kommunens økonomiske forpliktelser og risiko knyttet til VM.",
+     "kilde": {
+      "id": "ku-2026-02-23",
+      "side": 5
      }
     }
    ],
