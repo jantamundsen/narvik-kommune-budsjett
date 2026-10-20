@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Næringslivet i Narvik: hvor mange bedrifter det finnes og i hvilke næringer, nye foretak og konkurser kvartal for kvartal, hvor mange nye foretak som overlever, overnattinger og de største arbeidsplassene, sammenlignet med lignende kommuner.">
+<title>Næringsliv · Åpne tall for Narvik</title>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Åpne tall for Narvik">
+<meta property="og:locale" content="nb_NO">
+<meta property="og:title" content="Næringsliv · Åpne tall for Narvik">
+<meta property="og:description" content="Næringslivet i Narvik: hvor mange bedrifter det finnes og i hvilke næringer, nye foretak og konkurser kvartal for kvartal, hvor mange nye foretak som overlever, overnattinger og de største arbeidsplassene, sammenlignet med lignende kommuner.">
+<meta property="og:image" content="https://narviktall.no/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Åpne tall for Narvik: regnskap, budsjett og befolkning i Narvik kommune, med kilde for hvert tall">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="site-head">
+    <nav class="site-nav" aria-label="Sider"><a class="brand" href="./">Åpne tall for Narvik</a><details class="nav-menu"><summary>Økonomi</summary><div class="nav-pop"><span class="nav-group">Regnskap</span><a href="./"><b>Utgifter</b><small>Hva pengene gikk til, år for år</small></a><a href="inntekter"><b>Inntekter</b><small>Hvor pengene kommer fra</small></a><a href="gjeld"><b>Gjeld og investeringer</b><small>Lån, renter og hva lånene gikk til</small></a><span class="nav-group">Budsjett og inneværende år</span><a href="budsjett"><b>Budsjett</b><small>Planlagt og brukt per område</small></a><a href="tiltak"><b>Innsparinger</b><small>Vedtatte kutt og hva som skjedde med dem</small></a><a href="lopende"><b>Året så langt</b><small>Inneværende år etter tertialrapportene</small></a></div></details><a href="befolkning">Befolkning</a><a href="bolig">Bolig</a><a href="arbeid">Arbeid</a><a href="naering" aria-current="page">Næringsliv</a><a href="om">Om siden</a></nav>
+  </div>
+  <header>
+    <div class="eyebrow">Narvik kommune · tall fra SSB og Brønnøysundregistrene</div>
+    <h1>Næringsliv i Narvik</h1>
+    <p class="lead" id="lead"></p>
+  </header>
+
+  <section aria-label="Nøkkeltall">
+    <div class="stats3" id="summary"></div>
+  </section>
+
+  <section aria-labelledby="h-units" id="bedrifter">
+    <div class="section-head">
+      <h2 id="h-units">Bedrifter</h2>
+      <p class="lead" id="units-lead"></p>
+    </div>
+    <div class="two">
+      <div class="panel bars-panel"><h3 id="ind-h"></h3><div class="seg cmp-pick" role="group" aria-label="Antall ansatte" id="ind-pick"></div><p class="caption" id="ind-sum"></p><div class="hbars" id="ind-bars"></div></div>
+      <div class="panel bars-panel"><h3 id="size-h"></h3><div class="hbars" id="size-bars"></div></div>
+    </div>
+    <p class="caption" id="units-caption"></p>
+    <div class="ptable"><table id="units-cmp"></table></div>
+    <p class="caption" id="units-cmp-caption"></p>
+  </section>
+
+  <section aria-labelledby="h-new" id="nye">
+    <div class="section-head">
+      <h2 id="h-new">Nye foretak</h2>
+      <p class="lead" id="new-lead"></p>
+    </div>
+    <div class="two">
+      <div class="chart-box"><h3>Nye foretak per år</h3><div class="mini-chart" id="new-year"></div></div>
+      <div class="chart-box"><h3 id="new-q-h">Per kvartal</h3><div class="mini-chart" id="new-q"></div></div>
+    </div>
+    <p class="caption" id="new-caption"></p>
+    <div class="ptable"><table id="new-cmp"></table></div>
+    <p class="caption" id="new-cmp-caption"></p>
+  </section>
+
+  <section aria-labelledby="h-surv" id="overlevelse">
+    <div class="section-head">
+      <h2 id="h-surv">Hvor mange nye foretak som fortsatt er i drift</h2>
+      <p class="lead" id="surv-lead"></p>
+    </div>
+    <div class="ptable"><table id="surv-cmp"></table></div>
+    <p class="caption" id="surv-caption"></p>
+  </section>
+
+  <section aria-labelledby="h-bank" id="konkurser">
+    <div class="section-head">
+      <h2 id="h-bank">Konkurser</h2>
+      <p class="lead" id="bank-lead"></p>
+    </div>
+    <div class="chart-box"><h3>Åpnede konkurser per år</h3><div class="mini-chart" id="bank-year"></div></div>
+    <p class="caption" id="bank-caption"></p>
+    <div class="ptable"><table id="bank-cmp"></table></div>
+    <p class="caption" id="bank-cmp-caption"></p>
+  </section>
+
+  <section aria-labelledby="h-stay" id="overnattinger">
+    <div class="section-head">
+      <h2 id="h-stay">Overnattinger</h2>
+      <p class="lead" id="stay-lead"></p>
+    </div>
+    <div class="chart-box"><h3 id="stay-h"></h3><div class="mini-chart" id="stay-month"></div></div>
+    <p class="caption" id="stay-caption"></p>
+    <div class="ptable"><table id="stay-cmp"></table></div>
+    <p class="caption" id="stay-cmp-caption"></p>
+  </section>
+
+  <section aria-labelledby="h-big" id="arbeidsplasser">
+    <div class="section-head">
+      <h2 id="h-big">De største arbeidsplassene</h2>
+      <p class="lead" id="big-lead"></p>
+    </div>
+    <div class="panel bars-panel"><h3 id="big-sector-h"></h3><div class="hbars" id="big-sector"></div></div>
+    <p class="caption" id="big-sector-caption"></p>
+    <div class="ptable"><table id="big-list"></table></div>
+    <p class="caption" id="big-caption"></p>
+    <a class="cross-link" href="arbeid#naering">Hvor mange som jobber i hver næring og sektor, og pendling, står på Arbeid →</a>
+  </section>
+
+  <section aria-labelledby="h-notes">
+    <h2 id="h-notes">Slik leser du tallene</h2>
+    <div class="notes">
+      <div><h3>Bedrift og foretak</h3><p>Et foretak er den juridiske enheten, for eksempel et aksjeselskap. En bedrift er et sted der foretaket driver virksomhet. Et foretak kan ha bedrifter i flere kommuner, og hver bedrift telles i kommunen der den ligger.</p></div>
+      <div><h3>Bedrifter uten ansatte</h3><p>Mange bedrifter har ingen ansatte, for eksempel enkeltpersonforetak der eieren jobber selv, eller selskaper som bare eier eiendom. De er med i antallet bedrifter.</p></div>
+      <div><h3>Nye foretak</h3><p>Foretak som er registrert i Enhetsregisteret i kvartalet. Offentlig forvaltning og jordbruk, skogbruk og fiske er ikke med. Et nytt foretak trenger ikke å ha startet noen drift.</p></div>
+      <div><h3>Fortsatt i drift</h3><p>SSB følger foretak som ble etablert et år og hadde aktivitet, og teller hvor mange som fortsatt finnes og har aktivitet ett, to og tre år senere.</p></div>
+      <div><h3>Konkurser</h3><p>Konkurser som er åpnet i tingretten, etter kommunen der foretaket er registrert. Personlige konkurser er ikke med.</p></div>
+      <div><h3>Ansatte i Enhetsregisteret</h3><p>Antall ansatte er det arbeidsgiveren har meldt inn til Arbeidsgiver- og arbeidstakerregisteret. Det er antall personer, ikke årsverk, og det kan være noe forsinket.</p></div>
+      <div><h3>Ny næringsstandard fra 2026</h3><p>SSB går over til en ny standard for næringer (SN2025) fra 2026. Totalene på denne siden går uavbrutt videre, men fordelingen på næringer kan bli litt annerledes fra 2026.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Kilde: SSB, tabell <span id="sources"></span>, og Brønnøysundregistrene, Enhetsregisteret, region 1806 Narvik. Hentet <span id="generated"></span>. <a href="https://github.com/jtkarlsen/narvik-kommune-budsjett" target="_blank" rel="noopener">Kildekode</a>.</span>
+    <span>Et åpent hobbyprosjekt laget av <a href="https://janamundsen.dev" target="_blank" rel="noopener">Jan Amundsen</a>, ikke av Narvik kommune. <a href="om">Om siden</a>.</span>
+  </footer>
+</div>
+<script src="common.js"></script>
+<script src="naering.js"></script>
+</body>
+</html>
