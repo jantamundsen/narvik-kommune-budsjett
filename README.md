@@ -1,6 +1,6 @@
-# Åpen økonomi i Narvik
+# Åpne tall for Narvik
 
-Hvor går pengene i Narvik kommune? En enkel nettside som viser kommunens netto driftsutgifter fordelt på tjenester, år for år, og sammenlignet med lignende kommuner.
+Tall og innsikt om Narvik kommune, med kilde for hvert tall. Siden har i dag to områder: *Økonomi* (hvor pengene går, budsjett, året så langt og innsparinger) og *Befolkning*. Under *Økonomi* viser den kommunens netto driftsutgifter fordelt på tjenester, år for år, og sammenlignet med lignende kommuner.
 
 Regnskapstallene kommer fra SSBs KOSTRA-statistikk, [tabell 12362](https://www.ssb.no/statbank/table/12362), og viser hva kommunen faktisk brukte. Trykker du på et tjenesteområde, kommer du til områdesiden (`omrade.html`). Der kan du gå ned i tre nivåer: området, en tjeneste i det, og en kostnads- eller inntektstype i tjenesten, helt ned til SSBs enkelte arter i [tabell 12367](https://www.ssb.no/statbank/table/12367). Hvert nivå har sin egen adresse, for eksempel `omrade.html?omrade=helse&tjeneste=253&art=lonn&aar=2025`, så det kan deles.
 
@@ -17,6 +17,7 @@ Siden *Året så langt* (`lopende.html`) følger budsjettet og forbruket i innev
 Siden *Innsparinger* (`tiltak.html`) viser kuttene som ble lagt inn i budsjettet tiltak for tiltak, hvilke kommunestyret tok ut igjen i samme vedtak, og hva tertialrapporter og årsrapporter sier skjedde med dem. Den viser også hele endringen i rammen til hvert tjenesteområde, slik Framsikt forklarer den.
 
 *Bak tallene* forklarer tallene med det kommunens egne rapporter sier: sykefravær, utgifter til vikarbyrå og overtid, investeringer som skolegårder, og kommunens egne forklaringer på avvik. Hvert punkt er skrevet av fra en rapport og lenker til siden det står på. Punktene vises på områdesidene for regnskapsåret de gjelder, og punktene for året som pågår vises på *Året så langt*. Rapportene følger kommunens egne kommunalområder, som ikke er de samme som KOSTRA-områdene, så hvert punkt sier hvilket kommunalområde det gjelder.
+Siden *Befolkning* (`befolkning.html`) viser hvor mange som bor i Narvik og hvordan det endrer seg: nøkkeltall, en befolkningspyramide med en slider fra 2020 til 2050 (`befolkning.html?aar=2040`), hvor i kommunen folk bor per delområde og grunnkrets, folketallet år for år med fødte, døde og flytting, sammenligning med de samme kommunene som økonomisidene, innvandrere og husholdninger. Til og med i år er tallene SSBs registrerte folketall 1. januar ([07459](https://www.ssb.no/statbank/table/07459), [06913](https://www.ssb.no/statbank/table/06913), [04317](https://www.ssb.no/statbank/table/04317), [04362](https://www.ssb.no/statbank/table/04362), [09817](https://www.ssb.no/statbank/table/09817), [06070](https://www.ssb.no/statbank/table/06070)); senere år er SSBs framskriving, hovedalternativet ([14746](https://www.ssb.no/statbank/table/14746)). Dagens Narvik finnes hos SSB fra 2020. Medianalder, menn per 100 kvinner og tallene for landet uten Oslo og KOSTRA-gruppen er beregnet fra tall per alder og merket «beregnet». `scripts/fetch_befolkning.py` henter alt til `site/data/befolkning.json`.
 
 ## Slik er det bygget
 
@@ -30,10 +31,12 @@ scripts/fetch_lopende.py  sjekker tertialtallene i config/lopende_2026.json, hen
                           og skriver site/data/lopende.json
 scripts/fetch_tiltak.py   henter budsjettendringene tiltak for tiltak fra Framsikt, legger på oppfølgingen i
                           config/tiltak_oppfolging.json og skriver site/data/tiltak.json
+scripts/fetch_befolkning.py henter folketall, framskriving, delområder, innvandrere og husholdninger fra SSB
+                          og skriver site/data/befolkning.json
 scripts/build_fakta.py    sjekker punktene i config/fakta.json (kilde, side, område) og skriver site/data/fakta.json
 site/                     den statiske nettsiden: index.html (regnskap), omrade.html (ett område, en tjeneste,
                           en kostnadstype), budsjett.html (budsjett mot regnskap), lopende.html (året så langt),
-                          tiltak.html (innsparinger); style.css og common.js er felles
+                          tiltak.html (innsparinger), befolkning.html (befolkning); style.css og common.js er felles
 .github/workflows/        oppdaterer data fra SSB og publiserer til GitHub Pages
 ```
 
@@ -49,6 +52,7 @@ python scripts/fetch_malgruppe.py     # utgifter per elev, per barn og per innby
 python scripts/fetch_lopende.py       # tertialtall og månedlig skatteinngang for året så langt
 python scripts/build_fakta.py         # sjekker og skriver punktene i «Bak tallene»
 python scripts/fetch_tiltak.py        # innsparinger og andre budsjettendringer fra Framsikt
+python scripts/fetch_befolkning.py    # befolkningstall og framskriving fra SSB
 python -m http.server -d site 8000    # åpne http://localhost:8000
 ```
 

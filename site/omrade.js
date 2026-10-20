@@ -42,7 +42,7 @@ async function start() {
   if (grp) S = extra; else M = extra;
   const render = () => { page.innerHTML = grp ? typePage(svc, grp) : svc ? servicePage(svc) : areaPage(); };
   render();
-  document.title = [grp?.name, svc?.name, area.name, 'Åpen økonomi i Narvik'].filter(Boolean).join(' · ');
+  document.title = [grp?.name, svc?.name, area.name, 'Åpne tall for Narvik'].filter(Boolean).join(' · ');
   // The page is drawn after the data has loaded, so the browser cannot jump to #sammenligning by itself.
   if (location.hash) document.getElementById(location.hash.slice(1))?.scrollIntoView();
 

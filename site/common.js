@@ -41,3 +41,11 @@ function factItems(F, list, showArea) {
       + `<p class="caption fact-src">Kilde: ${src}${area}</p></li>`;
   }).join('');
 }
+// The «Økonomi» menu on pages outside the economy area is a <details>; close it on a click elsewhere or Escape.
+document.addEventListener('click', e => {
+  document.querySelectorAll('.nav-menu[open]').forEach(d => { if (!d.contains(e.target)) d.open = false; });
+});
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Escape') return;
+  document.querySelectorAll('.nav-menu[open]').forEach(d => { d.open = false; d.querySelector('summary').focus(); });
+});

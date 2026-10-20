@@ -26,11 +26,12 @@ jobs:
           python scripts/fetch_malgruppe.py
           python scripts/fetch_lopende.py
           python scripts/build_fakta.py
+          python scripts/fetch_befolkning.py
       - name: Commit hvis dataene er endret
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898900+github-actions[bot]@users.noreply.github.com"
-          git add site/data/narvik.json site/data/detaljer.json site/data/sammenligning.json site/data/malgruppe.json site/data/lopende.json site/data/fakta.json
+          git add site/data/narvik.json site/data/detaljer.json site/data/sammenligning.json site/data/malgruppe.json site/data/lopende.json site/data/fakta.json site/data/befolkning.json
           if git diff --cached --quiet; then
             echo "Ingen endringer i dataene."
           else

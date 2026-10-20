@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Ett tjenesteområde i Narvik kommune: hva pengene går til, hvem som betaler og hvilke tjenester de brukes på, med kilde for hvert tall.">
-<title>Tjenesteområde · Åpen økonomi i Narvik</title>
+<title>Tjenesteområde · Åpne tall for Narvik</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,7 +16,10 @@
 </head>
 <body>
 <div class="wrap">
-  <nav class="site-nav" aria-label="Sider"><a class="brand" href="./">Åpen økonomi i Narvik</a><a href="./" aria-current="page">Regnskap</a><a href="budsjett.html">Budsjett mot regnskap</a><a href="lopende.html">Året så langt</a><a href="tiltak.html">Innsparinger</a></nav>
+  <div class="site-head">
+    <nav class="site-nav" aria-label="Sider"><a class="brand" href="./">Åpne tall for Narvik</a><a href="./" aria-current="true">Økonomi</a><a href="befolkning.html">Befolkning</a></nav>
+    <nav class="sub-nav" aria-label="Økonomi"><a href="./" aria-current="page">Regnskap</a><a href="budsjett.html">Budsjett mot regnskap</a><a href="lopende.html">Året så langt</a><a href="tiltak.html">Innsparinger</a></nav>
+  </div>
   <main id="page" class="drill"></main>
   <footer>
     <span>Kilde: <a href="https://www.ssb.no/statbank/table/12362" target="_blank" rel="noopener">SSB, tabell 12362</a> (netto driftsutgifter og per innbygger) og <a href="https://www.ssb.no/statbank/table/12367" target="_blank" rel="noopener">tabell 12367</a> (utgifts- og inntektsarter), region 1806 Narvik. Tall per elev, per barn og per innbygger i en aldersgruppe er SSBs nøkkeltall, med tabellen oppgitt ved tallet. Hentet <span id="generated"></span>. <a href="https://github.com/jtkarlsen/narvik-kommune-budsjett" target="_blank" rel="noopener">Kildekode</a>.</span>
