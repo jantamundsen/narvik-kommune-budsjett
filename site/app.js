@@ -139,12 +139,18 @@ function rowFor(c, svcTotal, maxShare, prev) {
     fill.style.display = 'block'; fill.style.width = Math.max(0, v / svcTotal / maxShare * 100) + '%';
     track.appendChild(fill); share.append(track, el('small', {}, nb(v / svcTotal * 100, 1) + ' %'));
   }
-  const p = prev ? pct(v, c.narvik_1000kr[prev]) : null;
+  const before = prev ? c.narvik_1000kr[prev] : null;
+  const p = prev ? pct(v, before) : null;
   const cls = p === null || OFFSET_KEYS.includes(c.key) ? 'chg' : 'chg ' + (p > 0.5 ? 'up' : p < -0.5 ? 'down' : '');
+  // A percentage on a small or negative amount (−214 % for an area of −0,5 mill.) says more about the base than the
+  // change, so those rows show the change in mill. kr instead.
+  const inKr = p !== null && (Math.abs(p) >= 50 || Math.abs(before) < 1000 || Math.sign(v) !== Math.sign(before));
+  const d = (v - before) / 1000;
+  const chg = p === null ? '–' : inKr ? (d > 0 ? '+' : d < 0 ? '−' : '') + nb(Math.abs(d), 1) + ' mill.' : chgText(p);
   btn.append(name, share,
     el('span', { class: 'r num c-amt' }, nb(v / 1000, Math.abs(v) < 10000 ? 1 : 0)),
     el('span', { class: 'r num c-pc' }, nb(perCap(v, year))),
-    el('span', { class: 'r c-chg ' + cls }, prev ? chgText(p) : '–'));
+    el('span', { class: 'r c-chg ' + cls, ...(inKr ? { title: `${chgText(p)} fra ${prev}` } : {}) }, chg));
   row.appendChild(btn);
   return row;
 }
