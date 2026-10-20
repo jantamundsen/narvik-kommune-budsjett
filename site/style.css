@@ -432,3 +432,22 @@ details .fact-list { margin-top: 4px; }
   .ptable table.stack tr.krets td:first-child { padding-left: 0; font-weight: 500; }
 }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* inntekter.html and gjeld.html: the income note bar uses spans, not links, and year columns around a zero line. */
+.note-bar > span { min-width: 0; display: flex; align-items: flex-end; border-right: 2px solid var(--surface); color: var(--paper); font: 700 0.95rem var(--font-display); }
+.note-bar > span span { padding: 0 0 8px 8px; white-space: nowrap; }
+@media (max-width: 680px) { .note-bar > span span { display: none; } }
+.chart-box { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 16px 18px; display: grid; gap: 14px; min-width: 0; }
+.chart-box h3 { font-size: 0.95rem; font-weight: 600; }
+.cols { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 8px; font-variant-numeric: tabular-nums; }
+.col { display: grid; grid-template-rows: calc(var(--up) + 20px) calc(var(--down) + 20px) auto; justify-items: center; font-size: 0.78rem; color: var(--ink-2); }
+.col .up { display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 3px; width: 100%; border-bottom: 1px solid var(--ink-2); }
+.col .down { display: flex; flex-direction: column; justify-content: flex-start; align-items: center; gap: 3px; width: 100%; }
+.col i { display: block; width: 62%; background: var(--muted); border-radius: 3px 3px 0 0; min-height: 1px; }
+.col .down i { border-radius: 0 0 3px 3px; background: var(--bad); opacity: 0.55; }
+.col b { font-weight: 500; white-space: nowrap; }
+.col.sel { color: var(--ink); font-weight: 700; }
+.col.sel .up i { background: var(--accent); }
+.col.sel .down i { opacity: 1; }
+.col.sel b { font-weight: 700; }
+.col small { font-size: 0.78rem; margin-top: 4px; }
