@@ -14,6 +14,8 @@ Siden *Budsjett mot regnskap* (`budsjett.html`) viser kommunens vedtatte budsjet
 
 Siden *Inntekter* (`inntekter.html`) viser hvor driftsinntektene kommer fra (skatt, rammetilskudd, gebyrer, refusjoner, statlige tilskudd, eiendomsskatt og momskompensasjon), netto driftsresultat og disposisjonsfond, og Narvik mot de samme kommunene som ellers på siden. Siden *Gjeld og investeringer* (`gjeld.html`) viser netto lånegjeld, renter og avdrag, de største investeringsprosjektene hvert år og den samme sammenligningen. Tallene er KOSTRA for kommunekonsernet fra SSBs tabeller [12364](https://www.ssb.no/statbank/table/12364), [12137](https://www.ssb.no/statbank/table/12137) og [12143](https://www.ssb.no/statbank/table/12143), som `scripts/fetch_finans.py` henter til `site/data/finans.json`. SSB har renter netto (art AGD97) bare fra 2024; for årene før beregnes den som AGD24 pluss utbytte (AD905) og merkes «beregnet». Investeringsprosjektene er skrevet inn for hånd i `config/investeringer.json` fra bevilgningsoversikten for investeringer (§ 5-5 andre ledd) i hver årsrapport, med side, og punktene om lån og renter står i `config/fakta.json` med temaet «Lån og renter». Legg inn et nytt år når årsrapporten kommer.
 
+Siden *Bolig* (`bolig.html`) viser boligene i Narvik etter bygningstype og byggeår, nye boliger, kvadratmeterpris, hvor mange som eier og leier, hvor mange som bor trangt, og kommunalt disponerte boliger, sammenlignet med de samme kommunene som ellers på siden. Tallene er SSBs tabeller [06265](https://www.ssb.no/statbank/table/06265), [06266](https://www.ssb.no/statbank/table/06266), [12941](https://www.ssb.no/statbank/table/12941), [05940](https://www.ssb.no/statbank/table/05940), [14310](https://www.ssb.no/statbank/table/14310), [14891](https://www.ssb.no/statbank/table/14891), [14903](https://www.ssb.no/statbank/table/14903), [12008](https://www.ssb.no/statbank/table/12008) og [12012](https://www.ssb.no/statbank/table/12012), som `scripts/fetch_bolig.py` henter til `site/data/bolig.json`. Fullførte boliger per 1000 innbyggere og andelen boliger kommunen eier selv regnes ut på siden og merkes «beregnet».
+
 Siden *Året så langt* (`lopende.html`) følger budsjettet og forbruket i inneværende år: brukt hittil, avvik og kommunedirektørens prognose per tjenesteområde, hvordan rammene er endret siden vedtaket, og inntektene. Tallene kommer fra tertialrapportene, som bare finnes som PDF og er skrevet inn i `config/lopende_2026.json` med side. I tillegg vises skatteinngangen måned for måned fra SSBs [tabell 07022](https://www.ssb.no/statbank/table/07022), som oppdateres automatisk.
 
 Siden *Innsparinger* (`tiltak.html`) viser kuttene som ble lagt inn i budsjettet tiltak for tiltak, hvilke kommunestyret tok ut igjen i samme vedtak, og hva tertialrapporter og årsrapporter sier skjedde med dem. Den viser også hele endringen i rammen til hvert tjenesteområde, slik Framsikt forklarer den.
@@ -37,6 +39,7 @@ scripts/fetch_befolkning.py henter folketall, framskriving, delområder, innvand
                           og skriver site/data/befolkning.json
 scripts/fetch_finans.py   henter inntekter, resultat, fond, gjeld og investeringer fra SSB, legger på prosjektene i
                           config/investeringer.json og skriver site/data/finans.json
+scripts/fetch_bolig.py    henter boligtall fra SSB og skriver site/data/bolig.json
 scripts/build_fakta.py    sjekker punktene i config/fakta.json (kilde, side, område) og skriver site/data/fakta.json
 site/                     den statiske nettsiden: index.html (regnskap), omrade.html (ett område, en tjeneste,
                           en kostnadstype), inntekter.html (inntekter), gjeld.html (gjeld og
@@ -61,6 +64,7 @@ python scripts/build_fakta.py         # sjekker og skriver punktene i «Bak tall
 python scripts/fetch_tiltak.py        # innsparinger og andre budsjettendringer fra Framsikt
 python scripts/fetch_befolkning.py    # befolkningstall og framskriving fra SSB
 python scripts/fetch_finans.py        # inntekter, gjeld og investeringer fra SSB
+python scripts/fetch_bolig.py         # boligtall fra SSB
 python -m http.server -d site 8000    # åpne http://localhost:8000
 ```
 

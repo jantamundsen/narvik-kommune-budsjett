@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Boligene i Narvik: hvor mange og hvilke typer, hvor mange nye som bygges, kvadratmeterpris, hvor mange som eier og leier, og kommunale boliger, sammenlignet med lignende kommuner.">
+<title>Bolig · Åpne tall for Narvik</title>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Åpne tall for Narvik">
+<meta property="og:locale" content="nb_NO">
+<meta property="og:title" content="Bolig · Åpne tall for Narvik">
+<meta property="og:description" content="Boligene i Narvik: hvor mange og hvilke typer, hvor mange nye som bygges, kvadratmeterpris, hvor mange som eier og leier, og kommunale boliger, sammenlignet med lignende kommuner.">
+<meta property="og:image" content="https://narviktall.no/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Åpne tall for Narvik: regnskap, budsjett og befolkning i Narvik kommune, med kilde for hvert tall">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="site-head">
+    <nav class="site-nav" aria-label="Sider"><a class="brand" href="./">Åpne tall for Narvik</a><details class="nav-menu"><summary>Økonomi</summary><div class="nav-pop"><span class="nav-group">Regnskap</span><a href="./"><b>Utgifter</b><small>Hva pengene gikk til, år for år</small></a><a href="inntekter"><b>Inntekter</b><small>Hvor pengene kommer fra</small></a><a href="gjeld"><b>Gjeld og investeringer</b><small>Lån, renter og hva lånene gikk til</small></a><span class="nav-group">Budsjett og inneværende år</span><a href="budsjett"><b>Budsjett</b><small>Planlagt og brukt per område</small></a><a href="tiltak"><b>Innsparinger</b><small>Vedtatte kutt og hva som skjedde med dem</small></a><a href="lopende"><b>Året så langt</b><small>Inneværende år etter tertialrapportene</small></a></div></details><a href="befolkning">Befolkning</a><a href="bolig" aria-current="page">Bolig</a><a href="om">Om siden</a></nav>
+  </div>
+  <header>
+    <div class="eyebrow">Narvik kommune · boligtall fra SSB</div>
+    <h1>Bolig i Narvik</h1>
+    <p class="lead" id="lead"></p>
+  </header>
+
+  <section aria-label="Nøkkeltall">
+    <div class="stats3" id="summary"></div>
+  </section>
+
+  <section aria-labelledby="h-types" id="boligtyper">
+    <div class="section-head">
+      <h2 id="h-types">Boligtyper</h2>
+      <p class="lead" id="types-lead"></p>
+    </div>
+    <div class="panel bars-panel"><h3 id="types-h">Boliger etter bygningstype</h3><div class="hbars" id="stock-types"></div></div>
+    <p class="caption" id="types-caption"></p>
+    <div class="ptable"><table id="types-cmp"></table></div>
+    <p class="caption" id="types-cmp-caption"></p>
+  </section>
+
+  <section aria-labelledby="h-age" id="byggear">
+    <div class="section-head">
+      <h2 id="h-age">Byggeår</h2>
+      <p class="lead" id="age-lead"></p>
+    </div>
+    <div class="panel bars-panel"><h3 id="age-h">Boliger etter byggeår, nyeste først</h3><div class="hbars" id="stock-age"></div></div>
+    <p class="caption" id="age-caption"></p>
+    <div class="ptable"><table id="age-cmp"></table></div>
+    <p class="caption" id="age-cmp-caption"></p>
+  </section>
+
+  <section aria-labelledby="h-new" id="nye">
+    <div class="section-head">
+      <h2 id="h-new">Nye boliger</h2>
+      <p class="lead" id="new-lead"></p>
+    </div>
+    <div class="chart-box"><h3>Fullførte boliger per år</h3><div class="mini-chart" id="new-chart"></div></div>
+    <p class="caption" id="new-caption"></p>
+    <div class="ptable"><table id="new-cmp"></table></div>
+    <p class="caption" id="new-cmp-caption"></p>
+  </section>
+
+  <section aria-labelledby="h-price" id="priser">
+    <div class="section-head">
+      <h2 id="h-price">Boligpriser</h2>
+      <p class="lead" id="price-lead"></p>
+    </div>
+    <div class="chart-box"><h3>Gjennomsnittlig kvadratmeterpris per kvartal, alle boligtyper, kr</h3><div class="mini-chart" id="price-chart"></div></div>
+    <p class="caption" id="price-caption"></p>
+    <div class="ptable"><table id="price-cmp"></table></div>
+    <p class="caption" id="price-cmp-caption"></p>
+  </section>
+
+  <section aria-labelledby="h-tenure" id="eie">
+    <div class="section-head">
+      <h2 id="h-tenure">Eie eller leie</h2>
+      <p class="lead" id="tenure-lead"></p>
+    </div>
+    <div class="note-bar" id="tenure-bar"></div>
+    <ul class="note-legend" id="tenure-legend"></ul>
+    <div class="ptable"><table id="tenure-cmp"></table></div>
+    <p class="caption" id="tenure-caption"></p>
+  </section>
+
+  <section aria-labelledby="h-mun" id="kommunale">
+    <div class="section-head">
+      <h2 id="h-mun">Kommunale boliger</h2>
+      <p class="lead" id="mun-lead"></p>
+    </div>
+    <div class="two">
+      <div class="panel bars-panel"><h3 id="mun-split-h">Hvem som eier boligene</h3><div class="hbars" id="mun-split"></div></div>
+      <div class="chart-box"><h3>Søknader om kommunal bolig per år</h3><div class="mini-chart" id="mun-chart"></div></div>
+    </div>
+    <p class="caption" id="mun-caption"></p>
+    <div class="ptable"><table id="mun-cmp"></table></div>
+    <p class="caption" id="mun-cmp-caption"></p>
+  </section>
+
+  <section aria-labelledby="h-notes">
+    <h2 id="h-notes">Slik leser du tallene</h2>
+    <div class="notes">
+      <div><h3>Bolig</h3><p>SSB teller alle boliger, både bebodde og ubebodde, ut fra Matrikkelen og Folkeregisteret. Derfor er det flere boliger enn husholdninger.</p></div>
+      <div><h3>Kvadratmeterpris</h3><p>Gjennomsnittlig pris per kvadratmeter innvendig bruksareal for boliger som ble solgt i kvartalet. Med under hundre salg i kvartalet kan prisen svinge mye fra kvartal til kvartal.</p></div>
+      <div><h3>Bor trangt</h3><p>En husholdning bor trangt når boligen har færre rom enn personer, eller én person bor på ett rom, og samtidig har under 25 kvadratmeter per person.</p></div>
+      <div><h3>Kommunalt disponerte boliger</h3><p>Boliger kommunen eier, leier inn fra andre, eller har rett til å tildele i privateide bygg. Kommunen tildeler dem blant annet til folk som ikke klarer å skaffe seg bolig selv.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Kilde: SSB, tabell <span id="sources"></span>, region 1806 Narvik. Hentet <span id="generated"></span>. <a href="https://github.com/jtkarlsen/narvik-kommune-budsjett" target="_blank" rel="noopener">Kildekode</a>.</span>
+    <span>Et åpent hobbyprosjekt laget av <a href="https://janamundsen.dev" target="_blank" rel="noopener">Jan Amundsen</a>, ikke av Narvik kommune. <a href="om">Om siden</a>.</span>
+  </footer>
+</div>
+<script src="common.js"></script>
+<script src="bolig.js"></script>
+</body>
+</html>
