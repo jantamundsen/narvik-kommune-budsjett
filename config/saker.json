@@ -207,7 +207,7 @@
       "nokkeltall": [
         { "navn": "Statens bidrag til VM-anlegget", "verdi": "inntil 342 mill. kr", "tekst": "over årene 2025–2028, vedtatt av Stortinget", "kilde": { "id": "innst-85s-2024", "side": 7 } },
         { "navn": "Kommunens bidrag til VM-anlegget", "verdi": "31,25 mill. kr", "tekst": "satt av i 2027 i investeringsbudsjettet, prosjekt 832028", "kilde": { "id": "okplan-2026", "side": 14 } },
-        { "navn": "Reguleringsplan for VM-anlegget", "verdi": "19.06.2025", "tekst": "kommunestyret vedtok endret områderegulering for Fagernesfjellet", "kilde": { "id": "plan-fagernesfjellet-2025", "side": 1 } }
+        { "navn": "Fra FIS til arrangementet", "verdi": "ca. 500 mill. kr", "tekst": "fra salget av sponsorrettighetene, utbetalt til arrangørselskapet. VM i Trondheim 2025 fikk om lag 250 mill. kr", "kilde": { "id": "ku-2025-12-01", "side": 36 } }
       ],
       "aktorer": [
         { "navn": "FIS", "rolle": "Det internasjonale skiforbundet. Motpart i vertskapsavtalen med Skiforbundet og kommunen. Har solgt sponsorrettighetene til mesterskapet.", "kilde": [{ "id": "ku-2025-12-01", "side": 29 }, { "id": "ku-2025-12-01", "side": 36 }] },
