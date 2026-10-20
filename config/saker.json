@@ -1,0 +1,251 @@
+{
+  "_comment": "Utvalgte saker: one fact sheet per case, typed in by hand. Every number and every line in «rolle» and «tidslinje» names a source in «kilder» here or in config/fakta.json, with the page where there is one. No opinions, no forecasts of our own: the kommune's own prognosis may be shown, marked as such. «fakta» pulls the matching points from config/fakta.json, so they are not typed twice. «kontrollert» is the date the case was last checked against the sources. scripts/build_saker.py checks this file and writes site/data/saker.json.",
+  "kilder": {
+    "okplan-2026": {
+      "navn": "Økonomiplan 2026–2029",
+      "full": "Budsjett 2026 og økonomiplan 2026–2029, kommunedirektørens forslag",
+      "pdf": "https://www.narvik.kommune.no/_f/p1/i3c0f427e-5acf-4d5c-836a-5db986e5cdcb/narvik-kommunes-okonomiplan-2026-2029-1.pdf"
+    },
+    "vm-organisering": {
+      "navn": "Narvik kommune: Slik er VM-arbeidet organisert",
+      "full": "Narvik kommune, nettsiden «Slik er VM-arbeidet i Narvik organisert», intervju med ordføreren (udatert)",
+      "url": "https://www.narvik.kommune.no/vm-alpin-2029/slik-er-vm-arbeidet-i-narvik-organisert.2639.aspx"
+    },
+    "plan-fagernesfjellet-2025": {
+      "navn": "Planbeskrivelse Fagernesfjellet 2025",
+      "full": "Planbeskrivelse til reguleringsendring, plan 2012015 Områderegulering for Fagernesfjellet, vedtatt i kommunestyret 19.06.2025",
+      "pdf": "https://www.narvik.kommune.no/_f/p1/i8a9b3ce6-b249-4b56-bdd6-e82b0cf04972/vedtatt-planbeskrivelse-opf-19062025.pdf"
+    },
+    "plan-datasenter-2021": {
+      "navn": "Reguleringsbestemmelser datasenter Bjerkvik",
+      "full": "Detaljreguleringsplan for datasenter Bjerkvik, reguleringsbestemmelser, plan-ID 2019002, vedtatt 29.04.2021 (sak 037/21)",
+      "pdf": "https://oldweb.narvik.kommune.no/_f/p-1/i58356c87-6fb6-4f25-a78b-b08a54c176cd/planbestemmelser-1806_2019002_vedtatt_2021-04-29.pdf"
+    },
+    "nve-brev-2025": {
+      "navn": "NVE, vedtaksbrev 08.12.2025",
+      "full": "NVE, «NVE gir konsesjon til elektriske anlegg til forsyning av datasenter i Bjerkvik i Narvik kommune», brev til Aker Nscale AS 08.12.2025 (NVE-ref. 202521094-3)",
+      "url": "https://www.nve.no/25817/A",
+      "pdf": "https://webfileservice.nve.no/API/PublishedFiles/Download/6c3aaada-b591-47e6-b131-8047670a6867/202521094/3448578"
+    },
+    "nve-konsesjon-2025": {
+      "navn": "NVE, anleggskonsesjon 08.12.2025",
+      "full": "NVE, anleggskonsesjon til Aker Nscale AS 08.12.2025 (NVE-ref. 202521094-4)",
+      "url": "https://www.nve.no/25817/A",
+      "pdf": "https://webfileservice.nve.no/API/PublishedFiles/Download/7c083275-d1db-4075-84ba-fd2f9de44cf1/202521094/3448577"
+    },
+    "statnett-2026": {
+      "navn": "Statnett, høringssvar 05.02.2026",
+      "full": "Statnett, høringssvar til Nordkraft Industrinetts søknad om ny Skoglund transformatorstasjon og 420 kV tilknytning til Kvandal, 05.02.2026 (NVE-sak 202503343)",
+      "pdf": "https://webfileservice.nve.no/API/PublishedFiles/Download/9de9f57b-e38e-43de-a72a-027af8cdf7dc/202503343/3449662"
+    },
+    "nordkraft-2026": {
+      "navn": "Nordkraft Industrinett, svar på høringsuttalelser 17.02.2026",
+      "full": "Nordkraft Industrinett AS, svar på høringsuttalelser til «Nye Skoglund transformatorstasjon med 420 kV tilknytning fra Kvandal», 17.02.2026 (NVE-sak 202503343)",
+      "pdf": "https://webfileservice.nve.no/API/PublishedFiles/Download/bb677b66-2d0a-49d8-b50e-f8d62b0d61cc/202503343/3449842"
+    },
+    "innst-85s-2024": {
+      "navn": "Innst. 85 S (2024–2025)",
+      "full": "Innst. 85 S (2024–2025), innstilling fra familie- og kulturkomiteen om endringer i statsbudsjettet 2024 under Kultur- og likestillingsdepartementet (Prop. 25 S), 09.12.2024",
+      "pdf": "https://www.stortinget.no/globalassets/pdf/innstillinger/stortinget/2024-2025/inns-202425-085s.pdf"
+    },
+    "stortinget-sak-2024": {
+      "navn": "Stortinget, saksgang Prop. 25 S",
+      "full": "Stortinget, saken «Endringer i statsbudsjettet 2024 under Kultur- og likestillingsdepartementet», Prop. 25 S og Innst. 85 S (2024–2025), saksgang og vedtak",
+      "url": "https://www.stortinget.no/no/Saker-og-publikasjoner/Saker/Sak/?p=100887"
+    },
+    "ku-2025-12-01": {
+      "navn": "Kontrollutvalget 01.12.2025, sakspapirer",
+      "full": "Kontrollutvalget i Narvik, sakspapirer til møtet 01.12.2025, blant annet sak 58/25 «Narvik kommunes økonomiske forpliktelser i forbindelse med alpin-VM i 2029» med kommunedirektørens svar av 17.11.2025",
+      "pdf": "https://www.narvik.kommune.no/_f/p1/i82c00790-544c-42e5-b830-78e6bd158abe/narvik-mote-01122025-samlefil.pdf"
+    },
+    "ku-2026-02-23": {
+      "navn": "Kontrollutvalget 23.02.2026, protokoll",
+      "full": "Kontrollutvalget i Narvik, protokoll fra møtet 23.02.2026, sak 05/26 «Narvik kommunes økonomiske forpliktelser i tilknytning til Alpin-VM 2029 – kommunedirektørens svar»",
+      "pdf": "https://www.narvik.kommune.no/~/_f/p1/i1a533e5c-7dc4-44e9-9d5c-da1987e3e398/protokoll-narvik-kontrollutvalg-20260223.PDF"
+    },
+    "nve-skoglund-2026": {
+      "navn": "NVE, vedtaksbrev 11.03.2026",
+      "full": "NVE, «NVE gir Nordkraft Industrinett tillatelse til ny transformatorstasjon for 420 kV ved Skoglund i Narvik», brev 11.03.2026 (NVE-ref. 202503343-17)",
+      "url": "https://www.nve.no/22622/A",
+      "pdf": "https://webfileservice.nve.no/API/PublishedFiles/Download/ef898a5b-14a7-4d5e-8dfa-51fc72100e4a/202503343/3450303"
+    },
+    "nve-tvangsmulkt-2026": {
+      "navn": "NVE: NVE gir Nscale varsel om tvangsmulkt",
+      "full": "NVE, nyhetssak «NVE gir Nscale varsel om tvangsmulkt», 29.09.2026",
+      "url": "https://www.nve.no/nytt-fra-nve/nyheter-energi/nve-gir-nscale-varsel-om-tvangsmulkt/"
+    },
+    "menon-2025": {
+      "navn": "Menon Economics 115/2025",
+      "full": "Menon Economics, «Ringvirkninger av Stargate Norways datasenter i Narvik», Menon-publikasjon nr. 115/2025, august 2025, på oppdrag fra Stargate Norway",
+      "pdf": "https://menon.no/uploads/images/2025-115-Ringvirkninger-av-Stargate-Norways-datasenter-i-Narvik.pdf"
+    },
+    "trafikk-datasenter-2020": {
+      "navn": "Trafikkanalyse, datasenter Bjerkvik",
+      "full": "Multiconsult for Nordkraft, trafikkanalyse til detaljregulering datasenter Bjerkvik, 07.10.2020 (vedlegg til reguleringsplanen)",
+      "pdf": "https://oldweb.narvik.kommune.no/_f/p-1/ia100140c-14ea-47a8-942a-960dca5c5cc3/06-rapport-trafikkanalyse.pdf"
+    },
+    "kjolevann-2026": {
+      "navn": "Referat, oppstartsmøte kjølevannsanlegg Bjerkvik",
+      "full": "Narvik kommune, referat fra oppstartsmøte for detaljregulering for kjølevannsanlegg Bjerkvik, plan-ID 2026007, møte 03.07.2026 (arkivsak 26/1700)",
+      "pdf": "https://www.narvik.kommune.no/_f/p1/i5c711bb0-acb3-400e-9995-8f972f1d26fc/referat-fra-oppstartsmote-detaljregulering-for-kjolevannsanlegg-bjerkvik.pdf"
+    }
+  },
+  "saker": [
+    {
+      "id": "helse-og-omsorg",
+      "tittel": "Merforbruk i helse og omsorg",
+      "ingress": "Helse og omsorg har brukt mer enn budsjettert hvert år siden kommunalområdet fikk dagens inndeling i 2024. For 2026 venter kommunedirektøren et merforbruk på 84 mill. kr. Her er tallene fra kommunens egne rapporter samlet, med det rapportene sier om årsakene.",
+      "kontrollert": "2026-10-20",
+      "nokkeltall": [
+        { "navn": "Venter merforbruk i 2026", "verdi": "83,9 mill. kr", "tekst": "kommunedirektørens prognose for hele året, per august", "kilde": { "id": "tertial-2-2026", "side": 9 } },
+        { "navn": "Brukte mer enn budsjettert i 2025", "verdi": "20,0 mill. kr", "tekst": "801,4 mill. kr brukt mot et revidert budsjett på 781,4", "kilde": { "id": "ar-2025", "side": 46 } },
+        { "navn": "Brukte mer enn budsjettert i 2024", "verdi": "67,5 mill. kr", "tekst": "770,3 mill. kr brukt mot et revidert budsjett på 702,8", "kilde": { "id": "ar-2024", "side": 46 } }
+      ],
+      "aktorer": [
+        { "navn": "Helse og omsorg", "rolle": "Kommunalområdet med budsjettet. Tre sektorer: hjemmebaserte tjenester, institusjon og distrikt, og mestring og oppfølging, pluss et fellesområde.", "kilde": { "id": "ar-2025", "side": 46 } },
+        { "navn": "Tildelingskontoret", "rolle": "Bestemmer hvem som får hvilke helse- og omsorgstjenester. Ligger i fellesområdet til Helse og omsorg.", "kilde": { "id": "ar-2025", "side": 46 } },
+        { "navn": "Kommunedirektøren", "rolle": "Legger fram tertialrapportene med prognose for året og årsrapporten.", "kilde": { "id": "tertial-2-2026", "side": 9 } },
+        { "navn": "Formannskapet", "rolle": "Behandler tertialrapportene og årsrapporten.", "kilde": { "id": "tertial-2-2026" } },
+        { "navn": "UNN Narvik", "rolle": "Sykehuset. Pasienter som er utskrivningsklare men venter på et kommunalt tilbud, blir liggende der, og kommunen betaler for døgnene.", "kilde": { "id": "ar-2024", "side": 44 } },
+        { "navn": "Vikarbyråer", "rolle": "Leier ut sykepleiere og annet personell når kommunen mangler folk.", "kilde": { "id": "tertial-2-2026", "side": 32 } }
+      ],
+      "tabell": {
+        "tittel": "Budsjett og regnskap for kommunalområdet Helse og omsorg, mill. kr",
+        "kolonner": ["År", "Opprinnelig budsjett", "Revidert budsjett", "Regnskap", "Mer enn revidert budsjett", "Kilde"],
+        "rader": [
+          { "celler": ["2024", "660,0", "702,8", "770,3", "67,5"], "kilde": { "id": "ar-2024", "side": 46 } },
+          { "celler": ["2025", "709,4", "781,4", "801,4", "20,0"], "kilde": { "id": "ar-2025", "side": 46 } },
+          { "celler": ["2026", "740,7", "742,2", "605,6 per august", "83,9 (prognose)"], "kilde": { "id": "tertial-2-2026", "side": 9 } }
+        ],
+        "merknad": "Kommunalområdet fikk dagens inndeling i 2024. Før det het det Helse og velferd og hadde andre tjenester, så tallene for 2021–2023 kan ikke settes i samme rad. Regnskapet her følger kommunens egen inndeling og er ikke det samme som KOSTRA-tallene for helse og omsorg på Utgifter-siden."
+      },
+      "rolle": [
+        { "tekst": "Rammen for 2026 ble satt til 742 mill. kr, mens regnskapet for 2025 viste et forbruk på 800 mill. kr.", "kilde": { "id": "tertial-2-2026", "side": 31 } },
+        { "tekst": "Per august 2026 hadde Helse og omsorg brukt 605,6 mill. kr, 73,4 mill. kr mer enn budsjettert for de samme månedene.", "kilde": { "id": "tertial-2-2026", "side": 9 } }
+      ],
+      "tidslinje": [
+        { "dato": "2024", "tekst": "Regnskapet for 2024 viser 67,5 mill. kr (9,6 %) mer enn revidert budsjett. Mest i sektor institusjon og distrikt.", "kilde": { "id": "ar-2024", "side": 46 } },
+        { "dato": "2025", "tekst": "Regnskapet for 2025 viser 20,0 mill. kr mer enn revidert budsjett. Alle tre sektorene gikk med merforbruk.", "kilde": { "id": "ar-2025", "side": 46 } },
+        { "dato": "04.06.2026", "tekst": "Årsrapport 2025 lagt fram for formannskapet (sak 025/26).", "kilde": { "id": "ar-2025" } },
+        { "dato": "15.10.2026", "tekst": "Tertialrapport 2/2026 lagt fram for formannskapet (sak 45/26), med en prognose på 83,9 mill. kr i merforbruk for året.", "kilde": { "id": "tertial-2-2026", "side": 9 } }
+      ],
+      "fakta": { "kommunalomrade": "Helse og omsorg", "fra_aar": 2024 },
+      "lenker": [
+        { "href": "omrade?omrade=helse&maal=80#sammenligning", "navn": "Helse og omsorg per innbygger 80 år og over", "tekst": "Utgiftene sammenlignet med andre kommuner, per eldre innbygger." },
+        { "href": "lopende", "navn": "Året så langt", "tekst": "Alle tjenesteområder i 2026 etter tertialrapportene." },
+        { "href": "budsjett", "navn": "Budsjett", "tekst": "Budsjett mot regnskap for alle tjenesteområder." },
+        { "href": "befolkning?aar=2040#pyramide", "navn": "Befolkning i 2040", "tekst": "SSBs framskriving av hvor mange eldre det blir." }
+      ]
+    },
+    {
+      "id": "datasenter-bjerkvik",
+      "tittel": "Datasenteret i Bjerkvik",
+      "ingress": "Aker Nscale bygger datasentre på Skoglund industriområde i Bjerkvik. Kommunen har regulert området og er høringsinstans, mens strømtillatelsene gis av NVE. Her er vedtakene og tallene fra plandokumentene og NVE-sakene.",
+      "kontrollert": "2026-10-20",
+      "nokkeltall": [
+        { "navn": "Strøm tildelt Aker Nscale", "verdi": "130 MW", "tekst": "tildelt av Nordkraft Industrinett fra Skoglund transformatorstasjon", "kilde": { "id": "nve-brev-2025", "side": 2 } },
+        { "navn": "Reservert hos Statnett", "verdi": "230 MW", "tekst": "under Kvandal transformatorstasjon, 100 MW av dem med særlige vilkår", "kilde": { "id": "statnett-2026", "side": 2 } },
+        { "navn": "Ny 420 kV-tilknytning", "verdi": "2029", "tekst": "når anleggene skal kunne være i drift etter søknadens framdriftsplan", "kilde": { "id": "statnett-2026", "side": 1 } }
+      ],
+      "aktorer": [
+        { "navn": "Aker Nscale AS", "rolle": "Bygger datasentrene på Skoglund industriområde og har konsesjon for strømanleggene inne på området.", "kilde": { "id": "nve-brev-2025", "side": 2 } },
+        { "navn": "Nscale", "rolle": "Står bak forslaget til reguleringsplan for kjølevann til datasenteret.", "kilde": { "id": "kjolevann-2026", "side": 1 } },
+        { "navn": "Nordkraft Industrinett AS", "rolle": "Eier Skoglund transformatorstasjon, har tildelt 130 MW til Aker Nscale og har søkt om ny 420 kV-tilknytning fra Kvandal.", "kilde": [{ "id": "nve-brev-2025", "side": 2 }, { "id": "statnett-2026", "side": 1 }] },
+        { "navn": "Statnett", "rolle": "Eier transmisjonsnettet. Har reservert 230 MW under Kvandal transformatorstasjon.", "kilde": [{ "id": "nve-brev-2025", "side": 2 }, { "id": "statnett-2026", "side": 2 }] },
+        { "navn": "NVE", "rolle": "Gir konsesjon til strømanleggene og godkjenner analysen av overskuddsvarme.", "kilde": [{ "id": "nve-konsesjon-2025", "side": 1 }, { "id": "nve-tvangsmulkt-2026" }] },
+        { "navn": "Narvik kommune", "rolle": "Planmyndighet: vedtok reguleringsplanen i 2021 og skal behandle kjølevannsplanen. Høringsinstans i NVE-saken om ny 420 kV-tilknytning.", "kilde": [{ "id": "plan-datasenter-2021", "side": 1 }, { "id": "nordkraft-2026", "side": 2 }] },
+        { "navn": "Nordland fylkeskommune", "rolle": "Har innsigelse til reguleringsplanen for Skoglund–Lallasletta.", "kilde": { "id": "kjolevann-2026", "side": 7 } }
+      ],
+      "rolle": [
+        { "tekst": "Kommunestyret vedtok detaljreguleringsplanen for datasenter Bjerkvik 29.04.2021. Formålet er å legge til rette for datasenter eller annen kraftkrevende næring.", "kilde": { "id": "plan-datasenter-2021", "side": 1 } },
+        { "tekst": "Kommunen var høringsinstans for søknaden om ny 420 kV-tilknytning og hadde ingen merknader.", "kilde": { "id": "nordkraft-2026", "side": 2 } },
+        { "tekst": "Nscale har startet arbeidet med en reguleringsplan for kjølevann til datasenteret, med inntak og utslipp i sjøen ved Bjerkvik eller på Lallasletta. Planen skal behandles av kommunen.", "kilde": { "id": "kjolevann-2026", "side": 1 } },
+        { "tekst": "Datasenteret står ikke blant investeringsprosjektene i kommunens økonomiplan for 2026–2029.", "kilde": { "id": "okplan-2026", "side": 14 } }
+      ],
+      "temaer": [
+        { "tittel": "Arbeidsplasser", "punkter": [
+          { "tekst": "Trafikkanalysen til reguleringsplanen fra 2020 legger til grunn høyst 150 ansatte i tre skift, og at det tar flere år før det høyeste antallet er nådd. Tallet er brukt til å beregne trafikk og parkering.", "kilde": { "id": "trafikk-datasenter-2020", "side": 13 } },
+          { "tekst": "Menon Economics anslår i en rapport på oppdrag fra Stargate Norway (august 2025) at rundt 250 personer vil ha datasenteret som fast arbeidsplass. Tallet omfatter fast ansatte, innleid personell og kundens ansatte på stedet, og bemanningstallet kommer fra utbyggeren.", "kilde": [{ "id": "menon-2025", "side": 7 }, { "id": "menon-2025", "side": 11 }] },
+          { "tekst": "Ifølge rapporten er stillingene teknisk driftspersonell, sikkerhet, administrasjon, kundeservice og støttefunksjoner for drift av bygg og anlegg. Den anslår i tillegg 145 årsverk hos leverandører, til sammen nesten 400 årsverk i driften, og nesten 280 av dem i Narvik.", "kilde": [{ "id": "menon-2025", "side": 19 }, { "id": "menon-2025", "side": 20 }] },
+          { "tekst": "For byggefasen anslår rapporten 4 000 årsverk i Norge, hvorav 700 hos bedrifter i Narvik kommune. Mange som jobber på byggeplassen, er ansatt i bedrifter i andre kommuner.", "kilde": { "id": "menon-2025", "side": 14 } },
+          { "tekst": "Rapporten skriver selv at usikkerheten i anslagene «ikke er ubetydelig», fordi datasenteret ikke var bygget og leverandører og driftsmodell ikke var valgt.", "kilde": { "id": "menon-2025", "side": 11 } }
+        ] },
+        { "tittel": "Natur, vann og støy", "punkter": [
+          { "tekst": "Konsekvensutredningen til reguleringsplanen satte samlet konsekvens for naturmangfold til «betydelig miljøskade», med vekt på registrerte naturtyper.", "kilde": { "id": "nve-brev-2025", "side": 3 } },
+          { "tekst": "Reguleringsbestemmelsene krever at det ikke kommer slam, sedimenter eller organisk materiale i vassdragene i anleggsfasen, og at grøftevann og drensvann infiltreres i grunnen før det renner ut i vassdraget.", "kilde": { "id": "plan-datasenter-2021", "side": 1 } },
+          { "tekst": "Støy fra vifter og kjøleanlegg skal holde seg innenfor statens retningslinje for støy (T-1442), og støy fra driften skal være beregnet før det gis igangsettingstillatelse.", "kilde": { "id": "plan-datasenter-2021", "side": 5 } }
+        ] },
+        { "tittel": "Overskuddsvarme", "punkter": [
+          { "tekst": "Etter energiloven § 7-2 må datasentre over 2 MW lage en kost-nytteanalyse av mulighetene for å bruke overskuddsvarmen, og NVE må godkjenne den før byggestart. Regelen har gjeldt siden 1. april 2025. Den krever at muligheten vurderes; NVE skriver at det er lovpålagt «å vurdere om overskuddsvarmen kan benyttes».", "kilde": { "id": "nve-tvangsmulkt-2026" } },
+          { "tekst": "NVE skriver at Nscale Norway AS startet byggingen uten å ha levert analysen, og at det er et brudd på energiloven. NVE har pålagt Nscale å levere den og varslet tvangsmulkt hvis den ikke er kommet innen 15. november 2026.", "kilde": { "id": "nve-tvangsmulkt-2026" } },
+          { "tekst": "Kjølevannsplanen skal også legge til rette for at overskuddsvarmen kan brukes, for eksempel på Lallasletta eller langs traseen. Nscale opplyser at de er i dialog med Futurum og kommunen om dette.", "kilde": { "id": "kjolevann-2026", "side": 8 } }
+        ] }
+      ],
+      "tidslinje": [
+        { "dato": "29.04.2021", "tekst": "Kommunestyret vedtar detaljreguleringsplan for datasenter Bjerkvik (sak 037/21, plan-ID 2019002).", "kilde": { "id": "plan-datasenter-2021", "side": 1 } },
+        { "dato": "2024", "tekst": "Skoglund transformatorstasjon blir ferdig. Nordkraft Industrinett eier stasjonen og har reservert kapasitet hos Statnett.", "kilde": { "id": "nve-brev-2025", "side": 2 } },
+        { "dato": "16.10.2025", "tekst": "Aker Nscale søker NVE om konsesjon for strømanlegg til to datasentre, med et effektbehov på 130 MW.", "kilde": { "id": "nve-brev-2025", "side": 2 } },
+        { "dato": "08.12.2025", "tekst": "NVE gir Aker Nscale anleggskonsesjon. Anleggene skal være i drift innen to år, og konsesjonen gjelder til 2075.", "kilde": { "id": "nve-konsesjon-2025", "side": 1 } },
+        { "dato": "06.01.2026", "tekst": "NVE sender Nordkraft Industrinetts søknad om ny Skoglund transformatorstasjon med 420 kV-kabler fra Kvandal på høring.", "kilde": { "id": "statnett-2026", "side": 1 } },
+        { "dato": "05.02.2026", "tekst": "Statnett bekrefter i høringssvaret at 230 MW er reservert under Kvandal.", "kilde": { "id": "statnett-2026", "side": 2 } },
+        { "dato": "11.03.2026", "tekst": "NVE gir Nordkraft Industrinett konsesjon til ny transformatorstasjon for 420 kV på Skoglund, med to 1,6 km lange jordkabler fra Kvandal. Aker Nscale blir eneste kunde.", "kilde": { "id": "nve-skoglund-2026", "side": 1 } },
+        { "dato": "22.06.2026", "tekst": "Nordland fylkeskommune opprettholder innsigelsen til reguleringsplanen for Skoglund–Lallasletta etter kommunestyrets planvedtak.", "kilde": { "id": "kjolevann-2026", "side": 7 } },
+        { "dato": "03.07.2026", "tekst": "Oppstartsmøte hos kommunen for detaljregulering av kjølevannsanlegg Bjerkvik (plan-ID 2026007). Området som varsles er på om lag 6 200 dekar.", "kilde": { "id": "kjolevann-2026", "side": 2 } },
+        { "dato": "29.09.2026", "tekst": "NVE varsler Nscale om tvangsmulkt hvis analysen av overskuddsvarme ikke er levert innen 15. november 2026.", "kilde": { "id": "nve-tvangsmulkt-2026" } }
+      ],
+      "lenker": [
+        { "href": "arbeid", "navn": "Arbeid", "tekst": "Ledighet, ledige stillinger og hvor folk i Narvik jobber." },
+        { "href": "inntekter", "navn": "Inntekter", "tekst": "Kommunens inntekter, blant annet eiendomsskatt." },
+        { "href": "befolkning", "navn": "Befolkning", "tekst": "Folketall og flytting, også for Bjerkvik som delområde." }
+      ]
+    },
+    {
+      "id": "alpin-vm-2029",
+      "tittel": "Alpin-VM 2029",
+      "ingress": "Narvik skal arrangere VM i alpint i 2029. Arrangementet og utbyggingen i Narvikfjellet ligger i egne selskaper, ikke i kommunen. Her er det Stortinget og kommunen har vedtatt og satt av penger til, fra stortingsvedtaket, økonomiplanen og plansakene.",
+      "kontrollert": "2026-10-20",
+      "nokkeltall": [
+        { "navn": "Statens bidrag til VM-anlegget", "verdi": "inntil 342 mill. kr", "tekst": "over årene 2025–2028, vedtatt av Stortinget", "kilde": { "id": "innst-85s-2024", "side": 7 } },
+        { "navn": "Kommunens bidrag til VM-anlegget", "verdi": "31,25 mill. kr", "tekst": "satt av i 2027 i investeringsbudsjettet, prosjekt 832028", "kilde": { "id": "okplan-2026", "side": 14 } },
+        { "navn": "Fra FIS til arrangementet", "verdi": "ca. 500 mill. kr", "tekst": "fra salget av sponsorrettighetene, utbetalt til arrangørselskapet. VM i Trondheim 2025 fikk om lag 250 mill. kr", "kilde": { "id": "ku-2025-12-01", "side": 36 } }
+      ],
+      "aktorer": [
+        { "navn": "FIS", "rolle": "Det internasjonale skiforbundet. Motpart i vertskapsavtalen med Skiforbundet og kommunen. Har solgt sponsorrettighetene til mesterskapet.", "kilde": [{ "id": "ku-2025-12-01", "side": 29 }, { "id": "ku-2025-12-01", "side": 36 }] },
+        { "navn": "Norges Skiforbund", "rolle": "Tildelt VM sammen med kommunen. Part i vertskapsavtalen, har hovedansvaret for arrangementet og eier 60 % av arrangørselskapet.", "kilde": { "id": "ku-2025-12-01", "side": 35 } },
+        { "navn": "Alpin VM Narvik 2029 AS (LOC)", "rolle": "Arrangørselskapet som gjennomfører mesterskapet. Får om lag 500 mill. kr fra FIS til arrangementet.", "kilde": { "id": "ku-2025-12-01", "side": 36 } },
+        { "navn": "Narvikfjellet Allmenn AS", "rolle": "Bygger ut anlegget og søkte staten om støtte. Eier 40 % av arrangørselskapet. Kommunen sitter i styret.", "kilde": [{ "id": "innst-85s-2024", "side": 2 }, { "id": "ku-2025-12-01", "side": 35 }, { "id": "ku-2025-12-01", "side": 36 }] },
+        { "navn": "Narvik kommune", "rolle": "Vertsby og part i vertskapsavtalen, med solidarisk ansvar. Bidrar med 31,25 mill. kr til anlegget.", "kilde": [{ "id": "ku-2025-12-01", "side": 30 }, { "id": "okplan-2026", "side": 14 }] },
+        { "navn": "Staten", "rolle": "Dekker deler av anleggsutbyggingen med inntil 342 mill. kr i 2025–2028, gjennom Kultur- og likestillingsdepartementet.", "kilde": { "id": "innst-85s-2024", "side": 7 } },
+        { "navn": "Kontrollutvalget", "rolle": "Kommunens eget kontrollorgan. Har fulgt opp kommunens økonomiske forpliktelser og risiko knyttet til VM.", "kilde": { "id": "ku-2026-02-23", "side": 5 } }
+      ],
+      "rolle": [
+        { "tekst": "Norges Skiforbund og Narvik kommune er tildelt VM i alpine grener i 2029.", "kilde": { "id": "innst-85s-2024", "side": 2 } },
+        { "tekst": "Narvikfjellet Allmenn AS bygger ut anlegget, og arrangørselskapet (LOC) gjennomfører mesterskapet. Kommunen oppgir at det ikke går penger fra kommunen inn i de to selskapene, verken til drift eller investering, utenom bidraget i økonomiplanen.", "kilde": { "id": "vm-organisering" } },
+        { "tekst": "Kommunen og Norges Skiforbund er parter i vertskapsavtalen (Hosting Contract) med det internasjonale skiforbundet FIS, signert 4. juni 2024. Etter avtalens punkt 2.7 er Skiforbundet, kommunen og arrangørselskapet solidarisk ansvarlige («jointly and severally responsible») for alle forpliktelser de inngår, hver for seg eller sammen, om organiseringen og gjennomføringen av mesterskapet.", "kilde": { "id": "ku-2025-12-01", "side": 30 } },
+        { "tekst": "Advokatfirmaet PwC vurderte at den største risikoen i vertskapsavtalen er at kommunen hefter solidarisk for økonomiske forpliktelser som kan oppstå ved framtidige avtaler. Kommunen har brukt advokatfirmaet Harris til å vurdere avtalene etter tildelingen, og arbeider med en avtale som skal fordele ansvaret mellom de fire partene.", "kilde": { "id": "ku-2025-12-01", "side": 36 } },
+        { "tekst": "Ifølge kommunedirektøren uttalte Statsforvalteren at avtalen med Norges Skiforbund fra 2021 ikke kom i konflikt med kommunelovens regel om garantier (§ 14-19). Arrangørselskapet Alpin VM Narvik 2029 AS eies av Norges Skiforbund (60 %) og Narvikfjellet Allmenn AS (40 %); kommunen eier ikke aksjer i det.", "kilde": { "id": "ku-2025-12-01", "side": 35 } },
+        { "tekst": "Hvis VM må avlyses av force majeure, som pandemi eller krig, har kommunen et medansvar for deler av FIS' kostnader, skriver kontrollutvalgets sekretariat. Kommunedirektøren legger til grunn at forsikring dekker det, og kontrollutvalget har spurt om forsikringen dekker hele kommunens ansvar.", "kilde": { "id": "ku-2025-12-01", "side": 32 } },
+        { "tekst": "Bidraget var opprinnelig en kulvert. Etter endringer i løypene trengs ikke kulverten, og kommunedirektøren foreslår å bruke det samme beløpet på en lett nedfart og serviceløype.", "kilde": { "id": "okplan-2026", "side": 12 } },
+        { "tekst": "Kultur har det operative ansvaret for kommunens vertskapsrolle under VM.", "kilde": { "id": "okplan-2026", "side": 27 } },
+        { "tekst": "Veg og park har prioritert uttalelser til reguleringsplanene for VM.", "kilde": { "id": "tertial-2-2026", "side": 41 } }
+      ],
+      "tidslinje": [
+        { "dato": "04.01.2024", "tekst": "Narvikfjellet Allmenn AS varsler endring av områdereguleringen for Fagernesfjellet for å bygge anlegget til VM 2029.", "kilde": { "id": "plan-fagernesfjellet-2025", "side": 4 } },
+        { "dato": "04.06.2024", "tekst": "Vertskapsavtalen (Hosting Contract) med FIS signeres, med Norges Skiforbund og Narvik kommune som parter. Rådmannen sendte en risikovurdering til ordføreren 1. juni.", "kilde": { "id": "ku-2025-12-01", "side": 35 } },
+        { "dato": "22.11.2024", "tekst": "Regjeringen foreslår at staten dekker deler av anleggsutbyggingen i 2025–2028, med inntil 342 mill. kr. Narvikfjellet Allmenn AS hadde søkt om 342 mill. kr. Bidraget skal finansieres fra spilleoverskuddet til Norsk Tipping og over statsbudsjettet (Prop. 25 S).", "kilde": { "id": "innst-85s-2024", "side": 2 } },
+        { "dato": "16.12.2024", "tekst": "Stortinget vedtar at staten kan forplikte seg til å dekke deler av utgiftene til anlegget, med inntil 342 mill. kr over 2025–2028.", "kilde": { "id": "stortinget-sak-2024" } },
+        { "dato": "19.06.2025", "tekst": "Kommunestyret vedtar reguleringsendringen for Fagernesfjellet (plan 2012015), med nye VM-traseer, målområde og ny stolheis.", "kilde": { "id": "plan-fagernesfjellet-2025", "side": 1 } },
+        { "dato": "19.06.2025", "tekst": "Kommunestyret får en orientering om risikoen ved det solidariske ansvaret kommunen har påtatt seg.", "kilde": { "id": "ku-2025-12-01", "side": 35 } },
+        { "dato": "27.10.2025", "tekst": "Kontrollutvalget ber kommunedirektøren redegjøre skriftlig for risikoen ved solidarisk ansvar og garantier, juridisk kvalitetssikring av avtalene, risikohåndtering og erfaringer fra tidligere VM (sak 48/25).", "kilde": { "id": "ku-2025-12-01", "side": 9 } },
+        { "dato": "01.12.2025", "tekst": "Kontrollutvalget stiller oppfølgingsspørsmål om hva det solidariske ansvaret innebærer, hvem kreditorer kan kreve, og om forsikringen dekker kommunens ansvar ved avlysning (sak 58/25).", "kilde": { "id": "ku-2025-12-01", "side": 26 } },
+        { "dato": "23.02.2026", "tekst": "Kontrollutvalget sender kommunedirektørens svar av 15.01.2026 til kommunestyret og anbefaler at kommunestyret får jevnlige orienteringer om kommunens samlede risiko knyttet til VM (sak 05/26).", "kilde": { "id": "ku-2026-02-23", "side": 5 } },
+        { "dato": "2027", "tekst": "Kommunens bidrag på 31,25 mill. kr ligger i økonomiplanen for 2027.", "kilde": { "id": "okplan-2026", "side": 14 } }
+      ],
+      "lenker": [
+        { "href": "gjeld", "navn": "Gjeld og investeringer", "tekst": "Kommunens største investeringer år for år." },
+        { "href": "arbeid", "navn": "Arbeid", "tekst": "Ledighet og ledige stillinger måned for måned." },
+        { "href": "befolkning", "navn": "Befolkning", "tekst": "Folketall og SSBs framskriving." }
+      ]
+    }
+  ]
+}
