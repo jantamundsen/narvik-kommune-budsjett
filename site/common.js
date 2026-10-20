@@ -109,7 +109,18 @@ document.addEventListener('keydown', e => {
     const a = m.avvik, v = a && (a.points != null && (m.enhet === '%' || a.share == null) ? a.points : a.share);
     return v ? `<span class="arrow" aria-hidden="true">${v > 0 ? '▲' : '▼'}</span> ` : '';
   };
-  const src = m => `<a href="${h(m.kilde.url)}" target="_blank" rel="noopener">${h(m.kilde.tekst)}</a>`;
+  // One source line per section instead of one per number: the tables, each linked once, and how the numbers
+  // marked «beregnet» were worked out.
+  const sources = ms => {
+    const tables = new Map();
+    ms.forEach(m => { const [org, tab] = m.kilde.tekst.split(', '); tables.set(m.kilde.url, { org, tab: tab.replace('tabell ', '') }); });
+    const byOrg = {};
+    tables.forEach((t, url) => (byOrg[t.org] ||= []).push(`<a href="${h(url)}" target="_blank" rel="noopener">${h(t.tab)}</a>`));
+    const calc = [...new Map(ms.filter(m => m.beregnet).map(m => [m.navn, m])).values()]
+      .map(m => `${h(m.navn)}: ${h(m.kilde.tekst.split(', ').slice(2).join(', ') || 'regnet ut her')}`);
+    return `<p class="caption">Kilder: ${Object.entries(byOrg).map(([o, l]) => `${h(o)}, tabell ${l.join(', ')}`).join('. ')}.`
+      + (calc.length ? ` Beregnet: ${calc.join('. ')}.` : '') + '</p>';
+  };
 
   const list = outSec && S.skiller_seg_ut?.[sideOf(outSec)];
   if (list?.length) {
@@ -119,8 +130,8 @@ document.addEventListener('keydown', e => {
         <span class="so-name">${h(m.navn)} <span class="caption">${h(m.aar)}</span>${m.beregnet ? ' <span class="tag">beregnet</span>' : ''}</span>
         <b class="so-me num">${val(m, m.verdier.narvik)}</b>
         <span class="so-diff">${arrow(m)}${h(diff(m))}</span>
-        <span class="caption">${h(name(m.mot))}: ${val(m, m.verdier[m.mot])}. Kilde: ${src(m)}.</span>
-      </li>`).join('')}</ul>`;
+        <span class="caption">${h(name(m.mot))}: ${val(m, m.verdier[m.mot])}.</span>
+      </li>`).join('')}</ul>${sources(list)}`;
     outSec.setAttribute('aria-labelledby', 'h-out');
     outSec.hidden = false;
   }
@@ -136,7 +147,7 @@ document.addEventListener('keydown', e => {
     return `<li class="lm">
       <div class="lm-name">${h(m.navn)} <span class="caption">${h(m.aar)}</span>${m.beregnet ? ' <span class="tag">beregnet</span>' : ''}</div>
       <div class="lm-vals num"><span><small>Narvik</small><b>${val(m, m.verdier.narvik)}</b></span><span><small>${h(name(m.mot))}</small><b>${val(m, m.verdier[m.mot])}</b></span>${d ? `<span class="lm-diff">${arrow(m)}${h(d)}</span>` : ''}</div>
-      <p class="caption">${others ? h(others) + '. ' : ''}Kilde: ${src(m)}.</p>
+      ${others ? `<p class="caption">${h(others)}.</p>` : ''}
     </li>`;
   };
   const card = (l, dir) => {
@@ -153,7 +164,7 @@ document.addEventListener('keydown', e => {
   const group = (title, list, dir) => (list.length ? `<div class="link-group"><h3>${title}</h3><div class="link-cards">${list.map(l => card(l, dir)).join('')}</div></div>` : '');
   sec.innerHTML = `<div class="section-head"><h2 id="h-links">Henger sammen med</h2>
     <p class="lead">Tall på andre sider som kan påvirke tallene her, eller som tallene her kan påvirke. Narvik står ved siden av et snitt, som KOSTRA-gruppe 9 eller hele landet.</p></div>
-    ${group('Kan påvirke', from, 'ut')}${group('Kan påvirkes av', to, 'inn')}`;
+    ${group('Kan påvirke', from, 'ut')}${group('Kan påvirkes av', to, 'inn')}${sources([...from, ...to].flatMap(l => l.maal))}`;
   sec.setAttribute('aria-labelledby', 'h-links');
   sec.hidden = false;
 })();
