@@ -63,6 +63,13 @@ function stackable(table) {
     if (i && heads[i]) td.dataset.label = heads[i];
   }));
 }
+// Utgifter, Inntekter and Gjeld show the same accounting years, so their links in .sub-nav keep the year
+// selected on the page the reader is on (?aar=2023). Read at click time, since the pages change it in place.
+document.addEventListener('click', e => {
+  const a = e.target.closest?.('a[data-aar]');
+  const y = urlYear();
+  if (a && y) a.href = new URL(a.getAttribute('href'), location.href).pathname + '?aar=' + encodeURIComponent(y);
+});
 // The «Økonomi» menu on pages outside the economy area is a <details>; close it on a click elsewhere or Escape.
 document.addEventListener('click', e => {
   document.querySelectorAll('.nav-menu[open]').forEach(d => { if (!d.contains(e.target)) d.open = false; });
