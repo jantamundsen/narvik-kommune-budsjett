@@ -1,4 +1,4 @@
-// saker.html: «Aktuelle saker». Without ?sak= it lists the cases; with ?sak=helse-og-omsorg it shows one fact sheet.
+// saker.html: «Utvalgte saker». Without ?sak= it lists the cases; with ?sak=helse-og-omsorg it shows one fact sheet.
 // Everything comes from data/saker.json, which scripts/build_saker.py writes from config/saker.json.
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 const dateText = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nb-NO', { day: 'numeric', month: 'long', year: 'numeric' });
@@ -87,8 +87,8 @@ const dateText = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nb-NO', 
     </section>`;
 
   main.innerHTML = `<header>
-      <nav class="crumbs" aria-label="Brødsmuler"><a href="?">Aktuelle saker</a><span aria-hidden="true">›</span><span aria-current="page">${esc(S.tittel)}</span></nav>
-      <div class="eyebrow">Aktuell sak · sist kontrollert ${dateText(S.kontrollert)}</div>
+      <nav class="crumbs" aria-label="Brødsmuler"><a href="?">Utvalgte saker</a><span aria-hidden="true">›</span><span aria-current="page">${esc(S.tittel)}</span></nav>
+      <div class="eyebrow">Utvalgt sak · sist kontrollert ${dateText(S.kontrollert)}</div>
       <h1>${esc(S.tittel)}</h1>
       <p class="lead">${esc(S.ingress)}</p>
       ${S.mangler ? `<p class="status-note">${esc(S.mangler)}</p>` : ''}
@@ -105,8 +105,8 @@ const dateText = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nb-NO', 
 
 function list(main, D) {
   main.innerHTML = `<header>
-      <div class="eyebrow">Aktuelle saker</div>
-      <h1>Aktuelle saker</h1>
+      <div class="eyebrow">Utvalgte saker</div>
+      <h1>Utvalgte saker</h1>
       <p class="lead">Faktaark om saker mange i Narvik snakker om. Hvert ark samler vedtak, datoer og tall fra kommunens egne dokumenter og andre offentlige kilder, med lenke til siden tallet står på.</p>
     </header>
     <section aria-label="Sakene"><div class="link-cards">${D.saker.map(s => `<article class="link-card">

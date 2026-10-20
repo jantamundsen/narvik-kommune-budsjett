@@ -1,5 +1,5 @@
 {
-  "_comment": "Aktuelle saker: one fact sheet per case, typed in by hand. Every number and every line in «rolle» and «tidslinje» names a source in «kilder» here or in config/fakta.json, with the page where there is one. No opinions, no forecasts of our own: the kommune's own prognosis may be shown, marked as such. «fakta» pulls the matching points from config/fakta.json, so they are not typed twice. «kontrollert» is the date the case was last checked against the sources. scripts/build_saker.py checks this file and writes site/data/saker.json.",
+  "_comment": "Utvalgte saker: one fact sheet per case, typed in by hand. Every number and every line in «rolle» and «tidslinje» names a source in «kilder» here or in config/fakta.json, with the page where there is one. No opinions, no forecasts of our own: the kommune's own prognosis may be shown, marked as such. «fakta» pulls the matching points from config/fakta.json, so they are not typed twice. «kontrollert» is the date the case was last checked against the sources. scripts/build_saker.py checks this file and writes site/data/saker.json.",
   "kilder": {
     "okplan-2026": {
       "navn": "Økonomiplan 2026–2029",
