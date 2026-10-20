@@ -61,22 +61,6 @@ section { display: grid; gap: 20px; }
 .sub-sep { flex: none; width: 1px; margin: 4px 6px; background: var(--rule); }
 .sub-nav a:hover { color: var(--ink); border-color: var(--ink-2); }
 .sub-nav a[aria-current="page"] { background: var(--accent); border-color: var(--accent); color: var(--paper); font-weight: 600; }
-/* «Økonomi» on pages outside the area: a click menu (details), so it works the same with touch and keyboard. */
-.nav-menu { position: relative; }
-.nav-menu summary { list-style: none; cursor: pointer; font-size: 0.95rem; color: var(--ink-2); padding: 2px 0; display: flex; gap: 4px; align-items: center; }
-.nav-menu summary::-webkit-details-marker { display: none; }
-.nav-menu summary::after { content: ""; width: 6px; height: 6px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: translateY(-2px) rotate(45deg); }
-.nav-menu[open] summary::after { transform: translateY(1px) rotate(-135deg); }
-.nav-menu summary:hover, .nav-menu[open] summary { color: var(--ink); }
-.nav-menu summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.nav-pop { position: absolute; right: 0; top: calc(100% + 10px); z-index: 10; width: 280px; max-width: calc(100vw - 32px); background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); padding: 6px; display: grid; }
-@media (max-width: 680px) { .nav-pop { left: 0; right: auto; } }
-.site-nav .nav-pop a { display: grid; gap: 1px; padding: 9px 12px; border-radius: 6px; border: 0; color: var(--ink); }
-.site-nav .nav-pop a:hover { background: var(--accent-soft); }
-.nav-pop b { font-weight: 600; }
-.nav-group { padding: 10px 12px 4px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-2); }
-.nav-group:not(:first-child) { margin-top: 4px; border-top: 1px solid var(--rule); }
-.nav-pop small { font-size: 0.82rem; color: var(--ink-2); }
 .cross-link { font-size: 0.95rem; font-weight: 600; }
 
 /* header */
