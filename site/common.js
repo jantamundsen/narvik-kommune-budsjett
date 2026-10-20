@@ -128,7 +128,7 @@ document.addEventListener('keydown', e => {
   };
   const group = (title, list, dir) => (list.length ? `<div class="link-group"><h3>${title}</h3><div class="link-cards">${list.map(l => card(l, dir)).join('')}</div></div>` : '');
   sec.innerHTML = `<div class="section-head"><h2 id="h-links">Henger sammen med</h2>
-    <p class="lead">Tall på andre sider som kan påvirke tallene her, eller som tallene her kan påvirke. Narvik står ved siden av et snitt av lignende kommuner, og «Skiller seg ut» betyr at Narvik er minst ${S.grense.niva_prosent} % fra snittet, eller ${nb(S.grense.endring_poeng)} prosentpoeng for endringer og resultat.</p></div>
+    <p class="lead">Tall på andre sider som kan påvirke tallene her, eller som tallene her kan påvirke. Narvik står ved siden av et snitt, som KOSTRA-gruppe 9 eller hele landet, og «Skiller seg ut» betyr at Narvik er minst ${S.grense.niva_prosent} % fra snittet, eller ${nb(S.grense.endring_poeng)} prosentpoeng for endringer og resultat.</p></div>
     ${group('Kan påvirke', from, 'ut')}${group('Kan påvirkes av', to, 'inn')}`;
   sec.setAttribute('aria-labelledby', 'h-links');
   sec.hidden = false;
