@@ -150,7 +150,7 @@ def population(sources: dict) -> tuple[dict, dict, dict]:
             proj[k] = proj.get(k, 0) + v
     sources["14746"] = {**source("14746", q), "alternative": labels(proj_ds, "ContentsCode").get("Personer", "Hovedalternativet (MMMM)")}
 
-    pyramid = {}
+    pyramid, older = {}, {}
     for y in years + sorted({k[0] for k in proj}):
         projected = y > last
         row = {"projected": projected}
@@ -158,6 +158,12 @@ def population(sources: dict) -> tuple[dict, dict, dict]:
             p = {a: n for (t, s, a), n in proj.items() if t == y and s == sex} if projected else ages("narvik", y, sex)
             row[key] = [by_age(p, lo, hi) for lo, hi in PYRAMID]
         pyramid[y] = row
+        # Inhabitants 67+ and 80+, the age groups the helse og omsorg comparison uses, which five-year groups can't give.
+        both = ages("narvik", y) if not projected else {}
+        for (t, s, a), n in proj.items() if projected else ():
+            if t == y:
+                both[a] = both.get(a, 0) + n
+        older[y] = {lo: by_age(both, int(lo), None) for lo in ("67", "80")}
 
     compare = []
     for r in rows:
@@ -176,7 +182,7 @@ def population(sources: dict) -> tuple[dict, dict, dict]:
             "under16": round(by_age(now, 0, 15) / total * 100, 1),
             "men_per_100_women": round(men / women * 100) if women else None,
         })
-    return pyramid, {"year": last, "rows": compare, "first": str(FIRST)}, {"years": years, "last": last}
+    return pyramid, {"year": last, "rows": compare, "first": str(FIRST)}, {"years": years, "last": last, "older": older}
 
 
 def change(sources: dict) -> dict:
@@ -301,6 +307,7 @@ def main() -> int:
         "last": meta["last"],
         "groups": [f"{lo}–{hi}" if hi is not None else f"{lo}+" for lo, hi in PYRAMID],
         "pyramid": pyramid,
+        "older": meta["older"],
         "change": change(sources),
         "compare": compare,
         "areas": areas(sources),

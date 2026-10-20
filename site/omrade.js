@@ -267,22 +267,18 @@ function ageMeasure(m, base, toggle) {
   return { pcs: m.values, what: m.what || base.what, fs: m.functions, per: m.per, toggle,
     unit: `Netto driftsutgifter, kommunekonsern (SSB tabell ${m.table}), delt på ${esc(many)} 1. januar året etter (SSB tabell ${pop.table}), beregnet`,
     popNote: r => (pop.values[r.key]?.[year] ? `${nb(pop.values[r.key][year])} ${many}` : null),
-    after: m.key === '80' ? outlook80() : '',
+    after: ['67', '80'].includes(m.key) ? outlook(m.key) : '',
     note: ` Samme netto som resten av siden, men delt på ${esc(many)} i stedet for alle innbyggerne.${part}${young} Landet uten Oslo er hele landet minus Oslo, og ${esc(N.compare.find(r => r.key === 'gruppe')?.name || 'KOSTRA-gruppen')} er summen av kommunene i gruppen.`,
     source: `SSB publiserer ikke lenger dette som eget nøkkeltall, så det er beregnet her. <a href="${esc(m.query)}&outputFormat=html" target="_blank" rel="noopener">Se netto hos SSB</a> (<a href="${esc(m.url)}" target="_blank" rel="noopener">tabell ${m.table}</a>) og <a href="${esc(pop.query)}&outputFormat=html" target="_blank" rel="noopener">innbyggerne i Narvik etter alder</a> (<a href="${esc(pop.url)}" target="_blank" rel="noopener">tabell ${pop.table}</a>).` };
 }
 
-// Under the comparison per inhabitant 80+: how many there are now and how many SSB's projection expects, with a link to
-// the pyramid on befolkning.html. Only the head count, no cost estimate: what it means for the budget is left open.
-function outlook80() {
-  const P = B?.pyramid, first = B?.groups?.findIndex(g => g.startsWith('80'));
-  if (!P || first == null || first < 0 || !P[B.last]) return '';
-  const count = y => [...P[y].f, ...P[y].m].filter((_, i) => i % P[y].f.length >= first).reduce((s, v) => s + v, 0);
-  const to = P['2040'] ? '2040' : Object.keys(P).sort().at(-1);
-  if (to === B.last) return '';
-  const src = k => `<a href="${esc(B.sources[k].url)}" target="_blank" rel="noopener">SSB ${k}</a>`;
-  return `<div class="status-note outlook"><p><strong>Hvor mange blir de?</strong> 1. januar ${B.last} bodde det ${nb(count(B.last))} innbyggere 80 år og over i Narvik. SSBs framskriving venter rundt ${nb(Math.round(count(to) / 10) * 10)} i ${to}. <a href="befolkning.html?aar=${to}#pyramide">Se befolkningspyramiden for ${to}</a>.</p>
-    <p class="caption">${B.last}: ${src('07459')}. ${to}: ${src('14746')}, hovedalternativet. Framskrivingen bygger på antakelser om fødsler, levealder og flytting, og er ikke en fasit.</p></div>`;
+// Under the comparison per inhabitant 67+ or 80+: how many there are now and how many SSB's projection expects, with a
+// link to the pyramid on befolkning.html. Only the head count, no cost estimate: what it means for the budget is left open.
+function outlook(lo) {
+  const O = B?.older, now = O?.[B?.last]?.[lo];
+  const to = O?.['2040'] ? '2040' : Object.keys(O || {}).sort().at(-1);
+  if (now == null || !to || to === B.last || O[to][lo] == null) return '';
+  return `<div class="status-note outlook"><p><strong>Hvor mange blir de?</strong> 1. januar ${B.last} bodde det ${nb(now)} innbyggere ${lo} år og over i Narvik. SSBs framskriving venter rundt ${nb(Math.round(O[to][lo] / 10) * 10)} i ${to}. <a href="befolkning.html?aar=${to}#pyramide">Se befolkningspyramiden for ${to}</a>.</p></div>`;
 }
 
 // Sum a per-year value over functions; null when no function has it.
