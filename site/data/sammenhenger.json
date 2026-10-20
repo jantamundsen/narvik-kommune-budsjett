@@ -54,6 +54,14 @@
   "omrade:bolig": {
    "navn": "Kommunale boliger",
    "href": "omrade?omrade=bolig"
+  },
+  "omrade:sosial": {
+   "navn": "Sosialtjenester og NAV",
+   "href": "omrade?omrade=sosial"
+  },
+  "arbeid": {
+   "navn": "Arbeid",
+   "href": "arbeid"
   }
  },
  "grense": {
@@ -723,6 +731,155 @@
      },
      "mot": "gruppe",
      "avvik": null,
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12362",
+      "url": "https://www.ssb.no/statbank/table/12362"
+     }
+    }
+   ],
+   "skiller_seg_ut": true
+  },
+  {
+   "id": "arbeid-skatt",
+   "fra": "arbeid",
+   "til": [
+    "inntekter",
+    "budsjett"
+   ],
+   "tittel": "Sysselsettingen og skatteinntektene",
+   "tekst": "Kommunen får skatt fra inntekten til dem som bor der, så hvor mange som er i arbeid, kan påvirke skatteinntektene.",
+   "maal": [
+    {
+     "navn": "Sysselsatte 15–74 år, andel av befolkningen",
+     "aar": "2025",
+     "enhet": "%",
+     "desimaler": 1,
+     "verdier": {
+      "narvik": 65.7,
+      "harstad": 68.6,
+      "rana": 69,
+      "alta": 70.8,
+      "nordland": 67.7,
+      "norge": 68.2
+     },
+     "mot": "norge",
+     "avvik": {
+      "share": -4,
+      "out": false,
+      "points": -2.5
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 06445",
+      "url": "https://www.ssb.no/statbank/table/06445"
+     }
+    },
+    {
+     "navn": "Skatt på inntekt og formue per innbygger",
+     "aar": "2025",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 38363,
+      "harstad": 40938,
+      "rana": 38079,
+      "alta": 36191,
+      "gruppe": 38226,
+      "landet": 40090
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 0,
+      "out": false
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12137",
+      "url": "https://www.ssb.no/statbank/table/12137"
+     }
+    }
+   ],
+   "skiller_seg_ut": false
+  },
+  {
+   "id": "arbeid-nav",
+   "fra": "arbeid",
+   "til": [
+    "omrade:sosial",
+    "utgifter"
+   ],
+   "tittel": "Utenfor arbeid og utgiftene til sosialtjenester og NAV",
+   "tekst": "Når flere står utenfor arbeid, kan flere trenge hjelp fra NAV-kontoret, for eksempel økonomisk sosialhjelp.",
+   "maal": [
+    {
+     "navn": "Helt ledige, andel av arbeidsstyrken",
+     "aar": "september 2026",
+     "enhet": "%",
+     "desimaler": 1,
+     "verdier": {
+      "narvik": 1.2,
+      "harstad": 1.0,
+      "rana": 1.4,
+      "alta": 1.6,
+      "nordland": 1.5,
+      "norge": 2.0
+     },
+     "mot": "norge",
+     "avvik": {
+      "share": -40,
+      "out": true,
+      "points": -0.8
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "Nav, tabell HL060 helt ledige",
+      "url": "https://www.nav.no/no/nav-og-samfunn/statistikk/arbeidssokere-og-stillinger-statistikk/helt-ledige"
+     }
+    },
+    {
+     "navn": "20–66 år på arbeidsavklaringspenger eller uføretrygd, andel",
+     "aar": "2025",
+     "enhet": "%",
+     "desimaler": 1,
+     "verdier": {
+      "narvik": 13.9,
+      "harstad": 11.6,
+      "rana": 12.7,
+      "alta": 11.7,
+      "nordland": 12.0,
+      "norge": 10.3
+     },
+     "mot": "norge",
+     "avvik": {
+      "share": 35,
+      "out": true,
+      "points": 3.6
+     },
+     "beregnet": true,
+     "kilde": {
+      "tekst": "SSB, tabell 13563, regnet ut her",
+      "url": "https://www.ssb.no/statbank/table/13563"
+     }
+    },
+    {
+     "navn": "Sosialtjenester og NAV, netto per innbygger",
+     "aar": "2025",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 5281,
+      "harstad": 4890,
+      "rana": 4432,
+      "alta": 6111,
+      "gruppe": 4991,
+      "landet": 5407
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 6,
+      "out": false
+     },
      "beregnet": false,
      "kilde": {
       "tekst": "SSB, tabell 12362",

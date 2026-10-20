@@ -29,6 +29,8 @@ POINTS = 2.0
 REGIONS = {"narvik": "Narvik", "harstad": "Harstad", "rana": "Rana", "alta": "Alta",
            "gruppe": "KOSTRA-gruppe 9", "landet": "Landet uten Oslo", "nordland": "Nordland", "norge": "Hele landet"}
 
+MONTHS = ["januar", "februar", "mars", "april", "mai", "juni", "juli", "august", "september", "oktober", "november", "desember"]
+
 # The pages a link can stand on: key → (name, address).
 PAGES = {
     "utgifter": ("Utgifter", "./"),
@@ -42,6 +44,8 @@ PAGES = {
     "omrade:helse": ("Helse og omsorg", "omrade?omrade=helse"),
     "omrade:skole": ("Grunnskole", "omrade?omrade=skole"),
     "omrade:bolig": ("Kommunale boliger", "omrade?omrade=bolig"),
+    "omrade:sosial": ("Sosialtjenester og NAV", "omrade?omrade=sosial"),
+    "arbeid": ("Arbeid", "arbeid"),
 }
 
 
@@ -76,7 +80,7 @@ def ssb(table: str, what: str = "") -> dict:
 
 def main() -> int:
     try:
-        N, B, F, H, M = (load(n) for n in ("narvik", "befolkning", "finans", "bolig", "malgruppe"))
+        N, B, F, H, M, A = (load(n) for n in ("narvik", "befolkning", "finans", "bolig", "malgruppe", "arbeid"))
     except FileNotFoundError as e:
         print(f"Mangler datafil: {e.filename}. Kjør de andre skriptene først.", file=sys.stderr)
         return 1
@@ -224,6 +228,47 @@ def main() -> int:
                 measure("Andel leid inn fra andre", mun_y, {k: round(v["rented_in"] / v["total"] * 100) for k, v in mun.items() if v.get("total")},
                         unit="%", against="gruppe", source=ssb("12008", "regnet ut her"), computed=True),
                 measure("Kommunale boliger, netto per innbygger", y, area_pc("bolig"), unit="kr", against="gruppe", source=ssb("12362")),
+            ],
+        },
+    ]
+
+    # Work: SSB's register figures and Nav's monthly unemployment, compared with the whole country.
+    ak = ["narvik", "harstad", "rana", "alta", "nordland", "norge"]
+    ey = max(A["employment"]["narvik"])
+    sy = max(A["status"]["narvik"])
+    month = max(A["nav"]["ledige"]["narvik"])
+
+    def status_share(code):
+        out = {}
+        for k in ak:
+            st = A["status"].get(k, {}).get(sy, {})
+            if st.get("20-66|TOT"):
+                out[k] = round(st[f"20-66|{code}"] / st["20-66|TOT"] * 100, 1)
+        return out
+
+    links += [
+        {
+            "id": "arbeid-skatt",
+            "fra": "arbeid", "til": ["inntekter", "budsjett"],
+            "tittel": "Sysselsettingen og skatteinntektene",
+            "tekst": "Kommunen får skatt fra inntekten til dem som bor der, så hvor mange som er i arbeid, kan påvirke skatteinntektene.",
+            "maal": [
+                measure("Sysselsatte 15–74 år, andel av befolkningen", ey, {k: A["employment"].get(k, {}).get(ey, {}).get("15-74|0") for k in ak},
+                        unit="%", decimals=1, against="norge", source=ssb("06445")),
+                measure("Skatt på inntekt og formue per innbygger", fy, fin("12137", "AG12"), unit="kr", against="gruppe", source=ssb("12137")),
+            ],
+        },
+        {
+            "id": "arbeid-nav",
+            "fra": "arbeid", "til": ["omrade:sosial", "utgifter"],
+            "tittel": "Utenfor arbeid og utgiftene til sosialtjenester og NAV",
+            "tekst": "Når flere står utenfor arbeid, kan flere trenge hjelp fra NAV-kontoret, for eksempel økonomisk sosialhjelp.",
+            "maal": [
+                measure("Helt ledige, andel av arbeidsstyrken", f"{MONTHS[int(month[5:]) - 1]} {month[:4]}", {k: A["nav"]["ledige"].get(k, {}).get(month, {}).get("pct") for k in ak},
+                        unit="%", decimals=1, against="norge", source={"tekst": "Nav, tabell HL060 helt ledige", "url": "https://www.nav.no/no/nav-og-samfunn/statistikk/arbeidssokere-og-stillinger-statistikk/helt-ledige"}),
+                measure("20–66 år på arbeidsavklaringspenger eller uføretrygd, andel", sy, status_share("U.04-U.05"), unit="%", decimals=1,
+                        against="norge", source=ssb("13563", "regnet ut her"), computed=True),
+                measure("Sosialtjenester og NAV, netto per innbygger", y, area_pc("sosial"), unit="kr", against="gruppe", source=ssb("12362")),
             ],
         },
     ]

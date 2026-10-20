@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Arbeidsmarkedet i Narvik: ledighet og nye ledige stillinger måned for måned fra NAV, hvor mange som jobber, hvem som står utenfor arbeid, hvor folk jobber og pendling, sammenlignet med lignende kommuner.">
+<title>Arbeid · Åpne tall for Narvik</title>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Åpne tall for Narvik">
+<meta property="og:locale" content="nb_NO">
+<meta property="og:title" content="Arbeid · Åpne tall for Narvik">
+<meta property="og:description" content="Arbeidsmarkedet i Narvik: ledighet og nye ledige stillinger måned for måned fra NAV, hvor mange som jobber, hvem som står utenfor arbeid, hvor folk jobber og pendling, sammenlignet med lignende kommuner.">
+<meta property="og:image" content="https://narviktall.no/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Åpne tall for Narvik: regnskap, budsjett og befolkning i Narvik kommune, med kilde for hvert tall">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="site-head">
+    <nav class="site-nav" aria-label="Sider"><a class="brand" href="./">Åpne tall for Narvik</a><details class="nav-menu"><summary>Økonomi</summary><div class="nav-pop"><span class="nav-group">Regnskap</span><a href="./"><b>Utgifter</b><small>Hva pengene gikk til, år for år</small></a><a href="inntekter"><b>Inntekter</b><small>Hvor pengene kommer fra</small></a><a href="gjeld"><b>Gjeld og investeringer</b><small>Lån, renter og hva lånene gikk til</small></a><span class="nav-group">Budsjett og inneværende år</span><a href="budsjett"><b>Budsjett</b><small>Planlagt og brukt per område</small></a><a href="tiltak"><b>Innsparinger</b><small>Vedtatte kutt og hva som skjedde med dem</small></a><a href="lopende"><b>Året så langt</b><small>Inneværende år etter tertialrapportene</small></a></div></details><a href="befolkning">Befolkning</a><a href="bolig">Bolig</a><a href="arbeid" aria-current="page">Arbeid</a><a href="om">Om siden</a></nav>
+  </div>
+  <header>
+    <div class="eyebrow">Narvik kommune · tall fra Nav og SSB</div>
+    <h1>Arbeid i Narvik</h1>
+    <p class="lead" id="lead"></p>
+  </header>
+
+  <section aria-label="Nøkkeltall">
+    <div class="stats3" id="summary"></div>
+  </section>
+
+  <section aria-labelledby="h-unemp" id="ledighet">
+    <div class="section-head">
+      <h2 id="h-unemp">Ledighet måned for måned</h2>
+      <p class="lead" id="unemp-lead"></p>
+    </div>
+    <div class="chart-box"><h3>Helt ledige, prosent av arbeidsstyrken</h3><div class="legend" id="unemp-legend"></div><div class="line-chart" id="unemp-chart"></div></div>
+    <p class="caption" id="unemp-caption"></p>
+    <div class="ptable"><table id="unemp-cmp"></table></div>
+    <p class="caption" id="unemp-cmp-caption"></p>
+  </section>
+
+  <section aria-labelledby="h-vac" id="stillinger">
+    <div class="section-head">
+      <h2 id="h-vac">Nye ledige stillinger</h2>
+      <p class="lead" id="vac-lead"></p>
+    </div>
+    <div class="two">
+      <div class="chart-box"><h3>Nye ledige stillinger per år</h3><div class="mini-chart" id="vac-year"></div></div>
+      <div class="chart-box"><h3 id="vac-month-h">Siste tolv måneder</h3><div class="mini-chart" id="vac-month"></div></div>
+    </div>
+    <p class="caption" id="vac-caption"></p>
+    <div class="ptable"><table id="vac-cmp"></table></div>
+    <p class="caption" id="vac-cmp-caption"></p>
+  </section>
+
+  <section aria-labelledby="h-emp" id="sysselsatte">
+    <div class="section-head">
+      <h2 id="h-emp">Hvor mange som jobber</h2>
+      <p class="lead" id="emp-lead"></p>
+    </div>
+    <div class="panel bars-panel"><h3 id="emp-h"></h3><div class="hbars" id="emp-bars"></div></div>
+    <p class="caption" id="emp-caption"></p>
+    <div class="ptable"><table id="emp-cmp"></table></div>
+    <p class="caption" id="emp-cmp-caption"></p>
+  </section>
+
+  <section aria-labelledby="h-status" id="utenfor">
+    <div class="section-head">
+      <h2 id="h-status">I arbeid og utenfor</h2>
+      <p class="lead" id="status-lead"></p>
+    </div>
+    <div class="note-bar" id="status-bar"></div>
+    <ul class="note-legend" id="status-legend"></ul>
+    <p class="caption" id="status-caption"></p>
+    <div class="ptable"><table id="status-cmp"></table></div>
+    <p class="caption" id="status-cmp-caption"></p>
+  </section>
+
+  <section aria-labelledby="h-ind" id="naering">
+    <div class="section-head">
+      <h2 id="h-ind">Hvor folk jobber</h2>
+      <p class="lead" id="ind-lead"></p>
+    </div>
+    <div class="two">
+      <div class="panel bars-panel"><h3 id="sector-h"></h3><div class="hbars" id="sector-bars"></div></div>
+      <div class="panel bars-panel"><h3 id="ind-h"></h3><div class="hbars" id="ind-bars"></div></div>
+    </div>
+    <p class="caption" id="ind-caption"></p>
+    <div class="ptable"><table id="ind-cmp"></table></div>
+    <p class="caption" id="ind-cmp-caption"></p>
+  </section>
+
+  <section aria-labelledby="h-comm" id="pendling">
+    <div class="section-head">
+      <h2 id="h-comm">Pendling</h2>
+      <p class="lead" id="comm-lead"></p>
+    </div>
+    <div class="two">
+      <div class="panel bars-panel"><h3 id="out-h"></h3><div class="hbars" id="out-bars"></div></div>
+      <div class="panel bars-panel"><h3 id="in-h"></h3><div class="hbars" id="in-bars"></div></div>
+    </div>
+    <p class="caption" id="comm-caption"></p>
+    <div class="ptable"><table id="comm-cmp"></table></div>
+    <p class="caption" id="comm-cmp-caption"></p>
+  </section>
+
+  <section id="sammenhenger" data-side="arbeid" hidden></section>
+
+  <section aria-labelledby="h-notes">
+    <h2 id="h-notes">Slik leser du tallene</h2>
+    <div class="notes">
+      <div><h3>Helt ledige</h3><p>Personer som er registrert hos Nav som arbeidssøkere og har vært uten arbeid de siste to ukene, fordelt på kommunen de bor i. Helt permitterte er med. De som er på arbeidsrettede tiltak, er ikke med. Prosenten er av arbeidsstyrken i kommunen.</p></div>
+      <div><h3>Nye ledige stillinger</h3><p>Stillinger som ble registrert hos Nav, blant annet på arbeidsplassen.no, i løpet av måneden. Stillinger som bare lyses ut andre steder, er ikke med. Tidlig på året kommer det mange sommerjobber.</p></div>
+      <div><h3>Sysselsatt</h3><p>SSB regner alle som har hatt inntektsgivende arbeid i minst én time i en bestemt uke i november, som sysselsatt. Tallene bygger på registre, ikke på spørreundersøkelser.</p></div>
+      <div><h3>Månedlig og årlig</h3><p>Navs tall kommer hver måned og gjelder måneden. SSBs tall kommer én gang i året og gjelder november. Derfor er ikke ledigheten fra Nav og de registrerte ledige fra SSB helt like.</p></div>
+      <div><h3>Fra 2020</h3><p>Dagens Narvik ble til i 2020, da Ballangen og en del av Tysfjord ble slått sammen med gamle Narvik. Nav har stillingstall per kommune fra 2021.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Kilde: Nav, tabell HL060 og STIL030, og SSB, tabell <span id="sources"></span>, region 1806 Narvik. Hentet <span id="generated"></span>. <a href="https://github.com/jtkarlsen/narvik-kommune-budsjett" target="_blank" rel="noopener">Kildekode</a>.</span>
+    <span>Et åpent hobbyprosjekt laget av <a href="https://janamundsen.dev" target="_blank" rel="noopener">Jan Amundsen</a>, ikke av Narvik kommune. <a href="om">Om siden</a>.</span>
+  </footer>
+</div>
+<script src="common.js"></script>
+<script src="arbeid.js"></script>
+</body>
+</html>

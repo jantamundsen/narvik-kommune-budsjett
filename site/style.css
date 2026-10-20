@@ -465,6 +465,22 @@ details .fact-list { margin-top: 4px; }
 .hbars .hb.bo { grid-template-columns: minmax(96px, 180px) minmax(40px, 1fr) 52px 40px; }
 @media (max-width: 900px) { #summary.stats3 > :last-child:nth-child(odd) { grid-column: 1 / -1; } }
 
+/* arbeid.html: unemployment lines for Narvik, Nordland and the country, and hover columns. */
+.line-chart .line.l2 { stroke: var(--ink-2); stroke-width: 2; stroke-dasharray: 6 4; }
+.line-chart .line.l3 { stroke: var(--muted); stroke-width: 2; stroke-dasharray: 2 3; }
+.line-chart .dot.d2 { fill: var(--ink-2); }
+.line-chart .dot.d3 { fill: var(--muted); }
+.line-chart .hit { fill: transparent; }
+.line-chart .hit:hover { fill: var(--accent-soft); }
+.legend .sw { width: 18px; height: 3px; border-radius: 2px; }
+.legend .sw.s1 { background: var(--accent); }
+.legend .sw.s2 { background: repeating-linear-gradient(90deg, var(--ink-2) 0 6px, transparent 6px 9px); }
+.legend .sw.s3 { background: repeating-linear-gradient(90deg, var(--muted) 0 3px, transparent 3px 5px); }
+.chart-box .line-chart { overflow-x: auto; }
+.chart-box .line-chart svg { display: block; width: 100%; min-width: 560px; height: auto; }
+.hbars .hb.ab { grid-template-columns: minmax(96px, 200px) minmax(40px, 1fr) 56px 76px; }
+@media (max-width: 680px) { .hbars .hb.ab { grid-template-columns: minmax(0, 1fr) 56px 76px; } .hbars .hb.ab .track { grid-column: 1 / -1; grid-row: 2; } }
+
 /* «Henger sammen med» (common.js, data/sammenhenger.json) */
 .link-group { display: grid; gap: 12px; }
 .link-group h3 { font-size: 1.05rem; font-weight: 600; }
