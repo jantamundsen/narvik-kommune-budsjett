@@ -89,7 +89,7 @@ function list(main, D) {
   main.innerHTML = `<header>
       <div class="eyebrow">Aktuelle saker</div>
       <h1>Aktuelle saker</h1>
-      <p class="lead">Faktaark om saker mange i Narvik snakker om. Hvert ark samler vedtak, datoer og tall fra kommunens egne dokumenter og andre offentlige kilder, med lenke til siden tallet står på. Arkene tar ikke stilling i sakene.</p>
+      <p class="lead">Faktaark om saker mange i Narvik snakker om. Hvert ark samler vedtak, datoer og tall fra kommunens egne dokumenter og andre offentlige kilder, med lenke til siden tallet står på.</p>
     </header>
     <section aria-label="Sakene"><div class="link-cards">${D.saker.map(s => `<article class="link-card">
       <span class="eyebrow">Sist kontrollert ${dateText(s.kontrollert)}</span>
