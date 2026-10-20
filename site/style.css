@@ -451,3 +451,10 @@ details .fact-list { margin-top: 4px; }
 .col.sel .down i { opacity: 1; }
 .col.sel b { font-weight: 700; }
 .col small { font-size: 0.78rem; margin-top: 4px; }
+.sub-h { margin: 28px 0 12px; font-size: 1rem; font-weight: 600; }
+.rank.inv .rank-row { grid-template-columns: minmax(0, 280px) minmax(60px, 1fr) 70px 64px 0; }
+.rank.inv .rank-fill { background: var(--muted); }
+.rank.inv .rank-row.total { border-bottom: 0; border-top: 2px solid var(--ink); font-weight: 700; }
+.rank.inv .rank-row.total .rank-name { font-weight: 700; }
+@media (max-width: 680px) { .rank.inv .rank-row { grid-template-columns: minmax(0, 1fr) auto 0; } }
+.rank.inv .rank-row.rest .rank-fill { background: var(--rule); }

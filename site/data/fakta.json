@@ -2789,6 +2789,195 @@
     "del": "figur over sykefravær per kommunalområde"
    },
    "merknad": "Årsrapporten oppgir ikke sykefravær for dette kommunalområdet, så tallet er for januar–august."
+  },
+  {
+   "id": "lan-rente-ar-2021",
+   "type": "tall",
+   "tema": "Lån og renter",
+   "aar": "2021",
+   "periode": "hele året",
+   "kommunalomrade": "Hele kommunen",
+   "omrader": [],
+   "tekst": "Gjennomsnittlig rente på kommunens lån var 1,2 % i 2021. Det siste lånet som ble tatt opp i 2021, var på 260 mill. kr, med tre års fastrente på 1,195 %.",
+   "verdier": {
+    "enhet": "%",
+    "2021": 1.2
+   },
+   "kilde": {
+    "id": "ar-2021",
+    "side": 8,
+    "del": "Renteutgifter"
+   }
+  },
+  {
+   "id": "lan-rente-ar-2022",
+   "type": "tall",
+   "tema": "Lån og renter",
+   "aar": "2022",
+   "periode": "hele året",
+   "kommunalomrade": "Hele kommunen",
+   "omrader": [],
+   "tekst": "Gjennomsnittlig rente på kommunens lån var 2,3 % i 2022, mot 1,2 % i 2021. Kommunen tok opp 301,5 mill. kr i nye lån i 2022, fordelt på to lån, begge med fastrente.",
+   "verdier": {
+    "enhet": "%",
+    "2021": 1.2,
+    "2022": 2.3
+   },
+   "kilde": {
+    "id": "ar-2022",
+    "side": 13,
+    "del": "Renteutgifter"
+   }
+  },
+  {
+   "id": "lan-rentesikring-ar-2022",
+   "type": "tall",
+   "tema": "Lån og renter",
+   "aar": "2022",
+   "periode": "hele året",
+   "kommunalomrade": "Hele kommunen",
+   "omrader": [],
+   "tekst": "22 % av lånene, inkludert Narvik Vann, hadde fast rente ved utgangen av 2022 (550 mill. kr). Finans- og gjeldsforvaltningsreglementet anbefaler 33 %. Kommunen skriver at én prosent renteøkning vil gi om lag 20 mill. kr mer i årlige utgifter.",
+   "kilde": {
+    "id": "ar-2022",
+    "side": 14,
+    "del": "Renteutgifter"
+   }
+  },
+  {
+   "id": "lan-rente-ar-2023",
+   "type": "tall",
+   "tema": "Lån og renter",
+   "aar": "2023",
+   "periode": "hele året",
+   "kommunalomrade": "Hele kommunen",
+   "omrader": [],
+   "tekst": "Gjennomsnittlig rente på kommunens lån var 4 % i 2023, mot 2,3 % i 2022 (inkludert Narvik Vann og Husbanken). Kommunen tok opp 327 mill. kr i nye lån, av dette 100 mill. kr til Narvik Vanns investeringer. 22 % av lånene hadde fast rente ved utgangen av året (708 mill. kr).",
+   "verdier": {
+    "enhet": "%",
+    "2022": 2.3,
+    "2023": 4
+   },
+   "kilde": {
+    "id": "ar-2023",
+    "side": 12,
+    "del": "Renteutgifter"
+   }
+  },
+  {
+   "id": "lan-utbytte-ar-2023",
+   "type": "tall",
+   "tema": "Lån og renter",
+   "aar": "2023",
+   "periode": "hele året",
+   "kommunalomrade": "Hele kommunen",
+   "omrader": [],
+   "tekst": "Kommunen fikk 41,6 mill. kr i utbytte fra Nordkraft AS i 2023.",
+   "kilde": {
+    "id": "ar-2023",
+    "side": 12,
+    "del": "Utbytte"
+   }
+  },
+  {
+   "id": "lan-rente-ar-2024",
+   "type": "tall",
+   "tema": "Lån og renter",
+   "aar": "2024",
+   "periode": "hele året",
+   "kommunalomrade": "Hele kommunen",
+   "omrader": [],
+   "tekst": "Gjennomsnittlig rente på all gjeld, inkludert Husbanken, var 4,91 % i 2024, mot 4 % i 2023. Kommunen tok opp 154,4 mill. kr i nye lån, inkludert Narvik Vann, fordelt på to lån med flytende rente.",
+   "verdier": {
+    "enhet": "%",
+    "2023": 4,
+    "2024": 4.91
+   },
+   "kilde": {
+    "id": "ar-2024",
+    "side": 8,
+    "del": "Renteutgifter"
+   }
+  },
+  {
+   "id": "lan-rentesikring-ar-2024",
+   "type": "tall",
+   "tema": "Lån og renter",
+   "aar": "2024",
+   "periode": "hele året",
+   "kommunalomrade": "Hele kommunen",
+   "omrader": [],
+   "tekst": "17 % av lånene, inkludert Narvik Vann og uten Husbanken, hadde fast rente ved utgangen av 2024. Uten Narvik Vanns gjeld var andelen 23,8 %. Finansforvaltningsreglementet sier at andelen skal være minst 33 %.",
+   "kilde": {
+    "id": "ar-2024",
+    "side": 8,
+    "del": "Renteutgifter"
+   }
+  },
+  {
+   "id": "lan-utbytte-ar-2024",
+   "type": "tall",
+   "tema": "Lån og renter",
+   "aar": "2024",
+   "periode": "hele året",
+   "kommunalomrade": "Hele kommunen",
+   "omrader": [],
+   "tekst": "Kommunen fikk 44,5 mill. kr i ordinært utbytte og 16 mill. kr i tilleggsutbytte fra Nordkraft AS i 2024.",
+   "kilde": {
+    "id": "ar-2024",
+    "side": 8,
+    "del": "Utbytte"
+   }
+  },
+  {
+   "id": "lan-rente-ar-2025",
+   "type": "tall",
+   "tema": "Lån og renter",
+   "aar": "2025",
+   "periode": "hele året",
+   "kommunalomrade": "Hele kommunen",
+   "omrader": [],
+   "tekst": "Gjennomsnittlig rente på låneporteføljen var 4,79 % i 2025, inkludert Husbanken, mot 4,91 % i 2024. Kommunen og Narvik Vann tok opp 207,9 mill. kr i nye lån i 2025, med både flytende og fast rente.",
+   "verdier": {
+    "enhet": "%",
+    "2024": 4.91,
+    "2025": 4.79
+   },
+   "kilde": {
+    "id": "ar-2025",
+    "side": 8,
+    "del": "Renteutgifter"
+   }
+  },
+  {
+   "id": "lan-rentesikring-ar-2025",
+   "type": "tall",
+   "tema": "Lån og renter",
+   "aar": "2025",
+   "periode": "hele året",
+   "kommunalomrade": "Hele kommunen",
+   "omrader": [],
+   "tekst": "37,3 % av gjelden, uten Husbanken og Narvik Vann, hadde fast rente ved utgangen av 2025. Finansreglementet sier at en tredel skal ha fast rente, en tredel flytende, og at den siste tredelen bestemmes ut fra markedet.",
+   "kilde": {
+    "id": "ar-2025",
+    "side": 9,
+    "del": "Renteutgifter"
+   }
+  },
+  {
+   "id": "lan-utbytte-ar-2025",
+   "type": "tall",
+   "tema": "Lån og renter",
+   "aar": "2025",
+   "periode": "hele året",
+   "kommunalomrade": "Hele kommunen",
+   "omrader": [],
+   "tekst": "Kommunen fikk 44,5 mill. kr i utbytte fra Nordkraft AS og 1 mill. kr fra HRS IKS i 2025.",
+   "kilde": {
+    "id": "ar-2025",
+    "side": 8,
+    "del": "Utbytte"
+   }
   }
  ]
 }

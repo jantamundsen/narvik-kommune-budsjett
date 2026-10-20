@@ -12,6 +12,8 @@ For helse og omsorg kan sammenligningen vises per innbygger 67 år og over og pe
 
 Siden *Budsjett mot regnskap* (`budsjett.html`) viser kommunens vedtatte budsjett ved siden av regnskapet, og det nyeste budsjettet mot året før. Den nås fra toppmenyen, og fra regnskapssiden for år som har både budsjett og regnskap (`budsjett.html?aar=2024`). Tallene kommer fra bevilgningsoversikten for drift (1B) i kommunens budsjettdokumenter på [Framsikt](https://pub.framsikt.net/2026/narvik/bm-2026-rapport_plan/), fordelt på Narviks egne tjenesteområder.
 
+Siden *Inntekter* (`inntekter.html`) viser hvor driftsinntektene kommer fra (skatt, rammetilskudd, gebyrer, refusjoner, statlige tilskudd, eiendomsskatt og momskompensasjon), netto driftsresultat og disposisjonsfond, og Narvik mot de samme kommunene som ellers på siden. Siden *Gjeld og investeringer* (`gjeld.html`) viser netto lånegjeld, renter og avdrag, de største investeringsprosjektene hvert år og den samme sammenligningen. Tallene er KOSTRA for kommunekonsernet fra SSBs tabeller [12364](https://www.ssb.no/statbank/table/12364), [12137](https://www.ssb.no/statbank/table/12137) og [12143](https://www.ssb.no/statbank/table/12143), som `scripts/fetch_finans.py` henter til `site/data/finans.json`. SSB har renter netto (art AGD97) bare fra 2024; for årene før beregnes den som AGD24 pluss utbytte (AD905) og merkes «beregnet». Investeringsprosjektene er skrevet inn for hånd i `config/investeringer.json` fra bevilgningsoversikten for investeringer (§ 5-5 andre ledd) i hver årsrapport, med side, og punktene om lån og renter står i `config/fakta.json` med temaet «Lån og renter». Legg inn et nytt år når årsrapporten kommer.
+
 Siden *Året så langt* (`lopende.html`) følger budsjettet og forbruket i inneværende år: brukt hittil, avvik og kommunedirektørens prognose per tjenesteområde, hvordan rammene er endret siden vedtaket, og inntektene. Tallene kommer fra tertialrapportene, som bare finnes som PDF og er skrevet inn i `config/lopende_2026.json` med side. I tillegg vises skatteinngangen måned for måned fra SSBs [tabell 07022](https://www.ssb.no/statbank/table/07022), som oppdateres automatisk.
 
 Siden *Innsparinger* (`tiltak.html`) viser kuttene som ble lagt inn i budsjettet tiltak for tiltak, hvilke kommunestyret tok ut igjen i samme vedtak, og hva tertialrapporter og årsrapporter sier skjedde med dem. Den viser også hele endringen i rammen til hvert tjenesteområde, slik Framsikt forklarer den.
@@ -33,9 +35,12 @@ scripts/fetch_tiltak.py   henter budsjettendringene tiltak for tiltak fra Framsi
                           config/tiltak_oppfolging.json og skriver site/data/tiltak.json
 scripts/fetch_befolkning.py henter folketall, framskriving, delområder, innvandrere og husholdninger fra SSB
                           og skriver site/data/befolkning.json
+scripts/fetch_finans.py   henter inntekter, resultat, fond, gjeld og investeringer fra SSB, legger på prosjektene i
+                          config/investeringer.json og skriver site/data/finans.json
 scripts/build_fakta.py    sjekker punktene i config/fakta.json (kilde, side, område) og skriver site/data/fakta.json
 site/                     den statiske nettsiden: index.html (regnskap), omrade.html (ett område, en tjeneste,
-                          en kostnadstype), budsjett.html (budsjett mot regnskap), lopende.html (året så langt),
+                          en kostnadstype), inntekter.html (inntekter), gjeld.html (gjeld og
+                          investeringer), budsjett.html (budsjett mot regnskap), lopende.html (året så langt),
                           tiltak.html (innsparinger), befolkning.html (befolkning), om.html (om siden og hvordan
                           man melder fra om feil på e-post); style.css og common.js er felles. og.png er bildet som vises
                           når en lenke deles (Open Graph); lag det på nytt hvis tittelen endres
@@ -55,6 +60,7 @@ python scripts/fetch_lopende.py       # tertialtall og månedlig skatteinngang f
 python scripts/build_fakta.py         # sjekker og skriver punktene i «Bak tallene»
 python scripts/fetch_tiltak.py        # innsparinger og andre budsjettendringer fra Framsikt
 python scripts/fetch_befolkning.py    # befolkningstall og framskriving fra SSB
+python scripts/fetch_finans.py        # inntekter, gjeld og investeringer fra SSB
 python -m http.server -d site 8000    # åpne http://localhost:8000
 ```
 

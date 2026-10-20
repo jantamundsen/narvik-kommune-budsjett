@@ -41,6 +41,28 @@ function factItems(F, list, showArea) {
       + `<p class="caption fact-src">Kilde: ${src}${area}</p></li>`;
   }).join('');
 }
+// Columns for each year around a zero line, so a deficit points down. vals is [{y, v}], fmt formats a label
+// and sel is the selected year. Used on inntekter.html and gjeld.html.
+function columns(vals, fmt, sel) {
+  const max = Math.max(...vals.map(x => Math.abs(x.v ?? 0)), 0.0001);
+  const hasNeg = vals.some(x => x.v < 0);
+  const H = 120, up = hasNeg ? H * 0.62 : H, down = hasNeg ? H * 0.38 : 0;
+  const scale = Math.max(...vals.map(x => (x.v > 0 ? x.v / up : -x.v / down) || 0), 0.0001);
+  return `<div class="cols" style="--up:${up}px;--down:${down}px">${vals.map(x => {
+    const h = x.v == null ? 0 : Math.abs(x.v) / scale;
+    const neg = x.v < 0;
+    return `<div class="col${x.y === sel ? ' sel' : ''}${neg ? ' neg' : ''}"><span class="up">${neg ? '' : `<b>${x.v == null ? '·' : fmt(x.v)}</b><i style="height:${h}px"></i>`}</span><span class="down">${neg ? `<i style="height:${h}px"></i><b>${fmt(x.v)}</b>` : ''}</span><small>${x.y}</small></div>`;
+  }).join('')}</div>`;
+}
+
+// inntekter.html and gjeld.html: on narrow screens each row becomes a card: the first cell is its title and the others carry their column heading.
+function stackable(table) {
+  const heads = [...table.querySelectorAll('thead th')].map(th => th.textContent);
+  table.classList.add('stack');
+  table.querySelectorAll('tbody tr').forEach(tr => [...tr.children].forEach((td, i) => {
+    if (i && heads[i]) td.dataset.label = heads[i];
+  }));
+}
 // The «Økonomi» menu on pages outside the economy area is a <details>; close it on a click elsewhere or Escape.
 document.addEventListener('click', e => {
   document.querySelectorAll('.nav-menu[open]').forEach(d => { if (!d.contains(e.target)) d.open = false; });

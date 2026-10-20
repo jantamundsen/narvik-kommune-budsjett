@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Narvik kommunes lånegjeld, renter og avdrag, og hva lånene er brukt til: de største investeringsprosjektene hvert år, sammenlignet med lignende kommuner.">
+<title>Gjeld og investeringer · Åpne tall for Narvik</title>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Åpne tall for Narvik">
+<meta property="og:locale" content="nb_NO">
+<meta property="og:title" content="Gjeld og investeringer · Åpne tall for Narvik">
+<meta property="og:description" content="Narvik kommunes lånegjeld, renter og avdrag, og hva lånene er brukt til: de største investeringsprosjektene hvert år, sammenlignet med lignende kommuner.">
+<meta property="og:image" content="https://narviktall.no/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Åpne tall for Narvik: regnskap, budsjett og befolkning i Narvik kommune, med kilde for hvert tall">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="site-head">
+    <nav class="site-nav" aria-label="Sider"><a class="brand" href="./">Åpne tall for Narvik</a><a href="./" aria-current="true">Økonomi</a><a href="befolkning.html">Befolkning</a><a href="om.html">Om siden</a></nav>
+    <nav class="sub-nav" aria-label="Økonomi"><a href="./">Regnskap</a><a href="inntekter.html">Inntekter</a><a href="gjeld.html" aria-current="page">Gjeld</a><a href="budsjett.html">Budsjett mot regnskap</a><a href="lopende.html">Året så langt</a><a href="tiltak.html">Innsparinger</a></nav>
+  </div>
+  <header>
+    <div class="eyebrow">Narvik kommune · regnskapstall fra SSB og årsrapportene</div>
+    <h1>Gjeld og investeringer</h1>
+    <p class="lead" id="lead"></p>
+    <div class="years" role="radiogroup" aria-label="Velg år" id="years"><span>Regnskapsår</span></div>
+  </header>
+
+  <section aria-label="Nøkkeltall">
+    <div class="summary" id="summary"></div>
+  </section>
+
+  <section aria-labelledby="h-debt">
+    <div class="section-head">
+      <h2 id="h-debt">Gjelden over tid</h2>
+      <p class="lead" id="debt-lead"></p>
+    </div>
+    <div class="two">
+      <div class="chart-box"><h3>Netto lånegjeld ved årets slutt, mill. kr</h3><div class="mini-chart" id="debt-chart"></div></div>
+      <div class="chart-box"><h3>Netto lånegjeld, prosent av driftsinntektene</h3><div class="mini-chart" id="debt-share-chart"></div></div>
+    </div>
+    <p class="caption" id="debt-caption"></p>
+  </section>
+
+  <section aria-labelledby="h-cost">
+    <div class="section-head">
+      <h2 id="h-cost">Hva gjelden koster</h2>
+      <p class="lead" id="cost-lead"></p>
+    </div>
+    <div class="ptable"><table id="cost-table"></table></div>
+    <p class="caption" id="cost-caption"></p>
+    <div id="loan-facts" hidden>
+      <h3 class="sub-h">Fra årsrapporten</h3>
+      <ul class="fact-list" id="loan-fact-list"></ul>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-inv">
+    <div class="section-head">
+      <h2 id="h-inv">Hva kommunen investerte i</h2>
+      <p class="lead" id="inv-lead"></p>
+    </div>
+    <div class="rank inv" id="inv-list"></div>
+    <p class="caption" id="inv-caption"></p>
+  </section>
+
+  <section aria-labelledby="h-cmp">
+    <div class="section-head">
+      <h2 id="h-cmp">Narvik mot sammenlignbare kommuner</h2>
+      <p class="lead" id="cmp-lead"></p>
+    </div>
+    <div class="ptable"><table id="fin-cmp"></table></div>
+    <p class="caption" id="cmp-caption"></p>
+  </section>
+
+  <section aria-labelledby="h-notes">
+    <h2 id="h-notes">Slik leser du tallene</h2>
+    <div class="notes">
+      <div><h3>Netto lånegjeld</h3><p>Langsiktig gjeld uten pensjonsforpliktelser, minus det kommunen har lånt ut videre, som startlån, og lånte penger som ikke er brukt ennå.</p></div>
+      <div><h3>Renter og avdrag</h3><p>Avdrag er nedbetaling av lånene. Både renter og avdrag betales fra driften, av de samme inntektene som betaler tjenestene.</p></div>
+      <div><h3>Pensjonsforpliktelser</h3><p>Kommunen skylder også fremtidige pensjoner til ansatte, <span id="pension"></span>. De er ikke med i netto lånegjeld.</p></div>
+      <div><h3>Narvik Vann KF</h3><p>Vann og avløp bygges av det kommunale foretaket Narvik Vann og betales over vann- og avløpsgebyrene. Lånene tas opp sammen med kommunen og er med i tallene fra SSB.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Kilde: SSB, tabell <a href="https://www.ssb.no/statbank/table/12364" target="_blank" rel="noopener">12364</a>, <a href="https://www.ssb.no/statbank/table/12137" target="_blank" rel="noopener">12137</a> og <a href="https://www.ssb.no/statbank/table/12143" target="_blank" rel="noopener">12143</a> (KOSTRA, kommunekonsern), region 1806 Narvik, og Narvik kommunes årsrapporter 2021–2025. Hentet <span id="generated"></span>. <a href="https://github.com/jtkarlsen/narvik-kommune-budsjett" target="_blank" rel="noopener">Kildekode</a>.</span>
+    <span>Et åpent hobbyprosjekt laget av <a href="https://janamundsen.dev" target="_blank" rel="noopener">Jan Amundsen</a>, ikke av Narvik kommune. <a href="om.html">Om siden</a>.</span>
+  </footer>
+</div>
+<script src="common.js"></script>
+<script src="gjeld.js"></script>
+</body>
+</html>

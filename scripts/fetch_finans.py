@@ -2,6 +2,9 @@
 """Fetch Narvik's income, operating result, funds, debt and investments from SSB and write
 site/data/finans.json for inntekter.html and gjeld.html.
 
+The largest investment projects per year are typed in from the årsrapporter in config/investeringer.json and
+copied in after a check, with their documents from config/fakta.json.
+
 Tables, all KOSTRA kommunekonsern (the same scope as the rest of the site):
     12364  Finansielle grunnlagsdata: amounts in 1000 kr for Narvik
     12137  Finansielle nøkkeltall i kroner per innbygger, for Narvik and the comparison regions
@@ -27,6 +30,8 @@ from fetch_data import cells, fetch, labels
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "site" / "data" / "finans.json"
 ACCOUNTS = ROOT / "site" / "data" / "narvik.json"
+INVESTMENTS = ROOT / "config" / "investeringer.json"
+FAKTA = ROOT / "config" / "fakta.json"
 REGION = "1806"
 FIRST = 2021
 DIM_REGION, DIM_ART = "KOKkommuneregion0000", "KOKartkap0000"
@@ -77,6 +82,28 @@ def by_region(ds: dict, codes: dict) -> dict:
     return out
 
 
+def investments() -> dict:
+    """config/investeringer.json per year, with each year's document from fakta.json. Exits on a typo."""
+    cfg = json.loads(INVESTMENTS.read_text(encoding="utf-8"))["aar"]
+    sources = json.loads(FAKTA.read_text(encoding="utf-8"))["kilder"]
+    errors, out = [], {}
+    for y, v in cfg.items():
+        k = sources.get(v.get("kilde"))
+        if not k:
+            errors.append(f"{y}: ukjent kilde «{v.get('kilde')}»")
+            continue
+        listed = sum(p["belop"] for p in v["prosjekter"])
+        if listed > v["total"]:
+            errors.append(f"{y}: prosjektene summerer til {listed}, mer enn totalen {v['total']}")
+        for p in v["prosjekter"]:
+            if not p.get("navn") or not isinstance(p.get("belop"), int) or not p.get("sider"):
+                errors.append(f"{y}: prosjektet {p} mangler navn, belop eller sider")
+        out[y] = {**v, "kilde": {"id": v["kilde"], **{key: k[key] for key in ("navn", "full", "pdf")}}}
+    if errors:
+        sys.exit("config/investeringer.json har feil:\n  " + "\n  ".join(errors))
+    return out
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--out", type=Path, default=OUT)
@@ -110,6 +137,7 @@ def main() -> int:
         "share": by_region(ds_share, codes),
         "regions": regions,
         "kostra_group_size": len(acc["kostra_group"]["members"]),
+        "investeringer": investments(),
         "sources": {
             "12364": source("12364", url("12364", [REGION], ["*"], "KOSbelop0000")),
             "12137": source("12137", url("12137", [REGION] + all_codes[1:], ["*"], "KOSbelopprinnb0000")),

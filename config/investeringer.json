@@ -1,0 +1,80 @@
+{
+  "_comment": "The largest investment projects per year, typed in by hand from the «Bevilgningsoversikt investering etter § 5-5 andre ledd» (2B) in each year's årsrapport. Amounts are the accounts (regnskap) in 1000 kr for the kommunekasse. A project that is in both part 1 (varige driftsmidler) and part 2 (tilskudd til andres investeringer) is summed, and «sider» lists both pages. «total» is «Sum del 1-4» (part 3 is shares, part 4 is loans), so the rest of the year's investments can be shown as one line. «kilde» is a key in config/fakta.json «kilder». scripts/fetch_finans.py checks this file and copies it into site/data/finans.json.",
+  "aar": {
+    "2021": {
+      "kilde": "ar-2021",
+      "total": 412781,
+      "total_side": 43,
+      "prosjekter": [
+        { "navn": "Ny brannstasjon", "belop": 105424, "sider": [42] },
+        { "navn": "Narvikfjellet trinn 1 og 2", "belop": 41633, "sider": [42] },
+        { "navn": "Ny ungdomsskole", "belop": 32483, "sider": [42] },
+        { "navn": "Helsehus", "belop": 28016, "sider": [42] },
+        { "navn": "Avløpsprosjekter", "belop": 24818, "sider": [42], "merknad": "Narvik Vann KF" },
+        { "navn": "Vannprosjekter", "belop": 22071, "sider": [42], "merknad": "Narvik Vann KF" },
+        { "navn": "Molo og flytekai Fornes", "belop": 20473, "sider": [42] },
+        { "navn": "Malmporten del III", "belop": 20109, "sider": [42], "merknad": "Frydenlundforbindelsen" }
+      ]
+    },
+    "2022": {
+      "kilde": "ar-2022",
+      "total": 523228,
+      "total_side": 18,
+      "prosjekter": [
+        { "navn": "Kjøp av tomt i Framneslia", "belop": 151500, "sider": [18] },
+        { "navn": "Helsehus", "belop": 143723, "sider": [17] },
+        { "navn": "Vannprosjekter", "belop": 76112, "sider": [17], "merknad": "Narvik Vann KF" },
+        { "navn": "Kjøp av Furugården omsorgsboliger", "belop": 51699, "sider": [18] },
+        { "navn": "Kommunale veier, oppgradering", "belop": 18775, "sider": [16] },
+        { "navn": "Ny brannstasjon", "belop": 11952, "sider": [17] },
+        { "navn": "Kjøpsvik 1–10 skole og barnehage", "belop": 7662, "sider": [17] },
+        { "navn": "Bjerkvik svømmehall, renovering", "belop": 7308, "sider": [17] }
+      ]
+    },
+    "2023": {
+      "kilde": "ar-2023",
+      "total": 333983,
+      "total_side": 60,
+      "prosjekter": [
+        { "navn": "Helsehus", "belop": 183240, "sider": [60] },
+        { "navn": "Vannprosjekter", "belop": 99286, "sider": [60], "merknad": "Narvik Vann KF" },
+        { "navn": "Kommunale veier, oppgradering", "belop": 7460, "sider": [60] },
+        { "navn": "Arnesfjellet, oppgradering av bygningsmasse", "belop": 6271, "sider": [60] },
+        { "navn": "Ny barneskole (Frydenlund skole)", "belop": 4979, "sider": [60] },
+        { "navn": "Fornying av Chromebooks", "belop": 4009, "sider": [60] },
+        { "navn": "Tomt Fornes og Arnes", "belop": 3800, "sider": [60] },
+        { "navn": "Trafikksikkerhet", "belop": 3631, "sider": [60] }
+      ]
+    },
+    "2024": {
+      "kilde": "ar-2024",
+      "total": 251964,
+      "total_side": 17,
+      "prosjekter": [
+        { "navn": "Vannprosjekter", "belop": 88848, "sider": [18], "merknad": "Narvik Vann KF" },
+        { "navn": "Helsehus", "belop": 88721, "sider": [18] },
+        { "navn": "Kommunale veier, oppgradering", "belop": 18712, "sider": [17] },
+        { "navn": "Kjøpsvik brannstasjon, garasje", "belop": 17663, "sider": [18] },
+        { "navn": "Kjøpsvik oppvekstsenter", "belop": 4367, "sider": [18] },
+        { "navn": "Oppgradering av skolegårder", "belop": 3334, "sider": [18] },
+        { "navn": "Fornying av Chromebooks", "belop": 3186, "sider": [17] },
+        { "navn": "Tomt og grunn", "belop": 3150, "sider": [18] }
+      ]
+    },
+    "2025": {
+      "kilde": "ar-2025",
+      "total": 216347,
+      "total_side": 22,
+      "prosjekter": [
+        { "navn": "Vannprosjekter", "belop": 68099, "sider": [22], "merknad": "Narvik Vann KF" },
+        { "navn": "Kjøpsvik oppvekstsenter", "belop": 35068, "sider": [21] },
+        { "navn": "Innløsning Barlindhaug", "belop": 28416, "sider": [21] },
+        { "navn": "Helsehus", "belop": 13001, "sider": [21, 22] },
+        { "navn": "Kommunale veier, oppgradering", "belop": 11409, "sider": [21] },
+        { "navn": "Ny barneskole (Frydenlund skole)", "belop": 11107, "sider": [21] },
+        { "navn": "Oppgradering av skolegårder", "belop": 9391, "sider": [21] },
+        { "navn": "Bjerkvik svømmehall, renovering", "belop": 7438, "sider": [21] }
+      ]
+    }
+  }
+}

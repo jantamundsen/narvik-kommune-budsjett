@@ -92,24 +92,11 @@ function drawSources(total, prev) {
   document.getElementById('inc-caption').innerHTML = `Brutto driftsinntekter i ${year}, kommunekonsern, løpende kroner. Navnene er forenklet; SSB-arten viser hva hver linje er hos SSB. ${ssb('12364', 'Se tallene hos SSB')} (tabell 12364).`;
 }
 
-// Columns for each year around a zero line, so a deficit points down. vals is [{y, v}], fmt formats a label.
-function columns(vals, fmt) {
-  const max = Math.max(...vals.map(x => Math.abs(x.v ?? 0)), 0.0001);
-  const hasNeg = vals.some(x => x.v < 0);
-  const H = 120, up = hasNeg ? H * 0.62 : H, down = hasNeg ? H * 0.38 : 0;
-  const scale = Math.max(...vals.map(x => (x.v > 0 ? x.v / up : -x.v / down) || 0), 0.0001);
-  return `<div class="cols" style="--up:${up}px;--down:${down}px">${vals.map(x => {
-    const h = x.v == null ? 0 : Math.abs(x.v) / scale;
-    const neg = x.v < 0;
-    return `<div class="col${x.y === year ? ' sel' : ''}${neg ? ' neg' : ''}"><span class="up">${neg ? '' : `<b>${x.v == null ? '·' : fmt(x.v)}</b><i style="height:${h}px"></i>`}</span><span class="down">${neg ? `<i style="height:${h}px"></i><b>${fmt(x.v)}</b>` : ''}</span><small>${x.y}</small></div>`;
-  }).join('')}</div>`;
-}
-
 function drawResult() {
   const ndr = F.years.map(y => ({ y, v: F.share.narvik?.AGD23?.[y] ?? null }));
   const fond = F.years.map(y => ({ y, v: F.amounts['56']?.[y] ?? null }));
-  document.getElementById('ndr-chart').innerHTML = columns(ndr, v => signed(v, 1) + ' %');
-  document.getElementById('fond-chart').innerHTML = columns(fond, v => mill(v));
+  document.getElementById('ndr-chart').innerHTML = columns(ndr, v => signed(v, 1) + ' %', year);
+  document.getElementById('fond-chart').innerHTML = columns(fond, v => mill(v), year);
   const d = amt('56'), dp = F.share.narvik?.['56']?.[year];
   const r = amt('AGD23');
   document.getElementById('result-lead').textContent = `I ${year} var netto driftsresultat ${signed(r / 1000, 1)} millioner kroner, ${nb(F.share.narvik.AGD23[year], 1)} % av driftsinntektene. Ved utgangen av året hadde kommunen ${mill(d)} millioner kroner på disposisjonsfond, ${nb(dp, 1)} % av driftsinntektene.`;
@@ -136,15 +123,6 @@ function drawCompare() {
     ? `Narvik hadde ${nb(fc)} kr i frie inntekter per innbygger i ${year}, ${nb(Math.abs(fc - gc))} kr ${fc >= gc ? 'mer' : 'mindre'} enn snittet i ${group.name}${pop ? `. Med ${nb(Math.round(pop))} innbyggere tilsvarer det ${nb(Math.abs(fc - gc) * pop / 1e6)} millioner kroner` : ''}.`
     : '';
   document.getElementById('cmp-caption').innerHTML = `Kommunekonsern, ${year}. ${group.name}: snitt av ${F.kostra_group_size} kommuner. Landet uten Oslo og Nordland er snitt av kommunene. Beløp per innbygger fra ${ssb('12137', 'SSB tabell 12137')}, prosent av brutto driftsinntekter fra ${ssb('12143', 'SSB tabell 12143')}. · betyr at SSB ikke har tallet.`;
-}
-
-// On narrow screens each row becomes a card: the first cell is its title and the others carry their column heading.
-function stackable(table) {
-  const heads = [...table.querySelectorAll('thead th')].map(th => th.textContent);
-  table.classList.add('stack');
-  table.querySelectorAll('tbody tr').forEach(tr => [...tr.children].forEach((td, i) => {
-    if (i && heads[i]) td.dataset.label = heads[i];
-  }));
 }
 
 start();
