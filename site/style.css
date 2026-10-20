@@ -464,3 +464,4 @@ details .fact-list { margin-top: 4px; }
 .panel.bars-panel { align-content: start; }
 .hbars .hb.bo { grid-template-columns: minmax(96px, 180px) minmax(40px, 1fr) 52px 40px; }
 @media (max-width: 900px) { #summary.stats3 > :last-child:nth-child(odd) { grid-column: 1 / -1; } }
+#summary.stats3.two-stats { grid-template-columns: repeat(2, 1fr); }

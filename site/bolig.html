@@ -36,21 +36,29 @@
   </header>
 
   <section aria-label="Nøkkeltall">
-    <div class="stats3" id="summary"></div>
+    <div class="stats3 two-stats" id="summary"></div>
   </section>
 
-  <section aria-labelledby="h-stock" id="boliger">
+  <section aria-labelledby="h-types" id="boligtyper">
     <div class="section-head">
-      <h2 id="h-stock">Boligene</h2>
-      <p class="lead" id="stock-lead"></p>
+      <h2 id="h-types">Boligtyper</h2>
+      <p class="lead" id="types-lead"></p>
     </div>
-    <div class="two">
-      <div class="panel bars-panel"><h3>Etter bygningstype</h3><div class="hbars" id="stock-types"></div></div>
-      <div class="panel bars-panel"><h3>Etter byggeår</h3><div class="hbars" id="stock-age"></div></div>
+    <div class="panel bars-panel"><h3 id="types-h">Boliger etter bygningstype</h3><div class="hbars" id="stock-types"></div></div>
+    <p class="caption" id="types-caption"></p>
+    <div class="ptable"><table id="types-cmp"></table></div>
+    <p class="caption" id="types-cmp-caption"></p>
+  </section>
+
+  <section aria-labelledby="h-age" id="byggear">
+    <div class="section-head">
+      <h2 id="h-age">Byggeår</h2>
+      <p class="lead" id="age-lead"></p>
     </div>
-    <p class="caption" id="stock-caption"></p>
-    <div class="ptable"><table id="stock-cmp"></table></div>
-    <p class="caption" id="stock-cmp-caption"></p>
+    <div class="panel bars-panel"><h3 id="age-h">Boliger etter byggeår, nyeste først</h3><div class="hbars" id="stock-age"></div></div>
+    <p class="caption" id="age-caption"></p>
+    <div class="ptable"><table id="age-cmp"></table></div>
+    <p class="caption" id="age-cmp-caption"></p>
   </section>
 
   <section aria-labelledby="h-new" id="nye">

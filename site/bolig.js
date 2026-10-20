@@ -22,21 +22,22 @@ async function start() {
     return;
   }
   document.getElementById('generated').textContent = new Date(B.generated).toLocaleDateString('nb-NO', { day: 'numeric', month: 'long', year: 'numeric' });
-  document.getElementById('sources').innerHTML = Object.keys(B.sources).map(t => `<a href="${B.sources[t].url}" target="_blank" rel="noopener">${t}</a>`).join(', ');
+  const tables = [...new Map(Object.values(B.sources).map(s => [s.table, s.url])).entries()];
+  document.getElementById('sources').innerHTML = tables.map(([t, u]) => `<a href="${u}" target="_blank" rel="noopener">${t}</a>`).join(', ');
   const y = B.year, stock = B.stock[y], total = Object.values(stock).reduce((a, b) => a + b, 0);
   const tYear = Object.keys(B.tenure.narvik).at(-1), ten = B.tenure.narvik[tYear];
-  const qs = Object.keys(B.prices.narvik).sort(), lq = qs.at(-1), lp = B.prices.narvik[lq]['00'];
-  const households = ten['0']?.n;
+  const qs = Object.keys(B.prices.narvik).sort();
+  const households = ten['0']?.n, owns = ten['1'].pct + ten['2'].pct;
 
-  document.getElementById('lead').textContent = `Narvik hadde ${nb(total)} boliger i ${y} og ${nb(households)} husholdninger i ${tYear}. ${nb(stock['01'] / total * 100)} % av boligene er eneboliger. ${nb(ten['3'].pct, 1)} % av husholdningene leier boligen de bor i.`;
+  document.getElementById('lead').textContent = `Narvik hadde ${nb(total)} boliger i ${y} og ${nb(households)} husholdninger i ${tYear}. ${nb(stock['01'] / total * 100)} % av boligene er eneboliger. ${nb(owns, 1)} % av husholdningene eier boligen de bor i.`;
   const first = Object.keys(B.stock)[0], fTotal = Object.values(B.stock[first]).reduce((a, b) => a + b, 0);
   document.getElementById('summary').innerHTML = [
     ['Boliger', nb(total), `${chgText(pct(total, fTotal))} siden ${first}`],
-    ['Kvadratmeterpris', `${nb(lp.price)} <small>kr</small>`, `${quarter(lq)}, ${nb(lp.sales)} salg`],
-    ['Leier boligen', pc(ten['3'].pct), `av ${nb(households)} husholdninger i ${tYear}`],
+    ['Eier boligen', pc(owns), `av ${nb(households)} husholdninger i ${tYear}, selveiere og andels- eller aksjeeiere`],
   ].map(([label, big, sub]) => `<div class="stat"><span class="sub">${label}</span><span class="big num">${big}</span><span class="sub">${sub}</span></div>`).join('');
 
-  drawStock(y, total);
+  drawTypes(y, total);
+  drawAge(y);
   drawNew();
   drawPrices(qs);
   drawTenure(tYear);
@@ -56,25 +57,45 @@ function table(id, cols, keys) {
   stackable(t);
 }
 
-function drawStock(y, total) {
+function drawTypes(y, total) {
   const stock = B.stock[y];
+  document.getElementById('types-h').textContent = `Boliger etter bygningstype, ${y}`;
   document.getElementById('stock-types').innerHTML = bars(B.types.map(t => [t.name, stock[t.code] ?? 0, pc((stock[t.code] ?? 0) / total * 100, 0)]));
-  const age = B.periods.filter(p => p.code !== '99').map(p => [p.name.replace('-', '–'), Object.values(B.built_in[p.code] || {}).reduce((a, b) => a + b, 0)]);
-  document.getElementById('stock-age').innerHTML = bars(age.map(([n, v]) => [n, v, pc(v / total * 100, 0)]));
-  const sumCodes = codes => codes.reduce((a, c) => a + Object.values(B.built_in[c] || {}).reduce((x, y) => x + y, 0), 0);
-  const before1981 = sumCodes(B.periods.map(p => p.code).filter(c => c !== '99' && c <= '08'));
-  const after2000 = sumCodes(B.periods.map(p => p.code).filter(c => c !== '99' && c >= '11'));
-  const unknown = Object.values(B.built_in['99'] || {}).reduce((a, b) => a + b, 0);
-  document.getElementById('stock-lead').textContent = `${nb(before1981 / total * 100)} % av boligene er bygget før 1981, og ${nb(after2000 / total * 100)} % i 2001 eller senere. ${nb((stock['04'] ?? 0) / total * 100)} % er leiligheter i boligblokk, mot ${B.shares.norge?.['04'] ?? '·'} % i landet.`;
-  document.getElementById('stock-caption').innerHTML = `Boliger per 1. januar ${y}, bebodde og ubebodde. ${nb(unknown)} boliger har ukjent byggeår og er ikke med i byggeår. ${ssb('06265', 'Bygningstype hos SSB')} (tabell 06265), ${ssb('06266', 'byggeår hos SSB')} (tabell 06266).`;
-  table('stock-cmp', [
+  document.getElementById('types-lead').textContent = `${nb((stock['01'] ?? 0) / total * 100)} % av boligene i Narvik er eneboliger, mot ${B.shares.norge?.['01'] ?? '·'} % i landet. ${nb((stock['04'] ?? 0) / total * 100)} % er leiligheter i boligblokk, mot ${B.shares.norge?.['04'] ?? '·'} % i landet.`;
+  document.getElementById('types-caption').innerHTML = `Boliger per 1. januar ${y}, bebodde og ubebodde. ${ssb('06265', 'Se tallene hos SSB')} (tabell 06265).`;
+  table('types-cmp', [
     { label: 'Enebolig', get: k => pc(B.shares[k]?.['01'], 0) },
     { label: 'Tomannsbolig', get: k => pc(B.shares[k]?.['02'], 0) },
     { label: 'Rekkehus og småhus', get: k => pc(B.shares[k]?.['03'], 0) },
     { label: 'Boligblokk', get: k => pc(B.shares[k]?.['04'], 0) },
     { label: 'Bofellesskap og andre', get: k => B.shares[k] ? pc((B.shares[k]['05'] ?? 0) + (B.shares[k]['999'] ?? 0), 0) : '·' },
   ], PLAIN);
-  document.getElementById('stock-cmp-caption').innerHTML = `Andel av boligene etter bygningstype, ${y}. SSB runder av til hele prosent, så radene summerer ikke alltid til 100. ${ssb('12941')}.`;
+  document.getElementById('types-cmp-caption').innerHTML = `Andel av boligene etter bygningstype, ${y}. SSB runder av til hele prosent, så radene summerer ikke alltid til 100. ${ssb('12941')}.`;
+}
+
+// Shares are of the dwellings with a known year of construction, so they add up to 100 and compare across regions.
+const BANDS = [
+  { label: '2001 og senere', test: c => c >= '11' },
+  { label: '1981–2000', test: c => c === '09' || c === '10' },
+  { label: '1946–1980', test: c => c >= '06' && c <= '08' },
+  { label: 'Før 1946', test: c => c <= '04' },
+];
+
+function drawAge(y) {
+  const known = k => Object.entries(B.age[k] || {}).filter(([c]) => c !== '99');
+  const share = (k, test) => {
+    const rows = known(k), all = rows.reduce((a, [, v]) => a + v, 0);
+    return all ? rows.filter(([c]) => test(c)).reduce((a, [, v]) => a + v, 0) / all * 100 : null;
+  };
+  const periods = B.periods.filter(p => p.code !== '99').reverse();
+  const N = B.age.narvik, base = known('narvik').reduce((a, [, v]) => a + v, 0);
+  document.getElementById('age-h').textContent = `Boliger etter byggeår, ${y}, nyeste først`;
+  document.getElementById('stock-age').innerHTML = bars(periods.map(p => [p.name.replace('-', '–'), N[p.code] ?? 0, pc((N[p.code] ?? 0) / base * 100, 0)]));
+  const before = share('narvik', c => c <= '08'), after = share('narvik', BANDS[0].test);
+  document.getElementById('age-lead').textContent = `${nb(before)} % av boligene i Narvik er bygget før 1981, mot ${nb(share('norge', c => c <= '08'))} % i landet. ${nb(after)} % er bygget i 2001 eller senere, mot ${nb(share('norge', BANDS[0].test))} % i landet.`;
+  document.getElementById('age-caption').innerHTML = `Boliger per 1. januar ${y}, bebodde og ubebodde, med kjent byggeår. ${nb(N['99'] ?? 0)} boliger har ukjent byggeår og er ikke med. ${ssb('06266', 'Se tallene hos SSB')} (tabell 06266).`;
+  table('age-cmp', BANDS.map(b => ({ label: b.label, get: k => pc(share(k, b.test), 0) })), PLAIN);
+  document.getElementById('age-cmp-caption').innerHTML = `Andel av boligene med kjent byggeår, ${y}, beregnet her fra SSBs antall boliger per byggeår. ${ssb('06266')}.`;
 }
 
 function drawNew() {

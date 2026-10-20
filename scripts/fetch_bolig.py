@@ -7,7 +7,7 @@ comparison, which is SSB's count divided by the population KOSTRA uses (from nar
 
 Tables:
     06265  dwellings by type of building (Narvik, every year from 2020)
-    06266  dwellings by type of building and year of construction (newest year)
+    06266  dwellings by year of construction (newest year, summed over the types of building)
     12941  dwellings by type of building, per cent (comparison)
     05940  dwellings started and completed per year
     14310  average price per square metre and number of sales, by type of dwelling, per quarter
@@ -134,15 +134,21 @@ def main() -> int:
             stock.setdefault(c["Tid"], {})[c["BygnType"]] = v
     year = max(stock)
 
-    # Age of the stock in the newest year, by type.
-    q = url("06266", Region=REGION, BygnType="*", BygnAr="*", ContentsCode="Boliger", Tid=year)
+    # Age of the stock in the newest year, summed over the types of building.
+    q = url("06266", Region=all_plain, BygnType="*", BygnAr="*", ContentsCode="Boliger", Tid=year)
     sources["06266"] = source("06266", q)
     ds = get(q)
     periods = labels(ds, "BygnAr")
-    built_in: dict = {}
+    by_code: dict = {}
     for c, v in cells(ds):
-        if v is not None:
-            built_in.setdefault(c["BygnAr"], {})[c["BygnType"]] = v
+        if v is None:
+            continue
+        for k, cs in plain.items():
+            if c["Region"] in cs:
+                slot = by_code.setdefault(k, {}).setdefault(c["Region"], {})
+                slot[c["BygnAr"]] = slot.get(c["BygnAr"], 0) + v
+    # Keep the code with the most dwellings (Harstad and Alta changed number in 2024).
+    age = {k: max(codes.values(), key=lambda d: sum(d.values())) for k, codes in by_code.items()}
 
     # Shares by type, for the comparison.
     q = url("12941", Region=all_plain, BygnType="*", ContentsCode="Boliger", Tid=year)
@@ -223,10 +229,10 @@ def main() -> int:
         "types": [{"code": c, "name": n} for c, n in TYPES],
         "price_types": [{"code": c, "name": n} for c, n in PRICE_TYPES],
         "tenure_types": [{"code": c, "name": n} for c, n in TENURE],
-        "periods": [{"code": c, "name": periods.get(c, c)} for c in built_in],
+        "periods": [{"code": c, "name": n} for c, n in periods.items()],
         "regions": regs,
         "stock": stock,
-        "built_in": built_in,
+        "age": age,
         "shares": shares,
         "built": built,
         "prices": prices,
