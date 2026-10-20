@@ -3,7 +3,7 @@
 // regions. Renders site/data/naering.json (written by scripts/fetch_naering.py). Helpers are in common.js.
 let D;
 
-const pc = (v, d = 1) => (v == null ? '·' : nb(v, v > 0 && v < 1 ? Math.max(d, 1) : d) + ' %');
+const pc = (v, d = 1) => (v == null ? '·' : v > 0 && v < 0.05 ? 'under 0,1 %' : nb(v, v > 0 && v < 1 ? Math.max(d, 1) : d) + ' %');
 const num = v => (v == null ? '·' : nb(v));
 const region = k => D.regions.find(r => r.key === k);
 const KEYS = ['narvik', 'harstad', 'rana', 'alta', 'nordland', 'norge'];
@@ -82,6 +82,13 @@ const SHORT = {
   '84.100-84.399': 'Offentlig administrasjon og forsvar', '85': 'Undervisning', '86-88': 'Helse og sosiale tjenester',
   '90-93': 'Kultur og fritid', '94-96': 'Personlig tjenesteyting',
 };
+const SIZE_GROUPS = [
+  { key: 'alle', name: 'Alle', title: 'alle størrelser', codes: ['99'] },
+  { key: '0', name: 'Ingen', title: 'uten ansatte', codes: ['00'] },
+  { key: '1-9', name: '1–9', title: '1–9 ansatte', codes: ['01', '02'] },
+  { key: '10-49', name: '10–49', title: '10–49 ansatte', codes: ['03', '04'] },
+  { key: '50', name: '50+', title: '50 ansatte eller flere', codes: ['05', '15', '16'] },
+];
 const SIZES = [['00', 'Ingen ansatte'], ['01', '1–4'], ['02', '5–9'], ['03', '10–19'], ['04', '20–49'], ['05', '50–99'], ['15', '100–249'], ['16', '250 eller flere']];
 
 function drawUnits(y) {
@@ -89,13 +96,27 @@ function drawUnits(y) {
   const share = (k, code, size = '99', yr = y) => { const s = U[k]?.[yr]; return s?.['00-99|99'] ? (s[`${code}|${size}`] ?? 0) / s['00-99|99'] * 100 : null; };
   const big = (k, yr = y) => { const s = U[k]?.[yr]; return s ? ['04', '05', '15', '16'].reduce((a, c) => a + (s[`00-99|${c}`] ?? 0), 0) : null; };
   const rows = Object.keys(SHORT).map(c => [SHORT[c], me[`${c}|99`] ?? 0, pc(share('narvik', c), 0)]).filter(r => r[1]).sort((a, b) => b[1] - a[1]);
-  document.getElementById('ind-h').textContent = `Bedrifter etter næring, 1. januar ${y}`;
-  document.getElementById('ind-bars').innerHTML = bars(rows);
+  // Industry bars for one size group at a time, picked with the buttons above them.
+  const pick = document.getElementById('ind-pick');
+  const drawInd = g => {
+    const n = c => g.codes.reduce((a, z) => a + (me[`${c}|${z}`] ?? 0), 0), all = n('00-99');
+    const list = Object.keys(SHORT).map(c => [SHORT[c], n(c), all ? pc(n(c) / all * 100, 0) : '·']).filter(r => r[1]).sort((a, b) => b[1] - a[1]);
+    document.getElementById('ind-h').innerHTML = `Bedrifter etter næring, <span style="white-space:nowrap">${g.title}</span>, 1. januar ${y}`;
+    document.getElementById('ind-bars').innerHTML = list.length ? bars(list) : '<p class="caption">Ingen bedrifter.</p>';
+    document.getElementById('ind-sum').textContent = `${nb(all)} bedrifter med dette antallet ansatte. Prosenten er av disse.`;
+    pick.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.g === g.key)));
+  };
+  pick.replaceChildren(...SIZE_GROUPS.map(g => {
+    const b = el('button', { type: 'button', 'data-g': g.key, 'aria-pressed': 'false' }, g.name);
+    b.addEventListener('click', () => drawInd(g));
+    return b;
+  }));
+  drawInd(SIZE_GROUPS[0]);
   document.getElementById('size-h').textContent = `Bedrifter etter antall ansatte, 1. januar ${y}`;
   document.getElementById('size-bars').innerHTML = bars(SIZES.map(([c, n]) => [n, me[`00-99|${c}`] ?? 0, pc(share('narvik', '00-99', c), 0)]));
   const top = rows.slice(0, 3).map(r => r[0].toLowerCase());
   document.getElementById('units-lead').textContent = `${nb(total)} bedrifter var registrert i Narvik 1. januar ${y}, ${chgText(pct(total, U.narvik[first]['00-99|99']))} fra ${first}. Flest var innen ${top[0]}, ${top[1]} og ${top[2]}. ${nb(big('narvik'))} bedrifter hadde 20 ansatte eller flere.`;
-  document.getElementById('units-caption').innerHTML = `Bedrifter (virksomheter) som ligger i Narvik, etter hovednæring og antall ansatte. Prosenten er av alle bedriftene, beregnet her. ${nb(me['00|99'] ?? 0)} bedrifter har ukjent næring og er ikke med til venstre. ${ssb('10309', 'Se tallene hos SSB')} (tabell 10309).`;
+  document.getElementById('units-caption').innerHTML = `Bedrifter (virksomheter) som ligger i Narvik, etter hovednæring og antall ansatte. Velg antall ansatte over næringsgrafen for å se bare bedrifter av den størrelsen. Prosenten er beregnet her. ${nb(me['00|99'] ?? 0)} bedrifter har ukjent næring og er ikke med i næringsgrafen. ${ssb('10309', 'Se tallene hos SSB')} (tabell 10309).`;
   table('units-cmp', [
     { label: `Bedrifter ${y}`, get: k => num(U[k]?.[y]?.['00-99|99']) },
     { label: 'Per 1 000 innbyggere, beregnet', get: k => { const v = perThousand(U[k]?.[y]?.['00-99|99'], k, y); return v == null ? '·' : nb(v, 0); } },
