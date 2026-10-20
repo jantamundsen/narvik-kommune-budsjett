@@ -31,9 +31,11 @@ async function start() {
 
   document.getElementById('lead').textContent = `Narvik hadde ${nb(total)} boliger i ${y} og ${nb(households)} husholdninger i ${tYear}. ${nb(stock['01'] / total * 100)} % av boligene er eneboliger. ${nb(owns, 1)} % av husholdningene eier boligen de bor i.`;
   const first = Object.keys(B.stock)[0], fTotal = Object.values(B.stock[first]).reduce((a, b) => a + b, 0);
+  const NB = B.built.narvik, nYears = Object.keys(NB).sort(), nLast = nYears.at(-1), nSpan = nYears.slice(-5);
   document.getElementById('summary').innerHTML = [
     ['Boliger', nb(total), `${chgText(pct(total, fTotal))} siden ${first}`],
-    ['Eier boligen', pc(owns), `av ${nb(households)} husholdninger i ${tYear}, selveiere og andels- eller aksjeeiere`],
+    ['Nye boliger', nb(NB[nLast].Fullforte), `fullført i ${nLast}, ${nb(nSpan.reduce((a, y) => a + (NB[y].Fullforte ?? 0), 0))} fra ${nSpan[0]} til ${nLast}`],
+    ['Eier boligen', pc(owns), `av ${nb(households)} husholdninger i ${tYear}`],
   ].map(([label, big, sub]) => `<div class="stat"><span class="sub">${label}</span><span class="big num">${big}</span><span class="sub">${sub}</span></div>`).join('');
 
   drawTypes(y, total);
