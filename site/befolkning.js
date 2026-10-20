@@ -1,4 +1,17 @@
 // Befolkning: renders site/data/befolkning.json (written by scripts/fetch_befolkning.py) on befolkning.html. Helpers are in common.js.
+
+// On narrow screens each row becomes a card: the first cell is its title
+// and the others carry their column heading in data-label.
+function stackable(table) {
+  const heads = [...table.querySelectorAll('thead th')].map(th => th.textContent);
+  table.classList.add('stack');
+  table.querySelectorAll('tbody tr').forEach(tr => [...tr.children].forEach((td, i) => {
+    if (i && heads[i]) td.dataset.label = heads[i];
+    if (i && !td.textContent) td.classList.add('empty');
+  }));
+  return table;
+}
+
 async function startPopulation() {
   let B;
   try {
@@ -173,7 +186,7 @@ async function startPopulation() {
     changeCell(A.total.pop[A.first], A.total.pop[A.last], false), el('td', {}, pc(A.total.under16)), el('td', {}, pc(A.total.over67)));
   tb.append(tot);
   t.append(tb);
-  document.getElementById('areas-table').replaceChildren(t);
+  document.getElementById('areas-table').replaceChildren(stackable(t));
   caption('areas-caption', 'Trykk et delområde for å se grunnkretsene i det. Folketall: ', src('04317'), '. Andeler under 16 og over 67: ', src('04362'),
     `, summert over grunnkretsene. 04362 kan avvike med noen få personer fra 04317 fordi SSB justerer små tall.${A.unknown ? ` ${nb(A.unknown)} personer har ukjent delområde i ${A.last}.` : ''}`);
   document.getElementById('areas').hidden = false;
@@ -203,7 +216,7 @@ async function startPopulation() {
   const gr = el('tr', { class: 'total' });
   gr.append(el('td', {}, 'Endring i året'), ...cy.map(y => el('td', { class: C[y].growth > 0 ? 'pos' : C[y].growth < 0 ? 'neg' : '' }, signed(C[y].growth))));
   tb2.append(gr); tt.append(tb2);
-  document.getElementById('trend-table').replaceChildren(tt);
+  document.getElementById('trend-table').replaceChildren(stackable(tt));
   caption('trend-caption', `Folketallet er per 1. januar. Aksen starter på ${nb(lo)} for å vise endringene. Fødte, døde og flytting summerer ikke alltid nøyaktig til endringen; resten er SSBs etterregistreringer. Kilde: `, src('06913'), '.');
   document.getElementById('trend').hidden = false;
 
@@ -223,7 +236,7 @@ async function startPopulation() {
     tb3.append(tr);
   });
   ct.append(tb3);
-  document.getElementById('cmp-table').replaceChildren(ct);
+  document.getElementById('cmp-table').replaceChildren(stackable(ct));
   caption('cmp-caption', 'Beregnet fra ', src('07459'), ` per 1. januar ${last}. Landet uten Oslo er hele landet minus Oslo, og KOSTRA-gruppen er summen av kommunene i gruppen, med kommunenumrene de hadde i ${first} for endringen. Medianalderen er alderen der halvparten av innbyggerne er yngre.`);
   document.getElementById('compare').hidden = false;
 
