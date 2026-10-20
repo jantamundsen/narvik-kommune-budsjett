@@ -50,6 +50,11 @@ const dateText = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nb-NO', 
       <div class="section-head"><h2 id="h-role">Kommunens rolle og penger</h2></div>
       <ul class="fact-list">${S.rolle.map(r => `<li class="fact"><p>${esc(r.tekst)}</p><p class="caption fact-src">Kilde: ${note(r.kilde)}</p></li>`).join('')}</ul>
     </section>`;
+  // Topics such as jobs or environment, each a short list of sourced points.
+  const topics = (S.temaer || []).map((t, n) => `<section aria-labelledby="h-topic-${n}">
+      <div class="section-head"><h2 id="h-topic-${n}">${esc(t.tittel)}</h2></div>
+      <ul class="fact-list">${t.punkter.map(p => `<li class="fact"><p>${esc(p.tekst)}</p><p class="caption fact-src">Kilde: ${note(p.kilde)}</p></li>`).join('')}</ul>
+    </section>`).join('');
   // Newest first. The config keeps them oldest first (build_saker.py checks the order); after the first few,
   // the rest are behind a button so a long timeline doesn't push the rest of the page down.
   const SHOWN = 5, events = [...S.tidslinje].reverse();
@@ -88,7 +93,7 @@ const dateText = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nb-NO', 
       ${S.mangler ? `<p class="status-note">${esc(S.mangler)}</p>` : ''}
     </header>
     <section aria-label="Nøkkeltall"><div class="stats3 sak-stats" style="--n:${S.nokkeltall.length}">${stats}</div></section>
-    ${actors}${tab}${role}${time}${facts}${links}${docs}`;
+    ${actors}${tab}${role}${topics}${time}${facts}${links}${docs}`;
   document.getElementById('tl-more')?.addEventListener('click', e => {
     document.querySelectorAll('#timeline li[hidden]').forEach(li => { li.hidden = false; });
     e.currentTarget.remove();

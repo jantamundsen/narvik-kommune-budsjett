@@ -92,6 +92,11 @@
    "url": "https://prod02.elementscloud.no/publikum/959469059_prod-959469059/Dmb",
    "pdf": "https://prod02.elementscloud.no/publikum/Documents/ShowDocument/c1d7f777-8235-4817-8203-ebd49ff36bb5/783/2230"
   },
+  "trafikk-datasenter-2020": {
+   "navn": "Trafikkanalyse, datasenter Bjerkvik",
+   "full": "Multiconsult for Nordkraft, trafikkanalyse til detaljregulering datasenter Bjerkvik, 07.10.2020 (vedlegg til reguleringsplanen)",
+   "pdf": "https://oldweb.narvik.kommune.no/_f/p-1/ia100140c-14ea-47a8-942a-960dca5c5cc3/06-rapport-trafikkanalyse.pdf"
+  },
   "vm-organisering": {
    "navn": "Narvik kommune: Slik er VM-arbeidet organisert",
    "full": "Narvik kommune, nettsiden «Slik er VM-arbeidet i Narvik organisert», intervju med ordføreren (udatert)",
@@ -904,6 +909,58 @@
       "id": "okplan-2026",
       "side": 14
      }
+    }
+   ],
+   "temaer": [
+    {
+     "tittel": "Arbeidsplasser",
+     "punkter": [
+      {
+       "tekst": "Trafikkanalysen til reguleringsplanen fra 2020 legger til grunn høyst 150 ansatte i tre skift, og at det tar flere år før det høyeste antallet er nådd. Tallet er brukt til å beregne trafikk og parkering.",
+       "kilde": {
+        "id": "trafikk-datasenter-2020",
+        "side": 13
+       }
+      }
+     ]
+    },
+    {
+     "tittel": "Natur, vann og støy",
+     "punkter": [
+      {
+       "tekst": "Konsekvensutredningen til reguleringsplanen satte samlet konsekvens for naturmangfold til «betydelig miljøskade», med vekt på registrerte naturtyper.",
+       "kilde": {
+        "id": "nve-brev-2025",
+        "side": 3
+       }
+      },
+      {
+       "tekst": "Reguleringsbestemmelsene krever at det ikke kommer slam, sedimenter eller organisk materiale i vassdragene i anleggsfasen, og at grøftevann og drensvann infiltreres i grunnen før det renner ut i vassdraget.",
+       "kilde": {
+        "id": "plan-datasenter-2021",
+        "side": 1
+       }
+      },
+      {
+       "tekst": "Støy fra vifter og kjøleanlegg skal holde seg innenfor statens retningslinje for støy (T-1442), og støy fra driften skal være beregnet før det gis igangsettingstillatelse.",
+       "kilde": {
+        "id": "plan-datasenter-2021",
+        "side": 5
+       }
+      }
+     ]
+    },
+    {
+     "tittel": "Overskuddsvarme",
+     "punkter": [
+      {
+       "tekst": "Kjølevannsplanen skal også legge til rette for at overskuddsvarmen kan brukes, for eksempel på Lallasletta eller langs traseen. Nscale opplyser at de er i dialog med Futurum og kommunen om dette.",
+       "kilde": {
+        "id": "kjolevann-2026",
+        "side": 8
+       }
+      }
+     ]
     }
    ],
    "tidslinje": [

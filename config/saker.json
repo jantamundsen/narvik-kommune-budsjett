@@ -63,6 +63,11 @@
       "full": "Kontrollutvalget i Narvik, protokoll fra møtet 23.02.2026, sak 05/26 «Narvik kommunes økonomiske forpliktelser i tilknytning til Alpin-VM 2029 – kommunedirektørens svar»",
       "pdf": "https://www.narvik.kommune.no/~/_f/p1/i1a533e5c-7dc4-44e9-9d5c-da1987e3e398/protokoll-narvik-kontrollutvalg-20260223.PDF"
     },
+    "trafikk-datasenter-2020": {
+      "navn": "Trafikkanalyse, datasenter Bjerkvik",
+      "full": "Multiconsult for Nordkraft, trafikkanalyse til detaljregulering datasenter Bjerkvik, 07.10.2020 (vedlegg til reguleringsplanen)",
+      "pdf": "https://oldweb.narvik.kommune.no/_f/p-1/ia100140c-14ea-47a8-942a-960dca5c5cc3/06-rapport-trafikkanalyse.pdf"
+    },
     "kjolevann-2026": {
       "navn": "Referat, oppstartsmøte kjølevannsanlegg Bjerkvik",
       "full": "Narvik kommune, referat fra oppstartsmøte for detaljregulering for kjølevannsanlegg Bjerkvik, plan-ID 2026007, møte 03.07.2026 (arkivsak 26/1700)",
@@ -140,6 +145,19 @@
         { "tekst": "Kommunen var høringsinstans for søknaden om ny 420 kV-tilknytning og hadde ingen merknader.", "kilde": { "id": "nordkraft-2026", "side": 2 } },
         { "tekst": "Nscale har startet arbeidet med en reguleringsplan for kjølevann til datasenteret, med inntak og utslipp i sjøen ved Bjerkvik eller på Lallasletta. Planen skal behandles av kommunen.", "kilde": { "id": "kjolevann-2026", "side": 1 } },
         { "tekst": "Datasenteret står ikke blant investeringsprosjektene i kommunens økonomiplan for 2026–2029.", "kilde": { "id": "okplan-2026", "side": 14 } }
+      ],
+      "temaer": [
+        { "tittel": "Arbeidsplasser", "punkter": [
+          { "tekst": "Trafikkanalysen til reguleringsplanen fra 2020 legger til grunn høyst 150 ansatte i tre skift, og at det tar flere år før det høyeste antallet er nådd. Tallet er brukt til å beregne trafikk og parkering.", "kilde": { "id": "trafikk-datasenter-2020", "side": 13 } }
+        ] },
+        { "tittel": "Natur, vann og støy", "punkter": [
+          { "tekst": "Konsekvensutredningen til reguleringsplanen satte samlet konsekvens for naturmangfold til «betydelig miljøskade», med vekt på registrerte naturtyper.", "kilde": { "id": "nve-brev-2025", "side": 3 } },
+          { "tekst": "Reguleringsbestemmelsene krever at det ikke kommer slam, sedimenter eller organisk materiale i vassdragene i anleggsfasen, og at grøftevann og drensvann infiltreres i grunnen før det renner ut i vassdraget.", "kilde": { "id": "plan-datasenter-2021", "side": 1 } },
+          { "tekst": "Støy fra vifter og kjøleanlegg skal holde seg innenfor statens retningslinje for støy (T-1442), og støy fra driften skal være beregnet før det gis igangsettingstillatelse.", "kilde": { "id": "plan-datasenter-2021", "side": 5 } }
+        ] },
+        { "tittel": "Overskuddsvarme", "punkter": [
+          { "tekst": "Kjølevannsplanen skal også legge til rette for at overskuddsvarmen kan brukes, for eksempel på Lallasletta eller langs traseen. Nscale opplyser at de er i dialog med Futurum og kommunen om dette.", "kilde": { "id": "kjolevann-2026", "side": 8 } }
+        ] }
       ],
       "tidslinje": [
         { "dato": "29.04.2021", "tekst": "Kommunestyret vedtar detaljreguleringsplan for datasenter Bjerkvik (sak 037/21, plan-ID 2019002).", "kilde": { "id": "plan-datasenter-2021", "side": 1 } },
