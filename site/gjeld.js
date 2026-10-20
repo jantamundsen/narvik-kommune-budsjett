@@ -54,7 +54,7 @@ function render() {
   const group = F.regions.find(r => r.key === 'gruppe');
   const s = service(year), inc = amt('AGD13');
 
-  document.getElementById('lead').innerHTML = `Ved utgangen av ${year} hadde kommunen ${mill(debt)} millioner kroner i netto lånegjeld, ${nb(cap)} kr per innbygger. Det tilsvarer ${nb(share, 1)} % av ett års <a href="inntekter.html${year === F.years.at(-1) ? '' : '?aar=' + year}">driftsinntekter</a>. Lånene er tatt opp for å betale investeringer i bygg, veier og vann og avløp, og betales ned med avdrag fra driften.`;
+  document.getElementById('lead').innerHTML = `Ved utgangen av ${year} hadde kommunen ${mill(debt)} millioner kroner i netto lånegjeld, ${nb(cap)} kr per innbygger. Det tilsvarer ${nb(share, 1)} % av ett års <a href="inntekter${year === F.years.at(-1) ? '' : '?aar=' + year}">driftsinntekter</a>. Lånene er tatt opp for å betale investeringer i bygg, veier og vann og avløp, og betales ned med avdrag fra driften.`;
 
   document.getElementById('summary').innerHTML = [
     ['Netto lånegjeld', `${mill(debt)} <small>mill. kr</small>`, prev ? `${chgText(pct(debt, amt('KG31', prev)))} fra ${prev}` : ''],
