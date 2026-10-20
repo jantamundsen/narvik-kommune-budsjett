@@ -55,7 +55,12 @@ def main() -> int:
         if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", s.get("kontrollert", "")):
             err("kontrollert må være en dato som 2026-10-20")
 
-        def check_src(where: str, k: dict | None) -> None:
+        def check_src(where: str, k: dict | list | None) -> None:
+            # A line can rest on more than one page, so «kilde» may be a list.
+            if isinstance(k, list) and k:
+                for one in k:
+                    check_src(where, one)
+                return
             if not k or k.get("id") not in sources:
                 err(f"{where}: ukjent eller manglende kilde")
                 return
@@ -73,9 +78,7 @@ def main() -> int:
         for i, a in enumerate(s.get("aktorer", [])):
             if not a.get("navn") or not a.get("rolle"):
                 err(f"aktør {i + 1}: mangler navn eller rolle")
-            # A role can rest on more than one page, so «kilde» may be a list.
-            for k in a.get("kilde") if isinstance(a.get("kilde"), list) else [a.get("kilde")]:
-                check_src(f"aktør {i + 1}", k)
+            check_src(f"aktør {i + 1}", a.get("kilde"))
         for t in s.get("temaer", []):
             if not t.get("tittel") or not t.get("punkter"):
                 err("et tema mangler tittel eller punkter")

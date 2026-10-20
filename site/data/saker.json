@@ -32,6 +32,11 @@
    "full": "Kontrollutvalget i Narvik, protokoll fra møtet 23.02.2026, sak 05/26 «Narvik kommunes økonomiske forpliktelser i tilknytning til Alpin-VM 2029 – kommunedirektørens svar»",
    "pdf": "https://www.narvik.kommune.no/~/_f/p1/i1a533e5c-7dc4-44e9-9d5c-da1987e3e398/protokoll-narvik-kontrollutvalg-20260223.PDF"
   },
+  "menon-2025": {
+   "navn": "Menon Economics 115/2025",
+   "full": "Menon Economics, «Ringvirkninger av Stargate Norways datasenter i Narvik», Menon-publikasjon nr. 115/2025, august 2025, på oppdrag fra Stargate Norway",
+   "pdf": "https://menon.no/uploads/images/2025-115-Ringvirkninger-av-Stargate-Norways-datasenter-i-Narvik.pdf"
+  },
   "nordkraft-2026": {
    "navn": "Nordkraft Industrinett, svar på høringsuttalelser 17.02.2026",
    "full": "Nordkraft Industrinett AS, svar på høringsuttalelser til «Nye Skoglund transformatorstasjon med 420 kV tilknytning fra Kvandal», 17.02.2026 (NVE-sak 202503343)",
@@ -936,6 +941,46 @@
        "kilde": {
         "id": "trafikk-datasenter-2020",
         "side": 13
+       }
+      },
+      {
+       "tekst": "Menon Economics anslår i en rapport på oppdrag fra Stargate Norway (august 2025) at rundt 250 personer vil ha datasenteret som fast arbeidsplass. Tallet omfatter fast ansatte, innleid personell og kundens ansatte på stedet, og bemanningstallet kommer fra utbyggeren.",
+       "kilde": [
+        {
+         "id": "menon-2025",
+         "side": 7
+        },
+        {
+         "id": "menon-2025",
+         "side": 11
+        }
+       ]
+      },
+      {
+       "tekst": "Ifølge rapporten er stillingene teknisk driftspersonell, sikkerhet, administrasjon, kundeservice og støttefunksjoner for drift av bygg og anlegg. Den anslår i tillegg 145 årsverk hos leverandører, til sammen nesten 400 årsverk i driften, og nesten 280 av dem i Narvik.",
+       "kilde": [
+        {
+         "id": "menon-2025",
+         "side": 19
+        },
+        {
+         "id": "menon-2025",
+         "side": 20
+        }
+       ]
+      },
+      {
+       "tekst": "For byggefasen anslår rapporten 4 000 årsverk i Norge, hvorav 700 hos bedrifter i Narvik kommune. Mange som jobber på byggeplassen, er ansatt i bedrifter i andre kommuner.",
+       "kilde": {
+        "id": "menon-2025",
+        "side": 14
+       }
+      },
+      {
+       "tekst": "Rapporten skriver selv at usikkerheten i anslagene «ikke er ubetydelig», fordi datasenteret ikke var bygget og leverandører og driftsmodell ikke var valgt.",
+       "kilde": {
+        "id": "menon-2025",
+        "side": 11
        }
       }
      ]

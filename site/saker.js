@@ -51,9 +51,10 @@ const dateText = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nb-NO', 
       <ul class="fact-list">${S.rolle.map(r => `<li class="fact"><p>${esc(r.tekst)}</p><p class="caption fact-src">Kilde: ${note(r.kilde)}</p></li>`).join('')}</ul>
     </section>`;
   // Topics such as jobs or environment, each a short list of sourced points.
+  (S.temaer || []).forEach(t => t.punkter.forEach(p => [].concat(p.kilde).forEach(k => sources.set(k.id, D.kilder[k.id]))));
   const topics = (S.temaer || []).map((t, n) => `<section aria-labelledby="h-topic-${n}">
       <div class="section-head"><h2 id="h-topic-${n}">${esc(t.tittel)}</h2></div>
-      <ul class="fact-list">${t.punkter.map(p => `<li class="fact"><p>${esc(p.tekst)}</p><p class="caption fact-src">Kilde: ${note(p.kilde)}</p></li>`).join('')}</ul>
+      <ul class="fact-list">${t.punkter.map(p => `<li class="fact"><p>${esc(p.tekst)}</p><p class="caption fact-src">Kilde: ${srcGroup([].concat(p.kilde))}</p></li>`).join('')}</ul>
     </section>`).join('');
   // Newest first. The config keeps them oldest first (build_saker.py checks the order); after the first few,
   // the rest are behind a button so a long timeline doesn't push the rest of the page down.

@@ -74,6 +74,11 @@
       "full": "NVE, nyhetssak «NVE gir Nscale varsel om tvangsmulkt», 29.09.2026",
       "url": "https://www.nve.no/nytt-fra-nve/nyheter-energi/nve-gir-nscale-varsel-om-tvangsmulkt/"
     },
+    "menon-2025": {
+      "navn": "Menon Economics 115/2025",
+      "full": "Menon Economics, «Ringvirkninger av Stargate Norways datasenter i Narvik», Menon-publikasjon nr. 115/2025, august 2025, på oppdrag fra Stargate Norway",
+      "pdf": "https://menon.no/uploads/images/2025-115-Ringvirkninger-av-Stargate-Norways-datasenter-i-Narvik.pdf"
+    },
     "trafikk-datasenter-2020": {
       "navn": "Trafikkanalyse, datasenter Bjerkvik",
       "full": "Multiconsult for Nordkraft, trafikkanalyse til detaljregulering datasenter Bjerkvik, 07.10.2020 (vedlegg til reguleringsplanen)",
@@ -159,7 +164,11 @@
       ],
       "temaer": [
         { "tittel": "Arbeidsplasser", "punkter": [
-          { "tekst": "Trafikkanalysen til reguleringsplanen fra 2020 legger til grunn høyst 150 ansatte i tre skift, og at det tar flere år før det høyeste antallet er nådd. Tallet er brukt til å beregne trafikk og parkering.", "kilde": { "id": "trafikk-datasenter-2020", "side": 13 } }
+          { "tekst": "Trafikkanalysen til reguleringsplanen fra 2020 legger til grunn høyst 150 ansatte i tre skift, og at det tar flere år før det høyeste antallet er nådd. Tallet er brukt til å beregne trafikk og parkering.", "kilde": { "id": "trafikk-datasenter-2020", "side": 13 } },
+          { "tekst": "Menon Economics anslår i en rapport på oppdrag fra Stargate Norway (august 2025) at rundt 250 personer vil ha datasenteret som fast arbeidsplass. Tallet omfatter fast ansatte, innleid personell og kundens ansatte på stedet, og bemanningstallet kommer fra utbyggeren.", "kilde": [{ "id": "menon-2025", "side": 7 }, { "id": "menon-2025", "side": 11 }] },
+          { "tekst": "Ifølge rapporten er stillingene teknisk driftspersonell, sikkerhet, administrasjon, kundeservice og støttefunksjoner for drift av bygg og anlegg. Den anslår i tillegg 145 årsverk hos leverandører, til sammen nesten 400 årsverk i driften, og nesten 280 av dem i Narvik.", "kilde": [{ "id": "menon-2025", "side": 19 }, { "id": "menon-2025", "side": 20 }] },
+          { "tekst": "For byggefasen anslår rapporten 4 000 årsverk i Norge, hvorav 700 hos bedrifter i Narvik kommune. Mange som jobber på byggeplassen, er ansatt i bedrifter i andre kommuner.", "kilde": { "id": "menon-2025", "side": 14 } },
+          { "tekst": "Rapporten skriver selv at usikkerheten i anslagene «ikke er ubetydelig», fordi datasenteret ikke var bygget og leverandører og driftsmodell ikke var valgt.", "kilde": { "id": "menon-2025", "side": 11 } }
         ] },
         { "tittel": "Natur, vann og støy", "punkter": [
           { "tekst": "Konsekvensutredningen til reguleringsplanen satte samlet konsekvens for naturmangfold til «betydelig miljøskade», med vekt på registrerte naturtyper.", "kilde": { "id": "nve-brev-2025", "side": 3 } },
