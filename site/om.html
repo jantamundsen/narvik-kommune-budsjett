@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Hva Åpne tall for Narvik er, hvor tallene kommer fra, hvor ofte de oppdateres, og hvordan du melder fra om feil.">
+<title>Om siden · Åpne tall for Narvik</title>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Åpne tall for Narvik">
+<meta property="og:locale" content="nb_NO">
+<meta property="og:title" content="Om siden · Åpne tall for Narvik">
+<meta property="og:description" content="Hva Åpne tall for Narvik er, hvor tallene kommer fra, hvor ofte de oppdateres, og hvordan du melder fra om feil.">
+<meta property="og:image" content="https://narviktall.no/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Åpne tall for Narvik: regnskap, budsjett og befolkning i Narvik kommune, med kilde for hvert tall">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="site-head">
+    <nav class="site-nav" aria-label="Sider"><a class="brand" href="./">Åpne tall for Narvik</a><details class="nav-menu"><summary>Økonomi</summary><div class="nav-pop"><a href="./"><b>Regnskap</b><small>Hva pengene gikk til, år for år</small></a><a href="budsjett.html"><b>Budsjett mot regnskap</b><small>Planlagt og brukt per område</small></a><a href="lopende.html"><b>Året så langt</b><small>Inneværende år etter tertialrapportene</small></a><a href="tiltak.html"><b>Innsparinger</b><small>Vedtatte kutt og hva som skjedde med dem</small></a></div></details><a href="befolkning.html">Befolkning</a><a href="om.html" aria-current="page">Om siden</a></nav>
+  </div>
+  <header>
+    <div class="eyebrow">Om siden</div>
+    <h1>Om Åpne tall for Narvik</h1>
+    <p class="lead">Siden samler offentlige tall om Narvik kommune på ett sted med kilde for hvert tall. Formålet er å gjøre disse tallene og innsikten de gir så tilgjengelig som mulig. Siden er et åpent hobbyprosjekt laget av <a href="https://janamundsen.dev" target="_blank" rel="noopener">Jan Amundsen</a> og er ikke affiliert med Narvik kommune.</p>
+  </header>
+
+  <section aria-labelledby="h-kilder">
+    <h2 id="h-kilder">Hvor tallene kommer fra</h2>
+    <div class="notes">
+      <div><h3>SSB</h3><p>Regnskapstallene er SSBs KOSTRA-statistikk (<a href="https://www.ssb.no/statbank/table/12362" target="_blank" rel="noopener">12362</a> og <a href="https://www.ssb.no/statbank/table/12367" target="_blank" rel="noopener">12367</a>). Befolkningstallene og framskrivingen er også fra SSB. De hentes automatisk fra SSBs åpne API.</p></div>
+      <div><h3>Kommunens egne dokumenter</h3><p>Budsjett, innsparinger og forklaringer er hentet ut fra kommunens budsjettdokumenter på Framsikt, tertialrapporter og årsrapporter ved hjelp av KI. Ved hvert tall står dokumentet og siden det står på, så tallet kan sjekkes mot kilden.</p></div>
+      <div><h3>Beregnet</h3><p>Noen tall er regnet ut her, for eksempel kroner per innbygger 80 år og over. De er merket «beregnet», og det står hva de er regnet ut fra.</p></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-feil" id="feil">
+    <h2 id="h-feil">Fant du en feil?</h2>
+    <p>Send en e-post til <a href="mailto:jan.t.amundsen@gmail.com">jan.t.amundsen@gmail.com</a>. Skriv hvilken side og hvilket tall det gjelder, hva som er feil, og gjerne hvor du fant det riktige tallet.</p>
+    <p><a class="cta" href="mailto:jan.t.amundsen@gmail.com?subject=Feil%20i%20tall%20p%C3%A5%20%C3%85pne%20tall%20for%20Narvik&amp;body=Side%3A%20%0AHvilket%20tall%3A%20%0AHva%20er%20feil%3A%20%0AKilde%20for%20riktig%20tall%3A%20">Send e-post om en feil</a></p>
+    <p>All kode og alle data bak siden er åpne og ligger på <a href="https://github.com/jtkarlsen/narvik-kommune-budsjett" target="_blank" rel="noopener">GitHub</a>, så du kan også bruke dem selv. Har du en GitHub-konto, kan du også <a href="https://github.com/jtkarlsen/narvik-kommune-budsjett/issues/new?title=Feil%20i%20tall%3A%20&amp;body=Side%3A%20%0AHvilket%20tall%3A%20%0AHva%20er%20feil%3A%20%0AKilde%20for%20riktig%20tall%3A%20" target="_blank" rel="noopener">melde fra om feil der</a>.</p>
+  </section>
+
+  <footer>
+    <span>Et åpent hobbyprosjekt laget av <a href="https://janamundsen.dev" target="_blank" rel="noopener">Jan Amundsen</a>, ikke av Narvik kommune. <a href="https://github.com/jtkarlsen/narvik-kommune-budsjett" target="_blank" rel="noopener">Kildekode</a>.</span>
+  </footer>
+</div>
+<script src="common.js"></script>
+</body>
+</html>
