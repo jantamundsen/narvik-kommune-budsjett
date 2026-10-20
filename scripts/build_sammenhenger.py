@@ -273,6 +273,40 @@ def main() -> int:
         },
     ]
 
+    # «Skiller seg ut»: each page lists its own numbers where Narvik differs clearly from the average. A number
+    # belongs to the page it is shown on; the links above borrow them. Utgifter also gets every service area. The area pages
+    # already compare their own numbers, so they get no list.
+    home = {
+        "Innbyggere": ["befolkning"], "Endring i folketallet": ["befolkning"], "Husholdninger": ["befolkning"],
+        "Frie inntekter": ["inntekter"], "Rammetilskudd": ["inntekter"], "Disposisjonsfond": ["inntekter"], "Netto driftsresultat": ["inntekter"],
+        "Driftsinntekter": ["inntekter"], "Eiendomsskatt": ["inntekter"], "Skatt på inntekt": ["inntekter"],
+        "Netto lånegjeld": ["gjeld"], "Netto finansutgifter": ["gjeld"], "Renteeksponert": ["gjeld"],
+        "Fullførte boliger": ["bolig"], "Boliger i blokk": ["bolig"], "Kommunalt disponerte": ["bolig"], "Andel leid inn": ["bolig"],
+        "Sysselsatte": ["arbeid"], "Helt ledige": ["arbeid"], "20–66 år": ["arbeid"],
+    }
+    pool = [m for link in links for m in link["maal"]]
+    for key, c in cats.items():
+        if key in ("pensjon", "annet"):
+            continue
+        pool.append(measure(f"{c['name']}, netto per innbygger", y, area_pc(key), unit="kr", against="gruppe", source=ssb("12362")))
+        pool[-1]["sider"] = ["utgifter"]
+    pool.append(measure("Pensjonsforpliktelser per innbygger", fy, fin("12137", "40"), unit="kr", against="gruppe", source=ssb("12137")))
+    pool[-1]["sider"] = ["gjeld"]
+    standout: dict = {}
+    for m in pool:
+        sides = m.get("sider") or next((v for k, v in home.items() if m["navn"].startswith(k)), [])
+        if not (m["avvik"] or {}).get("out"):
+            continue
+        for side in sides:
+            if all(x["navn"] != m["navn"] for x in standout.setdefault(side, [])):
+                standout[side].append({k: v for k, v in m.items() if k != "sider"})
+    size = lambda m: abs(m["avvik"].get("share") if m["avvik"].get("share") is not None else m["avvik"]["points"] * 10)
+    for side in standout:
+        standout[side].sort(key=size, reverse=True)
+    for link in links:
+        for m in link["maal"]:
+            m.pop("sider", None)
+
     for link in links:
         link["skiller_seg_ut"] = any((m["avvik"] or {}).get("out") for m in link["maal"])
         for side in [link["fra"], *link["til"]]:
@@ -286,6 +320,7 @@ def main() -> int:
         "sider": {k: {"navn": n, "href": h} for k, (n, h) in PAGES.items()},
         "grense": {"niva_prosent": round(LEVEL * 100), "endring_poeng": POINTS},
         "lenker": links,
+        "skiller_seg_ut": standout,
     }
     OUT.write_text(json.dumps(out, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     print(f"Skrev {OUT.relative_to(ROOT)}: {len(links)} sammenhenger, {sum(l['skiller_seg_ut'] for l in links)} der Narvik skiller seg ut.")

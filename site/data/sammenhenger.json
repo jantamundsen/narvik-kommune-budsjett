@@ -889,5 +889,553 @@
    ],
    "skiller_seg_ut": true
   }
- ]
+ ],
+ "skiller_seg_ut": {
+  "befolkning": [
+   {
+    "navn": "Endring i folketallet 2020–2026",
+    "aar": "2026",
+    "enhet": "%",
+    "desimaler": 1,
+    "verdier": {
+     "narvik": -0.9,
+     "harstad": 2.0,
+     "rana": -1.3,
+     "alta": 6.2,
+     "gruppe": 4.9,
+     "landet": 4.8
+    },
+    "mot": "gruppe",
+    "avvik": {
+     "points": -5.8,
+     "out": true
+    },
+    "beregnet": false,
+    "kilde": {
+     "tekst": "SSB, tabell 07459",
+     "url": "https://www.ssb.no/statbank/table/07459"
+    }
+   },
+   {
+    "navn": "Innbyggere 80 år og over, andel",
+    "aar": "2026",
+    "enhet": "%",
+    "desimaler": 1,
+    "verdier": {
+     "narvik": 6.3,
+     "harstad": 6.0,
+     "rana": 6.3,
+     "alta": 3.8,
+     "gruppe": 5.2,
+     "landet": 5.3
+    },
+    "mot": "gruppe",
+    "avvik": {
+     "share": 21,
+     "out": true,
+     "points": 1.1
+    },
+    "beregnet": false,
+    "kilde": {
+     "tekst": "SSB, tabell 07459",
+     "url": "https://www.ssb.no/statbank/table/07459"
+    }
+   }
+  ],
+  "gjeld": [
+   {
+    "navn": "Pensjonsforpliktelser per innbygger",
+    "aar": "2025",
+    "enhet": "kr",
+    "desimaler": 0,
+    "verdier": {
+     "narvik": 212273,
+     "harstad": 153399,
+     "rana": 159558,
+     "alta": 152948,
+     "gruppe": 124275,
+     "landet": 131149
+    },
+    "mot": "gruppe",
+    "avvik": {
+     "share": 71,
+     "out": true
+    },
+    "beregnet": false,
+    "kilde": {
+     "tekst": "SSB, tabell 12137",
+     "url": "https://www.ssb.no/statbank/table/12137"
+    }
+   },
+   {
+    "navn": "Netto lånegjeld per innbygger",
+    "aar": "2025",
+    "enhet": "kr",
+    "desimaler": 0,
+    "verdier": {
+     "narvik": 151892,
+     "harstad": 186184,
+     "rana": 103646,
+     "alta": 103162,
+     "gruppe": 111873,
+     "landet": 108077
+    },
+    "mot": "gruppe",
+    "avvik": {
+     "share": 36,
+     "out": true
+    },
+    "beregnet": false,
+    "kilde": {
+     "tekst": "SSB, tabell 12137",
+     "url": "https://www.ssb.no/statbank/table/12137"
+    }
+   },
+   {
+    "navn": "Netto finansutgifter, andel av driftsinntektene",
+    "aar": "2025",
+    "enhet": "%",
+    "desimaler": 1,
+    "verdier": {
+     "narvik": 8.3,
+     "harstad": 9.8,
+     "rana": 4.9,
+     "alta": 5.9,
+     "gruppe": 6.3,
+     "landet": 5.6
+    },
+    "mot": "gruppe",
+    "avvik": {
+     "share": 32,
+     "out": true,
+     "points": 2.0
+    },
+    "beregnet": false,
+    "kilde": {
+     "tekst": "SSB, tabell 12143",
+     "url": "https://www.ssb.no/statbank/table/12143"
+    }
+   },
+   {
+    "navn": "Renteeksponert gjeld, andel av driftsinntektene",
+    "aar": "2025",
+    "enhet": "%",
+    "desimaler": 1,
+    "verdier": {
+     "narvik": 79.6,
+     "harstad": 109.4,
+     "rana": 54.9,
+     "alta": 58.4,
+     "gruppe": 69.2,
+     "landet": 66.1
+    },
+    "mot": "gruppe",
+    "avvik": {
+     "share": 15,
+     "out": true,
+     "points": 10.4
+    },
+    "beregnet": false,
+    "kilde": {
+     "tekst": "SSB, tabell 12143",
+     "url": "https://www.ssb.no/statbank/table/12143"
+    }
+   }
+  ],
+  "inntekter": [
+   {
+    "navn": "Eiendomsskatt per innbygger",
+    "aar": "2025",
+    "enhet": "kr",
+    "desimaler": 0,
+    "verdier": {
+     "narvik": 6762,
+     "harstad": 4717,
+     "rana": 4577,
+     "alta": 4496,
+     "gruppe": 2649,
+     "landet": 3275
+    },
+    "mot": "gruppe",
+    "avvik": {
+     "share": 155,
+     "out": true
+    },
+    "beregnet": false,
+    "kilde": {
+     "tekst": "SSB, tabell 12137",
+     "url": "https://www.ssb.no/statbank/table/12137"
+    }
+   },
+   {
+    "navn": "Disposisjonsfond, andel av driftsinntektene",
+    "aar": "2025",
+    "enhet": "%",
+    "desimaler": 1,
+    "verdier": {
+     "narvik": 4.5,
+     "harstad": 5.4,
+     "rana": 12.1,
+     "alta": 1,
+     "gruppe": 8.5,
+     "landet": 11.9
+    },
+    "mot": "gruppe",
+    "avvik": {
+     "share": -47,
+     "out": true,
+     "points": -4.0
+    },
+    "beregnet": false,
+    "kilde": {
+     "tekst": "SSB, tabell 12143",
+     "url": "https://www.ssb.no/statbank/table/12143"
+    }
+   },
+   {
+    "navn": "Driftsinntekter per innbygger",
+    "aar": "2025",
+    "enhet": "kr",
+    "desimaler": 0,
+    "verdier": {
+     "narvik": 137368,
+     "harstad": 129955,
+     "rana": 115670,
+     "alta": 140215,
+     "gruppe": 114828,
+     "landet": 118564
+    },
+    "mot": "gruppe",
+    "avvik": {
+     "share": 20,
+     "out": true
+    },
+    "beregnet": false,
+    "kilde": {
+     "tekst": "SSB, tabell 12137",
+     "url": "https://www.ssb.no/statbank/table/12137"
+    }
+   }
+  ],
+  "bolig": [
+   {
+    "navn": "Andel leid inn fra andre",
+    "aar": "2025",
+    "enhet": "%",
+    "desimaler": 0,
+    "verdier": {
+     "narvik": 86,
+     "harstad": 4,
+     "rana": 14,
+     "alta": 74,
+     "gruppe": 18,
+     "landet": 17
+    },
+    "mot": "gruppe",
+    "avvik": {
+     "share": 378,
+     "out": true,
+     "points": 68
+    },
+    "beregnet": true,
+    "kilde": {
+     "tekst": "SSB, tabell 12008, regnet ut her",
+     "url": "https://www.ssb.no/statbank/table/12008"
+    }
+   },
+   {
+    "navn": "Fullførte boliger 2021–2025 per 1000 innbyggere",
+    "aar": "2025",
+    "enhet": "",
+    "desimaler": 1,
+    "verdier": {
+     "narvik": 6.3,
+     "harstad": 13.1,
+     "rana": 9.9,
+     "alta": 24.1,
+     "nordland": 14.8
+    },
+    "mot": "nordland",
+    "avvik": {
+     "share": -57,
+     "out": true
+    },
+    "beregnet": true,
+    "kilde": {
+     "tekst": "SSB, tabell 05940, delt på folketallet",
+     "url": "https://www.ssb.no/statbank/table/05940"
+    }
+   },
+   {
+    "navn": "Kommunalt disponerte boliger per 1000 innbyggere",
+    "aar": "2025",
+    "enhet": "",
+    "desimaler": 0,
+    "verdier": {
+     "narvik": 23,
+     "harstad": 22,
+     "rana": 22,
+     "alta": 27,
+     "gruppe": 19,
+     "landet": 21
+    },
+    "mot": "gruppe",
+    "avvik": {
+     "share": 21,
+     "out": true
+    },
+    "beregnet": false,
+    "kilde": {
+     "tekst": "SSB, tabell 12008",
+     "url": "https://www.ssb.no/statbank/table/12008"
+    }
+   },
+   {
+    "navn": "Boliger i blokk, andel",
+    "aar": "2026",
+    "enhet": "%",
+    "desimaler": 0,
+    "verdier": {
+     "narvik": 15,
+     "harstad": 14,
+     "rana": 18,
+     "alta": 11,
+     "nordland": 13
+    },
+    "mot": "nordland",
+    "avvik": {
+     "share": 15,
+     "out": true,
+     "points": 2
+    },
+    "beregnet": false,
+    "kilde": {
+     "tekst": "SSB, tabell 12941",
+     "url": "https://www.ssb.no/statbank/table/12941"
+    }
+   }
+  ],
+  "arbeid": [
+   {
+    "navn": "Helt ledige, andel av arbeidsstyrken",
+    "aar": "september 2026",
+    "enhet": "%",
+    "desimaler": 1,
+    "verdier": {
+     "narvik": 1.2,
+     "harstad": 1.0,
+     "rana": 1.4,
+     "alta": 1.6,
+     "nordland": 1.5,
+     "norge": 2.0
+    },
+    "mot": "norge",
+    "avvik": {
+     "share": -40,
+     "out": true,
+     "points": -0.8
+    },
+    "beregnet": false,
+    "kilde": {
+     "tekst": "Nav, tabell HL060 helt ledige",
+     "url": "https://www.nav.no/no/nav-og-samfunn/statistikk/arbeidssokere-og-stillinger-statistikk/helt-ledige"
+    }
+   },
+   {
+    "navn": "20–66 år på arbeidsavklaringspenger eller uføretrygd, andel",
+    "aar": "2025",
+    "enhet": "%",
+    "desimaler": 1,
+    "verdier": {
+     "narvik": 13.9,
+     "harstad": 11.6,
+     "rana": 12.7,
+     "alta": 11.7,
+     "nordland": 12.0,
+     "norge": 10.3
+    },
+    "mot": "norge",
+    "avvik": {
+     "share": 35,
+     "out": true,
+     "points": 3.6
+    },
+    "beregnet": true,
+    "kilde": {
+     "tekst": "SSB, tabell 13563, regnet ut her",
+     "url": "https://www.ssb.no/statbank/table/13563"
+    }
+   }
+  ],
+  "utgifter": [
+   {
+    "navn": "Plan, næring og natur, netto per innbygger",
+    "aar": "2025",
+    "enhet": "kr",
+    "desimaler": 0,
+    "verdier": {
+     "narvik": 149,
+     "harstad": 1239,
+     "rana": 740,
+     "alta": 641,
+     "gruppe": 877,
+     "landet": 598
+    },
+    "mot": "gruppe",
+    "avvik": {
+     "share": -83,
+     "out": true
+    },
+    "beregnet": false,
+    "kilde": {
+     "tekst": "SSB, tabell 12362",
+     "url": "https://www.ssb.no/statbank/table/12362"
+    }
+   },
+   {
+    "navn": "Brann og beredskap, netto per innbygger",
+    "aar": "2025",
+    "enhet": "kr",
+    "desimaler": 0,
+    "verdier": {
+     "narvik": 2047,
+     "harstad": 1394,
+     "rana": 1428,
+     "alta": 1553,
+     "gruppe": 1195,
+     "landet": 1227
+    },
+    "mot": "gruppe",
+    "avvik": {
+     "share": 71,
+     "out": true
+    },
+    "beregnet": false,
+    "kilde": {
+     "tekst": "SSB, tabell 12362",
+     "url": "https://www.ssb.no/statbank/table/12362"
+    }
+   },
+   {
+    "navn": "Veier og samferdsel, netto per innbygger",
+    "aar": "2025",
+    "enhet": "kr",
+    "desimaler": 0,
+    "verdier": {
+     "narvik": 2526,
+     "harstad": 801,
+     "rana": 2916,
+     "alta": 1177,
+     "gruppe": 1676,
+     "landet": 1824
+    },
+    "mot": "gruppe",
+    "avvik": {
+     "share": 51,
+     "out": true
+    },
+    "beregnet": false,
+    "kilde": {
+     "tekst": "SSB, tabell 12362",
+     "url": "https://www.ssb.no/statbank/table/12362"
+    }
+   },
+   {
+    "navn": "Kultur og idrett, netto per innbygger",
+    "aar": "2025",
+    "enhet": "kr",
+    "desimaler": 0,
+    "verdier": {
+     "narvik": 3886,
+     "harstad": 3106,
+     "rana": 2728,
+     "alta": 2804,
+     "gruppe": 2774,
+     "landet": 3246
+    },
+    "mot": "gruppe",
+    "avvik": {
+     "share": 40,
+     "out": true
+    },
+    "beregnet": false,
+    "kilde": {
+     "tekst": "SSB, tabell 12362",
+     "url": "https://www.ssb.no/statbank/table/12362"
+    }
+   },
+   {
+    "navn": "Administrasjon og politikk, netto per innbygger",
+    "aar": "2025",
+    "enhet": "kr",
+    "desimaler": 0,
+    "verdier": {
+     "narvik": 7124,
+     "harstad": 5673,
+     "rana": 4927,
+     "alta": 5894,
+     "gruppe": 5158,
+     "landet": 6306
+    },
+    "mot": "gruppe",
+    "avvik": {
+     "share": 38,
+     "out": true
+    },
+    "beregnet": false,
+    "kilde": {
+     "tekst": "SSB, tabell 12362",
+     "url": "https://www.ssb.no/statbank/table/12362"
+    }
+   },
+   {
+    "navn": "Helse og omsorg, netto per innbygger",
+    "aar": "2025",
+    "enhet": "kr",
+    "desimaler": 0,
+    "verdier": {
+     "narvik": 43732,
+     "harstad": 39367,
+     "rana": 35650,
+     "alta": 43269,
+     "gruppe": 33192,
+     "landet": 33788
+    },
+    "mot": "gruppe",
+    "avvik": {
+     "share": 32,
+     "out": true
+    },
+    "beregnet": false,
+    "kilde": {
+     "tekst": "SSB, tabell 12362",
+     "url": "https://www.ssb.no/statbank/table/12362"
+    }
+   },
+   {
+    "navn": "Kirke og gravplasser, netto per innbygger",
+    "aar": "2025",
+    "enhet": "kr",
+    "desimaler": 0,
+    "verdier": {
+     "narvik": 803,
+     "harstad": 667,
+     "rana": 727,
+     "alta": 813,
+     "gruppe": 678,
+     "landet": 759
+    },
+    "mot": "gruppe",
+    "avvik": {
+     "share": 18,
+     "out": true
+    },
+    "beregnet": false,
+    "kilde": {
+     "tekst": "SSB, tabell 12362",
+     "url": "https://www.ssb.no/statbank/table/12362"
+    }
+   }
+  ]
+ }
 }

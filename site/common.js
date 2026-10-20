@@ -79,25 +79,22 @@ document.addEventListener('keydown', e => {
   document.querySelectorAll('.nav-menu[open]').forEach(d => { d.open = false; d.querySelector('summary').focus(); });
 });
 
-// «Henger sammen med»: numbers on other pages that can affect the numbers on this page, or be affected by
-// them, from data/sammenhenger.json (scripts/build_sammenhenger.py). A page opts in with
-// <section id="sammenhenger" data-side="…" hidden>; on omrade.html the side is the area in the address.
+// «Skiller seg ut» and «Henger sammen med», from data/sammenhenger.json (scripts/build_sammenhenger.py).
+// «Skiller seg ut» lists this page's numbers where Narvik is clearly off the average; «Henger sammen med» shows
+// numbers on other pages that can affect this page's, or be affected by them. A page opts in with
+// <section id="skiller-seg-ut" data-side="…" hidden> and <section id="sammenhenger" data-side="…" hidden>;
+// on omrade.html the side is the area in the address.
 (async () => {
-  const sec = document.getElementById('sammenhenger');
-  if (!sec) return;
-  let side = sec.dataset.side;
-  if (side === 'omrade') side = 'omrade:' + new URLSearchParams(location.search).get('omrade');
+  const outSec = document.getElementById('skiller-seg-ut'), sec = document.getElementById('sammenhenger');
+  if (!outSec && !sec) return;
+  const sideOf = el => (el.dataset.side === 'omrade' ? 'omrade:' + new URLSearchParams(location.search).get('omrade') : el.dataset.side);
   let S;
   try { S = await fetch('data/sammenhenger.json', { cache: 'no-cache' }).then(r => (r.ok ? r.json() : null)); } catch (e) { return; }
   if (!S) return;
   const h = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
-  const out = l => l.skiller_seg_ut ? 0 : 1;
-  const from = S.lenker.filter(l => l.fra === side).sort((a, b) => out(a) - out(b));
-  const to = S.lenker.filter(l => l.til.includes(side)).sort((a, b) => out(a) - out(b));
-  if (!from.length && !to.length) return;
   const name = k => S.regioner[k] || k;
   const refName = k => (k === 'landet' || k === 'norge' ? name(k)[0].toLowerCase() + name(k).slice(1) : name(k));
-  const val = (m, v) => nb(v, m.desimaler) + (m.enhet ? (m.enhet === '%' ? ' %' : ' ' + m.enhet) : '');
+  const val = (m, v) => (v == null ? '·' : nb(v, m.desimaler) + (m.enhet ? (m.enhet === '%' ? ' %' : ' ' + m.enhet) : ''));
   const diff = m => {
     const a = m.avvik;
     if (!a) return '';
@@ -106,13 +103,34 @@ document.addEventListener('keydown', e => {
     }
     return a.share === 0 ? `Likt med ${refName(m.mot)}` : `${nb(Math.abs(a.share))} % ${a.share > 0 ? 'over' : 'under'} ${refName(m.mot)}`;
   };
+  const src = m => `<a href="${h(m.kilde.url)}" target="_blank" rel="noopener">${h(m.kilde.tekst)}</a>`;
+
+  const list = outSec && S.skiller_seg_ut?.[sideOf(outSec)];
+  if (list?.length) {
+    outSec.innerHTML = `<div class="section-head"><h2 id="h-out">Skiller seg ut</h2>
+      <p class="lead">Tallene her der Narvik ligger minst ${S.grense.niva_prosent} % fra snittet det sammenlignes med, eller ${nb(S.grense.endring_poeng)} prosentpoeng for endringer og resultat. Størst forskjell først.</p></div>
+      <ul class="so-list">${list.map(m => `<li class="so">
+        <span class="so-name">${h(m.navn)} <span class="caption">${h(m.aar)}</span>${m.beregnet ? ' <span class="tag">beregnet</span>' : ''}</span>
+        <b class="so-me num">${val(m, m.verdier.narvik)}</b>
+        <span class="so-diff">${h(diff(m))}</span>
+        <span class="caption">${h(name(m.mot))}: ${val(m, m.verdier[m.mot])}. Kilde: ${src(m)}.</span>
+      </li>`).join('')}</ul>`;
+    outSec.setAttribute('aria-labelledby', 'h-out');
+    outSec.hidden = false;
+  }
+
+  if (!sec) return;
+  const side = sideOf(sec);
+  const from = S.lenker.filter(l => l.fra === side);
+  const to = S.lenker.filter(l => l.til.includes(side));
+  if (!from.length && !to.length) return;
   const measure = m => {
     const others = Object.keys(m.verdier).filter(k => k !== 'narvik' && k !== m.mot).map(k => `${h(name(k))} ${val(m, m.verdier[k])}`).join(' · ');
     const d = diff(m);
-    return `<li class="lm${m.avvik?.out ? ' out' : ''}">
+    return `<li class="lm">
       <div class="lm-name">${h(m.navn)} <span class="caption">${h(m.aar)}</span>${m.beregnet ? ' <span class="tag">beregnet</span>' : ''}</div>
-      <div class="lm-vals num"><span><small>Narvik</small><b>${m.verdier.narvik == null ? '·' : val(m, m.verdier.narvik)}</b></span><span><small>${h(name(m.mot))}</small><b>${m.verdier[m.mot] == null ? '·' : val(m, m.verdier[m.mot])}</b></span>${m.avvik?.out ? '<span class="badge">Skiller seg ut</span>' : ''}</div>
-      <p class="caption">${d ? h(d) + '. ' : ''}${others ? h(others) + '. ' : ''}Kilde: <a href="${h(m.kilde.url)}" target="_blank" rel="noopener">${h(m.kilde.tekst)}</a>.</p>
+      <div class="lm-vals num"><span><small>Narvik</small><b>${val(m, m.verdier.narvik)}</b></span><span><small>${h(name(m.mot))}</small><b>${val(m, m.verdier[m.mot])}</b></span></div>
+      <p class="caption">${d ? h(d) + '. ' : ''}${others ? h(others) + '. ' : ''}Kilde: ${src(m)}.</p>
     </li>`;
   };
   const card = (l, dir) => {
@@ -128,7 +146,7 @@ document.addEventListener('keydown', e => {
   };
   const group = (title, list, dir) => (list.length ? `<div class="link-group"><h3>${title}</h3><div class="link-cards">${list.map(l => card(l, dir)).join('')}</div></div>` : '');
   sec.innerHTML = `<div class="section-head"><h2 id="h-links">Henger sammen med</h2>
-    <p class="lead">Tall på andre sider som kan påvirke tallene her, eller som tallene her kan påvirke. Narvik står ved siden av et snitt, som KOSTRA-gruppe 9 eller hele landet, og «Skiller seg ut» betyr at Narvik er minst ${S.grense.niva_prosent} % fra snittet, eller ${nb(S.grense.endring_poeng)} prosentpoeng for endringer og resultat.</p></div>
+    <p class="lead">Tall på andre sider som kan påvirke tallene her, eller som tallene her kan påvirke. Narvik står ved siden av et snitt, som KOSTRA-gruppe 9 eller hele landet.</p></div>
     ${group('Kan påvirke', from, 'ut')}${group('Kan påvirkes av', to, 'inn')}`;
   sec.setAttribute('aria-labelledby', 'h-links');
   sec.hidden = false;
