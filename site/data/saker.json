@@ -12,6 +12,11 @@
    "url": "https://www.narvik.kommune.no/innsyn.aspx?response=mote&moteid=642&scripturi=/innsyn.aspx&Mid1=396",
    "pdf": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022268851&dokid=2060599&versjon=1&variant=A"
   },
+  "innst-85s-2024": {
+   "navn": "Innst. 85 S (2024–2025)",
+   "full": "Innst. 85 S (2024–2025), innstilling fra familie- og kulturkomiteen om endringer i statsbudsjettet 2024 under Kultur- og likestillingsdepartementet (Prop. 25 S), 09.12.2024",
+   "pdf": "https://www.stortinget.no/globalassets/pdf/innstillinger/stortinget/2024-2025/inns-202425-085s.pdf"
+  },
   "kjolevann-2026": {
    "navn": "Referat, oppstartsmøte kjølevannsanlegg Bjerkvik",
    "full": "Narvik kommune, referat fra oppstartsmøte for detaljregulering for kjølevannsanlegg Bjerkvik, plan-ID 2026007, møte 03.07.2026 (arkivsak 26/1700)",
@@ -53,6 +58,11 @@
    "navn": "Statnett, høringssvar 05.02.2026",
    "full": "Statnett, høringssvar til Nordkraft Industrinetts søknad om ny Skoglund transformatorstasjon og 420 kV tilknytning til Kvandal, 05.02.2026 (NVE-sak 202503343)",
    "pdf": "https://webfileservice.nve.no/API/PublishedFiles/Download/9de9f57b-e38e-43de-a72a-027af8cdf7dc/202503343/3449662"
+  },
+  "stortinget-sak-2024": {
+   "navn": "Stortinget, saksgang Prop. 25 S",
+   "full": "Stortinget, saken «Endringer i statsbudsjettet 2024 under Kultur- og likestillingsdepartementet», Prop. 25 S og Innst. 85 S (2024–2025), saksgang og vedtak",
+   "url": "https://www.stortinget.no/no/Saker-og-publikasjoner/Saker/Sak/?p=100887"
   },
   "t2-2024": {
    "navn": "Tertialrapport 2/2024",
@@ -848,9 +858,18 @@
   {
    "id": "alpin-vm-2029",
    "tittel": "Alpin-VM 2029",
-   "ingress": "Narvik skal arrangere VM i alpint i 2029. Arrangementet og utbyggingen i Narvikfjellet ligger i egne selskaper, ikke i kommunen. Her er det kommunen selv har vedtatt og satt av penger til, fra økonomiplanen og plansakene.",
+   "ingress": "Narvik skal arrangere VM i alpint i 2029. Arrangementet og utbyggingen i Narvikfjellet ligger i egne selskaper, ikke i kommunen. Her er det Stortinget og kommunen har vedtatt og satt av penger til, fra stortingsvedtaket, økonomiplanen og plansakene.",
    "kontrollert": "2026-10-20",
    "nokkeltall": [
+    {
+     "navn": "Statens bidrag til VM-anlegget",
+     "verdi": "inntil 342 mill. kr",
+     "tekst": "over årene 2025–2028, vedtatt av Stortinget",
+     "kilde": {
+      "id": "innst-85s-2024",
+      "side": 7
+     }
+    },
     {
      "navn": "Kommunens bidrag til VM-anlegget",
      "verdi": "31,25 mill. kr",
@@ -871,6 +890,13 @@
     }
    ],
    "rolle": [
+    {
+     "tekst": "Norges Skiforbund og Narvik kommune er tildelt VM i alpine grener i 2029.",
+     "kilde": {
+      "id": "innst-85s-2024",
+      "side": 2
+     }
+    },
     {
      "tekst": "Narvikfjellet Allmenn AS bygger ut anlegget, og arrangørselskapet (LOC) gjennomfører mesterskapet. Kommunen oppgir at det ikke går penger fra kommunen inn i de to selskapene, verken til drift eller investering, utenom bidraget i økonomiplanen.",
      "kilde": {
@@ -909,6 +935,21 @@
      }
     },
     {
+     "dato": "22.11.2024",
+     "tekst": "Regjeringen foreslår at staten dekker deler av anleggsutbyggingen i 2025–2028, med inntil 342 mill. kr. Narvikfjellet Allmenn AS hadde søkt om 342 mill. kr. Bidraget skal finansieres fra spilleoverskuddet til Norsk Tipping og over statsbudsjettet (Prop. 25 S).",
+     "kilde": {
+      "id": "innst-85s-2024",
+      "side": 2
+     }
+    },
+    {
+     "dato": "16.12.2024",
+     "tekst": "Stortinget vedtar at staten kan forplikte seg til å dekke deler av utgiftene til anlegget, med inntil 342 mill. kr over 2025–2028.",
+     "kilde": {
+      "id": "stortinget-sak-2024"
+     }
+    },
+    {
      "dato": "19.06.2025",
      "tekst": "Kommunestyret vedtar reguleringsendringen for Fagernesfjellet (plan 2012015), med nye VM-traseer, målområde og ny stolheis.",
      "kilde": {
@@ -925,7 +966,6 @@
      }
     }
    ],
-   "mangler": "Statens bidrag til anlegget og vedtakene i Stortinget er ikke med ennå.",
    "lenker": [
     {
      "href": "gjeld",
