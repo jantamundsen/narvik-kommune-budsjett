@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Hvor Narvik kommunes inntekter kommer fra: skatt, rammetilskudd, eiendomsskatt, gebyrer og refusjoner, netto driftsresultat og disposisjonsfond, sammenlignet med lignende kommuner.">
+<title>Inntekter · Åpne tall for Narvik</title>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Åpne tall for Narvik">
+<meta property="og:locale" content="nb_NO">
+<meta property="og:title" content="Inntekter · Åpne tall for Narvik">
+<meta property="og:description" content="Hvor Narvik kommunes inntekter kommer fra: skatt, rammetilskudd, eiendomsskatt, gebyrer og refusjoner, netto driftsresultat og disposisjonsfond, sammenlignet med lignende kommuner.">
+<meta property="og:image" content="https://narviktall.no/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Åpne tall for Narvik: regnskap, budsjett og befolkning i Narvik kommune, med kilde for hvert tall">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="site-head">
+    <nav class="site-nav" aria-label="Sider"><a class="brand" href="./">Åpne tall for Narvik</a><a href="./" aria-current="true">Økonomi</a><a href="befolkning.html">Befolkning</a><a href="om.html">Om siden</a></nav>
+    <nav class="sub-nav" aria-label="Økonomi"><a href="./" data-aar>Utgifter</a><a href="inntekter.html" data-aar aria-current="page">Inntekter</a><a href="gjeld.html" data-aar>Gjeld</a><span class="sub-sep" aria-hidden="true"></span><a href="budsjett.html">Budsjett</a><a href="tiltak.html">Innsparinger</a><a href="lopende.html">Året så langt</a></nav>
+  </div>
+  <header>
+    <div class="eyebrow">Narvik kommune · regnskapstall fra SSB</div>
+    <h1>Inntekter</h1>
+    <p class="lead" id="lead"></p>
+    <div class="years" role="radiogroup" aria-label="Velg år" id="years"><span>Regnskapsår</span></div>
+  </header>
+
+  <section aria-label="Nøkkeltall">
+    <div class="summary" id="summary"></div>
+  </section>
+
+  <section aria-labelledby="h-note">
+    <div class="section-head">
+      <h2 id="h-note">Av hver hundrelapp i inntekter</h2>
+      <p class="lead" id="note-lead"></p>
+    </div>
+    <div class="note-bar" id="note-bar"></div>
+    <ul class="note-legend" id="note-legend"></ul>
+    <div class="ptable"><table id="inc-table"></table></div>
+    <p class="caption" id="inc-caption"></p>
+  </section>
+
+  <section aria-labelledby="h-result">
+    <div class="section-head">
+      <h2 id="h-result">Resultat og buffer</h2>
+      <p class="lead" id="result-lead"></p>
+    </div>
+    <div class="two">
+      <div class="chart-box"><h3>Netto driftsresultat, prosent av inntektene</h3><div class="mini-chart" id="ndr-chart"></div></div>
+      <div class="chart-box"><h3>Disposisjonsfond ved årets slutt, mill. kr</h3><div class="mini-chart" id="fond-chart"></div></div>
+    </div>
+    <p class="caption" id="result-caption"></p>
+  </section>
+
+  <section aria-labelledby="h-cmp">
+    <div class="section-head">
+      <h2 id="h-cmp">Narvik mot sammenlignbare kommuner</h2>
+      <p class="lead" id="cmp-lead"></p>
+    </div>
+    <div class="ptable"><table id="fin-cmp"></table></div>
+    <p class="caption" id="cmp-caption"></p>
+  </section>
+
+  <section aria-labelledby="h-notes">
+    <h2 id="h-notes">Slik leser du tallene</h2>
+    <div class="notes">
+      <div><h3>Frie inntekter</h3><p>Skatt og rammetilskudd fra staten. Kommunen bestemmer selv hva de brukes til. Øremerkede tilskudd, refusjoner og gebyrer er bundet til bestemte tjenester.</p></div>
+      <div><h3>Netto driftsresultat</h3><p>Det som er igjen av driftsinntektene når driftsutgiftene og <a href="gjeld.html">renter og avdrag</a> er betalt. Et positivt resultat kan settes av til fond eller brukes til investeringer, et negativt må dekkes av fond.</p></div>
+      <div><h3>Disposisjonsfond</h3><p>Penger kommunen har satt av tidligere år og fritt kan bruke, for eksempel til å dekke underskudd eller uforutsette utgifter.</p></div>
+      <div><h3>Kommunekonsern</h3><p>Tallene gjelder kommunekassen sammen med kommunale foretak og kommunens andel av interkommunale selskap, som på resten av siden.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Kilde: SSB, tabell <a href="https://www.ssb.no/statbank/table/12364" target="_blank" rel="noopener">12364</a>, <a href="https://www.ssb.no/statbank/table/12137" target="_blank" rel="noopener">12137</a> og <a href="https://www.ssb.no/statbank/table/12143" target="_blank" rel="noopener">12143</a> (KOSTRA, kommunekonsern), region 1806 Narvik. Hentet <span id="generated"></span>. <a href="https://github.com/jtkarlsen/narvik-kommune-budsjett" target="_blank" rel="noopener">Kildekode</a>.</span>
+    <span>Et åpent hobbyprosjekt laget av <a href="https://janamundsen.dev" target="_blank" rel="noopener">Jan Amundsen</a>, ikke av Narvik kommune. <a href="om.html">Om siden</a>.</span>
+  </footer>
+</div>
+<script src="common.js"></script>
+<script src="inntekter.js"></script>
+</body>
+</html>
