@@ -70,14 +70,6 @@ document.addEventListener('click', e => {
   const y = urlYear();
   if (a && y) a.href = new URL(a.getAttribute('href'), location.href).pathname + '?aar=' + encodeURIComponent(y);
 });
-// The «Økonomi» menu on pages outside the economy area is a <details>; close it on a click elsewhere or Escape.
-document.addEventListener('click', e => {
-  document.querySelectorAll('.nav-menu[open]').forEach(d => { if (!d.contains(e.target)) d.open = false; });
-});
-document.addEventListener('keydown', e => {
-  if (e.key !== 'Escape') return;
-  document.querySelectorAll('.nav-menu[open]').forEach(d => { d.open = false; d.querySelector('summary').focus(); });
-});
 
 // «Skiller seg ut» and «Henger sammen med», from data/sammenhenger.json (scripts/build_sammenhenger.py).
 // «Skiller seg ut» lists this page's numbers where Narvik is clearly off the average; «Henger sammen med» shows
