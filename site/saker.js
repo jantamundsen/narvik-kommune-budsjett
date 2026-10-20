@@ -29,7 +29,8 @@ const dateText = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nb-NO', 
   document.title = `${S.tittel} · Åpne tall for Narvik`;
   document.querySelector('meta[name="description"]')?.setAttribute('content', S.ingress);
   const sources = new Map();
-  const note = k => { sources.set(k.id, D.kilder[k.id]); return src(k); };
+  // A line can rest on more than one page, so a source may also be a list.
+  const note = k => { [].concat(k).forEach(x => sources.set(x.id, D.kilder[x.id])); return Array.isArray(k) ? srcGroup(k) : src(k); };
 
   const stats = S.nokkeltall.map(n => `<div class="stat"><span class="sub">${esc(n.navn)}</span><span class="big num">${esc(n.verdi)}</span><span class="sub">${esc(n.tekst)}</span><span class="caption">Kilde: ${note(n.kilde)}</span></div>`).join('');
   // Who is involved: one row per actor, its role in a sentence or two, and the pages that say so.

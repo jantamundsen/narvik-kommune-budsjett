@@ -88,6 +88,48 @@
       "navn": "Referat, oppstartsmøte kjølevannsanlegg Bjerkvik",
       "full": "Narvik kommune, referat fra oppstartsmøte for detaljregulering for kjølevannsanlegg Bjerkvik, plan-ID 2026007, møte 03.07.2026 (arkivsak 26/1700)",
       "pdf": "https://www.narvik.kommune.no/_f/p1/i5c711bb0-acb3-400e-9995-8f972f1d26fc/referat-fra-oppstartsmote-detaljregulering-for-kjolevannsanlegg-bjerkvik.pdf"
+    },
+    "ks-sak-28-2026": {
+      "navn": "Kommunestyret 26.03.2026, sak 28/26",
+      "full": "Saksframlegg «Bygging av omsorgsboliger i Ballangen og Bjerkvik» med behandling og vedtak, formannskapet 17.03.2026 (sak 13/26) og kommunestyret 26.03.2026 (sak 28/26), arkivsak 25/3582",
+      "url": "https://www.narvik.kommune.no/innsyn.aspx?response=mote&moteid=631&scripturi=/innsyn.aspx&Mid1=396",
+      "pdf": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022258420&dokid=2035241&versjon=5&variant=A"
+    },
+    "omsorg-bjerkvik-presentasjon": {
+      "navn": "Presentasjon, omsorgsboliger Bjerkvik",
+      "full": "Narvik kommune, Teknisk, «Omsorgsboliger Bjerkvik», presentasjon 10.02.2026, vedlegg til sak 28/26",
+      "pdf": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022258420&dokid=2041978&versjon=1&variant=A"
+    },
+    "ks-sak-129-2026": {
+      "navn": "Kommunestyret 17.09.2026, sak 129/26",
+      "full": "Saksframlegg «Politisk prinsippavklaring – Detaljregulering for omsorgsboliger i Bjerkvik» med behandling og vedtak, hovedutvalg for plan og utvikling 10.09.2026 (sak 28/26) og kommunestyret 17.09.2026 (sak 129/26), arkivsak 26/2105",
+      "url": "https://www.narvik.kommune.no/innsyn.aspx?response=mote&moteid=634&scripturi=/innsyn.aspx&Mid1=396",
+      "pdf": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022278852&dokid=2085496&versjon=8&variant=A"
+    },
+    "planinitiativ-omsorg-bjerkvik": {
+      "navn": "Planinitiativ, omsorgsboliger i Bjerkvik",
+      "full": "Sweco for BoMer, «Planinitiativ – Detaljregulering for omsorgsboliger i Bjerkvik», 03.06.2026, revidert 10.07.2026, vedlegg til sak 129/26",
+      "pdf": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022278852&dokid=2085501&versjon=1&variant=A"
+    },
+    "oppstart-omsorg-bjerkvik": {
+      "navn": "Referat, oppstartsmøte omsorgsboliger Bjerkvik",
+      "full": "Narvik kommune, utkast til referat fra oppstartsmøte for detaljregulering for omsorgsboliger i Bjerkvik, plan-ID 2026006, møte 06.07.2026, referat 15.07.2026, vedlegg til sak 129/26",
+      "pdf": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022278852&dokid=2085502&versjon=1&variant=A"
+    },
+    "tillegg-omsorg-bjerkvik": {
+      "navn": "Tilleggsnotat 15.09.2026, sak 26/2105",
+      "full": "Narvik kommune, tilleggsnotat til «Politisk prinsippavklaring – Detaljregulering for omsorgsboliger i Bjerkvik», 15.09.2026",
+      "pdf": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022278852&dokid=2092192&versjon=1&variant=A"
+    },
+    "forskrift-boliger-horing": {
+      "navn": "Høringsutkast, forskrift om kommunale boliger",
+      "full": "Narvik kommune, høringsutkast til forskrift om tildeling av kommunale boliger (forskriften ble vedtatt 18.12.2025, FOR-2025-12-18-2945)",
+      "pdf": "https://www.narvik.kommune.no/_f/p1/i816111ac-bc20-4cd0-b449-f7dbc914b846/horingsutkast-forskrift-om-tildeling-av-kommunale-boliger-narvik-kommune-nordland.pdf"
+    },
+    "husbanken-investeringstilskudd": {
+      "navn": "Husbanken: Investeringstilskudd",
+      "full": "Husbanken, nettsiden «Investeringstilskudd» til sykehjem og omsorgsboliger, oppdatert 26.06.2026",
+      "url": "https://www.husbanken.no/kommune/lan-og-tilskudd/investeringstilskudd/"
     }
   },
   "saker": [
@@ -135,6 +177,79 @@
         { "href": "lopende", "navn": "Året så langt", "tekst": "Alle tjenesteområder i 2026 etter tertialrapportene." },
         { "href": "budsjett", "navn": "Budsjett", "tekst": "Budsjett mot regnskap for alle tjenesteområder." },
         { "href": "befolkning?aar=2040#pyramide", "navn": "Befolkning i 2040", "tekst": "SSBs framskriving av hvor mange eldre det blir." }
+      ]
+    },
+    {
+      "id": "omsorgsboliger-bjerkvik",
+      "tittel": "Omsorgsboliger i Bjerkvik",
+      "ingress": "Kommunen har avtalt å kjøpe 40 omsorgsboliger som en privat utbygger skal bygge i Bjerkvik, og utbyggeren regulerer nå en tomt på skoleområdet. Her er vedtakene, prisene og plansaken fra kommunens egne sakspapirer.",
+      "kontrollert": "2026-10-20",
+      "nokkeltall": [
+        { "navn": "Boliger i planen", "verdi": "41", "tekst": "omsorgsboliger med fellesarealer og vinterhage. Kommunestyret vedtok kjøp av 40", "kilde": { "id": "ks-sak-129-2026", "side": 7 } },
+        { "navn": "Pris for kjøper per leilighet", "verdi": "2,84 mill. kr", "tekst": "byggekostnad 4,60 mill. kr minus 1,765 mill. kr i tilskudd fra Husbanken", "kilde": { "id": "ks-sak-28-2026", "side": 4 } },
+        { "navn": "Kan stå ferdig", "verdi": "2. kvartal 2028", "tekst": "for de 100 omsorgsboligene i Narvik og Bjerkvik, hvis planprosessene går som planlagt", "kilde": { "id": "tertial-2-2026", "side": 27 } }
+      ],
+      "aktorer": [
+        { "navn": "Narvik kommune", "rolle": "Kjøper hele borettslaget når boligene står ferdig og selger andelene videre til beboerne. Stiller tomten til rådighet uten vederlag, og er planmyndighet for reguleringen.", "kilde": [{ "id": "ks-sak-28-2026", "side": 3 }, { "id": "ks-sak-28-2026", "side": 4 }] },
+        { "navn": "BoMer og NHC", "rolle": "Utbyggere. Fikk intensjon om tildeling av kontrakten etter kommunens konkurranse. BoMer 62 AS er tiltakshaver for reguleringsplanen.", "kilde": [{ "id": "omsorg-bjerkvik-presentasjon", "side": 2 }, { "id": "ks-sak-129-2026", "side": 4 }] },
+        { "navn": "Sweco Norge AS", "rolle": "Plankonsulent. Har sendt inn planinitiativet på vegne av utbyggeren.", "kilde": { "id": "ks-sak-129-2026", "side": 4 } },
+        { "navn": "Husbanken", "rolle": "Gir 1,765 mill. kr i tilskudd per bolig, mot at boligene tildeles innbyggere med behov for kommunale helse- og omsorgstjenester.", "kilde": { "id": "ks-sak-28-2026", "side": 4 } },
+        { "navn": "Skattemyndighetene", "rolle": "Skal gi bindende forhåndsuttalelse om borettslaget kan få kompensert merverdiavgiften.", "kilde": { "id": "ks-sak-28-2026", "side": 5 } },
+        { "navn": "Beboerne", "rolle": "Kjøper en andel i et klausulert borettslag og betaler felleskostnader. Prisen ved videresalg er kjøpesummen pluss konsumprisindeksen.", "kilde": { "id": "ks-sak-28-2026", "side": 4 } }
+      ],
+      "rolle": [
+        { "tekst": "Kommunestyret vedtok 26.03.2026 å tiltre kontrakt for 40 boenheter i Bjerkvik. De økonomiske konsekvensene skal innarbeides i investeringsbudsjettet.", "kilde": { "id": "ks-sak-28-2026", "side": 2 } },
+        { "tekst": "Prisen er en fast sum, og kommunen kjøper boligene i 2028/29 etter utbyggerens framdriftsplan.", "kilde": { "id": "ks-sak-28-2026", "side": 4 } },
+        { "tekst": "Blir ikke alle boligene solgt, kan kommunen leie ut de usolgte til målgruppen. Kommunedirektøren vurderer den økonomiske risikoen som beskjeden.", "kilde": { "id": "ks-sak-28-2026", "side": 4 } },
+        { "tekst": "Kommunedirektøren mente at boliger både i Ballangen og Bjerkvik, til sammen 80, ville gi kommunen for store forpliktelser i dagens økonomiske situasjon, og anbefalte bare Bjerkvik. Begrunnelsen var større press på boliger i Bjerkvik.", "kilde": { "id": "ks-sak-28-2026", "side": 6 } },
+        { "tekst": "Får borettslaget kompensert merverdiavgiften, kan prisen per leilighet bli om lag 750 000–800 000 kr lavere. Det er ikke lagt til grunn i vedtaket.", "kilde": { "id": "ks-sak-28-2026", "side": 5 } },
+        { "tekst": "Kommunens økonomiseksjon har beregnet at tjenester i omsorgsbolig kan gi en årlig besparelse på inntil 700 000 kr per person, sammenlignet med en plass på sykehjem med heldøgns omsorg.", "kilde": { "id": "ks-sak-28-2026", "side": 4 } },
+        { "tekst": "Kontrakten skal ikke binde kommunestyret som planmyndighet. Reguleringen behandles for seg etter plan- og bygningsloven.", "kilde": [{ "id": "ks-sak-28-2026", "side": 6 }, { "id": "ks-sak-129-2026", "side": 6 }] }
+      ],
+      "temaer": [
+        { "tittel": "Hvem boligene er for", "punkter": [
+          { "tekst": "Behovet i saken er beregnet for «målgruppen eldre med behov for universelt utformet bolig for eie/leie».", "kilde": { "id": "ks-sak-28-2026", "side": 3 } },
+          { "tekst": "Boligene skal tilpasses Husbankens krav til tilskudd for boliger med heldøgns omsorg. For å få tilskuddet må de tildeles gjennom kommunens tildelingsenhet «til reelt pleietrengende». Endres målgruppen, kan tilskuddet måtte betales tilbake.", "kilde": [{ "id": "ks-sak-28-2026", "side": 3 }, { "id": "ks-sak-28-2026", "side": 4 }] },
+          { "tekst": "Husbanken skriver om investeringstilskuddet til sykehjem og omsorgsboliger at de som får plass, må ha vedtak fra kommunen om behov for heldøgns helse- og omsorgstjenester. Målgruppen omfatter «eldre og mennesker med demens, utviklingshemming, annen funksjonshemming, psykiske problemer, rus/sosiale problemer».", "kilde": { "id": "husbanken-investeringstilskudd" } },
+          { "tekst": "Utbyggerens planinitiativ skriver at planen skal sikre «et godt botilbud eldre i kommunen, og eventuelle andre innbyggere med behov for tilrettelagt bolig».", "kilde": { "id": "planinitiativ-omsorg-bjerkvik", "side": 4 } },
+          { "tekst": "Etter tilleggsnotatet 15.09.2026 planlegges prosjektet som «omsorgsboliger med bemanning (boliger med tilhørende servicetilbud og fellesfunksjoner)».", "kilde": { "id": "tillegg-omsorg-bjerkvik", "side": 1 } },
+          { "tekst": "I høringsutkastet til kommunens forskrift om tildeling av kommunale boliger er omsorgsboliger et tilbud til personer som «på grunn av alder, helse, funksjonsnedsettelser eller av andre årsaker» har et omfattende behov for tilrettelagt bolig med helse- og omsorgstjenester.", "kilde": { "id": "forskrift-boliger-horing", "side": 3 } },
+          { "tekst": "Leilighetene blir på om lag 55 m² og tilpasset par, med fellesarealer for beboerne og lokaler for hjemmetjenesten.", "kilde": { "id": "ks-sak-28-2026", "side": 4 } }
+        ] },
+        { "tittel": "Behovet", "punkter": [
+          { "tekst": "Et notat fra kommunalsjefen for helse og omsorg 19.12.2024 anslår behovet til 40 nye boenheter i Bjerkvik på kort sikt (5 år) og 40 til på lang sikt (10 år). For Narvikhalvøya er tallene 60 og 60, for Ballangen 40 og 20.", "kilde": { "id": "ks-sak-28-2026", "side": 3 } },
+          { "tekst": "Det var 34 søkere til kommunale omsorgsboliger i hele kommunen da saken ble skrevet. Alleen borettslag oppgir om lag 120 personer på sin venteliste.", "kilde": { "id": "ks-sak-28-2026", "side": 3 } },
+          { "tekst": "Kommunestyret ba kommunedirektøren legge fram en sak om 40 omsorgsleiligheter i Ballangen «når kommunens økonomiske situasjonen tillater det».", "kilde": { "id": "ks-sak-28-2026", "side": 2 } }
+        ] },
+        { "tittel": "Tomten og reguleringen", "punkter": [
+          { "tekst": "Tomten er regulert til offentlig bebyggelse i reguleringsplanen for Bjerkvik sentrum sør fra 1983, og er i dag i bruk som skole med uteområde og svømmehall.", "kilde": { "id": "ks-sak-129-2026", "side": 5 } },
+          { "tekst": "Planinitiativet har to plasseringer: fotballbanen nord for svømmehallen og skolen (alternativ B), eller skolens uteområder sør for skolen (alternativ A).", "kilde": [{ "id": "oppstart-omsorg-bjerkvik", "side": 1 }, { "id": "ks-sak-129-2026", "side": 7 }] },
+          { "tekst": "Etter oppstartsmøtet 06.07.2026 kunne planadministrasjonen ikke anbefale oppstart, fordi planen ikke var i tråd med overordnet plan. Utbyggeren krevde da saken lagt fram for kommunestyret.", "kilde": { "id": "ks-sak-129-2026", "side": 5 } },
+          { "tekst": "Kommunestyret vedtok at planarbeidet skal bygge på alternativ B. Kommunedirektøren pekte på at denne tomten i mindre grad berører opparbeidede lekeområder, og at det har vært diskutert en framtidig fotballhall på samme sted.", "kilde": [{ "id": "ks-sak-129-2026", "side": 3 }, { "id": "ks-sak-129-2026", "side": 7 }] },
+          { "tekst": "Det skal lages konsekvensutredning for friluftsliv og nærmiljø, barn, unge og lekearealer, og mobilitet, transport og trafikk. Planprogram trengs ikke hvis boligene blir bemannede omsorgsboliger.", "kilde": [{ "id": "ks-sak-129-2026", "side": 3 }, { "id": "tillegg-omsorg-bjerkvik", "side": 1 }] },
+          { "tekst": "Kommunestyret ba også om en utredning av hva det betyr for framtidig elevtall og kapasitet ved skolen i Bjerkvik, eller en gjenåpning av ungdomsskolen, at arealet går til omsorgsboliger.", "kilde": { "id": "ks-sak-129-2026", "side": 4 } },
+          { "tekst": "Planutvalget ba om at rekreasjonsarealer som går tapt, erstattes ved at områdene rundt blir bedre for lek og rekreasjon.", "kilde": { "id": "ks-sak-129-2026", "side": 4 } },
+          { "tekst": "Ifølge referatet fra oppstartsmøtet ligger planområdet under marin grense og i et aktsomhetsområde for kvikkleireskred, så det må utredes. Mister skolen uteoppholdsareal, må det dokumenteres hvordan det erstattes.", "kilde": { "id": "oppstart-omsorg-bjerkvik", "side": 3 } }
+        ] }
+      ],
+      "tidslinje": [
+        { "dato": "19.12.2024", "tekst": "Kommunalsjefen for helse og omsorg skriver notat om behovet for omsorgsboliger: 40 i Bjerkvik på kort sikt.", "kilde": { "id": "ks-sak-28-2026", "side": 3 } },
+        { "dato": "2025", "tekst": "Kommunen gjennomfører om høsten en konkurranse om inntil 40 omsorgsboliger i Bjerkvik og Ballangen, og en om inntil 60 i Narvik.", "kilde": { "id": "ks-sak-28-2026", "side": 3 } },
+        { "dato": "10.02.2026", "tekst": "Intensjon om tildeling gitt til BoMer NHC Holding for 40 boliger i Bjerkvik.", "kilde": { "id": "omsorg-bjerkvik-presentasjon", "side": 2 } },
+        { "dato": "17.03.2026", "tekst": "Formannskapet innstiller på kjøp av 40 boliger i Bjerkvik (sak 13/26, 8 mot 1 stemme).", "kilde": { "id": "ks-sak-28-2026", "side": 3 } },
+        { "dato": "26.03.2026", "tekst": "Kommunestyret vedtar å tiltre kontrakt for 40 boliger i Bjerkvik (sak 28/26, 24 mot 7 stemmer). Ballangen utsettes.", "kilde": { "id": "ks-sak-28-2026", "side": 2 } },
+        { "dato": "03.06.2026", "tekst": "Sweco leverer planinitiativ for 41 omsorgsboliger på vegne av BoMer (revidert 10.07.2026).", "kilde": { "id": "planinitiativ-omsorg-bjerkvik", "side": 1 } },
+        { "dato": "06.07.2026", "tekst": "Oppstartsmøte for detaljreguleringen (plan-ID 2026006). Planadministrasjonen kan ikke anbefale oppstart.", "kilde": { "id": "ks-sak-129-2026", "side": 5 } },
+        { "dato": "10.09.2026", "tekst": "Hovedutvalg for plan og utvikling støtter oppstart av planarbeidet enstemmig (sak 28/26).", "kilde": { "id": "ks-sak-129-2026", "side": 4 } },
+        { "dato": "15.09.2026", "tekst": "Tilleggsnotat: utbyggeren planlegger nå bemannede omsorgsboliger, og da kreves ikke planprogram.", "kilde": { "id": "tillegg-omsorg-bjerkvik", "side": 1 } },
+        { "dato": "17.09.2026", "tekst": "Kommunestyret vedtar at planarbeidet videreføres med alternativ B (sak 129/26, 20 mot 10 stemmer), og ber om utredning av skolekapasiteten i Bjerkvik.", "kilde": { "id": "ks-sak-129-2026", "side": 3 } },
+        { "dato": "15.10.2026", "tekst": "Tertialrapport 2/2026: kontrakten er signert, og utbyggeren driver med detaljregulering.", "kilde": { "id": "tertial-2-2026", "side": 12 } }
+      ],
+      "lenker": [
+        { "href": "befolkning#areas", "navn": "Befolkning i delområdene", "tekst": "Folketall i Bjerkvik og de andre delområdene." },
+        { "href": "befolkning?aar=2040#pyramide", "navn": "Befolkning i 2040", "tekst": "SSBs framskriving av hvor mange eldre det blir." },
+        { "href": "bolig", "navn": "Bolig", "tekst": "Boligtyper, nye boliger og kommunale boliger." },
+        { "href": "?sak=helse-og-omsorg", "navn": "Helse og omsorg", "tekst": "Faktaarket om merforbruket i helse og omsorg." }
       ]
     },
     {
