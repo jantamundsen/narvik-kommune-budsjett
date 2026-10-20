@@ -130,6 +130,72 @@
       "navn": "Husbanken: Investeringstilskudd",
       "full": "Husbanken, nettsiden «Investeringstilskudd» til sykehjem og omsorgsboliger, oppdatert 26.06.2026",
       "url": "https://www.husbanken.no/kommune/lan-og-tilskudd/investeringstilskudd/"
+    },
+    "ks-sak-5-2025": {
+      "navn": "Saksframlegg 5/25, Omstilling og struktur i eldreomsorgen 2025",
+      "full": "Saksframlegg «Omstilling og struktur i Eldreomsorgen 2025», formannskapet 30.01.2025 (sak 2/25) og kommunestyret 07.02.2025 (sak 5/25), arkivsak 24/5312",
+      "url": "https://www.narvik.kommune.no/innsyn.aspx?response=mote&moteid=551&scripturi=/innsyn.aspx&Mid1=396",
+      "pdf": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022215240&dokid=1933054&versjon=7&variant=A"
+    },
+    "ks-prot-2025-02-07": {
+      "navn": "Protokoll, kommunestyret 07.02.2025",
+      "full": "Møteprotokoll, Narvik kommunestyre 07.02.2025",
+      "url": "https://www.narvik.kommune.no/innsyn.aspx?response=mote&moteid=551&scripturi=/innsyn.aspx&Mid1=396",
+      "pdf": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022221779&dokid=1947918&versjon=1&variant=A"
+    },
+    "ks-prot-2025-12-11": {
+      "navn": "Protokoll, kommunestyret 11.12.2025",
+      "full": "Møteprotokoll, Narvik kommunestyre 11.12.2025, med sak 125/25 Økonomiplan 2026–2029",
+      "url": "https://www.narvik.kommune.no/innsyn.aspx?response=mote&moteid=558&scripturi=/innsyn.aspx&Mid1=396",
+      "pdf": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022252149&dokid=2020528&versjon=1&variant=A"
+    },
+    "ks-sak-40-2026": {
+      "navn": "Kommunestyret 26.03.2026, sak 40/26",
+      "full": "Saksframlegg «Omstilling i eldreomsorgen i Narvik kommune» (brev fra eldrerådet) med behandling og vedtak, kommunestyret 26.03.2026 (sak 40/26)",
+      "url": "https://www.narvik.kommune.no/innsyn.aspx?response=mote&moteid=631&scripturi=/innsyn.aspx&Mid1=396",
+      "pdf": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022261462&dokid=2042351&versjon=2&variant=A"
+    },
+    "ks-sak-111-2026": {
+      "navn": "Kommunestyret 18.06.2026, sak 111/26",
+      "full": "Saksframlegg «Mulig utredning for bruk av ABS-bygget (Ankenes bo- og servicesenter)» med behandling og vedtak, kommunestyret 18.06.2026 (sak 111/26), arkivsak 26/2045",
+      "url": "https://www.narvik.kommune.no/innsyn.aspx?response=mote&moteid=633&scripturi=/innsyn.aspx&Mid1=396",
+      "pdf": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022271965&dokid=2068197&versjon=7&variant=A"
+    },
+    "ks-sak-107-2026": {
+      "navn": "Kommunestyret 18.06.2026, sak 107/26",
+      "full": "Saksframlegg «Tertialrapport 1/2026» med behandling og vedtak, formannskapet 04.06.2026 (sak 26/26) og kommunestyret 18.06.2026 (sak 107/26)",
+      "url": "https://www.narvik.kommune.no/innsyn.aspx?response=mote&moteid=633&scripturi=/innsyn.aspx&Mid1=396",
+      "pdf": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022268852&dokid=2060601&versjon=13&variant=A"
+    },
+    "tertial-1-2026": {
+      "navn": "Tertialrapport 1/2026",
+      "full": "Narvik kommune, Tertialrapport 1/2026, vedlegg til kommunestyresak 107/26 (18.06.2026)",
+      "url": "https://www.narvik.kommune.no/innsyn.aspx?response=mote&moteid=633&scripturi=/innsyn.aspx&Mid1=396",
+      "pdf": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022268852&dokid=2064647&versjon=1&variant=A"
+    },
+    "ks-sak-72-2025": {
+      "navn": "Kommunestyret 19.06.2025, sak 72/25",
+      "full": "Saksframlegg «Politisk prinsippavklaring – områderegulering for Indre havn» med behandling og vedtak, hovedutvalg for plan og utvikling 12.06.2025 (sak 19/25) og kommunestyret 19.06.2025 (sak 72/25), arkivsak 25/1586",
+      "url": "https://www.narvik.kommune.no/innsyn.aspx?response=mote&moteid=554&scripturi=/innsyn.aspx&Mid1=396",
+      "pdf": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022232780&dokid=1976370&versjon=8&variant=A"
+    },
+    "ks-sak-144-2025": {
+      "navn": "Kommunestyret 18.12.2025, sak 144/25",
+      "full": "Saksframlegg «Oppfølging av sak 073/25 – Spørreundersøkelse vedr. Indre Havn» med behandling og vedtak, kommunestyret 18.12.2025 (sak 144/25)",
+      "url": "https://www.narvik.kommune.no/innsyn.aspx?response=mote&moteid=559&scripturi=/innsyn.aspx&Mid1=396",
+      "pdf": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022249891&dokid=2015596&versjon=6&variant=A"
+    },
+    "ks-prot-2026-02-05": {
+      "navn": "Protokoll, kommunestyret 05.02.2026",
+      "full": "Møteprotokoll, Narvik kommunestyre 05.02.2026, med sak 5/26 Kommuneplanens arealdel 2026–2040 til offentlig ettersyn",
+      "url": "https://www.narvik.kommune.no/innsyn.aspx?response=mote&moteid=630&scripturi=/innsyn.aspx&Mid1=396",
+      "pdf": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022257158&dokid=2046718&versjon=1&variant=A"
+    },
+    "interpellasjon-indre-havn-2026": {
+      "navn": "Interpellasjon om Indre havn og Framneslia",
+      "full": "Interpellasjon om Indre havn og Framneslia fra representanter for H, Sp og Frp, kommunestyret 17.09.2026 (sak 134/26)",
+      "url": "https://www.narvik.kommune.no/innsyn.aspx?response=mote&moteid=634&scripturi=/innsyn.aspx&Mid1=396",
+      "pdf": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022281285&dokid=2091393&versjon=1&variant=A"
     }
   },
   "saker": [
@@ -253,6 +319,69 @@
       ]
     },
     {
+      "id": "omstilling-eldreomsorgen",
+      "tittel": "Omstillingen i eldreomsorgen",
+      "ingress": "I februar 2025 vedtok kommunestyret å legge ned Ankenes bo- og servicesenter, redusere antall sykehjemsplasser i distriktene og bygge opp korttidsplasser og tjenester hjemme. Her er vedtakene, tallene og striden om bygget på Ankenes, fra kommunens egne sakspapirer.",
+      "kontrollert": "2026-10-20",
+      "nokkeltall": [
+        { "navn": "Plasser lagt ned ved Ankenes bo- og servicesenter", "verdi": "33", "tekst": "anslått til å spare om lag 31 mill. kr i lønn og frigjøre om lag 35 årsverk", "kilde": { "id": "ks-sak-5-2025", "side": 39 } },
+        { "navn": "Netto effekt av å avvikle senteret", "verdi": "ca. 27 mill. kr", "tekst": "ifølge kommunedirektøren. 8 mill. kr gikk til 9 nye plasser på Furumoen sykehjem", "kilde": { "id": "tertial-2-2026", "side": 32 } },
+        { "navn": "Korttidsplasser på Helsehuset ikke tatt i bruk", "verdi": "20 av 40", "tekst": "10 avlastningsplasser er planlagt i løpet av første tertial 2027", "kilde": { "id": "ks-sak-111-2026", "side": 4 } }
+      ],
+      "aktorer": [
+        { "navn": "Kommunestyret", "rolle": "Vedtok strukturen i februar 2025 og ga i desember 2025 kommunedirektøren fullmakt til å selge bygget på Ankenes.", "kilde": [{ "id": "ks-prot-2025-02-07", "side": 12 }, { "id": "ks-prot-2025-12-11", "side": 20 }] },
+        { "navn": "Helse og omsorg", "rolle": "Kommunalområdet som gjennomfører omstillingen, med om lag 850 ansatte.", "kilde": { "id": "ks-sak-111-2026", "side": 4 } },
+        { "navn": "Eldrerådet", "rolle": "Rådgivende organ med møte- og talerett, men ikke forslagsrett, i kommunestyret. Ba i 2026 om en ny vurdering av nedleggelsen.", "kilde": { "id": "ks-sak-40-2026", "side": 2 } },
+        { "navn": "Narvik boligstiftelse (NaBo)", "rolle": "Eier 9 leiligheter i bygget på Ankenes. Kommunen eier resten, også et offentlig tilfluktsrom.", "kilde": { "id": "ks-sak-111-2026", "side": 3 } },
+        { "navn": "De ansatte", "rolle": "Fast ansatte fikk jobbgaranti. Ansatte ved Ankenes har gått inn i ledige stillinger ved andre enheter.", "kilde": [{ "id": "ks-prot-2025-02-07", "side": 12 }, { "id": "ks-sak-111-2026", "side": 3 }] },
+        { "navn": "Kontrollutvalget", "rolle": "Er bedt av kommunestyret om å gjennomføre en forvaltningsrevisjon av helse og omsorg første halvår 2027.", "kilde": { "id": "ks-sak-107-2026", "side": 3 } }
+      ],
+      "rolle": [
+        { "tekst": "I 2024 brukte de berørte enhetene om lag 37 mill. kr på bemanningsbyrå og 14 mill. kr på overtid. Per 1. desember 2024 sto 50 årsverk uten fast ansatt eller langtidsvikar, og sykefraværet var 14,8 %.", "kilde": { "id": "ks-sak-5-2025", "side": 35 } },
+        { "tekst": "Saksframlegget la opp til et nullsumspill innenfor budsjettrammene: kutt ett sted skulle betale for økning et annet.", "kilde": { "id": "ks-sak-5-2025", "side": 38 } },
+        { "tekst": "Å øke Helsehuset fra 20 til 40 korttidsplasser er anslått til om lag 30 mill. kr, å øke Furumoen sykehjem fra 95 til 104 plasser til om lag 7 mill. kr, og flere tjenester lenger ned i innsatstrappa til 6 mill. kr.", "kilde": { "id": "ks-sak-5-2025", "side": 39 } },
+        { "tekst": "Helse og omsorg startet 2026 med en ramme på 742 mill. kr, mens regnskapet for 2025 viste et forbruk på 800 mill. kr. Kommunedirektøren hadde varslet at en omstilling på minst 58 mill. kr på ett år ville være krevende.", "kilde": { "id": "tertial-2-2026", "side": 31 } },
+        { "tekst": "Det tomme bygget på Ankenes koster kommunen om lag 400 000–500 000 kr i året i drift og vedlikehold. NaBo taper 70 583 kr i husleie i måneden på sine 9 tomme leiligheter, og kommunen kan få krav om tomgangsleie.", "kilde": { "id": "ks-sak-111-2026", "side": 3 } },
+        { "tekst": "Planen er å redusere kommunens gjeld ved å selge bygget.", "kilde": { "id": "ks-sak-111-2026", "side": 3 } }
+      ],
+      "temaer": [
+        { "tittel": "Hva som ble vedtatt i 2025", "punkter": [
+          { "tekst": "Kommunestyret vedtok full utnyttelse av Helsehuset til korttidsplasser, full drift ved Furumoen sykehjem og flere tjenester lenger ned i innsatstrappa i hele kommunen.", "kilde": { "id": "ks-prot-2025-02-07", "side": 12 } },
+          { "tekst": "Bjerkvik og Ballangen skulle få robuste hjemmebaserte tjenester og til sammen 8 færre sykehjemsplasser. Kjøpsvik omsorg skulle ha 12 langtidsplasser, og ordningen med to avdelinger skal evalueres før utgangen av 2027.", "kilde": { "id": "ks-prot-2025-02-07", "side": 12 } },
+          { "tekst": "Driften ved Ankenes bo- og servicesenter skulle «omstruktureres og fases ut». I vedtaket fra februar 2025 står det at bygningsmassen «skal ikke avhendes», men vurderes brukt til kommunale boliger og forebyggende tiltak.", "kilde": { "id": "ks-prot-2025-02-07", "side": 12 } },
+          { "tekst": "Oscarsborg bo- og servicesenter drives videre av Narvik hjemmesykepleie, med 18 boenheter, nytt dagsenter og hukommelsesteam.", "kilde": { "id": "ks-prot-2025-02-07", "side": 12 } },
+          { "tekst": "Rådmannens opprinnelige forslag var 15 færre plasser i distriktene og at Ankenes ble lagt ned. Kommunestyret vedtok i stedet et alternativt forslag fra SV, Ap, H og KrF, med 19 mot 12 stemmer.", "kilde": [{ "id": "ks-sak-5-2025", "side": 1 }, { "id": "ks-prot-2025-02-07", "side": 10 }] },
+          { "tekst": "Kommunestyret skal få kvartalsvise rapporter om omstillingen, med en forsvarlighetsvurdering og status for personell, ventelister og økonomi.", "kilde": { "id": "ks-prot-2025-02-07", "side": 12 } }
+        ] },
+        { "tittel": "Bygget på Ankenes", "punkter": [
+          { "tekst": "I økonomiplanen for 2026–2029 ga kommunestyret kommunedirektøren fullmakt til å selge Ankenes bo- og servicesenter og servicebygget i Ballangen.", "kilde": { "id": "ks-prot-2025-12-11", "side": 20 } },
+          { "tekst": "Ankenes bo- og servicesenter var i drift fram til midten av februar 2026.", "kilde": { "id": "tertial-1-2026", "side": 26 } },
+          { "tekst": "Kommunen har siden desember 2025 snakket med NaBo om å selge hele bygget til stiftelsen, så det kan bygges om til utleieleiligheter.", "kilde": { "id": "ks-sak-111-2026", "side": 3 } },
+          { "tekst": "Eldrerådet mente at en nedleggelse ikke burde gjennomføres før kommunen kan dokumentere at det er etablert nok kapasitet andre steder, siden flere omsorgsboliger og flere plasser på Helsehuset ennå ligger fram i tid.", "kilde": { "id": "ks-sak-40-2026", "side": 2 } },
+          { "tekst": "Før møtet 21. mai 2026 ba 12 representanter fra Frp, INP, Sp og Rødt om at salget ble satt i bero og at mulig ny omsorgsdrift i bygget ble utredet.", "kilde": { "id": "ks-sak-111-2026", "side": 2 } },
+          { "tekst": "Kommunedirektøren anbefalte å holde fast på vedtaket og pekte blant annet på arbeidet med de siste 20 plassene på Helsehuset og nytt journalsystem for alle ansatte i helse og omsorg høsten 2027.", "kilde": [{ "id": "ks-sak-111-2026", "side": 4 }, { "id": "ks-sak-111-2026", "side": 6 }] }
+        ] }
+      ],
+      "tidslinje": [
+        { "dato": "06.2024", "tekst": "Kommunestyret behandler «Omstilling og struktur i eldreomsorg i et 5-årsperspektiv» (sak 85/24).", "kilde": { "id": "ks-sak-5-2025", "side": 34 } },
+        { "dato": "05.12.2024", "tekst": "Økonomiplanen 2025–2028 (sak 143/24) vedtar en dreining i innsatstrappa for tjenester til eldre.", "kilde": { "id": "ks-sak-5-2025", "side": 34 } },
+        { "dato": "30.01.2025", "tekst": "Formannskapet innstiller på rådmannens forslag med 5 mot 4 stemmer (sak 2/25).", "kilde": { "id": "ks-prot-2025-02-07", "side": 7 } },
+        { "dato": "07.02.2025", "tekst": "Kommunestyret vedtar omstillingen (sak 5/25) med 19 mot 12 stemmer: Ankenes fases ut, Kjøpsvik får 12 langtidsplasser.", "kilde": { "id": "ks-prot-2025-02-07", "side": 12 } },
+        { "dato": "11.12.2025", "tekst": "Økonomiplanen 2026–2029 (sak 125/25) gir fullmakt til å selge Ankenes bo- og servicesenter.", "kilde": { "id": "ks-prot-2025-12-11", "side": 20 } },
+        { "dato": "02.2026", "tekst": "Driften ved Ankenes bo- og servicesenter avsluttes.", "kilde": { "id": "tertial-1-2026", "side": 26 } },
+        { "dato": "26.03.2026", "tekst": "Kommunestyret tar eldrerådets brev om å vurdere nedleggelsen på nytt til orientering (sak 40/26, 27 mot 4 stemmer).", "kilde": { "id": "ks-sak-40-2026", "side": 2 } },
+        { "dato": "21.05.2026", "tekst": "12 representanter fra Frp, INP, Sp og Rødt ber om at salget av bygget settes i bero.", "kilde": { "id": "ks-sak-111-2026", "side": 2 } },
+        { "dato": "18.06.2026", "tekst": "Kommunestyret holder fast på salget og strategien fra 2025 (sak 111/26, 16 mot 10 stemmer). Samme dag bes kontrollutvalget revidere helse og omsorg i 2027 (sak 107/26).", "kilde": [{ "id": "ks-sak-111-2026", "side": 2 }, { "id": "ks-sak-107-2026", "side": 3 }] },
+        { "dato": "15.10.2026", "tekst": "Tertialrapport 2/2026: avviklingen av Ankenes har gitt en netto effekt på om lag 27 mill. kr.", "kilde": { "id": "tertial-2-2026", "side": 32 } }
+      ],
+      "lenker": [
+        { "href": "?sak=helse-og-omsorg", "navn": "Merforbruk i helse og omsorg", "tekst": "Faktaarket om budsjettet til helse og omsorg." },
+        { "href": "?sak=omsorgsboliger-bjerkvik", "navn": "Omsorgsboliger i Bjerkvik", "tekst": "De nye omsorgsboligene som skal avlaste sykehjemmene." },
+        { "href": "omrade?omrade=helse&maal=80#sammenligning", "navn": "Helse og omsorg per innbygger 80 år og over", "tekst": "Utgiftene sammenlignet med andre kommuner, per eldre innbygger." },
+        { "href": "befolkning?aar=2040#pyramide", "navn": "Befolkning i 2040", "tekst": "SSBs framskriving av hvor mange eldre det blir." }
+      ]
+    },
+    {
       "id": "datasenter-bjerkvik",
       "tittel": "Datasenteret i Bjerkvik",
       "ingress": "Aker Nscale bygger datasentre på Skoglund industriområde i Bjerkvik. Kommunen har regulert området og er høringsinstans, mens strømtillatelsene gis av NVE. Her er vedtakene og tallene fra plandokumentene og NVE-sakene.",
@@ -360,6 +489,62 @@
         { "href": "gjeld", "navn": "Gjeld og investeringer", "tekst": "Kommunens største investeringer år for år." },
         { "href": "arbeid", "navn": "Arbeid", "tekst": "Ledighet og ledige stillinger måned for måned." },
         { "href": "befolkning", "navn": "Befolkning", "tekst": "Folketall og SSBs framskriving." }
+      ]
+    },
+    {
+      "id": "framneslia-indre-havn",
+      "tittel": "Framneslia og Indre havn",
+      "ingress": "Kommunen kjøpte Framneslia, det gamle flyplassområdet, av Statsbygg i 2022. Kommunestyret har gitt fullmakt til å selge området og har bedt om en sak om salg eller utvikling av både Framneslia og Indre havn. Her er det som er vedtatt og rapportert, fra kommunens egne sakspapirer.",
+      "kontrollert": "2026-10-20",
+      "nokkeltall": [
+        { "navn": "Kjøp av tomt i Framneslia", "verdi": "151,5 mill. kr", "tekst": "kommunens største investering i 2022", "kilde": { "id": "ar-2022", "side": 14 } },
+        { "navn": "Boenheter i planinitiativet for Indre havn", "verdi": "ca. 500", "tekst": "i forslaget fra Narvikgården og Narvik havn, som kommunestyret sendte tilbake i juni 2025", "kilde": { "id": "ks-sak-72-2025", "side": 4 } },
+        { "navn": "Planområdet for Indre havn", "verdi": "ca. 330 dekar", "tekst": "medregnet areal i sjø", "kilde": { "id": "ks-sak-72-2025", "side": 4 } }
+      ],
+      "aktorer": [
+        { "navn": "Narvik kommune", "rolle": "Eier Framneslia og er planmyndighet. Kommunedirektøren har fullmakt til å selge hele eller deler av Framneslia.", "kilde": { "id": "ks-prot-2025-12-11", "side": 20 } },
+        { "navn": "Statsbygg", "rolle": "Solgte Framneslia til kommunen og satte vilkår i kjøpekontrakten som et videresalg må holde seg innenfor.", "kilde": { "id": "ks-prot-2025-12-11", "side": 20 } },
+        { "navn": "LKAB", "rolle": "Forhandler med kommunen om å kjøpe Indre havn og Framnesodden.", "kilde": { "id": "tertial-1-2026", "side": 20 } },
+        { "navn": "Aker og Nscale", "rolle": "Aker eier noe av arealet LKAB vil kjøpe. Akers salg til Nscale har ifølge kommunen gjort at avtalen har tatt lengre tid.", "kilde": { "id": "tertial-1-2026", "side": 20 } },
+        { "navn": "Narvikgården AS og Narvik havn KF", "rolle": "Kommunens selskap og foretak. Tiltakshavere for områdereguleringen av Indre havn, og skal betale planprosessen.", "kilde": [{ "id": "ks-sak-72-2025", "side": 3 }, { "id": "ks-sak-72-2025", "side": 5 }] },
+        { "navn": "Næringslivet på Indre havn", "rolle": "Industri- og havnebedrifter i området. Kommunestyret krevde at eksisterende industri må hensyntas i større grad.", "kilde": { "id": "ks-sak-72-2025", "side": 2 } }
+      ],
+      "rolle": [
+        { "tekst": "Kommunestyret ga i økonomiplanen for 2026–2029 kommunedirektøren fullmakt til å selge hele eller deler av Framneslia, innenfor vilkårene Statsbygg satte i kjøpekontrakten.", "kilde": { "id": "ks-prot-2025-12-11", "side": 20 } },
+        { "tekst": "Kommunestyret ba enstemmig om en sak i første kvartal 2026 om både Framneslia og Indre havn, med alle muligheter: salg, delvis salg, utvikling i kommunal regi eller gjennom kommunens heleide selskaper. Saken skal også vise hvilket utbytte et salg av eiendommer på Indre havn gjennom Narvikgården kan gi.", "kilde": [{ "id": "ks-prot-2025-12-11", "side": 15 }, { "id": "ks-prot-2025-12-11", "side": 22 }] },
+        { "tekst": "Ifølge tertialrapport 1/2026 ventet kommunen at en avtale om salg av Indre havn og Framnesodden til LKAB ville være klar før sommeren 2026. Resten av Framneslia venter på kommuneplanens arealdel, for å få «reell pris» på de formålene som blir vedtatt.", "kilde": { "id": "tertial-1-2026", "side": 20 } },
+        { "tekst": "Kommunestyret mente enstemmig at rapporteringen i tertialrapporten ikke svarte ut bestillingen, og ba om en egen sak i førstkommende møte.", "kilde": { "id": "ks-sak-107-2026", "side": 3 } },
+        { "tekst": "Planarbeidet for Indre havn betales av Narvikgården AS og Narvik havn KF, som er forslagsstillere.", "kilde": { "id": "ks-sak-72-2025", "side": 5 } }
+      ],
+      "temaer": [
+        { "tittel": "Planene for Indre havn", "punkter": [
+          { "tekst": "Planinitiativet delte området i tre: industri og næring i nord, kombinert bebyggelse i midten, og hotell, marin næring og boliger i sør, med havnepromenade og småbåthavn.", "kilde": { "id": "ks-sak-72-2025", "side": 4 } },
+          { "tekst": "Boligene var planlagt med 5 etasjer i snitt og næringslokaler i første etasje. Deler av området ligger i en hensynssone for kulturmiljø.", "kilde": { "id": "ks-sak-72-2025", "side": 4 } },
+          { "tekst": "Planadministrasjonen kunne ikke anbefale oppstart, fordi planen ikke fulgte kommuneplanens arealdel. Rådmannen la likevel saken fram med anbefaling om oppstart.", "kilde": { "id": "ks-sak-72-2025", "side": 3 } },
+          { "tekst": "Kommunestyret sendte planinitiativet tilbake med 22 mot 8 stemmer: «Eksisterende industri må hensyntas i større grad og grensesnittet mellom industri, bolig og reiseliv tydeliggjøres og justeres».", "kilde": { "id": "ks-sak-72-2025", "side": 2 } },
+          { "tekst": "Høsten 2025 bestilte Narvikgården en spørreundersøkelse fra Norstat. Etter at den ble publisert, krevde en tredjedel av kommunestyret en sak om oppfølging av vedtaket og eierstyringen.", "kilde": { "id": "ks-sak-144-2025", "side": 2 } }
+        ] },
+        { "tittel": "Framneslia i arealplanen", "punkter": [
+          { "tekst": "Da kommuneplanens arealdel ble lagt ut på høring, falt et forslag fra Sp, SV, Frp, R og INP om å redusere næringsarealet i Framneslia mot øst og nord, med 15 mot 16 stemmer.", "kilde": { "id": "ks-prot-2026-02-05", "side": 11 } },
+          { "tekst": "Kommunen har fått flere innspill til arealplanen om bruken av resten av Framneslia.", "kilde": { "id": "tertial-1-2026", "side": 20 } },
+          { "tekst": "Et forslag i mars 2026 om å utsette omsorgsboligene i Ballangen og Bjerkvik til etter en sak om mulig salg av Framneslia og Indre havn falt med 8 mot 23 stemmer.", "kilde": [{ "id": "ks-sak-28-2026", "side": 1 }, { "id": "ks-sak-28-2026", "side": 2 }] }
+        ] }
+      ],
+      "tidslinje": [
+        { "dato": "2022", "tekst": "Kommunen kjøper tomt i Framneslia for 151,5 mill. kr.", "kilde": { "id": "ar-2022", "side": 14 } },
+        { "dato": "12.06.2025", "tekst": "Hovedutvalg for plan og utvikling støtter oppstart av områderegulering for Indre havn (sak 19/25, 9 mot 1 stemme).", "kilde": { "id": "ks-sak-72-2025", "side": 3 } },
+        { "dato": "19.06.2025", "tekst": "Kommunestyret sender planinitiativet for Indre havn tilbake (sak 72/25, 22 mot 8 stemmer).", "kilde": { "id": "ks-sak-72-2025", "side": 2 } },
+        { "dato": "29.10.2025", "tekst": "Resultatene av Narvikgårdens spørreundersøkelse publiseres. Dagen etter krever en tredjedel av kommunestyret en egen sak.", "kilde": { "id": "ks-sak-144-2025", "side": 2 } },
+        { "dato": "11.12.2025", "tekst": "Økonomiplanen 2026–2029 (sak 125/25) gir fullmakt til å selge Framneslia og ber om en sak om begge områdene i første kvartal 2026.", "kilde": [{ "id": "ks-prot-2025-12-11", "side": 20 }, { "id": "ks-prot-2025-12-11", "side": 22 }] },
+        { "dato": "18.12.2025", "tekst": "Kommunestyret tar oppfølgingen av spørreundersøkelsen til orientering (sak 144/25).", "kilde": { "id": "ks-sak-144-2025", "side": 1 } },
+        { "dato": "05.02.2026", "tekst": "Kommuneplanens arealdel legges ut på høring. Forslaget om mindre næringsareal i Framneslia faller med 15 mot 16 stemmer.", "kilde": { "id": "ks-prot-2026-02-05", "side": 11 } },
+        { "dato": "18.06.2026", "tekst": "Tertialrapport 1/2026 sier at forhandlingene med LKAB nærmer seg en avslutning. Kommunestyret ber om en egen sak i neste møte.", "kilde": [{ "id": "tertial-1-2026", "side": 20 }, { "id": "ks-sak-107-2026", "side": 3 }] },
+        { "dato": "17.09.2026", "tekst": "Interpellasjon fra H, Sp og Frp om hvorfor saken ikke er kommet, og når den kommer (sak 134/26).", "kilde": { "id": "interpellasjon-indre-havn-2026", "side": 1 } }
+      ],
+      "lenker": [
+        { "href": "gjeld", "navn": "Gjeld og investeringer", "tekst": "Kommunens største investeringer år for år, med Framneslia i 2022." },
+        { "href": "naering", "navn": "Næringsliv", "tekst": "Bedrifter, nyetableringer og de største arbeidsplassene." },
+        { "href": "?sak=datasenter-bjerkvik", "navn": "Datasenteret i Bjerkvik", "tekst": "Faktaarket om Aker Nscale og datasenteret." }
       ]
     }
   ]
