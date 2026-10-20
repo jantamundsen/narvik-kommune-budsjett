@@ -248,19 +248,6 @@ def main() -> int:
                 measure("Skatt på inntekt og formue kommunen får inn, per innbygger", fy, fin("12137", "AG12"), unit="kr", against="gruppe", source=ssb("12137")),
             ],
         },
-        {
-            "id": "arbeid-nav",
-            "fra": "arbeid", "til": ["omrade:sosial", "utgifter"],
-            "tittel": "Utenfor arbeid og utgiftene til sosialtjenester og NAV",
-            "tekst": "Når flere står utenfor arbeid, kan flere trenge hjelp fra NAV-kontoret, for eksempel økonomisk sosialhjelp.",
-            "maal": [
-                measure("Helt ledige registrert hos Nav, andel av arbeidsstyrken", f"{MONTHS[int(month[5:]) - 1]} {month[:4]}", {k: A["nav"]["ledige"].get(k, {}).get(month, {}).get("pct") for k in ak},
-                        unit="%", decimals=1, against="norge", source={"tekst": "Nav, tabell HL060 helt ledige", "url": "https://www.nav.no/no/nav-og-samfunn/statistikk/arbeidssokere-og-stillinger-statistikk/helt-ledige"}),
-                measure("Andel av innbyggerne 20–66 år som får arbeidsavklaringspenger eller uføretrygd", sy, status_share("U.04-U.05"), unit="%", decimals=1,
-                        against="norge", source=ssb("13563", "regnet ut her"), computed=True),
-                measure("Kommunens netto utgifter til sosialtjenester og NAV per innbygger", y, area_pc("sosial"), unit="kr", against="gruppe", source=ssb("12362")),
-            ],
-        },
     ]
 
     # «Skiller seg ut»: each page lists its own numbers where Narvik differs clearly from the average. A number
@@ -283,6 +270,10 @@ def main() -> int:
     for art, label in [("AGD13", "Kommunens driftsinntekter per innbygger"), ("AG10", "Eiendomsskatt kommunen får inn, per innbygger")]:
         pool.append(measure(label, fy, fin("12137", art), unit="kr", against="gruppe", source=ssb("12137")))
         pool[-1]["sider"] = ["inntekter"]
+    pool.append(measure("Helt ledige registrert hos Nav, andel av arbeidsstyrken", f"{MONTHS[int(month[5:]) - 1]} {month[:4]}", {k: A["nav"]["ledige"].get(k, {}).get(month, {}).get("pct") for k in ak}, unit="%", decimals=1, against="norge", source={"tekst": "Nav, tabell HL060 helt ledige", "url": "https://www.nav.no/no/nav-og-samfunn/statistikk/arbeidssokere-og-stillinger-statistikk/helt-ledige"}))
+    pool[-1]["sider"] = ["arbeid"]
+    pool.append(measure("Andel av innbyggerne 20–66 år som får arbeidsavklaringspenger eller uføretrygd", sy, status_share("U.04-U.05"), unit="%", decimals=1, against="norge", source=ssb("13563", "regnet ut her"), computed=True))
+    pool[-1]["sider"] = ["arbeid"]
     pool.append(measure("Kommunens pensjonsforpliktelser til ansatte, per innbygger", fy, fin("12137", "40"), unit="kr", against="gruppe", source=ssb("12137")))
     pool[-1]["sider"] = ["gjeld"]
     standout: dict = {}
