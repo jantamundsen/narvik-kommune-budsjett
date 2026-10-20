@@ -78,3 +78,104 @@ document.addEventListener('keydown', e => {
   if (e.key !== 'Escape') return;
   document.querySelectorAll('.nav-menu[open]').forEach(d => { d.open = false; d.querySelector('summary').focus(); });
 });
+
+// «Skiller seg ut» and «Henger sammen med», from data/sammenhenger.json (scripts/build_sammenhenger.py).
+// «Skiller seg ut» lists this page's numbers where Narvik is clearly off the average; «Henger sammen med» shows
+// numbers on other pages that can affect this page's, or be affected by them. A page opts in with
+// <section id="skiller-seg-ut" data-side="…" hidden> and <section id="sammenhenger" data-side="…" hidden>;
+// on omrade.html the side is the area in the address.
+(async () => {
+  const outSec = document.getElementById('skiller-seg-ut'), sec = document.getElementById('sammenhenger');
+  if (!outSec && !sec) return;
+  const sideOf = el => (el.dataset.side === 'omrade' ? 'omrade:' + new URLSearchParams(location.search).get('omrade') : el.dataset.side);
+  let S;
+  try { S = await fetch('data/sammenhenger.json', { cache: 'no-cache' }).then(r => (r.ok ? r.json() : null)); } catch (e) { return; }
+  if (!S) return;
+  const h = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+  const name = k => S.regioner[k] || k;
+  const refName = k => (k === 'landet' || k === 'norge' ? name(k)[0].toLowerCase() + name(k).slice(1) : name(k));
+  const val = (m, v) => (v == null ? '·' : nb(v, m.desimaler) + (m.enhet ? (m.enhet === '%' ? ' %' : ' ' + m.enhet) : ''));
+  const diff = m => {
+    const a = m.avvik;
+    if (!a) return '';
+    if (a.points != null && (m.enhet === '%' || a.share == null)) {
+      return a.points === 0 ? `Likt med ${refName(m.mot)}` : `${nb(Math.abs(a.points), 1)} prosentpoeng ${a.points > 0 ? 'over' : 'under'} ${refName(m.mot)}`;
+    }
+    return a.share === 0 ? `Likt med ${refName(m.mot)}` : `${nb(Math.abs(a.share))} % ${a.share > 0 ? 'over' : 'under'} ${refName(m.mot)}`;
+  };
+  // Over or under the average as an arrow next to the text. No red or green: whether a number above the
+  // average is good or bad is a judgement, and the site leaves that to the reader.
+  const arrow = m => {
+    const a = m.avvik, v = a && (a.points != null && (m.enhet === '%' || a.share == null) ? a.points : a.share);
+    return v ? `<span class="arrow" aria-hidden="true">${v > 0 ? '▲' : '▼'}</span> ` : '';
+  };
+  // One source line per section instead of one per number: the tables, each linked once, and how the numbers
+  // marked «beregnet» were worked out.
+  const sources = ms => {
+    const tables = new Map();
+    ms.forEach(m => { const [org, tab] = m.kilde.tekst.split(', '); tables.set(m.kilde.url, { org, tab: tab.replace('tabell ', '') }); });
+    const byOrg = {};
+    tables.forEach((t, url) => (byOrg[t.org] ||= []).push(`<a href="${h(url)}" target="_blank" rel="noopener">${h(t.tab)}</a>`));
+    const calc = [...new Map(ms.filter(m => m.beregnet).map(m => [m.navn, m])).values()]
+      .map(m => `${h(m.navn)}: ${h(m.kilde.tekst.split(', ').slice(2).join(', ') || 'regnet ut her')}`);
+    return `<p class="caption">Kilder: ${Object.entries(byOrg).map(([o, l]) => `${h(o)}, tabell ${l.join(', ')}`).join('. ')}.`
+      + (calc.length ? ` Beregnet: ${calc.join('. ')}.` : '') + '</p>';
+  };
+
+  // On pages with a year selector the list follows the chosen year; the pages change ?aar= in place, so check
+  // after each click whether it changed.
+  const drawOut = () => {
+    const side = sideOf(outSec), byYear = S.skiller_seg_ut_aar?.[side], y = urlYear();
+    const list = byYear && byYear[y] ? byYear[y] : S.skiller_seg_ut?.[side];
+    outSec.hidden = !list?.length;
+    if (!list?.length) return;
+    outSec.innerHTML = `<div class="section-head"><h2 id="h-out">Skiller seg ut</h2>
+      <p class="lead">Tallene her der Narvik ligger minst ${S.grense.niva_prosent} % fra snittet det sammenlignes med, eller ${nb(S.grense.endring_poeng)} prosentpoeng for endringer og resultat. Størst forskjell først.</p></div>
+      <ul class="so-list">${list.map(m => `<li class="so">
+        <span class="so-name">${h(m.navn)} <span class="caption">${h(m.aar)}</span>${m.beregnet ? ' <span class="tag">beregnet</span>' : ''}</span>
+        <b class="so-me num">${val(m, m.verdier.narvik)}</b>
+        <span class="so-diff">${arrow(m)}${h(diff(m))}</span>
+        <span class="caption">${h(name(m.mot))}: ${val(m, m.verdier[m.mot])}.</span>
+      </li>`).join('')}</ul>${sources(list)}`;
+    outSec.setAttribute('aria-labelledby', 'h-out');
+  };
+  if (outSec) {
+    drawOut();
+    if (S.skiller_seg_ut_aar?.[sideOf(outSec)]) {
+      let shown = urlYear();
+      document.addEventListener('click', () => setTimeout(() => { if (urlYear() !== shown) { shown = urlYear(); drawOut(); } }));
+    }
+  }
+
+  if (!sec) return;
+  const side = sideOf(sec);
+  const from = S.lenker.filter(l => l.fra === side);
+  const to = S.lenker.filter(l => l.til.includes(side));
+  if (!from.length && !to.length) return;
+  const measure = m => {
+    const others = Object.keys(m.verdier).filter(k => k !== 'narvik' && k !== m.mot).map(k => `${h(name(k))} ${val(m, m.verdier[k])}`).join(' · ');
+    const d = diff(m);
+    return `<li class="lm">
+      <div class="lm-name">${h(m.navn)} <span class="caption">${h(m.aar)}</span>${m.beregnet ? ' <span class="tag">beregnet</span>' : ''}</div>
+      <div class="lm-vals num"><span><small>Narvik</small><b>${val(m, m.verdier.narvik)}</b></span><span><small>${h(name(m.mot))}</small><b>${val(m, m.verdier[m.mot])}</b></span>${d ? `<span class="lm-diff">${arrow(m)}${h(d)}</span>` : ''}</div>
+      ${others ? `<p class="caption">${h(others)}.</p>` : ''}
+    </li>`;
+  };
+  const card = (l, dir) => {
+    const other = S.sider[dir === 'ut' ? l.til[0] : l.fra];
+    return `<article class="link-card">
+      <span class="eyebrow">${h(S.sider[l.fra].navn)} → ${h(S.sider[l.til[0]].navn)}</span>
+      <h4>${h(l.tittel)}</h4>
+      <p>${h(l.tekst)}</p>
+      <ul class="lm-list">${l.maal.map(measure).join('')}</ul>
+      ${l.merknad ? `<p class="caption">${h(l.merknad)}</p>` : ''}
+      <a class="cross-link" href="${h(other.href)}">Gå til ${h(other.navn)} →</a>
+    </article>`;
+  };
+  const group = (title, list, dir) => (list.length ? `<div class="link-group"><h3>${title}</h3><div class="link-cards">${list.map(l => card(l, dir)).join('')}</div></div>` : '');
+  sec.innerHTML = `<div class="section-head"><h2 id="h-links">Henger sammen med</h2>
+    <p class="lead">Tall på andre sider som kan påvirke tallene her, eller som tallene her kan påvirke. Narvik står ved siden av et snitt, som KOSTRA-gruppe 9 eller hele landet. Kortene viser alltid de nyeste tallene, også når et annet år er valgt.</p></div>
+    ${group('Kan påvirke', from, 'ut')}${group('Kan påvirkes av', to, 'inn')}${sources([...from, ...to].flatMap(l => l.maal))}`;
+  sec.setAttribute('aria-labelledby', 'h-links');
+  sec.hidden = false;
+})();

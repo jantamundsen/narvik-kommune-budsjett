@@ -480,3 +480,26 @@ details .fact-list { margin-top: 4px; }
 .chart-box .line-chart svg { display: block; width: 100%; min-width: 560px; height: auto; }
 .hbars .hb.ab { grid-template-columns: minmax(96px, 200px) minmax(40px, 1fr) 56px 76px; }
 @media (max-width: 680px) { .hbars .hb.ab { grid-template-columns: minmax(0, 1fr) 56px 76px; } .hbars .hb.ab .track { grid-column: 1 / -1; grid-row: 2; } }
+
+/* «Henger sammen med» (common.js, data/sammenhenger.json) */
+.link-group { display: grid; gap: 12px; }
+.link-group h3 { font-size: 1.05rem; font-weight: 600; }
+.link-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 400px), 1fr)); gap: 12px; align-items: start; }
+.link-card { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 18px 20px; display: grid; gap: 10px; }
+.link-card h4 { font-size: 1.05rem; font-weight: 600; margin: 0; }
+.link-card p { max-width: none; }
+.lm-list { list-style: none; margin: 0; padding: 0; display: grid; }
+.lm { display: grid; gap: 4px; padding: 10px 0; border-top: 1px solid var(--rule); }
+.lm-name { font-size: 0.9rem; font-weight: 600; }
+.lm-vals { display: flex; flex-wrap: wrap; gap: 4px 20px; align-items: center; }
+.lm-vals span:not(.lm-diff):not(.arrow) { display: grid; }
+.lm-vals small { font-size: 0.75rem; color: var(--ink-2); }
+.lm-vals b { font-size: 1.15rem; }
+.lm-vals span:nth-child(2) b { color: var(--ink-2); font-weight: 600; }
+.so-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); gap: 12px; }
+.so { background: var(--surface); border: 1px solid var(--rule); border-left: 3px solid var(--accent); border-radius: 6px; padding: 14px 16px; display: grid; gap: 4px; align-content: start; }
+.so-name { font-size: 0.9rem; font-weight: 600; }
+.so-me { font: 700 1.5rem/1.2 var(--font-display); }
+.so-diff { font-weight: 600; color: var(--accent); }
+.arrow { font-size: 0.75em; vertical-align: 0.1em; }
+.lm-diff { flex-basis: 100%; font-size: 0.9rem; font-weight: 600; color: var(--accent); }
