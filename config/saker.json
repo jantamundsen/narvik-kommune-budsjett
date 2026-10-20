@@ -53,6 +53,16 @@
       "full": "Stortinget, saken «Endringer i statsbudsjettet 2024 under Kultur- og likestillingsdepartementet», Prop. 25 S og Innst. 85 S (2024–2025), saksgang og vedtak",
       "url": "https://www.stortinget.no/no/Saker-og-publikasjoner/Saker/Sak/?p=100887"
     },
+    "ku-2025-12-01": {
+      "navn": "Kontrollutvalget 01.12.2025, sakspapirer",
+      "full": "Kontrollutvalget i Narvik, sakspapirer til møtet 01.12.2025, blant annet sak 58/25 «Narvik kommunes økonomiske forpliktelser i forbindelse med alpin-VM i 2029» med kommunedirektørens svar av 17.11.2025",
+      "pdf": "https://www.narvik.kommune.no/_f/p1/i82c00790-544c-42e5-b830-78e6bd158abe/narvik-mote-01122025-samlefil.pdf"
+    },
+    "ku-2026-02-23": {
+      "navn": "Kontrollutvalget 23.02.2026, protokoll",
+      "full": "Kontrollutvalget i Narvik, protokoll fra møtet 23.02.2026, sak 05/26 «Narvik kommunes økonomiske forpliktelser i tilknytning til Alpin-VM 2029 – kommunedirektørens svar»",
+      "pdf": "https://www.narvik.kommune.no/~/_f/p1/i1a533e5c-7dc4-44e9-9d5c-da1987e3e398/protokoll-narvik-kontrollutvalg-20260223.PDF"
+    },
     "kjolevann-2026": {
       "navn": "Referat, oppstartsmøte kjølevannsanlegg Bjerkvik",
       "full": "Narvik kommune, referat fra oppstartsmøte for detaljregulering for kjølevannsanlegg Bjerkvik, plan-ID 2026007, møte 03.07.2026 (arkivsak 26/1700)",
@@ -143,15 +153,24 @@
       "rolle": [
         { "tekst": "Norges Skiforbund og Narvik kommune er tildelt VM i alpine grener i 2029.", "kilde": { "id": "innst-85s-2024", "side": 2 } },
         { "tekst": "Narvikfjellet Allmenn AS bygger ut anlegget, og arrangørselskapet (LOC) gjennomfører mesterskapet. Kommunen oppgir at det ikke går penger fra kommunen inn i de to selskapene, verken til drift eller investering, utenom bidraget i økonomiplanen.", "kilde": { "id": "vm-organisering" } },
+        { "tekst": "Kommunen og Norges Skiforbund er parter i vertskapsavtalen (Hosting Contract) med det internasjonale skiforbundet FIS, signert 4. juni 2024. Etter avtalens punkt 2.7 er Skiforbundet, kommunen og arrangørselskapet solidarisk ansvarlige («jointly and severally responsible») for alle forpliktelser de inngår, hver for seg eller sammen, om organiseringen og gjennomføringen av mesterskapet.", "kilde": { "id": "ku-2025-12-01", "side": 30 } },
+        { "tekst": "Advokatfirmaet PwC vurderte at den største risikoen i vertskapsavtalen er at kommunen hefter solidarisk for økonomiske forpliktelser som kan oppstå ved framtidige avtaler. Kommunen har brukt advokatfirmaet Harris til å vurdere avtalene etter tildelingen, og arbeider med en avtale som skal fordele ansvaret mellom de fire partene.", "kilde": { "id": "ku-2025-12-01", "side": 36 } },
+        { "tekst": "Ifølge kommunedirektøren uttalte Statsforvalteren at avtalen med Norges Skiforbund fra 2021 ikke kom i konflikt med kommunelovens regel om garantier (§ 14-19). Arrangørselskapet Alpin VM Narvik 2029 AS eies av Norges Skiforbund (60 %) og Narvikfjellet Allmenn AS (40 %); kommunen eier ikke aksjer i det.", "kilde": { "id": "ku-2025-12-01", "side": 35 } },
+        { "tekst": "Hvis VM må avlyses av force majeure, som pandemi eller krig, har kommunen et medansvar for deler av FIS' kostnader, skriver kontrollutvalgets sekretariat. Kommunedirektøren legger til grunn at forsikring dekker det, og kontrollutvalget har spurt om forsikringen dekker hele kommunens ansvar.", "kilde": { "id": "ku-2025-12-01", "side": 32 } },
         { "tekst": "Bidraget var opprinnelig en kulvert. Etter endringer i løypene trengs ikke kulverten, og kommunedirektøren foreslår å bruke det samme beløpet på en lett nedfart og serviceløype.", "kilde": { "id": "okplan-2026", "side": 12 } },
         { "tekst": "Kultur har det operative ansvaret for kommunens vertskapsrolle under VM.", "kilde": { "id": "okplan-2026", "side": 27 } },
         { "tekst": "Veg og park har prioritert uttalelser til reguleringsplanene for VM.", "kilde": { "id": "tertial-2-2026", "side": 41 } }
       ],
       "tidslinje": [
         { "dato": "04.01.2024", "tekst": "Narvikfjellet Allmenn AS varsler endring av områdereguleringen for Fagernesfjellet for å bygge anlegget til VM 2029.", "kilde": { "id": "plan-fagernesfjellet-2025", "side": 4 } },
+        { "dato": "04.06.2024", "tekst": "Vertskapsavtalen (Hosting Contract) med FIS signeres, med Norges Skiforbund og Narvik kommune som parter. Rådmannen sendte en risikovurdering til ordføreren 1. juni.", "kilde": { "id": "ku-2025-12-01", "side": 35 } },
         { "dato": "22.11.2024", "tekst": "Regjeringen foreslår at staten dekker deler av anleggsutbyggingen i 2025–2028, med inntil 342 mill. kr. Narvikfjellet Allmenn AS hadde søkt om 342 mill. kr. Bidraget skal finansieres fra spilleoverskuddet til Norsk Tipping og over statsbudsjettet (Prop. 25 S).", "kilde": { "id": "innst-85s-2024", "side": 2 } },
         { "dato": "16.12.2024", "tekst": "Stortinget vedtar at staten kan forplikte seg til å dekke deler av utgiftene til anlegget, med inntil 342 mill. kr over 2025–2028.", "kilde": { "id": "stortinget-sak-2024" } },
         { "dato": "19.06.2025", "tekst": "Kommunestyret vedtar reguleringsendringen for Fagernesfjellet (plan 2012015), med nye VM-traseer, målområde og ny stolheis.", "kilde": { "id": "plan-fagernesfjellet-2025", "side": 1 } },
+        { "dato": "19.06.2025", "tekst": "Kommunestyret får en orientering om risikoen ved det solidariske ansvaret kommunen har påtatt seg.", "kilde": { "id": "ku-2025-12-01", "side": 35 } },
+        { "dato": "27.10.2025", "tekst": "Kontrollutvalget ber kommunedirektøren redegjøre skriftlig for risikoen ved solidarisk ansvar og garantier, juridisk kvalitetssikring av avtalene, risikohåndtering og erfaringer fra tidligere VM (sak 48/25).", "kilde": { "id": "ku-2025-12-01", "side": 9 } },
+        { "dato": "01.12.2025", "tekst": "Kontrollutvalget stiller oppfølgingsspørsmål om hva det solidariske ansvaret innebærer, hvem kreditorer kan kreve, og om forsikringen dekker kommunens ansvar ved avlysning (sak 58/25).", "kilde": { "id": "ku-2025-12-01", "side": 26 } },
+        { "dato": "23.02.2026", "tekst": "Kontrollutvalget sender kommunedirektørens svar av 15.01.2026 til kommunestyret og anbefaler at kommunestyret får jevnlige orienteringer om kommunens samlede risiko knyttet til VM (sak 05/26).", "kilde": { "id": "ku-2026-02-23", "side": 5 } },
         { "dato": "2027", "tekst": "Kommunens bidrag på 31,25 mill. kr ligger i økonomiplanen for 2027.", "kilde": { "id": "okplan-2026", "side": 14 } }
       ],
       "lenker": [
