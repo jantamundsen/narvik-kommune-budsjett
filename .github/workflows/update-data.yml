@@ -20,7 +20,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Hent tall fra SSB og Nav
+      - name: Hent tall fra SSB, Nav og Brønnøysundregistrene
         run: |
           python scripts/fetch_data.py
           python scripts/fetch_details.py
@@ -31,12 +31,13 @@ jobs:
           python scripts/fetch_finans.py
           python scripts/fetch_bolig.py
           python scripts/fetch_arbeid.py
+          python scripts/fetch_naering.py
           python scripts/build_sammenhenger.py
       - name: Commit hvis dataene er endret
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898900+github-actions[bot]@users.noreply.github.com"
-          git add site/data/narvik.json site/data/detaljer.json site/data/sammenligning.json site/data/malgruppe.json site/data/lopende.json site/data/fakta.json site/data/befolkning.json site/data/finans.json site/data/bolig.json site/data/arbeid.json site/data/sammenhenger.json
+          git add site/data/narvik.json site/data/detaljer.json site/data/sammenligning.json site/data/malgruppe.json site/data/lopende.json site/data/fakta.json site/data/befolkning.json site/data/finans.json site/data/bolig.json site/data/arbeid.json site/data/naering.json site/data/sammenhenger.json
           if git diff --cached --quiet; then
             echo "Ingen endringer i dataene."
           else
