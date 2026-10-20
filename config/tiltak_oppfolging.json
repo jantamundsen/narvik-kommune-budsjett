@@ -1,0 +1,66 @@
+{
+ "_comment": "What the kommune's own reports say happened to the measures in the budget, typed in by hand with the page. scripts/fetch_tiltak.py joins this onto the measures it fetches from Framsikt and writes site/data/tiltak.json. A measure is found by budget year, Framsikt's action_id and (when the same measure is split across areas) the area key from fetch_budget.AREAS. kilde is either a report id from config/fakta.json (kilder) with a page, or a url with a name. status: gjennomfort, i-arbeid, forsinket, ikke-gjennomfort or ikke-oppgitt (named in a report, but with no status). Measures with no entry here are shown as having no status in the reports. Reversals by the kommunestyre in the budget decision itself are found by the script and need no entry.",
+ "oppfolging": [
+  {
+   "budsjett": "2025", "action_id": 140061, "omrade": "helse", "status": "ikke-gjennomfort",
+   "notater": [
+    {"tekst": "Budsjettet for 2025 la til grunn at kjøkkendriften i Ballangen, Kjøpsvik og Bjerkvik skulle avvikles. Kommunestyret vedtok i stedet å videreføre produksjonskjøkkenene, og det ga om lag 2,2 mill. kr i merkostnader i 2025.", "kilde": {"id": "ar-2025", "side": 47}},
+    {"tekst": "Bjerkvik omsorg hadde om lag 3,9 mill. kr i merforbruk på fastlønn per august, noe av det på grunn av budsjettreduksjonen for kjøkken (kommunestyresak februar 2025).", "kilde": {"id": "t2-2025", "side": 29}},
+    {"tekst": "I 2026 ble 2,3 mill. kr av innsparingen fra avviklingen av Ankenes bo- og servicesenter brukt til å beholde produksjonskjøkkenene i Ballangen, Bjerkvik og Kjøpsvik.", "kilde": {"id": "tertial-2-2026", "side": 32}}
+   ]
+  },
+  {
+   "budsjett": "2025", "action_id": 117491, "omrade": "helse", "status": "forsinket",
+   "notater": [
+    {"tekst": "Fellesområdet i Helse og omsorg har fortsatt «gamle strukturtiltak», et nedtrekk på 17,9 mill. kr.", "kilde": {"id": "t2-2025", "side": 27}},
+    {"tekst": "Årsrapporten sier at enkelte vedtatte strukturtiltak har forsinket eller mindre økonomisk effekt enn budsjettert, og nevner forsinkede innsparingstiltak blant årsakene til merforbruket i Helse og omsorg.", "kilde": {"id": "ar-2025", "side": 9}},
+    {"tekst": "Kommunestyret vedtok i 2025-budsjettet å redusere heldøgnsplassene (tiltak 113-25-L). Ifølge tiltaksbeskrivelsen skulle det blant annet innfri tidligere vedtatte nedtrekk på 16 mill. kr, men tiltaket står med 1 000 kr i budsjettet.", "kilde": {"url": "https://pub.framsikt.net/2025/narvik/bm-2025-budsjettvedtak_2025/content/data/budgetreductiongraph/0/cost/60/30/143915.json", "navn": "Framsikt, budsjettvedtak 2025, tiltak 113-25-L"}},
+    {"tekst": "I 2026 ble deler av innsparingen fra avviklingen av Ankenes bo- og servicesenter brukt til å saldere gamle strukturtiltak.", "kilde": {"id": "tertial-2-2026", "side": 32}}
+   ]
+  },
+  {
+   "budsjett": "2025", "action_id": 139060, "omrade": "oppvekst", "status": "i-arbeid",
+   "notater": [{"tekst": "Status «I arbeid» per august 2025.", "kilde": {"id": "t2-2025", "side": 23}}]
+  },
+  {
+   "budsjett": "2025", "action_id": 139060, "omrade": "virksomhet", "status": "ikke-oppgitt",
+   "notater": [{"tekst": "Står i tabellen over økonomiplantiltak per august 2025, uten status.", "kilde": {"id": "t2-2025", "side": 19}}]
+  },
+  {
+   "budsjett": "2025", "action_id": 139060, "omrade": "plan", "status": "ikke-oppgitt",
+   "notater": [{"tekst": "Står i tabellen over økonomiplantiltak per august 2025, uten status. Samme tabell viser 8,0 mill. kr lagt til samme tiltak.", "kilde": {"id": "t2-2025", "side": 40}}]
+  },
+  {
+   "budsjett": "2025", "action_id": 143927, "omrade": "oppvekst", "status": "gjennomfort",
+   "notater": [{"tekst": "Status «Ferdig» per august 2025.", "kilde": {"id": "t2-2025", "side": 23}}]
+  },
+  {
+   "budsjett": "2025", "action_id": 143926, "omrade": "virksomhet", "status": "forsinket",
+   "notater": [
+    {"tekst": "Står i tabellen over økonomiplantiltak per august 2025, uten status.", "kilde": {"id": "t2-2025", "side": 19}},
+    {"tekst": "Årsrapporten nevner forsinkelser i innsparingskrav til administrasjonen blant årsakene til merforbruket i Virksomhetsstyring.", "kilde": {"id": "ar-2025", "side": 9}}
+   ]
+  },
+  {
+   "budsjett": "2025", "action_id": 139116, "omrade": "oppvekst", "status": "gjennomfort",
+   "notater": [{"tekst": "Skjomen skole og barnehage ble lagt ned fra 1. august 2026, ett år etter at kommunestyret tok kuttet ut av 2025-budsjettet.", "kilde": {"id": "tertial-2-2026", "side": 21}}]
+  },
+  {
+   "budsjett": "2025", "action_id": 139106, "omrade": "oppvekst", "status": "ikke-oppgitt",
+   "notater": [{"tekst": "Det største kuttet i 2025 har ingen status i tertialrapport 2/2025. Årsrapporten sier at Oppvekst endte 2025 med 3,5 mill. kr i mindreforbruk, men ikke om kuttet ble tatt ut som planlagt.", "kilde": {"id": "ar-2025", "side": 38}}]
+  },
+  {
+   "budsjett": "2026", "action_id": 170559, "omrade": "oppvekst", "status": "gjennomfort",
+   "notater": [{"tekst": "Status «Ferdig» per august 2026, med 1,6 mill. kr i vedtatt budsjett. Forslaget hadde 3,5 mill. kr.", "kilde": {"id": "tertial-2-2026", "side": 24}}]
+  }
+ ],
+ "omradenotater": [
+  {"budsjett": "2026", "omrade": "helse", "tekst": "Kommunedirektøren skriver at gjennomførte tiltak for å redusere personellkostnadene «hittil ikke har gitt noen særlig effekt (utover ABS)». Tertialrapporten har ingen tabell med status for tiltakene i Helse og omsorg.", "kilde": {"id": "tertial-2-2026", "side": 32}},
+  {"budsjett": "2025", "omrade": "helse", "tekst": "Tertialrapport 2/2025 har ingen tabell med status for tiltakene i Helse og omsorg, bare for Virksomhetsstyring, Oppvekst og Plan, næring og teknisk (s. 19, 23 og 40).", "kilde": {"id": "t2-2025"}}
+ ],
+ "korreksjoner": [
+  {"budsjett": "2025", "action_id": 117525, "omrade": "helse", "tekst": "Navnet sier at strukturtiltaket bare er delvis innfridd. Framsikt har ingen beskrivelse av tiltaket."},
+  {"budsjett": "2025", "action_id": 117523, "omrade": "helse", "tekst": "Ifølge beskrivelsen skal pengene kompensere for at et nedtrekk i Bjerkvik fra 2023 ga mindre effekt enn beregnet."},
+  {"budsjett": "2025", "action_id": 117524, "omrade": "helse", "tekst": "Navnet sier at et gammelt tiltak i hjemmetjenestene lukkes. Framsikt har ingen beskrivelse av tiltaket."}
+ ]
+}

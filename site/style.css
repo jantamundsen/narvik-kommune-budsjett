@@ -278,3 +278,23 @@ details .fact-list { margin-top: 4px; }
 .fact-groups { display: grid; gap: 24px; }
 .fact-group { display: grid; gap: 10px; }
 .fact-group h3 { font-size: 1.05rem; font-weight: 600; }
+
+/* tiltak.html: savings in the budget and what happened to them */
+.tiltak-top { display: flex; gap: 16px; justify-content: space-between; align-items: baseline; }
+.tiltak-name { font-weight: 600; }
+.tiltak-amt { font-weight: 700; white-space: nowrap; }
+.tiltak.t-good { border-left-color: var(--good); }
+.tiltak.t-bad { border-left-color: var(--bad); }
+.tiltak.t-none { border-left-color: var(--muted); }
+.badge { display: inline-block; font-size: 0.78rem; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--ink); }
+.badge.good { background: color-mix(in srgb, var(--good) 16%, transparent); }
+.badge.bad { background: color-mix(in srgb, var(--bad) 16%, transparent); }
+.badge.none { background: var(--rule); color: var(--ink-2); }
+.tiltak-notes { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
+.tiltak-notes .caption { display: inline; }
+.tiltak details summary { cursor: pointer; font-weight: 600; color: var(--accent); font-size: 0.9rem; min-height: 32px; display: flex; align-items: center; }
+.tiltak details p { font-size: 0.92rem; color: var(--ink-2); margin-top: 6px; }
+.fact-group h3 .caption { font-family: var(--font-body); font-weight: 400; }
+#areas, #fix, #bridge, .fact-groups > *, .fact-list > * { min-width: 0; }
+.tiltak { overflow-wrap: anywhere; }
+.tiltak-meta { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: center; }

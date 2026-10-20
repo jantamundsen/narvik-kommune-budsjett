@@ -14,6 +14,8 @@ Siden *Budsjett mot regnskap* (`budsjett.html`) viser kommunens vedtatte budsjet
 
 Siden *Året så langt* (`lopende.html`) følger budsjettet og forbruket i inneværende år: brukt hittil, avvik og kommunedirektørens prognose per tjenesteområde, hvordan rammene er endret siden vedtaket, og inntektene. Tallene kommer fra tertialrapportene, som bare finnes som PDF og er skrevet inn i `config/lopende_2026.json` med side. I tillegg vises skatteinngangen måned for måned fra SSBs [tabell 07022](https://www.ssb.no/statbank/table/07022), som oppdateres automatisk.
 
+Siden *Innsparinger* (`tiltak.html`) viser kuttene som ble lagt inn i budsjettet tiltak for tiltak, hvilke kommunestyret tok ut igjen i samme vedtak, og hva tertialrapporter og årsrapporter sier skjedde med dem. Den viser også hele endringen i rammen til hvert tjenesteområde, slik Framsikt forklarer den.
+
 *Bak tallene* forklarer tallene med det kommunens egne rapporter sier: sykefravær, utgifter til vikarbyrå og overtid, investeringer som skolegårder, og kommunens egne forklaringer på avvik. Hvert punkt er skrevet av fra en rapport og lenker til siden det står på. Punktene vises på områdesidene for regnskapsåret de gjelder, og punktene for året som pågår vises på *Året så langt*. Rapportene følger kommunens egne kommunalområder, som ikke er de samme som KOSTRA-områdene, så hvert punkt sier hvilket kommunalområde det gjelder.
 
 ## Slik er det bygget
@@ -26,9 +28,12 @@ scripts/fetch_budget.py   henter budsjett og regnskap per tjenesteområde fra Fr
 scripts/fetch_malgruppe.py henter SSBs nøkkeltall per elev, per barn og per innbygger i aldersgruppen og skriver site/data/malgruppe.json
 scripts/fetch_lopende.py  sjekker tertialtallene i config/lopende_2026.json, henter skatteinngang fra SSB 07022
                           og skriver site/data/lopende.json
+scripts/fetch_tiltak.py   henter budsjettendringene tiltak for tiltak fra Framsikt, legger på oppfølgingen i
+                          config/tiltak_oppfolging.json og skriver site/data/tiltak.json
 scripts/build_fakta.py    sjekker punktene i config/fakta.json (kilde, side, område) og skriver site/data/fakta.json
 site/                     den statiske nettsiden: index.html (regnskap), omrade.html (ett område, en tjeneste,
-                          en kostnadstype), budsjett.html (budsjett mot regnskap), lopende.html (året så langt); style.css og common.js er felles
+                          en kostnadstype), budsjett.html (budsjett mot regnskap), lopende.html (året så langt),
+                          tiltak.html (innsparinger); style.css og common.js er felles
 .github/workflows/        oppdaterer data fra SSB og publiserer til GitHub Pages
 ```
 
@@ -43,6 +48,7 @@ python scripts/fetch_budget.py        # henter budsjettall fra Framsikt
 python scripts/fetch_malgruppe.py     # utgifter per elev, per barn og per innbygger i aldersgruppen
 python scripts/fetch_lopende.py       # tertialtall og månedlig skatteinngang for året så langt
 python scripts/build_fakta.py         # sjekker og skriver punktene i «Bak tallene»
+python scripts/fetch_tiltak.py        # innsparinger og andre budsjettendringer fra Framsikt
 python -m http.server -d site 8000    # åpne http://localhost:8000
 ```
 
@@ -89,6 +95,16 @@ Det SSBs underarter ikke dekker av gruppen, og forskjellen mellom artene og AGD2
 Når en ny publikasjon kommer på Framsikt (for eksempel budsjettvedtaket for 2027, som også har regnskapet for 2025), legg den til i `SOURCES` og kolonnene i `SERIES`, og kjør skriptet på nytt. Tall som bare finnes i PDF skrives inn i `config/budsjett_manuelt.json` med side, og skriptet sjekker at områdene summerer til totalen. Siden velger selv det siste året som har både budsjett og regnskap, og det nyeste budsjettåret (vedtatt hvis det finnes, ellers forslaget) mot året før. Mangler `budsjett.json`, viser budsjettsiden en feilmelding, og regnskapssiden lenker ikke til den.
 
 Budsjettet er det opprinnelige, slik kommunestyret vedtok det i desember året før. Rammene justeres i løpet av året, så avviket mot regnskapet er ikke det samme som et merforbruk.
+
+## Innsparinger
+
+`scripts/fetch_tiltak.py` leser siden «Endring driftsbudsjett» i de samme Framsikt-publikasjonene. Den forklarer hvordan rammen til hvert tjenesteområde endret seg fra fjorårets vedtatte budsjett, ned til hvert navngitte tiltak med kode, beløp for de fire årene i økonomiplanen og kommunedirektørens beskrivelse. Hver linje i `site/data/tiltak.json` har adressen til JSON-filen den kom fra, og skriptet sjekker at linjene summerer til Framsikts egne totaler.
+
+En linje regnes som innsparing når den står under Framsikts kategori «Innsparingstiltak», når den er et kutt kommunestyret selv la inn («Politisk vedtak»), eller når den er et tidligere vedtatt kutt eller omstillingsmål som videreføres (navnet sier struktur, innsparing, nedtrekk, avvikling, reduksjon eller omstilling). Linjer på Fellesinntekter og kostnader regnes ikke med, fordi strukturtiltaket ligger der som en motpost til fordelingen på områdene. Når samme tiltak står både som kutt og som penger tilbake under «Politisk vedtak» i samme publikasjon, har kommunestyret tatt kuttet ut igjen, og siden viser det.
+
+Hva som skjedde med tiltakene etterpå, står i `config/tiltak_oppfolging.json`, skrevet inn for hånd fra tertialrapport 2 og årsrapporten med side. Kommunen rapporterer status bare for noen tiltak (tabellen «Status økonomiplantiltak» i tertialrapporten), så mye av oppfølgingen er hentet fra teksten. Tiltak uten oppføring vises som «Ingen status i rapportene». Lista `korreksjoner` merker linjer i et senere budsjett som legger penger inn igjen fordi et tidligere kutt ikke virket.
+
+Bare budsjettet for 2025 (vedtatt) og forslaget for 2026 finnes på Framsikt. Kommunestyrets endringer i forslaget for 2026 er ikke publisert der. Når budsjettvedtaket for 2027 kommer, legg det til i `SOURCES` i skriptet, kjør det på nytt, og legg inn status fra tertialrapport 2/2026 og årsrapporten for 2026 i oppfølgingsfila.
 
 ## Begreper
 
