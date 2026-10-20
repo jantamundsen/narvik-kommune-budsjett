@@ -4,7 +4,7 @@
 // marked «beregnet» when it is computed here. Per pupil, per child and per inhabitant in an age group come from
 // site/data/malgruppe.json (SSB's own key figures, and for helse og omsorg netto per inhabitant in an age group, «beregnet»). Facts from the kommune's own reports come from site/data/fakta.json.
 // Helpers are in common.js.
-let N, D, S, M, F, area, years, year, prev, scope; // S: sammenligning.json, only loaded for a cost type page; M: malgruppe.json; F: fakta.json
+let N, D, S, M, F, B, area, years, year, prev, scope; // S: sammenligning.json, only loaded for a cost type page; M: malgruppe.json; F: fakta.json; B: befolkning.json, only for helse og omsorg
 const q = new URLSearchParams(location.search);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 const mill = (v, d = 1) => (v == null ? '·' : nb(v / 1000, d));
@@ -37,8 +37,8 @@ async function start() {
   const svc = services().find(s => s.key === q.get('tjeneste'));
   const grp = svc && D.groups.find(g => g.key === q.get('art'));
   const optional = u => fetch(u, { cache: 'no-cache' }).then(r => (r.ok ? r.json() : null)).catch(() => null);
-  const [facts, extra] = await Promise.all([optional('data/fakta.json'), optional(grp ? 'data/sammenligning.json' : 'data/malgruppe.json')]);
-  F = facts;
+  const [facts, extra, pop] = await Promise.all([optional('data/fakta.json'), optional(grp ? 'data/sammenligning.json' : 'data/malgruppe.json'), area.key === 'helse' && !grp ? optional('data/befolkning.json') : null]);
+  F = facts; B = pop;
   if (grp) S = extra; else M = extra;
   const render = () => { page.innerHTML = grp ? typePage(svc, grp) : svc ? servicePage(svc) : areaPage(); };
   render();
@@ -217,7 +217,7 @@ function areaPage() {
 // Narvik per inhabitant against the comparison regions in narvik.json, for an area, a service or a cost type.
 // pcs is {region key: {year: kr per inhabitant}}; fs the KOSTRA functions it covers; source the sentence naming where it comes from.
 // popNote, when given, says how many the figure is divided by for a region (an age group), in place of all inhabitants.
-function compareSection({ pcs, what, fs, source, verb = 'brukte', per = 'innbygger', toggle = '', note = '', unit = 'Netto driftsutgifter per innbygger i kroner, kommunekonsern', popNote = null }) {
+function compareSection({ pcs, what, fs, source, verb = 'brukte', per = 'innbygger', toggle = '', note = '', unit = 'Netto driftsutgifter per innbygger i kroner, kommunekonsern', popNote = null, after = '' }) {
   const rows = [{ key: 'narvik', name: 'Narvik', kind: 'narvik' }, ...N.compare]
     .map(r => ({ ...r, v: pcs[r.key]?.[year] })).filter(r => r.v != null).sort((a, b) => b.v - a.v);
   if (rows.length < 2 || pcs.narvik?.[year] == null) return '';
@@ -234,7 +234,7 @@ function compareSection({ pcs, what, fs, source, verb = 'brukte', per = 'innbygg
     ${cols.map(r => `<tr${r.key === 'narvik' ? ' class="sum"' : ''}><td>${esc(r.name)}</td>${years.map(y => { const v = pcs[r.key]?.[y]; return `<td${y === year ? ' class="sel"' : ''}>${v == null ? '·' : nb(v)}</td>`; }).join('')}</tr>`).join('')}</table></div>
     <p class="caption">· betyr at SSB ikke har tall for funksjonen det året.</p></details>`;
   return `<section class="drill-sec" id="sammenligning"><h2>Sammenlignet med andre</h2>${toggle}<p class="lead">${lead}</p>${bars}${table}
-    <p class="caption">${unit}, KOSTRA-funksjon ${esc(codes(fs))}.${note} Prosenten viser hvor mye mer eller mindre Narvik hadde. Forskjeller kan skyldes alder, avstander og hvordan kommunene organiserer tjenestene, ikke bare hvor dyrt de drives. ${source} <a href="./?aar=${year}#sammenligning">Alle områder sammenlignet</a>.</p></section>`;
+    <p class="caption">${unit}, KOSTRA-funksjon ${esc(codes(fs))}.${note} Prosenten viser hvor mye mer eller mindre Narvik hadde. Forskjeller kan skyldes alder, avstander og hvordan kommunene organiserer tjenestene, ikke bare hvor dyrt de drives. ${source} <a href="./?aar=${year}#sammenligning">Alle områder sammenlignet</a>.</p>${after}</section>`;
 }
 // The comparison per inhabitant, or, where malgruppe.json has SSB key figures for this area or service, per pupil,
 // per child or per inhabitant in the age group instead, chosen with ?maal=. base is the per-inhabitant comparison.
@@ -267,8 +267,18 @@ function ageMeasure(m, base, toggle) {
   return { pcs: m.values, what: m.what || base.what, fs: m.functions, per: m.per, toggle,
     unit: `Netto driftsutgifter, kommunekonsern (SSB tabell ${m.table}), delt på ${esc(many)} 1. januar året etter (SSB tabell ${pop.table}), beregnet`,
     popNote: r => (pop.values[r.key]?.[year] ? `${nb(pop.values[r.key][year])} ${many}` : null),
+    after: ['67', '80'].includes(m.key) ? outlook(m.key) : '',
     note: ` Samme netto som resten av siden, men delt på ${esc(many)} i stedet for alle innbyggerne.${part}${young} Landet uten Oslo er hele landet minus Oslo, og ${esc(N.compare.find(r => r.key === 'gruppe')?.name || 'KOSTRA-gruppen')} er summen av kommunene i gruppen.`,
     source: `SSB publiserer ikke lenger dette som eget nøkkeltall, så det er beregnet her. <a href="${esc(m.query)}&outputFormat=html" target="_blank" rel="noopener">Se netto hos SSB</a> (<a href="${esc(m.url)}" target="_blank" rel="noopener">tabell ${m.table}</a>) og <a href="${esc(pop.query)}&outputFormat=html" target="_blank" rel="noopener">innbyggerne i Narvik etter alder</a> (<a href="${esc(pop.url)}" target="_blank" rel="noopener">tabell ${pop.table}</a>).` };
+}
+
+// Under the comparison per inhabitant 67+ or 80+: how many there are now and how many SSB's projection expects, with a
+// link to the pyramid on befolkning.html. Only the head count, no cost estimate: what it means for the budget is left open.
+function outlook(lo) {
+  const O = B?.older, now = O?.[B?.last]?.[lo];
+  const to = O?.['2040'] ? '2040' : Object.keys(O || {}).sort().at(-1);
+  if (now == null || !to || to === B.last || O[to][lo] == null) return '';
+  return `<div class="status-note outlook"><p><strong>Hvor mange blir de?</strong> 1. januar ${B.last} bodde det ${nb(now)} innbyggere ${lo} år og over i Narvik. SSBs framskriving venter rundt ${nb(Math.round(O[to][lo] / 10) * 10)} i ${to}. <a href="befolkning.html?aar=${to}#pyramide">Se befolkningspyramiden for ${to}</a>.</p></div>`;
 }
 
 // Sum a per-year value over functions; null when no function has it.

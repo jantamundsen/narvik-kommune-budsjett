@@ -135,6 +135,8 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outlin
 .dev .over { left: 50%; background: var(--bad); }
 .dev .under { right: 50%; background: var(--good); }
 .status-note { font-size: 0.9rem; color: var(--ink); background: var(--accent-soft); border-left: 3px solid var(--accent); padding: 10px 14px; border-radius: 4px; max-width: none; }
+.outlook { margin-top: 18px; display: grid; gap: 6px; }
+.outlook p { margin: 0; }
 
 /* charts */
 .chart { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 16px 16px 8px; overflow-x: auto; }

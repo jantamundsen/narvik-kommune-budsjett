@@ -284,5 +284,7 @@ async function startPopulation() {
   document.getElementById('sources').replaceChildren(...ids.flatMap((k, i) => [i ? (i === ids.length - 1 ? ' og ' : ', ') : '',
     el('a', { href: S[k].url, target: '_blank', rel: 'noopener' }, k)]));
   document.getElementById('generated').textContent = new Date(B.generated).toLocaleDateString('nb-NO', { day: 'numeric', month: 'long', year: 'numeric' });
+  // The sections are hidden until drawn, so the browser cannot jump to #pyramide by itself.
+  if (location.hash) document.getElementById(location.hash.slice(1))?.scrollIntoView();
 }
 startPopulation();
