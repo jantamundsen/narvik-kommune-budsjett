@@ -122,8 +122,13 @@ document.addEventListener('keydown', e => {
       + (calc.length ? ` Beregnet: ${calc.join('. ')}.` : '') + '</p>';
   };
 
-  const list = outSec && S.skiller_seg_ut?.[sideOf(outSec)];
-  if (list?.length) {
+  // On pages with a year selector the list follows the chosen year; the pages change ?aar= in place, so check
+  // after each click whether it changed.
+  const drawOut = () => {
+    const side = sideOf(outSec), byYear = S.skiller_seg_ut_aar?.[side], y = urlYear();
+    const list = byYear && byYear[y] ? byYear[y] : S.skiller_seg_ut?.[side];
+    outSec.hidden = !list?.length;
+    if (!list?.length) return;
     outSec.innerHTML = `<div class="section-head"><h2 id="h-out">Skiller seg ut</h2>
       <p class="lead">Tallene her der Narvik ligger minst ${S.grense.niva_prosent} % fra snittet det sammenlignes med, eller ${nb(S.grense.endring_poeng)} prosentpoeng for endringer og resultat. Størst forskjell først.</p></div>
       <ul class="so-list">${list.map(m => `<li class="so">
@@ -133,7 +138,13 @@ document.addEventListener('keydown', e => {
         <span class="caption">${h(name(m.mot))}: ${val(m, m.verdier[m.mot])}.</span>
       </li>`).join('')}</ul>${sources(list)}`;
     outSec.setAttribute('aria-labelledby', 'h-out');
-    outSec.hidden = false;
+  };
+  if (outSec) {
+    drawOut();
+    if (S.skiller_seg_ut_aar?.[sideOf(outSec)]) {
+      let shown = urlYear();
+      document.addEventListener('click', () => setTimeout(() => { if (urlYear() !== shown) { shown = urlYear(); drawOut(); } }));
+    }
   }
 
   if (!sec) return;
@@ -163,7 +174,7 @@ document.addEventListener('keydown', e => {
   };
   const group = (title, list, dir) => (list.length ? `<div class="link-group"><h3>${title}</h3><div class="link-cards">${list.map(l => card(l, dir)).join('')}</div></div>` : '');
   sec.innerHTML = `<div class="section-head"><h2 id="h-links">Henger sammen med</h2>
-    <p class="lead">Tall på andre sider som kan påvirke tallene her, eller som tallene her kan påvirke. Narvik står ved siden av et snitt, som KOSTRA-gruppe 9 eller hele landet.</p></div>
+    <p class="lead">Tall på andre sider som kan påvirke tallene her, eller som tallene her kan påvirke. Narvik står ved siden av et snitt, som KOSTRA-gruppe 9 eller hele landet. Kortene viser alltid de nyeste tallene, også når et annet år er valgt.</p></div>
     ${group('Kan påvirke', from, 'ut')}${group('Kan påvirkes av', to, 'inn')}${sources([...from, ...to].flatMap(l => l.maal))}`;
   sec.setAttribute('aria-labelledby', 'h-links');
   sec.hidden = false;

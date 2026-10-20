@@ -90,8 +90,8 @@ def main() -> int:
     cats = {c["key"]: c for c in N["categories"]}
     kostra = ["narvik", "harstad", "rana", "alta", "gruppe", "landet"]
 
-    def area_pc(key):
-        return {k: cats[key]["per_capita"].get(k, {}).get(y) for k in kostra}
+    def area_pc(key, year=None):
+        return {k: cats[key]["per_capita"].get(k, {}).get(year or y) for k in kostra}
 
     def target(area, service, key):
         m = next(m for m in M["measures"] if (m["area"], m["service"], m["key"]) == (area, service, key))
@@ -103,9 +103,9 @@ def main() -> int:
     def pop(field):
         return {k: cmp[k][field] for k in kostra if k in cmp}
 
-    def fin(table, art):
+    def fin(table, art, year=None):
         part = F["per_capita"] if table == "12137" else F["share"]
-        return {k: part.get(k, {}).get(art, {}).get(fy) for k in kostra}
+        return {k: part.get(k, {}).get(art, {}).get(year or fy) for k in kostra}
 
     older = B["older"]
     projected = max(k for k in older if int(k) <= 2040)
@@ -261,32 +261,70 @@ def main() -> int:
         "Nye boliger": ["bolig"], "Andel av alle boliger": ["bolig"], "Kommunale boliger,": ["bolig"], "Andel av de kommunale boligene": ["bolig"],
         "Andel av innbyggerne 15–74": ["arbeid"], "Helt ledige": ["arbeid"], "Andel av innbyggerne 20–66": ["arbeid"],
     }
-    pool = [m for link in links for m in link["maal"]]
-    for key, c in cats.items():
-        if key in ("pensjon", "annet"):
-            continue
-        pool.append(measure(f"Kommunens netto utgifter til {c['name'][0].lower() + c['name'][1:]} per innbygger", y, area_pc(key), unit="kr", against="gruppe", source=ssb("12362")))
-        pool[-1]["sider"] = ["utgifter"]
-    for art, label in [("AGD13", "Kommunens driftsinntekter per innbygger"), ("AG10", "Eiendomsskatt kommunen får inn, per innbygger")]:
-        pool.append(measure(label, fy, fin("12137", art), unit="kr", against="gruppe", source=ssb("12137")))
-        pool[-1]["sider"] = ["inntekter"]
-    pool.append(measure("Helt ledige registrert hos Nav, andel av arbeidsstyrken", f"{MONTHS[int(month[5:]) - 1]} {month[:4]}", {k: A["nav"]["ledige"].get(k, {}).get(month, {}).get("pct") for k in ak}, unit="%", decimals=1, against="norge", source={"tekst": "Nav, tabell HL060 helt ledige", "url": "https://www.nav.no/no/nav-og-samfunn/statistikk/arbeidssokere-og-stillinger-statistikk/helt-ledige"}))
-    pool[-1]["sider"] = ["arbeid"]
-    pool.append(measure("Andel av innbyggerne 20–66 år som får arbeidsavklaringspenger eller uføretrygd", sy, status_share("U.04-U.05"), unit="%", decimals=1, against="norge", source=ssb("13563", "regnet ut her"), computed=True))
-    pool[-1]["sider"] = ["arbeid"]
-    pool.append(measure("Kommunens pensjonsforpliktelser til ansatte, per innbygger", fy, fin("12137", "40"), unit="kr", against="gruppe", source=ssb("12137")))
-    pool[-1]["sider"] = ["gjeld"]
-    standout: dict = {}
-    for m in pool:
-        sides = m.get("sider") or next((v for k, v in home.items() if m["navn"].startswith(k)), [])
-        if not (m["avvik"] or {}).get("out"):
-            continue
-        for side in sides:
-            if all(x["navn"] != m["navn"] for x in standout.setdefault(side, [])):
-                standout[side].append({k: v for k, v in m.items() if k != "sider"})
-    size = lambda m: abs(m["avvik"].get("share") if m["avvik"].get("share") is not None else m["avvik"]["points"] * 10)
-    for side in standout:
-        standout[side].sort(key=size, reverse=True)
+    # Utgifter, Inntekter and Gjeld have a year selector, and SSB has their numbers for every year, so their
+    # list is made for each year and follows the year the reader picks.
+    FIN = [
+        ("inntekter", "12137", "AG11", "Kommunens frie inntekter (skatt og rammetilskudd) per innbygger", "level"),
+        ("inntekter", "12137", "A800", "Rammetilskudd fra staten per innbygger", "level"),
+        ("inntekter", "12137", "AG12", "Skatt på inntekt og formue kommunen får inn, per innbygger", "level"),
+        ("inntekter", "12137", "AGD13", "Kommunens driftsinntekter per innbygger", "level"),
+        ("inntekter", "12137", "AG10", "Eiendomsskatt kommunen får inn, per innbygger", "level"),
+        ("inntekter", "12143", "56", "Kommunens disposisjonsfond (sparepenger), andel av driftsinntektene", "level"),
+        ("inntekter", "12143", "AGD23", "Kommunens netto driftsresultat (overskudd), andel av driftsinntektene", "change"),
+        ("gjeld", "12137", "KG31", "Kommunens netto lånegjeld per innbygger", "level"),
+        ("gjeld", "12143", "AGD86", "Renter og avdrag (netto), andel av kommunens driftsinntekter", "level"),
+        ("gjeld", "12143", "KG39", "Gjeld der renteendringer slår inn, andel av kommunens driftsinntekter", "level"),
+        ("gjeld", "12137", "40", "Kommunens pensjonsforpliktelser til ansatte, per innbygger", "level"),
+    ]
+
+    def yearly(year):
+        out = []
+        if year in N["years"]:
+            for key, c in cats.items():
+                if key in ("pensjon", "annet"):
+                    continue
+                out.append(measure(f"Kommunens netto utgifter til {c['name'][0].lower() + c['name'][1:]} per innbygger", year, area_pc(key, year),
+                                   unit="kr", against="gruppe", source=ssb("12362")))
+                out[-1]["sider"] = ["utgifter"]
+        if year in F["years"]:
+            for side, table, art, label, kind in FIN:
+                pct = table == "12143"
+                out.append(measure(label, year, fin(table, art, year), unit="%" if pct else "kr", decimals=1 if pct else 0, kind=kind,
+                                   against="gruppe", source=ssb(table)))
+                out[-1]["sider"] = [side]
+        return out
+
+    def collect(pool):
+        found: dict = {}
+        for m in pool:
+            sides = m.get("sider") or next((v for k, v in home.items() if m["navn"].startswith(k)), [])
+            if not (m["avvik"] or {}).get("out"):
+                continue
+            for side in sides:
+                if all(x["navn"] != m["navn"] for x in found.setdefault(side, [])):
+                    found[side].append({k: v for k, v in m.items() if k != "sider"})
+        size = lambda m: abs(m["avvik"].get("share") if m["avvik"].get("share") is not None else m["avvik"]["points"] * 10)
+        for side in found:
+            found[side].sort(key=size, reverse=True)
+        return found
+
+    extra = [
+        measure("Helt ledige registrert hos Nav, andel av arbeidsstyrken", f"{MONTHS[int(month[5:]) - 1]} {month[:4]}",
+                {k: A["nav"]["ledige"].get(k, {}).get(month, {}).get("pct") for k in ak}, unit="%", decimals=1, against="norge",
+                source={"tekst": "Nav, tabell HL060 helt ledige", "url": "https://www.nav.no/no/nav-og-samfunn/statistikk/arbeidssokere-og-stillinger-statistikk/helt-ledige"}),
+        measure("Andel av innbyggerne 20–66 år som får arbeidsavklaringspenger eller uføretrygd", sy, status_share("U.04-U.05"), unit="%",
+                decimals=1, against="norge", source=ssb("13563", "regnet ut her"), computed=True),
+    ]
+    for m in extra:
+        m["sider"] = ["arbeid"]
+    yearly_sides = {"utgifter", "inntekter", "gjeld"}
+    link_measures = [m for link in links for m in link["maal"]
+                     if not set(next((v for k, v in home.items() if m["navn"].startswith(k)), [])) & yearly_sides]
+    standout = collect(link_measures + yearly(y) + ([] if fy == y else yearly(fy)) + extra)
+    by_year = {side: {} for side in yearly_sides}
+    for year in sorted(set(N["years"]) | set(F["years"])):
+        for side, items in collect(yearly(year)).items():
+            by_year[side][year] = items
     for link in links:
         for m in link["maal"]:
             m.pop("sider", None)
@@ -305,6 +343,7 @@ def main() -> int:
         "grense": {"niva_prosent": round(LEVEL * 100), "endring_poeng": POINTS},
         "lenker": links,
         "skiller_seg_ut": standout,
+        "skiller_seg_ut_aar": by_year,
     }
     OUT.write_text(json.dumps(out, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     print(f"Skrev {OUT.relative_to(ROOT)}: {len(links)} sammenhenger, {sum(l['skiller_seg_ut'] for l in links)} der Narvik skiller seg ut.")
