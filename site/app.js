@@ -1,4 +1,4 @@
-// Åpen økonomi i Narvik: renders site/data/narvik.json (written by scripts/fetch_data.py). Helpers are in common.js.
+// Åpne tall for Narvik: renders site/data/narvik.json (written by scripts/fetch_data.py). Helpers are in common.js.
 const mill = v => nb(v / 1000, 0);
 const svgNS = 'http://www.w3.org/2000/svg';
 let DATA, YEARS, OFFSET_KEYS, services, offsets, year;

@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Hvor mange som bor i Narvik, alder og kjønn år for år fra 2020 og framskrevet til 2050, hvor i kommunen folk bor, innvandrere og husholdninger, med kilde for hvert tall.">
+<title>Befolkning · Åpne tall for Narvik</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="site-head">
+    <nav class="site-nav" aria-label="Sider"><a class="brand" href="./">Åpne tall for Narvik</a><details class="nav-menu"><summary>Økonomi</summary><div class="nav-pop"><a href="./"><b>Regnskap</b><small>Hva pengene gikk til, år for år</small></a><a href="budsjett.html"><b>Budsjett mot regnskap</b><small>Planlagt og brukt per område</small></a><a href="lopende.html"><b>Året så langt</b><small>Inneværende år etter tertialrapportene</small></a><a href="tiltak.html"><b>Innsparinger</b><small>Vedtatte kutt og hva som skjedde med dem</small></a></div></details><a href="befolkning.html" aria-current="page">Befolkning</a></nav>
+  </div>
+  <header>
+    <div class="eyebrow">Narvik kommune · befolkningstall fra SSB</div>
+    <h1>Befolkning i Narvik</h1>
+    <p class="lead" id="lead"></p>
+  </header>
+
+  <section aria-label="Nøkkeltall">
+    <div class="stats3" id="summary"></div>
+  </section>
+
+  <section aria-labelledby="h-pyr" id="pyramide" hidden>
+    <div class="section-head">
+      <h2 id="h-pyr">Befolkningspyramide</h2>
+      <p class="lead" id="pyr-lead"></p>
+    </div>
+    <div class="panel">
+      <div class="pyr-top"><span class="pyr-year" id="pyr-year"></span><span class="pyr-kind" id="pyr-kind"></span><span class="pyr-total" id="pyr-total"></span></div>
+      <div class="pyr-ctl">
+        <button type="button" class="pyr-play" id="pyr-play" aria-label="Spill av årene"></button>
+        <div class="pyr-slider"><label for="pyr-range" class="sr-only">Velg år</label><input type="range" id="pyr-range" step="1"><div class="pyr-ticks" id="pyr-ticks"></div></div>
+      </div>
+      <div class="pyr" id="pyr"></div>
+      <p class="caption" id="pyr-caption"></p>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-areas" id="areas" hidden>
+    <div class="section-head">
+      <h2 id="h-areas">Hvor i kommunen folk bor</h2>
+      <p class="lead" id="areas-lead"></p>
+    </div>
+    <div class="ptable" id="areas-table"></div>
+    <p class="caption" id="areas-caption"></p>
+  </section>
+
+  <section aria-labelledby="h-trend" id="trend" hidden>
+    <h2 id="h-trend">Folketallet år for år</h2>
+    <div class="chart line-chart" id="trend-chart"></div>
+    <div class="ptable" id="trend-table"></div>
+    <p class="caption" id="trend-caption"></p>
+  </section>
+
+  <section aria-labelledby="h-cmp" id="compare" hidden>
+    <div class="section-head">
+      <h2 id="h-cmp">Narvik mot sammenlignbare kommuner</h2>
+      <p class="lead" id="cmp-lead"></p>
+    </div>
+    <div class="ptable" id="cmp-table"></div>
+    <p class="caption" id="cmp-caption"></p>
+  </section>
+
+  <section aria-labelledby="h-imm" id="imm" hidden>
+    <div class="section-head">
+      <h2 id="h-imm">Innvandrere og norskfødte med innvandrerforeldre</h2>
+      <p class="lead" id="imm-lead"></p>
+    </div>
+    <div class="two">
+      <div class="panel"><h3>Andel av innbyggerne, prosent</h3><div class="col-chart" id="imm-chart" role="img"></div><p class="caption" id="imm-note"></p></div>
+      <div class="panel"><h3 id="imm-top-h"></h3><div class="hbars" id="imm-top"></div></div>
+    </div>
+    <p class="caption" id="imm-caption"></p>
+  </section>
+
+  <section aria-labelledby="h-hh" id="hh" hidden>
+    <div class="section-head">
+      <h2 id="h-hh">Husholdninger</h2>
+      <p class="lead" id="hh-lead"></p>
+    </div>
+    <div class="panel"><div class="hbars" id="hh-bars"></div></div>
+    <p class="caption" id="hh-caption"></p>
+  </section>
+
+  <section class="later" aria-labelledby="h-later">
+    <h3 id="h-later">Kommer senere</h3>
+    <p>Hvem som flytter og hvor, aleneboende etter alder, og hva befolkningen betyr for økonomien: hvor mange tjenestene er for, og hva de koster per person.</p>
+  </section>
+
+  <section aria-labelledby="h-notes">
+    <h2 id="h-notes">Slik leser du tallene</h2>
+    <div class="notes">
+      <div><h3>Registrert og framskrevet</h3><p>Tallene til og med i år er SSBs registrerte folketall 1. januar. Fra neste år er de SSBs framskriving, hovedalternativet. Framskrivingen bygger på antakelser om fødsler, levealder og flytting, og er ikke en fasit.</p></div>
+      <div><h3>Beregnet</h3><p>Medianalder, menn per 100 kvinner og tallene for landet uten Oslo og KOSTRA-gruppen er regnet ut her fra SSBs tall per alder. Landet uten Oslo er hele landet minus Oslo, og KOSTRA-gruppen er summen av kommunene i gruppen.</p></div>
+      <div><h3>Fra 2020</h3><p>Dagens Narvik ble til i 2020, da Ballangen og en del av Tysfjord ble slått sammen med gamle Narvik. SSB har ikke tall for kommunen med dagens grenser før det.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Kilde: SSB, tabell <span id="sources"></span>. Hentet <span id="generated"></span>. <a href="https://github.com/jtkarlsen/narvik-kommune-budsjett" target="_blank" rel="noopener">Kildekode</a>.</span>
+    <span>Et åpent hobbyprosjekt laget av <a href="https://janamundsen.dev" target="_blank" rel="noopener">Jan Amundsen</a>, ikke av Narvik kommune.</span>
+  </footer>
+</div>
+<script src="common.js"></script>
+<script src="befolkning.js"></script>
+</body>
+</html>
