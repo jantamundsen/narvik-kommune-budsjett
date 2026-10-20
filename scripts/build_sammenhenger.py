@@ -117,9 +117,9 @@ def main() -> int:
             "tittel": "Antall eldre og utgiftene til helse og omsorg",
             "tekst": "Sykehjem og hjemmetjenester brukes mest av de eldste, så hvor mange eldre det er, kan påvirke hva helse og omsorg koster.",
             "maal": [
-                measure("Innbyggere 80 år og over, andel", by, pop("over80"), unit="%", decimals=1, against="gruppe", source=ssb("07459")),
-                measure("Helse og omsorg, netto per innbygger", y, area_pc("helse"), unit="kr", against="gruppe", source=ssb("12362")),
-                measure("Helse og omsorg, netto per innbygger 80 år og over", y, target("helse", None, "80"), unit="kr", against="gruppe",
+                measure("Andel av innbyggerne som er 80 år eller eldre", by, pop("over80"), unit="%", decimals=1, against="gruppe", source=ssb("07459")),
+                measure("Kommunens netto utgifter til helse og omsorg per innbygger", y, area_pc("helse"), unit="kr", against="gruppe", source=ssb("12362")),
+                measure("Kommunens netto utgifter til helse og omsorg per innbygger 80 år og over", y, target("helse", None, "80"), unit="kr", against="gruppe",
                         source=ssb("12362", "delt på innbyggere 80+ fra tabell 07459"), computed=True),
             ],
             "merknad": f"SSB anslår at Narvik har {nb(older[projected]['80'])} innbyggere 80 år og over i {projected}, mot {nb(older[B['last']]['80'])} i {B['last']} (tabell 14746, hovedalternativet).",
@@ -130,9 +130,9 @@ def main() -> int:
             "tittel": "Antall barn og utgiftene til grunnskole",
             "tekst": "Grunnskolen er for barn fra 6 til 15 år, så hvor mange barn det er, kan påvirke hva skolen koster per innbygger.",
             "maal": [
-                measure("Innbyggere under 16 år, andel", by, pop("under16"), unit="%", decimals=1, against="gruppe", source=ssb("07459")),
-                measure("Grunnskole, netto per innbygger", y, area_pc("skole"), unit="kr", against="gruppe", source=ssb("12362")),
-                measure("Grunnskole, netto per innbygger 6–15 år", y, target("skole", None, "innb"), unit="kr", against="gruppe", source=ssb("12255")),
+                measure("Andel av innbyggerne som er under 16 år", by, pop("under16"), unit="%", decimals=1, against="gruppe", source=ssb("07459")),
+                measure("Kommunens netto utgifter til grunnskole per innbygger", y, area_pc("skole"), unit="kr", against="gruppe", source=ssb("12362")),
+                measure("Kommunens netto utgifter til grunnskole per innbygger 6–15 år", y, target("skole", None, "innb"), unit="kr", against="gruppe", source=ssb("12255")),
             ],
         },
         {
@@ -141,9 +141,9 @@ def main() -> int:
             "tittel": "Folketallet og inntektene",
             "tekst": "Skatt og rammetilskudd følger i stor grad antall innbyggere, så endringer i folketallet kan påvirke hvor mye kommunen får inn.",
             "maal": [
-                measure(f"Endring i folketallet {B['compare']['first']}–{by}", by, pop("change"), unit="%", decimals=1, kind="change", against="gruppe", source=ssb("07459")),
-                measure("Frie inntekter per innbygger", fy, fin("12137", "AG11"), unit="kr", against="gruppe", source=ssb("12137")),
-                measure("Rammetilskudd per innbygger", fy, fin("12137", "A800"), unit="kr", against="gruppe", source=ssb("12137")),
+                measure(f"Endring i antall innbyggere fra {B['compare']['first']} til {by}", by, pop("change"), unit="%", decimals=1, kind="change", against="gruppe", source=ssb("07459")),
+                measure("Kommunens frie inntekter (skatt og rammetilskudd) per innbygger", fy, fin("12137", "AG11"), unit="kr", against="gruppe", source=ssb("12137")),
+                measure("Rammetilskudd fra staten per innbygger", fy, fin("12137", "A800"), unit="kr", against="gruppe", source=ssb("12137")),
             ],
         },
         {
@@ -152,9 +152,9 @@ def main() -> int:
             "tittel": "Gjelden og pengene til tjenester",
             "tekst": "Renter og avdrag betales fra driften, så gjelden kan påvirke hvor mye som er igjen til tjenester.",
             "maal": [
-                measure("Netto lånegjeld per innbygger", fy, fin("12137", "KG31"), unit="kr", against="gruppe", source=ssb("12137")),
-                measure("Netto finansutgifter, andel av driftsinntektene", fy, fin("12143", "AGD86"), unit="%", decimals=1, against="gruppe", source=ssb("12143")),
-                measure("Renteeksponert gjeld, andel av driftsinntektene", fy, fin("12143", "KG39"), unit="%", decimals=1, against="gruppe", source=ssb("12143")),
+                measure("Kommunens netto lånegjeld per innbygger", fy, fin("12137", "KG31"), unit="kr", against="gruppe", source=ssb("12137")),
+                measure("Renter og avdrag (netto), andel av kommunens driftsinntekter", fy, fin("12143", "AGD86"), unit="%", decimals=1, against="gruppe", source=ssb("12143")),
+                measure("Gjeld der renteendringer slår inn, andel av kommunens driftsinntekter", fy, fin("12143", "KG39"), unit="%", decimals=1, against="gruppe", source=ssb("12143")),
             ],
         },
         {
@@ -163,8 +163,8 @@ def main() -> int:
             "tittel": "Disposisjonsfondet og året så langt",
             "tekst": "Disposisjonsfondet er sparepenger kommunen kan bruke når utgiftene blir høyere eller inntektene lavere enn budsjettert, så størrelsen kan påvirke hvor stort underskudd kommunen kan dekke selv.",
             "maal": [
-                measure("Disposisjonsfond, andel av driftsinntektene", fy, fin("12143", "56"), unit="%", decimals=1, against="gruppe", source=ssb("12143")),
-                measure("Netto driftsresultat, andel av driftsinntektene", fy, fin("12143", "AGD23"), unit="%", decimals=1, kind="change", against="gruppe", source=ssb("12143")),
+                measure("Kommunens disposisjonsfond (sparepenger), andel av driftsinntektene", fy, fin("12143", "56"), unit="%", decimals=1, against="gruppe", source=ssb("12143")),
+                measure("Kommunens netto driftsresultat (overskudd), andel av driftsinntektene", fy, fin("12143", "AGD23"), unit="%", decimals=1, kind="change", against="gruppe", source=ssb("12143")),
             ],
         },
         {
@@ -173,8 +173,8 @@ def main() -> int:
             "tittel": "Inntektene og utgiftene",
             "tekst": "Kommunen kan bare bruke det den får inn, låner eller tar av fond, så inntektene kan påvirke hvor mye som går til tjenester.",
             "maal": [
-                measure("Driftsinntekter per innbygger", fy, fin("12137", "AGD13"), unit="kr", against="gruppe", source=ssb("12137")),
-                measure("Eiendomsskatt per innbygger", fy, fin("12137", "AG10"), unit="kr", against="gruppe", source=ssb("12137")),
+                measure("Kommunens driftsinntekter per innbygger", fy, fin("12137", "AGD13"), unit="kr", against="gruppe", source=ssb("12137")),
+                measure("Eiendomsskatt kommunen får inn, per innbygger", fy, fin("12137", "AG10"), unit="kr", against="gruppe", source=ssb("12137")),
             ],
         },
     ]
@@ -202,9 +202,9 @@ def main() -> int:
             "tittel": "Nye boliger og folketallet",
             "tekst": "Nye boliger gir plass til flere husholdninger, så hvor mye som bygges, kan påvirke hvor mange som kan flytte til eller bli boende.",
             "maal": [
-                measure(f"Fullførte boliger {span[0]}–{span[-1]} per 1000 innbyggere", span[-1], {k: built(k) for k in hk}, unit="", decimals=1,
+                measure(f"Nye boliger fullført {span[0]}–{span[-1]}, per 1000 innbyggere", span[-1], {k: built(k) for k in hk}, unit="", decimals=1,
                         against="nordland", source=ssb("05940", "delt på folketallet"), computed=True),
-                measure(f"Endring i folketallet {B['compare']['first']}–{by}", by, pop("change"), unit="%", decimals=1, kind="change", against="gruppe", source=ssb("07459")),
+                measure(f"Endring i antall innbyggere fra {B['compare']['first']} til {by}", by, pop("change"), unit="%", decimals=1, kind="change", against="gruppe", source=ssb("07459")),
             ],
         },
         {
@@ -213,9 +213,9 @@ def main() -> int:
             "tittel": "Husholdningene og boligene",
             "tekst": "Hvem folk bor sammen med, kan påvirke hvilke boliger det er behov for, for eksempel små leiligheter for dem som bor alene.",
             "maal": [
-                measure("Husholdninger der én bor alene, andel", B["households"]["year"],
+                measure("Andel av husholdningene der én person bor alene", B["households"]["year"],
                         {"narvik": hh["alene"]["share"], "landet": hh["alene"]["landet"]}, unit="%", decimals=1, against="landet", source=ssb("06070")),
-                measure("Boliger i blokk, andel", H["year"], blokk, unit="%", against="nordland", source=ssb("12941")),
+                measure("Andel av alle boliger som ligger i boligblokk", H["year"], blokk, unit="%", against="nordland", source=ssb("12941")),
             ],
         },
         {
@@ -224,10 +224,10 @@ def main() -> int:
             "tittel": "Kommunale boliger og hva de koster",
             "tekst": "Hvor mange boliger kommunen disponerer, og om den eier dem eller leier dem inn, kan påvirke hva boligtjenesten koster.",
             "maal": [
-                measure("Kommunalt disponerte boliger per 1000 innbyggere", mun_y, {k: v.get("per_1000") for k, v in mun.items()}, unit="", against="gruppe", source=ssb("12008")),
-                measure("Andel leid inn fra andre", mun_y, {k: round(v["rented_in"] / v["total"] * 100) for k, v in mun.items() if v.get("total")},
+                measure("Kommunale boliger, eid eller leid inn av kommunen, per 1000 innbyggere", mun_y, {k: v.get("per_1000") for k, v in mun.items()}, unit="", against="gruppe", source=ssb("12008")),
+                measure("Andel av de kommunale boligene som kommunen leier inn fra andre", mun_y, {k: round(v["rented_in"] / v["total"] * 100) for k, v in mun.items() if v.get("total")},
                         unit="%", against="gruppe", source=ssb("12008", "regnet ut her"), computed=True),
-                measure("Kommunale boliger, netto per innbygger", y, area_pc("bolig"), unit="kr", against="gruppe", source=ssb("12362")),
+                measure("Kommunens netto utgifter til kommunale boliger per innbygger", y, area_pc("bolig"), unit="kr", against="gruppe", source=ssb("12362")),
             ],
         },
     ]
@@ -253,9 +253,9 @@ def main() -> int:
             "tittel": "Sysselsettingen og skatteinntektene",
             "tekst": "Kommunen får skatt fra inntekten til dem som bor der, så hvor mange som er i arbeid, kan påvirke skatteinntektene.",
             "maal": [
-                measure("Sysselsatte 15–74 år, andel av befolkningen", ey, {k: A["employment"].get(k, {}).get(ey, {}).get("15-74|0") for k in ak},
+                measure("Andel av innbyggerne 15–74 år som er i arbeid", ey, {k: A["employment"].get(k, {}).get(ey, {}).get("15-74|0") for k in ak},
                         unit="%", decimals=1, against="norge", source=ssb("06445")),
-                measure("Skatt på inntekt og formue per innbygger", fy, fin("12137", "AG12"), unit="kr", against="gruppe", source=ssb("12137")),
+                measure("Skatt på inntekt og formue kommunen får inn, per innbygger", fy, fin("12137", "AG12"), unit="kr", against="gruppe", source=ssb("12137")),
             ],
         },
         {
@@ -264,11 +264,11 @@ def main() -> int:
             "tittel": "Utenfor arbeid og utgiftene til sosialtjenester og NAV",
             "tekst": "Når flere står utenfor arbeid, kan flere trenge hjelp fra NAV-kontoret, for eksempel økonomisk sosialhjelp.",
             "maal": [
-                measure("Helt ledige, andel av arbeidsstyrken", f"{MONTHS[int(month[5:]) - 1]} {month[:4]}", {k: A["nav"]["ledige"].get(k, {}).get(month, {}).get("pct") for k in ak},
+                measure("Helt ledige registrert hos Nav, andel av arbeidsstyrken", f"{MONTHS[int(month[5:]) - 1]} {month[:4]}", {k: A["nav"]["ledige"].get(k, {}).get(month, {}).get("pct") for k in ak},
                         unit="%", decimals=1, against="norge", source={"tekst": "Nav, tabell HL060 helt ledige", "url": "https://www.nav.no/no/nav-og-samfunn/statistikk/arbeidssokere-og-stillinger-statistikk/helt-ledige"}),
-                measure("20–66 år på arbeidsavklaringspenger eller uføretrygd, andel", sy, status_share("U.04-U.05"), unit="%", decimals=1,
+                measure("Andel av innbyggerne 20–66 år som får arbeidsavklaringspenger eller uføretrygd", sy, status_share("U.04-U.05"), unit="%", decimals=1,
                         against="norge", source=ssb("13563", "regnet ut her"), computed=True),
-                measure("Sosialtjenester og NAV, netto per innbygger", y, area_pc("sosial"), unit="kr", against="gruppe", source=ssb("12362")),
+                measure("Kommunens netto utgifter til sosialtjenester og NAV per innbygger", y, area_pc("sosial"), unit="kr", against="gruppe", source=ssb("12362")),
             ],
         },
     ]
@@ -277,20 +277,20 @@ def main() -> int:
     # belongs to the page it is shown on; the links above borrow them. Utgifter also gets every service area. The area pages
     # already compare their own numbers, so they get no list.
     home = {
-        "Innbyggere": ["befolkning"], "Endring i folketallet": ["befolkning"], "Husholdninger": ["befolkning"],
-        "Frie inntekter": ["inntekter"], "Rammetilskudd": ["inntekter"], "Disposisjonsfond": ["inntekter"], "Netto driftsresultat": ["inntekter"],
-        "Driftsinntekter": ["inntekter"], "Eiendomsskatt": ["inntekter"], "Skatt på inntekt": ["inntekter"],
-        "Netto lånegjeld": ["gjeld"], "Netto finansutgifter": ["gjeld"], "Renteeksponert": ["gjeld"],
-        "Fullførte boliger": ["bolig"], "Boliger i blokk": ["bolig"], "Kommunalt disponerte": ["bolig"], "Andel leid inn": ["bolig"],
-        "Sysselsatte": ["arbeid"], "Helt ledige": ["arbeid"], "20–66 år": ["arbeid"],
+        "Andel av innbyggerne som er": ["befolkning"], "Endring i antall innbyggere": ["befolkning"], "Andel av husholdningene": ["befolkning"],
+        "Kommunens frie inntekter": ["inntekter"], "Rammetilskudd": ["inntekter"], "Kommunens disposisjonsfond": ["inntekter"],
+        "Kommunens netto driftsresultat": ["inntekter"], "Kommunens driftsinntekter": ["inntekter"], "Eiendomsskatt": ["inntekter"], "Skatt på inntekt": ["inntekter"],
+        "Kommunens netto lånegjeld": ["gjeld"], "Renter og avdrag": ["gjeld"], "Gjeld der renteendringer": ["gjeld"],
+        "Nye boliger": ["bolig"], "Andel av alle boliger": ["bolig"], "Kommunale boliger,": ["bolig"], "Andel av de kommunale boligene": ["bolig"],
+        "Andel av innbyggerne 15–74": ["arbeid"], "Helt ledige": ["arbeid"], "Andel av innbyggerne 20–66": ["arbeid"],
     }
     pool = [m for link in links for m in link["maal"]]
     for key, c in cats.items():
         if key in ("pensjon", "annet"):
             continue
-        pool.append(measure(f"{c['name']}, netto per innbygger", y, area_pc(key), unit="kr", against="gruppe", source=ssb("12362")))
+        pool.append(measure(f"Kommunens netto utgifter til {c['name'][0].lower() + c['name'][1:]} per innbygger", y, area_pc(key), unit="kr", against="gruppe", source=ssb("12362")))
         pool[-1]["sider"] = ["utgifter"]
-    pool.append(measure("Pensjonsforpliktelser per innbygger", fy, fin("12137", "40"), unit="kr", against="gruppe", source=ssb("12137")))
+    pool.append(measure("Kommunens pensjonsforpliktelser til ansatte, per innbygger", fy, fin("12137", "40"), unit="kr", against="gruppe", source=ssb("12137")))
     pool[-1]["sider"] = ["gjeld"]
     standout: dict = {}
     for m in pool:

@@ -82,7 +82,7 @@
    "tekst": "Sykehjem og hjemmetjenester brukes mest av de eldste, så hvor mange eldre det er, kan påvirke hva helse og omsorg koster.",
    "maal": [
     {
-     "navn": "Innbyggere 80 år og over, andel",
+     "navn": "Andel av innbyggerne som er 80 år eller eldre",
      "aar": "2026",
      "enhet": "%",
      "desimaler": 1,
@@ -107,7 +107,7 @@
      }
     },
     {
-     "navn": "Helse og omsorg, netto per innbygger",
+     "navn": "Kommunens netto utgifter til helse og omsorg per innbygger",
      "aar": "2025",
      "enhet": "kr",
      "desimaler": 0,
@@ -131,7 +131,7 @@
      }
     },
     {
-     "navn": "Helse og omsorg, netto per innbygger 80 år og over",
+     "navn": "Kommunens netto utgifter til helse og omsorg per innbygger 80 år og over",
      "aar": "2025",
      "enhet": "kr",
      "desimaler": 0,
@@ -169,7 +169,7 @@
    "tekst": "Grunnskolen er for barn fra 6 til 15 år, så hvor mange barn det er, kan påvirke hva skolen koster per innbygger.",
    "maal": [
     {
-     "navn": "Innbyggere under 16 år, andel",
+     "navn": "Andel av innbyggerne som er under 16 år",
      "aar": "2026",
      "enhet": "%",
      "desimaler": 1,
@@ -194,7 +194,7 @@
      }
     },
     {
-     "navn": "Grunnskole, netto per innbygger",
+     "navn": "Kommunens netto utgifter til grunnskole per innbygger",
      "aar": "2025",
      "enhet": "kr",
      "desimaler": 0,
@@ -218,7 +218,7 @@
      }
     },
     {
-     "navn": "Grunnskole, netto per innbygger 6–15 år",
+     "navn": "Kommunens netto utgifter til grunnskole per innbygger 6–15 år",
      "aar": "2025",
      "enhet": "kr",
      "desimaler": 0,
@@ -255,7 +255,7 @@
    "tekst": "Skatt og rammetilskudd følger i stor grad antall innbyggere, så endringer i folketallet kan påvirke hvor mye kommunen får inn.",
    "maal": [
     {
-     "navn": "Endring i folketallet 2020–2026",
+     "navn": "Endring i antall innbyggere fra 2020 til 2026",
      "aar": "2026",
      "enhet": "%",
      "desimaler": 1,
@@ -279,7 +279,7 @@
      }
     },
     {
-     "navn": "Frie inntekter per innbygger",
+     "navn": "Kommunens frie inntekter (skatt og rammetilskudd) per innbygger",
      "aar": "2025",
      "enhet": "kr",
      "desimaler": 0,
@@ -303,7 +303,7 @@
      }
     },
     {
-     "navn": "Rammetilskudd per innbygger",
+     "navn": "Rammetilskudd fra staten per innbygger",
      "aar": "2025",
      "enhet": "kr",
      "desimaler": 0,
@@ -342,7 +342,7 @@
    "tekst": "Renter og avdrag betales fra driften, så gjelden kan påvirke hvor mye som er igjen til tjenester.",
    "maal": [
     {
-     "navn": "Netto lånegjeld per innbygger",
+     "navn": "Kommunens netto lånegjeld per innbygger",
      "aar": "2025",
      "enhet": "kr",
      "desimaler": 0,
@@ -366,7 +366,7 @@
      }
     },
     {
-     "navn": "Netto finansutgifter, andel av driftsinntektene",
+     "navn": "Renter og avdrag (netto), andel av kommunens driftsinntekter",
      "aar": "2025",
      "enhet": "%",
      "desimaler": 1,
@@ -391,7 +391,7 @@
      }
     },
     {
-     "navn": "Renteeksponert gjeld, andel av driftsinntektene",
+     "navn": "Gjeld der renteendringer slår inn, andel av kommunens driftsinntekter",
      "aar": "2025",
      "enhet": "%",
      "desimaler": 1,
@@ -429,7 +429,7 @@
    "tekst": "Disposisjonsfondet er sparepenger kommunen kan bruke når utgiftene blir høyere eller inntektene lavere enn budsjettert, så størrelsen kan påvirke hvor stort underskudd kommunen kan dekke selv.",
    "maal": [
     {
-     "navn": "Disposisjonsfond, andel av driftsinntektene",
+     "navn": "Kommunens disposisjonsfond (sparepenger), andel av driftsinntektene",
      "aar": "2025",
      "enhet": "%",
      "desimaler": 1,
@@ -454,7 +454,7 @@
      }
     },
     {
-     "navn": "Netto driftsresultat, andel av driftsinntektene",
+     "navn": "Kommunens netto driftsresultat (overskudd), andel av driftsinntektene",
      "aar": "2025",
      "enhet": "%",
      "desimaler": 1,
@@ -491,7 +491,7 @@
    "tekst": "Kommunen kan bare bruke det den får inn, låner eller tar av fond, så inntektene kan påvirke hvor mye som går til tjenester.",
    "maal": [
     {
-     "navn": "Driftsinntekter per innbygger",
+     "navn": "Kommunens driftsinntekter per innbygger",
      "aar": "2025",
      "enhet": "kr",
      "desimaler": 0,
@@ -515,7 +515,7 @@
      }
     },
     {
-     "navn": "Eiendomsskatt per innbygger",
+     "navn": "Eiendomsskatt kommunen får inn, per innbygger",
      "aar": "2025",
      "enhet": "kr",
      "desimaler": 0,
@@ -551,7 +551,7 @@
    "tekst": "Nye boliger gir plass til flere husholdninger, så hvor mye som bygges, kan påvirke hvor mange som kan flytte til eller bli boende.",
    "maal": [
     {
-     "navn": "Fullførte boliger 2021–2025 per 1000 innbyggere",
+     "navn": "Nye boliger fullført 2021–2025, per 1000 innbyggere",
      "aar": "2025",
      "enhet": "",
      "desimaler": 1,
@@ -574,7 +574,7 @@
      }
     },
     {
-     "navn": "Endring i folketallet 2020–2026",
+     "navn": "Endring i antall innbyggere fra 2020 til 2026",
      "aar": "2026",
      "enhet": "%",
      "desimaler": 1,
@@ -610,7 +610,7 @@
    "tekst": "Hvem folk bor sammen med, kan påvirke hvilke boliger det er behov for, for eksempel små leiligheter for dem som bor alene.",
    "maal": [
     {
-     "navn": "Husholdninger der én bor alene, andel",
+     "navn": "Andel av husholdningene der én person bor alene",
      "aar": "2026",
      "enhet": "%",
      "desimaler": 1,
@@ -631,7 +631,7 @@
      }
     },
     {
-     "navn": "Boliger i blokk, andel",
+     "navn": "Andel av alle boliger som ligger i boligblokk",
      "aar": "2026",
      "enhet": "%",
      "desimaler": 0,
@@ -668,7 +668,7 @@
    "tekst": "Hvor mange boliger kommunen disponerer, og om den eier dem eller leier dem inn, kan påvirke hva boligtjenesten koster.",
    "maal": [
     {
-     "navn": "Kommunalt disponerte boliger per 1000 innbyggere",
+     "navn": "Kommunale boliger, eid eller leid inn av kommunen, per 1000 innbyggere",
      "aar": "2025",
      "enhet": "",
      "desimaler": 0,
@@ -692,7 +692,7 @@
      }
     },
     {
-     "navn": "Andel leid inn fra andre",
+     "navn": "Andel av de kommunale boligene som kommunen leier inn fra andre",
      "aar": "2025",
      "enhet": "%",
      "desimaler": 0,
@@ -717,7 +717,7 @@
      }
     },
     {
-     "navn": "Kommunale boliger, netto per innbygger",
+     "navn": "Kommunens netto utgifter til kommunale boliger per innbygger",
      "aar": "2025",
      "enhet": "kr",
      "desimaler": 0,
@@ -751,7 +751,7 @@
    "tekst": "Kommunen får skatt fra inntekten til dem som bor der, så hvor mange som er i arbeid, kan påvirke skatteinntektene.",
    "maal": [
     {
-     "navn": "Sysselsatte 15–74 år, andel av befolkningen",
+     "navn": "Andel av innbyggerne 15–74 år som er i arbeid",
      "aar": "2025",
      "enhet": "%",
      "desimaler": 1,
@@ -776,7 +776,7 @@
      }
     },
     {
-     "navn": "Skatt på inntekt og formue per innbygger",
+     "navn": "Skatt på inntekt og formue kommunen får inn, per innbygger",
      "aar": "2025",
      "enhet": "kr",
      "desimaler": 0,
@@ -813,7 +813,7 @@
    "tekst": "Når flere står utenfor arbeid, kan flere trenge hjelp fra NAV-kontoret, for eksempel økonomisk sosialhjelp.",
    "maal": [
     {
-     "navn": "Helt ledige, andel av arbeidsstyrken",
+     "navn": "Helt ledige registrert hos Nav, andel av arbeidsstyrken",
      "aar": "september 2026",
      "enhet": "%",
      "desimaler": 1,
@@ -838,7 +838,7 @@
      }
     },
     {
-     "navn": "20–66 år på arbeidsavklaringspenger eller uføretrygd, andel",
+     "navn": "Andel av innbyggerne 20–66 år som får arbeidsavklaringspenger eller uføretrygd",
      "aar": "2025",
      "enhet": "%",
      "desimaler": 1,
@@ -863,7 +863,7 @@
      }
     },
     {
-     "navn": "Sosialtjenester og NAV, netto per innbygger",
+     "navn": "Kommunens netto utgifter til sosialtjenester og NAV per innbygger",
      "aar": "2025",
      "enhet": "kr",
      "desimaler": 0,
@@ -893,7 +893,7 @@
  "skiller_seg_ut": {
   "befolkning": [
    {
-    "navn": "Endring i folketallet 2020–2026",
+    "navn": "Endring i antall innbyggere fra 2020 til 2026",
     "aar": "2026",
     "enhet": "%",
     "desimaler": 1,
@@ -917,7 +917,7 @@
     }
    },
    {
-    "navn": "Innbyggere 80 år og over, andel",
+    "navn": "Andel av innbyggerne som er 80 år eller eldre",
     "aar": "2026",
     "enhet": "%",
     "desimaler": 1,
@@ -944,7 +944,7 @@
   ],
   "gjeld": [
    {
-    "navn": "Pensjonsforpliktelser per innbygger",
+    "navn": "Kommunens pensjonsforpliktelser til ansatte, per innbygger",
     "aar": "2025",
     "enhet": "kr",
     "desimaler": 0,
@@ -968,7 +968,7 @@
     }
    },
    {
-    "navn": "Netto lånegjeld per innbygger",
+    "navn": "Kommunens netto lånegjeld per innbygger",
     "aar": "2025",
     "enhet": "kr",
     "desimaler": 0,
@@ -992,7 +992,7 @@
     }
    },
    {
-    "navn": "Netto finansutgifter, andel av driftsinntektene",
+    "navn": "Renter og avdrag (netto), andel av kommunens driftsinntekter",
     "aar": "2025",
     "enhet": "%",
     "desimaler": 1,
@@ -1017,7 +1017,7 @@
     }
    },
    {
-    "navn": "Renteeksponert gjeld, andel av driftsinntektene",
+    "navn": "Gjeld der renteendringer slår inn, andel av kommunens driftsinntekter",
     "aar": "2025",
     "enhet": "%",
     "desimaler": 1,
@@ -1044,7 +1044,7 @@
   ],
   "inntekter": [
    {
-    "navn": "Eiendomsskatt per innbygger",
+    "navn": "Eiendomsskatt kommunen får inn, per innbygger",
     "aar": "2025",
     "enhet": "kr",
     "desimaler": 0,
@@ -1068,7 +1068,7 @@
     }
    },
    {
-    "navn": "Disposisjonsfond, andel av driftsinntektene",
+    "navn": "Kommunens disposisjonsfond (sparepenger), andel av driftsinntektene",
     "aar": "2025",
     "enhet": "%",
     "desimaler": 1,
@@ -1093,7 +1093,7 @@
     }
    },
    {
-    "navn": "Driftsinntekter per innbygger",
+    "navn": "Kommunens driftsinntekter per innbygger",
     "aar": "2025",
     "enhet": "kr",
     "desimaler": 0,
@@ -1119,7 +1119,7 @@
   ],
   "bolig": [
    {
-    "navn": "Andel leid inn fra andre",
+    "navn": "Andel av de kommunale boligene som kommunen leier inn fra andre",
     "aar": "2025",
     "enhet": "%",
     "desimaler": 0,
@@ -1144,7 +1144,7 @@
     }
    },
    {
-    "navn": "Fullførte boliger 2021–2025 per 1000 innbyggere",
+    "navn": "Nye boliger fullført 2021–2025, per 1000 innbyggere",
     "aar": "2025",
     "enhet": "",
     "desimaler": 1,
@@ -1167,7 +1167,7 @@
     }
    },
    {
-    "navn": "Kommunalt disponerte boliger per 1000 innbyggere",
+    "navn": "Kommunale boliger, eid eller leid inn av kommunen, per 1000 innbyggere",
     "aar": "2025",
     "enhet": "",
     "desimaler": 0,
@@ -1191,7 +1191,7 @@
     }
    },
    {
-    "navn": "Boliger i blokk, andel",
+    "navn": "Andel av alle boliger som ligger i boligblokk",
     "aar": "2026",
     "enhet": "%",
     "desimaler": 0,
@@ -1217,7 +1217,7 @@
   ],
   "arbeid": [
    {
-    "navn": "Helt ledige, andel av arbeidsstyrken",
+    "navn": "Helt ledige registrert hos Nav, andel av arbeidsstyrken",
     "aar": "september 2026",
     "enhet": "%",
     "desimaler": 1,
@@ -1242,7 +1242,7 @@
     }
    },
    {
-    "navn": "20–66 år på arbeidsavklaringspenger eller uføretrygd, andel",
+    "navn": "Andel av innbyggerne 20–66 år som får arbeidsavklaringspenger eller uføretrygd",
     "aar": "2025",
     "enhet": "%",
     "desimaler": 1,
@@ -1269,7 +1269,7 @@
   ],
   "utgifter": [
    {
-    "navn": "Plan, næring og natur, netto per innbygger",
+    "navn": "Kommunens netto utgifter til plan, næring og natur per innbygger",
     "aar": "2025",
     "enhet": "kr",
     "desimaler": 0,
@@ -1293,7 +1293,7 @@
     }
    },
    {
-    "navn": "Brann og beredskap, netto per innbygger",
+    "navn": "Kommunens netto utgifter til brann og beredskap per innbygger",
     "aar": "2025",
     "enhet": "kr",
     "desimaler": 0,
@@ -1317,7 +1317,7 @@
     }
    },
    {
-    "navn": "Veier og samferdsel, netto per innbygger",
+    "navn": "Kommunens netto utgifter til veier og samferdsel per innbygger",
     "aar": "2025",
     "enhet": "kr",
     "desimaler": 0,
@@ -1341,7 +1341,7 @@
     }
    },
    {
-    "navn": "Kultur og idrett, netto per innbygger",
+    "navn": "Kommunens netto utgifter til kultur og idrett per innbygger",
     "aar": "2025",
     "enhet": "kr",
     "desimaler": 0,
@@ -1365,7 +1365,7 @@
     }
    },
    {
-    "navn": "Administrasjon og politikk, netto per innbygger",
+    "navn": "Kommunens netto utgifter til administrasjon og politikk per innbygger",
     "aar": "2025",
     "enhet": "kr",
     "desimaler": 0,
@@ -1389,7 +1389,7 @@
     }
    },
    {
-    "navn": "Helse og omsorg, netto per innbygger",
+    "navn": "Kommunens netto utgifter til helse og omsorg per innbygger",
     "aar": "2025",
     "enhet": "kr",
     "desimaler": 0,
@@ -1413,7 +1413,7 @@
     }
    },
    {
-    "navn": "Kirke og gravplasser, netto per innbygger",
+    "navn": "Kommunens netto utgifter til kirke og gravplasser per innbygger",
     "aar": "2025",
     "enhet": "kr",
     "desimaler": 0,
