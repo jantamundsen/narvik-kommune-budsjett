@@ -164,3 +164,7 @@ Les også rapporten etter tall som forklarer avvikene (sykefravær, vikarbyrå, 
 For år som er avsluttet brukes årsrapporten (vedlegg til årsregnskapet i formannskapet i juni), fordi den gjelder hele året slik regnskapet på siden gjør. Punkter fra tertialrapporten for et avsluttet år står bare der årsrapporten ikke sier noe om temaet, for eksempel husleie for sommervikarer. Gir årsrapporten sykefravær bare for hele kommunen, beholdes tertialtallet for de kommunalområdene årsrapporten ikke nevner, med en merknad om at det gjelder januar–august. Når årsrapporten for året kommer, bytt ut tertialpunktene den dekker.
 
 Kjør `python scripts/build_fakta.py`. Skriptet stopper med en feilmelding hvis et punkt mangler kilde eller side, eller peker på et område som ikke finnes. Punktene vises i den rekkefølgen de står i filen, og de tre første for hvert område vises uten å trykke.
+
+## Lisens
+
+Koden er lisensiert under [PolyForm Noncommercial 1.0.0](LICENSE): den kan leses, brukes og endres til ikke-kommersielle formål. Tekstene, faktaarkene og sammenstillingene på siden er lisensiert under CC BY 4.0, se [LICENSE-innhold.md](LICENSE-innhold.md) for hva det dekker. Tallene selv følger vilkårene til kilden: SSB under CC BY 4.0, Nav og Brønnøysundregistrene under NLOD 2.0, og kommunens dokumenter er offentlige. Oppgi den opprinnelige kilden når du bruker et tall.
