@@ -38,9 +38,13 @@ const dateText = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nb-NO', 
       <div class="section-head"><h2 id="h-role">Kommunens rolle og penger</h2></div>
       <ul class="fact-list">${S.rolle.map(r => `<li class="fact"><p>${esc(r.tekst)}</p><p class="caption fact-src">Kilde: ${note(r.kilde)}</p></li>`).join('')}</ul>
     </section>`;
+  // Newest first. The config keeps them oldest first (build_saker.py checks the order); after the first few,
+  // the rest are behind a button so a long timeline doesn't push the rest of the page down.
+  const SHOWN = 5, events = [...S.tidslinje].reverse();
   const time = `<section aria-labelledby="h-time">
-      <div class="section-head"><h2 id="h-time">Tidslinje</h2></div>
-      <ol class="timeline">${S.tidslinje.map(t => `<li><span class="tl-date num">${esc(t.dato)}</span><div><p>${esc(t.tekst)}</p><p class="caption">Kilde: ${note(t.kilde)}</p></div></li>`).join('')}</ol>
+      <div class="section-head"><h2 id="h-time">Tidslinje</h2><p class="lead">Nyeste først.</p></div>
+      <ol class="timeline" id="timeline">${events.map((t, i) => `<li${i >= SHOWN ? ' hidden' : ''}><span class="tl-date num">${esc(t.dato)}</span><div><p>${esc(t.tekst)}</p><p class="caption">Kilde: ${note(t.kilde)}</p></div></li>`).join('')}</ol>
+      ${events.length > SHOWN ? `<button type="button" class="btn tl-more" id="tl-more">Vis hele tidslinjen (${events.length - SHOWN} til)</button>` : ''}
     </section>`;
   // «Bak tallene» points from fakta.json, one group per year, the newest open.
   let facts = '';
@@ -73,6 +77,10 @@ const dateText = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nb-NO', 
     </header>
     <section aria-label="Nøkkeltall"><div class="stats3 sak-stats" style="--n:${S.nokkeltall.length}">${stats}</div></section>
     ${tab}${role}${time}${facts}${links}${docs}`;
+  document.getElementById('tl-more')?.addEventListener('click', e => {
+    document.querySelectorAll('#timeline li[hidden]').forEach(li => { li.hidden = false; });
+    e.currentTarget.remove();
+  });
   const t = document.getElementById('sak-table');
   if (t) stackable(t);
 })();
