@@ -4,7 +4,7 @@
 // marked «beregnet» when it is computed here. Per pupil, per child and per inhabitant in an age group come from
 // site/data/malgruppe.json (SSB's own key figures, and for helse og omsorg netto per inhabitant in an age group, «beregnet»). Facts from the kommune's own reports come from site/data/fakta.json.
 // Helpers are in common.js.
-let N, D, S, M, F, B, area, years, year, prev, scope; // S: sammenligning.json, only loaded for a cost type page; M: malgruppe.json; F: fakta.json; B: befolkning.json, only for helse og omsorg
+let N, D, S, M, F, B, E, area, years, year, prev, scope; // S: sammenligning.json, only loaded for a cost type page; M: malgruppe.json; F: fakta.json; B: befolkning.json, only for helse og omsorg; E: eldre.json, only on the helse og omsorg area page
 const q = new URLSearchParams(location.search);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 const mill = (v, d = 1) => (v == null ? '·' : nb(v / 1000, d));
@@ -37,8 +37,8 @@ async function start() {
   const svc = services().find(s => s.key === q.get('tjeneste'));
   const grp = svc && D.groups.find(g => g.key === q.get('art'));
   const optional = u => fetch(u, { cache: 'no-cache' }).then(r => (r.ok ? r.json() : null)).catch(() => null);
-  const [facts, extra, pop] = await Promise.all([optional('data/fakta.json'), optional(grp ? 'data/sammenligning.json' : 'data/malgruppe.json'), area.key === 'helse' && !grp ? optional('data/befolkning.json') : null]);
-  F = facts; B = pop;
+  const [facts, extra, pop, old] = await Promise.all([optional('data/fakta.json'), optional(grp ? 'data/sammenligning.json' : 'data/malgruppe.json'), area.key === 'helse' && !grp ? optional('data/befolkning.json') : null, area.key === 'helse' && !svc ? optional('data/eldre.json') : null]);
+  F = facts; B = pop; E = old;
   if (grp) S = extra; else M = extra;
   const render = () => { page.innerHTML = grp ? typePage(svc, grp) : svc ? servicePage(svc) : areaPage(); };
   render();
@@ -205,6 +205,8 @@ function areaPage() {
       source: `<a href="${esc(ssbCompareUrl(N, area.functions, years))}" target="_blank" rel="noopener">Se tallene hos SSB</a> (tabell 12362, beløp per innbygger, summert over funksjonene).` }, null));
   }
 
+  if (area.key === 'helse') html += careSection();
+
   html += `<details class="drill-sec all-numbers"><summary>Vis alle tall per KOSTRA-funksjon</summary><div class="detail-scroll"><table class="num-table"><tr><th>KOSTRA-funksjon (1000 kr)</th>${years.map(y => `<th${y === year ? ' class="sel"' : ''}>${y}</th>`).join('')}</tr>
     ${all.filter(f => years.some(y => N.functions[f].narvik_1000kr[y])).map(f => `<tr><td>${f} ${esc(N.functions[f].name)}</td>${years.map(y => { const x = N.functions[f].narvik_1000kr[y]; return `<td${y === year ? ' class="sel"' : ''}>${x == null ? '·' : nb(x)}</td>`; }).join('')}</tr>`).join('')}
     <tr class="sum"><td>Sum</td>${years.map(y => `<td${y === year ? ' class="sel"' : ''}>${nb(area.narvik_1000kr[y])}</td>`).join('')}</tr></table></div>
@@ -279,6 +281,48 @@ function outlook(lo) {
   const to = O?.['2040'] ? '2040' : Object.keys(O || {}).sort().at(-1);
   if (now == null || !to || to === B.last || O[to][lo] == null) return '';
   return `<div class="status-note outlook"><p><strong>Hvor mange blir de?</strong> 1. januar ${B.last} bodde det ${nb(now)} innbyggere ${lo} år og over i Narvik. SSBs framskriving venter rundt ${nb(Math.round(O[to][lo] / 10) * 10)} i ${to}. <a href="befolkning?aar=${to}#pyramide">Se befolkningspyramiden for ${to}</a>.</p></div>`;
+}
+
+// «Kapasitet i eldreomsorgen» on the helse og omsorg area page, from data/eldre.json (scripts/fetch_eldre.py):
+// overliggerdøgn per kommune from Helsedirektoratet, the overliggerdøgn the kommune reports itself, and SSB's
+// figures on places and the share of the oldest in an institution. Follows the selected year where there are numbers.
+function careSection() {
+  if (!E) return '';
+  const O = E.overliggere, regs = [['narvik', 'Narvik'], ...N.compare.filter(r => O.values[r.key]).map(r => [r.key, r.name]), ['norge', 'Hele landet']];
+  const oy = O.values.narvik?.[year] ? year : Object.keys(O.values.narvik || {}).at(-1);
+  let html = `<section class="drill-sec" id="eldreomsorg"><h2>Kapasitet i eldreomsorgen</h2>`;
+  if (oy) {
+    const me = O.values.narvik[oy], land = O.values.norge?.[oy];
+    html += `<p class="lead">${oy === year ? '' : `Helsedirektoratet har ikke tall for ${year} ennå. `}I ${oy} lå pasienter fra Narvik ${nb(me.dogn)} døgn på sykehus etter at de var meldt utskrivningsklare. Det er ${nb(me.rate, 1)} døgn per 1 000 innbyggere${land ? `, mot ${nb(land.rate, 1)} i hele landet` : ''}.</p>`;
+    const rows = regs.map(([k, name]) => ({ k, name, v: O.values[k]?.[oy] })).filter(r => r.v?.rate != null).sort((a, b) => b.v.rate - a.v.rate);
+    const max = Math.max(...rows.map(r => r.v.rate), 1);
+    html += `<div class="rank cmp-bars">${rows.map(r => `<div class="rank-row${r.k === 'narvik' ? ' me' : ''}"><span class="rank-name">${esc(r.name)}<small>${nb(r.v.dogn)} døgn</small></span><span class="rank-track"><span class="rank-fill" style="width:${r.v.rate / max * 100}%"></span></span><span class="rank-amt num">${nb(r.v.rate, 1)}</span><span class="rank-note num">${r.k === 'narvik' ? '' : 'Narvik ' + chgText(pct(me.rate, r.v.rate))}</span><span></span></div>`).join('')}</div>`;
+    const oys = Object.keys(O.values.narvik);
+    html += `<details class="all-numbers"><summary>Vis alle år</summary><div class="detail-scroll"><table class="num-table"><tr><th>Døgn per 1 000 innbyggere (antall døgn)</th>${oys.map(y => `<th${y === oy ? ' class="sel"' : ''}>${y}</th>`).join('')}</tr>
+      ${regs.map(([k, name]) => `<tr${k === 'narvik' ? ' class="sum"' : ''}><td>${esc(name)}</td>${oys.map(y => { const v = O.values[k]?.[y]; return `<td${y === oy ? ' class="sel"' : ''}>${v?.rate == null ? '·' : `${nb(v.rate, 1)} <small>(${nb(v.dogn)})</small>`}</td>`; }).join('')}</tr>`).join('')}</table></div></details>`;
+    html += `<p class="caption">Overliggerdøgn er døgn en pasient ligger på sykehus etter å ha blitt meldt utskrivningsklar. Tallene gjelder somatiske sykehus, etter hvor pasienten bor. Døgnene per 1 000 innbyggere er justert for kjønn og alder, så kommuner med mange eldre kan sammenlignes med andre. Kilde: <a href="${esc(O.url)}" target="_blank" rel="noopener">Helsedirektoratet, SAMDATA</a>, data fra ${esc(O.datakilde)}. Tallene er hentet fra rapporten på siden ${new Date(O.hentet).toLocaleDateString('nb-NO', { day: 'numeric', month: 'long', year: 'numeric' })}.</p>`;
+  }
+
+  const own = E.kommunens_overliggerdogn || [];
+  if (own.length && F?.kilder) {
+    html += `<h3 class="sub-h">Det kommunen selv rapporterer</h3><div class="detail-scroll"><table class="num-table"><tr><th>År</th><th>Overliggerdøgn</th><th>Kilde</th></tr>
+      ${[...own].reverse().map(o => { const k = F.kilder[o.kilde.id]; return `<tr${o.aar === year ? ' class="sel"' : ''}><td>${o.aar}${o.periode === 'hele året' ? '' : `, ${esc(o.periode)}`}</td><td>${nb(o.dogn)}</td><td style="white-space:normal"><a href="${esc(k.pdf)}#page=${o.kilde.side}" target="_blank" rel="noopener" title="${esc(k.full)}">${esc(k.navn)}, s. ${o.kilde.side}</a></td></tr>`; }).join('')}</table></div>
+      <p class="caption">Kommunen oppgir færre døgn enn Helsedirektoratet. Helsedirektoratet teller fra første gang pasienten blir meldt utskrivningsklar, mens kommunens tall følger døgnene den selv registrerer og betaler for. Derfor står de to seriene hver for seg. Tertialrapport 2/2026 (s. 26) sier at kommunen følger ventelistene for langtidsplass, dagsenter og trygghetsrom hver måned, men tallene er ikke publisert.</p>`;
+  }
+
+  const ssb = E.ssb || [], cy = ssb.some(m => m.values.narvik?.[year] != null) ? year : null;
+  if (cy) {
+    const owns = ssb.filter(m => m.own && m.values.narvik[cy] != null);
+    const cmp = ssb.filter(m => !m.own);
+    const cols = [['narvik', 'Narvik'], ...N.compare.map(r => [r.key, r.name])];
+    const fmt = (m, v) => (v == null ? '·' : nb(v, m.unit === '%' || m.unit === 'døgn' ? 1 : 0) + (m.unit === '%' ? ' %' : ''));
+    html += `<h3 class="sub-h">Plasser og andel eldre i institusjon, ${cy}</h3>`;
+    if (owns.length) html += `<p>${owns.map(m => `${esc(m.name)}: <b class="num">${nb(Math.round(m.values.narvik[cy]))}</b>`).join('. ')}.</p>`;
+    html += `<div class="detail-scroll"><table class="num-table"><tr><th></th>${cols.map(([, n]) => `<th>${esc(n)}</th>`).join('')}</tr>
+      ${cmp.map(m => `<tr><td>${esc(m.name)}</td>${cols.map(([k]) => `<td${k === 'narvik' ? ' class="sel"' : ''}>${fmt(m, m.values[k]?.[cy])}</td>`).join('')}</tr>`).join('')}</table></div>
+      <p class="caption">Kilde: SSB, tabell ${[...new Map(ssb.map(m => [m.table, m])).values()].map(m => `<a href="${esc(m.query)}&outputFormat=html" target="_blank" rel="noopener">${m.table}</a>`).join(', ')}. Plassene er alle plasser i helse- og omsorgsinstitusjoner som kommunen disponerer, i snitt gjennom året. · betyr at SSB ikke har tall.</p>`;
+  }
+  return html + '</section>';
 }
 
 // Sum a per-year value over functions; null when no function has it.
