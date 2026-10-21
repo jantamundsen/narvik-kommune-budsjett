@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Hvor går pengene i Narvik kommune? Netto driftsutgifter fordelt på tjenester, basert på SSBs KOSTRA-tall.">
+<meta name="description" content="Åpne tall om Narvik kommune samlet på ett sted: økonomi, befolkning, bolig, arbeid og næringsliv, og faktaark om utvalgte saker. Kilde for hvert tall.">
 <title>Åpne tall for Narvik</title>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Åpne tall for Narvik">
 <meta property="og:locale" content="nb_NO">
 <meta property="og:title" content="Åpne tall for Narvik">
-<meta property="og:description" content="Hvor går pengene i Narvik kommune? Netto driftsutgifter fordelt på tjenester, basert på SSBs KOSTRA-tall.">
+<meta property="og:description" content="Åpne tall om Narvik kommune samlet på ett sted: økonomi, befolkning, bolig, arbeid og næringsliv, og faktaark om utvalgte saker. Kilde for hvert tall.">
 <meta property="og:image" content="https://narviktall.no/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -27,92 +27,55 @@
 <body>
 <div class="wrap">
   <div class="site-head">
-    <nav class="site-nav" aria-label="Sider"><a class="brand" href="./">Åpne tall for Narvik</a><a href="./" aria-current="true">Økonomi</a><a href="befolkning">Befolkning</a><a href="bolig">Bolig</a><a href="arbeid">Arbeid</a><a href="naering">Næringsliv</a><a href="saker">Utvalgte saker</a><a href="om">Om siden</a></nav>
-    <nav class="sub-nav" aria-label="Økonomi"><a href="./" data-aar aria-current="page">Utgifter</a><a href="inntekter" data-aar>Inntekter</a><a href="gjeld" data-aar>Gjeld</a><span class="sub-sep" aria-hidden="true"></span><a href="budsjett">Budsjett</a><a href="tiltak">Innsparinger</a><a href="lopende">Året så langt</a></nav>
+    <nav class="site-nav" aria-label="Sider"><a class="brand" href="./">Åpne tall for Narvik</a><a href="saker">Utvalgte saker</a><a href="okonomi">Økonomi</a><a href="befolkning">Befolkning</a><a href="bolig">Bolig</a><a href="arbeid">Arbeid</a><a href="naering">Næringsliv</a><a href="om">Om siden</a></nav>
   </div>
   <header>
-    <div class="eyebrow">Narvik kommune · regnskapstall fra SSB</div>
-    <h1>Regnskap for Narvik kommune</h1>
-    <p class="lead">Kommunens netto driftsutgifter fordelt på tjenester, år for år, og sammenlignet med lignende kommuner. Netto betyr det kommunen betaler selv, etter gebyrer, refusjoner og øremerkede tilskudd.</p>
-    <div class="years" role="radiogroup" aria-label="Velg år" id="years"><span>Regnskapsår</span></div>
-    <a class="cross-link" id="budget-link" href="budsjett" hidden></a>
+    <div class="eyebrow">Narvik kommune · offentlige tall på ett sted</div>
+    <h1>Åpne tall for Narvik</h1>
+    <p class="lead">Regnskap og budsjett, befolkning, bolig, arbeid og næringsliv i Narvik kommune, sammenlignet med lignende kommuner. Hvert tall har lenke til kilden, enten det er SSB, Nav, Brønnøysundregistrene eller kommunens egne dokumenter.</p>
   </header>
 
-  <section aria-labelledby="h-sum">
-    <h2 id="h-sum" class="eyebrow" style="font-family:var(--font-body);font-size:.75rem">Oversikt <span id="sum-year"></span></h2>
-    <div class="summary">
-      <div class="stat"><span class="sub">Netto driftsutgifter</span><span class="big num" id="s-total"></span><span class="sub" id="s-total-chg"></span></div>
-      <div class="stat"><span class="sub">Per innbygger</span><span class="big num" id="s-pc"></span><span class="sub" id="s-pop"></span></div>
-      <div class="stat"><span class="sub">Største område</span><span class="big" id="s-top" style="font-size:1.45rem"></span><span class="sub num" id="s-top-sub"></span></div>
-    </div>
-    <p class="equation num" id="equation"></p>
+  <section aria-labelledby="h-key">
+    <div class="section-head"><h2 id="h-key">Nøkkeltall</h2></div>
+    <div class="stats3 front-stats" id="key"></div>
+    <p class="caption" id="key-src"></p>
   </section>
 
-  <section id="skiller-seg-ut" data-side="utgifter" hidden></section>
-
-  <section aria-labelledby="h-note">
+  <section aria-labelledby="h-saker">
     <div class="section-head">
-      <h2 id="h-note">Av hver hundrelapp til tjenester</h2>
-      <p class="lead">Slik fordeler hver 100 kroner seg på tjenesteområdene. Trykk på et område for å gå inn i det.</p>
+      <h2 id="h-saker">Utvalgte saker</h2>
+      <p class="lead">Faktaark om saker mange i Narvik snakker om, med vedtak, datoer og tall fra kommunens egne dokumenter og andre offentlige kilder.</p>
     </div>
-    <div class="note-bar" id="note-bar"></div>
-    <ul class="note-legend" id="note-legend"></ul>
+    <div class="front-cases" id="saker"></div>
   </section>
 
-  <section aria-labelledby="h-ledger">
+  <section aria-labelledby="h-out">
     <div class="section-head">
-      <h2 id="h-ledger">Alle tjenesteområder</h2>
-      <p class="lead">Trykk på et område for å se tjenestene i det, hva pengene går til og hvem som betaler, helt ned til SSBs enkelte arter.</p>
+      <h2 id="h-out">Skiller seg ut</h2>
+      <p class="lead" id="out-lead"></p>
     </div>
-    <div class="ledger" id="ledger">
-      <div class="ledger-head"><span>Område</span><span>Andel</span><span class="r">Mill. kr</span><span class="r">Per innb.</span><span class="r">Endring</span></div>
-    </div>
-    <div class="offsets" id="offsets"></div>
+    <ul class="so-list front-out" id="out"></ul>
+    <p class="caption" id="out-src"></p>
   </section>
 
-  <section aria-labelledby="h-cmp" id="sammenligning">
-    <div class="section-head">
-      <h2 id="h-cmp">Narvik mot sammenlignbare kommuner</h2>
-      <p class="lead" id="cmp-lead"></p>
-    </div>
-    <div class="seg cmp-pick" role="group" aria-label="Sammenlign med" id="cmp-pick"></div>
-    <div class="cmp-list" id="cmp-list"></div>
-    <p class="caption" id="cmp-caption"></p>
-    <details class="all-numbers">
-      <summary>Vis alle sammenligningene</summary>
-      <div class="detail-scroll" id="cmp-table"></div>
-      <p class="caption" id="cmp-group"></p>
-    </details>
-  </section>
-
-  <section aria-labelledby="h-trend">
-    <div class="section-head">
-      <h2 id="h-trend">Utviklingen 2021–2025</h2>
-      <p class="lead" id="trend-lead"></p>
-    </div>
-    <div class="chart" id="trend-chart"></div>
-    <p class="caption">Løpende kroner, ikke justert for prisvekst. Narvik fikk ny kommunegrense i 2020, så serien starter etter sammenslåingen.</p>
-  </section>
-
-  <section id="sammenhenger" data-side="utgifter" hidden></section>
-
-  <section aria-labelledby="h-notes">
-    <h2 id="h-notes">Slik leser du tallene</h2>
-    <div class="notes">
-      <div><h3>Regnskap og budsjett</h3><p>Tallene her er SSBs regnskapstall, fordelt på KOSTRA-funksjoner. <a href="budsjett">Budsjett mot regnskap</a> bruker kommunens egne tjenesteområder, slik kommunestyret vedtar rammene. Inndelingene er ulike, så tallene på de to sidene kan ikke sammenlignes direkte.</p></div>
-      <div><h3>Hvorfor er vann og avløp negativt?</h3><p>Vann, avløp og renovasjon betales av gebyrer. Gebyrinntektene er større enn kostnadene som føres på disse funksjonene, så netto blir negativt.</p></div>
-      <div><h3>Pensjonsposter</h3><p>Premieavvik og premiefond er regnskapsføringer som svinger med hundrevis av millioner mellom år. De er ikke en tjeneste og vises derfor for seg.</p></div>
-      <div><h3>Hvem Narvik sammenlignes med</h3><p>KOSTRA-gruppe 9 er SSBs gruppe for kommuner med 20 000 til 29 999 innbyggere. Harstad, Rana og Alta er i samme gruppe og ligger i Nord-Norge. Harstad og Rana har omtrent like stor andel over 80 år som Narvik, rundt 6 %, mens Alta har 4 % (<a href="https://www.ssb.no/statbank/table/07459" target="_blank" rel="noopener">SSB 07459</a>, 1.1.2026). Alle tall er per innbygger, slik at kommunenes størrelse ikke teller. Kommuner organiserer også tjenester ulikt, for eksempel i interkommunale selskap, og det kan flytte utgifter mellom områder.</p></div>
+  <section aria-labelledby="h-areas">
+    <div class="section-head"><h2 id="h-areas">Alle områdene</h2></div>
+    <div class="front-areas">
+      <a class="front-area" href="okonomi"><b>Økonomi</b><span>Hva kommunen bruker penger på, hvor pengene kommer fra, gjeld og investeringer.</span><small><span>Utgifter</span><span>Inntekter</span><span>Gjeld</span><span>Budsjett</span><span>Innsparinger</span><span>Året så langt</span></small></a>
+      <a class="front-area" href="befolkning"><b>Befolkning</b><span>Hvor mange som bor i Narvik, alder, delområder og SSBs framskriving til 2050.</span></a>
+      <a class="front-area" href="bolig"><b>Bolig</b><span>Boligtyper, nye boliger, priser, eie og leie, og kommunale boliger.</span></a>
+      <a class="front-area" href="arbeid"><b>Arbeid</b><span>Ledighet og ledige stillinger fra Nav, hvem som har arbeid, og pendling.</span></a>
+      <a class="front-area" href="naering"><b>Næringsliv</b><span>Bedrifter, nye foretak, konkurser og de største arbeidsplassene.</span></a>
+      <a class="front-area" href="saker"><b>Utvalgte saker</b><span>Faktaark om saker mange snakker om.</span></a>
     </div>
   </section>
 
   <footer>
-    <span>Kilde: <a href="https://www.ssb.no/statbank/table/12362" target="_blank" rel="noopener">SSB, tabell 12362</a> (KOSTRA), art AGD2 netto driftsutgifter, region 1806 Narvik. Utgifts- og inntektsartene på områdesidene er fra <a href="https://www.ssb.no/statbank/table/12367" target="_blank" rel="noopener">tabell 12367</a>. Hentet <span id="generated"></span>.</span>
-    <span>Folketall er beregnet fra SSBs beløp per innbygger. <a href="https://github.com/jtkarlsen/narvik-kommune-budsjett" target="_blank" rel="noopener">Kildekode</a>.</span>
-    <span>Et åpent hobbyprosjekt laget av <a href="https://janamundsen.dev" target="_blank" rel="noopener">Jan Amundsen</a>, ikke av Narvik kommune. <a href="om">Om siden</a>.</span>
+    <span>Tallene hentes automatisk fra SSB, Nav og Brønnøysundregistrene, sist <span id="generated"></span>. <a href="om">Om siden</a> forteller hvor tallene kommer fra og hvordan du kan bruke dem.</span>
+    <span>Et åpent hobbyprosjekt laget av <a href="https://janamundsen.dev" target="_blank" rel="noopener">Jan Amundsen</a>, ikke av Narvik kommune. <a href="https://github.com/jtkarlsen/narvik-kommune-budsjett" target="_blank" rel="noopener">Kildekode</a>.</span>
   </footer>
 </div>
 <script src="common.js"></script>
-<script src="app.js"></script>
+<script src="forside.js"></script>
 </body>
 </html>

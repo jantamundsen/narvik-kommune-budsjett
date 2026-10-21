@@ -1,4 +1,4 @@
-// Helpers shared by app.js (index.html), budsjett.js (budsjett.html), omrade.js and lopende.js.
+// Helpers shared by app.js (okonomi.html), forside.js (index.html), budsjett.js (budsjett.html), omrade.js and lopende.js.
 const nb = (v, d = 0) => v.toLocaleString('nb-NO', { minimumFractionDigits: d, maximumFractionDigits: d });
 function el(tag, attrs = {}, text) {
   const n = document.createElement(tag);

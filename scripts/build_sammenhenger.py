@@ -33,7 +33,7 @@ MONTHS = ["januar", "februar", "mars", "april", "mai", "juni", "juli", "august",
 
 # The pages a link can stand on: key → (name, address).
 PAGES = {
-    "utgifter": ("Utgifter", "./"),
+    "utgifter": ("Utgifter", "okonomi"),
     "inntekter": ("Inntekter", "inntekter"),
     "gjeld": ("Gjeld og investeringer", "gjeld"),
     "budsjett": ("Budsjett", "budsjett"),
