@@ -58,7 +58,9 @@ site/                     den statiske nettsiden: index.html (forsiden), okonomi
                           investeringer), budsjett.html (budsjett mot regnskap), lopende.html (året så langt),
                           tiltak.html (innsparinger), befolkning.html (befolkning), om.html (om siden og hvordan
                           man melder fra om feil på e-post); style.css og common.js er felles. og.png er bildet som vises
-                          når en lenke deles (Open Graph); lag det på nytt hvis tittelen endres
+                          når en lenke deles (Open Graph); lag det på nytt hvis tittelen endres. style.css og
+                          .js-filene lastes med ?v=<dato> i HTML-en; bytt datoen når de endres, ellers kan
+                          nettlesere bruke den gamle versjonen fra mellomlageret
 .github/workflows/        oppdaterer data fra SSB og publiserer til GitHub Pages
 ```
 
