@@ -514,3 +514,29 @@ details .fact-list { margin-top: 4px; }
 .actors dd { margin: 0; font-size: 0.95rem; }
 .actors dd .caption { display: block; margin-top: 2px; }
 @media (max-width: 680px) { .actors > div { grid-template-columns: 1fr; } }
+
+/* Front page (index.html): key numbers from each area as links, the fact sheets, and shortcuts to every area. */
+.front-stats .front-stat { color: inherit; text-decoration: none; }
+.front-stat .eyebrow { color: var(--accent); }
+.front-stat:hover { background: var(--accent-soft); }
+.front-cases { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); gap: 12px; }
+.front-case { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 16px 18px; display: grid; gap: 8px; align-content: start; color: inherit; text-decoration: none; }
+.front-case b { font: 600 1.1rem/1.25 var(--font-display); color: var(--accent); }
+.front-case:hover { border-color: var(--accent); }
+.front-case-num .num { font: 700 1.25rem var(--font-display); }
+.front-case-num .sub { color: var(--ink-2); font-size: 0.9rem; }
+.so .eyebrow { color: var(--accent); }
+.front-areas { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); gap: 12px; }
+.front-area { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 16px 18px; display: grid; gap: 6px; align-content: start; color: var(--ink-2); text-decoration: none; font-size: 0.95rem; }
+.front-area b { font: 600 1.1rem var(--font-display); color: var(--ink); }
+.front-area small { display: flex; flex-wrap: wrap; gap: 4px 10px; font-size: 0.82rem; color: var(--accent); }
+.front-area:hover { border-color: var(--accent); }
+.front-area:hover b { color: var(--accent); }
+.front-case-num { display: grid; }
+@media (max-width: 680px) { .stats3.front-stats { grid-template-columns: 1fr 1fr; } .front-stat { padding: 14px; } .front-stat .big { font-size: 1.5rem; } }
+.front-out { gap: 10px; }
+.front-out .so-link { color: inherit; text-decoration: none; height: 100%; padding: 12px 14px; gap: 2px; }
+.front-out .so-link:hover { background: var(--accent-soft); }
+.front-out .so-name { font-size: 0.85rem; font-weight: 500; }
+.front-out .so-me { font-size: 1.3rem; }
+.front-out .so-diff { font-size: 0.9rem; }

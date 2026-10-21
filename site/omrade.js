@@ -27,7 +27,7 @@ async function start() {
     return;
   }
   area = N.categories.find(c => c.key === q.get('omrade'));
-  if (!area) { location.replace('./'); return; }
+  if (!area) { location.replace('okonomi'); return; }
   years = D.years.filter(y => N.years.includes(y));
   year = years.includes(q.get('aar')) ? q.get('aar') : years.at(-1);
   prev = years[years.indexOf(year) - 1];

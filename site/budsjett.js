@@ -66,7 +66,7 @@ async function startBudget() {
     caption('budget-actual-caption', [bud, act], `Budsjettet er det opprinnelige, slik det ble vedtatt i desember året før. Rammene justeres i løpet av året, for eksempel når lønnsoppgjøret fordeles fra fellesposten til tjenesteområdene, så avviket her er ikke det samme som et merforbruk.`);
     document.getElementById('budget').hidden = false;
     const back = document.getElementById('accounts-link');
-    back.href = './?aar=' + y; back.textContent = `Se hele regnskapet for ${y} →`;
+    back.href = 'okonomi?aar=' + y; back.textContent = `Se hele regnskapet for ${y} →`;
   };
   if (pairYears.length) {
     let y = pairYears.includes(urlYear()) ? urlYear() : pairYears.at(-1);
