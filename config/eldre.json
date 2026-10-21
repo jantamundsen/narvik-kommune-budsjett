@@ -1,0 +1,10 @@
+{
+  "_om": "Overliggerdøgn slik kommunen selv oppgir dem i årsrapporten og tertialrapportene. Kilden er en id i config/fakta.json (kilder) og en side. Ny årsrapport eller tertialrapport: legg til en linje. scripts/fetch_eldre.py kopierer listen til site/data/eldre.json.",
+  "kommunens_overliggerdogn": [
+    {"aar": "2022", "periode": "hele året", "dogn": 525, "kilde": {"id": "ar-2022", "side": 36}},
+    {"aar": "2023", "periode": "hele året", "dogn": 806, "kilde": {"id": "ar-2023", "side": 14}},
+    {"aar": "2024", "periode": "hele året", "dogn": 715, "kilde": {"id": "ar-2024", "side": 44}},
+    {"aar": "2025", "periode": "hele året", "dogn": 1125, "kilde": {"id": "ar-2025", "side": 45}},
+    {"aar": "2026", "periode": "januar–august", "dogn": 618, "kilde": {"id": "tertial-2-2026", "side": 26}}
+  ]
+}
