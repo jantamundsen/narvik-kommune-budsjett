@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-20",
+ "generated": "2026-10-23",
  "source": {
   "table": "12362",
   "url": "https://www.ssb.no/statbank/table/12362",
@@ -2097,7 +2097,7 @@
    }
   },
   "211": {
-   "name": "Styrket tilbud til førskolebarn",
+   "name": "Styrket tilbud til barn i barnehage",
    "narvik_1000kr": {
     "2021": 22255,
     "2022": 17950,
@@ -2890,7 +2890,7 @@
    }
   },
   "244": {
-   "name": "Barneverntjeneste",
+   "name": "Barnevernstjeneste",
    "narvik_1000kr": {
     "2021": 16936,
     "2022": 23966,

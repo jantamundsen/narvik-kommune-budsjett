@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-20",
+ "generated": "2026-10-23",
  "regioner": {
   "narvik": "Narvik",
   "harstad": "Harstad",
@@ -13,7 +13,7 @@
  "sider": {
   "utgifter": {
    "navn": "Utgifter",
-   "href": "./"
+   "href": "okonomi"
   },
   "inntekter": {
    "navn": "Inntekter",
@@ -1291,881 +1291,6 @@
   ]
  },
  "skiller_seg_ut_aar": {
-  "inntekter": {
-   "2021": [
-    {
-     "navn": "Eiendomsskatt kommunen får inn, per innbygger",
-     "aar": "2021",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 5722,
-      "harstad": 3542,
-      "rana": 3441,
-      "alta": 3427,
-      "gruppe": 2224,
-      "landet": 2941
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 157,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12137",
-      "url": "https://www.ssb.no/statbank/table/12137"
-     }
-    },
-    {
-     "navn": "Kommunens disposisjonsfond (sparepenger), andel av driftsinntektene",
-     "aar": "2021",
-     "enhet": "%",
-     "desimaler": 1,
-     "verdier": {
-      "narvik": 3,
-      "harstad": 14.3,
-      "rana": 28.8,
-      "alta": 2.1,
-      "gruppe": 12.6,
-      "landet": 13.8
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": -76,
-      "out": true,
-      "points": -9.6
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12143",
-      "url": "https://www.ssb.no/statbank/table/12143"
-     }
-    },
-    {
-     "navn": "Kommunens netto driftsresultat (overskudd), andel av driftsinntektene",
-     "aar": "2021",
-     "enhet": "%",
-     "desimaler": 1,
-     "verdier": {
-      "narvik": 1,
-      "harstad": 1.6,
-      "rana": 5.5,
-      "alta": -0.3,
-      "gruppe": 3.8,
-      "landet": 4.2
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "points": -2.8,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12143",
-      "url": "https://www.ssb.no/statbank/table/12143"
-     }
-    },
-    {
-     "navn": "Rammetilskudd fra staten per innbygger",
-     "aar": "2021",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 36228,
-      "harstad": 34310,
-      "rana": 31538,
-      "alta": 40700,
-      "gruppe": 29650,
-      "landet": 29765
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 22,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12137",
-      "url": "https://www.ssb.no/statbank/table/12137"
-     }
-    },
-    {
-     "navn": "Kommunens driftsinntekter per innbygger",
-     "aar": "2021",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 112157,
-      "harstad": 101786,
-      "rana": 95483,
-      "alta": 110831,
-      "gruppe": 93649,
-      "landet": 97126
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 20,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12137",
-      "url": "https://www.ssb.no/statbank/table/12137"
-     }
-    }
-   ],
-   "2022": [
-    {
-     "navn": "Eiendomsskatt kommunen får inn, per innbygger",
-     "aar": "2022",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 6778,
-      "harstad": 3585,
-      "rana": 3438,
-      "alta": 3577,
-      "gruppe": 2334,
-      "landet": 3003
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 190,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12137",
-      "url": "https://www.ssb.no/statbank/table/12137"
-     }
-    },
-    {
-     "navn": "Kommunens disposisjonsfond (sparepenger), andel av driftsinntektene",
-     "aar": "2022",
-     "enhet": "%",
-     "desimaler": 1,
-     "verdier": {
-      "narvik": 5.9,
-      "harstad": 15,
-      "rana": 34.3,
-      "alta": 4.9,
-      "gruppe": 13.6,
-      "landet": 14.6
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": -57,
-      "out": true,
-      "points": -7.7
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12143",
-      "url": "https://www.ssb.no/statbank/table/12143"
-     }
-    },
-    {
-     "navn": "Rammetilskudd fra staten per innbygger",
-     "aar": "2022",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 36868,
-      "harstad": 32705,
-      "rana": 33078,
-      "alta": 40538,
-      "gruppe": 30707,
-      "landet": 29443
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 20,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12137",
-      "url": "https://www.ssb.no/statbank/table/12137"
-     }
-    },
-    {
-     "navn": "Kommunens driftsinntekter per innbygger",
-     "aar": "2022",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 116496,
-      "harstad": 108557,
-      "rana": 99737,
-      "alta": 115395,
-      "gruppe": 97124,
-      "landet": 101507
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 20,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12137",
-      "url": "https://www.ssb.no/statbank/table/12137"
-     }
-    }
-   ],
-   "2023": [
-    {
-     "navn": "Eiendomsskatt kommunen får inn, per innbygger",
-     "aar": "2023",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 7100,
-      "harstad": 3836,
-      "rana": 4151,
-      "alta": 3821,
-      "gruppe": 2580,
-      "landet": 3225
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 175,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12137",
-      "url": "https://www.ssb.no/statbank/table/12137"
-     }
-    },
-    {
-     "navn": "Kommunens disposisjonsfond (sparepenger), andel av driftsinntektene",
-     "aar": "2023",
-     "enhet": "%",
-     "desimaler": 1,
-     "verdier": {
-      "narvik": 6.2,
-      "harstad": 11.8,
-      "rana": 21.3,
-      "alta": 3.4,
-      "gruppe": 11.4,
-      "landet": 13.5
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": -46,
-      "out": true,
-      "points": -5.2
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12143",
-      "url": "https://www.ssb.no/statbank/table/12143"
-     }
-    },
-    {
-     "navn": "Kommunens driftsinntekter per innbygger",
-     "aar": "2023",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 121427,
-      "harstad": 113508,
-      "rana": 103614,
-      "alta": 124449,
-      "gruppe": 102356,
-      "landet": 106151
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 19,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12137",
-      "url": "https://www.ssb.no/statbank/table/12137"
-     }
-    },
-    {
-     "navn": "Rammetilskudd fra staten per innbygger",
-     "aar": "2023",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 38616,
-      "harstad": 36031,
-      "rana": 35564,
-      "alta": 42875,
-      "gruppe": 33434,
-      "landet": 32411
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 15,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12137",
-      "url": "https://www.ssb.no/statbank/table/12137"
-     }
-    }
-   ],
-   "2024": [
-    {
-     "navn": "Eiendomsskatt kommunen får inn, per innbygger",
-     "aar": "2024",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 6980,
-      "harstad": 3944,
-      "rana": 4758,
-      "alta": 3913,
-      "gruppe": 2532,
-      "landet": 3174
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 176,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12137",
-      "url": "https://www.ssb.no/statbank/table/12137"
-     }
-    },
-    {
-     "navn": "Kommunens disposisjonsfond (sparepenger), andel av driftsinntektene",
-     "aar": "2024",
-     "enhet": "%",
-     "desimaler": 1,
-     "verdier": {
-      "narvik": 4.9,
-      "harstad": 5.9,
-      "rana": 10.1,
-      "alta": 1,
-      "gruppe": 8.2,
-      "landet": 11.6
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": -40,
-      "out": true,
-      "points": -3.3
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12143",
-      "url": "https://www.ssb.no/statbank/table/12143"
-     }
-    },
-    {
-     "navn": "Kommunens driftsinntekter per innbygger",
-     "aar": "2024",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 130282,
-      "harstad": 121641,
-      "rana": 108769,
-      "alta": 134759,
-      "gruppe": 107928,
-      "landet": 111795
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 21,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12137",
-      "url": "https://www.ssb.no/statbank/table/12137"
-     }
-    }
-   ],
-   "2025": [
-    {
-     "navn": "Eiendomsskatt kommunen får inn, per innbygger",
-     "aar": "2025",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 6762,
-      "harstad": 4717,
-      "rana": 4577,
-      "alta": 4496,
-      "gruppe": 2649,
-      "landet": 3275
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 155,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12137",
-      "url": "https://www.ssb.no/statbank/table/12137"
-     }
-    },
-    {
-     "navn": "Kommunens disposisjonsfond (sparepenger), andel av driftsinntektene",
-     "aar": "2025",
-     "enhet": "%",
-     "desimaler": 1,
-     "verdier": {
-      "narvik": 4.5,
-      "harstad": 5.4,
-      "rana": 12.1,
-      "alta": 1,
-      "gruppe": 8.5,
-      "landet": 11.9
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": -47,
-      "out": true,
-      "points": -4.0
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12143",
-      "url": "https://www.ssb.no/statbank/table/12143"
-     }
-    },
-    {
-     "navn": "Kommunens driftsinntekter per innbygger",
-     "aar": "2025",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 137368,
-      "harstad": 129955,
-      "rana": 115670,
-      "alta": 140215,
-      "gruppe": 114828,
-      "landet": 118564
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 20,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12137",
-      "url": "https://www.ssb.no/statbank/table/12137"
-     }
-    }
-   ]
-  },
-  "gjeld": {
-   "2021": [
-    {
-     "navn": "Kommunens pensjonsforpliktelser til ansatte, per innbygger",
-     "aar": "2021",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 156055,
-      "harstad": 114229,
-      "rana": 114969,
-      "alta": 107686,
-      "gruppe": 90165,
-      "landet": 95715
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 73,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12137",
-      "url": "https://www.ssb.no/statbank/table/12137"
-     }
-    },
-    {
-     "navn": "Gjeld der renteendringer slår inn, andel av kommunens driftsinntekter",
-     "aar": "2021",
-     "enhet": "%",
-     "desimaler": 1,
-     "verdier": {
-      "narvik": 100.7,
-      "harstad": 80.4,
-      "rana": 63.8,
-      "alta": 71.1,
-      "gruppe": 76.5,
-      "landet": 67.9
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 32,
-      "out": true,
-      "points": 24.2
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12143",
-      "url": "https://www.ssb.no/statbank/table/12143"
-     }
-    },
-    {
-     "navn": "Kommunens netto lånegjeld per innbygger",
-     "aar": "2021",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 118777,
-      "harstad": 116384,
-      "rana": 88763,
-      "alta": 100989,
-      "gruppe": 97138,
-      "landet": 90340
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 22,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12137",
-      "url": "https://www.ssb.no/statbank/table/12137"
-     }
-    }
-   ],
-   "2022": [
-    {
-     "navn": "Kommunens pensjonsforpliktelser til ansatte, per innbygger",
-     "aar": "2022",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 167401,
-      "harstad": 118970,
-      "rana": 123592,
-      "alta": 114546,
-      "gruppe": 95707,
-      "landet": 101496
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 75,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12137",
-      "url": "https://www.ssb.no/statbank/table/12137"
-     }
-    },
-    {
-     "navn": "Kommunens netto lånegjeld per innbygger",
-     "aar": "2022",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 128029,
-      "harstad": 124866,
-      "rana": 93283,
-      "alta": 93445,
-      "gruppe": 99237,
-      "landet": 94251
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 29,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12137",
-      "url": "https://www.ssb.no/statbank/table/12137"
-     }
-    }
-   ],
-   "2023": [
-    {
-     "navn": "Kommunens pensjonsforpliktelser til ansatte, per innbygger",
-     "aar": "2023",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 175153,
-      "harstad": 127171,
-      "rana": 130586,
-      "alta": 121299,
-      "gruppe": 100877,
-      "landet": 106910
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 74,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12137",
-      "url": "https://www.ssb.no/statbank/table/12137"
-     }
-    },
-    {
-     "navn": "Kommunens netto lånegjeld per innbygger",
-     "aar": "2023",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 144917,
-      "harstad": 148481,
-      "rana": 98583,
-      "alta": 96140,
-      "gruppe": 101977,
-      "landet": 98288
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 42,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12137",
-      "url": "https://www.ssb.no/statbank/table/12137"
-     }
-    },
-    {
-     "navn": "Gjeld der renteendringer slår inn, andel av kommunens driftsinntekter",
-     "aar": "2023",
-     "enhet": "%",
-     "desimaler": 1,
-     "verdier": {
-      "narvik": 87.7,
-      "harstad": 96.6,
-      "rana": 65.4,
-      "alta": 59.6,
-      "gruppe": 71.8,
-      "landet": 67.6
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 22,
-      "out": true,
-      "points": 15.9
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12143",
-      "url": "https://www.ssb.no/statbank/table/12143"
-     }
-    }
-   ],
-   "2024": [
-    {
-     "navn": "Kommunens pensjonsforpliktelser til ansatte, per innbygger",
-     "aar": "2024",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 189488,
-      "harstad": 136266,
-      "rana": 141173,
-      "alta": 133835,
-      "gruppe": 109745,
-      "landet": 116181
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 73,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12137",
-      "url": "https://www.ssb.no/statbank/table/12137"
-     }
-    },
-    {
-     "navn": "Kommunens netto lånegjeld per innbygger",
-     "aar": "2024",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 146595,
-      "harstad": 173650,
-      "rana": 103278,
-      "alta": 99057,
-      "gruppe": 107511,
-      "landet": 103096
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 36,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12137",
-      "url": "https://www.ssb.no/statbank/table/12137"
-     }
-    },
-    {
-     "navn": "Renter og avdrag (netto), andel av kommunens driftsinntekter",
-     "aar": "2024",
-     "enhet": "%",
-     "desimaler": 1,
-     "verdier": {
-      "narvik": 8.2,
-      "harstad": 9.8,
-      "rana": 4.8,
-      "alta": 6,
-      "gruppe": 6.2,
-      "landet": 5.3
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 32,
-      "out": true,
-      "points": 2.0
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12143",
-      "url": "https://www.ssb.no/statbank/table/12143"
-     }
-    },
-    {
-     "navn": "Gjeld der renteendringer slår inn, andel av kommunens driftsinntekter",
-     "aar": "2024",
-     "enhet": "%",
-     "desimaler": 1,
-     "verdier": {
-      "narvik": 85.4,
-      "harstad": 107.8,
-      "rana": 62.7,
-      "alta": 57.9,
-      "gruppe": 71.9,
-      "landet": 67
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 19,
-      "out": true,
-      "points": 13.5
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12143",
-      "url": "https://www.ssb.no/statbank/table/12143"
-     }
-    }
-   ],
-   "2025": [
-    {
-     "navn": "Kommunens pensjonsforpliktelser til ansatte, per innbygger",
-     "aar": "2025",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 212273,
-      "harstad": 153399,
-      "rana": 159558,
-      "alta": 152948,
-      "gruppe": 124275,
-      "landet": 131149
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 71,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12137",
-      "url": "https://www.ssb.no/statbank/table/12137"
-     }
-    },
-    {
-     "navn": "Kommunens netto lånegjeld per innbygger",
-     "aar": "2025",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 151892,
-      "harstad": 186184,
-      "rana": 103646,
-      "alta": 103162,
-      "gruppe": 111873,
-      "landet": 108077
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 36,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12137",
-      "url": "https://www.ssb.no/statbank/table/12137"
-     }
-    },
-    {
-     "navn": "Renter og avdrag (netto), andel av kommunens driftsinntekter",
-     "aar": "2025",
-     "enhet": "%",
-     "desimaler": 1,
-     "verdier": {
-      "narvik": 8.3,
-      "harstad": 9.8,
-      "rana": 4.9,
-      "alta": 5.9,
-      "gruppe": 6.3,
-      "landet": 5.6
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 32,
-      "out": true,
-      "points": 2.0
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12143",
-      "url": "https://www.ssb.no/statbank/table/12143"
-     }
-    },
-    {
-     "navn": "Gjeld der renteendringer slår inn, andel av kommunens driftsinntekter",
-     "aar": "2025",
-     "enhet": "%",
-     "desimaler": 1,
-     "verdier": {
-      "narvik": 79.6,
-      "harstad": 109.4,
-      "rana": 54.9,
-      "alta": 58.4,
-      "gruppe": 69.2,
-      "landet": 66.1
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 15,
-      "out": true,
-      "points": 10.4
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12143",
-      "url": "https://www.ssb.no/statbank/table/12143"
-     }
-    }
-   ]
-  },
   "utgifter": {
    "2021": [
     {
@@ -2918,6 +2043,881 @@
      "kilde": {
       "tekst": "SSB, tabell 12362",
       "url": "https://www.ssb.no/statbank/table/12362"
+     }
+    }
+   ]
+  },
+  "gjeld": {
+   "2021": [
+    {
+     "navn": "Kommunens pensjonsforpliktelser til ansatte, per innbygger",
+     "aar": "2021",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 156055,
+      "harstad": 114229,
+      "rana": 114969,
+      "alta": 107686,
+      "gruppe": 90165,
+      "landet": 95715
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 73,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12137",
+      "url": "https://www.ssb.no/statbank/table/12137"
+     }
+    },
+    {
+     "navn": "Gjeld der renteendringer slår inn, andel av kommunens driftsinntekter",
+     "aar": "2021",
+     "enhet": "%",
+     "desimaler": 1,
+     "verdier": {
+      "narvik": 100.7,
+      "harstad": 80.4,
+      "rana": 63.8,
+      "alta": 71.1,
+      "gruppe": 76.5,
+      "landet": 67.9
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 32,
+      "out": true,
+      "points": 24.2
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12143",
+      "url": "https://www.ssb.no/statbank/table/12143"
+     }
+    },
+    {
+     "navn": "Kommunens netto lånegjeld per innbygger",
+     "aar": "2021",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 118777,
+      "harstad": 116384,
+      "rana": 88763,
+      "alta": 100989,
+      "gruppe": 97138,
+      "landet": 90340
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 22,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12137",
+      "url": "https://www.ssb.no/statbank/table/12137"
+     }
+    }
+   ],
+   "2022": [
+    {
+     "navn": "Kommunens pensjonsforpliktelser til ansatte, per innbygger",
+     "aar": "2022",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 167401,
+      "harstad": 118970,
+      "rana": 123592,
+      "alta": 114546,
+      "gruppe": 95707,
+      "landet": 101496
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 75,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12137",
+      "url": "https://www.ssb.no/statbank/table/12137"
+     }
+    },
+    {
+     "navn": "Kommunens netto lånegjeld per innbygger",
+     "aar": "2022",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 128029,
+      "harstad": 124866,
+      "rana": 93283,
+      "alta": 93445,
+      "gruppe": 99237,
+      "landet": 94251
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 29,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12137",
+      "url": "https://www.ssb.no/statbank/table/12137"
+     }
+    }
+   ],
+   "2023": [
+    {
+     "navn": "Kommunens pensjonsforpliktelser til ansatte, per innbygger",
+     "aar": "2023",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 175153,
+      "harstad": 127171,
+      "rana": 130586,
+      "alta": 121299,
+      "gruppe": 100877,
+      "landet": 106910
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 74,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12137",
+      "url": "https://www.ssb.no/statbank/table/12137"
+     }
+    },
+    {
+     "navn": "Kommunens netto lånegjeld per innbygger",
+     "aar": "2023",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 144917,
+      "harstad": 148481,
+      "rana": 98583,
+      "alta": 96140,
+      "gruppe": 101977,
+      "landet": 98288
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 42,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12137",
+      "url": "https://www.ssb.no/statbank/table/12137"
+     }
+    },
+    {
+     "navn": "Gjeld der renteendringer slår inn, andel av kommunens driftsinntekter",
+     "aar": "2023",
+     "enhet": "%",
+     "desimaler": 1,
+     "verdier": {
+      "narvik": 87.7,
+      "harstad": 96.6,
+      "rana": 65.4,
+      "alta": 59.6,
+      "gruppe": 71.8,
+      "landet": 67.6
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 22,
+      "out": true,
+      "points": 15.9
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12143",
+      "url": "https://www.ssb.no/statbank/table/12143"
+     }
+    }
+   ],
+   "2024": [
+    {
+     "navn": "Kommunens pensjonsforpliktelser til ansatte, per innbygger",
+     "aar": "2024",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 189488,
+      "harstad": 136266,
+      "rana": 141173,
+      "alta": 133835,
+      "gruppe": 109745,
+      "landet": 116181
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 73,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12137",
+      "url": "https://www.ssb.no/statbank/table/12137"
+     }
+    },
+    {
+     "navn": "Kommunens netto lånegjeld per innbygger",
+     "aar": "2024",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 146595,
+      "harstad": 173650,
+      "rana": 103278,
+      "alta": 99057,
+      "gruppe": 107511,
+      "landet": 103096
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 36,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12137",
+      "url": "https://www.ssb.no/statbank/table/12137"
+     }
+    },
+    {
+     "navn": "Renter og avdrag (netto), andel av kommunens driftsinntekter",
+     "aar": "2024",
+     "enhet": "%",
+     "desimaler": 1,
+     "verdier": {
+      "narvik": 8.2,
+      "harstad": 9.8,
+      "rana": 4.8,
+      "alta": 6,
+      "gruppe": 6.2,
+      "landet": 5.3
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 32,
+      "out": true,
+      "points": 2.0
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12143",
+      "url": "https://www.ssb.no/statbank/table/12143"
+     }
+    },
+    {
+     "navn": "Gjeld der renteendringer slår inn, andel av kommunens driftsinntekter",
+     "aar": "2024",
+     "enhet": "%",
+     "desimaler": 1,
+     "verdier": {
+      "narvik": 85.4,
+      "harstad": 107.8,
+      "rana": 62.7,
+      "alta": 57.9,
+      "gruppe": 71.9,
+      "landet": 67
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 19,
+      "out": true,
+      "points": 13.5
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12143",
+      "url": "https://www.ssb.no/statbank/table/12143"
+     }
+    }
+   ],
+   "2025": [
+    {
+     "navn": "Kommunens pensjonsforpliktelser til ansatte, per innbygger",
+     "aar": "2025",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 212273,
+      "harstad": 153399,
+      "rana": 159558,
+      "alta": 152948,
+      "gruppe": 124275,
+      "landet": 131149
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 71,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12137",
+      "url": "https://www.ssb.no/statbank/table/12137"
+     }
+    },
+    {
+     "navn": "Kommunens netto lånegjeld per innbygger",
+     "aar": "2025",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 151892,
+      "harstad": 186184,
+      "rana": 103646,
+      "alta": 103162,
+      "gruppe": 111873,
+      "landet": 108077
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 36,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12137",
+      "url": "https://www.ssb.no/statbank/table/12137"
+     }
+    },
+    {
+     "navn": "Renter og avdrag (netto), andel av kommunens driftsinntekter",
+     "aar": "2025",
+     "enhet": "%",
+     "desimaler": 1,
+     "verdier": {
+      "narvik": 8.3,
+      "harstad": 9.8,
+      "rana": 4.9,
+      "alta": 5.9,
+      "gruppe": 6.3,
+      "landet": 5.6
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 32,
+      "out": true,
+      "points": 2.0
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12143",
+      "url": "https://www.ssb.no/statbank/table/12143"
+     }
+    },
+    {
+     "navn": "Gjeld der renteendringer slår inn, andel av kommunens driftsinntekter",
+     "aar": "2025",
+     "enhet": "%",
+     "desimaler": 1,
+     "verdier": {
+      "narvik": 79.6,
+      "harstad": 109.4,
+      "rana": 54.9,
+      "alta": 58.4,
+      "gruppe": 69.2,
+      "landet": 66.1
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 15,
+      "out": true,
+      "points": 10.4
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12143",
+      "url": "https://www.ssb.no/statbank/table/12143"
+     }
+    }
+   ]
+  },
+  "inntekter": {
+   "2021": [
+    {
+     "navn": "Eiendomsskatt kommunen får inn, per innbygger",
+     "aar": "2021",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 5722,
+      "harstad": 3542,
+      "rana": 3441,
+      "alta": 3427,
+      "gruppe": 2224,
+      "landet": 2941
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 157,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12137",
+      "url": "https://www.ssb.no/statbank/table/12137"
+     }
+    },
+    {
+     "navn": "Kommunens disposisjonsfond (sparepenger), andel av driftsinntektene",
+     "aar": "2021",
+     "enhet": "%",
+     "desimaler": 1,
+     "verdier": {
+      "narvik": 3,
+      "harstad": 14.3,
+      "rana": 28.8,
+      "alta": 2.1,
+      "gruppe": 12.6,
+      "landet": 13.8
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": -76,
+      "out": true,
+      "points": -9.6
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12143",
+      "url": "https://www.ssb.no/statbank/table/12143"
+     }
+    },
+    {
+     "navn": "Kommunens netto driftsresultat (overskudd), andel av driftsinntektene",
+     "aar": "2021",
+     "enhet": "%",
+     "desimaler": 1,
+     "verdier": {
+      "narvik": 1,
+      "harstad": 1.6,
+      "rana": 5.5,
+      "alta": -0.3,
+      "gruppe": 3.8,
+      "landet": 4.2
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "points": -2.8,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12143",
+      "url": "https://www.ssb.no/statbank/table/12143"
+     }
+    },
+    {
+     "navn": "Rammetilskudd fra staten per innbygger",
+     "aar": "2021",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 36228,
+      "harstad": 34310,
+      "rana": 31538,
+      "alta": 40700,
+      "gruppe": 29650,
+      "landet": 29765
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 22,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12137",
+      "url": "https://www.ssb.no/statbank/table/12137"
+     }
+    },
+    {
+     "navn": "Kommunens driftsinntekter per innbygger",
+     "aar": "2021",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 112157,
+      "harstad": 101786,
+      "rana": 95483,
+      "alta": 110831,
+      "gruppe": 93649,
+      "landet": 97126
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 20,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12137",
+      "url": "https://www.ssb.no/statbank/table/12137"
+     }
+    }
+   ],
+   "2022": [
+    {
+     "navn": "Eiendomsskatt kommunen får inn, per innbygger",
+     "aar": "2022",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 6778,
+      "harstad": 3585,
+      "rana": 3438,
+      "alta": 3577,
+      "gruppe": 2334,
+      "landet": 3003
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 190,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12137",
+      "url": "https://www.ssb.no/statbank/table/12137"
+     }
+    },
+    {
+     "navn": "Kommunens disposisjonsfond (sparepenger), andel av driftsinntektene",
+     "aar": "2022",
+     "enhet": "%",
+     "desimaler": 1,
+     "verdier": {
+      "narvik": 5.9,
+      "harstad": 15,
+      "rana": 34.3,
+      "alta": 4.9,
+      "gruppe": 13.6,
+      "landet": 14.6
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": -57,
+      "out": true,
+      "points": -7.7
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12143",
+      "url": "https://www.ssb.no/statbank/table/12143"
+     }
+    },
+    {
+     "navn": "Rammetilskudd fra staten per innbygger",
+     "aar": "2022",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 36868,
+      "harstad": 32705,
+      "rana": 33078,
+      "alta": 40538,
+      "gruppe": 30707,
+      "landet": 29443
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 20,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12137",
+      "url": "https://www.ssb.no/statbank/table/12137"
+     }
+    },
+    {
+     "navn": "Kommunens driftsinntekter per innbygger",
+     "aar": "2022",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 116496,
+      "harstad": 108557,
+      "rana": 99737,
+      "alta": 115395,
+      "gruppe": 97124,
+      "landet": 101507
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 20,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12137",
+      "url": "https://www.ssb.no/statbank/table/12137"
+     }
+    }
+   ],
+   "2023": [
+    {
+     "navn": "Eiendomsskatt kommunen får inn, per innbygger",
+     "aar": "2023",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 7100,
+      "harstad": 3836,
+      "rana": 4151,
+      "alta": 3821,
+      "gruppe": 2580,
+      "landet": 3225
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 175,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12137",
+      "url": "https://www.ssb.no/statbank/table/12137"
+     }
+    },
+    {
+     "navn": "Kommunens disposisjonsfond (sparepenger), andel av driftsinntektene",
+     "aar": "2023",
+     "enhet": "%",
+     "desimaler": 1,
+     "verdier": {
+      "narvik": 6.2,
+      "harstad": 11.8,
+      "rana": 21.3,
+      "alta": 3.4,
+      "gruppe": 11.4,
+      "landet": 13.5
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": -46,
+      "out": true,
+      "points": -5.2
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12143",
+      "url": "https://www.ssb.no/statbank/table/12143"
+     }
+    },
+    {
+     "navn": "Kommunens driftsinntekter per innbygger",
+     "aar": "2023",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 121427,
+      "harstad": 113508,
+      "rana": 103614,
+      "alta": 124449,
+      "gruppe": 102356,
+      "landet": 106151
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 19,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12137",
+      "url": "https://www.ssb.no/statbank/table/12137"
+     }
+    },
+    {
+     "navn": "Rammetilskudd fra staten per innbygger",
+     "aar": "2023",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 38616,
+      "harstad": 36031,
+      "rana": 35564,
+      "alta": 42875,
+      "gruppe": 33434,
+      "landet": 32411
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 15,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12137",
+      "url": "https://www.ssb.no/statbank/table/12137"
+     }
+    }
+   ],
+   "2024": [
+    {
+     "navn": "Eiendomsskatt kommunen får inn, per innbygger",
+     "aar": "2024",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 6980,
+      "harstad": 3944,
+      "rana": 4758,
+      "alta": 3913,
+      "gruppe": 2532,
+      "landet": 3174
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 176,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12137",
+      "url": "https://www.ssb.no/statbank/table/12137"
+     }
+    },
+    {
+     "navn": "Kommunens disposisjonsfond (sparepenger), andel av driftsinntektene",
+     "aar": "2024",
+     "enhet": "%",
+     "desimaler": 1,
+     "verdier": {
+      "narvik": 4.9,
+      "harstad": 5.9,
+      "rana": 10.1,
+      "alta": 1,
+      "gruppe": 8.2,
+      "landet": 11.6
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": -40,
+      "out": true,
+      "points": -3.3
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12143",
+      "url": "https://www.ssb.no/statbank/table/12143"
+     }
+    },
+    {
+     "navn": "Kommunens driftsinntekter per innbygger",
+     "aar": "2024",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 130282,
+      "harstad": 121641,
+      "rana": 108769,
+      "alta": 134759,
+      "gruppe": 107928,
+      "landet": 111795
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 21,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12137",
+      "url": "https://www.ssb.no/statbank/table/12137"
+     }
+    }
+   ],
+   "2025": [
+    {
+     "navn": "Eiendomsskatt kommunen får inn, per innbygger",
+     "aar": "2025",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 6762,
+      "harstad": 4717,
+      "rana": 4577,
+      "alta": 4496,
+      "gruppe": 2649,
+      "landet": 3275
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 155,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12137",
+      "url": "https://www.ssb.no/statbank/table/12137"
+     }
+    },
+    {
+     "navn": "Kommunens disposisjonsfond (sparepenger), andel av driftsinntektene",
+     "aar": "2025",
+     "enhet": "%",
+     "desimaler": 1,
+     "verdier": {
+      "narvik": 4.5,
+      "harstad": 5.4,
+      "rana": 12.1,
+      "alta": 1,
+      "gruppe": 8.5,
+      "landet": 11.9
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": -47,
+      "out": true,
+      "points": -4.0
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12143",
+      "url": "https://www.ssb.no/statbank/table/12143"
+     }
+    },
+    {
+     "navn": "Kommunens driftsinntekter per innbygger",
+     "aar": "2025",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 137368,
+      "harstad": 129955,
+      "rana": 115670,
+      "alta": 140215,
+      "gruppe": 114828,
+      "landet": 118564
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 20,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12137",
+      "url": "https://www.ssb.no/statbank/table/12137"
      }
     }
    ]
