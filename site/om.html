@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Hva Åpne tall for Narvik er, hvor tallene kommer fra, hvordan de kan brukes, hvor ofte de oppdateres, og hvordan du melder fra om feil.">
+<meta name="description" content="Hva Åpne tall for Narvik er, hvor tallene kommer fra, hvordan de kan brukes, hvilke tall som savnes, og hvordan du melder fra om feil.">
 <title>Om siden · Åpne tall for Narvik</title>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Åpne tall for Narvik">
 <meta property="og:locale" content="nb_NO">
 <meta property="og:title" content="Om siden · Åpne tall for Narvik">
-<meta property="og:description" content="Hva Åpne tall for Narvik er, hvor tallene kommer fra, hvordan de kan brukes, hvor ofte de oppdateres, og hvordan du melder fra om feil.">
+<meta property="og:description" content="Hva Åpne tall for Narvik er, hvor tallene kommer fra, hvordan de kan brukes, hvilke tall som savnes, og hvordan du melder fra om feil.">
 <meta property="og:image" content="https://narviktall.no/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -22,7 +22,7 @@
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="stylesheet" href="style.css?v=2026-10-21">
+<link rel="stylesheet" href="style.css?v=2026-10-26">
 </head>
 <body>
 <div class="wrap">
@@ -46,6 +46,58 @@
     </div>
   </section>
 
+  <section aria-labelledby="h-savner" id="savner">
+    <h2 id="h-savner">Tall som savnes</h2>
+    <p>Noen tall som ville gjort det lettere å forstå Narvik kommune, har vi ikke funnet offentlig, eller de finnes bare i enkelte dokumenter. Her står hvilket tall det gjelder, hva det kunne vist, og hva som finnes i stedet.</p>
+    <div class="savner">
+      <article id="savner-ventelister">
+        <h3>Ventelister for sykehjem og omsorgsbolig</h3>
+        <dl>
+          <dt>Tallet</dt><dd>Hvor mange som venter på langtidsplass på sykehjem eller på omsorgsbolig, og hvor lenge de venter.</dd>
+          <dt>Det kunne vist</dt><dd>Om antall plasser holder tritt med behovet, sammen med plassene og døgnene med utskrivningsklare pasienter som allerede står på siden.</dd>
+          <dt>Det som finnes</dt><dd><a href="https://prod02.elementscloud.no/publikum/Documents/ShowDocument/c1d7f777-8235-4817-8203-ebd49ff36bb5/783/2230" target="_blank" rel="noopener">Tertialrapport 2/2026</a> (s. 26) sier at kommunen følger ventelistene for langtidsplass, dagsenter og trygghetsrom hver måned, men tallene er ikke publisert. Kommunestyret vedtok 07.02.2025 at det skal få kvartalsvise rapporter med blant annet status for ventelister (<a href="https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022221779&amp;dokid=1947918&amp;versjon=1&amp;variant=A" target="_blank" rel="noopener">protokoll, sak 5/25</a>, s. 12). Vi har ikke funnet rapportene. Saksframlegget i <a href="https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022258420&amp;dokid=2035241&amp;versjon=5&amp;variant=A" target="_blank" rel="noopener">sak 28/26</a> (s. 3) oppgir 34 søkere til kommunale omsorgsboliger da saken ble skrevet i mars 2026.</dd>
+        </dl>
+        <p class="savner-sider">Gjelder: <a href="omrade?omrade=helse#eldreomsorg">Helse og omsorg</a>, <a href="saker?sak=omstilling-eldreomsorgen">Omstilling i eldreomsorgen</a></p>
+      </article>
+      <article id="savner-forbruk">
+        <h3>Forbruket per tjenesteområde gjennom året</h3>
+        <dl>
+          <dt>Tallet</dt><dd>Hvor mye hvert tjenesteområde har brukt hittil i år, oppdatert oftere enn tre ganger i året.</dd>
+          <dt>Det kunne vist</dt><dd>Hvordan forbruket utvikler seg mot budsjettet i månedene mellom rapportene.</dd>
+          <dt>Det som finnes</dt><dd>Tertialrapportene etter april og august og årsregnskapet, som PDF. Skatteinngangen per måned finnes hos SSB (<a href="https://www.ssb.no/statbank/table/07022" target="_blank" rel="noopener">tabell 07022</a>).</dd>
+        </dl>
+        <p class="savner-sider">Gjelder: <a href="lopende">Året så langt</a></p>
+      </article>
+      <article id="savner-enheter">
+        <h3>Regnskap per sykehjem, skole og barnehage</h3>
+        <dl>
+          <dt>Tallet</dt><dd>Utgifter og inntekter for hver enhet, for eksempel hvert sykehjem, hver skole eller hver barnehage.</dd>
+          <dt>Det kunne vist</dt><dd>Hvor pengene går innenfor et tjenesteområde, og hvordan enhetene skiller seg fra hverandre.</dd>
+          <dt>Det som finnes</dt><dd>SSBs KOSTRA-tall per funksjon, der for eksempel alle sykehjemmene er samlet i én funksjon (<a href="https://www.ssb.no/statbank/table/12362" target="_blank" rel="noopener">tabell 12362</a>), og årsrapportenes tall per kommunalområde. Kommunens regnskap per enhet er ikke publisert.</dd>
+        </dl>
+        <p class="savner-sider">Gjelder: <a href="omrade">Utgifter per område</a></p>
+      </article>
+      <article id="savner-innsparinger-status">
+        <h3>Status for alle innsparingstiltak</h3>
+        <dl>
+          <dt>Tallet</dt><dd>Om hvert innsparingstiltak i budsjettet er gjennomført, delvis gjennomført eller ikke gjennomført.</dd>
+          <dt>Det kunne vist</dt><dd>Hvor mye av de vedtatte kuttene som er fulgt opp.</dd>
+          <dt>Det som finnes</dt><dd>Tertialrapportene og årsrapportene omtaler en del av tiltakene. For resten har vi ikke funnet noen status. Fordelingen står på <a href="tiltak">Innsparinger</a>.</dd>
+        </dl>
+        <p class="savner-sider">Gjelder: <a href="tiltak">Innsparinger</a></p>
+      </article>
+      <article id="savner-renter">
+        <h3>Rentebinding på lånene</h3>
+        <dl>
+          <dt>Tallet</dt><dd>Hvor stor del av lånene som har fast og flytende rente, regnet på samme grunnlag hvert år, og når fastrenteavtalene går ut.</dd>
+          <dt>Det kunne vist</dt><dd>Hvor mye og hvor raskt en renteendring slår inn i kommunens utgifter.</dd>
+          <dt>Det som finnes</dt><dd>Årsrapportene oppgir gjennomsnittsrenten og andelen lån med fast rente, men andelen er regnet med og uten Narvik Vann og Husbanken i ulike år: 22 % i 2023 (<a href="https://www.narvik.kommune.no/innsyn.aspx?response=mote&amp;moteid=458&amp;scripturi=/innsyn.aspx&amp;Mid1=396" target="_blank" rel="noopener">årsrapport 2023</a>, s. 12), 17 % med Narvik Vann og uten Husbanken i 2024 (<a href="https://www.narvik.kommune.no/innsyn.aspx?response=mote&amp;moteid=545&amp;scripturi=/innsyn.aspx&amp;Mid1=396" target="_blank" rel="noopener">årsrapport 2024</a>, s. 8) og 37,3 % uten begge i 2025 (<a href="https://www.narvik.kommune.no/innsyn.aspx?response=mote&amp;moteid=642&amp;scripturi=/innsyn.aspx&amp;Mid1=396" target="_blank" rel="noopener">årsrapport 2025</a>, s. 9). Vi har ikke funnet når fastrenteavtalene går ut. <a href="https://www.narvik.kommune.no/innsyn.aspx?response=mote&amp;moteid=350&amp;scripturi=/innsyn.aspx&amp;Mid1=396" target="_blank" rel="noopener">Årsrapport 2022</a> (s. 14) er den eneste som oppgir hva én prosent høyere rente betyr: om lag 20 mill. kr mer i året.</dd>
+        </dl>
+        <p class="savner-sider">Gjelder: <a href="gjeld">Gjeld og investeringer</a></p>
+      </article>
+    </div>
+  </section>
+
   <section aria-labelledby="h-bruk" id="bruk">
     <h2 id="h-bruk">Bruke tallene</h2>
     <p>Alle tall på siden kommer fra offentlige kilder og er fritt frem å bruke. Oppgi den opprinnelige kilden, som står ved hvert tall. Har narviktall.no hjulpet deg å finne eller forstå tallene, setter vi pris på en henvisning.</p>
@@ -55,7 +107,6 @@
   <section aria-labelledby="h-feil" id="feil">
     <h2 id="h-feil">Fant du en feil?</h2>
     <p>Send en e-post til <a href="mailto:jan.t.amundsen@gmail.com">jan.t.amundsen@gmail.com</a>. Skriv hvilken side og hvilket tall det gjelder, hva som er feil, og gjerne hvor du fant det riktige tallet.</p>
-    <p><a class="cta" href="mailto:jan.t.amundsen@gmail.com?subject=Feil%20i%20tall%20p%C3%A5%20%C3%85pne%20tall%20for%20Narvik&amp;body=Side%3A%20%0AHvilket%20tall%3A%20%0AHva%20er%20feil%3A%20%0AKilde%20for%20riktig%20tall%3A%20">Send e-post om en feil</a></p>
     <p>Koden og dataene bak siden kan leses på <a href="https://github.com/jtkarlsen/narvik-kommune-budsjett" target="_blank" rel="noopener">GitHub</a>. Har du en GitHub-konto, kan du også <a href="https://github.com/jtkarlsen/narvik-kommune-budsjett/issues/new?title=Feil%20i%20tall%3A%20&amp;body=Side%3A%20%0AHvilket%20tall%3A%20%0AHva%20er%20feil%3A%20%0AKilde%20for%20riktig%20tall%3A%20" target="_blank" rel="noopener">melde fra om feil der</a>.</p>
   </section>
 
@@ -63,6 +114,6 @@
     <span>Et åpent hobbyprosjekt laget av <a href="https://janamundsen.dev" target="_blank" rel="noopener">Jan Amundsen</a>, ikke av Narvik kommune. <a href="https://github.com/jtkarlsen/narvik-kommune-budsjett" target="_blank" rel="noopener">Kildekode</a>.</span>
   </footer>
 </div>
-<script src="common.js?v=2026-10-21"></script>
+<script src="common.js?v=2026-10-26"></script>
 </body>
 </html>

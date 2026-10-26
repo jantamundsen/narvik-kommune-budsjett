@@ -220,6 +220,16 @@ a.rank-row:hover { background: var(--accent-soft); }
 .seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 999px; overflow: hidden; }
 .seg a { font-weight: 600; font-size: 0.85rem; background: var(--surface); color: var(--ink-2); padding: 0 14px; min-height: 42px; display: inline-flex; align-items: center; text-decoration: none; }
 .seg a[aria-current] { background: var(--ink); color: var(--paper); }
+.savner { display: grid; gap: 14px; }
+.savner article { border: 1px solid var(--rule); border-radius: 10px; padding: 16px 20px; display: grid; gap: 8px; }
+.savner h3 { font-size: 1.05rem; font-weight: 600; }
+.savner dl { display: grid; grid-template-columns: 9.5rem 1fr; gap: 6px 14px; margin: 0; }
+.savner dt { font-size: 0.85rem; font-weight: 600; color: var(--ink-2); }
+.savner dd { margin: 0; font-size: 0.92rem; }
+.savner-sider { font-size: 0.85rem; color: var(--ink-2); }
+@media (max-width: 560px) { .savner dl { grid-template-columns: 1fr; } .savner dt { margin-top: 4px; } }
+.savner-linje { font-size: 0.88rem; color: var(--ink-2); border-left: 3px solid var(--muted); padding: 4px 0 4px 12px; max-width: none; }
+.savner-linje a { white-space: nowrap; }
 .ssb-end { border: 1px dashed var(--muted); border-radius: 10px; padding: 16px 20px; display: grid; gap: 6px; }
 .ssb-end p { font-size: 0.92rem; color: var(--ink-2); }
 .source { border-top: 1px solid var(--rule); padding-top: 14px; max-width: none; }

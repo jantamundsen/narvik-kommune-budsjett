@@ -307,7 +307,7 @@ function careSection() {
   if (own.length && F?.kilder) {
     html += `<h3 class="sub-h">Det kommunen selv rapporterer</h3><div class="detail-scroll"><table class="num-table"><tr><th>År</th><th>Overliggerdøgn</th><th>Kilde</th></tr>
       ${[...own].reverse().map(o => { const k = F.kilder[o.kilde.id]; return `<tr${o.aar === year ? ' class="sel"' : ''}><td>${o.aar}${o.periode === 'hele året' ? '' : `, ${esc(o.periode)}`}</td><td>${nb(o.dogn)}</td><td style="white-space:normal"><a href="${esc(k.pdf)}#page=${o.kilde.side}" target="_blank" rel="noopener" title="${esc(k.full)}">${esc(k.navn)}, s. ${o.kilde.side}</a></td></tr>`; }).join('')}</table></div>
-      <p class="caption">Kommunen oppgir færre døgn enn Helsedirektoratet. Helsedirektoratet teller fra første gang pasienten blir meldt utskrivningsklar, mens kommunens tall følger døgnene den selv registrerer og betaler for. Derfor står de to seriene hver for seg. Tertialrapport 2/2026 (s. 26) sier at kommunen følger ventelistene for langtidsplass, dagsenter og trygghetsrom hver måned, men tallene er ikke publisert.</p>`;
+      <p class="caption">Kommunen oppgir færre døgn enn Helsedirektoratet. Helsedirektoratet teller fra første gang pasienten blir meldt utskrivningsklar, mens kommunens tall følger døgnene den selv registrerer og betaler for. Derfor står de to seriene hver for seg. Tertialrapport 2/2026 (s. 26) sier at kommunen følger ventelistene for langtidsplass, dagsenter og trygghetsrom hver måned, men tallene er ikke publisert. <a href="om#savner-ventelister">Tall som savnes</a></p>`;
   }
 
   const ssb = E.ssb || [], cy = ssb.some(m => m.values.narvik?.[year] != null) ? year : null;
@@ -422,7 +422,7 @@ function typePage(s, g) {
   html += sourceBox(s, [...g.arts, ...(g.parts || [])], parts.length
     ? `${esc(parts.filter(p => !p.derived).map(p => `${p.name} (${p.code})`).join(', '))} er SSBs egne arter.${derived ? ` «${esc(derived.name)}» er regnet ut her: ${esc(derived.derived)}.` : ''}`
     : `Beløpet er art ${g.arts.join(' + ')}, ${esc(D.arts[g.arts[0]])}.`, { tjeneste: s.key, art: g.key });
-  html += `<section class="ssb-end"><span class="eyebrow">Her slutter SSB</span><p>Mer detaljer, for eksempel per sykehjem, skole eller avdeling, finnes ikke i KOSTRA. Det krever kommunens eget regnskap per enhet.</p></section>`;
+  html += `<section class="ssb-end"><span class="eyebrow">Her slutter SSB</span><p>Mer detaljer, for eksempel per sykehjem, skole eller avdeling, finnes ikke i KOSTRA. Det krever kommunens eget regnskap per enhet, som ikke er publisert. <a href="om#savner-enheter">Tall som savnes</a></p></section>`;
   return html;
 }
 
