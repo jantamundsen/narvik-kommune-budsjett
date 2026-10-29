@@ -554,3 +554,8 @@ a.front-area:hover b, .front-area > a:hover b { color: var(--accent); }
 .front-out .so-name { font-size: 0.85rem; font-weight: 500; }
 .front-out .so-me { font-size: 1.3rem; }
 .front-out .so-diff { font-size: 0.9rem; }
+
+/* Året så langt: forecast bars, Helse og omsorg first and the rest of the kommune after it. */
+.stack-track { display: flex; height: 8px; background: var(--rule); border-radius: 4px; overflow: hidden; }
+.stack-track b { display: block; background: var(--bad); }
+.stack-track s { display: block; background: var(--muted); }

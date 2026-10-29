@@ -93,6 +93,9 @@ async function startRunning() {
   document.getElementById('areas').hidden = false;
   showFacts(L, worst.a.name);
 
+  showForecasts(L, mk, signed, head, row, v => { labels = v; });
+  showLastYear(L, R, mk, signed, head, row, v => { labels = v; });
+
   // How the budget has changed since it was adopted.
   labels = ['Nå', 'Endring'];
   const cl = document.getElementById('changes-ledger');
@@ -121,6 +124,80 @@ async function startRunning() {
   document.getElementById('income').hidden = false;
 
   drawTax(L.tax, L.year, I.rows['Inntekts- og formuesskatt']);
+}
+
+// How the forecast for the whole year has moved from one tertial report to the next, for the whole kommune and for
+// Helse og omsorg. The reports give the forecast as the bottom line «Merforbruk» of «Totaloversikt økonomi» and per
+// area as «Prognose årsavvik»; this shows both, and says plainly that the forecast is not the gap so far.
+function showForecasts(L, mk, signed, head, row, setLabels) {
+  const P = L.prognoser;
+  if (!P?.length) return;
+  const link = (r, page, text) => el('a', { href: r.pdf + '#page=' + page, target: '_blank', rel: 'noopener' }, text || `s. ${page}`);
+  const max = Math.max(...P.map(r => r.merforbruk));
+  setLabels(['Hele kommunen', 'Herav helse og omsorg']);
+  const led = document.getElementById('prog-ledger');
+  led.replaceChildren(head(['Rapport', 'Prognose for året', 'Tall til og med', 'Hele kommunen', 'Herav helse og omsorg']));
+  P.forEach(r => {
+    const h = -r.helse, bar = el('span', { class: 'c-share used' });
+    const track = el('span', { class: 'stack-track' }), a = el('b'), b = el('s');
+    a.style.width = h / max * 100 + '%';
+    b.style.width = (r.merforbruk - h) / max * 100 + '%';
+    track.append(a, b);
+    bar.append(track, el('small', {}, `${mk(r.merforbruk)} mill. kr, herav ${mk(h)} i helse og omsorg`));
+    bar.title = `${r.name.split(',')[0]}: prognose ${mk(r.merforbruk)} mill. kr i merforbruk, herav ${mk(h)} mill. kr i helse og omsorg`;
+    const month = r.period.split('–').at(-1);
+    led.appendChild(row(`${r.name.split(',')[0]} · ${new Date(r.date).toLocaleDateString('nb-NO', { day: 'numeric', month: 'long' })}`, bar, month, 'Tall til og med', signed(r.merforbruk), signed(h), ''));
+  });
+  const [first, now] = [P[0], P.at(-1)];
+  document.getElementById('prog-lead').textContent = P.length > 1
+    ? `Etter ${first.period.split('–').at(-1)} ventet kommunedirektøren et merforbruk på ${mk(first.merforbruk)} mill. kr for hele ${L.year}. Etter ${now.period.split('–').at(-1)} var anslaget ${mk(now.merforbruk)} mill. kr. Helse og omsorg står for ${mk(-first.helse)} og ${mk(-now.helse)} mill. kr av dette.`
+    : `Kommunedirektøren venter et merforbruk på ${mk(now.merforbruk)} mill. kr for hele ${L.year}.`;
+  const c = document.getElementById('prog-caption');
+  c.replaceChildren('Mill. kr, prognose for hele året. Pluss betyr merforbruk. Kilder: ');
+  P.forEach((r, i) => c.append(i ? '; ' : '', el('a', { href: r.url, target: '_blank', rel: 'noopener' }, r.name), ', hele kommunen fra «Totaloversikt økonomi» (', link(r, r.merforbruk_page), '), helse og omsorg fra «Totaloversikt drift – fordelt på rammeområder» (', link(r, r.helse_page), ')'));
+  c.append('. ', L.orientering.text.replace(/ \(saksframlegg.*?\)/, ''), ' (', el('a', { href: L.orientering.pdf + '#page=' + L.orientering.pdf_page, target: '_blank', rel: 'noopener' }, 'saksframlegget'), ').');
+  document.getElementById('prog').hidden = false;
+}
+
+// This year's adopted budget per area next to what each area spent last year, from the årsrapport. The change is in
+// percent. The kommune's own numbers on price growth and on how the budget is built sit under the table, with sources.
+function showLastYear(L, R, mk, signed, head, row, setLabels) {
+  const F = L.fjoraar;
+  if (!F) return;
+  const A = R.areas, prev = String(+L.year - 1), prev2 = String(+L.year - 2);
+  const pct = (a, b) => { const v = (a / b - 1) * 100; return (v > 0 ? '+' : v < 0 ? '−' : '') + nb(Math.abs(v), 1) + ' %'; };
+  const name = key => L.areas.find(a => a.key === key).name;
+  setLabels([`Vedtatt ${L.year}`, 'Endring']);
+  const led = document.getElementById('fjor-ledger');
+  led.replaceChildren(head(['Tjenesteområde', '', `Regnskap ${prev}`, `Vedtatt budsjett ${L.year}`, 'Endring']));
+  L.areas.forEach(a => {
+    const r = F.rows[a.key], b = A.rows[a.key].opprinnelig;
+    led.appendChild(row(a.name, null, mk(r['regnskap_' + prev]), `Regnskap ${prev}`, mk(b), pct(b, r['regnskap_' + prev]), ''));
+  });
+  led.appendChild(row('Sum', null, mk(F.total['regnskap_' + prev]), `Regnskap ${prev}`, mk(A.total.opprinnelig), pct(A.total.opprinnelig, F.total['regnskap_' + prev]), '', true));
+
+  const h = F.rows.helse, hb = A.rows.helse.opprinnelig, hr = A.rows.helse;
+  document.getElementById('fjor-lead').textContent =
+    `Helse og omsorg brukte ${mk(h['regnskap_' + prev])} mill. kr i ${prev}. Vedtatt budsjett for ${L.year} var ${mk(hb)} mill. kr, ${pct(hb, h['regnskap_' + prev]).replace('−', '').replace('+', '')} ${hb < h['regnskap_' + prev] ? 'lavere' : 'høyere'} enn forbruket året før. ` +
+    `Ifølge prognosen i ${R.name.split(',')[0].toLowerCase()} ender området på om lag ${mk(hr.revidert - hr.prognose_aarsavvik)} mill. kr i ${L.year}.`;
+
+  // All numbers, with the year before last and the expected spending this year (revised budget minus the forecast gap).
+  const tbl = document.getElementById('fjor-table');
+  const hrow = el('tr'); [ 'Tjenesteområde', `Regnskap ${prev2}`, `Regnskap ${prev}`, `Vedtatt ${L.year}`, `Revidert ${L.year}`, `Forventet ${L.year}` ].forEach(t => hrow.appendChild(el('th', {}, t)));
+  const line = (n, r, a, total) => { const tr = el('tr', total ? { class: 'total' } : {}); [n, mk(r['regnskap_' + prev2]), mk(r['regnskap_' + prev]), mk(a.opprinnelig), mk(a.revidert), mk(a.revidert - a.prognose_aarsavvik)].forEach(v => tr.appendChild(el('td', {}, v))); return tr; };
+  tbl.replaceChildren(hrow, ...L.areas.map(a => line(name(a.key), F.rows[a.key], A.rows[a.key])), line('Sum', F.total, A.total, true));
+
+  const S = F.source, link = (url, page, text) => el('a', { href: url + '#page=' + page, target: '_blank', rel: 'noopener' }, text || `s. ${page}`);
+  const t1 = L.prognoser.find(p => p.id === F.deflator.report);
+  const li = (...parts) => { const n = el('li'); n.append(...parts); return n; };
+  document.getElementById('fjor-notes').replaceChildren(
+    li(`Kommunens anslag for lønns- og prisvekst i ${L.year} er ${nb(F.deflator.prosent, 1)} % (`, link(t1.pdf, F.deflator.pdf_page, `${t1.name.split(',')[0]}, s. ${F.deflator.pdf_page}`), ').'),
+    li(`Rammen for neste år bygges videre fra fjorårets vedtatte budsjett, ikke fra regnskapet. For helse og omsorg startet økonomiplanen fra vedtatt budsjett ${prev} på ${mk(F.ramme.helse_vedtatt_2025)} mill. kr og kom fram til ${mk(F.ramme.helse_ramme_2026_forslag)} mill. kr i kommunedirektørens forslag (`, link(F.ramme.pdf, F.ramme.pdf_page, `økonomiplanen s. ${F.ramme.pdf_page}`), ').'),
+    li(F.omorganisering.text + ' Tallene for disse to områdene er derfor ikke helt sammenlignbare mellom årene (', link(S.pdf, F.omorganisering.pdf_pages[0], `årsrapporten s. ${F.omorganisering.pdf_pages.join(' og ')}`), ').'),
+  );
+  const c = document.getElementById('fjor-caption');
+  c.replaceChildren('Mill. kr. Regnskap: ', el('a', { href: S.url, target: '_blank', rel: 'noopener' }, S.name), `, tabell «${S.table}» (`, link(S.pdf, S.pdf_page), '). Vedtatt og revidert budsjett: ', el('a', { href: R.url, target: '_blank', rel: 'noopener' }, R.name), ` (`, link(R.pdf, A.pdf_page), `). «Forventet» er revidert budsjett pluss merforbruket i prognosen, beregnet. Fellesinntekter og kostnader har blant annet lønnsoppgjøret, som fordeles ut på områdene i løpet av året.`);
+  document.getElementById('fjor').hidden = false;
 }
 
 // «Bak tallene»: what the kommune's own reports say behind this year's numbers, per area, from data/fakta.json.

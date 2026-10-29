@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-20T10:29:20+00:00",
+ "generated": "2026-10-29T21:48:51+00:00",
  "year": "2026",
  "unit": "1000 kr",
  "areas": [
@@ -164,7 +164,104 @@
    }
   }
  ],
- "missing": "Tertialrapport 1/2026 (januar–april) ligger ikke i kommunens nye møtesystem, som bare har møter fra oktober 2026.",
+ "missing": null,
+ "prognoser": [
+  {
+   "id": "tertial-1-2026",
+   "name": "Tertialrapport 1/2026, formannskapet 04.06.2026 (sak 026/26)",
+   "period": "januar–april",
+   "date": "2026-06-04",
+   "url": "https://www.narvik.kommune.no/innsyn.aspx?response=mote&moteid=642&scripturi=/innsyn.aspx&Mid1=396",
+   "pdf": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022268852&dokid=2064647&versjon=1&variant=A",
+   "merforbruk": 59910,
+   "merforbruk_page": 6,
+   "helse": -42360,
+   "helse_page": 10
+  },
+  {
+   "id": "tertial-2-2026",
+   "name": "Tertialrapport 2/2026, formannskapet 15.10.2026 (sak 45/26)",
+   "period": "januar–august",
+   "date": "2026-10-15",
+   "url": "https://prod02.elementscloud.no/publikum/959469059_prod-959469059/Dmb",
+   "pdf": "https://prod02.elementscloud.no/publikum/Documents/ShowDocument/c1d7f777-8235-4817-8203-ebd49ff36bb5/783/2230",
+   "merforbruk": 91930,
+   "merforbruk_page": 6,
+   "helse": -83930,
+   "helse_page": 9
+  }
+ ],
+ "orientering": {
+  "text": "Formannskapet 04.06.2026 ba om en orientering om økonomien i helse og omsorg på hvert kommunestyremøte (saksframlegg til tertialrapport 1/2026, s. 1). Tallene fra orienteringene er ikke publisert som egne rapporter.",
+  "pdf": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022268852&dokid=2060601&versjon=12&variant=A",
+  "pdf_page": 1
+ },
+ "fjoraar": {
+  "source": {
+   "name": "Årsrapport 2025, formannskapet 04.06.2026 (sak 025/26)",
+   "url": "https://www.narvik.kommune.no/innsyn.aspx?response=mote&moteid=642&scripturi=/innsyn.aspx&Mid1=396",
+   "pdf": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022268851&dokid=2060599&versjon=1&variant=A",
+   "pdf_page": 6,
+   "table": "Totaloversikt økonomi"
+  },
+  "columns": [
+   "regnskap_2024",
+   "regnskap_2025"
+  ],
+  "rows": {
+   "politisk": {
+    "regnskap_2024": 10793,
+    "regnskap_2025": 10626
+   },
+   "radmannen": {
+    "regnskap_2024": 22957,
+    "regnskap_2025": 29145
+   },
+   "virksomhet": {
+    "regnskap_2024": 196233,
+    "regnskap_2025": 206137
+   },
+   "oppvekst": {
+    "regnskap_2024": 576186,
+    "regnskap_2025": 606444
+   },
+   "helse": {
+    "regnskap_2024": 772725,
+    "regnskap_2025": 801412
+   },
+   "plan": {
+    "regnskap_2024": 181954,
+    "regnskap_2025": 177714
+   },
+   "felles": {
+    "regnskap_2024": 28836,
+    "regnskap_2025": 31671
+   }
+  },
+  "total": {
+   "regnskap_2024": 1789686,
+   "regnskap_2025": 1863149
+  },
+  "deflator": {
+   "prosent": 4.1,
+   "report": "tertial-1-2026",
+   "pdf_page": 6
+  },
+  "ramme": {
+   "name": "Budsjett 2026 og økonomiplan 2026–2029, kommunedirektørens forslag",
+   "pdf": "https://www.narvik.kommune.no/_f/p1/i3c0f427e-5acf-4d5c-836a-5db986e5cdcb/narvik-kommunes-okonomiplan-2026-2029-1.pdf",
+   "pdf_page": 67,
+   "helse_vedtatt_2025": 709412,
+   "helse_ramme_2026_forslag": 736327
+  },
+  "omorganisering": {
+   "text": "Felleskjøkkenet ble flyttet fra Virksomhetsstyring til Helse og omsorg høsten 2025 og ligger der fra 1.1.2026.",
+   "pdf_pages": [
+    28,
+    47
+   ]
+  }
+ },
  "tax": {
   "name": "SSB tabell 07022, Skatterekneskapsstatistikk",
   "label": "Ordinær skatt til primærkommunen",
