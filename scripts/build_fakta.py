@@ -61,6 +61,10 @@ def main() -> int:
             err(f"tjenesten «{t}» finnes ikke i områdene {f.get('omrader')}")
         if f.get("art") is not None and f["art"] not in arts:
             err(f"ukjent art «{f['art']}», bruk en av {sorted(arts)}")
+        # ramme_mill is the kommunalområde's own total; it is shown as one line on the area page, so it only
+        # makes sense when the kommunalområde is about one area of the site.
+        if "ramme_mill" in f and (not isinstance(f["ramme_mill"], (int, float)) or len(f.get("omrader", [])) != 1):
+            err("ramme_mill må være et tall, og faktaet må gjelde bare ett område")
         k = f.get("kilde") or {}
         if k.get("id") not in sources:
             err(f"ukjent kilde «{k.get('id')}»")
