@@ -341,9 +341,12 @@ function factsSection(match) {
   const list = (F?.fakta || []).filter(f => f.omrader.includes(area.key) && match(f) && f.aar === year);
   if (!list.length) return '';
   const lead = `Dette sier kommunens egne rapporter om ${year}.`;
+  // The kommunalområde's own total, so it is not read as the same number as the SSB total at the top.
+  const own = list.find(f => f.ramme_mill != null);
+  const ownLine = own ? `<p class="own-total">Kommunens egen inndeling: <b class="num">${nb(Math.round(own.ramme_mill))} mill. kr</b> for kommunalområdet ${esc(own.kommunalomrade)} i ${year}. Det er ikke de samme tjenestene som i SSB-tallet øverst på siden. <a href="okonomi#inndeling">Hvorfor er tallene ulike?</a></p>` : '';
   // The first few are shown; the rest are one tap away, so the numbers further down stay close.
   const more = list.slice(3);
-  return `<section class="drill-sec facts" id="bak-tallene"><h2>Bak tallene</h2><p class="lead">${lead}</p><ul class="fact-list">${factItems(F, list.slice(0, 3), true)}</ul>
+  return `<section class="drill-sec facts" id="bak-tallene"><h2>Bak tallene</h2><p class="lead">${lead}</p>${ownLine}<ul class="fact-list">${factItems(F, list.slice(0, 3), true)}</ul>
     ${more.length ? `<details class="all-numbers"><summary>Vis ${more.length} til</summary><ul class="fact-list">${factItems(F, more, true)}</ul></details>` : ''}
     <p class="caption">Rapportene følger kommunens egen organisasjon, som ikke er helt den samme som KOSTRA-områdene på denne siden. Derfor står det ved hvert punkt hvilket kommunalområde det gjelder. Tallene er skrevet av fra rapportene, med side.</p></section>`;
 }
