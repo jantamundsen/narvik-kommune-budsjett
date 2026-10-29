@@ -298,6 +298,7 @@ a.cmp-row .c-name::after { content: " \203A"; color: var(--accent); font-weight:
 .fact-quote p { font-style: italic; color: var(--ink-2); font-size: 0.95rem; }
 .fact-src { margin-top: 2px; }
 details .fact-list { margin-top: 4px; }
+.own-total { margin: 0 0 14px; padding: 8px 12px; border-left: 3px solid var(--accent); background: var(--surface); }
 .fact-groups { display: grid; gap: 24px; }
 .fact-group { display: grid; gap: 10px; }
 .fact-group h3 { font-size: 1.05rem; font-weight: 600; }
