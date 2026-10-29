@@ -22,7 +22,7 @@
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="stylesheet" href="style.css?v=2026-10-26">
+<link rel="stylesheet" href="style.css?v=2026-10-29">
 </head>
 <body>
 <div class="wrap">
@@ -45,6 +45,26 @@
     </div>
     <div class="ledger" id="areas-ledger"></div>
     <p class="caption" id="areas-caption"></p>
+  </section>
+
+  <section aria-labelledby="h-prog" id="prog" hidden>
+    <div class="section-head">
+      <h2 id="h-prog">Prognosen gjennom året</h2>
+      <p class="lead" id="prog-lead"></p>
+    </div>
+    <div class="ledger" id="prog-ledger"></div>
+    <p class="caption" id="prog-caption"></p>
+  </section>
+
+  <section aria-labelledby="h-fjor" id="fjor" hidden>
+    <div class="section-head">
+      <h2 id="h-fjor">Budsjettet mot fjorårets regnskap</h2>
+      <p class="lead" id="fjor-lead"></p>
+    </div>
+    <div class="ledger" id="fjor-ledger"></div>
+    <details class="all-numbers"><summary>Vis alle tallene</summary><div class="detail-scroll"><table class="num-table" id="fjor-table"></table></div></details>
+    <ul class="reg-list" id="fjor-notes"></ul>
+    <p class="caption" id="fjor-caption"></p>
   </section>
 
   <section aria-labelledby="h-facts" id="facts" hidden>
@@ -93,17 +113,19 @@
     <div class="notes">
       <div><h3>Tertialrapportene</h3><p>Kommunedirektøren rapporterer til formannskapet tre ganger i året: etter april, etter august og med årsregnskapet. Mellom rapportene finnes det ingen offentlige tall for forbruket per tjenesteområde. <a href="om#savner-forbruk">Tall som savnes</a></p></div>
       <div><h3>Budsjett hittil i år</h3><p>Budsjettet hittil er den delen av årsbudsjettet kommunen har fordelt på månedene så langt. Avviket hittil er det beløpet minus regnskapet.</p></div>
+      <div><h3>Hittil eller hele året?</h3><p>Avviket hittil og prognosen for året er to ulike tall. Avviket hittil er forskjellen mellom regnskapet og budsjettet for månedene så langt. Prognosen er kommunedirektørens anslag for hele året. Begge endrer seg fra rapport til rapport.</p></div>
+      <div><h3>Budsjett og regnskap</h3><p>Budsjettet er det kommunestyret vedtar før året starter. Regnskapet er det som faktisk ble brukt., og er klart etter at året er over.</p></div>
       <div><h3>Prognosen</h3><p>Prognosen er kommunedirektørens anslag for hele året, gitt i tertialrapporten. Den er ikke et regnskap, og tiltak eller nye vedtak kan endre den.</p></div>
       <div><h3>Hvor tallene kommer fra</h3><p>Tertialtallene er skrevet av fra rapportens tabeller. Under hver tabell står rapport og side. Skattetallene hentes automatisk fra SSB hver måned.</p></div>
     </div>
   </section>
 
   <footer>
-    <span>Kilder: Narvik kommunes tertialrapporter i kommunens <a href="https://prod02.elementscloud.no/publikum/959469059_prod-959469059/Dmb" target="_blank" rel="noopener">politiske møter</a>, og SSBs <a href="https://www.ssb.no/statbank/table/07022" target="_blank" rel="noopener">tabell 07022</a>. <a href="https://github.com/jtkarlsen/narvik-kommune-budsjett" target="_blank" rel="noopener">Kildekode</a>.</span>
+    <span>Kilder: Narvik kommunes tertialrapporter og årsrapport i kommunens <a href="https://prod02.elementscloud.no/publikum/959469059_prod-959469059/Dmb" target="_blank" rel="noopener">politiske møter</a>, og SSBs <a href="https://www.ssb.no/statbank/table/07022" target="_blank" rel="noopener">tabell 07022</a>. <a href="https://github.com/jtkarlsen/narvik-kommune-budsjett" target="_blank" rel="noopener">Kildekode</a>.</span>
     <span>Et åpent hobbyprosjekt laget av <a href="https://janamundsen.dev" target="_blank" rel="noopener">Jan Amundsen</a>, ikke av Narvik kommune. <a href="om">Om siden</a>.</span>
   </footer>
 </div>
-<script src="common.js?v=2026-10-26"></script>
-<script src="lopende.js?v=2026-10-26"></script>
+<script src="common.js?v=2026-10-29"></script>
+<script src="lopende.js?v=2026-10-29"></script>
 </body>
 </html>

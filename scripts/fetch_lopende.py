@@ -5,7 +5,9 @@ Two sources:
 - Narvik's tertial reports, which are only published as PDF. Their tables are
   typed into config/lopende_2026.json with the page they came from, and checked
   here: every row's avvik must be budget minus accounts, and the rows must add
-  up to the printed total.
+  up to the printed total. The same file holds the year's forecast from each
+  tertial report, and last year's accounts per area from the årsrapport, so the
+  budget can be set against what was spent.
 - Paid-in tax to the kommune per month, from SSB table 07022 (Skatterekneskaps-
   statistikk, accumulated), for this year and the year before. SSB updates it
   every month, so this part is fresh between the tertial reports.
@@ -70,6 +72,29 @@ def check_table(label: str, table: dict) -> dict[str, dict[str, int]]:
     return {**rows, "Sum": total}
 
 
+def last_year(cfg: dict) -> dict:
+    """Accounts per area for the last closed years, checked against the printed total."""
+    cols, rows, total = cfg["columns"], cfg["rows"], cfg["total"]
+    named = {ALIASES.get(k, k): dict(zip(cols, v)) for k, v in rows.items()}
+    missing = [a for a in AREAS if a not in named]
+    if missing:
+        sys.exit(f"fjoraar: missing tjenesteområder {missing}")
+    for i, c in enumerate(cols):
+        s = sum(r[c] for r in named.values())
+        if abs(s - total[i]) > len(rows):
+            sys.exit(f"fjoraar {c}: rows sum to {s}, table says {total[i]}")
+    clean = lambda d: {k: v for k, v in d.items() if not k.startswith("_")}
+    return {
+        "source": cfg["source"],
+        "columns": cols,
+        "rows": {key: named[name] for name, key in AREAS.items()},
+        "total": dict(zip(cols, total)),
+        "deflator": clean(cfg["deflator"]),
+        "ramme": clean(cfg["ramme"]),
+        "omorganisering": {"text": cfg["omorganisering"]["_text"], "pdf_pages": cfg["omorganisering"]["pdf_pages"]},
+    }
+
+
 def tax(year: int) -> dict:
     params = {
         "lang": "no",
@@ -121,6 +146,12 @@ def main() -> int:
             "regulations": {"pdf_page": r["regulations"]["pdf_page"], "items": r["regulations"]["items"]},
         })
 
+    # The newest forecast in "prognoser" must be the one in the newest typed report.
+    last, newest = cfg["prognoser"]["reports"][-1], reports[-1]["areas"]
+    if last["id"] != reports[-1]["id"] or last["helse"] != newest["rows"]["helse"]["prognose_aarsavvik"] \
+            or -last["merforbruk"] != newest["total"]["prognose_aarsavvik"]:
+        sys.exit(f"prognoser: {last['id']} does not match the forecast in {reports[-1]['id']}")
+
     out = {
         "generated": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
         "year": cfg["year"],
@@ -128,6 +159,10 @@ def main() -> int:
         "areas": [{"key": key, "name": name} for name, key in AREAS.items()],
         "reports": reports,
         "missing": cfg.get("missing"),
+        "prognoser": [{k: v for k, v in r.items()} for r in cfg["prognoser"]["reports"]],
+        "orientering": {"text": cfg["prognoser"]["orientering"]["_text"], "pdf": cfg["prognoser"]["orientering"]["pdf"],
+                        "pdf_page": cfg["prognoser"]["orientering"]["pdf_page"]},
+        "fjoraar": last_year(cfg["fjoraar"]),
         "tax": tax(int(cfg["year"])),
     }
     OUT.write_text(json.dumps(out, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
