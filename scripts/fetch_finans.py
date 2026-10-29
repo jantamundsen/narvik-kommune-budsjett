@@ -5,6 +5,10 @@ site/data/finans.json for inntekter.html and gjeld.html.
 The largest investment projects per year are typed in from the årsrapporter in config/investeringer.json and
 copied in after a check, with their documents from config/fakta.json.
 
+To explain why debt figures differ, net debt is also fetched for the kommunekasse alone and for the
+consolidated accounts (kasse and kommunale foretak) from 13566, and the kasse's loans, lending and unused
+loan money are typed in from the årsregnskap in config/gjeld_balanse.json and checked against 13566.
+
 Tables, all KOSTRA kommunekonsern (the same scope as the rest of the site):
     12364  Finansielle grunnlagsdata: amounts in 1000 kr for Narvik
     12137  Finansielle nøkkeltall i kroner per innbygger, for Narvik and the comparison regions
@@ -32,6 +36,7 @@ OUT = ROOT / "site" / "data" / "finans.json"
 ACCOUNTS = ROOT / "site" / "data" / "narvik.json"
 INVESTMENTS = ROOT / "config" / "investeringer.json"
 FAKTA = ROOT / "config" / "fakta.json"
+BALANCE = ROOT / "config" / "gjeld_balanse.json"
 REGION = "1806"
 FIRST = 2021
 DIM_REGION, DIM_ART = "KOKkommuneregion0000", "KOKartkap0000"
@@ -104,6 +109,48 @@ def investments() -> dict:
     return out
 
 
+def scopes() -> tuple[dict, str]:
+    """Netto lånegjeld (KG117) for kommunekassen (B) and the consolidated accounts (C): amount and share of income."""
+    params = {
+        "lang": "no",
+        f"valueCodes[{DIM_REGION}]": REGION,
+        f"valueCodes[{DIM_ART}]": "KG117",
+        "valueCodes[KOKregnskapsomfa0000]": "B,C",
+        "valueCodes[ContentsCode]": "KOSbelop0000,KOSbelopbrinv0000",
+        "valueCodes[Tid]": f"from({FIRST})",
+    }
+    query = "https://data.ssb.no/api/pxwebapi/v2/tables/13566/data?" + urllib.parse.urlencode(params, safe="[]*,()")
+    out: dict = {"kasse": {"belop": {}, "andel": {}}, "konsolidert": {"belop": {}, "andel": {}}}
+    for c, v in cells(get(query)):
+        if v is None:
+            continue
+        scope = "kasse" if c["KOKregnskapsomfa0000"] == "B" else "konsolidert"
+        out[scope]["belop" if c["ContentsCode"] == "KOSbelop0000" else "andel"][c["Tid"]] = v
+    return out, query
+
+
+def balance(scope: dict) -> dict:
+    """config/gjeld_balanse.json with its documents, after checking the sums. Exits on a typo."""
+    cfg = json.loads(BALANCE.read_text(encoding="utf-8"))["aar"]
+    sources = json.loads(FAKTA.read_text(encoding="utf-8"))["kilder"]
+    errors, out = [], {}
+    for y, v in cfg.items():
+        k = sources.get(v.get("kilde"))
+        if not k:
+            errors.append(f"{y}: ukjent kilde «{v.get('kilde')}»")
+            continue
+        if v.get("formal") and abs(sum(f["belop"] for f in v["formal"]) - v["lan"]) > len(v["formal"]):
+            errors.append(f"{y}: formålene summerer ikke til lånene {v['lan']}")
+        netto, ssb = v["lan"] - v["utlan"] - v["ubrukte"], scope["kasse"]["belop"].get(y)
+        if ssb is not None and abs(netto - ssb) > 2:
+            # SSB can revise; the page still shows the årsregnskap's own numbers, so this only warns.
+            print(f"Advarsel: {y}: lån minus utlån og ubrukte lånemidler er {netto}, SSB har {ssb}", file=sys.stderr)
+        out[y] = {**v, "kilde": {"id": v["kilde"], **{key: k[key] for key in ("navn", "full", "pdf")}}}
+    if errors:
+        sys.exit("config/gjeld_balanse.json har feil:\n  " + "\n  ".join(errors))
+    return out
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--out", type=Path, default=OUT)
@@ -127,6 +174,8 @@ def main() -> int:
     names.update(labels(ds_cap, DIM_ART))
     names.update(labels(ds_share, DIM_ART))
 
+    scope, q_scope = scopes()
+
     data = {
         "generated": dt.date.today().isoformat(),
         "region": REGION,
@@ -138,10 +187,13 @@ def main() -> int:
         "regions": regions,
         "kostra_group_size": len(acc["kostra_group"]["members"]),
         "investeringer": investments(),
+        "omfang": scope,
+        "gjeld_balanse": balance(scope),
         "sources": {
             "12364": source("12364", url("12364", [REGION], ["*"], "KOSbelop0000")),
             "12137": source("12137", url("12137", [REGION] + all_codes[1:], ["*"], "KOSbelopprinnb0000")),
             "12143": source("12143", url("12143", [REGION] + all_codes[1:], ["*"], "KOSbelopbrinv0000")),
+            "13566": source("13566", q_scope),
         },
     }
     # The income sources must add up to brutto driftsinntekter, or the page's «av hver hundrelapp» is wrong.

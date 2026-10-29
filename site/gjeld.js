@@ -66,6 +66,7 @@ function render() {
   document.getElementById('pension').textContent = pension ? `${mill(pension)} millioner kroner ved utgangen av ${year}` : 'i tillegg';
 
   drawDebt();
+  drawBridge();
   drawCost();
   drawInvestments();
   drawCompare();
@@ -79,6 +80,41 @@ function drawDebt() {
   const first = F.years[0];
   document.getElementById('debt-lead').textContent = `Netto lånegjeld har gått fra ${mill(amt('KG31', first))} millioner kroner i ${first} til ${mill(amt('KG31'))} millioner i ${year}, ${chgText(pct(amt('KG31'), amt('KG31', first)))}. Som andel av driftsinntektene gikk den fra ${nb(F.share.narvik.KG31[first], 1)} % til ${nb(F.share.narvik.KG31[year], 1)} %.`;
   document.getElementById('debt-caption').innerHTML = `Netto lånegjeld (art KG31), kommunekonsern. ${ssb('12364', 'Beløp hos SSB')} (tabell 12364), ${ssb('12143', 'prosent av driftsinntektene hos SSB')} (tabell 12143).`;
+}
+
+// «Hvorfor ser du ulike gjeldstall?»: from the kasse's loans in the årsregnskap, step by step to net debt, and then the
+// same net debt for the consolidated accounts and the konsern used on the rest of the page. Shown for the selected
+// year when config/gjeld_balanse.json has it, else for the newest year it has.
+function drawBridge() {
+  const B = F.gjeld_balanse || {}, years = Object.keys(B).sort();
+  const sec = document.getElementById('bridge');
+  if (!years.length) { sec.hidden = true; return; }
+  const y = B[year] ? year : years.at(-1), b = B[y], O = F.omfang;
+  const pdf = (page, text) => `<a href="${esc(b.kilde.pdf)}#page=${page}" target="_blank" rel="noopener">${text || 's. ' + page}</a>`;
+  const share = v => (v == null ? '' : nb(v, 1) + ' %');
+  const netto = b.lan - b.utlan - b.ubrukte;
+  const rows = [
+    ['Lån i banker og Husbanken, kommunekassen', mill(b.lan), '', ''],
+    ...(b.formal || []).map(f => [f.navn, mill(f.belop), '', 'sub']),
+    ['Minus utlån, mest startlån til innbyggere', '−' + mill(b.utlan), '', ''],
+    ['Minus lånte penger som ikke er brukt ennå', '−' + mill(b.ubrukte), '', ''],
+    ['Netto lånegjeld, kommunekassen', mill(netto), share(O.kasse.andel[y]), 'total'],
+    ['Netto lånegjeld, kommunen med foretakene Narvik Vann KF og Narvik Havn KF', mill(O.konsolidert.belop[y]), share(O.konsolidert.andel[y]), ''],
+    ['Netto lånegjeld, kommunekonsern (tallet ellers på denne siden)', mill(amt('KG31', y)), share(F.share.narvik?.KG31?.[y]), 'me'],
+  ];
+  const t = document.getElementById('bridge-table');
+  t.innerHTML = `<thead><tr><th>${y}</th><th>Mill. kr</th><th>Av drifts&shy;inntektene</th></tr></thead><tbody>${rows.map(([n, v, p, c]) =>
+    `<tr${c ? ` class="${c}"` : ''}><td>${c === 'sub' ? '<span class="indent">herav </span>' + esc(n.charAt(0).toLowerCase() + n.slice(1)) : esc(n)}</td><td>${v}</td><td>${p}</td></tr>`).join('')}</tbody>`;
+  // Three short columns fit on a phone, so the table is not stacked into cards like the others.
+  t.classList.add('bridge');
+  const low = b.formal?.[0]?.belop ?? netto, high = b.lan + b.pensjon;
+  document.getElementById('bridge-lead').textContent = `Gjelden kan regnes på flere måter, fra ${nb(low / 1e6, 1)} til ${nb(high / 1e6, 1)} milliarder kroner for ${y}, avhengig av hva som tas med. Tallene er riktige hver for seg. Tabellen viser hvordan de henger sammen, fra lånene i kommunens regnskap til netto lånegjeld.`;
+  document.getElementById('bridge-note').innerHTML = `Regnes pensjonsforpliktelsene med, er den langsiktige gjelden for kommunekassen ${mill(high)} mill. kr. Mot forpliktelsene står pensjonsmidler på ${mill(b.pensjonsmidler)} mill. kr. Prosenten for konsernet er lavere enn for kommunen med foretakene, selv om beløpet er høyere, fordi konsernet også har større driftsinntekter.`;
+  document.getElementById('bridge-caption').innerHTML = `Lån, utlån, ubrukte lånemidler og pensjon fra balansen i <a href="${esc(b.kilde.pdf)}" target="_blank" rel="noopener" title="${esc(b.kilde.full)}">${esc(b.kilde.navn)}</a> (${pdf(b.side)})`
+    + (b.formal ? `, lånene fordelt på formål fra note 9 (${pdf(b.formal_side)})` : '')
+    + `. Netto lånegjeld for kommunekassen og for kommunen med foretakene: ${ssb('13566', 'SSB tabell 13566')}. Kommunekonsern: SSB tabell 12364 og 12143. Kommunekonsernet tar i tillegg med kommunens andel av interkommunale selskaper.`
+    + (y !== year ? ` Regnskapet er skrevet inn for ${years.join(' og ')}, så tabellen viser ${y}.` : '');
+  sec.hidden = false;
 }
 
 function drawCost() {
