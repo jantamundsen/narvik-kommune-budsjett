@@ -116,6 +116,11 @@
       "full": "Narvik kommune, utkast til referat fra oppstartsmøte for detaljregulering for omsorgsboliger i Bjerkvik, plan-ID 2026006, møte 06.07.2026, referat 15.07.2026, vedlegg til sak 129/26",
       "pdf": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022278852&dokid=2085502&versjon=1&variant=A"
     },
+    "varsel-omsorg-bjerkvik": {
+      "navn": "Varsel om planoppstart, omsorgsboliger Bjerkvik",
+      "full": "Sweco Norge AS for BoMer 62 AS, «Varsel om igangsetting av reguleringsarbeid med konsekvensutredning», detaljregulering for omsorgsboliger i Bjerkvik, plan-ID 2026006, 20.10.2026, journalført hos Narvik kommune i sak 2026/6017",
+      "pdf": "https://prod02.elementscloud.no/publikum/Documents/ShowDocument/c1d7f777-8235-4817-8203-ebd49ff36bb5/2211/5790"
+    },
     "tillegg-omsorg-bjerkvik": {
       "navn": "Tilleggsnotat 15.09.2026, sak 26/2105",
       "full": "Narvik kommune, tilleggsnotat til «Politisk prinsippavklaring – Detaljregulering for omsorgsboliger i Bjerkvik», 15.09.2026",
@@ -249,7 +254,7 @@
       "id": "omsorgsboliger-bjerkvik",
       "tittel": "Omsorgsboliger i Bjerkvik",
       "ingress": "Kommunen har avtalt å kjøpe 40 omsorgsboliger som en privat utbygger skal bygge i Bjerkvik, og utbyggeren regulerer nå en tomt på skoleområdet. Her er vedtakene, prisene og plansaken fra kommunens egne sakspapirer.",
-      "kontrollert": "2026-10-20",
+      "kontrollert": "2026-10-30",
       "nokkeltall": [
         { "navn": "Boliger i planen", "verdi": "41", "tekst": "omsorgsboliger med fellesarealer og vinterhage. Kommunestyret vedtok kjøp av 40", "kilde": { "id": "ks-sak-129-2026", "side": 7 } },
         { "navn": "Pris for kjøper per leilighet", "verdi": "2,84 mill. kr", "tekst": "byggekostnad 4,60 mill. kr minus 1,765 mill. kr i tilskudd fra Husbanken", "kilde": { "id": "ks-sak-28-2026", "side": 4 } },
@@ -293,6 +298,8 @@
           { "tekst": "Etter oppstartsmøtet 06.07.2026 kunne planadministrasjonen ikke anbefale oppstart, fordi planen ikke var i tråd med overordnet plan. Utbyggeren krevde da saken lagt fram for kommunestyret.", "kilde": { "id": "ks-sak-129-2026", "side": 5 } },
           { "tekst": "Kommunestyret vedtok at planarbeidet skal bygge på alternativ B. Kommunedirektøren pekte på at denne tomten i mindre grad berører opparbeidede lekeområder, og at det har vært diskutert en framtidig fotballhall på samme sted.", "kilde": [{ "id": "ks-sak-129-2026", "side": 3 }, { "id": "ks-sak-129-2026", "side": 7 }] },
           { "tekst": "Det skal lages konsekvensutredning for friluftsliv og nærmiljø, barn, unge og lekearealer, og mobilitet, transport og trafikk. Planprogram trengs ikke hvis boligene blir bemannede omsorgsboliger.", "kilde": [{ "id": "ks-sak-129-2026", "side": 3 }, { "id": "tillegg-omsorg-bjerkvik", "side": 1 }] },
+          { "tekst": "I varselet om planoppstart 20.10.2026 er formålet endret fra kombinert tjenesteyting og bolig til kun offentlig eller privat tjenesteyting, etter kommunestyrets vedtak 17.09.2026. Dermed kreves ikke planprogram, men planen skal fortsatt konsekvensutredes. Boligene plasseres nord for dagens bebyggelse, og planområdet tar med resten av skoleområdet og veiene rundt.", "kilde": { "id": "varsel-omsorg-bjerkvik", "side": 1 } },
+          { "tekst": "Det skal forhandles fram en utbyggingsavtale, og reguleringsplanen og byggesøknaden skal behandles samtidig (plan- og bygningsloven § 1-7).", "kilde": { "id": "varsel-omsorg-bjerkvik", "side": 1 } },
           { "tekst": "Kommunestyret ba også om en utredning av hva det betyr for framtidig elevtall og kapasitet ved skolen i Bjerkvik, eller en gjenåpning av ungdomsskolen, at arealet går til omsorgsboliger.", "kilde": { "id": "ks-sak-129-2026", "side": 4 } },
           { "tekst": "Planutvalget ba om at rekreasjonsarealer som går tapt, erstattes ved at områdene rundt blir bedre for lek og rekreasjon.", "kilde": { "id": "ks-sak-129-2026", "side": 4 } },
           { "tekst": "Ifølge referatet fra oppstartsmøtet ligger planområdet under marin grense og i et aktsomhetsområde for kvikkleireskred, så det må utredes. Mister skolen uteoppholdsareal, må det dokumenteres hvordan det erstattes.", "kilde": { "id": "oppstart-omsorg-bjerkvik", "side": 3 } }
@@ -309,7 +316,8 @@
         { "dato": "10.09.2026", "tekst": "Hovedutvalg for plan og utvikling støtter oppstart av planarbeidet enstemmig (sak 28/26).", "kilde": { "id": "ks-sak-129-2026", "side": 4 } },
         { "dato": "15.09.2026", "tekst": "Tilleggsnotat: utbyggeren planlegger nå bemannede omsorgsboliger, og da kreves ikke planprogram.", "kilde": { "id": "tillegg-omsorg-bjerkvik", "side": 1 } },
         { "dato": "17.09.2026", "tekst": "Kommunestyret vedtar at planarbeidet videreføres med alternativ B (sak 129/26, 20 mot 10 stemmer), og ber om utredning av skolekapasiteten i Bjerkvik.", "kilde": { "id": "ks-sak-129-2026", "side": 3 } },
-        { "dato": "15.10.2026", "tekst": "Tertialrapport 2/2026: kontrakten er signert, og utbyggeren driver med detaljregulering.", "kilde": { "id": "tertial-2-2026", "side": 12 } }
+        { "dato": "15.10.2026", "tekst": "Tertialrapport 2/2026: kontrakten er signert, og utbyggeren driver med detaljregulering.", "kilde": { "id": "tertial-2-2026", "side": 12 } },
+        { "dato": "20.10.2026", "tekst": "Sweco varsler på vegne av BoMer 62 AS oppstart av detaljregulering med konsekvensutredning (plan-ID 2026006). Frist for skriftlige innspill er 20.11.2026, og det ble varslet åpent møte i Bjerkvikhallen 27.10.2026.", "kilde": [{ "id": "varsel-omsorg-bjerkvik", "side": 1 }, { "id": "varsel-omsorg-bjerkvik", "side": 2 }] }
       ],
       "lenker": [
         { "href": "befolkning#areas", "navn": "Befolkning i delområdene", "tekst": "Folketall i Bjerkvik og de andre delområdene." },
