@@ -227,6 +227,11 @@
    "full": "Multiconsult for Nordkraft, trafikkanalyse til detaljregulering datasenter Bjerkvik, 07.10.2020 (vedlegg til reguleringsplanen)",
    "pdf": "https://oldweb.narvik.kommune.no/_f/p-1/ia100140c-14ea-47a8-942a-960dca5c5cc3/06-rapport-trafikkanalyse.pdf"
   },
+  "varsel-omsorg-bjerkvik": {
+   "navn": "Varsel om planoppstart, omsorgsboliger Bjerkvik",
+   "full": "Sweco Norge AS for BoMer 62 AS, «Varsel om igangsetting av reguleringsarbeid med konsekvensutredning», detaljregulering for omsorgsboliger i Bjerkvik, plan-ID 2026006, 20.10.2026, journalført hos Narvik kommune i sak 2026/6017",
+   "pdf": "https://prod02.elementscloud.no/publikum/Documents/ShowDocument/c1d7f777-8235-4817-8203-ebd49ff36bb5/2211/5790"
+  },
   "vm-organisering": {
    "navn": "Narvik kommune: Slik er VM-arbeidet organisert",
    "full": "Narvik kommune, nettsiden «Slik er VM-arbeidet i Narvik organisert», intervju med ordføreren (udatert)",
@@ -628,6 +633,7 @@
      "omrader": [
       "helse"
      ],
+     "ramme_mill": 801.4,
      "tekst": "Helse og omsorg brukte 801,4 mill. kr i 2025, 20,0 mill. kr mer enn revidert budsjett på 781,4 mill. kr. Opprinnelig budsjett var 709,4 mill. kr. Kommunen forklarer avviket med utskrivningsklare pasienter, høyt sykefravær med overtid og vikarbyrå, ekstra døgnbemanning i perioder, videreført kjøkkendrift, nye kjøpte oppdrag og forsinkede innsparingstiltak (s. 9). Mot slutten av året ble 60 mill. kr saldert inn på fellesområdet.",
      "merknad": "Tabellen «Totaloversikt drift – fordelt på rammeområder» på s. 9 oppgir andre tall for Helse og omsorg: budsjett 789,5 mill. kr og regnskap 807,9 mill. kr (avvik −2,3 %).",
      "kilde": {
@@ -766,6 +772,7 @@
      "omrader": [
       "helse"
      ],
+     "ramme_mill": 770.3,
      "tekst": "Helse og omsorg brukte 770,3 mill. kr i 2024, 67,5 mill. kr (9,6 %) mer enn revidert budsjett på 702,8 mill. kr. Merforbruket var størst i sektor institusjon og distrikt (31,3 mill. kr), mestring og oppfølging (14,5 mill. kr) og hjemmebaserte tjenester (13,3 mill. kr). Fellesområdet hadde også merforbruk, blant annet fordi 16 mill. kr i vedtatte strukturtiltak fortsatt ikke er innfridd.",
      "merknad": "Tabellen viser 8,3 mill. kr i merforbruk på fellesområdet (sektor 30), mens teksten på samme side sier 7,7 mill. kr.",
      "kilde": {
@@ -905,7 +912,7 @@
    "id": "omsorgsboliger-bjerkvik",
    "tittel": "Omsorgsboliger i Bjerkvik",
    "ingress": "Kommunen har avtalt å kjøpe 40 omsorgsboliger som en privat utbygger skal bygge i Bjerkvik, og utbyggeren regulerer nå en tomt på skoleområdet. Her er vedtakene, prisene og plansaken fra kommunens egne sakspapirer.",
-   "kontrollert": "2026-10-20",
+   "kontrollert": "2026-10-30",
    "nokkeltall": [
     {
      "navn": "Boliger i planen",
@@ -1197,6 +1204,20 @@
        ]
       },
       {
+       "tekst": "I varselet om planoppstart 20.10.2026 er formålet endret fra kombinert tjenesteyting og bolig til kun offentlig eller privat tjenesteyting, etter kommunestyrets vedtak 17.09.2026. Dermed kreves ikke planprogram, men planen skal fortsatt konsekvensutredes. Boligene plasseres nord for dagens bebyggelse, og planområdet tar med resten av skoleområdet og veiene rundt.",
+       "kilde": {
+        "id": "varsel-omsorg-bjerkvik",
+        "side": 1
+       }
+      },
+      {
+       "tekst": "Det skal forhandles fram en utbyggingsavtale, og reguleringsplanen og byggesøknaden skal behandles samtidig (plan- og bygningsloven § 1-7).",
+       "kilde": {
+        "id": "varsel-omsorg-bjerkvik",
+        "side": 1
+       }
+      },
+      {
        "tekst": "Kommunestyret ba også om en utredning av hva det betyr for framtidig elevtall og kapasitet ved skolen i Bjerkvik, eller en gjenåpning av ungdomsskolen, at arealet går til omsorgsboliger.",
        "kilde": {
         "id": "ks-sak-129-2026",
@@ -1308,6 +1329,20 @@
       "id": "tertial-2-2026",
       "side": 12
      }
+    },
+    {
+     "dato": "20.10.2026",
+     "tekst": "Sweco varsler på vegne av BoMer 62 AS oppstart av detaljregulering med konsekvensutredning (plan-ID 2026006). Frist for skriftlige innspill er 20.11.2026, og det ble varslet åpent møte i Bjerkvikhallen 27.10.2026.",
+     "kilde": [
+      {
+       "id": "varsel-omsorg-bjerkvik",
+       "side": 1
+      },
+      {
+       "id": "varsel-omsorg-bjerkvik",
+       "side": 2
+      }
+     ]
     }
    ],
    "lenker": [
