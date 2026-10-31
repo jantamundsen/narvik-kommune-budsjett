@@ -29,6 +29,7 @@ jobs:
           python scripts/fetch_lopende.py
           python scripts/build_fakta.py
           python scripts/build_saker.py
+          python scripts/build_andre_tall.py
           python scripts/fetch_befolkning.py
           python scripts/fetch_finans.py
           python scripts/fetch_bolig.py
@@ -41,7 +42,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898900+github-actions[bot]@users.noreply.github.com"
-          git add site/data/narvik.json site/data/detaljer.json site/data/sammenligning.json site/data/malgruppe.json site/data/eldre.json site/data/lopende.json site/data/fakta.json site/data/saker.json site/data/befolkning.json site/data/finans.json site/data/bolig.json site/data/arbeid.json site/data/naering.json site/data/sammenhenger.json
+          git add site/data/narvik.json site/data/detaljer.json site/data/sammenligning.json site/data/malgruppe.json site/data/eldre.json site/data/lopende.json site/data/fakta.json site/data/saker.json site/data/andre_tall.json site/data/befolkning.json site/data/finans.json site/data/bolig.json site/data/arbeid.json site/data/naering.json site/data/sammenhenger.json
           if git diff --cached --quiet; then
             echo "Ingen endringer i dataene."
           else

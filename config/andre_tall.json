@@ -1,0 +1,679 @@
+{
+  "_om": "Andre tall: et utvalg tall om Narvik kommune som ikke vises andre steder på siden. Se docs/andre-tall-oppdatering.md for hvordan siden holdes oppdatert. publisert = dato kilden la ut tallet; hentet = dato tallet ble hentet fra en database uten publiseringsdato. gjelder = perioden tallet handler om. endring.forrige gir endring i prosent beregnet av byggeskriptet; endring.pst brukes når kilden selv oppgir prosenten. kilde er {ssb: tabell}, {ref: nøkkel i config/fakta.json kilder} eller {navn, url}, med side der kilden har sider. Kort i samme serie (id uten årstall til slutt, eller serie) får lenke til det nyeste.",
+  "kontrollert": "2026-10-31",
+  "tall": [
+    {
+      "id": "vei-2025",
+      "publisert": "2026-06-15",
+      "gjelder": "2025",
+      "tema": "Vei og vann",
+      "kildetype": "SSB",
+      "tall": "273",
+      "enhet": "km kommunal vei",
+      "tekst": "Av dette er 83 km uten fast dekke og 180 km har belysning. Årsrapporten for 2025 oppgir 287 km (s. 54).",
+      "kilde": {
+        "ssb": "11814"
+      }
+    },
+    {
+      "id": "vannledning-2025",
+      "publisert": "2026-06-15",
+      "gjelder": "2025",
+      "tema": "Vei og vann",
+      "kildetype": "SSB",
+      "tall": "257",
+      "enhet": "km vannledning",
+      "tekst": "Kommunale vannledninger. Ledningene med kjent alder er i snitt 37 år gamle, og 157 km ble lagt mellom 1971 og 2000.",
+      "kilde": {
+        "ssb": "13143"
+      }
+    },
+    {
+      "id": "fornyet-2025",
+      "publisert": "2026-06-15",
+      "gjelder": "Snitt 2023–2025",
+      "tema": "Vei og vann",
+      "kildetype": "SSB",
+      "tall": "1,0",
+      "enhet": "% i året",
+      "tekst": "Andelen av vannledningsnettet som fornyes hvert år, i snitt de siste tre årene. I 2025 ble 1 054 meter skiftet eller rehabilitert.",
+      "kilde": {
+        "ssb": "13143"
+      }
+    },
+    {
+      "id": "vannmaler-2025",
+      "publisert": "2026-06-15",
+      "gjelder": "2025",
+      "tema": "Vei og vann",
+      "kildetype": "SSB",
+      "tall": "2",
+      "enhet": "%",
+      "tekst": "Andelen husholdninger som har vannmåler.",
+      "kilde": {
+        "ssb": "13143"
+      }
+    },
+    {
+      "id": "lekkasje-2025",
+      "publisert": "2026-06-15",
+      "gjelder": "2025",
+      "tema": "Vei og vann",
+      "kildetype": "SSB",
+      "tall": "5,2",
+      "enhet": "m³ per meter i året",
+      "tekst": "Anslått vannlekkasje per meter kommunal vannledning.",
+      "kilde": {
+        "ssb": "13143"
+      }
+    },
+    {
+      "id": "vannverk-2025",
+      "publisert": "2026-06-15",
+      "gjelder": "2025",
+      "tema": "Vei og vann",
+      "kildetype": "SSB",
+      "tall": "13",
+      "enhet": "vannverk",
+      "tekst": "Vannverk i kommunen, 9 av dem kommunale. 94 % av innbyggerne får vann fra et kommunalt vannverk.",
+      "kilde": {
+        "ssb": "13143"
+      }
+    },
+    {
+      "id": "utrykninger-2025",
+      "publisert": "2026-06-15",
+      "gjelder": "2025",
+      "tema": "Brann og beredskap",
+      "kildetype": "SSB",
+      "tall": "269",
+      "enhet": "utrykninger",
+      "tekst": "Utrykninger til brann og andre hendelser. Det var 10 bygningsbranner, og 5 av dem var boligbranner.",
+      "kilde": {
+        "ssb": "12058"
+      }
+    },
+    {
+      "id": "piper-2025",
+      "publisert": "2026-06-15",
+      "gjelder": "2025",
+      "tema": "Brann og beredskap",
+      "kildetype": "SSB",
+      "tall": "11 027",
+      "enhet": "piper",
+      "tekst": "Piper i kommunen. 1 540 av dem ble feiet i 2025.",
+      "kilde": {
+        "ssb": "12058"
+      }
+    },
+    {
+      "id": "kirke-2025",
+      "publisert": "2026-06-15",
+      "gjelder": "2025",
+      "tema": "Hverdagsliv",
+      "kildetype": "SSB",
+      "tall": "238",
+      "enhet": "gravferder",
+      "tekst": "Kirkelige gravferder i Den norske kirke i Narvik. Det var 29 kirkelige vigsler og 230 gudstjenester.",
+      "kilde": {
+        "ssb": "11963"
+      }
+    },
+    {
+      "id": "ansatte-2025",
+      "publisert": "2026-06-04",
+      "gjelder": "2025",
+      "tema": "Kommunen som arbeidsplass",
+      "kildetype": "Kommunens rapporter",
+      "tall": "1 855",
+      "enhet": "ansatte",
+      "endring": {
+        "forrige": "1 859",
+        "periode": "2024"
+      },
+      "tekst": "Ansatte i kommunen, som til sammen utgjør 1 668 årsverk. I 2023 var det 1 924 ansatte.",
+      "kilde": {
+        "ref": "ar-2025",
+        "side": "s. 11"
+      }
+    },
+    {
+      "id": "laerlinger-2025",
+      "publisert": "2026-06-04",
+      "gjelder": "Utgangen av 2025",
+      "tema": "Kommunen som arbeidsplass",
+      "kildetype": "Kommunens rapporter",
+      "tall": "19",
+      "enhet": "lærlinger",
+      "tekst": "Lærlinger og lærekandidater, blant annet i helsefag, barne- og ungdomsarbeid, IT-drift og kokkfaget.",
+      "kilde": {
+        "ref": "ar-2025",
+        "side": "s. 12"
+      }
+    },
+    {
+      "id": "bruer-2025",
+      "publisert": "2026-06-04",
+      "gjelder": "2025",
+      "tema": "Vei og vann",
+      "kildetype": "Kommunens rapporter",
+      "tall": "41",
+      "enhet": "bruer",
+      "tekst": "Bruer som enheten Veg og park har ansvar for. Den har også 35 parkanlegg og 14 offentlige lekeplasser.",
+      "kilde": {
+        "ref": "ar-2025",
+        "side": "s. 54"
+      }
+    },
+    {
+      "id": "eiendomsskatt-2026",
+      "publisert": "2026-06-15",
+      "gjelder": "2026",
+      "tema": "Bolig og gebyrer",
+      "kildetype": "SSB",
+      "tall": "3,25",
+      "enhet": "promille for bolig",
+      "tekst": "Eiendomsskattesatsen for boliger og fritidsboliger. Den generelle satsen er 7 promille, og bunnfradraget er 100 000 kr. Takstene er fra 2022.",
+      "kilde": {
+        "ssb": "14674"
+      }
+    },
+    {
+      "id": "gebyrer-2026",
+      "publisert": "2026-06-15",
+      "gjelder": "2026",
+      "tema": "Bolig og gebyrer",
+      "kildetype": "SSB",
+      "tall": "4 930",
+      "enhet": "kr for avløp",
+      "tekst": "Årsgebyr for avløp, ekskl. mva. Vann koster 3 976 kr og avfall 4 750 kr i året.",
+      "kilde": {
+        "ssb": "12842"
+      }
+    },
+    {
+      "id": "avfall-2025",
+      "publisert": "2026-06-15",
+      "gjelder": "2025",
+      "tema": "Vei og vann",
+      "kildetype": "SSB",
+      "tall": "330",
+      "enhet": "kg avfall per innbygger",
+      "tekst": "Husholdningsavfall per innbygger. 42,5 % gikk til materialgjenvinning, 51,5 % til forbrenning og 5,9 % til deponi.",
+      "kilde": {
+        "ssb": "12241"
+      }
+    },
+    {
+      "id": "fastlege-2025",
+      "publisert": "2026-06-15",
+      "gjelder": "2025",
+      "tema": "Helse og omsorg",
+      "kildetype": "SSB",
+      "tall": "6",
+      "enhet": "åpne fastlegelister",
+      "tekst": "Av 29 fastlegeavtaler hadde 6 åpne lister. I snitt har en fastlege 781 pasienter på listen.",
+      "kilde": {
+        "ssb": "12005"
+      }
+    },
+    {
+      "id": "bekymring-2025",
+      "publisert": "2026-06-15",
+      "gjelder": "2025",
+      "tema": "Barn og unge",
+      "kildetype": "SSB",
+      "tall": "339",
+      "enhet": "bekymringsmeldinger",
+      "tekst": "Bekymringsmeldinger til barnevernet. 98,8 % ble behandlet innen sju dager, og 155 gikk videre til undersøkelse.",
+      "kilde": {
+        "ssb": "12189"
+      }
+    },
+    {
+      "id": "bibliotek-2025",
+      "publisert": "2026-06-15",
+      "gjelder": "2025",
+      "tema": "Kultur og fritid",
+      "kildetype": "SSB",
+      "tall": "216 294",
+      "enhet": "bibliotekbesøk",
+      "tekst": "Fysiske besøk i kommunens tre folkebibliotek. Bibliotekene hadde 339 arrangementer med til sammen 14 089 deltakere.",
+      "kilde": {
+        "ssb": "11758"
+      }
+    },
+    {
+      "id": "kino-2025",
+      "publisert": "2026-06-15",
+      "gjelder": "2025",
+      "tema": "Kultur og fritid",
+      "kildetype": "SSB",
+      "tall": "22 805",
+      "enhet": "kinobesøk",
+      "tekst": "Besøk på kinoen, som har 4 saler og 290 seter. Det var 1 967 forestillinger, i snitt 11,6 besøkende per forestilling.",
+      "kilde": {
+        "ssb": "11817"
+      }
+    },
+    {
+      "id": "formalsbygg-2025",
+      "publisert": "2026-06-15",
+      "gjelder": "2025",
+      "tema": "Kommunens eiendom",
+      "kildetype": "SSB",
+      "tall": "121 144",
+      "enhet": "m² formålsbygg",
+      "tekst": "Areal kommunen eier i skoler, institusjoner, idrettsbygg, administrasjonsbygg og andre formålsbygg. Skolene står for 46 411 m².",
+      "kilde": {
+        "ssb": "11906"
+      }
+    },
+    {
+      "id": "elbil-2025",
+      "publisert": "2026-03-16",
+      "gjelder": "2025",
+      "tema": "Vei og vann",
+      "kildetype": "SSB",
+      "tall": "3 511",
+      "enhet": "elbiler",
+      "tekst": "Elbiler registrert i kommunen. Det finnes 164 offentlige ladepunkter, 21 elbiler per ladepunkt.",
+      "kilde": {
+        "ssb": "14725"
+      }
+    },
+    {
+      "id": "kulturskole-2025",
+      "publisert": "2026-03-16",
+      "gjelder": "2025",
+      "tema": "Barn og unge",
+      "kildetype": "SSB",
+      "tall": "12,4",
+      "enhet": "%",
+      "tekst": "Andelen barn 6–15 år som går i kulturskolen, 288 barn. 2,5 % står på venteliste.",
+      "kilde": {
+        "ssb": "14523"
+      }
+    },
+    {
+      "id": "hytter-2026",
+      "publisert": "2026-02-04",
+      "gjelder": "1. januar 2026",
+      "tema": "Bolig og gebyrer",
+      "kildetype": "SSB",
+      "tall": "3 573",
+      "enhet": "hytter",
+      "tekst": "Hytter, sommerhus og lignende fritidsbygg. I tillegg brukes 312 helårsboliger og våningshus som fritidsbolig.",
+      "kilde": {
+        "ssb": "03174"
+      }
+    },
+    {
+      "id": "valg-2023",
+      "publisert": "2023-11-08",
+      "gjelder": "Kommunestyrevalget 2023",
+      "tema": "Demokrati",
+      "kildetype": "SSB",
+      "tall": "59,2",
+      "enhet": "% valgdeltakelse",
+      "tekst": "Andelen stemmeberettigede som stemte ved kommunestyrevalget. 42,4 % av stemmene var forhåndsstemmer.",
+      "kilde": {
+        "ssb": "09475"
+      }
+    },
+    {
+      "id": "byggesoknader-2025",
+      "publisert": "2026-06-04",
+      "gjelder": "2025",
+      "tema": "Bolig og gebyrer",
+      "kildetype": "Kommunens rapporter",
+      "tall": "318",
+      "enhet": "byggesøknader",
+      "endring": {
+        "forrige": "343",
+        "periode": "2024"
+      },
+      "tekst": "Byggesøknader kommunen mottok, og 297 ble behandlet. Søknader med 12 ukers frist tok i snitt 26 dager, mot 6 dager i 2024.",
+      "kilde": {
+        "ref": "ar-2025",
+        "side": "s. 61"
+      }
+    },
+    {
+      "id": "dispensasjon-2025",
+      "publisert": "2026-06-04",
+      "gjelder": "2025",
+      "tema": "Bolig og gebyrer",
+      "kildetype": "Kommunens rapporter",
+      "tall": "158",
+      "enhet": "dispensasjonssøknader",
+      "tekst": "Søknader om å fravike en plan eller regel. Rana mottok 27 og Harstad 100. Snittet for saksbehandlingen var 36 dager.",
+      "kilde": {
+        "ref": "ar-2025",
+        "side": "s. 61"
+      }
+    },
+    {
+      "id": "heltid-2025",
+      "publisert": "2026-06-04",
+      "gjelder": "2025",
+      "tema": "Kommunen som arbeidsplass",
+      "kildetype": "Kommunens rapporter",
+      "tall": "70,9",
+      "enhet": "% av kvinnene",
+      "tekst": "Andelen kvinner i kommunen som har heltidsstilling. For menn er andelen 79,5 %. Den gjennomsnittlige stillingsprosenten var 90,0 %.",
+      "kilde": {
+        "ref": "ar-2025",
+        "side": "s. 12"
+      }
+    },
+    {
+      "id": "fartshumper-2025",
+      "publisert": "2026-06-04",
+      "gjelder": "2025",
+      "tema": "Vei og vann",
+      "kildetype": "Kommunens rapporter",
+      "tall": "140",
+      "enhet": "fartshumper",
+      "tekst": "Fartshumper på kommunale veier. Kommunen har også 1 800 skilt, 1 100 sluker, 26 km fortau og 30 minnesmerker.",
+      "kilde": {
+        "ref": "ar-2025",
+        "side": "s. 54"
+      }
+    },
+    {
+      "id": "cruise-2025",
+      "publisert": "2026-06-18",
+      "gjelder": "2025",
+      "tema": "Havn og næring",
+      "kildetype": "Kommunale foretak",
+      "tall": "65 876",
+      "enhet": "cruisepassasjerer",
+      "endring": {
+        "forrige": "31 210",
+        "periode": "2024"
+      },
+      "tekst": "Cruisepassasjerer i Narvik, fordelt på 65 anløp. Cruiserelatert omsetning var 32,1 mill. kr.",
+      "kilde": {
+        "navn": "Narvik Havn KF, årsberetning 2025 (kommunestyret 18.06.2026)",
+        "url": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022271983&dokid=2068270&versjon=1&variant=A",
+        "side": "s. 2"
+      }
+    },
+    {
+      "id": "jernmalm-2025",
+      "publisert": "2026-06-18",
+      "gjelder": "2025",
+      "tema": "Havn og næring",
+      "kildetype": "Kommunale foretak",
+      "tall": "19,5",
+      "enhet": "mill. tonn jernmalm",
+      "endring": {
+        "forrige": "16,1",
+        "periode": "2024"
+      },
+      "tekst": "Jernmalm skipet ut over Narvik, summen av fire kvartaler (4,9 + 4,6 + 5,0 + 5,0). Beregnet fra havnas egne registreringer.",
+      "kilde": {
+        "navn": "Narvik Havn KF, årsberetning 2025",
+        "url": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022271983&dokid=2068270&versjon=1&variant=A",
+        "side": "s. 2"
+      }
+    },
+    {
+      "id": "vannproduksjon-2025",
+      "publisert": "2026-06-18",
+      "gjelder": "2025",
+      "tema": "Vei og vann",
+      "kildetype": "Kommunale foretak",
+      "tall": "3,6",
+      "enhet": "mill. m³ drikkevann",
+      "tekst": "Narvik Vann produserte 3 594 749 m³ vann på 8 vannverk.",
+      "kilde": {
+        "navn": "Narvik Vann KF, årsrapport 2025",
+        "url": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022271982&dokid=2068265&versjon=1&variant=A",
+        "side": "s. 10"
+      }
+    },
+    {
+      "id": "vannlekkasjer-2025",
+      "publisert": "2026-06-18",
+      "gjelder": "2025",
+      "tema": "Vei og vann",
+      "kildetype": "Kommunale foretak",
+      "tall": "18",
+      "enhet": "vannlekkasjer",
+      "tekst": "Lekkasjer på det kommunale vannledningsnettet. I tillegg var det 18 lekkasjer på private ledninger. Snittet de siste tre årene er 20 kommunale lekkasjer i året.",
+      "kilde": {
+        "navn": "Narvik Vann KF, årsrapport 2025",
+        "url": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022271982&dokid=2068265&versjon=1&variant=A",
+        "side": "s. 9"
+      }
+    },
+    {
+      "id": "brann-region-2025",
+      "publisert": "2026-06-18",
+      "gjelder": "2025",
+      "tema": "Brann og beredskap",
+      "kildetype": "Kommunale foretak",
+      "tall": "26,5",
+      "enhet": "% falske alarmer",
+      "tekst": "Andelen av utrykningene som gjaldt unødige eller falske brannalarmer. Ofoten brann og redning rykket ut 322 ganger, mot 448 i 2024. Tallene gjelder hele området brannvesenet dekker: Narvik, Gratangen og Lødingen.",
+      "kilde": {
+        "navn": "Ofoten brann og redning IKS, årsrapport 2025",
+        "url": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022271880&dokid=2067962&versjon=1&variant=A",
+        "side": "s. 9"
+      }
+    },
+    {
+      "id": "naeringsfond-2025",
+      "publisert": "2026-06-18",
+      "gjelder": "2025",
+      "tema": "Havn og næring",
+      "kildetype": "Kommunens rapporter",
+      "tall": "947 600",
+      "enhet": "kr i tilskudd",
+      "tekst": "Det kommunale næringsfondet delte ut tilskudd til 22 av 32 søknader. Rammen var 1 050 000 kr.",
+      "kilde": {
+        "navn": "Årsmelding for Narvik kommunes næringsfond 2025",
+        "url": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022271877&dokid=2067954&versjon=1&variant=A",
+        "side": "s. 5"
+      }
+    },
+    {
+      "id": "svevestov-2025",
+      "publisert": "2026-05-21",
+      "gjelder": "2025",
+      "tema": "Miljø",
+      "kildetype": "Kommunens rapporter",
+      "tall": "11",
+      "enhet": "døgn over grensen",
+      "tekst": "Døgn med for mye svevestøv (PM10) ved målestasjonen i Kongens gate. Loven tillater 25 slike døgn i året. På 23 døgn var nivået over Folkehelseinstituttets strengere anbefaling.",
+      "kilde": {
+        "navn": "Årsrapport luftkvalitet 2025 (Kongens gate), kommunestyret 21.05.2026",
+        "url": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022269243&dokid=2061513&versjon=1&variant=A",
+        "side": "s. 1"
+      }
+    },
+    {
+      "id": "revisjonsbrev-2026",
+      "publisert": "2026-04-15",
+      "gjelder": "Regnskapet for 2025",
+      "tema": "Kontroll og tilsyn",
+      "kildetype": "Revisor og tilsyn",
+      "tall": "11",
+      "enhet": "mill. kr",
+      "tekst": "Revisor fant at kommunen hadde betalt om lag 11 mill. kr for mye i arbeidsgiveravgift i 2025 fordi bruk av premiefond var bokført feil. Regnskapet ble rettet. I 2024 var det betalt over 3 mill. kr for lite.",
+      "kilde": {
+        "navn": "Revisjonsbrev nr. 4, KomRev NORD, 15.04.2026",
+        "url": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022265541&dokid=2052250&versjon=1&variant=A",
+        "side": "s. 1"
+      }
+    },
+    {
+      "id": "tilsyn-hjemmetjeneste-2025",
+      "publisert": "2025-11-17",
+      "gjelder": "Tilsyn oktober 2025",
+      "tema": "Kontroll og tilsyn",
+      "kildetype": "Revisor og tilsyn",
+      "tall": "0",
+      "enhet": "lovbrudd",
+      "tekst": "Statsforvalteren fant ingen lovbrudd i tilsynet med hvordan hjemmetjenesten følger opp eldre som blir dårligere. Ernæring var kartlagt i 9 av 10 journaler som ble gjennomgått.",
+      "kilde": {
+        "navn": "Statsforvalteren i Nordland, rapport etter tilsyn 17.11.2025",
+        "url": "https://tilsynskalender.statsforvalteren.no/api/document/?fileReference=191f5b23-1630-49c5-a043-e27fc3db5fa3",
+        "side": "s. 1"
+      }
+    },
+    {
+      "id": "kraftverk",
+      "hentet": "2026-10-31",
+      "gjelder": "Oktober 2026",
+      "tema": "Havn og næring",
+      "kildetype": "NVE",
+      "tall": "478",
+      "enhet": "MW vannkraft",
+      "tekst": "Samlet maksimal ytelse i de 19 vannkraftverkene i kommunen. Skjomen kraftverk står for 300 MW.",
+      "kilde": {
+        "navn": "NVE, vannkraftdatabasen",
+        "url": "https://www.nve.no/energi/energisystem/vannkraft/"
+      }
+    },
+    {
+      "id": "lovbrudd-2025",
+      "publisert": "2026-06-10",
+      "gjelder": "Snitt 2024–2025",
+      "tema": "Hverdagsliv",
+      "kildetype": "SSB",
+      "tall": "52,2",
+      "enhet": "anmeldelser per 1 000",
+      "tekst": "Anmeldte lovbrudd med gjerningssted i Narvik, 1 128 i året. Snittet for hele landet er 59,9 per 1 000 innbyggere.",
+      "kilde": {
+        "ssb": "08487"
+      }
+    },
+    {
+      "id": "trafikk-sentrum-2025",
+      "hentet": "2026-10-31",
+      "gjelder": "2025",
+      "tema": "Trafikk",
+      "kildetype": "Statens vegvesen",
+      "tall": "13 724",
+      "enhet": "kjøretøy i døgnet",
+      "endring": {
+        "forrige": "13 343",
+        "periode": "2024"
+      },
+      "tekst": "Gjennomsnittlig døgntrafikk på E6 ved målepunktet Narvik sentrum. Over Hålogalandsbrua kjørte 4 139 i døgnet, 8 % flere enn i 2024.",
+      "kilde": {
+        "navn": "Statens vegvesen, trafikkdata (målepunkt Narvik sentrum og Hålogalandsbrua)",
+        "url": "https://trafikkdata.atlas.vegvesen.no/#/kart?trpids=96781V885154"
+      }
+    },
+    {
+      "id": "trafikk-bjornfjell-2025",
+      "hentet": "2026-10-31",
+      "gjelder": "2025",
+      "tema": "Trafikk",
+      "kildetype": "Statens vegvesen",
+      "tall": "1 024",
+      "enhet": "kjøretøy i døgnet",
+      "tekst": "Gjennomsnittlig døgntrafikk på E10 over Bjørnfjell mot Sverige.",
+      "kilde": {
+        "navn": "Statens vegvesen, trafikkdata (målepunkt Bjørnfjell)",
+        "url": "https://trafikkdata.atlas.vegvesen.no/#/kart?trpids=01777V885181"
+      }
+    },
+    {
+      "id": "evenes-2025",
+      "hentet": "2026-10-31",
+      "gjelder": "2025",
+      "tema": "Trafikk",
+      "kildetype": "Avinor",
+      "tall": "922 812",
+      "enhet": "flypassasjerer",
+      "endring": {
+        "pst": 9.9,
+        "periode": "2024"
+      },
+      "tekst": "Passasjerer på Harstad/Narvik lufthavn, Evenes. Flyplassen ligger i Evenes kommune. 56 586 reiste til eller fra utlandet med rutefly.",
+      "kilde": {
+        "navn": "Avinor, passasjerstatistikk 2025",
+        "url": "https://om.avinor.no/om-oss/trafikkstatistikk/"
+      }
+    },
+    {
+      "id": "klima-2024",
+      "hentet": "2026-10-31",
+      "gjelder": "2024",
+      "tema": "Miljø",
+      "kildetype": "Miljødirektoratet",
+      "tall": "15,9",
+      "enhet": "tonn CO₂-ekv. per innbygger",
+      "tekst": "Klimagassutslipp i kommunen, til sammen 344 157 tonn. Industri står for 75 %, veitrafikk og sjøfart for om lag 8 % hver.",
+      "kilde": {
+        "navn": "Miljødirektoratet, klimagassutslipp i kommuner",
+        "url": "https://www.miljodirektoratet.no/tjenester/klimagassutslipp-kommuner/?area=477&sector=-2"
+      }
+    },
+    {
+      "id": "mobbing-2025",
+      "publisert": "2026-05-05",
+      "gjelder": "Skoleåret 2025–26",
+      "tema": "Barn og unge",
+      "kildetype": "Udir",
+      "tall": "4,7",
+      "enhet": "% mobbet i 7. trinn",
+      "tekst": "Andelen elever i 7. trinn som svarte at de blir mobbet, mot 11,3 % i hele landet. I 10. trinn var andelen 10,0 % i Narvik og 9,6 % i landet.",
+      "kilde": {
+        "navn": "Udir, Elevundersøkelsen (Statistikkbanken)",
+        "url": "https://www.udir.no/tall-og-forskning/statistikk/statistikk-grunnskole/resultater-fra-elevundersokelsen-pa-7.-og-10.-trinn/",
+        "side": "tabell 150, mobbing"
+      }
+    },
+    {
+      "id": "overvekt-2025",
+      "publisert": "2026-01-16",
+      "gjelder": "Sesjon 2025",
+      "tema": "Helse og omsorg",
+      "kildetype": "Folkehelsestatistikk",
+      "tall": "24,2",
+      "enhet": "% med overvekt",
+      "tekst": "Andelen 17-åringer med overvekt eller fedme ved sesjon, mot 19,2 % i hele landet. 83 % kunne svømme 200 meter, omtrent som landet.",
+      "kilde": {
+        "navn": "Folkehelsestatistikk (Helsedirektoratet/FHI)",
+        "url": "https://statistikk.fhi.no/nokkel",
+        "side": "tabell 387"
+      }
+    },
+    {
+      "id": "lavinntekt-2024",
+      "publisert": "2026-10-06",
+      "gjelder": "Snitt 2022–2024",
+      "tema": "Hverdagsliv",
+      "kildetype": "Folkehelsestatistikk",
+      "tall": "3,2",
+      "enhet": "% med vedvarende lavinntekt",
+      "tekst": "Andelen innbyggere som over tre år har hatt inntekt under halvparten av medianen i kommunen, om lag 655 personer. Snittet for landet er 4,4 %.",
+      "kilde": {
+        "navn": "Folkehelsestatistikk (Helsedirektoratet/FHI)",
+        "url": "https://statistikk.fhi.no/nokkel",
+        "side": "tabell 403"
+      }
+    },
+    {
+      "id": "levealder-2025",
+      "publisert": "2026-10-23",
+      "gjelder": "Snitt 2011–2025",
+      "tema": "Helse og omsorg",
+      "kildetype": "Folkehelsestatistikk",
+      "tall": "82,2",
+      "enhet": "års forventet levealder",
+      "tekst": "Forventet levealder ved fødsel i Narvik, beregnet over 15 år. For hele landet er tallet 82,6 år.",
+      "kilde": {
+        "navn": "Folkehelsestatistikk (Helsedirektoratet/FHI)",
+        "url": "https://statistikk.fhi.no/nokkel",
+        "side": "tabell 508"
+      }
+    }
+  ]
+}
