@@ -1,7 +1,7 @@
 // andre-tall.html: «Andre tall», a timeline of numbers about Narvik kommune that are not shown elsewhere on the site.
 // Everything comes from data/andre_tall.json, which scripts/build_andre_tall.py writes from config/andre_tall.json.
 // The newest publication comes first. Cards published the same day by the same kind of source share one dot on the line.
-// ?tema= and ?kilde= keep a filter in the address, and #<id> points to one card.
+// ?tema= keeps a filter in the address, and #<id> points to one card.
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 const dateText = iso => { const [y, m, d] = iso.split('-'); return `${d}.${m}.${y}`; };
 const STEP = 10;
@@ -15,14 +15,13 @@ const STEP = 10;
   }
   const ALL = D.tall; // already sorted newest first
   const params = new URLSearchParams(location.search);
-  const state = { tema: params.get('tema') || 'Alle', kilde: params.get('kilde') || 'Alle', shown: STEP };
+  const state = { tema: params.get('tema') || 'Alle', shown: STEP };
   const more = document.getElementById('at-more'), empty = document.getElementById('at-empty');
 
   const filters = document.getElementById('at-filters');
   const row = (key, label, values) => `<div class="at-filter" role="group" aria-label="${label}"><span>${label}</span>${['Alle', ...values].map(v =>
     `<button type="button" data-key="${key}" data-v="${esc(v)}" aria-pressed="${state[key] === v}">${esc(v)}</button>`).join('')}</div>`;
-  filters.innerHTML = row('tema', 'Tema', [...new Set(ALL.map(t => t.tema))].sort((a, b) => a.localeCompare(b, 'nb')))
-    + row('kilde', 'Kilde', [...new Set(ALL.map(t => t.kildetype))].sort((a, b) => a.localeCompare(b, 'nb')));
+  filters.innerHTML = row('tema', 'Tema', [...new Set(ALL.map(t => t.tema))].sort((a, b) => a.localeCompare(b, 'nb')));
   filters.addEventListener('click', e => {
     const b = e.target.closest('button');
     if (!b) return;
@@ -31,7 +30,6 @@ const STEP = 10;
     filters.querySelectorAll(`button[data-key="${b.dataset.key}"]`).forEach(x => x.setAttribute('aria-pressed', String(x === b)));
     const p = new URLSearchParams();
     if (state.tema !== 'Alle') p.set('tema', state.tema);
-    if (state.kilde !== 'Alle') p.set('kilde', state.kilde);
     history.replaceState(null, '', (p.toString() ? '?' + p : location.pathname));
     render();
   });
@@ -49,7 +47,7 @@ const STEP = 10;
     </article>`;
   };
 
-  const match = t => (state.tema === 'Alle' || t.tema === state.tema) && (state.kilde === 'Alle' || t.kildetype === state.kilde);
+  const match = t => state.tema === 'Alle' || t.tema === state.tema;
   function render() {
     const list = ALL.filter(match);
     const groups = [];
@@ -73,7 +71,7 @@ const STEP = 10;
     const t = ALL.find(x => x.id === id);
     if (!t) return;
     if (!match(t)) {
-      state.tema = 'Alle'; state.kilde = 'Alle';
+      state.tema = 'Alle';
       filters.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', String(x.dataset.v === 'Alle')));
     }
     const idx = ALL.filter(match).indexOf(t);
