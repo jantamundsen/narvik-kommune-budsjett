@@ -571,3 +571,38 @@ a.front-area:hover b, .front-area > a:hover b { color: var(--accent); }
   .ptable table.bridge td:not(:first-child) { white-space: nowrap; }
   .ptable tr.sub td:first-child { padding-left: 18px; }
 }
+
+/* Andre tall: a timeline where the date on the left is when the number was published, and «Gjelder» on the card is the period it is about. */
+.at-filters { display: grid; gap: 8px; }
+.at-filter { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.at-filter span { font-size: 0.85rem; color: var(--ink-2); min-width: 52px; }
+.at-filter button { font: inherit; font-size: 0.88rem; color: var(--ink-2); background: var(--surface); border: 1px solid var(--rule); border-radius: 999px; padding: 4px 12px; cursor: pointer; }
+.at-filter button[aria-pressed="true"] { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); font-weight: 600; }
+.at-filter button:focus-visible, .at-more:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.at-tl { list-style: none; margin: 0 0 0 6px; padding: 0; border-left: 2px solid var(--rule); display: grid; }
+.at-tl > li { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 4px 18px; padding: 0 0 22px 20px; position: relative; }
+.at-tl > li::before { content: ""; position: absolute; left: -7px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: var(--surface); border: 2px solid var(--accent); }
+.at-tl > li.old::before { border-color: var(--muted); }
+.at-pub { display: grid; align-content: start; }
+.at-pub time { font-weight: 600; font-variant-numeric: tabular-nums; }
+.at-pub span { font-size: 0.8rem; color: var(--ink-2); }
+.at-cards { display: grid; gap: 10px; min-width: 0; }
+.at-card { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 14px 16px; display: grid; gap: 6px; min-width: 0; scroll-margin-top: 80px; }
+.at-card:target { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-soft); }
+.at-gjelder { justify-self: start; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.02em; color: var(--accent); background: var(--accent-soft); border-radius: 4px; padding: 1px 8px; }
+.at-card.old .at-gjelder { color: var(--ink-2); background: transparent; border: 1px solid var(--rule); }
+.at-big { font: 700 clamp(1.7rem, 5vw, 2.2rem)/1.05 var(--font-display); font-variant-numeric: tabular-nums; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+.at-unit { font-size: 1rem; font-weight: 600; color: var(--ink-2); }
+.at-chg { font: 600 0.9rem var(--font-body); color: var(--ink-2); }
+.at-card p { max-width: 60ch; }
+.at-meta { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 0.82rem; color: var(--ink-2); }
+.at-tema { text-transform: uppercase; letter-spacing: 0.07em; font-weight: 600; font-size: 0.72rem; padding-top: 2px; }
+.at-share { color: var(--muted); text-decoration: none; margin-left: auto; }
+.at-share:hover { color: var(--accent); }
+.at-newer { font-size: 0.85rem; color: var(--ink-2); border-top: 1px dashed var(--rule); padding-top: 6px; }
+.at-more { justify-self: start; font: inherit; font-weight: 600; color: var(--accent); background: none; border: 1px solid var(--accent); border-radius: 999px; padding: 6px 16px; cursor: pointer; }
+.at-empty { color: var(--ink-2); }
+@media (max-width: 640px) {
+  .at-tl > li { grid-template-columns: minmax(0, 1fr); }
+  .at-pub { display: flex; gap: 8px; align-items: baseline; }
+}
