@@ -1,0 +1,29 @@
+{
+ "_comment": "Kommunekassens lån, utlån og ubrukte lånemidler fra balansen i årsregnskapet (1000 kr, avrundet), og lånene fordelt på formål fra note 9. scripts/fetch_finans.py sjekker at formålene summerer til lånene, og at lån minus utlån minus ubrukte lånemidler er netto lånegjeld for kommunekassen hos SSB (tabell 13566).",
+ "aar": {
+  "2025": {
+   "kilde": "rs-2025",
+   "side": 9,
+   "lan": 3399390,
+   "utlan": 516383,
+   "ubrukte": 138690,
+   "pensjon": 4281603,
+   "pensjonsmidler": 4164950,
+   "formal_side": 19,
+   "formal": [
+    {"navn": "Lån til kommunens egne investeringer", "belop": 1962864},
+    {"navn": "Lån til vann og avløp (Narvik Vann KF)", "belop": 851253},
+    {"navn": "Startlån fra Husbanken, lånt videre til innbyggere", "belop": 585273}
+   ]
+  },
+  "2024": {
+   "kilde": "rs-2025",
+   "side": 9,
+   "lan": 3290254,
+   "utlan": 512199,
+   "ubrukte": 72112,
+   "pensjon": 3803070,
+   "pensjonsmidler": 3840988
+  }
+ }
+}

@@ -559,3 +559,15 @@ a.front-area:hover b, .front-area > a:hover b { color: var(--accent); }
 .stack-track { display: flex; height: 8px; background: var(--rule); border-radius: 4px; overflow: hidden; }
 .stack-track b { display: block; background: var(--bad); }
 .stack-track s { display: block; background: var(--muted); }
+
+/* Gjeld: «Hvorfor ser du ulike gjeldstall?» – the loans split by purpose sit indented under the total. */
+.ptable tr.sub td { color: var(--ink-2); font-size: 0.9rem; padding-top: 5px; padding-bottom: 5px; }
+.ptable tr.sub td:first-child { padding-left: 32px; }
+.ptable tr.sub .indent { color: var(--ink-2); }
+.note-line { margin: 12px 0 0; color: var(--ink-2); max-width: 70ch; }
+@media (max-width: 680px) {
+  .ptable table.bridge { min-width: 0; }
+  .ptable table.bridge th, .ptable table.bridge td { padding: 8px 6px; white-space: normal; }
+  .ptable table.bridge td:not(:first-child) { white-space: nowrap; }
+  .ptable tr.sub td:first-child { padding-left: 18px; }
+}
