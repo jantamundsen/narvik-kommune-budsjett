@@ -108,6 +108,8 @@ def main() -> int:
             if not DATE.match(t.get("dato", "")):
                 err(f"tidslinje {i + 1}: dato «{t.get('dato')}» må være dd.mm.åååå, mm.åååå eller åååå")
             check_src(f"tidslinje {i + 1}", t.get("kilde"))
+            if t.get("sitat") and not t.get("hvem"):
+                err(f"tidslinje {i + 1}: et sitat må si hvem som sa det («hvem»)")
         dates = [t["dato"] for t in s.get("tidslinje", []) if DATE.match(t.get("dato", ""))]
         if dates != sorted(dates, key=sort_key):
             err("tidslinjen må stå i datorekkefølge")
