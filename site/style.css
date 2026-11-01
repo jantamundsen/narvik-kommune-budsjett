@@ -623,3 +623,24 @@ a.front-area:hover b, .front-area > a:hover b { color: var(--accent); }
   .at-tl > li { grid-template-columns: minmax(0, 1fr); }
   .at-pub { display: flex; gap: 8px; align-items: baseline; }
 }
+
+/* Innsparinger: sankey from area to what the reports say happened (tiltak.js). Neutral tones only: blue where a report gives a status, grey where it doesn't. */
+#flow-unit { justify-self: start; }
+.seg button { font: 600 0.85rem var(--font-body); background: var(--surface); color: var(--ink-2); padding: 0 14px; min-height: 42px; border: 0; cursor: pointer; }
+.seg button + button { border-left: 1px solid var(--rule); }
+.seg button[aria-checked="true"] { background: var(--ink); color: var(--paper); }
+.sankey { position: relative; background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 16px 12px; }
+.sankey svg { display: block; width: 100%; height: auto; overflow: visible; }
+.sankey .link { fill: var(--accent); fill-opacity: 0.22; cursor: pointer; transition: fill-opacity 0.12s; }
+.sankey .link.k-none { fill: var(--muted); fill-opacity: 0.3; }
+.sankey .link.k-back { fill: var(--muted); fill-opacity: 0.16; }
+.sankey .link.on { fill-opacity: 0.55; }
+.sankey .link.dim { fill-opacity: 0.08; }
+.sankey .node { fill: var(--accent); }
+.sankey .node.k-area { fill: var(--ink-2); }
+.sankey .node.k-none, .sankey .node.k-back { fill: var(--muted); }
+.sankey text { font: 500 12.5px var(--font-body); fill: var(--ink); paint-order: stroke; stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round; pointer-events: none; }
+.sankey text .v { fill: var(--ink-2); font-weight: 400; font-variant-numeric: tabular-nums; }
+.sankey-tip { position: absolute; z-index: 2; max-width: min(320px, calc(100% - 24px)); background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; box-shadow: 0 6px 20px rgba(0,0,0,0.12); padding: 10px 12px; font-size: 0.85rem; pointer-events: none; }
+.sankey-tip b { display: block; margin-bottom: 4px; }
+.sankey-tip ul { margin: 0; padding-left: 16px; color: var(--ink-2); }

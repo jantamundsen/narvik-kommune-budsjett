@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-01T11:04:01+00:00",
+ "generated": "2026-11-01T11:57:12+00:00",
  "unit": "1000 kr",
  "sources": {
   "2025": {
@@ -22,6 +22,24 @@
   }
  },
  "kilder": {
+  "ks-prot-2025-02-07": {
+   "navn": "Protokoll, kommunestyret 07.02.2025",
+   "full": "Møteprotokoll, Narvik kommunestyre 07.02.2025",
+   "url": "https://www.narvik.kommune.no/innsyn.aspx?response=mote&moteid=551&scripturi=/innsyn.aspx&Mid1=396",
+   "pdf": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022221779&dokid=1947918&versjon=1&variant=A"
+  },
+  "tertial-1-2026": {
+   "navn": "Tertialrapport 1/2026",
+   "full": "Narvik kommune, Tertialrapport 1/2026, vedlegg til kommunestyresak 107/26 (18.06.2026)",
+   "url": "https://www.narvik.kommune.no/innsyn.aspx?response=mote&moteid=633&scripturi=/innsyn.aspx&Mid1=396",
+   "pdf": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022268852&dokid=2064647&versjon=1&variant=A"
+  },
+  "tertial-2-2026": {
+   "navn": "Tertialrapport 2/2026",
+   "full": "Tertialrapport 2/2026, formannskapet 15.10.2026 (sak 45/26)",
+   "url": "https://prod02.elementscloud.no/publikum/959469059_prod-959469059/Dmb",
+   "pdf": "https://prod02.elementscloud.no/publikum/Documents/ShowDocument/c1d7f777-8235-4817-8203-ebd49ff36bb5/783/2230"
+  },
   "ar-2025": {
    "navn": "Årsrapport 2025",
    "full": "Årsrapport 2025, vedlegg til årsregnskapet, formannskapet 04.06.2026 (sak 025/26)",
@@ -33,12 +51,6 @@
    "full": "Tertialrapport 2/2025, formannskapet 16.10.2025 (sak 018/25)",
    "url": "https://www.narvik.kommune.no/innsyn.aspx?response=mote&moteid=547&scripturi=/innsyn.aspx&Mid1=396",
    "pdf": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022244076&dokid=2003716&versjon=1&variant=A"
-  },
-  "tertial-2-2026": {
-   "navn": "Tertialrapport 2/2026",
-   "full": "Tertialrapport 2/2026, formannskapet 15.10.2026 (sak 45/26)",
-   "url": "https://prod02.elementscloud.no/publikum/959469059_prod-959469059/Dmb",
-   "pdf": "https://prod02.elementscloud.no/publikum/Documents/ShowDocument/c1d7f777-8235-4817-8203-ebd49ff36bb5/783/2230"
   }
  },
  "areas": [
@@ -2803,7 +2815,41 @@
    },
    "beskrivelse": "Konsekvenser drift -Helsehuset fylles med korttidsplasser over to år (+ 20 plasser) -gradvis nedtrekk 50 plasser sykehjem/bofellesskap over to år (2025 og 2026), minimum en hel driftsenhet/bygg -en sengepost Furumoen står tom/ubenyttet inntil videre (kan tas i bruk ved behov/frigjøring midler senere) -lavere drift og personalbehov, kan omdisponere personell -gir noe økt behov for hjemmebaserte tjenester Konsekvenser økonomi -Totalsum nedtrekk brutto 50 plasser (kombinasjon LPL/BOF feks 36/14 plasser) er 57 mill -frigir økonomi til drift Helsehus (30 mill) -innfrir tidligere vedtatte økonomiske nedtrekk struktur (16 mill) -gir noe økonomisk rom for økt kapasitet lengre ned i Innsatstrappa (11 mill) Konsekvenser kapasitet -gir noe rom for økt kapasitet lengre ned i Innsatstrappa -gir flere korttidsplasser -høyere terskel langtidsplass og bofellesskap Beregningstall: -gjennomsnittlig kostnad bemanning inkl. admnistrasjon på langtidsplass (LPL) i millioner er 1,25 mill (2023) -gjennomsnittlig kostnad bemanning inkl. admnistrasjon på bofellesskap i millioner er 0,85 mill (2023)",
    "data_url": "https://pub.framsikt.net/2025/narvik/bm-2025-budsjettvedtak_2025/content/data/budgetreductiongraph/0/cost/60/30.json",
-   "innsparing": false
+   "innsparing": true,
+   "uten_belop": true,
+   "oppfolging": {
+    "status": "gjennomfort",
+    "notater": [
+     {
+      "tekst": "Tiltaket står med 1 000 kr i budsjettet. Ifølge beskrivelsen skulle 50 sykehjems- og bofellesskapsplasser trappes ned over 2025 og 2026, mens Helsehuset ble fylt med korttidsplasser.",
+      "kilde": {
+       "url": "https://pub.framsikt.net/2025/narvik/bm-2025-budsjettvedtak_2025/content/data/budgetreductiongraph/0/cost/60/30/143915.json",
+       "navn": "Framsikt, budsjettvedtak 2025, tiltak 113-25-L"
+      }
+     },
+     {
+      "tekst": "I februar 2025 vedtok kommunestyret at driften ved Ankenes bo- og servicesenter skulle fases ut, og at Bjerkvik og Ballangen til sammen skulle få 8 færre sykehjemsplasser.",
+      "kilde": {
+       "id": "ks-prot-2025-02-07",
+       "side": 12
+      }
+     },
+     {
+      "tekst": "Ankenes bo- og servicesenter var i drift fram til midten av februar 2026.",
+      "kilde": {
+       "id": "tertial-1-2026",
+       "side": 26
+      }
+     },
+     {
+      "tekst": "Ifølge kommunedirektøren har avviklingen av Ankenes gitt en netto effekt på om lag 27 mill. kr.",
+      "kilde": {
+       "id": "tertial-2-2026",
+       "side": 32
+      }
+     }
+    ]
+   }
   },
   {
    "aar": "2025",

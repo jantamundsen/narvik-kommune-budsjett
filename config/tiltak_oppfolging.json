@@ -1,6 +1,15 @@
 {
- "_comment": "What the kommune's own reports say happened to the measures in the budget, typed in by hand with the page. scripts/fetch_tiltak.py joins this onto the measures it fetches from Framsikt and writes site/data/tiltak.json. A measure is found by budget year, Framsikt's action_id and (when the same measure is split across areas) the area key from fetch_budget.AREAS. kilde is either a report id from config/fakta.json (kilder) with a page, or a url with a name. status: gjennomfort, i-arbeid, forsinket, ikke-gjennomfort or ikke-oppgitt (named in a report, but with no status). Measures with no entry here are shown as having no status in the reports. Reversals by the kommunestyre in the budget decision itself are found by the script and need no entry.",
+ "_comment": "What the kommune's own reports say happened to the measures in the budget, typed in by hand with the page. scripts/fetch_tiltak.py joins this onto the measures it fetches from Framsikt and writes site/data/tiltak.json. A measure is found by budget year, Framsikt's action_id and (when the same measure is split across areas) the area key from fetch_budget.AREAS. kilde is either a report id from config/fakta.json or config/saker.json (kilder) with a page, or a url with a name. status: gjennomfort, i-arbeid, forsinket, ikke-gjennomfort or ikke-oppgitt (named in a report, but with no status). Measures decided without an amount (0 or a 1 000 kr placeholder in Framsikt) are matched the same way. Measures with no entry here are shown as having no status in the reports. Reversals by the kommunestyre in the budget decision itself are found by the script and need no entry.",
  "oppfolging": [
+  {
+   "budsjett": "2025", "action_id": 143915, "omrade": "helse", "status": "gjennomfort",
+   "notater": [
+    {"tekst": "Tiltaket står med 1 000 kr i budsjettet. Ifølge beskrivelsen skulle 50 sykehjems- og bofellesskapsplasser trappes ned over 2025 og 2026, mens Helsehuset ble fylt med korttidsplasser.", "kilde": {"url": "https://pub.framsikt.net/2025/narvik/bm-2025-budsjettvedtak_2025/content/data/budgetreductiongraph/0/cost/60/30/143915.json", "navn": "Framsikt, budsjettvedtak 2025, tiltak 113-25-L"}},
+    {"tekst": "I februar 2025 vedtok kommunestyret at driften ved Ankenes bo- og servicesenter skulle fases ut, og at Bjerkvik og Ballangen til sammen skulle få 8 færre sykehjemsplasser.", "kilde": {"id": "ks-prot-2025-02-07", "side": 12}},
+    {"tekst": "Ankenes bo- og servicesenter var i drift fram til midten av februar 2026.", "kilde": {"id": "tertial-1-2026", "side": 26}},
+    {"tekst": "Ifølge kommunedirektøren har avviklingen av Ankenes gitt en netto effekt på om lag 27 mill. kr.", "kilde": {"id": "tertial-2-2026", "side": 32}}
+   ]
+  },
   {
    "budsjett": "2025", "action_id": 140061, "omrade": "helse", "status": "ikke-gjennomfort",
    "notater": [
