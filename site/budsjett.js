@@ -67,7 +67,6 @@ async function startBudget() {
     });
     const dt = act.total_1000kr - bud.total_1000kr;
     led.appendChild(row('Sum', null, mk(bud.total_1000kr), 'Budsjett', mk(act.total_1000kr), signed(dt), dt > 0 ? 'up' : 'down', true));
-    document.getElementById('h-budget').textContent = `Planlagt og brukt i ${y}`;
     const top = B.areas.map((a, i) => ({ a, d: diffs[i] })).sort((p, q) => q.d - p.d)[0];
     document.getElementById('budget-lead').textContent = `Kommunestyret vedtok ${mk(bud.total_1000kr)} mill. kr til driften av tjenesteområdene i ${y}. Regnskapet endte på ${mk(act.total_1000kr)} mill. kr, ${mk(Math.abs(dt))} mill. kr ${dt >= 0 ? 'mer' : 'mindre'}. ${top.d > 0 ? `Største avvik var ${top.a.name.toLowerCase()}, ${signed(top.d)} mill. kr.` : ''}`;
     caption('budget-actual-caption', [bud, act], `Budsjettet er det opprinnelige, slik det ble vedtatt i desember året før. Rammene justeres i løpet av året, for eksempel når lønnsoppgjøret fordeles fra fellesposten til tjenesteområdene, så avviket her er ikke det samme som et merforbruk.`);
