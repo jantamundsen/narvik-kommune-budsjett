@@ -196,6 +196,12 @@
       "full": "Fremover, «Narvik Senterparti aksepterer ikke dårlige løsninger i eldreomsorgen», 31.08.2026",
       "url": "https://www.fremover.no/narvik-senterparti-aksepterer-ikke-darlige-losninger-i-eldreomsorgen/o/5-17-1537679"
     },
+    "fremover-vm-uenig-2026": {
+      "type": "media",
+      "navn": "Fremover, 17.06.2026",
+      "full": "Fremover, «VM 2029 i Narvik: Dette blir de ikke enige om», 17.06.2026 (for abonnenter)",
+      "url": "https://www.fremover.no/vm-2029-i-narvik-dette-blir-de-ikke-enige-om/s/5-17-1515542"
+    },
     "nrk-vm-strid-2026": {
       "type": "media",
       "navn": "NRK Nordland, 25.06.2026",
@@ -787,6 +793,9 @@
       "temaer": [
         { "tittel": "Hvem betaler for hva", "punkter": [
           {"tekst": "NRK skriver i juni 2026 at kommunen og Skiforbundet ennå ikke var enige om hva «nøkkelferdig anlegg» i vertskapsavtalen betyr, blant annet om ekstra tråkkemaskiner, smøreboder og kommentatorbokser.", "kilde": {"id": "nrk-vm-strid-2026"}},
+          {"tekst": "Fremover skriver i juni 2026 at kommunen mener anlegget trenger tre faste tråkkemaskiner, mens Skiforbundet ifølge kommunen forventer fem. Én tråkkemaskin koster seks til sju millioner kroner, ifølge Narvikfjellet Allmenn.", "kilde": {"id": "fremover-vm-uenig-2026"}},
+          {"sitat": "Jo flere maskiner som man ønsker å ha fast i bakken, vil redusere kostnadene for arrangør av mesterskapet. Det er derfor en uenighet om hvem som skal ta deler av kostnadene.", "hvem": "Rolf M. Lossius, kommunalsjef for virksomhetsstyring og styremedlem i Narvikfjellet Allmenn", "tekst": "Til Fremover i juni 2026. Han sier det ikke er uenighet om hvor mange maskiner selve mesterskapet trenger.", "kilde": {"id": "fremover-vm-uenig-2026"}},
+          {"tekst": "Fremover skriver at Troms og Finnmark fylkeskommune i 2018 vedtok å gi 30 mill. kr til VM, men at vedtaket falt bort da fylket ble delt. Troms fylkeskommune bevilget 3 mill. kr 11. juni 2026.", "kilde": {"id": "fremover-vm-uenig-2026"}},
           {"sitat": "Kommuneøkonomien er streng. Narvik kommune kan vanskelig forplikte seg til økonomiske forhold knyttet til et eventuelt verdenscuparrangement i etterkant.", "hvem": "Rolf Lossius, assisterende kommunedirektør", "tekst": "Til NRK i juni 2026, før enigheten om firepartsavtalen.", "kilde": {"id": "nrk-vm-strid-2026"}},
           {"sitat": "Kommunen har det hele og fulle ansvaret for at vi får et nøkkelferdig anlegg. Vårt ansvar er selve gjennomføringen av arrangementet.", "hvem": "Ola Keul, generalsekretær i Norges Skiforbund", "tekst": "Til NRK i juni 2026.", "kilde": {"id": "nrk-vm-strid-2026"}},
           {"sitat": "Narvik kommune har ikke påtatt seg noen flere kostnader med avtalen som er inngått nå.", "hvem": "Lars Norman Andersen, kommunedirektør", "tekst": "Til NRK 18. august 2026, om firepartsavtalen.", "kilde": {"id": "nrk-vm-avtale-2026"}},
