@@ -22,7 +22,7 @@
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="stylesheet" href="style.css?v=2026-11-01d">
+<link rel="stylesheet" href="style.css?v=2026-11-01e">
 </head>
 <body>
 <div class="wrap">
@@ -46,6 +46,21 @@
     <div class="summary" id="summary"></div>
     <p class="caption" id="sum-caption"></p>
     <p class="savner-linje">Rapportene omtaler bare en del av tiltakene. <a href="om#savner-innsparinger-status">Tall som savnes</a></p>
+  </section>
+
+  <section aria-labelledby="h-flow" id="flow" hidden>
+    <div class="section-head">
+      <h2 id="h-flow">Hva skjedde med innsparingene</h2>
+      <p class="lead" id="flow-lead"></p>
+    </div>
+    <div class="seg" role="radiogroup" aria-label="Bredde i diagrammet" id="flow-unit">
+      <button type="button" role="radio" aria-checked="true" data-unit="kr">Mill. kr</button>
+      <button type="button" role="radio" aria-checked="false" data-unit="antall">Antall tiltak</button>
+    </div>
+    <div class="sankey" id="sankey"><div class="sankey-tip" id="sankey-tip" role="status" hidden></div></div>
+    <p class="caption" id="flow-uten"></p>
+    <details class="all-numbers"><summary>Tallene i diagrammet</summary><div class="detail-scroll"><table class="num-table" id="flow-table"></table></div></details>
+    <p class="caption" id="flow-caption"></p>
   </section>
 
   <section aria-labelledby="h-areas" id="areas" hidden>
@@ -88,7 +103,7 @@
     <span>Et åpent hobbyprosjekt laget av <a href="https://janamundsen.dev" target="_blank" rel="noopener">Jan Amundsen</a>, ikke av Narvik kommune. <a href="om">Om siden</a>.</span>
   </footer>
 </div>
-<script src="common.js?v=2026-11-01d"></script>
-<script src="tiltak.js?v=2026-11-01d"></script>
+<script src="common.js?v=2026-11-01e"></script>
+<script src="tiltak.js?v=2026-11-01e"></script>
 </body>
 </html>

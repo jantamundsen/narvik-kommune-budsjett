@@ -32,6 +32,7 @@ ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "site" / "data" / "tiltak.json"
 FOLLOWUP = ROOT / "config" / "tiltak_oppfolging.json"
 FAKTA = ROOT / "config" / "fakta.json"
+SAKER = ROOT / "config" / "saker.json"
 
 GRAPH = "content/data/budgetreductiongraph/0/"
 # Budget year → the Framsikt publication that explains the change into it.
@@ -145,10 +146,16 @@ def classify(lines: list[dict]) -> None:
             or ln["kategori"] == POLITICAL
             or (ln["kategori"] in CARRIED and bool(SAVING_NAME.search(ln["navn"])))
         )
+        # A cut decided without an amount: Framsikt lists it with 0 or a placeholder 1 000 kr
+        # (e.g. 113-25-L, «netto reduksjon 30 plasser», 2025). Counted as a saving, with no amount.
+        if (not ln["innsparing"] and ln["omrade"] != "felles" and ln["kategori"] in (SAVINGS, POLITICAL)
+                and abs(first) <= 1 and SAVING_NAME.search(ln["navn"])):
+            ln["innsparing"] = True
+            ln["uten_belop"] = True
     # A saving the kommunestyre took back in the same decision shows up again as money used under Politisk vedtak.
     back = {(ln["aar"], ln["omrade"], ln["action_id"]): ln for ln in lines if ln["kategori"] == POLITICAL and ln["side"] == "brukt"}
     for ln in lines:
-        if not ln["innsparing"]:
+        if not ln["innsparing"] or ln.get("uten_belop"):
             continue
         rev = back.get((ln["aar"], ln["omrade"], ln["action_id"]))
         if rev:
@@ -157,20 +164,22 @@ def classify(lines: list[dict]) -> None:
 
 def join_followups(lines: list[dict]) -> tuple[list[dict], dict]:
     cfg = json.loads(FOLLOWUP.read_text(encoding="utf-8"))
-    kilder = json.loads(FAKTA.read_text(encoding="utf-8"))["kilder"]
+    # Report ids from Bak tallene (fakta.json) and, for documents only used by the Utvalgte saker, saker.json.
+    kilder = {**json.loads(SAKER.read_text(encoding="utf-8")).get("kilder", {}),
+              **json.loads(FAKTA.read_text(encoding="utf-8"))["kilder"]}
     used = {}
 
     def check_source(where: str, k: dict) -> None:
         if "id" in k:
             if k["id"] not in kilder:
-                sys.exit(f"{FOLLOWUP.name} {where}: unknown kilde {k['id']!r}; add it to config/fakta.json")
+                sys.exit(f"{FOLLOWUP.name} {where}: unknown kilde {k['id']!r}; add it to config/fakta.json or config/saker.json")
             used[k["id"]] = kilder[k["id"]]
         elif not (k.get("url") and k.get("navn")):
             sys.exit(f"{FOLLOWUP.name} {where}: kilde needs an id from config/fakta.json, or a url and a navn")
 
     def find(where: str, e: dict) -> list[dict]:
         hits = [ln for ln in lines if ln["aar"] == e["budsjett"] and ln["action_id"] == e["action_id"]
-                and ln["omrade"] == e["omrade"] and ln["side"] == ("brukt" if where == "korreksjoner" else "frigjort")]
+                and ln["omrade"] == e["omrade"] and (ln["side"] == ("brukt" if where == "korreksjoner" else "frigjort") or ln.get("uten_belop"))]
         if not hits:
             sys.exit(f"{FOLLOWUP.name} {where}: no measure {e['action_id']} in {e['omrade']} for {e['budsjett']}")
         return hits
