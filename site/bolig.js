@@ -9,7 +9,7 @@ const region = k => B.regions.find(r => r.key === k);
 const PLAIN = ['narvik', 'harstad', 'rana', 'alta', 'nordland', 'norge'];
 const KOSTRA = ['narvik', 'harstad', 'rana', 'alta', 'gruppe', 'nordland', 'landet'];
 const ssb = (t, text) => `<a href="${B.sources[t].query}&outputFormat=html" target="_blank" rel="noopener">${text || 'SSB tabell ' + t}</a>`;
-const quarter = q => q.replace('K', '. kv. ');
+const quarter = q => { const [y, k] = q.split('K'); return `${k}. kvartal ${y}`; };
 const shortQ = q => `${q.slice(2, 4)} K${q.slice(-1)}`;
 
 async function start() {
@@ -171,7 +171,7 @@ function drawMunicipal() {
   document.getElementById('mun-split-h').textContent = `Hvem som eier boligene, ${y}`;
   document.getElementById('mun-split').innerHTML = bars(rows.map(([n, v]) => [n, v, pc(v / m.total * 100, 0)]));
   document.getElementById('mun-chart').innerHTML = columns(ys.map(x => ({ y: x, v: M[x].applications ?? null })), v => nb(v), y);
-  document.getElementById('mun-lead').innerHTML = `Kommunen disponerte ${nb(m.total)} boliger i ${y}, ${nb(m.per_1000)} per 1000 innbyggere. ${nb(m.owned)} av dem eide kommunen selv, og ${nb(m.rented_in)} var leid inn fra andre. Kommunen fikk ${nb(m.applications)} søknader om kommunal bolig, og ${nb(m.refused_pct)} % av søkerne fikk avslag. Hva kommunen bruker på boligene, står under <a href="omrade?omrade=bolig&aar=${y}">Kommunale boliger</a> i utgiftene.`;
+  document.getElementById('mun-lead').innerHTML = `Kommunen disponerte ${nb(m.total)} boliger i ${y}, ${nb(m.per_1000)} per 1000 innbyggere. ${nb(m.owned)} av dem eide kommunen selv, ${nb(m.rented_in)} var leid inn fra andre${m.private ? `, og ${nb(m.private)} var privateide boliger der kommunen har tildelingsrett` : ''}. Kommunen fikk ${nb(m.applications)} søknader om kommunal bolig, og ${nb(m.refused_pct)} % av søkerne fikk avslag. Hva kommunen bruker på boligene, står under <a href="omrade?omrade=bolig&aar=${y}">Kommunale boliger</a> i utgiftene.`;
   document.getElementById('mun-caption').innerHTML = `Kommunalt disponerte boliger per 31. desember ${y}, og søknader i løpet av året. ${ssb('12008', 'Boligene hos SSB')} (tabell 12008), ${ssb('12012', 'søknadene hos SSB')} (tabell 12012).`;
   const g = (k, f) => B.municipal[k]?.[y]?.[f];
   table('mun-cmp', [

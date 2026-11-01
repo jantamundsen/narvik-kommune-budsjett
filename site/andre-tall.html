@@ -22,7 +22,7 @@
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="stylesheet" href="style.css?v=2026-11-01c">
+<link rel="stylesheet" href="style.css?v=2026-11-01d">
 </head>
 <body>
 <div class="wrap">
@@ -40,13 +40,22 @@
     <ol class="at-tl" id="at-tl" aria-live="polite"></ol>
     <p class="at-empty" id="at-empty" hidden>Ingen tall med dette filteret.</p>
     <button class="at-more" id="at-more" type="button" hidden>Vis mer</button>
-    <p class="note-line">Hvert tall står i kilden som er oppgitt, med side eller tabell. Tall som er hentet fra en database uten publiseringsdato, er merket «Hentet» med datoen de ble hentet. Når en ny utgave av et fast tall kommer, legges den øverst, og det gamle kortet blir stående med en lenke til det nye.</p>
+  </section>
+
+  <section aria-labelledby="h-at-db" id="at-db" hidden>
+    <h2 id="h-at-db">Fra databaser som oppdateres løpende</h2>
+    <p>Disse tallene kommer fra databaser som ikke oppgir når tallet ble lagt ut. Datoen er når tallet ble hentet herfra.</p>
+    <ul class="at-db" id="at-db-list"></ul>
+  </section>
+
+  <section aria-label="Om tallene">
+    <p class="note-line">Hvert tall står i kilden som er oppgitt, med side eller tabell. Når en ny utgave av et fast tall kommer, legges den øverst, og det gamle kortet blir stående med en lenke til det nye.</p>
   </section>
 
   <footer>
     <span>Et åpent hobbyprosjekt laget av <a href="https://janamundsen.dev" target="_blank" rel="noopener">Jan Amundsen</a>, ikke av Narvik kommune. <a href="https://github.com/jtkarlsen/narvik-kommune-budsjett" target="_blank" rel="noopener">Kildekode</a>.</span>
   </footer>
 </div>
-<script src="andre-tall.js?v=2026-11-01c"></script>
+<script src="andre-tall.js?v=2026-11-01d"></script>
 </body>
 </html>
