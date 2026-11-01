@@ -601,6 +601,9 @@ a.front-area:hover b, .front-area > a:hover b { color: var(--accent); }
 .at-pub time { font-weight: 600; font-variant-numeric: tabular-nums; }
 .at-pub span { font-size: 0.8rem; color: var(--ink-2); }
 .at-cards { display: grid; gap: 10px; min-width: 0; }
+.at-db { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 12px; }
+.at-db > li { display: grid; gap: 6px; align-content: start; min-width: 0; }
+.at-hentet { font-size: 0.8rem; color: var(--ink-2); }
 .at-card { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 14px 16px; display: grid; gap: 6px; min-width: 0; scroll-margin-top: 80px; }
 .at-card:target { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-soft); }
 .at-gjelder { justify-self: start; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.02em; color: var(--accent); background: var(--accent-soft); border-radius: 4px; padding: 1px 8px; }

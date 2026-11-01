@@ -22,7 +22,7 @@
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="stylesheet" href="style.css?v=2026-11-01c">
+<link rel="stylesheet" href="style.css?v=2026-11-01d">
 </head>
 <body>
 <div class="wrap">
@@ -38,10 +38,12 @@
   <section aria-labelledby="h-kilder">
     <h2 id="h-kilder">Hvor tallene kommer fra</h2>
     <div class="notes">
-      <div><h3>SSB</h3><p>Regnskapstallene er SSBs KOSTRA-statistikk (<a href="https://www.ssb.no/statbank/table/12362" target="_blank" rel="noopener">12362</a> og <a href="https://www.ssb.no/statbank/table/12367" target="_blank" rel="noopener">12367</a>). Befolkningstallene og framskrivingen er også fra SSB. De hentes automatisk fra SSBs åpne API.</p></div>
+      <div><h3>SSB</h3><p>Regnskapstallene, gjelden og finansnøkkeltallene er SSBs KOSTRA-statistikk, blant annet tabell <a href="https://www.ssb.no/statbank/table/12362" target="_blank" rel="noopener">12362</a>, <a href="https://www.ssb.no/statbank/table/12367" target="_blank" rel="noopener">12367</a> og <a href="https://www.ssb.no/statbank/table/13566" target="_blank" rel="noopener">13566</a>. Befolkningen og framskrivingen, boligene, sysselsettingen, pendlingen og bedriftene er også fra SSB. Tallene hentes automatisk fra SSBs åpne API, og tabellnummeret står ved hvert tall.</p></div>
       <div><h3>Nav</h3><p>Tallene for helt ledige og nye ledige stillinger per måned er Navs statistikk, som Nav legger ut som Excel-filer på <a href="https://www.nav.no/no/nav-og-samfunn/statistikk/arbeidssokere-og-stillinger-statistikk" target="_blank" rel="noopener">nav.no</a>. De hentes automatisk hver måned.</p></div>
       <div><h3>Brønnøysundregistrene</h3><p>Listen over de største arbeidsplassene på Næringsliv er hentet fra Enhetsregisteret gjennom det åpne <a href="https://data.brreg.no/enhetsregisteret/api/docs/index.html" target="_blank" rel="noopener">API-et til Brønnøysundregistrene</a>. Antall ansatte er det arbeidsgiverne har meldt inn. Listen oppdateres automatisk hver måned.</p></div>
-      <div><h3>Kommunens egne dokumenter</h3><p>Budsjett, innsparinger og forklaringer er hentet ut fra kommunens budsjettdokumenter på Framsikt, tertialrapporter og årsrapporter ved hjelp av KI. Ved hvert tall står dokumentet og siden det står på, så tallet kan sjekkes mot kilden.</p></div>
+      <div><h3>Kommunens egne dokumenter</h3><p>Budsjett, innsparinger og forklaringer er hentet ut fra kommunens budsjettdokumenter på Framsikt, tertialrapporter, årsrapporter og saksdokumenter ved hjelp av KI. Det samme gjelder årsrapportene fra de kommunale foretakene og selskapene, som Narvik Havn KF, Narvik Vann KF og Ofoten brann og redning IKS, og rapporter fra revisjonen og Statsforvalteren. Ved hvert tall står dokumentet og siden det står på, så tallet kan sjekkes mot kilden.</p></div>
+      <div><h3>Helsedirektoratet</h3><p>Døgnene med utskrivningsklare pasienter på Helse og omsorg er fra Helsedirektoratets <a href="https://www.helsedirektoratet.no/statistikk/samdata-spesialisthelsetjenesten/utskrivningsklare-pasienter-somatikk-bostedskommune" target="_blank" rel="noopener">SAMDATA</a>. De hentes fra rapporten for hånd, og datoen står under tallene.</p></div>
+      <div><h3>Andre offentlige kilder</h3><p>Noen tall på <a href="andre-tall">Andre tall</a> er fra NVE, Statens vegvesen, Avinor, Miljødirektoratet, Folkehelsestatistikken (Helsedirektoratet og FHI) og Utdanningsdirektoratet. De er skrevet inn for hånd med lenke til kilden. Tall fra databaser som ikke oppgir når tallet ble lagt ut, er merket med datoen de ble hentet.</p></div>
       <div><h3>Beregnet</h3><p>Noen tall er regnet ut her, for eksempel kroner per innbygger 80 år og over. De er merket «beregnet», og det står hva de er regnet ut fra.</p></div>
     </div>
   </section>
@@ -101,7 +103,7 @@
   <section aria-labelledby="h-bruk" id="bruk">
     <h2 id="h-bruk">Bruke tallene</h2>
     <p>Alle tall på siden kommer fra offentlige kilder og er fritt frem å bruke. Oppgi den opprinnelige kilden, som står ved hvert tall. Har narviktall.no hjulpet deg å finne eller forstå tallene, setter vi pris på en henvisning.</p>
-    <p>SSBs tall kan brukes etter <a href="https://www.ssb.no/diverse/lisens" target="_blank" rel="noopener">CC BY 4.0</a>, og tallene fra Nav og Brønnøysundregistrene etter <a href="https://data.norge.no/nlod/no/2.0" target="_blank" rel="noopener">Norsk lisens for offentlige data (NLOD)</a>. Tekstene og faktaarkene som er skrevet her, kan brukes etter <a href="https://creativecommons.org/licenses/by/4.0/deed.no" target="_blank" rel="noopener">CC BY 4.0</a> med henvisning til narviktall.no. Koden kan leses på GitHub og brukes til ikke-kommersielle formål etter <a href="https://polyformproject.org/licenses/noncommercial/1.0.0/" target="_blank" rel="noopener">PolyForm Noncommercial 1.0.0</a>.</p>
+    <p>SSBs tall kan brukes etter <a href="https://www.ssb.no/diverse/lisens" target="_blank" rel="noopener">CC BY 4.0</a>, og tallene fra Nav og Brønnøysundregistrene etter <a href="https://data.norge.no/nlod/no/2.0" target="_blank" rel="noopener">Norsk lisens for offentlige data (NLOD)</a>. Tekstene og faktaarkene som er skrevet her, kan brukes etter <a href="https://creativecommons.org/licenses/by/4.0/deed.no" target="_blank" rel="noopener">CC BY 4.0</a> med henvisning til narviktall.no. Koden kan leses på GitHub og brukes til ikke-kommersielle formål etter <a href="https://polyformproject.org/licenses/noncommercial/1.0.0" target="_blank" rel="noopener">PolyForm Noncommercial 1.0.0</a>.</p>
   </section>
 
   <section aria-labelledby="h-feil" id="feil">
@@ -114,6 +116,6 @@
     <span>Et åpent hobbyprosjekt laget av <a href="https://janamundsen.dev" target="_blank" rel="noopener">Jan Amundsen</a>, ikke av Narvik kommune. <a href="https://github.com/jtkarlsen/narvik-kommune-budsjett" target="_blank" rel="noopener">Kildekode</a>.</span>
   </footer>
 </div>
-<script src="common.js?v=2026-11-01c"></script>
+<script src="common.js?v=2026-11-01d"></script>
 </body>
 </html>

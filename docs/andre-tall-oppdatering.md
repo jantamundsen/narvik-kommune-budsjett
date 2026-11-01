@@ -9,7 +9,7 @@ Kortene står i `config/andre_tall.json`. `scripts/build_andre_tall.py` sjekker 
 - Tallet vises ikke andre steder på narviktall.no. Hvis et tall senere får plass på en annen side, fjernes kortet her.
 - Kilden er dokumentet eller tabellen, aldri en avis. Aviser kan brukes som tips for å finne dokumentet.
 - Dokumenter har side. Tabeller har tabellnummer. SSB-kort lenker til tabellen.
-- `publisert` er datoen kilden la ut tallet. Bruk `hentet` bare når kilden ikke har en publiseringsdato (NVE, Vegvesen, Avinor, Miljødirektoratet).
+- `publisert` er datoen kilden la ut tallet. Bruk `hentet` bare når kilden ikke har en publiseringsdato (NVE, Vegvesen, Avinor, Miljødirektoratet). Kort med `hentet` står ikke på tidslinjen, men i listen «Fra databaser som oppdateres løpende» under den.
 - `gjelder` er perioden tallet handler om (2025, Snitt 2023–2025, Skoleåret 2025–26, Oktober 2026).
 - Endring fra året før står i prosent. Skriv `endring.forrige` med fjorårets tall, så regner skriptet ut prosenten. Bruk `endring.pst` bare når kilden selv oppgir prosenten.
 - Ingen navn eller personopplysninger, og ingen egne opptellinger fra postlisten.

@@ -32,6 +32,13 @@ async function startTiltak() {
   };
   const framsikt = (ln, y) => `${link(T.sources[y].page_url, T.sources[y].name)}, kategori «${esc(T.kategorier[ln.kategori])}» (${link(ln.data_url, 'data')})`;
 
+  // One source line per area: the Framsikt page, with one data link per category the area's cuts come from.
+  const areaSrc = (list, y) => {
+    const cats = [...new Map(list.map(l => [l.kategori, l.data_url])).entries()];
+    return `${link(T.sources[y].page_url, T.sources[y].name)}, ${cats.length > 1 ? 'kategoriene' : 'kategori'} `
+      + cats.map(([c, u], i) => (i ? (i === cats.length - 1 ? ' og ' : ', ') : '') + `«${esc(T.kategorier[c])}» (${link(u, 'data')})`).join('');
+  };
+
   const draw = y => {
     const src = T.sources[y], L = T.lines.filter(l => l.aar === y);
     const cut = l => -l['1000kr'][y], back = l => Math.min(cut(l), l.reversert?.[y] || 0);
@@ -75,7 +82,7 @@ async function startTiltak() {
         ${kind === 'fix' ? `<p>${esc(l.korreksjon)}</p>` : ''}${rev}
         ${notes ? `<ul class="tiltak-notes">${notes}</ul>` : ''}
         <details><summary>Beskrivelse i Framsikt</summary><p>${l.beskrivelse ? esc(l.beskrivelse) : 'Framsikt har ingen beskrivelse av tiltaket.'}</p><p class="caption">Beløp i økonomiplanen, mill. kr: ${plan}</p></details>
-        <p class="caption fact-src">Kilde: ${framsikt(l, y)}</p></li>`;
+        ${kind === 'fix' ? `<p class="caption fact-src">Kilde: ${framsikt(l, y)}</p>` : ''}</li>`;
     };
     const areaNotes = T.omradenotater.filter(n => n.budsjett === y);
     // Largest cuts first, so the areas that carry the savings come before the small shares of the structural cut.
@@ -86,7 +93,8 @@ async function startTiltak() {
       if (!list.length && !notes.length) return '';
       return `<div class="fact-group" id="o-${a.key}"><h3>${esc(a.name)} <span class="caption">· ${mk(sum(list, cut))} mill. kr i kutt</span></h3>`
         + notes.map(n => `<p class="status-note">${esc(n.tekst)} <span class="caption">Kilde: ${cite(n.kilde)}</span></p>`).join('')
-        + `<ul class="fact-list">${list.map(l => card(l)).join('')}</ul></div>`;
+        + `<ul class="fact-list">${list.map(l => card(l)).join('')}</ul>`
+        + (list.length ? `<p class="caption">Kilde for beløpene og beskrivelsene: ${areaSrc(list, y)}.</p>` : '') + '</div>';
     }).join('');
     document.getElementById('area-list').innerHTML = groups;
     document.getElementById('areas').hidden = !groups;

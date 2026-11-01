@@ -1,6 +1,8 @@
 // andre-tall.html: «Andre tall», a timeline of numbers about Narvik kommune that are not shown elsewhere on the site.
 // Everything comes from data/andre_tall.json, which scripts/build_andre_tall.py writes from config/andre_tall.json.
 // The newest publication comes first. Cards published the same day by the same kind of source share one dot on the line.
+// Cards from databases without a publication date («Hentet») are not on the timeline, since the date they were
+// fetched says nothing about when the number came. They are listed below it instead, sorted by tema.
 // ?tema= keeps a filter in the address, and #<id> points to one card.
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 const dateText = iso => { const [y, m, d] = iso.split('-'); return `${d}.${m}.${y}`; };
@@ -14,6 +16,9 @@ const STEP = 10;
     return;
   }
   const ALL = D.tall; // already sorted newest first
+  const DB = ALL.filter(t => t.datotype === 'Hentet').sort((a, b) => a.tema.localeCompare(b.tema, 'nb') || a.id.localeCompare(b.id));
+  const TL = ALL.filter(t => t.datotype !== 'Hentet');
+  const dbSec = document.getElementById('at-db'), dbList = document.getElementById('at-db-list');
   const params = new URLSearchParams(location.search);
   const state = { tema: params.get('tema') || 'Alle', shown: STEP };
   const more = document.getElementById('at-more'), empty = document.getElementById('at-empty');
@@ -49,7 +54,7 @@ const STEP = 10;
 
   const match = t => state.tema === 'Alle' || t.tema === state.tema;
   function render() {
-    const list = ALL.filter(match);
+    const list = TL.filter(match);
     const groups = [];
     list.slice(0, state.shown).forEach(t => {
       const g = groups[groups.length - 1];
@@ -59,7 +64,10 @@ const STEP = 10;
     tl.innerHTML = groups.map(g => `<li${g.items.every(t => t.nyere) ? ' class="old"' : ''}>
       <div class="at-pub"><time datetime="${g.dato}">${dateText(g.dato)}</time><span>${g.datotype} · ${esc(g.kildetype)}</span></div>
       <div class="at-cards">${g.items.map(card).join('')}</div></li>`).join('');
-    empty.hidden = list.length > 0;
+    const db = DB.filter(match);
+    dbList.innerHTML = db.map(t => `<li><span class="at-hentet">Hentet ${dateText(t.dato)} · ${esc(t.kildetype)}</span>${card(t)}</li>`).join('');
+    dbSec.hidden = !db.length;
+    empty.hidden = list.length + db.length > 0;
     more.hidden = list.length <= state.shown;
     more.textContent = `Vis mer (${list.length - state.shown})`;
   }
@@ -74,7 +82,7 @@ const STEP = 10;
       state.tema = 'Alle';
       filters.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', String(x.dataset.v === 'Alle')));
     }
-    const idx = ALL.filter(match).indexOf(t);
+    const idx = TL.filter(match).indexOf(t);
     if (idx >= state.shown) state.shown = idx + 1;
     render();
     document.getElementById(id)?.scrollIntoView({ block: 'center' });
