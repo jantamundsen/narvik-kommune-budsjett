@@ -202,6 +202,12 @@
       "full": "Fremover, «VM 2029 i Narvik: Dette blir de ikke enige om», 17.06.2026 (for abonnenter)",
       "url": "https://www.fremover.no/vm-2029-i-narvik-dette-blir-de-ikke-enige-om/s/5-17-1515542"
     },
+    "fremover-pengebok-2026": {
+      "type": "media",
+      "navn": "Fremover, 31.05.2026",
+      "full": "Fremover, «Narviks pengebok begynner å bli tom – styrer mot 60 millioner i underskudd», 31.05.2026 (for abonnenter)",
+      "url": "https://www.fremover.no/narviks-pengebok-begynner-a-bli-tom-styrer-mot-60-millioner-i-underskudd/s/5-17-1508597"
+    },
     "nrk-vm-strid-2026": {
       "type": "media",
       "navn": "NRK Nordland, 25.06.2026",
@@ -470,6 +476,7 @@
       ],
       "tidslinje": [
         {"dato": "11.12.2025", "tekst": "Kommunestyret vedtar budsjettet for 2026 enstemmig, ifølge NRK.", "sitat": "Slik situasjonen er i Narvik, og i flere andre kommuner i Norge, så er det ikke rom for å leke butikk akkurat nå.", "hvem": "Ragne Johnsen Megård, gruppeleder for SV", "kilde": {"id": "nrk-budsjett-2026"}},
+        {"dato": "31.05.2026", "tekst": "Fremover skriver at disposisjonsfondet, kommunens sparekonto, hadde 65,8 mill. kr, mens prognosen i tertialrapport 1 var et merforbruk på nærmere 60 mill. kr for 2026.", "kilde": {"id": "fremover-pengebok-2026"}},
         { "dato": "15.10.2026", "tekst": "Formannskapet vedtar barnehageprognosen som grunnlag for økonomiplanperioden 2027–2030 (sak 42/26).", "kilde": { "id": "fsk-protokoll-2026-10-15", "side": 3 } },
         { "dato": "30.10.2026", "tekst": "Kommunedirektøren legger fram forslaget for kommunestyret (sak 184/26).", "kilde": { "id": "ks-protokoll-2026-10-30", "side": 2 } },
         { "dato": "13.11.2026", "tekst": "Planlagt: drøfting med hovedtillitsvalgte.", "kilde": { "id": "presentasjon-budsjett-2027", "side": 86 } },
@@ -526,6 +533,7 @@
         {"dato": "05.02.2026", "tekst": "Kommunalsjefen for helse og omsorg orienterer kommunestyret om Kjøpsvik omsorg, ifølge Fremover. Enheten hadde over 7 mill. kr i merforbruk i 2025, av et budsjett på 33 mill. kr, og har manglet to til fire faste sykepleiere siden 2020. Lønnskostnaden per sykehjemsplass i Kjøpsvik er oppgitt til 1 816 439 kr i året, mot 1 169 711 kr ved Ankenes bo- og servicesenter. Tre veier ble skissert: mindre aktivitet, å gjøre sykehjemmet om til bofellesskap med heldøgns omsorg, eller konkurranseutsetting.", "sitat": "Når man har et sykehjem, må man ha tilgang på sykepleiere 24/7 gjennom hele året. Siden vi ikke lykkes med å rekruttere faste ansatte, tvinges vi til å hente inn kompetanse fra vikarbyrå for å sikre forsvarlige tjenester.", "hvem": "Heidi Eriksen Laksaa, kommunalsjef for helse og omsorg", "kilde": {"id": "fremover-kjopsvik-2026"}},
         {"dato": "02.06.2026", "tekst": "Kommunalsjefen for helse og omsorg orienterer hovedutvalget for drift, ifølge Fremover. Sykefraværet i helse og omsorg er 15,6 prosent, mot 12,5 prosent i hele kommunen, og kommunen har hatt 485 overliggerdøgn hittil i 2026, med en sats på 6 172 kr per døgn. Prognosen for merforbruket i helse og omsorg var da over 42 mill. kr for året.", "sitat": "Vi har en krevende situasjon. Vi har høyere sykefravær enn vi er bekvem med å ha. 114 personer borte fra jobb hver dag.", "hvem": "Heidi Eriksen Laksaa, kommunalsjef for helse og omsorg", "kilde": {"id": "fremover-syke-2026"}},
         { "dato": "04.06.2026", "tekst": "Årsrapport 2025 lagt fram for formannskapet (sak 025/26).", "kilde": { "id": "ar-2025" } },
+        {"dato": "04.06.2026", "tekst": "Tertialrapport 1/2026 legges fram for formannskapet. Helse og omsorg har 17,6 mill. kr i merforbruk etter fire måneder og en prognose på 42,4 mill. kr for året. Rapporten sier at kommunen har hatt flere overliggerdøgn hittil i år enn i fjor.", "kilde": [{"id": "tertial-1-2026", "side": 10}, {"id": "tertial-1-2026", "side": 28}]},
         { "dato": "15.10.2026", "tekst": "Tertialrapport 2/2026 lagt fram for formannskapet (sak 45/26), med en prognose på 83,9 mill. kr i merforbruk for året.", "kilde": { "id": "tertial-2-2026", "side": 9 } }
       ],
       "fakta": { "kommunalomrade": "Helse og omsorg", "fra_aar": 2024 },

@@ -89,6 +89,12 @@
    "full": "Fremover, «Skroter planene om pelletsverk i Framneslia», 13.10.2025",
    "url": "https://www.fremover.no/skroter-planene-om-pelletsverk-i-framneslia/s/5-17-1424420"
   },
+  "fremover-pengebok-2026": {
+   "type": "media",
+   "navn": "Fremover, 31.05.2026",
+   "full": "Fremover, «Narviks pengebok begynner å bli tom – styrer mot 60 millioner i underskudd», 31.05.2026 (for abonnenter)",
+   "url": "https://www.fremover.no/narviks-pengebok-begynner-a-bli-tom-styrer-mot-60-millioner-i-underskudd/s/5-17-1508597"
+  },
   "fremover-sp-eldre-2026": {
    "type": "media",
    "navn": "Fremover, 31.08.2026",
@@ -809,6 +815,13 @@
      }
     },
     {
+     "dato": "31.05.2026",
+     "tekst": "Fremover skriver at disposisjonsfondet, kommunens sparekonto, hadde 65,8 mill. kr, mens prognosen i tertialrapport 1 var et merforbruk på nærmere 60 mill. kr for 2026.",
+     "kilde": {
+      "id": "fremover-pengebok-2026"
+     }
+    },
+    {
      "dato": "15.10.2026",
      "tekst": "Formannskapet vedtar barnehageprognosen som grunnlag for økonomiplanperioden 2027–2030 (sak 42/26).",
      "kilde": {
@@ -1117,6 +1130,20 @@
      "kilde": {
       "id": "ar-2025"
      }
+    },
+    {
+     "dato": "04.06.2026",
+     "tekst": "Tertialrapport 1/2026 legges fram for formannskapet. Helse og omsorg har 17,6 mill. kr i merforbruk etter fire måneder og en prognose på 42,4 mill. kr for året. Rapporten sier at kommunen har hatt flere overliggerdøgn hittil i år enn i fjor.",
+     "kilde": [
+      {
+       "id": "tertial-1-2026",
+       "side": 10
+      },
+      {
+       "id": "tertial-1-2026",
+       "side": 28
+      }
+     ]
     },
     {
      "dato": "15.10.2026",
