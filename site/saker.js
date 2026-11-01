@@ -67,7 +67,7 @@ const dateText = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nb-NO', 
   const SHOWN = 5, events = [...S.tidslinje].reverse();
   const time = `<section aria-labelledby="h-time">
       <div class="section-head"><h2 id="h-time">Tidslinje</h2><p class="lead">Nyeste først.</p></div>
-      <ol class="timeline" id="timeline">${events.map((t, i) => `<li${isMedia(t.kilde) ? ' class="tl-media"' : ''}${i >= SHOWN ? ' hidden' : ''}><span class="tl-date num">${esc(t.dato)}</span><div>${mediaTag(t)}<p>${esc(t.tekst)}</p><p class="caption">Kilde: ${note(t.kilde)}</p></div></li>`).join('')}</ol>
+      <ol class="timeline" id="timeline">${events.map((t, i) => `<li${isMedia(t.kilde) ? ' class="tl-media"' : ''}${i >= SHOWN ? ' hidden' : ''}><span class="tl-date num">${esc(t.dato)}</span><div>${mediaTag(t)}<p>${esc(t.tekst)}</p>${t.sitat ? `<blockquote class="fact-quote sak-quote"><p>«${esc(t.sitat)}»</p><p class="caption quote-who">– ${esc(t.hvem)}</p></blockquote>` : ''}<p class="caption">Kilde: ${note(t.kilde)}</p></div></li>`).join('')}</ol>
       ${events.length > SHOWN ? `<button type="button" class="btn tl-more" id="tl-more">Vis hele tidslinjen (${events.length - SHOWN} til)</button>` : ''}
     </section>`;
   // «Bak tallene» points from fakta.json, one group per year, the newest open.
@@ -116,7 +116,7 @@ function list(main, D) {
   main.innerHTML = `<header>
       <div class="eyebrow">Utvalgte saker</div>
       <h1>Utvalgte saker</h1>
-      <p class="lead">Faktaark om saker mange i Narvik snakker om. Hvert ark samler vedtak, datoer og tall fra kommunens egne dokumenter og andre offentlige kilder, med lenke til siden tallet står på.</p>
+      <p class="lead">Faktaark om saker mange i Narvik snakker om. Hvert ark samler vedtak, datoer og tall fra kommunens egne dokumenter og andre offentlige kilder, med lenke til siden tallet står på. Noen ark har også utsagn og oppslag fra aviser og NRK, tydelig merket.</p>
     </header>
     <section aria-label="Sakene"><div class="link-cards">${D.saker.map(s => `<article class="link-card">
       <span class="eyebrow">Sist kontrollert ${dateText(s.kontrollert)}</span>
