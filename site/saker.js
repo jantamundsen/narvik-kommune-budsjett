@@ -22,6 +22,11 @@ const dateText = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nb-NO', 
     if (!pages.length) return src(list[0]);
     return `<span title="${esc(s.full)}">${esc(s.navn)}, s. ${pages.map(k => `<a href="${esc(s.pdf)}#page=${k.side}" target="_blank" rel="noopener">${k.side}</a>`).join(', ')}</span>`;
   }).join('; ');
+  // A line that rests only on newspaper or NRK articles is marked, so it is never read as what the documents say:
+  // «Utsagn» for a quote from someone in a public role, «Medieoppslag» for what the paper reports.
+  const isMedia = k => [].concat(k).every(x => D.kilder[x.id]?.type === 'media');
+  const mediaTag = p => isMedia(p.kilde) ? `<span class="tag media-tag" title="Fra et avisoppslag eller NRK, ikke fra et dokument. Sjekk kilden.">${p.sitat ? 'Utsagn' : 'Medieoppslag'}</span>` : '';
+  const quote = p => `<blockquote class="fact-quote sak-quote"><p>«${esc(p.sitat)}»</p><p class="caption quote-who">– ${esc(p.hvem)}</p></blockquote>${p.tekst ? `<p class="caption">${esc(p.tekst)}</p>` : ''}`;
   const id = new URLSearchParams(location.search).get('sak');
   const S = D.saker.find(s => s.id === id);
   if (!S) return list(main, D);
@@ -55,14 +60,14 @@ const dateText = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nb-NO', 
   (S.temaer || []).forEach(t => t.punkter.forEach(p => [].concat(p.kilde).forEach(k => sources.set(k.id, D.kilder[k.id]))));
   const topics = (S.temaer || []).map((t, n) => `<section aria-labelledby="h-topic-${n}">
       <div class="section-head"><h2 id="h-topic-${n}">${esc(t.tittel)}</h2></div>
-      <ul class="fact-list">${t.punkter.map(p => `<li class="fact"><p>${esc(p.tekst)}</p><p class="caption fact-src">Kilde: ${srcGroup([].concat(p.kilde))}</p></li>`).join('')}</ul>
+      <ul class="fact-list">${t.punkter.map(p => `<li class="fact${isMedia(p.kilde) ? ' fact-media' : ''}">${mediaTag(p)}${p.sitat ? quote(p) : `<p>${esc(p.tekst)}</p>`}<p class="caption fact-src">Kilde: ${srcGroup([].concat(p.kilde))}</p></li>`).join('')}</ul>
     </section>`).join('');
   // Newest first. The config keeps them oldest first (build_saker.py checks the order); after the first few,
   // the rest are behind a button so a long timeline doesn't push the rest of the page down.
   const SHOWN = 5, events = [...S.tidslinje].reverse();
   const time = `<section aria-labelledby="h-time">
       <div class="section-head"><h2 id="h-time">Tidslinje</h2><p class="lead">Nyeste først.</p></div>
-      <ol class="timeline" id="timeline">${events.map((t, i) => `<li${i >= SHOWN ? ' hidden' : ''}><span class="tl-date num">${esc(t.dato)}</span><div><p>${esc(t.tekst)}</p><p class="caption">Kilde: ${note(t.kilde)}</p></div></li>`).join('')}</ol>
+      <ol class="timeline" id="timeline">${events.map((t, i) => `<li${isMedia(t.kilde) ? ' class="tl-media"' : ''}${i >= SHOWN ? ' hidden' : ''}><span class="tl-date num">${esc(t.dato)}</span><div>${mediaTag(t)}<p>${esc(t.tekst)}</p><p class="caption">Kilde: ${note(t.kilde)}</p></div></li>`).join('')}</ol>
       ${events.length > SHOWN ? `<button type="button" class="btn tl-more" id="tl-more">Vis hele tidslinjen (${events.length - SHOWN} til)</button>` : ''}
     </section>`;
   // «Bak tallene» points from fakta.json, one group per year, the newest open.
@@ -81,10 +86,13 @@ const dateText = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nb-NO', 
       <div class="section-head"><h2 id="h-links">Mer på siden</h2></div>
       <div class="link-cards">${S.lenker.map(l => `<article class="link-card"><h3>${esc(l.navn)}</h3><p>${esc(l.tekst)}</p><a class="cross-link" href="${esc(l.href)}">Gå til ${esc(l.navn.toLowerCase())} →</a></article>`).join('')}</div>
     </section>`;
+  const docList = list => `<ul class="doc-list">${list.map(s => `<li><a href="${esc(s.url || s.pdf)}" target="_blank" rel="noopener">${esc(s.full)}</a>${s.url && s.pdf ? ` · <a href="${esc(s.pdf)}" target="_blank" rel="noopener">PDF</a>` : ''}</li>`).join('')}</ul>`;
+  const media = [...sources.values()].filter(s => s.type === 'media');
   const docs = `<section aria-labelledby="h-docs">
       <div class="section-head"><h2 id="h-docs">Dokumentene</h2>
         <p class="lead">Alle kildene for saken. Har vi oversett et vedtak eller et dokument, <a href="om#feil">si fra</a>.</p></div>
-      <ul class="doc-list">${[...sources.values()].map(s => `<li><a href="${esc(s.url || s.pdf)}" target="_blank" rel="noopener">${esc(s.full)}</a>${s.url && s.pdf ? ` · <a href="${esc(s.pdf)}" target="_blank" rel="noopener">PDF</a>` : ''}</li>`).join('')}</ul>
+      ${docList([...sources.values()].filter(s => s.type !== 'media'))}
+      ${media.length ? `<h3 class="doc-sub">Medieoppslag</h3><p class="caption">Artikler som utsagnene og medieoppslagene over er hentet fra.</p>${docList(media)}` : ''}
     </section>`;
 
   main.innerHTML = `<header>

@@ -23,6 +23,18 @@
    "full": "Narvik kommune, høringsutkast til forskrift om tildeling av kommunale boliger (forskriften ble vedtatt 18.12.2025, FOR-2025-12-18-2945)",
    "pdf": "https://www.narvik.kommune.no/_f/p1/i816111ac-bc20-4cd0-b449-f7dbc914b846/horingsutkast-forskrift-om-tildeling-av-kommunale-boliger-narvik-kommune-nordland.pdf"
   },
+  "fremover-narvik-bygg-2026": {
+   "type": "media",
+   "navn": "Fremover, 23.08.2026",
+   "full": "Fremover, «Tidenes kontrakt for Narvik Bygg», 23.08.2026 (bak betalingsmur, ingressen er åpen)",
+   "url": "https://www.fremover.no/tidenes-kontrakt-for-narvik-bygg/s/5-17-1536912"
+  },
+  "fremover-transformator-2026": {
+   "type": "media",
+   "navn": "Fremover, 06.05.2026",
+   "full": "Fremover, «Ny milliardbestilling er gjort», 06.05.2026 (bak betalingsmur, ingressen er åpen)",
+   "url": "https://www.fremover.no/ny-milliardbestilling-er-gjort/s/5-17-1498723"
+  },
   "fsk-protokoll-2026-10-15": {
    "navn": "Formannskapet 15.10.2026, protokoll",
    "full": "Formannskapet, møteprotokoll 15.10.2026",
@@ -139,6 +151,24 @@
    "navn": "Nordkraft Industrinett, svar på høringsuttalelser 17.02.2026",
    "full": "Nordkraft Industrinett AS, svar på høringsuttalelser til «Nye Skoglund transformatorstasjon med 420 kV tilknytning fra Kvandal», 17.02.2026 (NVE-sak 202503343)",
    "pdf": "https://webfileservice.nve.no/API/PublishedFiles/Download/bb677b66-2d0a-49d8-b50e-f8d62b0d61cc/202503343/3449842"
+  },
+  "nrk-frantzen-2025": {
+   "type": "media",
+   "navn": "NRK Nordland, 09.08.2025",
+   "full": "NRK Nordland, «Storsatsing fra Open AI kan femdoble strømprisene i nord», 09.08.2025",
+   "url": "https://www.nrk.no/nordland/open-ai-og-aker-bygger-datasenter-i-narvik.-det-kan-gjore-stromprisene-fem-ganger-sa-hoye-1.17516127"
+  },
+  "nrk-jenssen-2026": {
+   "type": "media",
+   "navn": "NRK Nordland, 26.05.2026",
+   "full": "NRK Nordland, «KI-gigant med «strøm-trussel» – kan droppe videre satsing», 26.05.2026",
+   "url": "https://www.nrk.no/nordland/nscale-sar-tvil-om-videre-satsing-pa-gigant-datasenter-i-narvik-1.17893773"
+  },
+  "nrk-tvangsmulkt-2026": {
+   "type": "media",
+   "navn": "NRK Nordland, 29.09.2026",
+   "full": "NRK Nordland, «Varsler tvangsmulkt mot KI-senter i Narvik», 29.09.2026",
+   "url": "https://www.nrk.no/nordland/varsler-tvangsmulkt-mot-ki-senter-i-narvik-1.18039782"
   },
   "nve-brev-2025": {
    "navn": "NVE, vedtaksbrev 08.12.2025",
@@ -2233,8 +2263,8 @@
   {
    "id": "datasenter-bjerkvik",
    "tittel": "Datasenteret i Bjerkvik",
-   "ingress": "Aker Nscale bygger datasentre på Skoglund industriområde i Bjerkvik. Kommunen har regulert området og er høringsinstans, mens strømtillatelsene gis av NVE. Her er vedtakene og tallene fra plandokumentene og NVE-sakene.",
-   "kontrollert": "2026-10-20",
+   "ingress": "Aker Nscale bygger datasentre på Skoglund industriområde i Bjerkvik. Kommunen har regulert området og er høringsinstans, mens strømtillatelsene gis av NVE. Her er vedtakene og tallene fra plandokumentene og NVE-sakene, og noen utsagn fra aviser og NRK, merket som det.",
+   "kontrollert": "2026-11-01",
    "nokkeltall": [
     {
      "navn": "Strøm tildelt Aker Nscale",
@@ -2425,6 +2455,74 @@
         "id": "menon-2025",
         "side": 11
        }
+      },
+      {
+       "sitat": "Vi trenger alt fra noen spesialister til vanlige håndverkere, elektrikere, kjølemekanikere og industrimekanikere.",
+       "hvem": "Stian Jenssen, sjef for Skandinavia i Nscale",
+       "tekst": "Til NRK i mai 2026, om hvem datasenteret skal ansette.",
+       "kilde": {
+        "id": "nrk-jenssen-2026"
+       }
+      },
+      {
+       "tekst": "Fremover skriver at Narvik Bygg har fått en kontrakt på 200 millioner kroner med Nscale, og at den alene er verdt mer enn selskapets totale omsetning noe tidligere år.",
+       "kilde": {
+        "id": "fremover-narvik-bygg-2026"
+       }
+      }
+     ]
+    },
+    {
+     "tittel": "Strøm og nett",
+     "punkter": [
+      {
+       "sitat": "Vil nok se en betydelig økt strømpris, ja.",
+       "hvem": "Eirik Frantzen, administrerende direktør i Nordkraft",
+       "tekst": "Til NRK i august 2025, om strømprisene i Nord-Norge når datasenteret og andre kraftkrevende prosjekter kommer.",
+       "kilde": {
+        "id": "nrk-frantzen-2025"
+       }
+      },
+      {
+       "sitat": "Vi vil fortsatt ha mer strøm enn vi forbruker. Så for en vanlig forbruker vil dette være relativt uproblematisk.",
+       "hvem": "Eirik Frantzen, administrerende direktør i Nordkraft",
+       "kilde": {
+        "id": "nrk-frantzen-2025"
+       }
+      },
+      {
+       "tekst": "NRK skriver at Statnett i april 2026 stanset flere nye tildelinger av kraft til industriprosjekter i Nord-Norge, og at de neste byggetrinnene i Bjerkvik ikke har fått reservert strøm.",
+       "kilde": {
+        "id": "nrk-jenssen-2026"
+       }
+      },
+      {
+       "sitat": "Det gjør vi av hensyn til forsyningssikkerheten i området.",
+       "hvem": "Gunnar Løvås, Statnett",
+       "tekst": "Om stansen i nye krafttildelinger i Nord-Norge, gjengitt av NRK.",
+       "kilde": {
+        "id": "nrk-jenssen-2026"
+       }
+      },
+      {
+       "sitat": "Byggetrinn 2 er mer i det blå etter Statnetts beslutning.",
+       "hvem": "Stian Jenssen, sjef for Skandinavia i Nscale",
+       "kilde": {
+        "id": "nrk-jenssen-2026"
+       }
+      },
+      {
+       "sitat": "Nå er det Statnett som bestemmer tilknytningen. Det er riktig, siden de har systemansvaret og skal passe på energisikkerheten i nettet vårt.",
+       "hvem": "Terje Aasland (Ap), energiminister",
+       "kilde": {
+        "id": "nrk-jenssen-2026"
+       }
+      },
+      {
+       "tekst": "Fremover skriver at en ny transformator til videre utbygging er bestilt, og at Statnetts nei til nettilkobling må omgjøres før investeringen kan tas i bruk.",
+       "kilde": {
+        "id": "fremover-transformator-2026"
+       }
       }
      ]
     },
@@ -2474,6 +2572,21 @@
        "kilde": {
         "id": "kjolevann-2026",
         "side": 8
+       }
+      },
+      {
+       "sitat": "At Nscale ikke har levert en slik analyse før byggingen startet, er alvorlig og et brudd på energiloven.",
+       "hvem": "Inga Nordberg, NVE-direktør",
+       "kilde": {
+        "id": "nrk-tvangsmulkt-2026"
+       }
+      },
+      {
+       "sitat": "Kort oppsummert viser rapporten at datasenteret på Kvandal vil kunne gi betydelige mengder overskuddsvarme, og peker på flere aktuelle muligheter for varmeutnyttelse for flere aktører.",
+       "hvem": "Stian Jenssen, sjef for Skandinavia i Nscale",
+       "tekst": "Jenssen sa til NRK at analysen vil bli levert i god tid før 15. november.",
+       "kilde": {
+        "id": "nrk-tvangsmulkt-2026"
        }
       }
      ]
@@ -2537,6 +2650,13 @@
      }
     },
     {
+     "dato": "04.2026",
+     "tekst": "Statnett stanser flere nye tildelinger av kraft til industriprosjekter i Nord-Norge, ifølge NRK.",
+     "kilde": {
+      "id": "nrk-jenssen-2026"
+     }
+    },
+    {
      "dato": "22.06.2026",
      "tekst": "Nordland fylkeskommune opprettholder innsigelsen til reguleringsplanen for Skoglund–Lallasletta etter kommunestyrets planvedtak.",
      "kilde": {
@@ -2550,6 +2670,13 @@
      "kilde": {
       "id": "kjolevann-2026",
       "side": 2
+     }
+    },
+    {
+     "dato": "23.08.2026",
+     "tekst": "Fremover melder at Narvik Bygg har fått en kontrakt på 200 millioner kroner med Nscale.",
+     "kilde": {
+      "id": "fremover-narvik-bygg-2026"
      }
     },
     {

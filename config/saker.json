@@ -1,5 +1,5 @@
 {
-  "_comment": "Utvalgte saker: one fact sheet per case, typed in by hand. Every number and every line in «rolle» and «tidslinje» names a source in «kilder» here or in config/fakta.json, with the page where there is one. No opinions, no forecasts of our own: the kommune's own prognosis may be shown, marked as such. «fakta» pulls the matching points from config/fakta.json, so they are not typed twice. «kontrollert» is the date the case was last checked against the sources. scripts/build_saker.py checks this file and writes site/data/saker.json.",
+  "_comment": "Utvalgte saker: one fact sheet per case, typed in by hand. Every number and every line in «rolle» and «tidslinje» names a source in «kilder» here or in config/fakta.json, with the page where there is one. No opinions, no forecasts of our own: the kommune's own prognosis may be shown, marked as such. Sources with \"type\": \"media\" (newspapers, NRK) may back quotes («sitat» + «hvem», only people speaking in a public role) and what the paper reports; the page marks those lines as Utsagn or Medieoppslag. Key numbers stay on documents. «fakta» pulls the matching points from config/fakta.json, so they are not typed twice. «kontrollert» is the date the case was last checked against the sources. scripts/build_saker.py checks this file and writes site/data/saker.json.",
   "kilder": {
     "okplan-2027": {
       "navn": "Forslag til budsjett 2027 og økonomiplan 2027–2030",
@@ -123,6 +123,36 @@
       "navn": "Menon Economics 115/2025",
       "full": "Menon Economics, «Ringvirkninger av Stargate Norways datasenter i Narvik», Menon-publikasjon nr. 115/2025, august 2025, på oppdrag fra Stargate Norway",
       "pdf": "https://menon.no/uploads/images/2025-115-Ringvirkninger-av-Stargate-Norways-datasenter-i-Narvik.pdf"
+    },
+    "nrk-frantzen-2025": {
+      "type": "media",
+      "navn": "NRK Nordland, 09.08.2025",
+      "full": "NRK Nordland, «Storsatsing fra Open AI kan femdoble strømprisene i nord», 09.08.2025",
+      "url": "https://www.nrk.no/nordland/open-ai-og-aker-bygger-datasenter-i-narvik.-det-kan-gjore-stromprisene-fem-ganger-sa-hoye-1.17516127"
+    },
+    "fremover-transformator-2026": {
+      "type": "media",
+      "navn": "Fremover, 06.05.2026",
+      "full": "Fremover, «Ny milliardbestilling er gjort», 06.05.2026 (bak betalingsmur, ingressen er åpen)",
+      "url": "https://www.fremover.no/ny-milliardbestilling-er-gjort/s/5-17-1498723"
+    },
+    "nrk-jenssen-2026": {
+      "type": "media",
+      "navn": "NRK Nordland, 26.05.2026",
+      "full": "NRK Nordland, «KI-gigant med «strøm-trussel» – kan droppe videre satsing», 26.05.2026",
+      "url": "https://www.nrk.no/nordland/nscale-sar-tvil-om-videre-satsing-pa-gigant-datasenter-i-narvik-1.17893773"
+    },
+    "fremover-narvik-bygg-2026": {
+      "type": "media",
+      "navn": "Fremover, 23.08.2026",
+      "full": "Fremover, «Tidenes kontrakt for Narvik Bygg», 23.08.2026 (bak betalingsmur, ingressen er åpen)",
+      "url": "https://www.fremover.no/tidenes-kontrakt-for-narvik-bygg/s/5-17-1536912"
+    },
+    "nrk-tvangsmulkt-2026": {
+      "type": "media",
+      "navn": "NRK Nordland, 29.09.2026",
+      "full": "NRK Nordland, «Varsler tvangsmulkt mot KI-senter i Narvik», 29.09.2026",
+      "url": "https://www.nrk.no/nordland/varsler-tvangsmulkt-mot-ki-senter-i-narvik-1.18039782"
     },
     "trafikk-datasenter-2020": {
       "navn": "Trafikkanalyse, datasenter Bjerkvik",
@@ -529,8 +559,8 @@
     {
       "id": "datasenter-bjerkvik",
       "tittel": "Datasenteret i Bjerkvik",
-      "ingress": "Aker Nscale bygger datasentre på Skoglund industriområde i Bjerkvik. Kommunen har regulert området og er høringsinstans, mens strømtillatelsene gis av NVE. Her er vedtakene og tallene fra plandokumentene og NVE-sakene.",
-      "kontrollert": "2026-10-20",
+      "ingress": "Aker Nscale bygger datasentre på Skoglund industriområde i Bjerkvik. Kommunen har regulert området og er høringsinstans, mens strømtillatelsene gis av NVE. Her er vedtakene og tallene fra plandokumentene og NVE-sakene, og noen utsagn fra aviser og NRK, merket som det.",
+      "kontrollert": "2026-11-01",
       "nokkeltall": [
         { "navn": "Strøm tildelt Aker Nscale", "verdi": "130 MW", "tekst": "tildelt av Nordkraft Industrinett fra Skoglund transformatorstasjon", "kilde": { "id": "nve-brev-2025", "side": 2 } },
         { "navn": "Reservert hos Statnett", "verdi": "230 MW", "tekst": "under Kvandal transformatorstasjon, 100 MW av dem med særlige vilkår", "kilde": { "id": "statnett-2026", "side": 2 } },
@@ -557,7 +587,18 @@
           { "tekst": "Menon Economics anslår i en rapport på oppdrag fra Stargate Norway (august 2025) at rundt 250 personer vil ha datasenteret som fast arbeidsplass. Tallet omfatter fast ansatte, innleid personell og kundens ansatte på stedet, og bemanningstallet kommer fra utbyggeren.", "kilde": [{ "id": "menon-2025", "side": 7 }, { "id": "menon-2025", "side": 11 }] },
           { "tekst": "Ifølge rapporten er stillingene teknisk driftspersonell, sikkerhet, administrasjon, kundeservice og støttefunksjoner for drift av bygg og anlegg. Den anslår i tillegg 145 årsverk hos leverandører, til sammen nesten 400 årsverk i driften, og nesten 280 av dem i Narvik.", "kilde": [{ "id": "menon-2025", "side": 19 }, { "id": "menon-2025", "side": 20 }] },
           { "tekst": "For byggefasen anslår rapporten 4 000 årsverk i Norge, hvorav 700 hos bedrifter i Narvik kommune. Mange som jobber på byggeplassen, er ansatt i bedrifter i andre kommuner.", "kilde": { "id": "menon-2025", "side": 14 } },
-          { "tekst": "Rapporten skriver selv at usikkerheten i anslagene «ikke er ubetydelig», fordi datasenteret ikke var bygget og leverandører og driftsmodell ikke var valgt.", "kilde": { "id": "menon-2025", "side": 11 } }
+          { "tekst": "Rapporten skriver selv at usikkerheten i anslagene «ikke er ubetydelig», fordi datasenteret ikke var bygget og leverandører og driftsmodell ikke var valgt.", "kilde": { "id": "menon-2025", "side": 11 } },
+          { "sitat": "Vi trenger alt fra noen spesialister til vanlige håndverkere, elektrikere, kjølemekanikere og industrimekanikere.", "hvem": "Stian Jenssen, sjef for Skandinavia i Nscale", "tekst": "Til NRK i mai 2026, om hvem datasenteret skal ansette.", "kilde": { "id": "nrk-jenssen-2026" } },
+          { "tekst": "Fremover skriver at Narvik Bygg har fått en kontrakt på 200 millioner kroner med Nscale, og at den alene er verdt mer enn selskapets totale omsetning noe tidligere år.", "kilde": { "id": "fremover-narvik-bygg-2026" } }
+        ] },
+        { "tittel": "Strøm og nett", "punkter": [
+          { "sitat": "Vil nok se en betydelig økt strømpris, ja.", "hvem": "Eirik Frantzen, administrerende direktør i Nordkraft", "tekst": "Til NRK i august 2025, om strømprisene i Nord-Norge når datasenteret og andre kraftkrevende prosjekter kommer.", "kilde": { "id": "nrk-frantzen-2025" } },
+          { "sitat": "Vi vil fortsatt ha mer strøm enn vi forbruker. Så for en vanlig forbruker vil dette være relativt uproblematisk.", "hvem": "Eirik Frantzen, administrerende direktør i Nordkraft", "kilde": { "id": "nrk-frantzen-2025" } },
+          { "tekst": "NRK skriver at Statnett i april 2026 stanset flere nye tildelinger av kraft til industriprosjekter i Nord-Norge, og at de neste byggetrinnene i Bjerkvik ikke har fått reservert strøm.", "kilde": { "id": "nrk-jenssen-2026" } },
+          { "sitat": "Det gjør vi av hensyn til forsyningssikkerheten i området.", "hvem": "Gunnar Løvås, Statnett", "tekst": "Om stansen i nye krafttildelinger i Nord-Norge, gjengitt av NRK.", "kilde": { "id": "nrk-jenssen-2026" } },
+          { "sitat": "Byggetrinn 2 er mer i det blå etter Statnetts beslutning.", "hvem": "Stian Jenssen, sjef for Skandinavia i Nscale", "kilde": { "id": "nrk-jenssen-2026" } },
+          { "sitat": "Nå er det Statnett som bestemmer tilknytningen. Det er riktig, siden de har systemansvaret og skal passe på energisikkerheten i nettet vårt.", "hvem": "Terje Aasland (Ap), energiminister", "kilde": { "id": "nrk-jenssen-2026" } },
+          { "tekst": "Fremover skriver at en ny transformator til videre utbygging er bestilt, og at Statnetts nei til nettilkobling må omgjøres før investeringen kan tas i bruk.", "kilde": { "id": "fremover-transformator-2026" } }
         ] },
         { "tittel": "Natur, vann og støy", "punkter": [
           { "tekst": "Konsekvensutredningen til reguleringsplanen satte samlet konsekvens for naturmangfold til «betydelig miljøskade», med vekt på registrerte naturtyper.", "kilde": { "id": "nve-brev-2025", "side": 3 } },
@@ -567,7 +608,9 @@
         { "tittel": "Overskuddsvarme", "punkter": [
           { "tekst": "Etter energiloven § 7-2 må datasentre over 2 MW lage en kost-nytteanalyse av mulighetene for å bruke overskuddsvarmen, og NVE må godkjenne den før byggestart. Regelen har gjeldt siden 1. april 2025. Den krever at muligheten vurderes; NVE skriver at det er lovpålagt «å vurdere om overskuddsvarmen kan benyttes».", "kilde": { "id": "nve-tvangsmulkt-2026" } },
           { "tekst": "NVE skriver at Nscale Norway AS startet byggingen uten å ha levert analysen, og at det er et brudd på energiloven. NVE har pålagt Nscale å levere den og varslet tvangsmulkt hvis den ikke er kommet innen 15. november 2026.", "kilde": { "id": "nve-tvangsmulkt-2026" } },
-          { "tekst": "Kjølevannsplanen skal også legge til rette for at overskuddsvarmen kan brukes, for eksempel på Lallasletta eller langs traseen. Nscale opplyser at de er i dialog med Futurum og kommunen om dette.", "kilde": { "id": "kjolevann-2026", "side": 8 } }
+          { "tekst": "Kjølevannsplanen skal også legge til rette for at overskuddsvarmen kan brukes, for eksempel på Lallasletta eller langs traseen. Nscale opplyser at de er i dialog med Futurum og kommunen om dette.", "kilde": { "id": "kjolevann-2026", "side": 8 } },
+          { "sitat": "At Nscale ikke har levert en slik analyse før byggingen startet, er alvorlig og et brudd på energiloven.", "hvem": "Inga Nordberg, NVE-direktør", "kilde": { "id": "nrk-tvangsmulkt-2026" } },
+          { "sitat": "Kort oppsummert viser rapporten at datasenteret på Kvandal vil kunne gi betydelige mengder overskuddsvarme, og peker på flere aktuelle muligheter for varmeutnyttelse for flere aktører.", "hvem": "Stian Jenssen, sjef for Skandinavia i Nscale", "tekst": "Jenssen sa til NRK at analysen vil bli levert i god tid før 15. november.", "kilde": { "id": "nrk-tvangsmulkt-2026" } }
         ] }
       ],
       "tidslinje": [
@@ -578,8 +621,10 @@
         { "dato": "06.01.2026", "tekst": "NVE sender Nordkraft Industrinetts søknad om ny Skoglund transformatorstasjon med 420 kV-kabler fra Kvandal på høring.", "kilde": { "id": "statnett-2026", "side": 1 } },
         { "dato": "05.02.2026", "tekst": "Statnett bekrefter i høringssvaret at 230 MW er reservert under Kvandal.", "kilde": { "id": "statnett-2026", "side": 2 } },
         { "dato": "11.03.2026", "tekst": "NVE gir Nordkraft Industrinett konsesjon til ny transformatorstasjon for 420 kV på Skoglund, med to 1,6 km lange jordkabler fra Kvandal. Aker Nscale blir eneste kunde.", "kilde": { "id": "nve-skoglund-2026", "side": 1 } },
+        { "dato": "04.2026", "tekst": "Statnett stanser flere nye tildelinger av kraft til industriprosjekter i Nord-Norge, ifølge NRK.", "kilde": { "id": "nrk-jenssen-2026" } },
         { "dato": "22.06.2026", "tekst": "Nordland fylkeskommune opprettholder innsigelsen til reguleringsplanen for Skoglund–Lallasletta etter kommunestyrets planvedtak.", "kilde": { "id": "kjolevann-2026", "side": 7 } },
         { "dato": "03.07.2026", "tekst": "Oppstartsmøte hos kommunen for detaljregulering av kjølevannsanlegg Bjerkvik (plan-ID 2026007). Området som varsles er på om lag 6 200 dekar.", "kilde": { "id": "kjolevann-2026", "side": 2 } },
+        { "dato": "23.08.2026", "tekst": "Fremover melder at Narvik Bygg har fått en kontrakt på 200 millioner kroner med Nscale.", "kilde": { "id": "fremover-narvik-bygg-2026" } },
         { "dato": "29.09.2026", "tekst": "NVE varsler Nscale om tvangsmulkt hvis analysen av overskuddsvarme ikke er levert innen 15. november 2026.", "kilde": { "id": "nve-tvangsmulkt-2026" } }
       ],
       "lenker": [

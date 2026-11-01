@@ -9,6 +9,12 @@ from config/fakta.json. This script refuses a case that breaks that, and adds
 the «Bak tallene» points from config/fakta.json that the case asks for, so the
 page needs only one file.
 
+A source with "type": "media" is a newspaper or NRK article. It may back what
+someone in a public role said («sitat» + «hvem») or what the paper reports. The
+page marks every line that rests on such a source as an utsagn or a
+medieoppslag, so readers can tell it from what the documents say. A media
+source needs a link and a date (dd.mm.åååå) at the end of its «navn».
+
 Only the standard library is used, and nothing is fetched.
 
     python scripts/build_saker.py
@@ -28,6 +34,7 @@ OUT = ROOT / "site" / "data" / "saker.json"
 REQUIRED = ["id", "tittel", "ingress", "kontrollert", "nokkeltall", "rolle", "tidslinje"]
 # A timeline date is a day (29.04.2021), a month (04.2021) or a year (2021).
 DATE = re.compile(r"^(\d{2}\.)?(\d{2}\.)?\d{4}$")
+MEDIA_NAME = re.compile(r"\d{2}\.\d{2}\.\d{4}$")
 
 
 def sort_key(d: str) -> tuple:
@@ -42,6 +49,9 @@ def main() -> int:
     clash = set(fakta["kilder"]) & set(cfg["kilder"])
 
     errors, seen, used = [f"kilde «{k}» finnes både i saker.json og fakta.json" for k in sorted(clash)], set(), set()
+    for kid, k in cfg["kilder"].items():
+        if k.get("type") == "media" and (not k.get("url") or not MEDIA_NAME.search(k.get("navn", ""))):
+            errors.append(f"kilde «{kid}»: en mediekilde trenger url og dato (dd.mm.åååå) sist i navnet")
     out = []
     for s in cfg["saker"]:
         sid = s.get("id", "?")
@@ -75,6 +85,9 @@ def main() -> int:
                 if not n.get(k):
                     err(f"nøkkeltall {i + 1}: mangler «{k}»")
             check_src(f"nøkkeltall {i + 1}", n.get("kilde"))
+            ks = n.get("kilde") or []
+            if any(sources.get(k.get("id"), {}).get("type") == "media" for k in (ks if isinstance(ks, list) else [ks])):
+                err(f"nøkkeltall {i + 1}: et nøkkeltall må ha et dokument som kilde, ikke en avis")
         for i, a in enumerate(s.get("aktorer", [])):
             if not a.get("navn") or not a.get("rolle"):
                 err(f"aktør {i + 1}: mangler navn eller rolle")
@@ -83,7 +96,12 @@ def main() -> int:
             if not t.get("tittel") or not t.get("punkter"):
                 err("et tema mangler tittel eller punkter")
             for i, pt in enumerate(t.get("punkter", [])):
-                check_src(f"{t.get('tittel')} {i + 1}", pt.get("kilde"))
+                where = f"{t.get('tittel')} {i + 1}"
+                check_src(where, pt.get("kilde"))
+                if not pt.get("tekst") and not pt.get("sitat"):
+                    err(f"{where}: mangler «tekst» eller «sitat»")
+                if pt.get("sitat") and not pt.get("hvem"):
+                    err(f"{where}: et sitat må si hvem som sa det («hvem»)")
         for i, r in enumerate(s.get("rolle", [])):
             check_src(f"rolle {i + 1}", r.get("kilde"))
         for i, t in enumerate(s.get("tidslinje", [])):
