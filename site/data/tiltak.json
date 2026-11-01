@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-19T21:07:28+00:00",
+ "generated": "2026-11-01T11:04:01+00:00",
  "unit": "1000 kr",
  "sources": {
   "2025": {
@@ -13,6 +13,12 @@
    "url": "https://pub.framsikt.net/2026/narvik/bm-2026-rapport_plan/",
    "status": "forslag",
    "page_url": "https://pub.framsikt.net/2026/narvik/bm-2026-rapport_plan/#/bmproposals"
+  },
+  "2027": {
+   "name": "Budsjett 2027 og økonomiplan 2027–2030, kommunedirektørens forslag",
+   "url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/",
+   "status": "forslag",
+   "page_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/#/bmproposals"
   }
  },
  "kilder": {
@@ -6214,6 +6220,2184 @@
    },
    "beskrivelse": "Det vises til vedtak i kst. sak 158/20 vedr. skolestruktur-2020, Skjomen skole og barnehage: “Skoledriften ved Skjomen skole og barnehage opprettholdes så lenge elevtallet ikke er lavere enn 25 elever over 2 år. En eventuell nedlegging vedtas endelig i kommunestyret”. Tiltaket Skole-og barnehagestruktur Skjomen utredes og behandles som separat sak i 2025. Det forutsettes at det gjennomføres utredning og saksbehandling i tråd med gjeldende bestemmelser for endringer av skolestruktur. Økonomiplanen forutsetter at tiltak gir budsjettert effekt fra 01.08.2025.",
    "data_url": "https://pub.framsikt.net/2026/narvik/bm-2026-rapport_plan/content/data/budgetreductiongraph/0/cost/20/20.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "frigjort",
+   "kategori": "40",
+   "omrade": "felles",
+   "action_id": 185904,
+   "kode": null,
+   "navn": "Avdrag på lån",
+   "1000kr": {
+    "2027": -31560,
+    "2028": -31560,
+    "2029": -31560,
+    "2030": -31560
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/revenue/40/50.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "frigjort",
+   "kategori": "40",
+   "omrade": "felles",
+   "action_id": 185907,
+   "kode": null,
+   "navn": "Renteutgifter",
+   "1000kr": {
+    "2027": -38131,
+    "2028": -38131,
+    "2029": -38131,
+    "2030": -38131
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/revenue/40/50.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "frigjort",
+   "kategori": "40",
+   "omrade": "felles",
+   "action_id": 185915,
+   "kode": null,
+   "navn": "Rammetilskudd",
+   "1000kr": {
+    "2027": -4166,
+    "2028": -4166,
+    "2029": -4166,
+    "2030": -4166
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/revenue/40/50.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "frigjort",
+   "kategori": "40",
+   "omrade": "radmannen",
+   "action_id": 197816,
+   "kode": null,
+   "navn": "VM 2029",
+   "1000kr": {
+    "2027": -3000,
+    "2028": 0,
+    "2029": 0,
+    "2030": 0
+   },
+   "beskrivelse": "Fordeling budsjett fra ansvar 100",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/revenue/40/11.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "frigjort",
+   "kategori": "40",
+   "omrade": "oppvekst",
+   "action_id": 197154,
+   "kode": null,
+   "navn": "Sletting av ansvar 268",
+   "1000kr": {
+    "2027": -70,
+    "2028": -70,
+    "2029": -70,
+    "2030": -70
+   },
+   "beskrivelse": "Sletting av ansvar 268",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/revenue/40/20.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "frigjort",
+   "kategori": "40",
+   "omrade": "helse",
+   "action_id": 185907,
+   "kode": null,
+   "navn": "Renteutgifter",
+   "1000kr": {
+    "2027": 0,
+    "2028": 0,
+    "2029": 0,
+    "2030": 0
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/revenue/40/30.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "frigjort",
+   "kategori": "999",
+   "omrade": "radmannen",
+   "action_id": 195205,
+   "kode": null,
+   "navn": "Organisatorisk endring",
+   "1000kr": {
+    "2027": -2139,
+    "2028": 832,
+    "2029": 832,
+    "2030": 832
+   },
+   "beskrivelse": "Organisatorisk endring",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/revenue/999/11.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "frigjort",
+   "kategori": "51",
+   "omrade": "plan",
+   "action_id": 205116,
+   "kode": null,
+   "navn": "Deflator",
+   "1000kr": {
+    "2027": -495,
+    "2028": -495,
+    "2029": -495,
+    "2030": -495
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/revenue/51/40.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "frigjort",
+   "kategori": "102",
+   "omrade": "felles",
+   "action_id": 185904,
+   "kode": null,
+   "navn": "Avdrag på lån",
+   "1000kr": {
+    "2027": -22829,
+    "2028": -29300,
+    "2029": -34000,
+    "2030": -34000
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/revenue/102/50.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "frigjort",
+   "kategori": "102",
+   "omrade": "felles",
+   "action_id": 185909,
+   "kode": null,
+   "navn": "Renteinntekter",
+   "1000kr": {
+    "2027": -4000,
+    "2028": -4000,
+    "2029": -4000,
+    "2030": -4000
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/revenue/102/50.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "frigjort",
+   "kategori": "80",
+   "omrade": "oppvekst",
+   "action_id": 198928,
+   "kode": null,
+   "navn": "Justeringstiltak synkronisering budsjett ramme -",
+   "1000kr": {
+    "2027": 0,
+    "2028": 0,
+    "2029": 0,
+    "2030": 0
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/revenue/80/20.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "frigjort",
+   "kategori": "80",
+   "omrade": "oppvekst",
+   "action_id": 206568,
+   "kode": "366-27-A",
+   "navn": "Statsbudsjettet: Avvikling refusjon forsterkningstiltak institusjon",
+   "1000kr": {
+    "2027": -204,
+    "2028": -204,
+    "2029": -204,
+    "2030": -204
+   },
+   "beskrivelse": "Innspill fra Statsbudsjettet. Regjeringen foreslår å avvikle Bufdirs praksis med å kreve kommunal refusjon for forsterkningstiltak i institusjon fra 1. januar 2027. I dag har kommunene i enkelte saker måttet betale ekstra når barn plassert i statlige barnevernsinstitusjoner har behov for særskilt oppfølging eller ekstra bemanning (forsterkningstiltak). Regjeringen foreslår at disse kostnadene ikke lenger skal refunderes av kommunene, men bæres av Staten. Regjeringen anslår at kommunene samlet får reduserte utgifter på 70 millioner kroner per år som følge av avviklingen. Derfor foreslås det samtidig et trekk i kommunenes rammetilskudd på tilsvarende 70 millioner kroner. For Narvik beregnes trekk i rammetilskudd ti 204 000 kr.",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/revenue/80/20.json",
+   "innsparing": true
+  },
+  {
+   "aar": "2027",
+   "side": "frigjort",
+   "kategori": "80",
+   "omrade": "helse",
+   "action_id": 198928,
+   "kode": null,
+   "navn": "Justeringstiltak synkronisering budsjett ramme -",
+   "1000kr": {
+    "2027": 0,
+    "2028": 0,
+    "2029": 0,
+    "2030": 0
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/revenue/80/30.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "frigjort",
+   "kategori": "100",
+   "omrade": "felles",
+   "action_id": 185906,
+   "kode": null,
+   "navn": "Eiendomsskatt",
+   "1000kr": {
+    "2027": -10000,
+    "2028": -10000,
+    "2029": -10000,
+    "2030": -10000
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/revenue/100/50.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "frigjort",
+   "kategori": "100",
+   "omrade": "felles",
+   "action_id": 185912,
+   "kode": null,
+   "navn": "Inntekts- og formuesskatt",
+   "1000kr": {
+    "2027": -27000,
+    "2028": -27000,
+    "2029": -27000,
+    "2030": -27000
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/revenue/100/50.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "frigjort",
+   "kategori": "100",
+   "omrade": "felles",
+   "action_id": 185915,
+   "kode": null,
+   "navn": "Rammetilskudd",
+   "1000kr": {
+    "2027": -23000,
+    "2028": -23000,
+    "2029": -23000,
+    "2030": -23000
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/revenue/100/50.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "frigjort",
+   "kategori": "108",
+   "omrade": "oppvekst",
+   "action_id": 205700,
+   "kode": null,
+   "navn": "Justering pensjon",
+   "1000kr": {
+    "2027": -6945,
+    "2028": -6945,
+    "2029": -6945,
+    "2030": -6945
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/revenue/108/20.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "frigjort",
+   "kategori": "108",
+   "omrade": "oppvekst",
+   "action_id": 205718,
+   "kode": null,
+   "navn": "Endring pensjon 1",
+   "1000kr": {
+    "2027": -378,
+    "2028": -378,
+    "2029": -378,
+    "2030": -378
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/revenue/108/20.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "frigjort",
+   "kategori": "108",
+   "omrade": "helse",
+   "action_id": 205718,
+   "kode": null,
+   "navn": "Endring pensjon 1",
+   "1000kr": {
+    "2027": -3825,
+    "2028": -3825,
+    "2029": -3825,
+    "2030": -3825
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/revenue/108/30.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "frigjort",
+   "kategori": "108",
+   "omrade": "virksomhet",
+   "action_id": 185909,
+   "kode": null,
+   "navn": "Renteinntekter",
+   "1000kr": {
+    "2027": -300,
+    "2028": -300,
+    "2029": -300,
+    "2030": -300
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/revenue/108/12.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "frigjort",
+   "kategori": "108",
+   "omrade": "virksomhet",
+   "action_id": 205700,
+   "kode": null,
+   "navn": "Justering pensjon",
+   "1000kr": {
+    "2027": -1353,
+    "2028": -1353,
+    "2029": -1353,
+    "2030": -1353
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/revenue/108/12.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "frigjort",
+   "kategori": "108",
+   "omrade": "virksomhet",
+   "action_id": 205718,
+   "kode": null,
+   "navn": "Endring pensjon 1",
+   "1000kr": {
+    "2027": -53,
+    "2028": -53,
+    "2029": -53,
+    "2030": -53
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/revenue/108/12.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "frigjort",
+   "kategori": "108",
+   "omrade": "plan",
+   "action_id": 205700,
+   "kode": null,
+   "navn": "Justering pensjon",
+   "1000kr": {
+    "2027": -963,
+    "2028": -963,
+    "2029": -963,
+    "2030": -963
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/revenue/108/40.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "frigjort",
+   "kategori": "108",
+   "omrade": "radmannen",
+   "action_id": 205700,
+   "kode": null,
+   "navn": "Justering pensjon",
+   "1000kr": {
+    "2027": -210,
+    "2028": -210,
+    "2029": -210,
+    "2030": -210
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/revenue/108/11.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "frigjort",
+   "kategori": "108",
+   "omrade": "politisk",
+   "action_id": 205700,
+   "kode": null,
+   "navn": "Justering pensjon",
+   "1000kr": {
+    "2027": -64,
+    "2028": -64,
+    "2029": -64,
+    "2030": -64
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/revenue/108/10.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "frigjort",
+   "kategori": "20",
+   "omrade": "felles",
+   "action_id": 185905,
+   "kode": null,
+   "navn": "Andre generelle driftsinntekter",
+   "1000kr": {
+    "2027": -71383,
+    "2028": -43389,
+    "2029": -31880,
+    "2030": -31880
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/revenue/20/50.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "frigjort",
+   "kategori": "20",
+   "omrade": "felles",
+   "action_id": 185915,
+   "kode": null,
+   "navn": "Rammetilskudd",
+   "1000kr": {
+    "2027": -16000,
+    "2028": -16000,
+    "2029": -16000,
+    "2030": -16000
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/revenue/20/50.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "frigjort",
+   "kategori": "20",
+   "omrade": "felles",
+   "action_id": 185949,
+   "kode": "110-26-H",
+   "navn": "Hardware til datasenter",
+   "1000kr": {
+    "2027": -500,
+    "2028": -500,
+    "2029": -500,
+    "2030": -500
+   },
+   "beskrivelse": "div hardware til datasenter, inkl hardware brannmur m.v Evt vurdere å flyttet til investering for regelmessige oppdateringer hvert år.",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/revenue/20/50.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "frigjort",
+   "kategori": "20",
+   "omrade": "felles",
+   "action_id": 185950,
+   "kode": "110-26-I",
+   "navn": "Oppdateringer Brannmur - hardware og lisenser",
+   "1000kr": {
+    "2027": -350,
+    "2028": -350,
+    "2029": -350,
+    "2030": -350
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/revenue/20/50.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "frigjort",
+   "kategori": "20",
+   "omrade": "felles",
+   "action_id": 185956,
+   "kode": null,
+   "navn": "Sentral pott integreringsmidler 2024-2027",
+   "1000kr": {
+    "2027": -2240,
+    "2028": -2240,
+    "2029": -2240,
+    "2030": -2240
+   },
+   "beskrivelse": "Sentralt avsatt pott integreringsmilder. Midler til merutgifter integrering av bosatte flyktninger er fordelt til kommunalområder kun for budsjettåret 2024",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/revenue/20/50.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "frigjort",
+   "kategori": "20",
+   "omrade": "felles",
+   "action_id": 185957,
+   "kode": "110-26-A",
+   "navn": "Driftstilskudd Ofoten Brann IKS",
+   "1000kr": {
+    "2027": -1755,
+    "2028": -1755,
+    "2029": -1755,
+    "2030": -1755
+   },
+   "beskrivelse": "Etter dialog med OBRIKS er det enighet om følgende økning av driftstilskuddet for 2026: - Kommunal deflator 3,50 % - Ekstra beløp - 50% av gjenværende utfordring = 1 755 219 Beregnet driftstilskudd for 2026 = 38 706 243 Resterende utfordring løses ved bruk av disp.fond i OBRIKS. OBRIKS skal innen 1. halvår 2026 legge frem en plan for å løse utfordringen i fremtidige budsjetter. Dette ses i sammenheng med revisjon av ROS, forebyggende og beredskapsanalysen (dimensjoneringskravet).",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/revenue/20/50.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "frigjort",
+   "kategori": "20",
+   "omrade": "felles",
+   "action_id": 185965,
+   "kode": "110-26-F",
+   "navn": "Økt sikkerhet på internt nettverk - anskaffe ClearPass",
+   "1000kr": {
+    "2027": -500,
+    "2028": -500,
+    "2029": -500,
+    "2030": -500
+   },
+   "beskrivelse": "Clearpass løsning (eller tilsvarende) for økt sikkerhet enheter på nett. Denne, eller tilsvarende løsninger, gjør at ukjente enheter på internt nett kan håndteres med standard regler. Enten at de kommer til et definert gjestenett eller låses. Ukjente enheter kan være f.eks gjester i kommunen som skal ha nett-tilgang, men kan også være utenforstående som ikke ønsker oss det beste. En slik løsning - kalt ClearPass, kan håndtere og motvirke dette. Dette innebærer anskaffelse av programvare og hardware. dersom dette ikke anskaffes og innføres, så er vi ganske sårbare slik det er i dag og det er vanskelig å håndtere uten denne typen verktøy. Uvedkommende kan relativt enkelt få innpass i nettverket med eksterne enheter p.t",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/revenue/20/50.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "frigjort",
+   "kategori": "20",
+   "omrade": "oppvekst",
+   "action_id": 185953,
+   "kode": "20-25-C",
+   "navn": "Skole -og barnehagestruktur Skjomen",
+   "1000kr": {
+    "2027": -4259,
+    "2028": -4259,
+    "2029": -4259,
+    "2030": -4259
+   },
+   "beskrivelse": "Det vises til vedtak i kst. sak 158/20 vedr. skolestruktur-2020, Skjomen skole og barnehage: “Skoledriften ved Skjomen skole og barnehage opprettholdes så lenge elevtallet ikke er lavere enn 25 elever over 2 år. En eventuell nedlegging vedtas endelig i kommunestyret”. Tiltaket Skole-og barnehagestruktur Skjomen utredes og behandles som separat sak i 2025. Det forutsettes at det gjennomføres utredning og saksbehandling i tråd med gjeldende bestemmelser for endringer av skolestruktur. Økonomiplanen forutsetter at tiltak gir budsjettert effekt fra 01.08.2025.",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/revenue/20/20.json",
+   "innsparing": true
+  },
+  {
+   "aar": "2027",
+   "side": "frigjort",
+   "kategori": "20",
+   "omrade": "oppvekst",
+   "action_id": 185967,
+   "kode": "20-26-A",
+   "navn": "Integrering oppvekst",
+   "1000kr": {
+    "2027": -4893,
+    "2028": -9791,
+    "2029": -14685,
+    "2030": -14685
+   },
+   "beskrivelse": "Integreringsmidler i kommunalområdet som går til arbeid med integrering av barn og unge i oppvekst.",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/revenue/20/20.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "frigjort",
+   "kategori": "20",
+   "omrade": "oppvekst",
+   "action_id": 185968,
+   "kode": "366-26-A",
+   "navn": "Bosetting enslige mindreårige (integreringstilskudd)",
+   "1000kr": {
+    "2027": -850,
+    "2028": -850,
+    "2029": -850,
+    "2030": -850
+   },
+   "beskrivelse": "Bosetting av enslige mindreårige (prosjekt 11010)",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/revenue/20/20.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "frigjort",
+   "kategori": "20",
+   "omrade": "helse",
+   "action_id": 185946,
+   "kode": "113-24-F",
+   "navn": "Delvis innfrielse av strukturtiltaket",
+   "1000kr": {
+    "2027": -5000,
+    "2028": -5000,
+    "2029": -5000,
+    "2030": -5000
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/revenue/20/30.json",
+   "innsparing": true
+  },
+  {
+   "aar": "2027",
+   "side": "frigjort",
+   "kategori": "20",
+   "omrade": "helse",
+   "action_id": 185952,
+   "kode": "113-26-B",
+   "navn": "Merutgifter integrering Helse og Omsorg (Integreringstilskudd)",
+   "1000kr": {
+    "2027": -1780,
+    "2028": -3470,
+    "2029": -5110,
+    "2030": -5110
+   },
+   "beskrivelse": "Integreringsmidler 330-Narvik hjemmesykepleie: Kr 1,0 mill økt volum tjenester i forbindelse med bosetting 113-Fellesområde: Generell økning hjemmebaserte tjenester: Kr 1,0 mill 389-REO: Kr 1,0 mill, økt behov korttidsplasser for bosatte flyktninger 305-TK: Kr 0,450 mill, finansiering 0,5 årsverk saksbehandler 394-RoP: Kr 0,850 mill finansiering 1,0 årsverk sykepleier oppfølgingstjenesten 380 -Legetjenester: Kr 2,465 mill. Styrket fastlegeordning. Flyktninghelseteam for mottakperioden/overgang",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/revenue/20/30.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "frigjort",
+   "kategori": "20",
+   "omrade": "virksomhet",
+   "action_id": 185948,
+   "kode": "363-26-A",
+   "navn": "Regulering introduksjonsstønad (integreringstilskudd)",
+   "1000kr": {
+    "2027": -3600,
+    "2028": -7300,
+    "2029": -11000,
+    "2030": -11000
+   },
+   "beskrivelse": "Introduksjonstønad for 2026 beregnes til ca 13 mill. Vi forventer at utgiftene til introduksjonstønad vil være på samme nivå som regnskapet for 2025 viser. Vi har per i dag ingen sikre tall eller prognoser for anmodningtallet for 2026 Siste nytt fra IMDI 5. september 2025 var at det fortsatt være behov for å bosette flyktninger i kommuner på omtrent samme nivå som etter reduksjonen i årets anmodningstall, revidert sommeren 2025. Fra 1. januar 2026 trer ny revidering av integreringslov i kraft. Det vil fra da ikke være mulig for kommuner å tilby deletidsprogram og det åpnes også for å utvide introduksjonsprogrammet med 12. måneder. Vi ser for oss at flere vil få noe lengre introduksjonsprogram med denne endringe. Det vil derfor være nødvendig å opprettholde introduksjonstønaden tilsvarende regnskapet for 2025. Dette kombinert med revidert integreringslov som trår i kraft 1. januar 2026. I “opprinnelig budsjett” ligger denne posten inne med i overkant av 2 million kroner og må dermed styrkes med 11 mill for 2026. Stønad går til deltakere som har rett/plikt til gjennom introduksjonsprogrammet. Budsjettendringen vil gjelde kun for 2026. Dette dekkes av integreringstilskuddet som overføres kvartalsvis fra IMDi. Konsekvenser ved å ikke hensyna dette vil medføre lovbrudd for Narvik kommune.",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/revenue/20/12.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "frigjort",
+   "kategori": "20",
+   "omrade": "virksomhet",
+   "action_id": 185955,
+   "kode": null,
+   "navn": "Korrigering strukturelt nedtrekk 2027-2028",
+   "1000kr": {
+    "2027": -910,
+    "2028": -910,
+    "2029": -910,
+    "2030": -910
+   },
+   "beskrivelse": "Korrigering strukturelt nedtrekk 2027-2028",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/revenue/20/12.json",
+   "innsparing": true
+  },
+  {
+   "aar": "2027",
+   "side": "frigjort",
+   "kategori": "20",
+   "omrade": "virksomhet",
+   "action_id": 185963,
+   "kode": "363-26-B",
+   "navn": "Norsktilskudd (integreringstilskudd)",
+   "1000kr": {
+    "2027": -400,
+    "2028": -800,
+    "2029": -1200,
+    "2030": -1200
+   },
+   "beskrivelse": "Norsktilskuddet er dimensjonert for høyt og inntektene fra dette vil året 2026 og utover økonomiplanperioden tilsvare ca 4,4 mill. Anslaget har en differanse på 1,2 millioner og må hensynstas for perioden. Konsekvensene vil medføre underskudd i budsjettet.",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/revenue/20/12.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "frigjort",
+   "kategori": "20",
+   "omrade": "virksomhet",
+   "action_id": 185964,
+   "kode": "280-26-AA",
+   "navn": "(Integrering) Økt bruk av tjenester i kultur av brukere med flyktningebakgrunn",
+   "1000kr": {
+    "2027": -575,
+    "2028": -1150,
+    "2029": -1725,
+    "2030": -1725
+   },
+   "beskrivelse": "Et økende antall flyktninger i Narvik etterspør i stor grad tjenester på kultur som tilbys for alle aldre både unge, voksne og eldre. Dette har høy prioritet med tanke på integreringsformålet. Nedtrapping av bevilgning baseres på en forventet reduksjon i antall flyktninger over tid.",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/revenue/20/12.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "frigjort",
+   "kategori": "20",
+   "omrade": "virksomhet",
+   "action_id": 185966,
+   "kode": "363-26-C",
+   "navn": "Økte driftskostnader (integreringstilskudd)",
+   "1000kr": {
+    "2027": -300,
+    "2028": -700,
+    "2029": -1000,
+    "2030": -1000
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/revenue/20/12.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "frigjort",
+   "kategori": "20",
+   "omrade": "plan",
+   "action_id": 185954,
+   "kode": "400-24-A",
+   "navn": "Strukturfordeling på enhetene",
+   "1000kr": {
+    "2027": -910,
+    "2028": -910,
+    "2029": -910,
+    "2030": -910
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/revenue/20/40.json",
+   "innsparing": true
+  },
+  {
+   "aar": "2027",
+   "side": "frigjort",
+   "kategori": "103",
+   "omrade": "felles",
+   "action_id": 185911,
+   "kode": null,
+   "navn": "Til ubundne avsetninger",
+   "1000kr": {
+    "2027": -19668,
+    "2028": -12491,
+    "2029": -6223,
+    "2030": 964
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/revenue/103/50.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "frigjort",
+   "kategori": "70",
+   "omrade": "oppvekst",
+   "action_id": 207339,
+   "kode": "20-27-A",
+   "navn": "Omfordeling ramme - nedtrekk på oppvekst",
+   "1000kr": {
+    "2027": -10000,
+    "2028": -10000,
+    "2029": -10000,
+    "2030": -10000
+   },
+   "beskrivelse": "Oppvekst har fått 10 millioner kroner i ytterligere nedtrekk fra opprinnelig vedtatt ramme. Midlene er planlagt omfordelt til kommunalområdet helse og omsorg. Tiltaket vil nesten utelukkende være knyttet til bemanningstilpasning og redusert tjenesteomfang.",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/revenue/70/20.json",
+   "innsparing": true
+  },
+  {
+   "aar": "2027",
+   "side": "frigjort",
+   "kategori": "70",
+   "omrade": "virksomhet",
+   "action_id": 207398,
+   "kode": "100-27-A",
+   "navn": "Omfordeling ramme til HOS -nedtrekk Virksomhetsstyring",
+   "1000kr": {
+    "2027": -5000,
+    "2028": -5000,
+    "2029": -5000,
+    "2030": -5000
+   },
+   "beskrivelse": "Varig netto rammekutt på kr 5 millioner kroner fordelt på administrative fellestjenester og stabsfunksjoner, herunder økonomi, HR, IT, generell saksbehandling samt kommunal administrasjon. De frigjorte midlene overføres uavkortet til rammeområdet Helse og omsorg for å styrke bemanning og kapasitet i pleie- og omsorgstjenestene. Reduksjonen i administrative driftsutgifter muliggjøres gjennom en målrettet satsing på kunstig intelligens (KI), automatisering og prosessforbedringer. Gevinstene realiseres gjennom naturlig avgang, redusert innleie av eksterne konsulenter, nøye vurdering av utlysning ved vakanser, samt omdisponering av personell til prioriterte kjerneoppgaver.",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/revenue/70/12.json",
+   "innsparing": true
+  },
+  {
+   "aar": "2027",
+   "side": "frigjort",
+   "kategori": "101",
+   "omrade": "felles",
+   "action_id": 185903,
+   "kode": null,
+   "navn": "Sentral lønnspott 2024",
+   "1000kr": {
+    "2027": -22532,
+    "2028": -22532,
+    "2029": -22532,
+    "2030": -22532
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/revenue/101/50.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "40",
+   "omrade": "felles",
+   "action_id": 185905,
+   "kode": null,
+   "navn": "Andre generelle driftsinntekter",
+   "1000kr": {
+    "2027": 69691,
+    "2028": 69691,
+    "2029": 69691,
+    "2030": 69691
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/40/50.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "40",
+   "omrade": "felles",
+   "action_id": 198469,
+   "kode": null,
+   "navn": "Til disponering (oppbevaring)",
+   "1000kr": {
+    "2027": 364,
+    "2028": 364,
+    "2029": 364,
+    "2030": 364
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/40/50.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "40",
+   "omrade": "virksomhet",
+   "action_id": 197818,
+   "kode": null,
+   "navn": "VM2029",
+   "1000kr": {
+    "2027": 3000,
+    "2028": 0,
+    "2029": 0,
+    "2030": 0
+   },
+   "beskrivelse": "Fordeling budsjett til ansvar",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/40/12.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "40",
+   "omrade": "virksomhet",
+   "action_id": 198465,
+   "kode": null,
+   "navn": "Kommunalt rusarbeid - Foyer",
+   "1000kr": {
+    "2027": 200,
+    "2028": 200,
+    "2029": 200,
+    "2030": 200
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/40/12.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "40",
+   "omrade": "oppvekst",
+   "action_id": 197157,
+   "kode": null,
+   "navn": "Sletting av ansvar 268",
+   "1000kr": {
+    "2027": 70,
+    "2028": 70,
+    "2029": 70,
+    "2030": 70
+   },
+   "beskrivelse": "Sletting av ansvar 268",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/40/20.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "40",
+   "omrade": "oppvekst",
+   "action_id": 198462,
+   "kode": null,
+   "navn": "Avslutning overgangsordning spes. fosterhjem",
+   "1000kr": {
+    "2027": 532,
+    "2028": 532,
+    "2029": 532,
+    "2030": 532
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/40/20.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "40",
+   "omrade": "oppvekst",
+   "action_id": 198463,
+   "kode": null,
+   "navn": "Barnevern -egenandel institusjonsplasseringer",
+   "1000kr": {
+    "2027": 532,
+    "2028": 532,
+    "2029": 532,
+    "2030": 532
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/40/20.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "40",
+   "omrade": "oppvekst",
+   "action_id": 198466,
+   "kode": null,
+   "navn": "Nyutdannede nytilsatte",
+   "1000kr": {
+    "2027": 400,
+    "2028": 400,
+    "2029": 400,
+    "2030": 400
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/40/20.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "40",
+   "omrade": "oppvekst",
+   "action_id": 198467,
+   "kode": null,
+   "navn": "SLT koordinator",
+   "1000kr": {
+    "2027": 460,
+    "2028": 460,
+    "2029": 460,
+    "2030": 460
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/40/20.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "40",
+   "omrade": "oppvekst",
+   "action_id": 198468,
+   "kode": null,
+   "navn": "Til barnehagemyndighet",
+   "1000kr": {
+    "2027": 178,
+    "2028": 178,
+    "2029": 178,
+    "2030": 178
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/40/20.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "40",
+   "omrade": "oppvekst",
+   "action_id": 198471,
+   "kode": null,
+   "navn": "Vaksinasjonskontoeret -voksenvaksinasjonsprogrammet",
+   "1000kr": {
+    "2027": 600,
+    "2028": 600,
+    "2029": 600,
+    "2030": 600
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/40/20.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "40",
+   "omrade": "helse",
+   "action_id": 198464,
+   "kode": null,
+   "navn": "Kommunalt rusarbeid - Aktivitet",
+   "1000kr": {
+    "2027": 400,
+    "2028": 400,
+    "2029": 400,
+    "2030": 400
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/40/30.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "40",
+   "omrade": "helse",
+   "action_id": 198470,
+   "kode": null,
+   "navn": "Tilskudd til frisklivs-, lærings- og mestringstilbud",
+   "1000kr": {
+    "2027": 500,
+    "2028": 500,
+    "2029": 500,
+    "2030": 500
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/40/30.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "999",
+   "omrade": "virksomhet",
+   "action_id": 195205,
+   "kode": null,
+   "navn": "Organisatorisk endring",
+   "1000kr": {
+    "2027": 2139,
+    "2028": -832,
+    "2029": -832,
+    "2030": -832
+   },
+   "beskrivelse": "Organisatorisk endring",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/999/12.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "51",
+   "omrade": "helse",
+   "action_id": 204977,
+   "kode": null,
+   "navn": "Lønn",
+   "1000kr": {
+    "2027": 20853,
+    "2028": 20853,
+    "2029": 20853,
+    "2030": 20853
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/51/30.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "51",
+   "omrade": "helse",
+   "action_id": 205113,
+   "kode": null,
+   "navn": "Pris",
+   "1000kr": {
+    "2027": 1825,
+    "2028": 1825,
+    "2029": 1825,
+    "2030": 1825
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/51/30.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "51",
+   "omrade": "helse",
+   "action_id": 205116,
+   "kode": null,
+   "navn": "Deflator",
+   "1000kr": {
+    "2027": 5094,
+    "2028": 5094,
+    "2029": 5094,
+    "2030": 5094
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/51/30.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "51",
+   "omrade": "oppvekst",
+   "action_id": 204977,
+   "kode": null,
+   "navn": "Lønn",
+   "1000kr": {
+    "2027": 15105,
+    "2028": 15105,
+    "2029": 15105,
+    "2030": 15105
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/51/20.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "51",
+   "omrade": "oppvekst",
+   "action_id": 205113,
+   "kode": null,
+   "navn": "Pris",
+   "1000kr": {
+    "2027": 1603,
+    "2028": 1603,
+    "2029": 1603,
+    "2030": 1603
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/51/20.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "51",
+   "omrade": "oppvekst",
+   "action_id": 205116,
+   "kode": null,
+   "navn": "Deflator",
+   "1000kr": {
+    "2027": 6280,
+    "2028": 6280,
+    "2029": 6280,
+    "2030": 6280
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/51/20.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "51",
+   "omrade": "plan",
+   "action_id": 204977,
+   "kode": null,
+   "navn": "Lønn",
+   "1000kr": {
+    "2027": 3788,
+    "2028": 3788,
+    "2029": 3788,
+    "2030": 3788
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/51/40.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "51",
+   "omrade": "plan",
+   "action_id": 205113,
+   "kode": null,
+   "navn": "Pris",
+   "1000kr": {
+    "2027": 4235,
+    "2028": 4235,
+    "2029": 4235,
+    "2030": 4235
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/51/40.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "51",
+   "omrade": "virksomhet",
+   "action_id": 204977,
+   "kode": null,
+   "navn": "Lønn",
+   "1000kr": {
+    "2027": 4707,
+    "2028": 4707,
+    "2029": 4707,
+    "2030": 4707
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/51/12.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "51",
+   "omrade": "virksomhet",
+   "action_id": 205113,
+   "kode": null,
+   "navn": "Pris",
+   "1000kr": {
+    "2027": 638,
+    "2028": 638,
+    "2029": 638,
+    "2030": 638
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/51/12.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "51",
+   "omrade": "virksomhet",
+   "action_id": 205116,
+   "kode": null,
+   "navn": "Deflator",
+   "1000kr": {
+    "2027": 229,
+    "2028": 229,
+    "2029": 229,
+    "2030": 229
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/51/12.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "51",
+   "omrade": "felles",
+   "action_id": 205113,
+   "kode": null,
+   "navn": "Pris",
+   "1000kr": {
+    "2027": 898,
+    "2028": 898,
+    "2029": 898,
+    "2030": 898
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/51/50.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "51",
+   "omrade": "felles",
+   "action_id": 205116,
+   "kode": null,
+   "navn": "Deflator",
+   "1000kr": {
+    "2027": 1336,
+    "2028": 1336,
+    "2029": 1336,
+    "2030": 1336
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/51/50.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "51",
+   "omrade": "radmannen",
+   "action_id": 204977,
+   "kode": null,
+   "navn": "Lønn",
+   "1000kr": {
+    "2027": 824,
+    "2028": 824,
+    "2029": 824,
+    "2030": 824
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/51/11.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "51",
+   "omrade": "radmannen",
+   "action_id": 205113,
+   "kode": null,
+   "navn": "Pris",
+   "1000kr": {
+    "2027": 33,
+    "2028": 33,
+    "2029": 33,
+    "2030": 33
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/51/11.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "51",
+   "omrade": "radmannen",
+   "action_id": 205116,
+   "kode": null,
+   "navn": "Deflator",
+   "1000kr": {
+    "2027": 7,
+    "2028": 7,
+    "2029": 7,
+    "2030": 7
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/51/11.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "51",
+   "omrade": "politisk",
+   "action_id": 204977,
+   "kode": null,
+   "navn": "Lønn",
+   "1000kr": {
+    "2027": 268,
+    "2028": 268,
+    "2029": 268,
+    "2030": 268
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/51/10.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "51",
+   "omrade": "politisk",
+   "action_id": 205113,
+   "kode": null,
+   "navn": "Pris",
+   "1000kr": {
+    "2027": 51,
+    "2028": 51,
+    "2029": 51,
+    "2030": 51
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/51/10.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "51",
+   "omrade": "politisk",
+   "action_id": 205116,
+   "kode": null,
+   "navn": "Deflator",
+   "1000kr": {
+    "2027": 8,
+    "2028": 8,
+    "2029": 8,
+    "2030": 8
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/51/10.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "102",
+   "omrade": "felles",
+   "action_id": 185907,
+   "kode": null,
+   "navn": "Renteutgifter",
+   "1000kr": {
+    "2027": 1751,
+    "2028": -834,
+    "2029": 0,
+    "2030": 0
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/102/50.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "80",
+   "omrade": "helse",
+   "action_id": 206564,
+   "kode": "380-27-H",
+   "navn": "Statsbudsjettet: Økt basistilskudd fastleger  - helårseffekt",
+   "1000kr": {
+    "2027": 629,
+    "2028": 629,
+    "2029": 629,
+    "2030": 629
+   },
+   "beskrivelse": "Økningen i basistilskuddet følger av regjeringens forslag til statsbudsjett. Basistilskuddet er en del av inntektssystemet og gis med likt beløp til alle kommuner for å dekke faste kostnader. Når rammen for inntektssystemet øker får dette også utslag i høyere basistilskudd. Basistilskuddet øker som følge av endringer i inntektssystemets samlede rammer og fordelingsnøkler i statsbudsjettet. Basistilskuddet er oppjustert i tråd med statsbudsjettets forslag til økte frie inntekter til kommunesektoren. For Narviks del utgjør økningen 629 000 kr (gjelder ikke kommunens egenfinansierte økning av tilskuddet).",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/80/30.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "80",
+   "omrade": "helse",
+   "action_id": 207120,
+   "kode": "389-27-A",
+   "navn": "Ny avdeling med 10 plasser for avlastning for demente (omfordeling ramme)",
+   "1000kr": {
+    "2027": 16600,
+    "2028": 16600,
+    "2029": 16600,
+    "2030": 16600
+   },
+   "beskrivelse": "Ta i bruk ny og klar avdeling på Helsehuset. Vil benyttes til10 plasser for avlastning for hjemmeboende demente innbyggere. Hver plass vil gi tilbud til 2-4 pasienter. Gir økt omgang av avlastningsplasser (lovpålagt tjeneste). Gir flere langtidsplasser i Bjerkvik og Ballangen. Lønns- og driftskostnader beregnet til 16 MNOK, og ca 0,6 MNOK til møblement, velferdsteknologi og annet etableringsutstyr. Konsekvens: Viktig tiltak for å fortsette dreiningen av innsatstrappen. Å ha tilstrekkelig med avlastningsplasser for primært demente innbyggere, gjør det mulig for innbyggeren å bo lengre hjemme sammen med sine pårørende.",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/80/30.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "80",
+   "omrade": "helse",
+   "action_id": 207122,
+   "kode": "380-27-C",
+   "navn": "FAM-avtalen (omfordeling ramme)",
+   "1000kr": {
+    "2027": 600,
+    "2028": 600,
+    "2029": 171,
+    "2030": 271
+   },
+   "beskrivelse": "Avtale om tjenestekjøp sykepleier, fagsykepleier og ledelse med UNN Narvik. Ny avtale inngått primo 2026 med økt volum fagsykepleier, økt dekning daglegevakt og røde dager. Delfinansieres i 2029 og 2030 ved hjelp av tiltak 380-27-F Basistilskudd, redusert overhøyde basistilskudd.",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/80/30.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "80",
+   "omrade": "helse",
+   "action_id": 207123,
+   "kode": "113-27-B",
+   "navn": "Saldere nedtrekk i ramme HOS (omfordeling ramme)",
+   "1000kr": {
+    "2027": 5000,
+    "2028": 5000,
+    "2029": 5000,
+    "2030": 5000
+   },
+   "beskrivelse": "Et nedtrekk på kr 5 000 000 er lagt til inn i rammen fra 2027 og utover.",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/80/30.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "80",
+   "omrade": "helse",
+   "action_id": 207124,
+   "kode": "389-27-E",
+   "navn": "Manglende inntekt trygghetsalarmer (omfordeling ramme)",
+   "1000kr": {
+    "2027": 1695,
+    "2028": 1695,
+    "2029": 1695,
+    "2030": 1695
+   },
+   "beskrivelse": "Statsforvalteren i Nordland og Helsedirektoratet har nylig kommet med nye tolkninger på hvorvidt kommunen har anledning for å ta egenandel på tjenesten Trygghetsalarm. Konklusjonen deres er at det har ikke kommunen anledning til. I budsjettet til enhet Helse- og rehabilitering ligger en forventet inntekt på kr 1,7 millioner.",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/80/30.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "80",
+   "omrade": "helse",
+   "action_id": 207125,
+   "kode": "388-27-D",
+   "navn": "Vakthold- Nytt responssenter for trygghetsalarmer (omfordeling ramme)",
+   "1000kr": {
+    "2027": 440,
+    "2028": 440,
+    "2029": 440,
+    "2030": 440
+   },
+   "beskrivelse": "Nytt responssenter trygghetsalarmer NOK 222 221,- dyrere enn gammel løsning. Gammel løsning var heller ikke fullt ut finansiert. Feil rammesum i tabellen under, skal være kr 530.000. Samlet underdekning kr 440.000,- Konsekvens: Ny løsning helt nødvendig pga gammel/utgått teknologi hos gammel leverandør. Ny løsning gir bedre siling av henvendelser, og dokumentasjon rett inn i journal. Økt trygghet for innbygger og ansatte.",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/80/30.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "80",
+   "omrade": "helse",
+   "action_id": 207126,
+   "kode": "113-27-E",
+   "navn": "Integreringstilskudd HOS",
+   "1000kr": {
+    "2027": 1780,
+    "2028": 0,
+    "2029": 0,
+    "2030": 0
+   },
+   "beskrivelse": "Tilbakeføre nedtrekk integreringsmidler i 2027. Utgifter knyttet til integrering er fortsatt til stedet. 330-Narvik hjemmesykepleie: Kr 1,0 mill økt volum tjenester i forbindelse med bosetting 113-Fellesområde: Generell økning hjemmebaserte tjenester: Kr 1,0 mill 389-REO: Kr 1,0 mill, økt behov korttidsplasser for bosatte flyktninger 305-TK: Kr 0,450 mill, finansiering 0,5 årsverk saksbehandler 394-RoP: Kr 0,850 mill finansiering 1,0 årsverk sykepleier oppfølgingstjenesten 380 -Legetjenester: Kr 2,465 mill. Styrket fastlegeordning. Flyktninghelseteam for mottakperioden/overgang",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/80/30.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "80",
+   "omrade": "helse",
+   "action_id": 207127,
+   "kode": "388-27-B",
+   "navn": "Nytt logistikksystem tekniske hjelpemidler til hjemmeboebende (omfordeling ramme)",
+   "1000kr": {
+    "2027": 248,
+    "2028": 76,
+    "2029": 76,
+    "2030": 76
+   },
+   "beskrivelse": "KS hjelpemidler_lagerstyringssystem for hjelpemidler, må på plass i forbindelse med nytt journalsystem (Aidn), som implementeres senhøst 2026,da man ikke lengre kan bruke dagens system. AIDN har, enn så lenge, ikke hjelpemiddelmodul. KS Hjelpemiddel erstatter hjelpemiddelmodulen vi i dag har i Profil, i tillegg til av den svarer en del utfordringer hjelpemiddelmodulen Profil har i dag. Blant annet har KS hjelpemiddel også lagerstyring for korttidslån, ikke bare for varige hjelpemidler, slik vi har i dag. KS Hjelpemidler er i tillegg koplet opp mot NAV. Uten KS Hjelpemiddel vil vi miste all oversikt over lager/ utlån av hjelpemiddel når Profil erstattes av AIDN. Etableringskostnad NOK 172 000,-, Årlige driftskostnader NOK 76 000,-",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/80/30.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "80",
+   "omrade": "helse",
+   "action_id": 207128,
+   "kode": "389-27-B",
+   "navn": "Styrket bemanning i dagens avdeling (omfordeling ramme)",
+   "1000kr": {
+    "2027": 1500,
+    "2028": 1500,
+    "2029": 1500,
+    "2030": 1500
+   },
+   "beskrivelse": "Har i 2026 fått tillatelse til å bemanne opp med en ekstra på ettermiddag og helg for å sikre forsvarlig drift. Nye utskrivingsklare pasienter kommer som regel inn til avdelingen om ettermiddagen og fredag før helg. Med økt bemanning ettermiddag og helg har avdelingen bedre forutsetning for å imot nye pasienter og få gjort en forsvarlig god nok jobb med pasientene som kommer ny inn.Erfaringsmessig har dette ført til tryggere ansatte og lavere sykefravær. Dette ønsker vi videreført i 2027. Ved en ekstra på jobb ettermiddag/ helg har vi større mulighet til å ta imot utskrivingsklare pasienter på ettermiddag/ helg. konsekvensen med å ikke få beholde styrking av bemanningen på ettrmiddag og helg vil medføre at vi ikke kan ta inn nye pasienter på disse tidspunktene eller at antall pasientsenger må reduseres.",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/80/30.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "80",
+   "omrade": "helse",
+   "action_id": 207129,
+   "kode": "330-27-C",
+   "navn": "Arbeidstøy (omfordeling ramme)",
+   "1000kr": {
+    "2027": 500,
+    "2028": 500,
+    "2029": 500,
+    "2030": 500
+   },
+   "beskrivelse": "Nye krav + økt kostnad på vask av tøy Ny sentral særavtale (KS) for personlig arbeidstøy (SGS 1002) medfører innkjøp av sandaler, sommersko (joggesko), vintersko, ullundertøy, vinterbukse, lue, buff og votter til ansatte. Kostnaden er tidligere ikke lagt i budsjett. Dersom kostnaden ikke tilføres rammen vil enheten hvert år ha kostnader utover budsjett for å innfri ansattes rettigheter i hht sentral særavtale arbeidstøy for å utføre arbeid ute under alle vær- og føreforhold.",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/80/30.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "80",
+   "omrade": "helse",
+   "action_id": 207130,
+   "kode": null,
+   "navn": "39418 - Kjøp av tjenester - nytt enetiltak 2025 (omfordeling ramme)",
+   "1000kr": {
+    "2027": 2500,
+    "2028": 2500,
+    "2029": 2500,
+    "2030": 2500
+   },
+   "beskrivelse": "Kjøp av tjenester fra privat omsorgsfirma, for person med store utfordringer innenfor psykisk helse og rus. Finanseres delvis ved overføring av kr 1,75 mill fra ansvar 335 for tiltak som tas tilbake til egenregi innen rammen (driftes av ansvar 394), og delvis av nedtrekk natt i en bemannet bolig (kr 1,0 mill). Resterende av nødvendig sum for netto finansiering av tiltaket legge inn som ønsket tiltak.",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/80/30.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "80",
+   "omrade": "helse",
+   "action_id": 207131,
+   "kode": "310-27-B",
+   "navn": "Økt driftsbudsjett (omfordeling ramme)",
+   "1000kr": {
+    "2027": 200,
+    "2028": 200,
+    "2029": 200,
+    "2030": 200
+   },
+   "beskrivelse": "Øke et svakt driftsbudsjett på medisinsk forbruksmatriell og matvarer i institusjon.",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/80/30.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "80",
+   "omrade": "helse",
+   "action_id": 207133,
+   "kode": "305-27-A",
+   "navn": "Økt ramme på Signo Vivio tiltak (omfordeling ramme)",
+   "1000kr": {
+    "2027": 300,
+    "2028": 300,
+    "2029": 300,
+    "2030": 300
+   },
+   "beskrivelse": "Grunnet prisvekst på kjøpt tiltak hos Signo Vivo (institusjon for døvblinde) er det behov for å øke rammen ytterligere. Tiltak Tysfjord kommune etablerte. Forsøkt avviklet, men ble stanset hos Statsforvalter.",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/80/30.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "80",
+   "omrade": "helse",
+   "action_id": 207353,
+   "kode": "113-27-D",
+   "navn": "Budsjett utskrivningsklare pasienter(omfordeling ramme)",
+   "1000kr": {
+    "2027": 417,
+    "2028": 417,
+    "2029": 417,
+    "2030": 417
+   },
+   "beskrivelse": "Har i dag et budsjett på kr 1 700 000. Med ny avdeling helsehuset i 2027 så estimeres det med i underkant av 1,0 utskrivningsklar pr døgn noe som ugjør ca 2 100 000 i året (med kr 6300,- pr døgn). Ut september var snittet 2,1 pasient pr døgn. Dette fordrer oppstart av 10 plasser Helsehuset fra medio januar 2027.",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/80/30.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "80",
+   "omrade": "virksomhet",
+   "action_id": 198928,
+   "kode": null,
+   "navn": "Justeringstiltak synkronisering budsjett ramme -",
+   "1000kr": {
+    "2027": 300,
+    "2028": 300,
+    "2029": 300,
+    "2030": 300
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/80/12.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "80",
+   "omrade": "virksomhet",
+   "action_id": 206567,
+   "kode": "360-27-A",
+   "navn": "Statsbudsjettet: Utfasing stønader til enslig mor far",
+   "1000kr": {
+    "2027": 177,
+    "2028": 177,
+    "2029": 177,
+    "2030": 177
+   },
+   "beskrivelse": "Innspill fra Statsbudsjett 2027. Det ble ved lovendring 1. juli 2026 vedtatt delvis utfasing av stønadene til enslig mor eller far. Begrunnelsene var blant annet: høy barnehagedekning ønske om raskere arbeidsdeltakelse forenkling av ytelsessystemet at enslige foreldre i større grad skal benytte de samme ordningene som andre foreldre For nye søkere gjelder strengere regler, og mange vil måtte basere seg på: arbeidsinntekt foreldrepenger barnetrygd eventuell økonomisk sosialhjelp andre ordinære NAV-ytelser For kommunen er virkningen: Flere kan bli avhengige av økonomisk sosialhjelp i overgangsperioder. NAV-kontorene kan få økt behov for oppfølging og arbeidsrettede tiltak. Kommunene kan oppleve økte utgifter dersom statlige ytelser reduseres raskere enn husholdningenes evne til å kompensere. :",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/80/12.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "80",
+   "omrade": "virksomhet",
+   "action_id": 208163,
+   "kode": "360-27-B",
+   "navn": "Integreringstilskudd: Stønad flyktninger",
+   "1000kr": {
+    "2027": 10000,
+    "2028": 0,
+    "2029": 0,
+    "2030": 0
+   },
+   "beskrivelse": "Mottak av flyktninger i 2026/2027 vil erfaringsmessig medføre økte ut­gifter til sosialstønad. En anslår at behovet kan komme opp mot 39 millioner kr totalt i sosialhjelp for hele tjenesten. Tiltaket er en delvis forskuttering. Vi legger til grunn at det tilføres midler fra integreringstilskuddet etter hvert som vi ser hvordan utviklingen blir.",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/80/12.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "80",
+   "omrade": "oppvekst",
+   "action_id": 207688,
+   "kode": "20-27-B",
+   "navn": "Økning i tilskudd til private barnehager",
+   "1000kr": {
+    "2027": 3600,
+    "2028": 3600,
+    "2029": 3600,
+    "2030": 3600
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/80/20.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "80",
+   "omrade": "oppvekst",
+   "action_id": 207742,
+   "kode": "20-27-C",
+   "navn": "Integreringstilskudd Kjøpsvik oppvekstsenter",
+   "1000kr": {
+    "2027": 1615,
+    "2028": 0,
+    "2029": 0,
+    "2030": 0
+   },
+   "beskrivelse": "Integreringstilskudd for å dekke to årsverk på Kjøpsvik oppvekstsenter, ett i skole og ett i barnehage.",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/80/20.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "80",
+   "omrade": "oppvekst",
+   "action_id": 207892,
+   "kode": "117-27-A",
+   "navn": "Styrking krisesenter integreringstilskudd",
+   "1000kr": {
+    "2027": 700,
+    "2028": 0,
+    "2029": 0,
+    "2030": 0
+   },
+   "beskrivelse": "Tall er basert på saksmengde knyttet til integreringsarbeid 2026. Dette er ofte komplekse saker der flere av sakene genererer mye tidsbruk hos den enkelte saksbehandler, bruk av tolketjenester og juridisk bistand i form av advokat.",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/80/20.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "80",
+   "omrade": "oppvekst",
+   "action_id": 207897,
+   "kode": "366-27-C",
+   "navn": "Stillinger finansiert av integreringstilskudd",
+   "1000kr": {
+    "2027": 2235,
+    "2028": 0,
+    "2029": 0,
+    "2030": 0
+   },
+   "beskrivelse": "Tall er basert på saksmengde knyttet til integreringsarbeid 2026. Behovet for ett ekstra årsverk i 2027 skyldes økt saksmengde og mer omfattende oppfølging i barneverntjenesten som følge av integreringsarbeid/bosetting av flyktninger. Arbeidet krever økt innsats knyttet til undersøkelser, oppfølging av barn og familier, samarbeid med skole, helse og integreringstjenester, samt bruk av tolk. For å sikre forsvarlige tjenester og overholde lovpålagte frister er det nødvendig å styrke bemanningen midlertidig. Dette er ofte komplekse saker der flere av sakene genererer mye tidsbruk hos den enkelte saksbehandler, bruk av tolketjenester og juridisk bistand i form av advokat.",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/80/20.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "80",
+   "omrade": "oppvekst",
+   "action_id": 207899,
+   "kode": "366-27-B",
+   "navn": "Integreringstilskudd: Utgifter til tolketjenester",
+   "1000kr": {
+    "2027": 200,
+    "2028": 0,
+    "2029": 0,
+    "2030": 0
+   },
+   "beskrivelse": "Tall er basert på reelle utgifter til tolketjenester i 2026. Utgifter til tolk (barnevern) har variert en del, fra 195 000 kr i 2024 til 265 000 kr i 2025 og 167 000 kr pr oktber 2026. Dette er utgifter barnevernet ikke har budsjett for. Økt bosetting og flere familier med begrensede norskkunnskaper har medført økt behov for tolketjenester i undersøkelser, oppfølging og tiltak. Tolk er nødvendig for å sikre god kommunikasjon, riktige vurderinger og forsvarlig oppfølging av barn og familier. Ønsket bevilgning gjelder for 2027.",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/80/20.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "80",
+   "omrade": "oppvekst",
+   "action_id": 207961,
+   "kode": "370-27-B",
+   "navn": "Årsverk asylmottak",
+   "1000kr": {
+    "2027": 471,
+    "2028": 0,
+    "2029": 0,
+    "2030": 0
+   },
+   "beskrivelse": "I 2026 ble det opprettet asylmottak i kommunen. Dette gir økt behov for helsestasjons- og forebyggende tjenester til barn, unge og familier. Økningen omfatter helseoppfølging, vaksinasjon, foreldreveiledning og tverrfaglig samarbeid. Det foreslås derfor en bemanningsøkning på 50 % årsverk i ett år for å sikre forsvarlige tjenester og tidlig innsats. Tidlig og forebyggende innsats overfor barn og familier i asylmottak reduserer risiko for senere behov for mer omfattende tjenester innen helse, oppvekst og barnevern. En kapasitetsøkning på 50 % årsverk vurderes som nødvendig for å ivareta kommunens forebyggende ansvar og sikre tilgjengelige tjenester til målgruppen.",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/80/20.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "80",
+   "omrade": "felles",
+   "action_id": 208102,
+   "kode": "110-27-B",
+   "navn": "Økt tilskudd Kirkelig fellesråd",
+   "1000kr": {
+    "2027": 412,
+    "2028": 412,
+    "2029": 412,
+    "2030": 412
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/80/50.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "100",
+   "omrade": "felles",
+   "action_id": 185905,
+   "kode": null,
+   "navn": "Andre generelle driftsinntekter",
+   "1000kr": {
+    "2027": 5000,
+    "2028": 5000,
+    "2029": 5000,
+    "2030": 5000
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/100/50.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "100",
+   "omrade": "felles",
+   "action_id": 185913,
+   "kode": null,
+   "navn": "Overføring fra staten",
+   "1000kr": {
+    "2027": 8000,
+    "2028": 8000,
+    "2029": 8000,
+    "2030": 8000
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/100/50.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "108",
+   "omrade": "felles",
+   "action_id": 205700,
+   "kode": null,
+   "navn": "Justering pensjon",
+   "1000kr": {
+    "2027": 7281,
+    "2028": 7281,
+    "2029": 7281,
+    "2030": 7281
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/108/50.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "108",
+   "omrade": "felles",
+   "action_id": 205718,
+   "kode": null,
+   "navn": "Endring pensjon 1",
+   "1000kr": {
+    "2027": 4256,
+    "2028": 4256,
+    "2029": 4256,
+    "2030": 4256
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/108/50.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "108",
+   "omrade": "helse",
+   "action_id": 185907,
+   "kode": null,
+   "navn": "Renteutgifter",
+   "1000kr": {
+    "2027": 0,
+    "2028": 0,
+    "2029": 0,
+    "2030": 0
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/108/30.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "108",
+   "omrade": "helse",
+   "action_id": 205700,
+   "kode": null,
+   "navn": "Justering pensjon",
+   "1000kr": {
+    "2027": 2254,
+    "2028": 2254,
+    "2029": 2254,
+    "2030": 2254
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/108/30.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "108",
+   "omrade": "oppvekst",
+   "action_id": 185907,
+   "kode": null,
+   "navn": "Renteutgifter",
+   "1000kr": {
+    "2027": 0,
+    "2028": 0,
+    "2029": 0,
+    "2030": 0
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/108/20.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "20",
+   "omrade": "felles",
+   "action_id": 185903,
+   "kode": null,
+   "navn": "Sentral lønnspott 2024",
+   "1000kr": {
+    "2027": 16844,
+    "2028": 16844,
+    "2029": 16844,
+    "2030": 16844
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/20/50.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "20",
+   "omrade": "felles",
+   "action_id": 185904,
+   "kode": null,
+   "navn": "Avdrag på lån",
+   "1000kr": {
+    "2027": 9570,
+    "2028": 23041,
+    "2029": 28335,
+    "2030": 28335
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/20/50.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "20",
+   "omrade": "felles",
+   "action_id": 185907,
+   "kode": null,
+   "navn": "Renteutgifter",
+   "1000kr": {
+    "2027": 15564,
+    "2028": 24187,
+    "2029": 20650,
+    "2030": 13112
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/20/50.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "20",
+   "omrade": "felles",
+   "action_id": 185908,
+   "kode": null,
+   "navn": "Overføring til investering",
+   "1000kr": {
+    "2027": 500,
+    "2028": 1000,
+    "2029": 1500,
+    "2030": 1500
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/20/50.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "20",
+   "omrade": "felles",
+   "action_id": 185911,
+   "kode": null,
+   "navn": "Til ubundne avsetninger",
+   "1000kr": {
+    "2027": 1035,
+    "2028": -13010,
+    "2029": -19169,
+    "2030": -19169
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/20/50.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "20",
+   "omrade": "felles",
+   "action_id": 185916,
+   "kode": null,
+   "navn": "Reberegning kapitalutgifter Narvik Vann KF",
+   "1000kr": {
+    "2027": 62271,
+    "2028": 62271,
+    "2029": 62271,
+    "2030": 62271
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/20/50.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "20",
+   "omrade": "politisk",
+   "action_id": 185951,
+   "kode": "10-26-A",
+   "navn": "Valg i økonomiplanperioden",
+   "1000kr": {
+    "2027": 1500,
+    "2028": 0,
+    "2029": 1500,
+    "2030": 1500
+   },
+   "beskrivelse": "Valgår 2027 og 2029.",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/20/10.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "20",
+   "omrade": "virksomhet",
+   "action_id": 185954,
+   "kode": "400-24-A",
+   "navn": "Strukturfordeling på enhetene",
+   "1000kr": {
+    "2027": 910,
+    "2028": 910,
+    "2029": 910,
+    "2030": 910
+   },
+   "beskrivelse": "",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/20/12.json",
+   "innsparing": false
+  },
+  {
+   "aar": "2027",
+   "side": "brukt",
+   "kategori": "20",
+   "omrade": "plan",
+   "action_id": 185955,
+   "kode": null,
+   "navn": "Korrigering strukturelt nedtrekk 2027-2028",
+   "1000kr": {
+    "2027": 910,
+    "2028": 910,
+    "2029": 910,
+    "2030": 910
+   },
+   "beskrivelse": "Korrigering strukturelt nedtrekk 2027-2028",
+   "data_url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/budgetreductiongraph/0/cost/20/40.json",
    "innsparing": false
   }
  ]

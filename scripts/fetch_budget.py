@@ -55,6 +55,11 @@ SOURCES = {
         "pdf": "https://www.narvik.kommune.no/_f/p1/i3c0f427e-5acf-4d5c-836a-5db986e5cdcb/narvik-kommunes-okonomiplan-2026-2029-1.pdf",
         "pdf_page": 93,
     },
+    "forslag-2027": {
+        "name": "Budsjett 2027 og økonomiplan 2027–2030, kommunedirektørens forslag",
+        "url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/",
+        "status": "forslag",
+    },
 }
 
 # (series id, kind, year, source, column title as Framsikt writes it). Kinds: regnskap (accounts),
@@ -63,9 +68,10 @@ SOURCES = {
 SERIES = [
     ("regnskap-2023", "regnskap", "2023", "vedtak-2025", "Regnskap  2023"),
     ("forslag-2026", "forslag", "2026", "forslag-2026", "Øk.plan 2026"),
-    ("okonomiplan-2027", "okonomiplan", "2027", "forslag-2026", "Øk.plan 2027"),
-    ("okonomiplan-2028", "okonomiplan", "2028", "forslag-2026", "Øk.plan 2028"),
-    ("okonomiplan-2029", "okonomiplan", "2029", "forslag-2026", "Øk.plan 2029"),
+    ("forslag-2027", "forslag", "2027", "forslag-2027", "Øk.plan 2027"),
+    ("okonomiplan-2028", "okonomiplan", "2028", "forslag-2027", "Øk.plan 2028"),
+    ("okonomiplan-2029", "okonomiplan", "2029", "forslag-2027", "Øk.plan 2029"),
+    ("okonomiplan-2030", "okonomiplan", "2030", "forslag-2027", "Øk.plan 2030"),
 ]
 
 # Narvik's tjenesteområder in the order the documents list them, keyed by display name.
