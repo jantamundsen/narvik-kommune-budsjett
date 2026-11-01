@@ -68,7 +68,7 @@ function stackable(table) {
 document.addEventListener('click', e => {
   const a = e.target.closest?.('a[data-aar]');
   const y = urlYear();
-  if (a && y) a.href = new URL(a.getAttribute('href'), location.href).pathname + '?aar=' + encodeURIComponent(y);
+  if (a && y) a.href = new URL(a.href).pathname + '?aar=' + encodeURIComponent(y);
 });
 
 // «Skiller seg ut» and «Henger sammen med», from data/sammenhenger.json (scripts/build_sammenhenger.py).

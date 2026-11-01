@@ -12,28 +12,28 @@
   <url><loc>https://narviktall.no/arbeid</loc></url>
   <url><loc>https://narviktall.no/naering</loc></url>
   <url><loc>https://narviktall.no/saker</loc></url>
-  <url><loc>https://narviktall.no/saker?sak=budsjett-2027</loc></url>
-  <url><loc>https://narviktall.no/saker?sak=helse-og-omsorg</loc></url>
-  <url><loc>https://narviktall.no/saker?sak=omsorgsboliger-bjerkvik</loc></url>
-  <url><loc>https://narviktall.no/saker?sak=omstilling-eldreomsorgen</loc></url>
-  <url><loc>https://narviktall.no/saker?sak=datasenter-bjerkvik</loc></url>
-  <url><loc>https://narviktall.no/saker?sak=alpin-vm-2029</loc></url>
-  <url><loc>https://narviktall.no/saker?sak=framneslia-indre-havn</loc></url>
   <url><loc>https://narviktall.no/andre-tall</loc></url>
   <url><loc>https://narviktall.no/om</loc></url>
-  <url><loc>https://narviktall.no/omrade?omrade=helse</loc></url>
-  <url><loc>https://narviktall.no/omrade?omrade=skole</loc></url>
-  <url><loc>https://narviktall.no/omrade?omrade=barnehage</loc></url>
-  <url><loc>https://narviktall.no/omrade?omrade=sosial</loc></url>
-  <url><loc>https://narviktall.no/omrade?omrade=barnevern</loc></url>
-  <url><loc>https://narviktall.no/omrade?omrade=admin</loc></url>
-  <url><loc>https://narviktall.no/omrade?omrade=veier</loc></url>
-  <url><loc>https://narviktall.no/omrade?omrade=brann</loc></url>
-  <url><loc>https://narviktall.no/omrade?omrade=kultur</loc></url>
-  <url><loc>https://narviktall.no/omrade?omrade=kirke</loc></url>
-  <url><loc>https://narviktall.no/omrade?omrade=plan</loc></url>
-  <url><loc>https://narviktall.no/omrade?omrade=bolig</loc></url>
-  <url><loc>https://narviktall.no/omrade?omrade=var</loc></url>
-  <url><loc>https://narviktall.no/omrade?omrade=pensjon</loc></url>
-  <url><loc>https://narviktall.no/omrade?omrade=annet</loc></url>
+  <url><loc>https://narviktall.no/sak/budsjett-2027</loc></url>
+  <url><loc>https://narviktall.no/sak/helse-og-omsorg</loc></url>
+  <url><loc>https://narviktall.no/sak/omsorgsboliger-bjerkvik</loc></url>
+  <url><loc>https://narviktall.no/sak/omstilling-eldreomsorgen</loc></url>
+  <url><loc>https://narviktall.no/sak/datasenter-bjerkvik</loc></url>
+  <url><loc>https://narviktall.no/sak/alpin-vm-2029</loc></url>
+  <url><loc>https://narviktall.no/sak/framneslia-indre-havn</loc></url>
+  <url><loc>https://narviktall.no/utgifter/helse</loc></url>
+  <url><loc>https://narviktall.no/utgifter/skole</loc></url>
+  <url><loc>https://narviktall.no/utgifter/barnehage</loc></url>
+  <url><loc>https://narviktall.no/utgifter/sosial</loc></url>
+  <url><loc>https://narviktall.no/utgifter/barnevern</loc></url>
+  <url><loc>https://narviktall.no/utgifter/admin</loc></url>
+  <url><loc>https://narviktall.no/utgifter/veier</loc></url>
+  <url><loc>https://narviktall.no/utgifter/brann</loc></url>
+  <url><loc>https://narviktall.no/utgifter/kultur</loc></url>
+  <url><loc>https://narviktall.no/utgifter/kirke</loc></url>
+  <url><loc>https://narviktall.no/utgifter/plan</loc></url>
+  <url><loc>https://narviktall.no/utgifter/bolig</loc></url>
+  <url><loc>https://narviktall.no/utgifter/var</loc></url>
+  <url><loc>https://narviktall.no/utgifter/pensjon</loc></url>
+  <url><loc>https://narviktall.no/utgifter/annet</loc></url>
 </urlset>

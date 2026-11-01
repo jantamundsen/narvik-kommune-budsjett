@@ -485,7 +485,7 @@
         { "dato": "19.11.2026", "tekst": "Planlagt: formannskapet lager innstillingen til kommunestyret.", "kilde": { "id": "presentasjon-budsjett-2027", "side": 86 } },
         { "dato": "03.12.2026", "tekst": "Planlagt: kommunestyret vedtar budsjettet.", "kilde": { "id": "presentasjon-budsjett-2027", "side": 86 } }
       ],
-      "lenker": [{ "href": "budsjett", "navn": "Budsjett", "tekst": "Forslaget for 2027 mot vedtatt budsjett 2026, per tjenesteområde." }, { "href": "tiltak?aar=2027", "navn": "Innsparinger i 2027", "tekst": "Innsparingstiltakene i forslaget, per tjenesteområde." }, { "href": "saker?sak=helse-og-omsorg", "navn": "Merforbruk i helse og omsorg", "tekst": "Budsjett og regnskap for helse og omsorg siden 2024." }, { "href": "lopende", "navn": "Året så langt", "tekst": "Hvordan 2026 går etter tertialrapportene." }]
+      "lenker": [{ "href": "budsjett", "navn": "Budsjett", "tekst": "Forslaget for 2027 mot vedtatt budsjett 2026, per tjenesteområde." }, { "href": "tiltak?aar=2027", "navn": "Innsparinger i 2027", "tekst": "Innsparingstiltakene i forslaget, per tjenesteområde." }, { "href": "sak/helse-og-omsorg", "navn": "Merforbruk i helse og omsorg", "tekst": "Budsjett og regnskap for helse og omsorg siden 2024." }, { "href": "lopende", "navn": "Året så langt", "tekst": "Hvordan 2026 går etter tertialrapportene." }]
     },
     {
       "id": "helse-og-omsorg",
@@ -538,7 +538,7 @@
       ],
       "fakta": { "kommunalomrade": "Helse og omsorg", "fra_aar": 2024 },
       "lenker": [
-        { "href": "omrade?omrade=helse&maal=80#sammenligning", "navn": "Helse og omsorg per innbygger 80 år og over", "tekst": "Utgiftene sammenlignet med andre kommuner, per eldre innbygger." },
+        { "href": "utgifter/helse?maal=80#sammenligning", "navn": "Helse og omsorg per innbygger 80 år og over", "tekst": "Utgiftene sammenlignet med andre kommuner, per eldre innbygger." },
         { "href": "lopende", "navn": "Året så langt", "tekst": "Alle tjenesteområder i 2026 etter tertialrapportene." },
         { "href": "budsjett", "navn": "Budsjett", "tekst": "Budsjett mot regnskap for alle tjenesteområder." },
         { "href": "befolkning?aar=2040#pyramide", "navn": "Befolkning i 2040", "tekst": "SSBs framskriving av hvor mange eldre det blir." }
@@ -686,7 +686,7 @@
       "lenker": [
         { "href": "?sak=helse-og-omsorg", "navn": "Merforbruk i helse og omsorg", "tekst": "Faktaarket om budsjettet til helse og omsorg." },
         { "href": "?sak=omsorgsboliger-bjerkvik", "navn": "Omsorgsboliger i Bjerkvik", "tekst": "De nye omsorgsboligene som skal avlaste sykehjemmene." },
-        { "href": "omrade?omrade=helse&maal=80#sammenligning", "navn": "Helse og omsorg per innbygger 80 år og over", "tekst": "Utgiftene sammenlignet med andre kommuner, per eldre innbygger." },
+        { "href": "utgifter/helse?maal=80#sammenligning", "navn": "Helse og omsorg per innbygger 80 år og over", "tekst": "Utgiftene sammenlignet med andre kommuner, per eldre innbygger." },
         { "href": "befolkning?aar=2040#pyramide", "navn": "Befolkning i 2040", "tekst": "SSBs framskriving av hvor mange eldre det blir." }
       ]
     },

@@ -890,7 +890,7 @@
      "tekst": "Innsparingstiltakene i forslaget, per tjenesteområde."
     },
     {
-     "href": "saker?sak=helse-og-omsorg",
+     "href": "sak/helse-og-omsorg",
      "navn": "Merforbruk i helse og omsorg",
      "tekst": "Budsjett og regnskap for helse og omsorg siden 2024."
     },
@@ -1156,7 +1156,7 @@
    ],
    "lenker": [
     {
-     "href": "omrade?omrade=helse&maal=80#sammenligning",
+     "href": "utgifter/helse?maal=80#sammenligning",
      "navn": "Helse og omsorg per innbygger 80 år og over",
      "tekst": "Utgiftene sammenlignet med andre kommuner, per eldre innbygger."
     },
@@ -2502,7 +2502,7 @@
      "tekst": "De nye omsorgsboligene som skal avlaste sykehjemmene."
     },
     {
-     "href": "omrade?omrade=helse&maal=80#sammenligning",
+     "href": "utgifter/helse?maal=80#sammenligning",
      "navn": "Helse og omsorg per innbygger 80 år og over",
      "tekst": "Utgiftene sammenlignet med andre kommuner, per eldre innbygger."
     },

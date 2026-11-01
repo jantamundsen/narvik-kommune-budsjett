@@ -125,7 +125,7 @@ function drawNote(svcTotal) {
 }
 
 // Each area links to omrade.html, which drills down into its services and cost types.
-const areaHref = key => `omrade?omrade=${key}&aar=${year}`;
+const areaHref = key => `utgifter/${key}?aar=${year}`;
 
 function rowFor(c, svcTotal, maxShare, prev) {
   const v = c.narvik_1000kr[year];

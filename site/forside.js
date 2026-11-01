@@ -66,7 +66,7 @@ function cases(K) {
   if (!K) return;
   document.getElementById('saker').innerHTML = K.saker.map(s => {
     const n = s.nokkeltall?.[0];
-    return `<a class="front-case" href="saker?sak=${encodeURIComponent(s.id)}">
+    return `<a class="front-case" href="sak/${encodeURIComponent(s.id)}">
       <b>${esc(s.tittel)}</b>
       ${n ? `<span class="front-case-num"><span class="sub">${esc(n.navn)}</span><span class="num">${esc(n.verdi)}</span></span>` : ''}
       <span class="caption">Sist kontrollert ${dateText(s.kontrollert)}</span>
