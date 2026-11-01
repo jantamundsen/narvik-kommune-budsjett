@@ -46,6 +46,11 @@ SOURCES = {
         "url": "https://pub.framsikt.net/2026/narvik/bm-2026-rapport_plan/",
         "status": "forslag",
     },
+    "2027": {
+        "name": "Budsjett 2027 og økonomiplan 2027–2030, kommunedirektørens forslag",
+        "url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/",
+        "status": "forslag",
+    },
 }
 SIDES = {"revenue": "frigjort", "cost": "brukt"}
 

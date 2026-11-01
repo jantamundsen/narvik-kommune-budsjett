@@ -1,6 +1,51 @@
 {
   "_comment": "Utvalgte saker: one fact sheet per case, typed in by hand. Every number and every line in «rolle» and «tidslinje» names a source in «kilder» here or in config/fakta.json, with the page where there is one. No opinions, no forecasts of our own: the kommune's own prognosis may be shown, marked as such. «fakta» pulls the matching points from config/fakta.json, so they are not typed twice. «kontrollert» is the date the case was last checked against the sources. scripts/build_saker.py checks this file and writes site/data/saker.json.",
   "kilder": {
+    "okplan-2027": {
+      "navn": "Forslag til budsjett 2027 og økonomiplan 2027–2030",
+      "full": "Budsjett 2027 og økonomiplan 2027–2030, kommunedirektørens forslag, publisert på Framsikt",
+      "url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/#/"
+    },
+    "okplan-2027-1a": {
+      "navn": "Forslag 2027, tabell 1A",
+      "full": "Budsjett 2027 og økonomiplan 2027–2030, kommunedirektørens forslag, Bevilgningsoversikt drift etter § 5-4 første ledd (1A), data fra Framsikt",
+      "url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/summary/appdx/budgetforms1a2020.json"
+    },
+    "okplan-2027-1b": {
+      "navn": "Forslag 2027, tabell 1B",
+      "full": "Budsjett 2027 og økonomiplan 2027–2030, kommunedirektørens forslag, Bevilgningsoversikt drift etter § 5-4 andre ledd (1B), data fra Framsikt",
+      "url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/summary/appdx/budgetforms1b2020.json"
+    },
+    "okplan-2027-2a": {
+      "navn": "Forslag 2027, tabell 2A",
+      "full": "Budsjett 2027 og økonomiplan 2027–2030, kommunedirektørens forslag, Bevilgningsoversikt investering etter § 5-5 første ledd (2A), data fra Framsikt",
+      "url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/content/data/summary/appdx/budgetforms2a2020.json"
+    },
+    "okplan-2027-tiltak": {
+      "navn": "Forslag 2027, endringer i driftsbudsjettet",
+      "full": "Budsjett 2027 og økonomiplan 2027–2030, kommunedirektørens forslag, tiltakene bak endringene i rammene, på Framsikt",
+      "url": "https://pub.framsikt.net/2027/narvik/bm-2027-budsjett_og_okplan_2027_2030_narvikkommune/#/bmproposals"
+    },
+    "presentasjon-budsjett-2027": {
+      "navn": "Presentasjon budsjett 2027",
+      "full": "Kommunedirektørens presentasjon «Budsjett og økonomiplan 2027–2030» for kommunestyret 30.10.2026",
+      "pdf": "https://www.narvik.kommune.no/_f/p1/i68aff8df-9ae2-4bd3-b6f2-2cc52904fd6d/presentasjon-budsjett-2027.pdf"
+    },
+    "ks-protokoll-2026-10-30": {
+      "navn": "Kommunestyret 30.10.2026, protokoll",
+      "full": "Narvik kommunestyre, møteprotokoll 30.10.2026",
+      "pdf": "https://prod02.elementscloud.no/publikum/Documents/ShowMeetingDocument/c1d7f777-8235-4817-8203-ebd49ff36bb5/31/MP/26"
+    },
+    "fsk-protokoll-2026-10-15": {
+      "navn": "Formannskapet 15.10.2026, protokoll",
+      "full": "Formannskapet, møteprotokoll 15.10.2026",
+      "pdf": "https://prod02.elementscloud.no/publikum/Documents/ShowMeetingDocument/c1d7f777-8235-4817-8203-ebd49ff36bb5/4/MP/20"
+    },
+    "nyhet-budsjett-2027": {
+      "navn": "Narvik kommune: Budsjettforslaget for 2027",
+      "full": "Narvik kommune, nyhetssak «Budsjettforslaget for 2027: Millionomfordeling til helse og omsorg»",
+      "url": "https://www.narvik.kommune.no/nyheter/budsjettforslaget-for-2027-millionomfordeling-til-helse-og-omsorg.12079.aspx"
+    },
     "okplan-2026": {
       "navn": "Økonomiplan 2026–2029",
       "full": "Budsjett 2026 og økonomiplan 2026–2029, kommunedirektørens forslag",
@@ -204,6 +249,98 @@
     }
   },
   "saker": [
+    {
+      "id": "budsjett-2027",
+      "tittel": "Budsjett 2027",
+      "ingress": "Kommunedirektøren la fram forslaget til budsjett for 2027 og økonomiplan for 2027–2030 i kommunestyret 30. oktober 2026. Formannskapet innstiller 19. november, og kommunestyret vedtar budsjettet 3. desember. Tallene her er fra forslaget, og vedtaket kan bli et annet.",
+      "kontrollert": "2026-11-01",
+      "nokkeltall": [
+        { "navn": "Til tjenesteområdene i 2027", "verdi": "1 995,1 mill. kr", "tekst": "netto driftsramme i forslaget, mot 1 837,4 mill. kr vedtatt for 2026", "kilde": { "id": "okplan-2027-1b" } },
+        { "navn": "Til helse og omsorg i 2027", "verdi": "800,6 mill. kr", "tekst": "mot 740,7 mill. kr vedtatt for 2026 og 801,4 mill. kr brukt i 2025", "kilde": { "id": "okplan-2027-1b" } },
+        { "navn": "Flyttes til helse og omsorg", "verdi": "30 mill. kr", "tekst": "10 fra oppvekst, 5 fra virksomhetsstyring, 10 fra høyere inntektsanslag og 5 fra lavere avsetninger", "kilde": { "id": "presentasjon-budsjett-2027", "side": 24 } },
+        { "navn": "Netto driftsresultat i 2027", "verdi": "29,5 mill. kr", "tekst": "det som er igjen av driftsinntektene etter driftsutgifter, renter og avdrag. Budsjettet for 2026 hadde 48,5 mill. kr", "kilde": { "id": "okplan-2027-1a" } },
+        { "navn": "Investeringer i 2027", "verdi": "438,3 mill. kr", "tekst": "i varige driftsmidler, hvorav 337,9 mill. kr finansieres med lån", "kilde": { "id": "okplan-2027-2a" } }
+      ],
+      "aktorer": [
+        { "navn": "Kommunedirektøren", "rolle": "Legger fram forslaget til budsjett og økonomiplan.", "kilde": { "id": "ks-protokoll-2026-10-30", "side": 2 } },
+        { "navn": "Hovedtillitsvalgte", "rolle": "Drøfter forslaget med administrasjonen 13. november.", "kilde": { "id": "presentasjon-budsjett-2027", "side": 86 } },
+        { "navn": "Hovedutvalgene og rådene", "rolle": "Får forslaget orientert for sine fagområder 17. og 18. november: hovedutvalgene, ungdomsrådet, eldrerådet og rådet for personer med funksjonsnedsettelse.", "kilde": { "id": "presentasjon-budsjett-2027", "side": 86 } },
+        { "navn": "Formannskapet", "rolle": "Lager innstillingen til kommunestyret 19. november.", "kilde": { "id": "presentasjon-budsjett-2027", "side": 86 } },
+        { "navn": "Kommunestyret", "rolle": "Vedtar budsjettet for 2027 og økonomiplanen 3. desember.", "kilde": { "id": "presentasjon-budsjett-2027", "side": 86 } }
+      ],
+      "tabell": {
+        "tittel": "Netto driftsramme per tjenesteområde, mill. kr",
+        "kolonner": ["Tjenesteområde", "Regnskap 2025", "Vedtatt 2026", "Forslag 2027", "Plan 2028", "Plan 2029", "Plan 2030", "Kilde"],
+        "rader": [
+          { "celler": ["Politisk ledelse", "10,6", "8,8", "10,6", "9,1", "10,6", "10,6"], "kilde": { "id": "okplan-2027-1b" } },
+          { "celler": ["Kommunedirektør og stab", "29,1", "27,3", "25,9", "24,9", "24,9", "24,9"], "kilde": { "id": "okplan-2027-1b" } },
+          { "celler": ["Virksomhetsstyring", "206,1", "180,9", "189,1", "171,0", "166,0", "166,0"], "kilde": { "id": "okplan-2027-1b" } },
+          { "celler": ["Oppvekst", "606,4", "621,8", "627,7", "617,5", "612,7", "612,7"], "kilde": { "id": "okplan-2027-1b" } },
+          { "celler": ["Helse og omsorg", "801,4", "740,7", "800,6", "797,1", "795,5", "795,5"], "kilde": { "id": "okplan-2027-1b" } },
+          { "celler": ["Plan, næring og teknisk", "177,7", "195,8", "201,6", "201,6", "201,6", "201,6"], "kilde": { "id": "okplan-2027-1b" } },
+          { "celler": ["Fellesinntekter og kostnader", "31,7", "62,0", "139,8", "139,3", "139,3", "139,7"], "kilde": { "id": "okplan-2027-1b" } },
+          { "celler": ["Sum", "1 863,1", "1 837,4", "1 995,1", "1 960,5", "1 950,5", "1 950,8"], "kilde": { "id": "okplan-2027-1b" } }
+        ],
+        "merknad": "«Vedtatt 2026» er det opprinnelige budsjettet. Regnskapet for 2025 omfatter Narvik Vann KF, økonomiplanen for 2027–2030 gjør det ikke (presentasjonen s. 28). I endringslisten i forslaget står linjen «Reberegning kapitalutgifter Narvik Vann KF» på 62,3 mill. kr under Fellesinntekter og kostnader."
+      },
+      "rolle": [
+        { "tekst": "Kommunedirektøren presenterte forslaget for kommunestyret 30.10.2026 (sak 184/26).", "kilde": { "id": "ks-protokoll-2026-10-30", "side": 2 } },
+        { "tekst": "Formannskapet vedtok 15.10.2026 at prognosen for barnehageplasser skal legges til grunn for antall barnehageplasser i økonomiplanperioden 2027–2030 (sak 42/26).", "kilde": { "id": "fsk-protokoll-2026-10-15", "side": 3 } },
+        {
+          "tekst": "Hele forslaget, med tiltakene bak hver endring i rammene, ligger på Framsikt. En PDF-utgave skulle publiseres i uke 45.",
+          "kilde": [{ "id": "okplan-2027" }, { "id": "presentasjon-budsjett-2027", "side": 86 }]
+        }
+      ],
+      "temaer": [
+        {
+          "tittel": "Hvordan pengene flyttes",
+          "punkter": [
+            { "tekst": "Helse og omsorg får 30 mill. kr mer. Oppvekst får 10 mill. kr mindre og virksomhetsstyring 5 mill. kr mindre. Inntektsanslagene økes med 10 mill. kr, og avsetningene reduseres med 5 mill. kr. Omfordelingen begrunnes med endringer i demografi.", "kilde": { "id": "presentasjon-budsjett-2027", "side": 24 } },
+            {
+              "tekst": "I oppvekst fordeler nedtrekket seg på skole (6,3 mill. kr), barnehage (1,5 mill. kr) og barn, unge og familie (2,2 mill. kr). Tiltakene er «nesten utelukkende» knyttet til bemanningstilpasning og redusert tjenesteomfang.",
+              "kilde": [{ "id": "presentasjon-budsjett-2027", "side": 59 }, { "id": "presentasjon-budsjett-2027", "side": 60 }, { "id": "presentasjon-budsjett-2027", "side": 61 }, { "id": "presentasjon-budsjett-2027", "side": 62 }]
+            },
+            { "tekst": "I virksomhetsstyring tas nedtrekket først og fremst i enhetene økonomi/IT og arkiv/HR. Kommunedirektøren skriver at det reduserer kapasiteten til veiledning, kontroll, utredning og svar på innsynsbegjæringer.", "kilde": { "id": "presentasjon-budsjett-2027", "side": 30 } },
+            { "tekst": "For helse og omsorg oppgir presentasjonen 32,4 mill. kr i styrket ramme, 27,8 mill. kr i tiltak som reduserer kostnader eller aktivitet, og 18 mill. kr i ytterligere behov og ønskede tiltak som ikke er med.", "kilde": { "id": "presentasjon-budsjett-2027", "side": 67 } },
+            {
+              "tekst": "Største nye tiltak i helse og omsorg er en ny avdeling med 10 plasser for avlastning til hjemmeboende med demens, 16,6 mill. kr i 2027.",
+              "kilde": [{ "id": "okplan-2027-tiltak" }, { "id": "presentasjon-budsjett-2027", "side": 69 }]
+            }
+          ]
+        },
+        {
+          "tittel": "Inntekter, renter og avdrag",
+          "punkter": [
+            { "tekst": "De største inntektene i 2027 er rammetilskudd fra staten (972,7 mill. kr), inntekts- og formuesskatt (904,8 mill. kr) og eiendomsskatt (152,7 mill. kr).", "kilde": { "id": "okplan-2027-1a" } },
+            { "tekst": "Renteutgiftene er budsjettert til 135,7 mill. kr og avdragene til 83,0 mill. kr, mot 156,5 og 127,8 mill. kr i budsjettet for 2026.", "kilde": { "id": "okplan-2027-1a" } },
+            { "tekst": "Regnskapet for 2025 omfatter Narvik Vann, økonomiplanen for 2027–2030 gjør det ikke.", "kilde": { "id": "presentasjon-budsjett-2027", "side": 28 } },
+            { "tekst": "Kommunens nyhetssak om forslaget oppgir 29,8 mill. kr i netto driftsresultat og 135,4 mill. kr i renteutgifter. Tallene her er fra tabell 1A i selve forslaget.", "kilde": { "id": "nyhet-budsjett-2027" } }
+          ]
+        },
+        {
+          "tittel": "Andre tall i forslaget",
+          "punkter": [
+            {
+              "tekst": "Vedlikeholdsetterslepet på kommunens bygg er beregnet til ca. 2,5 milliarder kr for 2027. 62 % av bygningsarealet er i utilfredsstillende tilstand. Ekstra vedlikeholdsmidler er ikke lagt inn, men står som et ikke-valgt tiltak.",
+              "kilde": [{ "id": "presentasjon-budsjett-2027", "side": 78 }, { "id": "presentasjon-budsjett-2027", "side": 80 }]
+            },
+            { "tekst": "Det var 2 180 elever i kommunen i oktober 2026. Kommunen venter en nedgang på ca. 110–150 elever de neste fire årene.", "kilde": { "id": "presentasjon-budsjett-2027", "side": 45 } },
+            { "tekst": "100 omsorgsboliger skal stå ferdig medio 2028.", "kilde": { "id": "presentasjon-budsjett-2027", "side": 26 } },
+            { "tekst": "Kjøpsvik omsorg har en driftsramme på 35 mill. kr, som gir rom for ca. 38 årsverk.", "kilde": { "id": "presentasjon-budsjett-2027", "side": 70 } }
+          ]
+        }
+      ],
+      "tidslinje": [
+        { "dato": "15.10.2026", "tekst": "Formannskapet vedtar barnehageprognosen som grunnlag for økonomiplanperioden 2027–2030 (sak 42/26).", "kilde": { "id": "fsk-protokoll-2026-10-15", "side": 3 } },
+        { "dato": "30.10.2026", "tekst": "Kommunedirektøren legger fram forslaget for kommunestyret (sak 184/26).", "kilde": { "id": "ks-protokoll-2026-10-30", "side": 2 } },
+        { "dato": "13.11.2026", "tekst": "Planlagt: drøfting med hovedtillitsvalgte.", "kilde": { "id": "presentasjon-budsjett-2027", "side": 86 } },
+        { "dato": "17.11.2026", "tekst": "Planlagt: orientering i hovedutvalgene.", "kilde": { "id": "presentasjon-budsjett-2027", "side": 86 } },
+        { "dato": "18.11.2026", "tekst": "Planlagt: orientering i ungdomsrådet, eldrerådet og rådet for personer med funksjonsnedsettelse.", "kilde": { "id": "presentasjon-budsjett-2027", "side": 86 } },
+        { "dato": "19.11.2026", "tekst": "Planlagt: formannskapet lager innstillingen til kommunestyret.", "kilde": { "id": "presentasjon-budsjett-2027", "side": 86 } },
+        { "dato": "03.12.2026", "tekst": "Planlagt: kommunestyret vedtar budsjettet.", "kilde": { "id": "presentasjon-budsjett-2027", "side": 86 } }
+      ],
+      "lenker": [{ "href": "budsjett", "navn": "Budsjett", "tekst": "Forslaget for 2027 mot vedtatt budsjett 2026, per tjenesteområde." }, { "href": "tiltak?aar=2027", "navn": "Innsparinger i 2027", "tekst": "Innsparingstiltakene i forslaget, per tjenesteområde." }, { "href": "saker?sak=helse-og-omsorg", "navn": "Merforbruk i helse og omsorg", "tekst": "Budsjett og regnskap for helse og omsorg siden 2024." }, { "href": "lopende", "navn": "Året så langt", "tekst": "Hvordan 2026 går etter tertialrapportene." }]
+    },
     {
       "id": "helse-og-omsorg",
       "tittel": "Merforbruk i helse og omsorg",
