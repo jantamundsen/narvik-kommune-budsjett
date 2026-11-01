@@ -153,7 +153,7 @@ def main() -> int:
             "tekst": "Renter og avdrag betales fra driften, så gjelden kan påvirke hvor mye som er igjen til tjenester.",
             "maal": [
                 measure("Kommunens netto lånegjeld per innbygger", fy, fin("12137", "KG31"), unit="kr", against="gruppe", source=ssb("12137")),
-                measure("Renter og avdrag (netto), andel av kommunens driftsinntekter", fy, fin("12143", "AGD86"), unit="%", decimals=1, against="gruppe", source=ssb("12143")),
+                measure("Renter og avdrag minus utbytte og andre finansinntekter (netto finansutgifter), andel av kommunens driftsinntekter", fy, fin("12143", "AGD86"), unit="%", decimals=1, against="gruppe", source=ssb("12143")),
                 measure("Gjeld der renteendringer slår inn, andel av kommunens driftsinntekter", fy, fin("12143", "KG39"), unit="%", decimals=1, against="gruppe", source=ssb("12143")),
             ],
         },
@@ -272,7 +272,7 @@ def main() -> int:
         ("inntekter", "12143", "56", "Kommunens disposisjonsfond (sparepenger), andel av driftsinntektene", "level"),
         ("inntekter", "12143", "AGD23", "Kommunens netto driftsresultat (overskudd), andel av driftsinntektene", "change"),
         ("gjeld", "12137", "KG31", "Kommunens netto lånegjeld per innbygger", "level"),
-        ("gjeld", "12143", "AGD86", "Renter og avdrag (netto), andel av kommunens driftsinntekter", "level"),
+        ("gjeld", "12143", "AGD86", "Renter og avdrag minus utbytte og andre finansinntekter (netto finansutgifter), andel av kommunens driftsinntekter", "level"),
         ("gjeld", "12143", "KG39", "Gjeld der renteendringer slår inn, andel av kommunens driftsinntekter", "level"),
         ("gjeld", "12137", "40", "Kommunens pensjonsforpliktelser til ansatte, per innbygger", "level"),
     ]

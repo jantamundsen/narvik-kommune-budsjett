@@ -13,10 +13,11 @@ async function startBudget() {
   const src = x => B.sources[x.source];
   const mk = v => nb(v / 1000, Math.abs(v) < 10000 ? 1 : 0);
   const signed = v => (v > 0 ? '+' : v < 0 ? '−' : '') + mk(Math.abs(v));
-  const cite = x => {
+  // One citation per document; series from the same document share it and list their columns together.
+  const cite = (x, cols = [x.column]) => {
     const a = el('a', { href: src(x).url, target: '_blank', rel: 'noopener' }, src(x).name);
     const span = el('span');
-    span.append(a, `, ${B.table}, kolonne «${x.column}» (`);
+    span.append(a, `, ${B.table}, ${cols.length > 1 ? 'kolonnene' : 'kolonne'} ${cols.map(c => `«${c}»`).join(' og ')} (`);
     const links = [];
     if (x.data_url !== src(x).pdf) links.push(el('a', { href: x.data_url, target: '_blank', rel: 'noopener' }, 'data'));
     if (src(x).pdf) links.push(el('a', { href: src(x).pdf, target: '_blank', rel: 'noopener' }, `PDF s. ${src(x).pdf_page}`));
@@ -26,7 +27,13 @@ async function startBudget() {
   };
   const caption = (id, list, extra) => {
     const c = document.getElementById(id); c.replaceChildren('Mill. kr, netto per tjenesteområde. Kilder: ');
-    [...new Map(list.map(x => [x.id, x])).values()].forEach((x, i) => { if (i) c.append('; '); c.append(cite(x)); });
+    const bySource = new Map();
+    [...new Map(list.map(x => [x.id, x])).values()].forEach(x => {
+      const k = x.source + '|' + x.data_url;
+      if (!bySource.has(k)) bySource.set(k, { x, cols: [] });
+      bySource.get(k).cols.push(x.column);
+    });
+    [...bySource.values()].forEach(({ x, cols }, i) => { if (i) c.append('; '); c.append(cite(x, cols)); });
     c.append('. ' + (extra || ''));
   };
   const head = (cols) => {
@@ -100,10 +107,10 @@ async function startBudget() {
       const bar = el('span', { class: 'share c-share' }), track = el('span', { class: 'share-track' }), fill = el('span', { class: 'share-fill' });
       fill.style.display = 'block'; fill.style.width = Math.max(0, v / cur.total_1000kr / maxShare * 100) + '%';
       track.appendChild(fill); bar.append(track, el('small', {}, nb(v / cur.total_1000kr * 100, 1) + ' %'));
-      led.appendChild(row(a, bar, mk(base['1000kr'][a.key]), `Vedtatt ${base.year}`, mk(v), chgText(p), p > 0.5 ? 'up' : p < -0.5 ? 'down' : ''));
+      led.appendChild(row(a, bar, mk(base['1000kr'][a.key]), `Vedtatt ${base.year}`, mk(v), chgText(p), ''));
     });
     const p = pct(cur.total_1000kr, base.total_1000kr);
-    led.appendChild(row('Sum', null, mk(base.total_1000kr), `Vedtatt ${base.year}`, mk(cur.total_1000kr), chgText(p), p > 0 ? 'up' : 'down', true));
+    led.appendChild(row('Sum', null, mk(base.total_1000kr), `Vedtatt ${base.year}`, mk(cur.total_1000kr), chgText(p), '', true));
     document.getElementById('h-plan').textContent = `Budsjettet for ${cur.year}`;
     document.getElementById('plan-lead').textContent = adopted
       ? `Kommunestyret ga tjenesteområdene ${mk(cur.total_1000kr)} mill. kr for ${cur.year}, mot ${mk(base.total_1000kr)} mill. kr for ${base.year}.` + (prop ? ` Kommunedirektøren hadde foreslått ${mk(prop.total_1000kr)} mill. kr.` : '')

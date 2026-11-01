@@ -32,7 +32,7 @@ async function start() {
 
   const y = Object.keys(D.units.narvik).at(-1), units = D.units.narvik[y]['00-99|99'];
   const nq = last4('new', 'narvik'), bq = last4('bankruptcies', 'narvik');
-  document.getElementById('lead').textContent = `Det var ${nb(units)} bedrifter i Narvik 1. januar ${y}. Fra ${quarter(nq.from)} til ${quarter(nq.to)} ble det registrert ${nb(nq.now)} nye foretak, og ${nb(bq.now)} foretak gikk konkurs.`;
+  document.getElementById('lead').textContent = `Det var ${nb(units)} bedrifter i Narvik 1. januar ${y}. Fra ${quarter(nq.from)} til ${quarter(nq.to)} ble det registrert ${nb(nq.now)} nye foretak.` + (bq.from === nq.from && bq.to === nq.to ? ` ${nb(bq.now)} foretak gikk konkurs i samme periode.` : ` Fra ${quarter(bq.from)} til ${quarter(bq.to)} gikk ${nb(bq.now)} foretak konkurs.`);
   document.getElementById('summary').innerHTML = [
     ['Bedrifter', nb(units), `1. januar ${y}, ${nb(D.units.narvik[y]['00-99|00'])} av dem uten ansatte`],
     ['Nye foretak', nb(nq.now), `siste fire kvartaler, ${chgText(pct(nq.now, nq.before))} fra fire kvartaler før`],

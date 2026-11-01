@@ -230,10 +230,10 @@
           { "celler": ["2025", "709,4", "781,4", "801,4", "20,0"], "kilde": { "id": "ar-2025", "side": 46 } },
           { "celler": ["2026", "740,7", "742,2", "605,6 per august", "83,9 (prognose)"], "kilde": { "id": "tertial-2-2026", "side": 9 } }
         ],
-        "merknad": "Kommunalområdet fikk dagens inndeling i 2024. Før det het det Helse og velferd og hadde andre tjenester, så tallene for 2021–2023 kan ikke settes i samme rad. Regnskapet her følger kommunens egen inndeling og er ikke det samme som KOSTRA-tallene for helse og omsorg på Utgifter-siden."
+        "merknad": "Kommunalområdet fikk dagens inndeling i 2024. Før det het det Helse og velferd og hadde andre tjenester, så tallene for 2021–2023 kan ikke settes i samme rad. Regnskapet her følger kommunens egen inndeling og er ikke det samme som KOSTRA-tallene for helse og omsorg på Utgifter-siden. Hvert år er hentet fra årsrapporten for samme år, slik at budsjett og regnskap står i samme dokument. Årsrapport 2025 (s. 19) oppgir regnskapet for 2024 som 772,7 mill. kr, ikke 770,3."
       },
       "rolle": [
-        { "tekst": "Rammen for 2026 ble satt til 742 mill. kr, mens regnskapet for 2025 viste et forbruk på 800 mill. kr.", "kilde": { "id": "tertial-2-2026", "side": 31 } },
+        { "tekst": "Vedtatt budsjett for 2026 var 740,7 mill. kr, justert til 742,2 mill. kr per august. Det er under forbruket i 2025, som var 801,4 mill. kr (se tabellen over).", "kilde": { "id": "tertial-2-2026", "side": 31 } },
         { "tekst": "Per august 2026 hadde Helse og omsorg brukt 605,6 mill. kr, 73,4 mill. kr mer enn budsjettert for de samme månedene.", "kilde": { "id": "tertial-2-2026", "side": 9 } }
       ],
       "tidslinje": [
@@ -348,7 +348,7 @@
         { "tekst": "I 2024 brukte de berørte enhetene om lag 37 mill. kr på bemanningsbyrå og 14 mill. kr på overtid. Per 1. desember 2024 sto 50 årsverk uten fast ansatt eller langtidsvikar, og sykefraværet var 14,8 %.", "kilde": { "id": "ks-sak-5-2025", "side": 35 } },
         { "tekst": "Saksframlegget la opp til et nullsumspill innenfor budsjettrammene: kutt ett sted skulle betale for økning et annet.", "kilde": { "id": "ks-sak-5-2025", "side": 38 } },
         { "tekst": "Å øke Helsehuset fra 20 til 40 korttidsplasser er anslått til om lag 30 mill. kr, å øke Furumoen sykehjem fra 95 til 104 plasser til om lag 7 mill. kr, og flere tjenester lenger ned i innsatstrappa til 6 mill. kr.", "kilde": { "id": "ks-sak-5-2025", "side": 39 } },
-        { "tekst": "Helse og omsorg startet 2026 med en ramme på 742 mill. kr, mens regnskapet for 2025 viste et forbruk på 800 mill. kr. Kommunedirektøren hadde varslet at en omstilling på minst 58 mill. kr på ett år ville være krevende.", "kilde": { "id": "tertial-2-2026", "side": 31 } },
+        { "tekst": "Helse og omsorg startet 2026 med 740,7 mill. kr i vedtatt budsjett, mens regnskapet for 2025 viste et forbruk på om lag 800 mill. kr. Kommunedirektøren hadde varslet at en omstilling på minst 58 mill. kr på ett år ville være krevende.", "kilde": { "id": "tertial-2-2026", "side": 31 } },
         { "tekst": "Det tomme bygget på Ankenes koster kommunen om lag 400 000–500 000 kr i året i drift og vedlikehold. NaBo taper 70 583 kr i husleie i måneden på sine 9 tomme leiligheter, og kommunen kan få krav om tomgangsleie.", "kilde": { "id": "ks-sak-111-2026", "side": 3 } },
         { "tekst": "Planen er å redusere kommunens gjeld ved å selge bygget.", "kilde": { "id": "ks-sak-111-2026", "side": 3 } }
       ],

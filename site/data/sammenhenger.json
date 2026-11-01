@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-23",
+ "generated": "2026-11-01",
  "regioner": {
   "narvik": "Narvik",
   "harstad": "Harstad",
@@ -199,7 +199,7 @@
      "enhet": "kr",
      "desimaler": 0,
      "verdier": {
-      "narvik": 18051,
+      "narvik": 18052,
       "harstad": 18258,
       "rana": 16397,
       "alta": 21607,
@@ -366,7 +366,7 @@
      }
     },
     {
-     "navn": "Renter og avdrag (netto), andel av kommunens driftsinntekter",
+     "navn": "Renter og avdrag minus utbytte og andre finansinntekter (netto finansutgifter), andel av kommunens driftsinntekter",
      "aar": "2025",
      "enhet": "%",
      "desimaler": 1,
@@ -923,7 +923,7 @@
     "enhet": "kr",
     "desimaler": 0,
     "verdier": {
-     "narvik": 2047,
+     "narvik": 2048,
      "harstad": 1394,
      "rana": 1428,
      "alta": 1553,
@@ -947,7 +947,7 @@
     "enhet": "kr",
     "desimaler": 0,
     "verdier": {
-     "narvik": 2526,
+     "narvik": 2527,
      "harstad": 801,
      "rana": 2916,
      "alta": 1177,
@@ -995,7 +995,7 @@
     "enhet": "kr",
     "desimaler": 0,
     "verdier": {
-     "narvik": 7124,
+     "narvik": 7127,
      "harstad": 5673,
      "rana": 4927,
      "alta": 5894,
@@ -1043,7 +1043,7 @@
     "enhet": "kr",
     "desimaler": 0,
     "verdier": {
-     "narvik": 803,
+     "narvik": 804,
      "harstad": 667,
      "rana": 727,
      "alta": 813,
@@ -1052,7 +1052,7 @@
     },
     "mot": "gruppe",
     "avvik": {
-     "share": 18,
+     "share": 19,
      "out": true
     },
     "beregnet": false,
@@ -1187,7 +1187,7 @@
     }
    },
    {
-    "navn": "Renter og avdrag (netto), andel av kommunens driftsinntekter",
+    "navn": "Renter og avdrag minus utbytte og andre finansinntekter (netto finansutgifter), andel av kommunens driftsinntekter",
     "aar": "2025",
     "enhet": "%",
     "desimaler": 1,
@@ -1291,762 +1291,6 @@
   ]
  },
  "skiller_seg_ut_aar": {
-  "utgifter": {
-   "2021": [
-    {
-     "navn": "Kommunens netto utgifter til brann og beredskap per innbygger",
-     "aar": "2021",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 1536,
-      "harstad": 1315,
-      "rana": 1082,
-      "alta": 1210,
-      "gruppe": 967,
-      "landet": 986
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 59,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12362",
-      "url": "https://www.ssb.no/statbank/table/12362"
-     }
-    },
-    {
-     "navn": "Kommunens netto utgifter til helse og omsorg per innbygger",
-     "aar": "2021",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 36678,
-      "harstad": 30332,
-      "rana": 28120,
-      "alta": 33921,
-      "gruppe": 24870,
-      "landet": 26673
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 47,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12362",
-      "url": "https://www.ssb.no/statbank/table/12362"
-     }
-    },
-    {
-     "navn": "Kommunens netto utgifter til administrasjon og politikk per innbygger",
-     "aar": "2021",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 6683,
-      "harstad": 4817,
-      "rana": 4316,
-      "alta": 4148,
-      "gruppe": 4577,
-      "landet": 5466
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 46,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12362",
-      "url": "https://www.ssb.no/statbank/table/12362"
-     }
-    },
-    {
-     "navn": "Kommunens netto utgifter til plan, næring og natur per innbygger",
-     "aar": "2021",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 370,
-      "harstad": 738,
-      "rana": 437,
-      "alta": 537,
-      "gruppe": 684,
-      "landet": 506
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": -46,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12362",
-      "url": "https://www.ssb.no/statbank/table/12362"
-     }
-    },
-    {
-     "navn": "Kommunens netto utgifter til veier og samferdsel per innbygger",
-     "aar": "2021",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 1852,
-      "harstad": 1191,
-      "rana": 2293,
-      "alta": 1416,
-      "gruppe": 1488,
-      "landet": 1588
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 24,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12362",
-      "url": "https://www.ssb.no/statbank/table/12362"
-     }
-    },
-    {
-     "navn": "Kommunens netto utgifter til kirke og gravplasser per innbygger",
-     "aar": "2021",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 714,
-      "harstad": 599,
-      "rana": 639,
-      "alta": 635,
-      "gruppe": 604,
-      "landet": 671
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 18,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12362",
-      "url": "https://www.ssb.no/statbank/table/12362"
-     }
-    }
-   ],
-   "2022": [
-    {
-     "navn": "Kommunens netto utgifter til brann og beredskap per innbygger",
-     "aar": "2022",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 1658,
-      "harstad": 1257,
-      "rana": 1205,
-      "alta": 1261,
-      "gruppe": 1049,
-      "landet": 1051
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 58,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12362",
-      "url": "https://www.ssb.no/statbank/table/12362"
-     }
-    },
-    {
-     "navn": "Kommunens netto utgifter til veier og samferdsel per innbygger",
-     "aar": "2022",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 2406,
-      "harstad": 1280,
-      "rana": 2092,
-      "alta": 1078,
-      "gruppe": 1549,
-      "landet": 1661
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 55,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12362",
-      "url": "https://www.ssb.no/statbank/table/12362"
-     }
-    },
-    {
-     "navn": "Kommunens netto utgifter til helse og omsorg per innbygger",
-     "aar": "2022",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 38028,
-      "harstad": 33165,
-      "rana": 29333,
-      "alta": 35650,
-      "gruppe": 28148,
-      "landet": 28932
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 35,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12362",
-      "url": "https://www.ssb.no/statbank/table/12362"
-     }
-    },
-    {
-     "navn": "Kommunens netto utgifter til administrasjon og politikk per innbygger",
-     "aar": "2022",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 6339,
-      "harstad": 4920,
-      "rana": 4549,
-      "alta": 4352,
-      "gruppe": 4753,
-      "landet": 5638
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 33,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12362",
-      "url": "https://www.ssb.no/statbank/table/12362"
-     }
-    },
-    {
-     "navn": "Kommunens netto utgifter til plan, næring og natur per innbygger",
-     "aar": "2022",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 651,
-      "harstad": 1004,
-      "rana": -376,
-      "alta": 676,
-      "gruppe": 826,
-      "landet": 283
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": -21,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12362",
-      "url": "https://www.ssb.no/statbank/table/12362"
-     }
-    }
-   ],
-   "2023": [
-    {
-     "navn": "Kommunens netto utgifter til plan, næring og natur per innbygger",
-     "aar": "2023",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 246,
-      "harstad": 1343,
-      "rana": -992,
-      "alta": 1016,
-      "gruppe": 855,
-      "landet": 319
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": -71,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12362",
-      "url": "https://www.ssb.no/statbank/table/12362"
-     }
-    },
-    {
-     "navn": "Kommunens netto utgifter til veier og samferdsel per innbygger",
-     "aar": "2023",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 2541,
-      "harstad": 1644,
-      "rana": 2585,
-      "alta": 1269,
-      "gruppe": 1706,
-      "landet": 1844
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 49,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12362",
-      "url": "https://www.ssb.no/statbank/table/12362"
-     }
-    },
-    {
-     "navn": "Kommunens netto utgifter til brann og beredskap per innbygger",
-     "aar": "2023",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 1715,
-      "harstad": 1402,
-      "rana": 1295,
-      "alta": 1413,
-      "gruppe": 1161,
-      "landet": 1146
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 48,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12362",
-      "url": "https://www.ssb.no/statbank/table/12362"
-     }
-    },
-    {
-     "navn": "Kommunens netto utgifter til kommunale boliger per innbygger",
-     "aar": "2023",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 64,
-      "harstad": -182,
-      "rana": 164,
-      "alta": 1734,
-      "gruppe": 121,
-      "landet": 132
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": -47,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12362",
-      "url": "https://www.ssb.no/statbank/table/12362"
-     }
-    },
-    {
-     "navn": "Kommunens netto utgifter til administrasjon og politikk per innbygger",
-     "aar": "2023",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 7227,
-      "harstad": 5657,
-      "rana": 5248,
-      "alta": 4673,
-      "gruppe": 5011,
-      "landet": 6125
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 44,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12362",
-      "url": "https://www.ssb.no/statbank/table/12362"
-     }
-    },
-    {
-     "navn": "Kommunens netto utgifter til helse og omsorg per innbygger",
-     "aar": "2023",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 40219,
-      "harstad": 37363,
-      "rana": 32708,
-      "alta": 40410,
-      "gruppe": 31154,
-      "landet": 31781
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 29,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12362",
-      "url": "https://www.ssb.no/statbank/table/12362"
-     }
-    },
-    {
-     "navn": "Kommunens netto utgifter til kultur og idrett per innbygger",
-     "aar": "2023",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 3402,
-      "harstad": 3120,
-      "rana": 2699,
-      "alta": 2645,
-      "gruppe": 2823,
-      "landet": 3142
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 21,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12362",
-      "url": "https://www.ssb.no/statbank/table/12362"
-     }
-    }
-   ],
-   "2024": [
-    {
-     "navn": "Kommunens netto utgifter til brann og beredskap per innbygger",
-     "aar": "2024",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 1823,
-      "harstad": 1407,
-      "rana": 1228,
-      "alta": 1473,
-      "gruppe": 1127,
-      "landet": 1164
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 62,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12362",
-      "url": "https://www.ssb.no/statbank/table/12362"
-     }
-    },
-    {
-     "navn": "Kommunens netto utgifter til kultur og idrett per innbygger",
-     "aar": "2024",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 4099,
-      "harstad": 2978,
-      "rana": 2582,
-      "alta": 2863,
-      "gruppe": 2724,
-      "landet": 3164
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 50,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12362",
-      "url": "https://www.ssb.no/statbank/table/12362"
-     }
-    },
-    {
-     "navn": "Kommunens netto utgifter til veier og samferdsel per innbygger",
-     "aar": "2024",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 2419,
-      "harstad": 1417,
-      "rana": 2747,
-      "alta": 1219,
-      "gruppe": 1682,
-      "landet": 1826
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 44,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12362",
-      "url": "https://www.ssb.no/statbank/table/12362"
-     }
-    },
-    {
-     "navn": "Kommunens netto utgifter til plan, næring og natur per innbygger",
-     "aar": "2024",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 656,
-      "harstad": 2699,
-      "rana": -641,
-      "alta": 1307,
-      "gruppe": 945,
-      "landet": 504
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": -31,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12362",
-      "url": "https://www.ssb.no/statbank/table/12362"
-     }
-    },
-    {
-     "navn": "Kommunens netto utgifter til helse og omsorg per innbygger",
-     "aar": "2024",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 40585,
-      "harstad": 38008,
-      "rana": 32331,
-      "alta": 41772,
-      "gruppe": 31366,
-      "landet": 32075
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 29,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12362",
-      "url": "https://www.ssb.no/statbank/table/12362"
-     }
-    },
-    {
-     "navn": "Kommunens netto utgifter til administrasjon og politikk per innbygger",
-     "aar": "2024",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 6139,
-      "harstad": 6104,
-      "rana": 4626,
-      "alta": 5022,
-      "gruppe": 4886,
-      "landet": 6030
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 26,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12362",
-      "url": "https://www.ssb.no/statbank/table/12362"
-     }
-    }
-   ],
-   "2025": [
-    {
-     "navn": "Kommunens netto utgifter til plan, næring og natur per innbygger",
-     "aar": "2025",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 149,
-      "harstad": 1239,
-      "rana": 740,
-      "alta": 641,
-      "gruppe": 877,
-      "landet": 598
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": -83,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12362",
-      "url": "https://www.ssb.no/statbank/table/12362"
-     }
-    },
-    {
-     "navn": "Kommunens netto utgifter til brann og beredskap per innbygger",
-     "aar": "2025",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 2047,
-      "harstad": 1394,
-      "rana": 1428,
-      "alta": 1553,
-      "gruppe": 1195,
-      "landet": 1227
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 71,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12362",
-      "url": "https://www.ssb.no/statbank/table/12362"
-     }
-    },
-    {
-     "navn": "Kommunens netto utgifter til veier og samferdsel per innbygger",
-     "aar": "2025",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 2526,
-      "harstad": 801,
-      "rana": 2916,
-      "alta": 1177,
-      "gruppe": 1676,
-      "landet": 1824
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 51,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12362",
-      "url": "https://www.ssb.no/statbank/table/12362"
-     }
-    },
-    {
-     "navn": "Kommunens netto utgifter til kultur og idrett per innbygger",
-     "aar": "2025",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 3886,
-      "harstad": 3106,
-      "rana": 2728,
-      "alta": 2804,
-      "gruppe": 2774,
-      "landet": 3246
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 40,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12362",
-      "url": "https://www.ssb.no/statbank/table/12362"
-     }
-    },
-    {
-     "navn": "Kommunens netto utgifter til administrasjon og politikk per innbygger",
-     "aar": "2025",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 7124,
-      "harstad": 5673,
-      "rana": 4927,
-      "alta": 5894,
-      "gruppe": 5158,
-      "landet": 6306
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 38,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12362",
-      "url": "https://www.ssb.no/statbank/table/12362"
-     }
-    },
-    {
-     "navn": "Kommunens netto utgifter til helse og omsorg per innbygger",
-     "aar": "2025",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 43732,
-      "harstad": 39367,
-      "rana": 35650,
-      "alta": 43269,
-      "gruppe": 33192,
-      "landet": 33788
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 32,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12362",
-      "url": "https://www.ssb.no/statbank/table/12362"
-     }
-    },
-    {
-     "navn": "Kommunens netto utgifter til kirke og gravplasser per innbygger",
-     "aar": "2025",
-     "enhet": "kr",
-     "desimaler": 0,
-     "verdier": {
-      "narvik": 803,
-      "harstad": 667,
-      "rana": 727,
-      "alta": 813,
-      "gruppe": 678,
-      "landet": 759
-     },
-     "mot": "gruppe",
-     "avvik": {
-      "share": 18,
-      "out": true
-     },
-     "beregnet": false,
-     "kilde": {
-      "tekst": "SSB, tabell 12362",
-      "url": "https://www.ssb.no/statbank/table/12362"
-     }
-    }
-   ]
-  },
   "gjeld": {
    "2021": [
     {
@@ -2298,7 +1542,7 @@
      }
     },
     {
-     "navn": "Renter og avdrag (netto), andel av kommunens driftsinntekter",
+     "navn": "Renter og avdrag minus utbytte og andre finansinntekter (netto finansutgifter), andel av kommunens driftsinntekter",
      "aar": "2024",
      "enhet": "%",
      "desimaler": 1,
@@ -2398,7 +1642,7 @@
      }
     },
     {
-     "navn": "Renter og avdrag (netto), andel av kommunens driftsinntekter",
+     "navn": "Renter og avdrag minus utbytte og andre finansinntekter (netto finansutgifter), andel av kommunens driftsinntekter",
      "aar": "2025",
      "enhet": "%",
      "desimaler": 1,
@@ -2918,6 +2162,762 @@
      "kilde": {
       "tekst": "SSB, tabell 12137",
       "url": "https://www.ssb.no/statbank/table/12137"
+     }
+    }
+   ]
+  },
+  "utgifter": {
+   "2021": [
+    {
+     "navn": "Kommunens netto utgifter til brann og beredskap per innbygger",
+     "aar": "2021",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 1536,
+      "harstad": 1315,
+      "rana": 1082,
+      "alta": 1210,
+      "gruppe": 967,
+      "landet": 986
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 59,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12362",
+      "url": "https://www.ssb.no/statbank/table/12362"
+     }
+    },
+    {
+     "navn": "Kommunens netto utgifter til helse og omsorg per innbygger",
+     "aar": "2021",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 36678,
+      "harstad": 30332,
+      "rana": 28120,
+      "alta": 33921,
+      "gruppe": 24870,
+      "landet": 26673
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 47,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12362",
+      "url": "https://www.ssb.no/statbank/table/12362"
+     }
+    },
+    {
+     "navn": "Kommunens netto utgifter til administrasjon og politikk per innbygger",
+     "aar": "2021",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 6684,
+      "harstad": 4817,
+      "rana": 4316,
+      "alta": 4148,
+      "gruppe": 4577,
+      "landet": 5466
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 46,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12362",
+      "url": "https://www.ssb.no/statbank/table/12362"
+     }
+    },
+    {
+     "navn": "Kommunens netto utgifter til plan, næring og natur per innbygger",
+     "aar": "2021",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 370,
+      "harstad": 738,
+      "rana": 437,
+      "alta": 537,
+      "gruppe": 684,
+      "landet": 506
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": -46,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12362",
+      "url": "https://www.ssb.no/statbank/table/12362"
+     }
+    },
+    {
+     "navn": "Kommunens netto utgifter til veier og samferdsel per innbygger",
+     "aar": "2021",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 1853,
+      "harstad": 1191,
+      "rana": 2293,
+      "alta": 1416,
+      "gruppe": 1488,
+      "landet": 1588
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 25,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12362",
+      "url": "https://www.ssb.no/statbank/table/12362"
+     }
+    },
+    {
+     "navn": "Kommunens netto utgifter til kirke og gravplasser per innbygger",
+     "aar": "2021",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 713,
+      "harstad": 599,
+      "rana": 639,
+      "alta": 635,
+      "gruppe": 604,
+      "landet": 671
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 18,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12362",
+      "url": "https://www.ssb.no/statbank/table/12362"
+     }
+    }
+   ],
+   "2022": [
+    {
+     "navn": "Kommunens netto utgifter til brann og beredskap per innbygger",
+     "aar": "2022",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 1658,
+      "harstad": 1257,
+      "rana": 1205,
+      "alta": 1261,
+      "gruppe": 1049,
+      "landet": 1051
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 58,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12362",
+      "url": "https://www.ssb.no/statbank/table/12362"
+     }
+    },
+    {
+     "navn": "Kommunens netto utgifter til veier og samferdsel per innbygger",
+     "aar": "2022",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 2406,
+      "harstad": 1280,
+      "rana": 2092,
+      "alta": 1078,
+      "gruppe": 1549,
+      "landet": 1661
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 55,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12362",
+      "url": "https://www.ssb.no/statbank/table/12362"
+     }
+    },
+    {
+     "navn": "Kommunens netto utgifter til helse og omsorg per innbygger",
+     "aar": "2022",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 38028,
+      "harstad": 33165,
+      "rana": 29333,
+      "alta": 35650,
+      "gruppe": 28148,
+      "landet": 28932
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 35,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12362",
+      "url": "https://www.ssb.no/statbank/table/12362"
+     }
+    },
+    {
+     "navn": "Kommunens netto utgifter til administrasjon og politikk per innbygger",
+     "aar": "2022",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 6339,
+      "harstad": 4920,
+      "rana": 4549,
+      "alta": 4352,
+      "gruppe": 4753,
+      "landet": 5638
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 33,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12362",
+      "url": "https://www.ssb.no/statbank/table/12362"
+     }
+    },
+    {
+     "navn": "Kommunens netto utgifter til plan, næring og natur per innbygger",
+     "aar": "2022",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 651,
+      "harstad": 1004,
+      "rana": -376,
+      "alta": 676,
+      "gruppe": 826,
+      "landet": 283
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": -21,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12362",
+      "url": "https://www.ssb.no/statbank/table/12362"
+     }
+    }
+   ],
+   "2023": [
+    {
+     "navn": "Kommunens netto utgifter til plan, næring og natur per innbygger",
+     "aar": "2023",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 246,
+      "harstad": 1343,
+      "rana": -992,
+      "alta": 1016,
+      "gruppe": 855,
+      "landet": 319
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": -71,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12362",
+      "url": "https://www.ssb.no/statbank/table/12362"
+     }
+    },
+    {
+     "navn": "Kommunens netto utgifter til veier og samferdsel per innbygger",
+     "aar": "2023",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 2541,
+      "harstad": 1644,
+      "rana": 2585,
+      "alta": 1269,
+      "gruppe": 1706,
+      "landet": 1844
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 49,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12362",
+      "url": "https://www.ssb.no/statbank/table/12362"
+     }
+    },
+    {
+     "navn": "Kommunens netto utgifter til brann og beredskap per innbygger",
+     "aar": "2023",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 1715,
+      "harstad": 1402,
+      "rana": 1295,
+      "alta": 1413,
+      "gruppe": 1161,
+      "landet": 1146
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 48,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12362",
+      "url": "https://www.ssb.no/statbank/table/12362"
+     }
+    },
+    {
+     "navn": "Kommunens netto utgifter til kommunale boliger per innbygger",
+     "aar": "2023",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 64,
+      "harstad": -182,
+      "rana": 164,
+      "alta": 1734,
+      "gruppe": 121,
+      "landet": 132
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": -47,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12362",
+      "url": "https://www.ssb.no/statbank/table/12362"
+     }
+    },
+    {
+     "navn": "Kommunens netto utgifter til administrasjon og politikk per innbygger",
+     "aar": "2023",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 7227,
+      "harstad": 5657,
+      "rana": 5248,
+      "alta": 4673,
+      "gruppe": 5011,
+      "landet": 6125
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 44,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12362",
+      "url": "https://www.ssb.no/statbank/table/12362"
+     }
+    },
+    {
+     "navn": "Kommunens netto utgifter til helse og omsorg per innbygger",
+     "aar": "2023",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 40220,
+      "harstad": 37363,
+      "rana": 32708,
+      "alta": 40410,
+      "gruppe": 31154,
+      "landet": 31781
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 29,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12362",
+      "url": "https://www.ssb.no/statbank/table/12362"
+     }
+    },
+    {
+     "navn": "Kommunens netto utgifter til kultur og idrett per innbygger",
+     "aar": "2023",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 3402,
+      "harstad": 3120,
+      "rana": 2699,
+      "alta": 2645,
+      "gruppe": 2823,
+      "landet": 3142
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 21,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12362",
+      "url": "https://www.ssb.no/statbank/table/12362"
+     }
+    }
+   ],
+   "2024": [
+    {
+     "navn": "Kommunens netto utgifter til brann og beredskap per innbygger",
+     "aar": "2024",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 1822,
+      "harstad": 1407,
+      "rana": 1228,
+      "alta": 1473,
+      "gruppe": 1127,
+      "landet": 1164
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 62,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12362",
+      "url": "https://www.ssb.no/statbank/table/12362"
+     }
+    },
+    {
+     "navn": "Kommunens netto utgifter til kultur og idrett per innbygger",
+     "aar": "2024",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 4099,
+      "harstad": 2978,
+      "rana": 2582,
+      "alta": 2863,
+      "gruppe": 2724,
+      "landet": 3164
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 50,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12362",
+      "url": "https://www.ssb.no/statbank/table/12362"
+     }
+    },
+    {
+     "navn": "Kommunens netto utgifter til veier og samferdsel per innbygger",
+     "aar": "2024",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 2419,
+      "harstad": 1417,
+      "rana": 2747,
+      "alta": 1219,
+      "gruppe": 1682,
+      "landet": 1826
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 44,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12362",
+      "url": "https://www.ssb.no/statbank/table/12362"
+     }
+    },
+    {
+     "navn": "Kommunens netto utgifter til plan, næring og natur per innbygger",
+     "aar": "2024",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 657,
+      "harstad": 2699,
+      "rana": -641,
+      "alta": 1307,
+      "gruppe": 945,
+      "landet": 504
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": -30,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12362",
+      "url": "https://www.ssb.no/statbank/table/12362"
+     }
+    },
+    {
+     "navn": "Kommunens netto utgifter til helse og omsorg per innbygger",
+     "aar": "2024",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 40584,
+      "harstad": 38008,
+      "rana": 32331,
+      "alta": 41772,
+      "gruppe": 31366,
+      "landet": 32075
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 29,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12362",
+      "url": "https://www.ssb.no/statbank/table/12362"
+     }
+    },
+    {
+     "navn": "Kommunens netto utgifter til administrasjon og politikk per innbygger",
+     "aar": "2024",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 6139,
+      "harstad": 6104,
+      "rana": 4626,
+      "alta": 5022,
+      "gruppe": 4886,
+      "landet": 6030
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 26,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12362",
+      "url": "https://www.ssb.no/statbank/table/12362"
+     }
+    }
+   ],
+   "2025": [
+    {
+     "navn": "Kommunens netto utgifter til plan, næring og natur per innbygger",
+     "aar": "2025",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 149,
+      "harstad": 1239,
+      "rana": 740,
+      "alta": 641,
+      "gruppe": 877,
+      "landet": 598
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": -83,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12362",
+      "url": "https://www.ssb.no/statbank/table/12362"
+     }
+    },
+    {
+     "navn": "Kommunens netto utgifter til brann og beredskap per innbygger",
+     "aar": "2025",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 2048,
+      "harstad": 1394,
+      "rana": 1428,
+      "alta": 1553,
+      "gruppe": 1195,
+      "landet": 1227
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 71,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12362",
+      "url": "https://www.ssb.no/statbank/table/12362"
+     }
+    },
+    {
+     "navn": "Kommunens netto utgifter til veier og samferdsel per innbygger",
+     "aar": "2025",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 2527,
+      "harstad": 801,
+      "rana": 2916,
+      "alta": 1177,
+      "gruppe": 1676,
+      "landet": 1824
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 51,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12362",
+      "url": "https://www.ssb.no/statbank/table/12362"
+     }
+    },
+    {
+     "navn": "Kommunens netto utgifter til kultur og idrett per innbygger",
+     "aar": "2025",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 3886,
+      "harstad": 3106,
+      "rana": 2728,
+      "alta": 2804,
+      "gruppe": 2774,
+      "landet": 3246
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 40,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12362",
+      "url": "https://www.ssb.no/statbank/table/12362"
+     }
+    },
+    {
+     "navn": "Kommunens netto utgifter til administrasjon og politikk per innbygger",
+     "aar": "2025",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 7127,
+      "harstad": 5673,
+      "rana": 4927,
+      "alta": 5894,
+      "gruppe": 5158,
+      "landet": 6306
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 38,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12362",
+      "url": "https://www.ssb.no/statbank/table/12362"
+     }
+    },
+    {
+     "navn": "Kommunens netto utgifter til helse og omsorg per innbygger",
+     "aar": "2025",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 43732,
+      "harstad": 39367,
+      "rana": 35650,
+      "alta": 43269,
+      "gruppe": 33192,
+      "landet": 33788
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 32,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12362",
+      "url": "https://www.ssb.no/statbank/table/12362"
+     }
+    },
+    {
+     "navn": "Kommunens netto utgifter til kirke og gravplasser per innbygger",
+     "aar": "2025",
+     "enhet": "kr",
+     "desimaler": 0,
+     "verdier": {
+      "narvik": 804,
+      "harstad": 667,
+      "rana": 727,
+      "alta": 813,
+      "gruppe": 678,
+      "landet": 759
+     },
+     "mot": "gruppe",
+     "avvik": {
+      "share": 19,
+      "out": true
+     },
+     "beregnet": false,
+     "kilde": {
+      "tekst": "SSB, tabell 12362",
+      "url": "https://www.ssb.no/statbank/table/12362"
      }
     }
    ]
