@@ -45,19 +45,19 @@
   },
   "omrade:helse": {
    "navn": "Helse og omsorg",
-   "href": "omrade?omrade=helse"
+   "href": "utgifter/helse"
   },
   "omrade:skole": {
    "navn": "Grunnskole",
-   "href": "omrade?omrade=skole"
+   "href": "utgifter/skole"
   },
   "omrade:bolig": {
    "navn": "Kommunale boliger",
-   "href": "omrade?omrade=bolig"
+   "href": "utgifter/bolig"
   },
   "omrade:sosial": {
    "navn": "Sosialtjenester og NAV",
-   "href": "omrade?omrade=sosial"
+   "href": "utgifter/sosial"
   },
   "arbeid": {
    "navn": "Arbeid",

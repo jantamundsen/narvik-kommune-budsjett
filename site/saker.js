@@ -1,4 +1,6 @@
-// saker.html: «Utvalgte saker». Without ?sak= it lists the cases; with ?sak=helse-og-omsorg it shows one fact sheet.
+// saker.html: «Utvalgte saker». Without a case it lists the cases; sak/helse-og-omsorg shows one fact sheet.
+// scripts/build_pages.py writes sak/<id>.html from saker.html with data-sak set and the header filled in for search
+// engines; this script then draws the full sheet. The old address saker?sak=<id> still works.
 // Everything comes from data/saker.json, which scripts/build_saker.py writes from config/saker.json.
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 const dateText = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nb-NO', { day: 'numeric', month: 'long', year: 'numeric' });
@@ -27,12 +29,15 @@ const dateText = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nb-NO', 
   const isMedia = k => [].concat(k).every(x => D.kilder[x.id]?.type === 'media');
   const mediaTag = p => isMedia(p.kilde) ? `<span class="tag media-tag" title="Fra et avisoppslag eller NRK, ikke fra et dokument. Sjekk kilden.">${p.sitat ? 'Utsagn' : 'Medieoppslag'}</span>` : '';
   const quote = p => `<blockquote class="fact-quote sak-quote"><p>«${esc(p.sitat)}»</p><p class="caption quote-who">– ${esc(p.hvem)}</p></blockquote>${p.tekst ? `<p class="caption">${esc(p.tekst)}</p>` : ''}`;
-  const id = new URLSearchParams(location.search).get('sak');
+  const id = new URLSearchParams(location.search).get('sak') || main.dataset.sak;
   const S = D.saker.find(s => s.id === id);
+  setCanonical(S ? 'sak/' + S.id : 'saker');
   if (!S) return list(main, D);
 
-  document.title = `${S.tittel} · Åpne tall for Narvik`;
+  document.title = `${S.tittel}: faktaark · Åpne tall for Narvik`;
   document.querySelector('meta[name="description"]')?.setAttribute('content', S.ingress);
+  document.querySelector('meta[property="og:title"]')?.setAttribute('content', document.title);
+  document.querySelector('meta[property="og:description"]')?.setAttribute('content', S.ingress);
   const sources = new Map();
   // A line can rest on more than one page, so a source may also be a list.
   const note = k => { [].concat(k).forEach(x => sources.set(x.id, D.kilder[x.id])); return Array.isArray(k) ? srcGroup(k) : src(k); };
@@ -96,7 +101,7 @@ const dateText = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nb-NO', 
     </section>`;
 
   main.innerHTML = `<header>
-      <nav class="crumbs" aria-label="Brødsmuler"><a href="?">Utvalgte saker</a><span aria-hidden="true">›</span><span aria-current="page">${esc(S.tittel)}</span></nav>
+      <nav class="crumbs" aria-label="Brødsmuler"><a href="saker">Utvalgte saker</a><span aria-hidden="true">›</span><span aria-current="page">${esc(S.tittel)}</span></nav>
       <div class="eyebrow">Utvalgt sak · sist kontrollert ${dateText(S.kontrollert)}</div>
       <h1>${esc(S.tittel)}</h1>
       <p class="lead">${esc(S.ingress)}</p>
@@ -122,6 +127,6 @@ function list(main, D) {
       <span class="eyebrow">Sist kontrollert ${dateText(s.kontrollert)}</span>
       <h3>${esc(s.tittel)}</h3>
       <p>${esc(s.ingress)}</p>
-      <a class="cross-link" href="?sak=${encodeURIComponent(s.id)}">Les faktaarket →</a>
+      <a class="cross-link" href="sak/${encodeURIComponent(s.id)}">Les faktaarket →</a>
     </article>`).join('')}</div></section>`;
 }

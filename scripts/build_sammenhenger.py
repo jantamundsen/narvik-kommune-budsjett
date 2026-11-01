@@ -41,10 +41,10 @@ PAGES = {
     "lopende": ("Året så langt", "lopende"),
     "befolkning": ("Befolkning", "befolkning"),
     "bolig": ("Bolig", "bolig"),
-    "omrade:helse": ("Helse og omsorg", "omrade?omrade=helse"),
-    "omrade:skole": ("Grunnskole", "omrade?omrade=skole"),
-    "omrade:bolig": ("Kommunale boliger", "omrade?omrade=bolig"),
-    "omrade:sosial": ("Sosialtjenester og NAV", "omrade?omrade=sosial"),
+    "omrade:helse": ("Helse og omsorg", "utgifter/helse"),
+    "omrade:skole": ("Grunnskole", "utgifter/skole"),
+    "omrade:bolig": ("Kommunale boliger", "utgifter/bolig"),
+    "omrade:sosial": ("Sosialtjenester og NAV", "utgifter/sosial"),
     "arbeid": ("Arbeid", "arbeid"),
 }
 

@@ -68,7 +68,7 @@ function stackable(table) {
 document.addEventListener('click', e => {
   const a = e.target.closest?.('a[data-aar]');
   const y = urlYear();
-  if (a && y) a.href = new URL(a.getAttribute('href'), location.href).pathname + '?aar=' + encodeURIComponent(y);
+  if (a && y) a.href = new URL(a.href).pathname + '?aar=' + encodeURIComponent(y);
 });
 
 // «Skiller seg ut» and «Henger sammen med», from data/sammenhenger.json (scripts/build_sammenhenger.py).
@@ -182,3 +182,15 @@ document.addEventListener('click', e => {
   sec.setAttribute('aria-labelledby', 'h-links');
   sec.hidden = false;
 })();
+
+// saker.html and omrade.html draw many pages from one file, so they set their own canonical address once they know
+// which page they show. Only the parameters that pick the page are kept (not year, scope or «Sammenlign per»),
+// so search engines see one address per case or area and not the same file under many addresses.
+function setCanonical(path, params = {}) {
+  const qs = new URLSearchParams(Object.entries(params).filter(([, v]) => v)).toString();
+  const url = 'https://narviktall.no/' + path + (qs ? '?' + qs : '');
+  for (const [sel, make] of [['link[rel="canonical"]', () => el('link', { rel: 'canonical' })], ['meta[property="og:url"]', () => el('meta', { property: 'og:url' })]]) {
+    const node = document.head.querySelector(sel) || document.head.appendChild(make());
+    node.setAttribute(sel.startsWith('link') ? 'href' : 'content', url);
+  }
+}

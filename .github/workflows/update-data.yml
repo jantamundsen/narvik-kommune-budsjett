@@ -36,13 +36,14 @@ jobs:
           python scripts/fetch_arbeid.py
           python scripts/fetch_naering.py
           python scripts/build_sammenhenger.py
+          python scripts/build_pages.py
       - name: Behold filer der bare datoen er endret
         run: python scripts/keep_unchanged.py site/data/*.json
       - name: Commit hvis dataene er endret
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898900+github-actions[bot]@users.noreply.github.com"
-          git add site/data/narvik.json site/data/detaljer.json site/data/sammenligning.json site/data/malgruppe.json site/data/eldre.json site/data/lopende.json site/data/fakta.json site/data/saker.json site/data/andre_tall.json site/data/befolkning.json site/data/finans.json site/data/bolig.json site/data/arbeid.json site/data/naering.json site/data/sammenhenger.json
+          git add site/data/narvik.json site/data/detaljer.json site/data/sammenligning.json site/data/malgruppe.json site/data/eldre.json site/data/lopende.json site/data/fakta.json site/data/saker.json site/data/andre_tall.json site/data/befolkning.json site/data/finans.json site/data/bolig.json site/data/arbeid.json site/data/naering.json site/data/sammenhenger.json site/sak site/utgifter site/sitemap.xml
           if git diff --cached --quiet; then
             echo "Ingen endringer i dataene."
           else

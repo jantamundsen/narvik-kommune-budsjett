@@ -3,13 +3,14 @@
 // (SSB 12362); costs and income from site/data/detaljer.json (SSB 12367). Every number names its art code, or is
 // marked «beregnet» when it is computed here. Per pupil, per child and per inhabitant in an age group come from
 // site/data/malgruppe.json (SSB's own key figures, and for helse og omsorg netto per inhabitant in an age group, «beregnet»). Facts from the kommune's own reports come from site/data/fakta.json.
+// scripts/build_pages.py also writes utgifter/<key>.html with data-omrade set, so each area has its own address.
 // Helpers are in common.js.
 let N, D, S, M, F, B, E, area, years, year, prev, scope; // S: sammenligning.json, only loaded for a cost type page; M: malgruppe.json; F: fakta.json; B: befolkning.json, only for helse og omsorg; E: eldre.json, only on the helse og omsorg area page
 const q = new URLSearchParams(location.search);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 const mill = (v, d = 1) => (v == null ? '·' : nb(v / 1000, d));
 const lower = s => s.charAt(0).toLowerCase() + s.slice(1);
-const link = p => '?' + new URLSearchParams(Object.entries({ aar: year, omrade: area.key, omfang: scope === 'kasse' ? 'kasse' : '', maal: q.get('maal'), ...p }).filter(([, v]) => v)).toString();
+const link = p => 'omrade?' + new URLSearchParams(Object.entries({ aar: year, omrade: area.key, omfang: scope === 'kasse' ? 'kasse' : '', maal: q.get('maal'), ...p }).filter(([, v]) => v)).toString();
 // Change from the year before, without colour: more or less spending is not good or bad in itself (Jan, 2026-11-01).
 // Red and green are kept only for deviations from the budget, on Budsjett and Året så langt.
 const chgSpan = (v, p) => {
@@ -27,7 +28,7 @@ async function start() {
     page.innerHTML = '<p class="lead">Fant ikke datafilene. Kjør <code>python scripts/fetch_data.py</code> og <code>python scripts/fetch_details.py</code>, og åpne siden via en webserver.</p>';
     return;
   }
-  area = N.categories.find(c => c.key === q.get('omrade'));
+  area = N.categories.find(c => c.key === (q.get('omrade') || page.dataset.omrade));
   if (!area) { location.replace('okonomi'); return; }
   years = D.years.filter(y => N.years.includes(y));
   year = years.includes(q.get('aar')) ? q.get('aar') : years.at(-1);
@@ -43,7 +44,9 @@ async function start() {
   if (grp) S = extra; else M = extra;
   const render = () => { page.innerHTML = grp ? typePage(svc, grp) : svc ? servicePage(svc) : areaPage(); };
   render();
-  document.title = [grp?.name, svc?.name, area.name, 'Åpne tall for Narvik'].filter(Boolean).join(' · ');
+  document.title = [grp?.name, svc?.name, area.name + ' i Narvik kommune', 'Åpne tall for Narvik'].filter(Boolean).join(' · ');
+  if (q.get('tjeneste') || q.get('art')) setCanonical('omrade', { omrade: area.key, tjeneste: q.get('tjeneste'), art: q.get('art') });
+  else setCanonical('utgifter/' + area.key);
   // The page is drawn after the data has loaded, so the browser cannot jump to #sammenligning by itself.
   if (location.hash) document.getElementById(location.hash.slice(1))?.scrollIntoView();
 
