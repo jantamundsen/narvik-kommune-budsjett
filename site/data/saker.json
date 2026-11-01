@@ -2266,6 +2266,12 @@
      "tittel": "Bygget på Ankenes",
      "punkter": [
       {
+       "tekst": "Fremover skriver at Ankenes bo- og servicesenter før omstillingen hadde 17 somatiske sykehjemsplasser og 16 plasser i bofellesskap, og at bygget har ett av kommunens fire offentlige tilfluktsrom, med plass til 445 personer.",
+       "kilde": {
+        "id": "fremover-abs-underskrifter-2026"
+       }
+      },
+      {
        "tekst": "I økonomiplanen for 2026–2029 ga kommunestyret kommunedirektøren fullmakt til å selge Ankenes bo- og servicesenter og servicebygget i Ballangen.",
        "kilde": {
         "id": "ks-prot-2025-12-11",
@@ -2422,7 +2428,9 @@
     },
     {
      "dato": "13.08.2026",
-     "tekst": "Fremover melder at en underskriftskampanje for å få saken om Ankenes bo- og servicesenter behandlet på nytt fikk over 300 underskrifter på under et døgn.",
+     "tekst": "Fremover melder at Aksjonsgruppa Verdig alderdom har samlet over 300 underskrifter på MinSak for et innbyggerforslag om å stoppe salget av Ankenes bo- og servicesenter og få en ny avklaring om bygget. Etter kommuneloven kapittel 12 skal kommunestyret da behandle forslaget innen seks måneder.",
+     "sitat": "Det gjør jo ingenting om det er private som driver det. Vi vil ha det til eldreomsorgen.",
+     "hvem": "Wivi-Ann Tingvoll, leder av Aksjonsgruppa Verdig alderdom",
      "kilde": {
       "id": "fremover-abs-underskrifter-2026"
      }
