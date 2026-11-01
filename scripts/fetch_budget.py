@@ -8,7 +8,12 @@ back, the original budget for last year and the four plan years.
 
 Budgets that are only published as PDF (for now the adopted 2026 budget, from
 the second tertial report) are typed into config/budsjett_manuelt.json with
-their page, and merged in after the same sum check.
+their page, and merged in after the same sum check. So are the accounts and
+original budget for finished years, taken from the same 1B table in that
+year's årsrapport. Later documents can restate a finished year's accounts
+after reorganisations (2024 differs by a few mill. kr per area between
+Årsrapport 2024 and Årsrapport 2025), so budget and accounts for a year are
+always taken from the same årsrapport, which is also what the fact sheets use.
 
 Every series in the output names its publication, data URL and column, and the
 PDF page where the same table is printed when a PDF exists, so a number on the
@@ -57,9 +62,6 @@ SOURCES = {
 # and okonomiplan (the later plan years in a proposal).
 SERIES = [
     ("regnskap-2023", "regnskap", "2023", "vedtak-2025", "Regnskap  2023"),
-    ("budsjett-2024", "budsjett", "2024", "vedtak-2025", "Oppr. budsjett 2024"),
-    ("regnskap-2024", "regnskap", "2024", "forslag-2026", "Regnskap  2024"),
-    ("budsjett-2025", "budsjett", "2025", "vedtak-2025", "Øk.plan 2025"),
     ("forslag-2026", "forslag", "2026", "forslag-2026", "Øk.plan 2026"),
     ("okonomiplan-2027", "okonomiplan", "2027", "forslag-2026", "Øk.plan 2027"),
     ("okonomiplan-2028", "okonomiplan", "2028", "forslag-2026", "Øk.plan 2028"),

@@ -13,10 +13,11 @@ async function startBudget() {
   const src = x => B.sources[x.source];
   const mk = v => nb(v / 1000, Math.abs(v) < 10000 ? 1 : 0);
   const signed = v => (v > 0 ? '+' : v < 0 ? '−' : '') + mk(Math.abs(v));
-  const cite = x => {
+  // One citation per document; series from the same document share it and list their columns together.
+  const cite = (x, cols = [x.column]) => {
     const a = el('a', { href: src(x).url, target: '_blank', rel: 'noopener' }, src(x).name);
     const span = el('span');
-    span.append(a, `, ${B.table}, kolonne «${x.column}» (`);
+    span.append(a, `, ${B.table}, ${cols.length > 1 ? 'kolonnene' : 'kolonne'} ${cols.map(c => `«${c}»`).join(' og ')} (`);
     const links = [];
     if (x.data_url !== src(x).pdf) links.push(el('a', { href: x.data_url, target: '_blank', rel: 'noopener' }, 'data'));
     if (src(x).pdf) links.push(el('a', { href: src(x).pdf, target: '_blank', rel: 'noopener' }, `PDF s. ${src(x).pdf_page}`));
@@ -26,7 +27,13 @@ async function startBudget() {
   };
   const caption = (id, list, extra) => {
     const c = document.getElementById(id); c.replaceChildren('Mill. kr, netto per tjenesteområde. Kilder: ');
-    [...new Map(list.map(x => [x.id, x])).values()].forEach((x, i) => { if (i) c.append('; '); c.append(cite(x)); });
+    const bySource = new Map();
+    [...new Map(list.map(x => [x.id, x])).values()].forEach(x => {
+      const k = x.source + '|' + x.data_url;
+      if (!bySource.has(k)) bySource.set(k, { x, cols: [] });
+      bySource.get(k).cols.push(x.column);
+    });
+    [...bySource.values()].forEach(({ x, cols }, i) => { if (i) c.append('; '); c.append(cite(x, cols)); });
     c.append('. ' + (extra || ''));
   };
   const head = (cols) => {

@@ -114,7 +114,20 @@ def labels(ds: dict, dim: str) -> dict:
     return ds["dimension"][dim]["category"].get("label", {})
 
 
-def transform(ds: dict, config: dict, compare: list, group: dict | None) -> dict:
+def registered_population() -> dict:
+    """Narvik's registered population 1 January (SSB 06913), by year."""
+    url = ("https://data.ssb.no/api/pxwebapi/v2/tables/06913/data?lang=no&valueCodes[Region]=" + NARVIK
+           + "&valueCodes[ContentsCode]=Folkemengde&valueCodes[Tid]=*&outputFormat=json-stat2")
+    try:
+        ds = fetch(url)
+    except Exception as e:  # the derived population is close enough to fall back on
+        print(f"MERK: fikk ikke folketallet fra 06913 ({e}), bruker utledet folketall.", file=sys.stderr)
+        return {}
+    years = ds["dimension"]["Tid"]["category"]["index"]
+    return {y: ds["value"][i] for y, i in years.items() if ds["value"][i] is not None}
+
+
+def transform(ds: dict, config: dict, compare: list, group: dict | None, registered: dict | None = None) -> dict:
     amount: dict = {}  # (region, function, year) -> 1000 kr
     per_cap: dict = {}  # (region, function, year) -> kr
     years: set = set()
@@ -151,6 +164,13 @@ def transform(ds: dict, config: dict, compare: list, group: dict | None) -> dict
         return out
 
     population = population_of(narvik)
+    # The derived value can be a person or two off, because SSB rounds kroner per innbygger. KOSTRA divides by the
+    # population at the end of the year, which is the registered population 1 January the year after, so use that
+    # when SSB has it. Then the site shows the same folketall on every page.
+    for y in years:
+        reg = (registered or {}).get(str(int(y) + 1))
+        if reg and population[y] and abs(reg - population[y]) <= 10:
+            population[y] = reg
 
     mapped = {f for cat in config["categories"] for f in cat["functions"]}
     unmapped = sorted(f for f in functions if f not in mapped and any(amount.get((narvik, f, y)) for y in years))
@@ -168,8 +188,12 @@ def transform(ds: dict, config: dict, compare: list, group: dict | None) -> dict
             r["key"]: {y: region_sum(per_cap, r["code"], fs, y) for y in years}
             for r in compare
         }
+        # SSB's own kroner per innbygger, summed over the functions like for the other regions, so the number is
+        # the same as where the site quotes SSB directly. Computed only if SSB has none.
         per_capita["narvik"] = {
-            y: round(narvik_amount[y] * 1000 / population[y]) if population[y] else None for y in years
+            y: region_sum(per_cap, narvik, fs, y)
+            if region_sum(per_cap, narvik, fs, y) is not None or not population[y]
+            else round(narvik_amount[y] * 1000 / population[y]) for y in years
         }
         categories.append({
             "key": cat["key"],
@@ -231,7 +255,7 @@ def main() -> int:
         print(f"Henter {url}", file=sys.stderr)
         ds = fetch(url)
 
-    data = transform(ds, config, compare, group)
+    data = transform(ds, config, compare, group, None if args.from_file else registered_population())
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
     print(f"Skrev {args.out.relative_to(ROOT)}: år {data['years'][0]}–{data['years'][-1]}, "

@@ -143,7 +143,7 @@ function rowFor(c, svcTotal, maxShare, prev) {
   const cls = p === null || OFFSET_KEYS.includes(c.key) ? 'chg' : 'chg ' + (p > 0.5 ? 'up' : p < -0.5 ? 'down' : '');
   btn.append(name, share,
     el('span', { class: 'r num c-amt' }, nb(v / 1000, Math.abs(v) < 10000 ? 1 : 0)),
-    el('span', { class: 'r num c-pc' }, nb(perCap(v, year))),
+    el('span', { class: 'r num c-pc' }, nb(c.per_capita?.narvik?.[year] ?? perCap(v, year))),
     el('span', { class: 'r c-chg ' + cls }, prev ? chgText(p) : '–'));
   row.appendChild(btn);
   return row;

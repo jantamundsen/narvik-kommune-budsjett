@@ -128,7 +128,7 @@ function drawCost() {
   stackable(t);
   const cur = rows.find(x => x.y === year), first = rows[0];
   document.getElementById('cost-lead').textContent = cur.s == null ? '' : `I ${year} gikk ${mill(cur.s)} millioner kroner til renter og avdrag, ${nb(cur.share, 1)} % av driftsinntektene.${first.y !== year && first.s != null ? ` I ${first.y} var det ${mill(first.s)} millioner kroner, ${nb(first.share, 1)} %.` : ''}`;
-  document.getElementById('cost-caption').innerHTML = `Millioner kroner, kommunekonsern. Renter netto er renteutgifter minus renteinntekter (art AGD97). SSB har den bare fra 2024; for årene før er den beregnet som renter netto inkludert utbytte (AGD24) pluss utbytte (AD905). Utbytte, for eksempel fra Nordkraft, er holdt utenfor. Avdrag er art AGD21. ${ssb('12364', 'Se tallene hos SSB')} (tabell 12364).`;
+  document.getElementById('cost-caption').innerHTML = `Millioner kroner, kommunekonsern. Renter netto er renteutgifter minus renteinntekter (art AGD97). SSB har den bare fra 2024; for årene før er den beregnet som renter netto inkludert utbytte (AGD24) pluss utbytte (AD905). Utbytte, for eksempel fra Nordkraft, er holdt utenfor. Avdrag er art AGD21. ${ssb('12364', 'Se tallene hos SSB')} (tabell 12364). Andelen øverst på siden er SSBs netto finansutgifter (art AGD86, tabell 12143), der også utbytte og andre finansinntekter er trukket fra, så den er lavere enn andelen her.`;
 
   const facts = (K?.fakta || []).filter(f => f.tema === 'Lån og renter' && f.aar === year);
   document.getElementById('loan-facts').hidden = !facts.length;

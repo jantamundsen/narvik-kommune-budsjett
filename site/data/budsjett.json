@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-17T21:59:59+00:00",
+ "generated": "2026-11-01T07:34:13+00:00",
  "unit": "1000 kr",
  "table": "Bevilgningsoversikt drift etter § 5-4 andre ledd (1B)",
  "sources": {
@@ -14,6 +14,20 @@
    "status": "forslag",
    "pdf": "https://www.narvik.kommune.no/_f/p1/i3c0f427e-5acf-4d5c-836a-5db986e5cdcb/narvik-kommunes-okonomiplan-2026-2029-1.pdf",
    "pdf_page": 93
+  },
+  "arsrapport-2024": {
+   "name": "Årsrapport 2024, formannskapet 05.06.2025 (sak 013/25)",
+   "url": "https://www.narvik.kommune.no/innsyn.aspx?response=mote&moteid=545&scripturi=/innsyn.aspx&Mid1=396",
+   "status": "vedtatt",
+   "pdf": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022231291&dokid=1975053&versjon=1&variant=A",
+   "pdf_page": 16
+  },
+  "arsrapport-2025": {
+   "name": "Årsrapport 2025, formannskapet 04.06.2026 (sak 025/26)",
+   "url": "https://www.narvik.kommune.no/innsyn.aspx?response=mote&moteid=642&scripturi=/innsyn.aspx&Mid1=396",
+   "status": "vedtatt",
+   "pdf": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022268851&dokid=2060599&versjon=1&variant=A",
+   "pdf_page": 19
   },
   "tertial-2-2026": {
    "name": "Tertialrapport 2/2026, formannskapet 15.10.2026 (sak 45/26)",
@@ -77,27 +91,26 @@
    "id": "regnskap-2024",
    "kind": "regnskap",
    "year": "2024",
-   "source": "forslag-2026",
-   "data_url": "https://pub.framsikt.net/2026/narvik/bm-2026-rapport_plan/content/data/summary/appdx/budgetforms1b2020.json",
+   "source": "arsrapport-2024",
    "column": "Regnskap 2024",
-   "total_1000kr": 1789686,
+   "total_1000kr": 1789773,
    "1000kr": {
     "politisk": 10793,
-    "radmannen": 22957,
-    "virksomhet": 196233,
+    "radmannen": 23044,
+    "virksomhet": 198685,
     "oppvekst": 576186,
-    "helse": 772725,
+    "helse": 770273,
     "plan": 181954,
     "felles": 28836
-   }
+   },
+   "data_url": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022231291&dokid=1975053&versjon=1&variant=A"
   },
   {
    "id": "budsjett-2024",
    "kind": "budsjett",
    "year": "2024",
-   "source": "vedtak-2025",
-   "data_url": "https://pub.framsikt.net/2025/narvik/bm-2025-budsjettvedtak_2025/content/data/summary/appdx/budgetforms1b2020.json",
-   "column": "Oppr. budsjett 2024",
+   "source": "arsrapport-2024",
+   "column": "Oppr. bud. 2024",
    "total_1000kr": 1645313,
    "1000kr": {
     "politisk": 8397,
@@ -107,25 +120,44 @@
     "helse": 659993,
     "plan": 177759,
     "felles": 65178
-   }
+   },
+   "data_url": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022231291&dokid=1975053&versjon=1&variant=A"
+  },
+  {
+   "id": "regnskap-2025",
+   "kind": "regnskap",
+   "year": "2025",
+   "source": "arsrapport-2025",
+   "column": "Regnskap 2025",
+   "total_1000kr": 1863149,
+   "1000kr": {
+    "politisk": 10626,
+    "radmannen": 29145,
+    "virksomhet": 206137,
+    "oppvekst": 606444,
+    "helse": 801412,
+    "plan": 177714,
+    "felles": 31671
+   },
+   "data_url": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022268851&dokid=2060599&versjon=1&variant=A"
   },
   {
    "id": "budsjett-2025",
    "kind": "budsjett",
    "year": "2025",
-   "source": "vedtak-2025",
-   "data_url": "https://pub.framsikt.net/2025/narvik/bm-2025-budsjettvedtak_2025/content/data/summary/appdx/budgetforms1b2020.json",
-   "column": "Øk.plan 2025",
+   "source": "arsrapport-2025",
+   "column": "Oppr. bud. 2025",
    "total_1000kr": 1747810,
    "1000kr": {
     "politisk": 10058,
     "radmannen": 24155,
-    "virksomhet": 187985,
+    "virksomhet": 185218,
     "oppvekst": 580456,
-    "helse": 706645,
+    "helse": 709412,
     "plan": 185599,
     "felles": 52912
-   }
+   },
+   "data_url": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022268851&dokid=2060599&versjon=1&variant=A"
   },
   {
    "id": "budsjett-2026",

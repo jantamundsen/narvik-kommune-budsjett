@@ -171,7 +171,7 @@ function areaPage() {
   const svcTotal = svcAreas.reduce((t, c) => t + c.narvik_1000kr[year], 0);
   const share = v / svcTotal * 100;
   const rank = [...svcAreas].sort((a, b) => b.narvik_1000kr[year] - a.narvik_1000kr[year]).findIndex(c => c.key === area.key) + 1;
-  const pc = Math.round(v * 1000 / N.population[year]);
+  const pc = area.per_capita?.narvik?.[year] ?? Math.round(v * 1000 / N.population[year]);
   const ref = k => N.compare.find(r => r.key === k);
   const cmp = (a, k) => { const b = area.per_capita[k]?.[year]; return b ? `${nb(Math.abs(a / b - 1) * 100)} % ${a >= b ? 'over' : 'under'} ${ref(k).kind === 'snitt' ? lower(ref(k).name) : ref(k).name}` : null; };
   const all = area.functions.filter(f => N.functions[f]);

@@ -1,6 +1,20 @@
 {
- "_comment": "Budget series that are only published as PDF, typed in by hand from the page named. scripts/fetch_budget.py checks that the areas add up to the total.",
+ "_comment": "Budget and accounts series that are only published as PDF, typed in by hand from the page named. scripts/fetch_budget.py checks that the areas add up to the total. A finished year's original budget and accounts both come from that year's årsrapport (Bevilgningsoversikt drift etter § 5-4 andre ledd), so they are on the same organisation.",
  "sources": {
+  "arsrapport-2024": {
+   "name": "Årsrapport 2024, formannskapet 05.06.2025 (sak 013/25)",
+   "url": "https://www.narvik.kommune.no/innsyn.aspx?response=mote&moteid=545&scripturi=/innsyn.aspx&Mid1=396",
+   "status": "vedtatt",
+   "pdf": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022231291&dokid=1975053&versjon=1&variant=A",
+   "pdf_page": 16
+  },
+  "arsrapport-2025": {
+   "name": "Årsrapport 2025, formannskapet 04.06.2026 (sak 025/26)",
+   "url": "https://www.narvik.kommune.no/innsyn.aspx?response=mote&moteid=642&scripturi=/innsyn.aspx&Mid1=396",
+   "status": "vedtatt",
+   "pdf": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022268851&dokid=2060599&versjon=1&variant=A",
+   "pdf_page": 19
+  },
   "tertial-2-2026": {
    "name": "Tertialrapport 2/2026, formannskapet 15.10.2026 (sak 45/26)",
    "url": "https://prod02.elementscloud.no/publikum/959469059_prod-959469059/Dmb",
@@ -11,7 +25,78 @@
  },
  "series": [
   {
-   "id": "budsjett-2026", "kind": "budsjett", "year": "2026", "source": "tertial-2-2026",
+   "id": "budsjett-2024",
+   "kind": "budsjett",
+   "year": "2024",
+   "source": "arsrapport-2024",
+   "column": "Oppr. bud. 2024",
+   "total_1000kr": 1645313,
+   "1000kr": {
+    "Politisk ledelse": 8397,
+    "Rådmannen": 21494,
+    "Virksomhetsstyring": 182123,
+    "Oppvekst": 530370,
+    "Helse og omsorg": 659993,
+    "Plan, næring og teknisk": 177759,
+    "Fellesinntekter og kostnader": 65178
+   }
+  },
+  {
+   "id": "regnskap-2024",
+   "kind": "regnskap",
+   "year": "2024",
+   "source": "arsrapport-2024",
+   "column": "Regnskap 2024",
+   "total_1000kr": 1789773,
+   "1000kr": {
+    "Politisk ledelse": 10793,
+    "Rådmannen": 23044,
+    "Virksomhetsstyring": 198685,
+    "Oppvekst": 576186,
+    "Helse og omsorg": 770273,
+    "Plan, næring og teknisk": 181954,
+    "Fellesinntekter og kostnader": 28836
+   }
+  },
+  {
+   "id": "budsjett-2025",
+   "kind": "budsjett",
+   "year": "2025",
+   "source": "arsrapport-2025",
+   "column": "Oppr. bud. 2025",
+   "total_1000kr": 1747810,
+   "1000kr": {
+    "Politisk ledelse": 10058,
+    "Rådmannen": 24155,
+    "Virksomhetsstyring": 185218,
+    "Oppvekst": 580456,
+    "Helse og omsorg": 709412,
+    "Plan, næring og teknisk": 185599,
+    "Fellesinntekter og kostnader": 52912
+   }
+  },
+  {
+   "id": "regnskap-2025",
+   "kind": "regnskap",
+   "year": "2025",
+   "source": "arsrapport-2025",
+   "column": "Regnskap 2025",
+   "total_1000kr": 1863149,
+   "1000kr": {
+    "Politisk ledelse": 10626,
+    "Rådmannen": 29145,
+    "Virksomhetsstyring": 206137,
+    "Oppvekst": 606444,
+    "Helse og omsorg": 801412,
+    "Plan, næring og teknisk": 177714,
+    "Fellesinntekter og kostnader": 31671
+   }
+  },
+  {
+   "id": "budsjett-2026",
+   "kind": "budsjett",
+   "year": "2026",
+   "source": "tertial-2-2026",
    "column": "Oppr. bud. 2026",
    "total_1000kr": 1837357,
    "1000kr": {

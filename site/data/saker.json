@@ -373,11 +373,11 @@
       }
      }
     ],
-    "merknad": "Kommunalområdet fikk dagens inndeling i 2024. Før det het det Helse og velferd og hadde andre tjenester, så tallene for 2021–2023 kan ikke settes i samme rad. Regnskapet her følger kommunens egen inndeling og er ikke det samme som KOSTRA-tallene for helse og omsorg på Utgifter-siden."
+    "merknad": "Kommunalområdet fikk dagens inndeling i 2024. Før det het det Helse og velferd og hadde andre tjenester, så tallene for 2021–2023 kan ikke settes i samme rad. Regnskapet her følger kommunens egen inndeling og er ikke det samme som KOSTRA-tallene for helse og omsorg på Utgifter-siden. Hvert år er hentet fra årsrapporten for samme år, slik at budsjett og regnskap står i samme dokument. Årsrapport 2025 (s. 19) oppgir regnskapet for 2024 som 772,7 mill. kr, ikke 770,3."
    },
    "rolle": [
     {
-     "tekst": "Rammen for 2026 ble satt til 742 mill. kr, mens regnskapet for 2025 viste et forbruk på 800 mill. kr.",
+     "tekst": "Vedtatt budsjett for 2026 var 740,7 mill. kr, justert til 742,2 mill. kr per august. Det er under forbruket i 2025, som var 801,4 mill. kr (se tabellen over).",
      "kilde": {
       "id": "tertial-2-2026",
       "side": 31
@@ -457,7 +457,8 @@
      "omrader": [
       "helse"
      ],
-     "tekst": "Helse og omsorg fikk en ramme på 742 mill. kr for 2026, selv om regnskapet for 2025 viste et forbruk på 800 mill. kr. Kommunedirektøren venter nå 84 mill. kr i merforbruk.",
+     "tekst": "Helse og omsorg fikk 740,7 mill. kr i vedtatt budsjett for 2026, justert til 742,2 mill. kr per august. Regnskapet for 2025 viste et forbruk på om lag 800 mill. kr. Kommunedirektøren venter nå 84 mill. kr i merforbruk.",
+     "merknad": "Rapporten runder av: teksten sier en ramme på 742 og et forbruk på 800 mill. kr. Regnskapet for 2025 var 801,4 mill. kr (Årsrapport 2025, s. 19).",
      "kilde": {
       "id": "tertial-2-2026",
       "side": 31
@@ -1487,7 +1488,7 @@
      }
     },
     {
-     "tekst": "Helse og omsorg startet 2026 med en ramme på 742 mill. kr, mens regnskapet for 2025 viste et forbruk på 800 mill. kr. Kommunedirektøren hadde varslet at en omstilling på minst 58 mill. kr på ett år ville være krevende.",
+     "tekst": "Helse og omsorg startet 2026 med 740,7 mill. kr i vedtatt budsjett, mens regnskapet for 2025 viste et forbruk på om lag 800 mill. kr. Kommunedirektøren hadde varslet at en omstilling på minst 58 mill. kr på ett år ville være krevende.",
      "kilde": {
       "id": "tertial-2-2026",
       "side": 31
