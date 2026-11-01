@@ -44,6 +44,7 @@ async function start() {
   const render = () => { page.innerHTML = grp ? typePage(svc, grp) : svc ? servicePage(svc) : areaPage(); };
   render();
   document.title = [grp?.name, svc?.name, area.name, 'Åpne tall for Narvik'].filter(Boolean).join(' · ');
+  setCanonical('omrade', { omrade: area.key, tjeneste: q.get('tjeneste'), art: q.get('art') });
   // The page is drawn after the data has loaded, so the browser cannot jump to #sammenligning by itself.
   if (location.hash) document.getElementById(location.hash.slice(1))?.scrollIntoView();
 

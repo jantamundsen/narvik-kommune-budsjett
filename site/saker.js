@@ -29,10 +29,13 @@ const dateText = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nb-NO', 
   const quote = p => `<blockquote class="fact-quote sak-quote"><p>«${esc(p.sitat)}»</p><p class="caption quote-who">– ${esc(p.hvem)}</p></blockquote>${p.tekst ? `<p class="caption">${esc(p.tekst)}</p>` : ''}`;
   const id = new URLSearchParams(location.search).get('sak');
   const S = D.saker.find(s => s.id === id);
+  setCanonical('saker', { sak: S?.id });
   if (!S) return list(main, D);
 
   document.title = `${S.tittel} · Åpne tall for Narvik`;
   document.querySelector('meta[name="description"]')?.setAttribute('content', S.ingress);
+  document.querySelector('meta[property="og:title"]')?.setAttribute('content', document.title);
+  document.querySelector('meta[property="og:description"]')?.setAttribute('content', S.ingress);
   const sources = new Map();
   // A line can rest on more than one page, so a source may also be a list.
   const note = k => { [].concat(k).forEach(x => sources.set(x.id, D.kilder[x.id])); return Array.isArray(k) ? srcGroup(k) : src(k); };
