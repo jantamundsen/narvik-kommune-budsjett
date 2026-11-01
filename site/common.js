@@ -153,20 +153,31 @@ document.addEventListener('click', e => {
       ${others ? `<p class="caption">${h(others)}.</p>` : ''}
     </li>`;
   };
-  const card = (l, dir) => {
+  // Each link is one short row: what it is about, one key number from the other page and a link there. The full
+  // numbers open on demand, so the section stays short on pages that have many links (Jan, 2026-11-01).
+  const keyLine = m => `${h(m.navn)}${m.aar ? ` ${h(m.aar)}` : ''}: <b class="num">${val(m, m.verdier.narvik)}</b>${diff(m) ? `, ${arrow(m)}${h(diff(m))}` : ''}`;
+  const row = (l, dir) => {
     const other = S.sider[dir === 'ut' ? l.til[0] : l.fra];
-    return `<article class="link-card">
-      <span class="eyebrow">${h(S.sider[l.fra].navn)} → ${h(S.sider[l.til[0]].navn)}</span>
-      <h4>${h(l.tittel)}</h4>
-      <p>${h(l.tekst)}</p>
-      <ul class="lm-list">${l.maal.map(measure).join('')}</ul>
-      ${l.merknad ? `<p class="caption">${h(l.merknad)}</p>` : ''}
-      <a class="cross-link" href="${h(other.href)}">Gå til ${h(other.navn)} →</a>
-    </article>`;
+    // The number shown in the row is one from the other page: the link's first number when the other page affects
+    // this one, its last when this page affects the other.
+    const key = dir === 'inn' ? l.maal[0] : l.maal.at(-1);
+    return `<li class="link-row">
+      <div class="link-head">
+        <span class="eyebrow">${h(S.sider[l.fra].navn)} → ${h(S.sider[l.til[0]].navn)}</span>
+        <h4>${h(l.tittel)}</h4>
+        <p class="link-key">${keyLine(key)}</p>
+      </div>
+      <a class="cross-link" href="${h(other.href)}">${h(other.navn)} →</a>
+      <details class="link-more"><summary>Vis alle tallene og hvorfor de henger sammen</summary>
+        <p>${h(l.tekst)}</p>
+        <ul class="lm-list">${l.maal.map(measure).join('')}</ul>
+        ${l.merknad ? `<p class="caption">${h(l.merknad)}</p>` : ''}
+      </details>
+    </li>`;
   };
-  const group = (title, list, dir) => (list.length ? `<div class="link-group"><h3>${title}</h3><div class="link-cards">${list.map(l => card(l, dir)).join('')}</div></div>` : '');
+  const group = (title, list, dir) => (list.length ? `<div class="link-group"><h3>${title}</h3><ul class="link-rows">${list.map(l => row(l, dir)).join('')}</ul></div>` : '');
   sec.innerHTML = `<div class="section-head"><h2 id="h-links">Henger sammen med</h2>
-    <p class="lead">Tall på andre sider som kan påvirke tallene her, eller som tallene her kan påvirke. Narvik står ved siden av et snitt, som KOSTRA-gruppe 9 eller hele landet. Kortene viser alltid de nyeste tallene, også når et annet år er valgt.</p></div>
+    <p class="lead">Tall på andre sider som kan påvirke tallene her, eller som tallene her kan påvirke. Viser alltid de nyeste tallene.</p></div>
     ${group('Kan påvirke', from, 'ut')}${group('Kan påvirkes av', to, 'inn')}${sources([...from, ...to].flatMap(l => l.maal))}`;
   sec.setAttribute('aria-labelledby', 'h-links');
   sec.hidden = false;
