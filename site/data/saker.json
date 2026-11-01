@@ -3418,7 +3418,7 @@
       {
        "sitat": "Selskapet ønsker både å overta arealene som Narvik kommune eier i Framneslia, og deler av Indre havn som i dag er festet av LKAB.",
        "hvem": "Marit Waleniussen, daglig leder for LKAB Norge",
-       "tekst": "Til Fremover i november 2025.",
+       "tekst": "I et skriftlig svar til Fremover i november 2025. Ifølge saken vil LKAB kjøpe om lag 42 000 m² i Indre havn, og står sammen med Industrigruppen i Indre Narvik havn for å beholde dagens industriområder.",
        "kilde": {
         "id": "fremover-lkab-2025"
        }
@@ -3463,6 +3463,14 @@
     {
      "tittel": "Framneslia i arealplanen",
      "punkter": [
+      {
+       "tekst": "LKAB skriver til Fremover at arealet kommunen har satt av til selskapet på Framnesodden er for lite til større industrielle etableringer, og at LKAB vil kjøpe hele Framneslia.",
+       "sitat": "LKAB, som de fleste selskaper, har strenge krav til avkastning på sin kapital. Det gjør at LKAB aldri vil kunne la et areal ligge brakk.",
+       "hvem": "Marit Waleniussen, daglig leder for LKAB Norge",
+       "kilde": {
+        "id": "fremover-lkab-2025"
+       }
+      },
       {
        "tekst": "Fremover skriver i november 2025 at også Aker Nscale vil ha arealer i Framneslia, og at Akers pressekontakt bekrefter innledende samtaler med kommunen.",
        "kilde": {

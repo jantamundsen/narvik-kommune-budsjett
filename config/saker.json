@@ -841,7 +841,7 @@
       "temaer": [
         { "tittel": "Planene for Indre havn", "punkter": [
           {"sitat": "Vi snakker ikke om et boligområde, men en ny bydel.", "hvem": "Bjørnar Evenrud, direktør i Narvikgården", "tekst": "Til Fremover i oktober 2025, om Indre havn.", "kilde": {"id": "fremover-evenrud-2025"}},
-          {"sitat": "Selskapet ønsker både å overta arealene som Narvik kommune eier i Framneslia, og deler av Indre havn som i dag er festet av LKAB.", "hvem": "Marit Waleniussen, daglig leder for LKAB Norge", "tekst": "Til Fremover i november 2025.", "kilde": {"id": "fremover-lkab-2025"}},
+          {"sitat": "Selskapet ønsker både å overta arealene som Narvik kommune eier i Framneslia, og deler av Indre havn som i dag er festet av LKAB.", "hvem": "Marit Waleniussen, daglig leder for LKAB Norge", "tekst": "I et skriftlig svar til Fremover i november 2025. Ifølge saken vil LKAB kjøpe om lag 42 000 m² i Indre havn, og står sammen med Industrigruppen i Indre Narvik havn for å beholde dagens industriområder.", "kilde": {"id": "fremover-lkab-2025"}},
           { "tekst": "Planinitiativet delte området i tre: industri og næring i nord, kombinert bebyggelse i midten, og hotell, marin næring og boliger i sør, med havnepromenade og småbåthavn.", "kilde": { "id": "ks-sak-72-2025", "side": 4 } },
           { "tekst": "Boligene var planlagt med 5 etasjer i snitt og næringslokaler i første etasje. Deler av området ligger i en hensynssone for kulturmiljø.", "kilde": { "id": "ks-sak-72-2025", "side": 4 } },
           { "tekst": "Planadministrasjonen kunne ikke anbefale oppstart, fordi planen ikke fulgte kommuneplanens arealdel. Rådmannen la likevel saken fram med anbefaling om oppstart.", "kilde": { "id": "ks-sak-72-2025", "side": 3 } },
@@ -849,6 +849,7 @@
           { "tekst": "Høsten 2025 bestilte Narvikgården en spørreundersøkelse fra Norstat. Etter at den ble publisert, krevde en tredjedel av kommunestyret en sak om oppfølging av vedtaket og eierstyringen.", "kilde": { "id": "ks-sak-144-2025", "side": 2 } }
         ] },
         { "tittel": "Framneslia i arealplanen", "punkter": [
+          {"tekst": "LKAB skriver til Fremover at arealet kommunen har satt av til selskapet på Framnesodden er for lite til større industrielle etableringer, og at LKAB vil kjøpe hele Framneslia.", "sitat": "LKAB, som de fleste selskaper, har strenge krav til avkastning på sin kapital. Det gjør at LKAB aldri vil kunne la et areal ligge brakk.", "hvem": "Marit Waleniussen, daglig leder for LKAB Norge", "kilde": {"id": "fremover-lkab-2025"}},
           {"tekst": "Fremover skriver i november 2025 at også Aker Nscale vil ha arealer i Framneslia, og at Akers pressekontakt bekrefter innledende samtaler med kommunen.", "kilde": {"id": "fremover-aker-framneslia-2025"}},
           { "tekst": "Da kommuneplanens arealdel ble lagt ut på høring, falt et forslag fra Sp, SV, Frp, R og INP om å redusere næringsarealet i Framneslia mot øst og nord, med 15 mot 16 stemmer.", "kilde": { "id": "ks-prot-2026-02-05", "side": 11 } },
           { "tekst": "Kommunen har fått flere innspill til arealplanen om bruken av resten av Framneslia.", "kilde": { "id": "tertial-1-2026", "side": 20 } },
