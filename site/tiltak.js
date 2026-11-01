@@ -131,14 +131,14 @@ async function startTiltak() {
     const free = (cy, w) => taken.every(b => Math.abs(b.cy - cy) >= 34 || (b.side === 'r' && w + b.w <= W - 2 * NW - 12));
     left.forEach(n => {
       const w = tw(n), mid = n.y + n.h / 2;
-      n.cy = [mid, n.y - 22, n.y + n.h + 20].find(c => free(c, w)) ?? mid;
+      n.cy = [mid, mid + 16, mid - 16, mid + 30, mid - 30, n.y - 22, n.y + n.h + 20].find(c => free(c, w)) ?? mid;
       taken.push({ cy: n.cy, w, side: 'l' });
     });
     const label = (n, side) => {
       const tx = side === 'l' ? n.x + NW + 6 : n.x - 6, anchor = side === 'l' ? 'start' : 'end', cy = n.cy ?? n.y + n.h / 2;
       return `<text x="${tx}" y="${cy - 3}" text-anchor="${anchor}">${esc(n.name)}<tspan class="v" x="${tx}" dy="15">${esc(fmtV(n.v))}</tspan></text>`;
     };
-    const svg = `<svg viewBox="0 ${-14} ${W} ${Ht + 28}" role="img" aria-label="${esc(`Innsparingene i budsjettet for ${y} fordelt fra tjenesteområde til status i kommunens rapporter, ${unit === 'kr' ? 'i mill. kr' : 'i antall tiltak'}. Tallene står i tabellen under.`)}">
+    const svg = `<svg viewBox="0 ${-14} ${W} ${Math.max(Ht, ...left.map(n => n.cy + 24)) + 28}" role="img" aria-label="${esc(`Innsparingene i budsjettet for ${y} fordelt fra tjenesteområde til status i kommunens rapporter, ${unit === 'kr' ? 'i mill. kr' : 'i antall tiltak'}. Tallene står i tabellen under.`)}">
       ${links.map((k, i) => `<path class="link k-${kindOf(k.to)}" data-i="${i}" d="${path(k)}"/>`).join('')}
       ${left.map(n => `<rect class="node k-area" x="${n.x}" y="${n.y}" width="${NW}" height="${n.h}" rx="2"/>`).join('')}
       ${right.map(n => `<rect class="node k-${n.kind}" x="${n.x}" y="${n.y}" width="${NW}" height="${n.h}" rx="2"/>`).join('')}
