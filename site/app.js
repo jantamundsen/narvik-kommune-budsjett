@@ -140,7 +140,8 @@ function rowFor(c, svcTotal, maxShare, prev) {
     track.appendChild(fill); share.append(track, el('small', {}, nb(v / svcTotal * 100, 1) + ' %'));
   }
   const p = prev ? pct(v, c.narvik_1000kr[prev]) : null;
-  const cls = p === null || OFFSET_KEYS.includes(c.key) ? 'chg' : 'chg ' + (p > 0.5 ? 'up' : p < -0.5 ? 'down' : '');
+  // No colour on the change from the year before; red and green are only for deviations from the budget.
+  const cls = 'chg';
   btn.append(name, share,
     el('span', { class: 'r num c-amt' }, nb(v / 1000, Math.abs(v) < 10000 ? 1 : 0)),
     el('span', { class: 'r num c-pc' }, nb(c.per_capita?.narvik?.[year] ?? perCap(v, year))),

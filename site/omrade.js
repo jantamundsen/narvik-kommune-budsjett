@@ -10,11 +10,12 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;',
 const mill = (v, d = 1) => (v == null ? '·' : nb(v / 1000, d));
 const lower = s => s.charAt(0).toLowerCase() + s.slice(1);
 const link = p => '?' + new URLSearchParams(Object.entries({ aar: year, omrade: area.key, omfang: scope === 'kasse' ? 'kasse' : '', maal: q.get('maal'), ...p }).filter(([, v]) => v)).toString();
-const chgSpan = (v, p, invert = false) => {
+// Change from the year before, without colour: more or less spending is not good or bad in itself (Jan, 2026-11-01).
+// Red and green are kept only for deviations from the budget, on Budsjett and Året så langt.
+const chgSpan = (v, p) => {
   const c = p ? pct(v, p) : null;
   if (c === null) return '<span class="chg">–</span>';
-  const cls = Math.abs(c) < 0.5 ? '' : (c > 0) !== invert ? 'up' : 'down';
-  return `<span class="chg ${cls}">${chgText(c)}</span>`;
+  return `<span class="chg">${chgText(c)}</span>`;
 };
 
 async function start() {
@@ -178,11 +179,16 @@ function areaPage() {
   const b = breakdown(all);
   const svcs = services();
 
-  const title = isService
-    ? `${nb(v / 1000)} millioner kroner, ${nb(share)} % av det kommunen bruker på tjenester`
-    : `${v < 0 ? '−' : ''}${nb(Math.abs(v) / 1000)} millioner kroner i ${lower(area.name)}`;
+  // The area's name is the heading and the amount goes in the sentence under it, so small or negative amounts
+  // read naturally (not «−0 millioner kroner, −0 %»).
+  const amount = nb(Math.abs(v) / 1000, Math.abs(v) < 10000 ? 1 : 0);
+  const sentence = !isService
+    ? `${area.name} trekker ${amount} millioner kroner ${v < 0 ? 'fra' : 'til'} netto driftsutgifter i ${year}.`
+    : v < 0
+      ? `${area.name} ga ${amount} millioner kroner mer inn enn ut i ${year}.`
+      : `Kommunen betalte ${amount} millioner kroner netto til ${area.key === 'annet' ? 'området «Annet»' : lower(area.name)} i ${year}, ${share < 0.1 ? 'under 0,1' : nb(share, share < 1 ? 1 : 0)} % av det kommunen bruker på tjenester.`;
   let html = crumbs([[area.name]]);
-  html += head(`${area.name} · ${year}`, esc(title), `${esc(area.description)}. Tallet er det kommunen betaler selv, etter refusjoner og egenandeler.`);
+  html += head(`Netto driftsutgifter · ${year}`, esc(area.name), `${esc(sentence)} ${esc(area.description)}. Tallet er det kommunen betaler selv, etter refusjoner og egenandeler.`);
   html += `<div class="summary">${stat('Netto driftsutgifter', mill(v), 'mill. kr', prev ? `${chgSpan(v, pv)} fra ${prev}` : 'Første år i serien')}
     ${stat('Per innbygger', nb(pc), 'kr', [cmp(pc, 'gruppe'), cmp(pc, 'landet')].filter(Boolean).join(', ') || 'Ingen sammenligningstall')}
     ${isService ? stat('Andel av tjenestene', nb(share), '%', rank === 1 ? 'Største område' : `Nr. ${rank} av ${svcAreas.length} områder`) : ''}</div>`;
@@ -371,7 +377,7 @@ function servicePage(s) {
   html += head(`KOSTRA-funksjon ${codes(s.functions)} · ${year}`, title, top ? `${esc(top.name)} er ${nb(ptop)} % av kostnaden.${s.note ? ' ' + esc(s.note) : ''}` : '', { tjeneste: s.key });
   html += `<div class="summary">${stat('Kommunen betalte', mill(v), 'mill. kr', prev ? `${chgSpan(v, pv)} fra ${prev}` : 'Første år i serien')}
     ${top ? stat('Største kostnad', nb(ptop), '%', `${esc(top.name)}, ${mill(at(top.v, year))} av ${mill(cost)} mill. kr`) : ''}
-    ${topIn ? stat(esc(topIn.name), mill(at(topIn.v, year)), 'mill. kr', prev ? `${chgSpan(at(topIn.v, year), at(topIn.v, prev), true)} fra ${prev}` : '') : ''}</div>`;
+    ${topIn ? stat(esc(topIn.name), mill(at(topIn.v, year)), 'mill. kr', prev ? `${chgSpan(at(topIn.v, year), at(topIn.v, prev))} fra ${prev}` : '') : ''}</div>`;
   html += factsSection(f => f.tjeneste === s.key && !f.art);
 
   const rowsOf = list => list.map(g => ({ name: g.name, v: at(g.v, year), note: `${nb(at(g.v, year) / (g.side === 'utgift' ? cost : income) * 100)} %`, href: link({ tjeneste: s.key, art: g.key }) }));

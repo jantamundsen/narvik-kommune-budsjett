@@ -107,10 +107,10 @@ async function startBudget() {
       const bar = el('span', { class: 'share c-share' }), track = el('span', { class: 'share-track' }), fill = el('span', { class: 'share-fill' });
       fill.style.display = 'block'; fill.style.width = Math.max(0, v / cur.total_1000kr / maxShare * 100) + '%';
       track.appendChild(fill); bar.append(track, el('small', {}, nb(v / cur.total_1000kr * 100, 1) + ' %'));
-      led.appendChild(row(a, bar, mk(base['1000kr'][a.key]), `Vedtatt ${base.year}`, mk(v), chgText(p), p > 0.5 ? 'up' : p < -0.5 ? 'down' : ''));
+      led.appendChild(row(a, bar, mk(base['1000kr'][a.key]), `Vedtatt ${base.year}`, mk(v), chgText(p), ''));
     });
     const p = pct(cur.total_1000kr, base.total_1000kr);
-    led.appendChild(row('Sum', null, mk(base.total_1000kr), `Vedtatt ${base.year}`, mk(cur.total_1000kr), chgText(p), p > 0 ? 'up' : 'down', true));
+    led.appendChild(row('Sum', null, mk(base.total_1000kr), `Vedtatt ${base.year}`, mk(cur.total_1000kr), chgText(p), '', true));
     document.getElementById('h-plan').textContent = `Budsjettet for ${cur.year}`;
     document.getElementById('plan-lead').textContent = adopted
       ? `Kommunestyret ga tjenesteområdene ${mk(cur.total_1000kr)} mill. kr for ${cur.year}, mot ${mk(base.total_1000kr)} mill. kr for ${base.year}.` + (prop ? ` Kommunedirektøren hadde foreslått ${mk(prop.total_1000kr)} mill. kr.` : '')
