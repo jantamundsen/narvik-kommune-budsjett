@@ -1,6 +1,6 @@
 # Lisens for innholdet på narviktall.no
 
-Copyright 2026 Jan Amundsen (https://janamundsen.dev)
+Copyright 2026 Jan Tore Amundsen (https://janamundsen.dev)
 
 Koden i repoet (skriptene i `scripts/`, JavaScript, HTML-oppsett og CSS i `site/` og arbeidsflytene i `.github/`) er lisensiert under PolyForm Noncommercial 1.0.0, se `LICENSE`.
 
