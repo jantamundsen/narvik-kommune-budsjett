@@ -57,6 +57,7 @@ const dateText = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nb-NO', 
       </table></div>
       <p class="caption">${esc(S.tabell.tittel)}. ${esc(S.tabell.merknad || '')}</p>
     </section>` : '';
+  const inst = S.ssb_institusjon ? await institutionTables(sources) : '';
   const role = `<section aria-labelledby="h-role">
       <div class="section-head"><h2 id="h-role">Kommunens rolle og penger</h2></div>
       <ul class="fact-list">${S.rolle.map(r => `<li class="fact"><p>${esc(r.tekst)}</p><p class="caption fact-src">Kilde: ${note(r.kilde)}</p></li>`).join('')}</ul>
@@ -108,14 +109,81 @@ const dateText = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nb-NO', 
       ${S.mangler ? `<p class="status-note">${esc(S.mangler)}</p>` : ''}
     </header>
     <section aria-label="Nøkkeltall"><div class="stats3 sak-stats" style="--n:${S.nokkeltall.length}">${stats}</div></section>
-    ${actors}${tab}${role}${topics}${time}${facts}${links}${docs}`;
+    ${actors}${tab}${inst}${role}${topics}${time}${facts}${links}${docs}`;
   document.getElementById('tl-more')?.addEventListener('click', e => {
     document.querySelectorAll('#timeline li[hidden]').forEach(li => { li.hidden = false; });
     e.currentTarget.remove();
   });
   const t = document.getElementById('sak-table');
   if (t) stackable(t);
+  // The page is drawn after the data has loaded, so the browser cannot jump to #institusjon by itself.
+  if (location.hash) document.getElementById(location.hash.slice(1))?.scrollIntoView();
 })();
+
+// «Sykehjem og institusjoner i SSB-tallene» for a case with "ssb_institusjon": true. The numbers come from
+// data/eldre.json and data/malgruppe.json, which the weekly data job updates, so they are not typed into saker.json.
+// Narvik against the KOSTRA group only, every year SSB has, with a source under each table. No interpretation.
+async function institutionTables(sources) {
+  const get = u => fetch(u, { cache: 'no-cache' }).then(r => (r.ok ? r.json() : null)).catch(() => null);
+  const [E, M] = await Promise.all([get('data/eldre.json'), get('data/malgruppe.json')]);
+  const I = E?.institusjon;
+  if (!I) return '';
+  const G = 'KOSTRA-gruppe 9';
+  const ssbSrc = (table, query, what) => {
+    const url = `https://www.ssb.no/statbank/table/${table}`;
+    sources.set('ssb-' + table, { full: `SSB, tabell ${table}: ${what}`, url });
+    return `<a href="${esc(query)}&outputFormat=html" target="_blank" rel="noopener">SSB, tabell ${table}</a>`;
+  };
+  const table = (head, ys, rows) => `<div class="detail-scroll"><table class="num-table"><tr><th>${esc(head)}</th>${ys.map(y => `<th>${y}</th>`).join('')}</tr>
+    ${rows.map(r => `<tr${r.sum ? ' class="sum"' : ''}><td>${esc(r.name)}</td>${ys.map(y => `<td>${r.cell(y) ?? '·'}</td>`).join('')}</tr>`).join('')}</table></div>`;
+  const vs = (a, b) => (a == null || b == null ? null : chgText(pct(a, b)));
+  let html = '';
+
+  // Institution running costs (253) per inhabitant 67+, computed on the site from 12362 and 07459.
+  const m = (M?.measures || []).find(x => x.area === 'helse' && x.service === '253' && x.key === '67');
+  if (m) {
+    const v = m.values, ys = Object.keys(v.narvik || {}).filter(y => v.narvik[y] != null);
+    html += `<h3 class="sub-h">Drift av sykehjem og institusjoner per innbygger 67 år og over, kroner</h3>
+      ${table('KOSTRA-funksjon 253', ys, [
+        { name: 'Narvik', sum: true, cell: y => nb(v.narvik[y]) },
+        { name: G, cell: y => (v.gruppe?.[y] == null ? null : nb(v.gruppe[y])) },
+        { name: `Narvik mot ${G}`, cell: y => vs(v.narvik[y], v.gruppe?.[y]) },
+      ])}
+      <p class="caption">Netto driftsutgifter til KOSTRA-funksjon 253 (helse- og omsorgstjenester i institusjon), kommunekonsern, delt på innbyggere 67 år og over 1. januar året etter. Beregnet her fordi SSB ikke publiserer tallet. Lokalene (funksjon 261) er ikke med. Kilde: ${ssbSrc(m.table, m.query, 'netto driftsutgifter per funksjon')} og ${ssbSrc(m.population.table, m.population.query, 'befolkning etter alder')}.</p>`;
+  }
+
+  // Cost per day in an institution, SSB's own key figure.
+  const P = I.dognpris, pv = P.values, pys = Object.keys(pv.narvik || {});
+  if (pys.length) {
+    html += `<h3 class="sub-h">Utgifter per oppholdsdøgn i institusjon, kroner</h3>
+      ${table('Kr per døgn', pys, [
+        { name: 'Narvik', sum: true, cell: y => (pv.narvik[y] == null ? null : nb(pv.narvik[y])) },
+        { name: G, cell: y => (pv.gruppe?.[y] == null ? null : nb(pv.gruppe[y])) },
+        { name: `Narvik mot ${G}`, cell: y => vs(pv.narvik[y], pv.gruppe?.[y]) },
+        { name: 'Narvik, endring fra året før', cell: (y, i = pys.indexOf(y)) => (i ? vs(pv.narvik[y], pv.narvik[pys[i - 1]]) : null) },
+      ])}
+      <p class="caption">SSBs nøkkeltall «${esc(P.name)}». Utgiftene omfatter både driften (funksjon 253) og lokalene (261), delt på antall døgn beboerne har bodd på institusjonen. Løpende kroner. Kilde: ${ssbSrc(P.table, P.query, 'utvalgte nøkkeltall for helse og omsorg')}.</p>`;
+  }
+
+  // Users of institution services per 1 000 inhabitants in the age group.
+  const U = I.brukere, uv = U.values, uys = Object.keys(uv.narvik?.['F000-120'] || {});
+  if (uys.length) {
+    const ages = U.ages.filter(a => a.code !== 'F000-066');
+    const f = (k, a, y) => { const c = uv[k]?.[a]?.[y]; return c?.per1000 == null ? null : nb(c.per1000, 1); };
+    html += `<h3 class="sub-h">Brukere av institusjonstjenester per 1 000 innbyggere i aldersgruppen</h3>
+      ${table('Per 1 000 innbyggere', uys, ages.flatMap(a => [
+        { name: `${a.name}, Narvik`, sum: true, cell: y => { const c = uv.narvik?.[a.code]?.[y]; return c?.per1000 == null ? null : `${nb(c.per1000, 1)} <small>(${nb(c.antall)})</small>`; } },
+        { name: `${a.name}, ${G}`, cell: y => f('gruppe', a.code, y) },
+      ]))}
+      <p class="caption">Personer SSB har registrert med institusjonstjenester (sykehjem og andre helse- og omsorgsinstitusjoner), ikke antall plasser. Tallet i parentes er antall brukere i Narvik. Kilde: ${ssbSrc(U.table, U.query, 'omsorgstjenester, brukere etter alder og tjenestegrupper')}.</p>`;
+  }
+  if (!html) return '';
+  return `<section aria-labelledby="h-inst" id="institusjon">
+      <div class="section-head"><h2 id="h-inst">Sykehjem og institusjoner i SSB-tallene</h2>
+        <p class="lead">Tall fra SSBs KOSTRA-statistikk for Narvik og snittet i ${G}, kommunene SSB regner som sammenlignbare. KOSTRA deler tjenestene inn på en annen måte enn kommunalområdet i tabellen over (<a href="okonomi#inndeling">hvorfor tallene er ulike</a>). Tallene oppdateres når SSB publiserer nye. Flere sammenligninger står på <a href="utgifter/helse#institusjon">Helse og omsorg</a>.</p></div>
+      ${html}
+    </section>`;
+}
 
 function list(main, D) {
   main.innerHTML = `<header>

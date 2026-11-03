@@ -906,6 +906,7 @@
    "tittel": "Merforbruk i helse og omsorg",
    "ingress": "Helse og omsorg har brukt mer enn budsjettert hvert år siden kommunalområdet fikk dagens inndeling i 2024. For 2026 venter kommunedirektøren et merforbruk på 84 mill. kr. Her er tallene fra kommunens egne rapporter samlet, med det rapportene sier om årsakene.",
    "kontrollert": "2026-10-20",
+   "ssb_institusjon": true,
    "nokkeltall": [
     {
      "navn": "Venter merforbruk i 2026",

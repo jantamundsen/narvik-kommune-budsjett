@@ -57,6 +57,8 @@ SSB = [
 
 # For «Sykehjem og andre institusjoner»: SSB's key figure for what a day in an institution costs (12209, institusjon
 # 253 and lokaler 261 together), for Narvik and the comparison regions.
+# These two go back one year further than the rest, so the case «Merforbruk i helse og omsorg» can show 2020.
+INST_FIRST_YEAR = 2020
 DOGNPRIS = [{"key": "dognpris", "table": "12209", "contents": "KOSBDU253261oppd0000", "name": "Utgifter per oppholdsdøgn i institusjon", "unit": "kr"}]
 
 # Users of institution services per age group (12003, tjenestegruppe B), as a count and per 1 000 inhabitants in the group.
@@ -74,18 +76,18 @@ DOGN = "UKP Kommune - Antall overliggerdøgn"
 RATE = "UKP Kommune - rateOverliggerdøgn_uten_trend"  # per 1 000 innbyggere, standardised for sex and age
 
 
-def ssb_query(table: str, regions: str, contents: list[str]) -> str:
+def ssb_query(table: str, regions: str, contents: list[str], first: int = FIRST_YEAR) -> str:
     params = {"lang": "no", f"valueCodes[{DIM_REGION}]": regions, f"valueCodes[{DIM_CONTENTS}]": ",".join(contents),
-              f"valueCodes[{DIM_YEAR}]": f"from({FIRST_YEAR})"}
+              f"valueCodes[{DIM_YEAR}]": f"from({first})"}
     return f"https://data.ssb.no/api/pxwebapi/v2/tables/{table}/data?" + urllib.parse.urlencode(params, safe="[](),")
 
 
-def ssb(regions: list[dict], measures: list[dict] = SSB) -> list[dict]:
+def ssb(regions: list[dict], measures: list[dict] = SSB, first: int = FIRST_YEAR) -> list[dict]:
     codes = ",".join(c for r in regions for c in [r["code"], *r.get("earlier", [])])
     out = []
     for table in dict.fromkeys(m["table"] for m in measures):
         ms = [m for m in measures if m["table"] == table]
-        url = ssb_query(table, codes, [m["contents"] for m in ms])
+        url = ssb_query(table, codes, [m["contents"] for m in ms], first)
         print(f"Henter {url}", file=sys.stderr)
         raw = {(c[DIM_REGION], c[DIM_CONTENTS], c[DIM_YEAR]): v for c, v in cells(fetch(url)) if v is not None}
         years = sorted({y for _, _, y in raw})
@@ -95,7 +97,7 @@ def ssb(regions: list[dict], measures: list[dict] = SSB) -> list[dict]:
                 rc = [r["code"], *r.get("earlier", [])]
                 values[r["key"]] = {y: next((raw[(c, m["contents"], y)] for c in rc if (c, m["contents"], y) in raw), None) for y in years}
             out.append({**m, "url": f"https://www.ssb.no/statbank/table/{table}",
-                        "query": ssb_query(table, codes, [m["contents"]]), "values": values})
+                        "query": ssb_query(table, codes, [m["contents"]], first), "values": values})
     return out
 
 
@@ -104,7 +106,7 @@ def brukere(regions: list[dict]) -> dict:
     codes = ",".join(c for r in regions for c in [r["code"], *r.get("earlier", [])])
     params = {"lang": "no", f"valueCodes[{DIM_REGION}]": codes, f"valueCodes[{DIM_AGE}]": ",".join(a for a, _ in AGES),
               f"valueCodes[{DIM_GROUP}]": "B", f"valueCodes[{DIM_CONTENTS}]": ",".join(BRUKERE_CONTENTS),
-              f"valueCodes[{DIM_YEAR}]": f"from({FIRST_YEAR})"}
+              f"valueCodes[{DIM_YEAR}]": f"from({INST_FIRST_YEAR})"}
     url = f"https://data.ssb.no/api/pxwebapi/v2/tables/{BRUKERE_TABLE}/data?" + urllib.parse.urlencode(params, safe="[](),")
     print(f"Henter {url}", file=sys.stderr)
     raw = {(c[DIM_REGION], c[DIM_AGE], c[DIM_CONTENTS], c[DIM_YEAR]): v for c, v in cells(fetch(url)) if v is not None}
@@ -214,7 +216,7 @@ def main() -> int:
         "overliggere": overliggere,
         "kommunens_overliggerdogn": json.loads(CONFIG.read_text(encoding="utf-8"))["kommunens_overliggerdogn"],
         "ssb": ssb(regions),
-        "institusjon": {"dognpris": ssb(regions, DOGNPRIS)[0], "brukere": brukere(regions)},
+        "institusjon": {"dognpris": ssb(regions, DOGNPRIS, INST_FIRST_YEAR)[0], "brukere": brukere(regions)},
     }
     OUT.write_text(json.dumps(data, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
     print(f"Skrev {OUT.relative_to(ROOT)}", file=sys.stderr)
