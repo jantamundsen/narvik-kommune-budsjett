@@ -214,7 +214,7 @@ function areaPage() {
       source: `<a href="${esc(ssbCompareUrl(N, area.functions, years))}" target="_blank" rel="noopener">Se tallene hos SSB</a> (tabell 12362, beløp per innbygger, summert over funksjonene).` }, null));
   }
 
-  if (area.key === 'helse') html += careSection();
+  if (area.key === 'helse') html += institutionSection() + careSection();
 
   html += `<details class="drill-sec all-numbers"><summary>Vis alle tall per KOSTRA-funksjon</summary><div class="detail-scroll"><table class="num-table"><tr><th>KOSTRA-funksjon (1000 kr)</th>${years.map(y => `<th${y === year ? ' class="sel"' : ''}>${y}</th>`).join('')}</tr>
     ${all.filter(f => years.some(y => N.functions[f].narvik_1000kr[y])).map(f => `<tr><td>${f} ${esc(N.functions[f].name)}</td>${years.map(y => { const x = N.functions[f].narvik_1000kr[y]; return `<td${y === year ? ' class="sel"' : ''}>${x == null ? '·' : nb(x)}</td>`; }).join('')}</tr>`).join('')}
@@ -290,6 +290,73 @@ function outlook(lo) {
   const to = O?.['2040'] ? '2040' : Object.keys(O || {}).sort().at(-1);
   if (now == null || !to || to === B.last || O[to][lo] == null) return '';
   return `<div class="status-note outlook"><p><strong>Hvor mange blir de?</strong> 1. januar ${B.last} bodde det ${nb(now)} innbyggere ${lo} år og over i Narvik. SSBs framskriving venter rundt ${nb(Math.round(O[to][lo] / 10) * 10)} i ${to}. <a href="befolkning?aar=${to}#pyramide">Se befolkningspyramiden for ${to}</a>.</p></div>`;
+}
+
+// «Sykehjem og andre institusjoner» on the helse og omsorg area page: omsorg per inhabitant 67+ split by service
+// (malgruppe.json, computed), SSB's cost per day in an institution and users of institution services per age group
+// (eldre.json, scripts/fetch_eldre.py). Only numbers and how they are made, no explanation of why they differ.
+function institutionSection() {
+  const I = E?.institusjon;
+  if (!I) return '';
+  const g = N.compare.find(r => r.key === 'gruppe'), land = N.compare.find(r => r.key === 'landet');
+  const gName = g?.name || 'KOSTRA-gruppen';
+  const more = (a, b) => (a == null || !b ? '' : `${nb(Math.abs(a / b - 1) * 100)} % ${a >= b ? 'mer' : 'mindre'} enn snittet i ${esc(gName)}`);
+  const ssbLink = (query, url, table) => `<a href="${esc(query)}&outputFormat=html" target="_blank" rel="noopener">Se tallene hos SSB</a> (<a href="${esc(url)}" target="_blank" rel="noopener">tabell ${table}</a>)`;
+  let html = `<section class="drill-sec" id="institusjon"><h2>Sykehjem og andre institusjoner</h2>`;
+  let body = '';
+
+  // 1. Per inhabitant 67+, by service.
+  const ms = (M?.measures || []).filter(m => m.area === 'helse' && m.key === '67');
+  const rowsDef = [['253'], ['261'], ['hjemmetjenester'], ['234'], [null, 'Omsorg i alt']];
+  const rows = rowsDef.map(([k, name]) => ({ k, m: ms.find(m => m.service === k), name: name || services().find(s => s.key === k)?.name || k }))
+    .filter(r => r.m?.values.narvik?.[year] != null);
+  if (rows.length) {
+    const inst = rows.find(r => r.k === '253'), home = rows.find(r => r.k === 'hjemmetjenester');
+    const v = (r, k) => r.m.values[k]?.[year];
+    const lead = [inst && `I ${year} brukte Narvik ${nb(v(inst, 'narvik'))} kr per innbygger 67 år og over på drift av sykehjem og andre institusjoner, ${more(v(inst, 'narvik'), v(inst, 'gruppe'))}.`,
+      home && `På hjemmetjenestene var tallet ${nb(v(home, 'narvik'))} kr, ${more(v(home, 'narvik'), v(home, 'gruppe'))}.`].filter(Boolean).join(' ');
+    const cols = [['narvik', 'Narvik'], ['gruppe', gName], ['landet', land?.name || 'Landet uten Oslo']];
+    body += `<p class="lead">${lead}</p><h3 class="sub-h">Omsorgstjenestene per innbygger 67 år og over, ${year}</h3>
+      <div class="detail-scroll"><table class="num-table"><tr><th>Kr per innbygger 67+</th>${cols.map(([, n]) => `<th>${esc(n)}</th>`).join('')}<th>Narvik mot ${esc(gName)}</th></tr>
+      ${rows.map(r => `<tr${r.k ? '' : ' class="sum"'}><td>${r.k ? `<a href="${esc(link({ tjeneste: r.k, maal: '67' }))}#sammenligning">${esc(r.name)}</a> <small>(${esc(codes(r.m.functions))})</small>` : esc(r.name)}</td>${cols.map(([k]) => `<td${k === 'narvik' ? ' class="sel"' : ''}>${v(r, k) == null ? '·' : nb(v(r, k))}</td>`).join('')}<td>${chgText(pct(v(r, 'narvik'), v(r, 'gruppe')))}</td></tr>`).join('')}</table></div>
+      <p class="caption">Netto driftsutgifter, kommunekonsern (SSB tabell ${rows[0].m.table}), delt på innbyggere 67 år og over 1. januar året etter (SSB tabell ${esc(rows[0].m.population?.table || '07459')}), beregnet her fordi SSB ikke publiserer tallet. Tallene i parentes er KOSTRA-funksjonene. Også yngre brukere får omsorgstjenester, men alle utgiftene er delt på de eldre. Trykk på en tjeneste for å se alle sammenligningene og kildelenkene.</p>`;
+  }
+
+  // 2. Cost per day in an institution.
+  const P = I.dognpris, pv = P?.values || {};
+  const py = pv.narvik?.[year] != null ? year : null;
+  if (py) {
+    const me = pv.narvik[py], gy = pv.gruppe?.[py], before = String(+py - 1), pb = pv.narvik[before];
+    const regs = [['narvik', 'Narvik'], ...N.compare.map(r => [r.key, r.name])];
+    const bars = regs.map(([k, name]) => ({ k, name, v: pv[k]?.[py] })).filter(r => r.v != null).sort((a, b) => b.v - a.v);
+    const max = Math.max(...bars.map(r => r.v), 1);
+    const ys = Object.keys(pv.narvik);
+    body += `<h3 class="sub-h">Utgifter per døgn i institusjon, ${py}</h3>
+      <p>Et oppholdsdøgn i institusjon kostet ${nb(me)} kr i Narvik i ${py}${gy ? `, mot ${nb(gy)} kr i snitt i ${esc(gName)}` : ''}.${pb ? ` Fra ${before} til ${py} endret Narviks tall seg med ${chgText(pct(me, pb))}.` : ''}</p>
+      <div class="rank cmp-bars">${bars.map(r => `<div class="rank-row${r.k === 'narvik' ? ' me' : ''}"><span class="rank-name">${esc(r.name)}</span><span class="rank-track"><span class="rank-fill" style="width:${r.v / max * 100}%"></span></span><span class="rank-amt num">${nb(r.v)}</span><span class="rank-note num">${r.k === 'narvik' ? '' : 'Narvik ' + chgText(pct(me, r.v))}</span><span></span></div>`).join('')}</div>
+      <details class="all-numbers"><summary>Vis alle år</summary><div class="detail-scroll"><table class="num-table"><tr><th>Kr per oppholdsdøgn</th>${ys.map(y => `<th${y === py ? ' class="sel"' : ''}>${y}</th>`).join('')}</tr>
+      ${regs.map(([k, name]) => `<tr${k === 'narvik' ? ' class="sum"' : ''}><td>${esc(name)}</td>${ys.map(y => `<td${y === py ? ' class="sel"' : ''}>${pv[k]?.[y] == null ? '·' : nb(pv[k][y])}</td>`).join('')}</tr>`).join('')}
+      <tr><td>Narvik, endring fra året før</td>${ys.map((y, i) => `<td${y === py ? ' class="sel"' : ''}>${i && pv.narvik[ys[i - 1]] ? chgText(pct(pv.narvik[y], pv.narvik[ys[i - 1]])) : '·'}</td>`).join('')}</tr></table></div></details>
+      <p class="caption">SSBs nøkkeltall «${esc(P.name)}». Utgiftene omfatter både driften (KOSTRA-funksjon 253) og lokalene (261), og er delt på antall døgn beboerne har bodd på institusjonen. Løpende kroner. Kilde: ${ssbLink(P.query, P.url, P.table)}, der definisjonen står.</p>`;
+  }
+
+  // 3. Users of institution services per age group.
+  const U = I.brukere, uv = U?.values || {};
+  const uy = uv.narvik?.['F000-120']?.[year] ? year : null;
+  if (uy) {
+    const all = uv.narvik['F000-120'][uy], gAll = uv.gruppe?.['F000-120']?.[uy];
+    const regs = [['narvik', 'Narvik'], ...N.compare.map(r => [r.key, r.name])];
+    const f1 = x => (x?.per1000 == null ? '·' : nb(x.per1000, 1));
+    const ys = Object.keys(uv.narvik['F000-120']);
+    body += `<h3 class="sub-h">Brukere av institusjonstjenester per 1 000 innbyggere, ${uy}</h3>
+      <p>SSB telte ${nb(all.antall)} brukere av institusjonstjenester i Narvik i ${uy}. Det er ${nb(all.per1000, 1)} per 1 000 innbyggere${gAll ? `, mot ${nb(gAll.per1000, 1)} i ${esc(gName)}` : ''}.</p>
+      <div class="detail-scroll"><table class="num-table"><tr><th>Per 1 000 innbyggere i aldersgruppen</th>${regs.map(([, n]) => `<th>${esc(n)}</th>`).join('')}</tr>
+      ${U.ages.map(a => `<tr${a.code === 'F000-120' ? ' class="sum"' : ''}><td>${esc(a.name)}</td>${regs.map(([k]) => `<td${k === 'narvik' ? ' class="sel"' : ''}>${f1(uv[k]?.[a.code]?.[uy])}${k === 'narvik' && uv.narvik[a.code]?.[uy]?.antall != null ? ` <small>(${nb(uv.narvik[a.code][uy].antall)})</small>` : ''}</td>`).join('')}</tr>`).join('')}</table></div>
+      <details class="all-numbers"><summary>Vis alle år for Narvik og ${esc(gName)}</summary><div class="detail-scroll"><table class="num-table"><tr><th>Per 1 000 innbyggere</th>${ys.map(y => `<th${y === uy ? ' class="sel"' : ''}>${y}</th>`).join('')}</tr>
+      ${U.ages.flatMap(a => [['narvik', 'Narvik'], ['gruppe', gName]].map(([k, n]) => `<tr${k === 'narvik' ? ' class="sum"' : ''}><td>${esc(a.name)}, ${esc(n)}</td>${ys.map(y => `<td${y === uy ? ' class="sel"' : ''}>${f1(uv[k]?.[a.code]?.[y])}</td>`).join('')}</tr>`)).join('')}</table></div></details>
+      <p class="caption">Brukerne er personer SSB har registrert med institusjonstjenester (sykehjem og andre helse- og omsorgsinstitusjoner), ikke antall plasser. Tallet i parentes er antall brukere i Narvik. Antall plasser står under <a href="#eldreomsorg">Kapasitet i eldreomsorgen</a>. Kilde: ${ssbLink(U.query, U.url, U.table)}. · betyr at SSB ikke har tall.</p>`;
+  }
+  return body ? html + body + '</section>' : '';
 }
 
 // «Kapasitet i eldreomsorgen» on the helse og omsorg area page, from data/eldre.json (scripts/fetch_eldre.py):
