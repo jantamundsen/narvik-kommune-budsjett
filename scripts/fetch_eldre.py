@@ -9,6 +9,8 @@ Three sources, shown together on the Helse og omsorg page (omrade.html?omrade=he
   the report shows. That is not an official API: if it stops working, the numbers from the last run are kept.
 - SSB's KOSTRA figures on institution places and the share of the oldest living in an institution or a staffed home
   (tables 11875, 12209 and 12293), for Narvik and the comparison regions in narvik.json.
+- SSB's cost per day in an institution (12209) and the users of institution services per age group (12003), for the
+  section «Sykehjem og andre institusjoner» on the same page.
 - The overliggerdøgn the kommune reports itself, typed in from its reports in config/eldre.json.
 
 Helsedirektoratet counts from the first time a patient is reported ready for discharge, the kommune the days it pays
@@ -53,6 +55,17 @@ SSB = [
     {"key": "dogn_korttid", "table": "12293", "contents": "KOStidsbegrdognp0000", "name": "Døgn per tidsbegrenset opphold, i snitt", "unit": "døgn"},
 ]
 
+# For «Sykehjem og andre institusjoner»: SSB's key figure for what a day in an institution costs (12209, institusjon
+# 253 and lokaler 261 together), for Narvik and the comparison regions.
+DOGNPRIS = [{"key": "dognpris", "table": "12209", "contents": "KOSBDU253261oppd0000", "name": "Utgifter per oppholdsdøgn i institusjon", "unit": "kr"}]
+
+# Users of institution services per age group (12003, tjenestegruppe B), as a count and per 1 000 inhabitants in the group.
+BRUKERE_TABLE = "12003"
+DIM_AGE = "KOKalder0000"
+DIM_GROUP = "KOKTenesteGrp0000"
+AGES = [("F000-120", "Alle aldre"), ("F000-066", "0–66 år"), ("F067-079", "67–79 år"), ("F080-120", "80 år og over")]
+BRUKERE_CONTENTS = {"KOSomsorgantbruk0000": "antall", "KOSPr1000innbyge0000": "per1000"}
+
 SAMDATA_PAGE = "https://www.helsedirektoratet.no/statistikk/samdata-spesialisthelsetjenesten/utskrivningsklare-pasienter-somatikk-bostedskommune"
 SAMDATA_REPORT = "3eefe276-c503-492d-b2c5-6bc66216e027"
 KOMMUNER = "Bostedsomraader til drilldown - Kommuner"
@@ -67,11 +80,11 @@ def ssb_query(table: str, regions: str, contents: list[str]) -> str:
     return f"https://data.ssb.no/api/pxwebapi/v2/tables/{table}/data?" + urllib.parse.urlencode(params, safe="[](),")
 
 
-def ssb(regions: list[dict]) -> list[dict]:
+def ssb(regions: list[dict], measures: list[dict] = SSB) -> list[dict]:
     codes = ",".join(c for r in regions for c in [r["code"], *r.get("earlier", [])])
     out = []
-    for table in dict.fromkeys(m["table"] for m in SSB):
-        ms = [m for m in SSB if m["table"] == table]
+    for table in dict.fromkeys(m["table"] for m in measures):
+        ms = [m for m in measures if m["table"] == table]
         url = ssb_query(table, codes, [m["contents"] for m in ms])
         print(f"Henter {url}", file=sys.stderr)
         raw = {(c[DIM_REGION], c[DIM_CONTENTS], c[DIM_YEAR]): v for c, v in cells(fetch(url)) if v is not None}
@@ -84,6 +97,30 @@ def ssb(regions: list[dict]) -> list[dict]:
             out.append({**m, "url": f"https://www.ssb.no/statbank/table/{table}",
                         "query": ssb_query(table, codes, [m["contents"]]), "values": values})
     return out
+
+
+def brukere(regions: list[dict]) -> dict:
+    """Users of institution services per age group from SSB 12003: {"ages": [...], "values": {region: {age: {year: {antall, per1000}}}}}."""
+    codes = ",".join(c for r in regions for c in [r["code"], *r.get("earlier", [])])
+    params = {"lang": "no", f"valueCodes[{DIM_REGION}]": codes, f"valueCodes[{DIM_AGE}]": ",".join(a for a, _ in AGES),
+              f"valueCodes[{DIM_GROUP}]": "B", f"valueCodes[{DIM_CONTENTS}]": ",".join(BRUKERE_CONTENTS),
+              f"valueCodes[{DIM_YEAR}]": f"from({FIRST_YEAR})"}
+    url = f"https://data.ssb.no/api/pxwebapi/v2/tables/{BRUKERE_TABLE}/data?" + urllib.parse.urlencode(params, safe="[](),")
+    print(f"Henter {url}", file=sys.stderr)
+    raw = {(c[DIM_REGION], c[DIM_AGE], c[DIM_CONTENTS], c[DIM_YEAR]): v for c, v in cells(fetch(url)) if v is not None}
+    years = sorted({k[3] for k in raw})
+    values = {}
+    for r in regions:
+        rc = [r["code"], *r.get("earlier", [])]
+        for age, _ in AGES:
+            for y in years:
+                cell = {}
+                for code, name in BRUKERE_CONTENTS.items():
+                    cell[name] = next((raw[(c, age, code, y)] for c in rc if (c, age, code, y) in raw), None)
+                if any(v is not None for v in cell.values()):
+                    values.setdefault(r["key"], {}).setdefault(age, {})[y] = cell
+    return {"table": BRUKERE_TABLE, "url": f"https://www.ssb.no/statbank/table/{BRUKERE_TABLE}", "query": url,
+            "ages": [{"code": a, "name": n} for a, n in AGES], "values": values}
 
 
 def post(url: str, body: dict, token: str) -> dict:
@@ -177,6 +214,7 @@ def main() -> int:
         "overliggere": overliggere,
         "kommunens_overliggerdogn": json.loads(CONFIG.read_text(encoding="utf-8"))["kommunens_overliggerdogn"],
         "ssb": ssb(regions),
+        "institusjon": {"dognpris": ssb(regions, DOGNPRIS)[0], "brukere": brukere(regions)},
     }
     OUT.write_text(json.dumps(data, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
     print(f"Skrev {OUT.relative_to(ROOT)}", file=sys.stderr)
