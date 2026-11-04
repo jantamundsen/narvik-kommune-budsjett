@@ -10,6 +10,21 @@
    "navn": "Eierskapsmelding 2022",
    "full": "Narvik kommunes eierskapsmelding 2022, med oversikt over eierskapet i 2021",
    "pdf": "https://www.narvik.kommune.no/_f/p1/i0c71d48c-5fd9-4057-8d4d-79b60839adef/eierskapsmelding-2022.pdf"
+  },
+  "nh-2025": {
+   "navn": "Narvik Havn KF, årsregnskap 2025",
+   "full": "Årsregnskap 2025 for Narvik Havn KF, i møteboken til havnestyret 09.03.2026",
+   "pdf": "https://www.narvikhavn.no/wp-content/uploads/2026/04/2026-03-09_13-15-30_FINAL-Boardbook.pdf"
+  },
+  "nh-2024": {
+   "navn": "Narvik Havn KF, årsregnskap 2024",
+   "full": "Årsregnskap 2024 for Narvik Havn KF, i møteboken til havnestyret 18.02.2025 (sak NH25-05)",
+   "pdf": "https://www.narvikhavn.no/wp-content/uploads/2025/02/2025-02-14_15-02-54_FINAL-Boardbook.pdf"
+  },
+  "ksek-2025": {
+   "navn": "K-Sekretariatet IKS, årsregnskap 2025",
+   "full": "Årsregnskap 2025 for K-Sekretariatet IKS, vedlegg i innkallingen til kontrollutvalget i Narvik 11.05.2026",
+   "pdf": "https://www.narvik.kommune.no/~/_f/p1/i8d932004-5a73-4336-a1d9-6ce2baf465e3/innkalling-og-saksliste-kontrollutvalgsmote-narvik-11052026.pdf"
   }
  },
  "aar": "2025",
@@ -54,7 +69,8 @@
   {"id": "arena-nord-utvikling", "navn": "Arena Nord Utvikling AS", "orgnr": "928095134", "form": "AS", "eierandel": 15, "bokfort": 200000, "note": "aksjer",
    "garantier": [{"navn": "Arena Nord", "formal": "FOU", "type": "Selvskyldnergaranti", "ramme": 2250000, "saldo": 2250000, "utloper": "2026"}]},
   {"id": "komrev-nord", "navn": "KomRev Nord IKS", "orgnr": "986574689", "form": "IKS", "eierandel": 3.94, "bokfort": 90001, "note": "andeler", "gruppe": "2", "em_side": 74, "gjeldsansvar": true},
-  {"id": "k-sekretariatet", "navn": "K-Sekretariatet IKS", "orgnr": "988064920", "form": "IKS", "eierandel": 6.24, "bokfort": 83000, "note": "andeler", "gjeldsansvar": true},
+  {"id": "k-sekretariatet", "navn": "K-Sekretariatet IKS", "orgnr": "988064920", "form": "IKS", "eierandel": 6.24, "bokfort": 83000, "note": "andeler", "gjeldsansvar": true,
+   "regnskap_pdf": {"selskap": {"2023": {"driftsinntekter": 11381327, "driftskostnader": 10551013, "lonn": 8834633, "driftsresultat": 830314, "finans": 418397, "aarsresultat": 1248711, "eiendeler": 8696813, "anleggsmidler": 175587, "egenkapital": 7245149, "gjeld": 1451664, "langsiktig_gjeld": 0, "kilde": "ksek-2025", "sider": [22, 23]}, "2024": {"driftsinntekter": 11979300, "driftskostnader": 11436761, "lonn": 8983344, "driftsresultat": 542539, "finans": 482815, "aarsresultat": 1025354, "eiendeler": 10052430, "anleggsmidler": 201790, "egenkapital": 6270503, "gjeld": 3781927, "langsiktig_gjeld": 0, "kilde": "ksek-2025", "sider": [22, 23]}, "2025": {"driftsinntekter": 12498000, "driftskostnader": 11842369, "lonn": 9661321, "driftsresultat": 655631, "finans": 485394, "aarsresultat": 1141025, "eiendeler": 8944849, "anleggsmidler": 233206, "egenkapital": 6411528, "gjeld": 2533321, "langsiktig_gjeld": 0, "kilde": "ksek-2025", "sider": [22, 23]}}}},
   {"id": "narvikhallen", "navn": "Narvikhallen AS", "orgnr": "967888451", "form": "AS", "eierandel": 100, "bokfort": 68000, "note": "aksjer", "gruppe": "2", "em_side": 70},
   {"id": "beisfjord-vannverk", "navn": "Beisfjord Vannverk SA", "orgnr": "970235760", "form": "SA", "eierandel": null, "bokfort": 48000, "note": "andeler"},
   {"id": "ofoten-brann", "navn": "Ofoten brann og redning IKS", "orgnr": "993194964", "form": "IKS", "eierandel": 87.33, "bokfort": 40724, "note": "andeler", "gruppe": "1", "em_side": 66, "gjeldsansvar": true,
@@ -65,7 +81,8 @@
   {"id": "kjeldebotn-vannverk", "navn": "Kjeldebotn Vannverk SA", "orgnr": "970921982", "form": "SA", "eierandel": null, "bokfort": 9600, "note": "andeler"},
   {"id": "kjeldebotn-helse-og-aldersbygg", "navn": "Kjeldebotn Helse- og aldersbygg SA", "orgnr": "963458746", "form": "SA", "eierandel": null, "bokfort": 6000, "note": "andeler"},
   {"id": "biblioteksentralen", "navn": "Biblioteksentralen SA", "orgnr": "910568183", "form": "SA", "eierandel": 11.11, "bokfort": 5405, "note": "andeler"},
-  {"id": "narvik-havn", "navn": "Narvik Havn KF", "orgnr": "974789019", "form": "KF", "eierandel": 100, "bokfort": 1, "note": "andeler", "gruppe": "1", "em_side": 50, "gjeldsansvar": true},
+  {"id": "narvik-havn", "navn": "Narvik Havn KF", "orgnr": "974789019", "form": "KF", "eierandel": 100, "bokfort": 1, "note": "andeler", "gruppe": "1", "em_side": 50, "gjeldsansvar": true,
+   "regnskap_pdf": {"merknad": "Tallene for 2024 er slik de står i årsregnskapet for 2025. Der er 2024 endret fra årsregnskapet for 2024, som viste et årsresultat på 1,9 mill. kr.", "enhet": "Foretaket fører regnskapet i hele tusen kroner.", "selskap": {"2023": {"driftsinntekter": 100764000, "driftskostnader": 79161000, "lonn": 25907000, "driftsresultat": 21603000, "finans": -14263000, "aarsresultat": 7340000, "eiendeler": 571043000, "anleggsmidler": 517114000, "egenkapital": 172102000, "gjeld": 398941000, "langsiktig_gjeld": 374833000, "kilde": "nh-2024", "sider": [17, 18]}, "2024": {"driftsinntekter": 112448000, "driftskostnader": 90753000, "lonn": 25549000, "driftsresultat": 21695000, "finans": -17759000, "aarsresultat": 3936000, "eiendeler": 700886000, "anleggsmidler": 599218000, "egenkapital": 176038000, "gjeld": 524847000, "langsiktig_gjeld": 463234000, "kilde": "nh-2025", "sider": [12, 13]}, "2025": {"driftsinntekter": 124017000, "driftskostnader": 101452000, "lonn": 31012000, "driftsresultat": 22566000, "finans": -19923000, "aarsresultat": 2643000, "eiendeler": 676848000, "anleggsmidler": 613484000, "egenkapital": 181320000, "gjeld": 495528000, "langsiktig_gjeld": 478263000, "kilde": "nh-2025", "sider": [12, 13]}}}},
   {"id": "narvik-vann", "navn": "Narvik Vann KF", "orgnr": "986377395", "form": "KF", "eierandel": 100, "bokfort": 1, "note": "andeler", "gruppe": "1", "em_side": 52, "gjeldsansvar": true,
    "kf_lan": {"belop": 851252590, "forrige": 754650000, "tekst": "Lån kommunen har tatt opp til vann og avløp, ført som lån til andres investeringer i note 7"}},
   {"id": "klp", "navn": "KLP (Kommunal Landspensjonskasse)", "orgnr": "938708606", "form": "GFS", "eierandel": null, "bokfort": 117893237, "note": "andeler", "ingen_regnskap": true,
