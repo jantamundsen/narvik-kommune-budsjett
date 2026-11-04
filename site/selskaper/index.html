@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<base href="/">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Selskapene Narvik kommune eier helt eller delvis: eierandel, bokført verdi i kommunens regnskap, og selskapenes egne regnskap med inntekter, resultat og egenkapital fra Brønnøysundregistrene.">
+<title>Kommunalt eide selskaper i Narvik: eierandeler og regnskap · Åpne tall for Narvik</title>
+<link rel="canonical" href="https://narviktall.no/selskaper/">
+<meta property="og:url" content="https://narviktall.no/selskaper/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Åpne tall for Narvik">
+<meta property="og:locale" content="nb_NO">
+<meta property="og:title" content="Kommunalt eide selskaper i Narvik: eierandeler og regnskap · Åpne tall for Narvik">
+<meta property="og:description" content="Selskapene Narvik kommune eier helt eller delvis: eierandel, bokført verdi i kommunens regnskap, og selskapenes egne regnskap med inntekter, resultat og egenkapital fra Brønnøysundregistrene.">
+<meta property="og:image" content="https://narviktall.no/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Åpne tall for Narvik: regnskap, budsjett og befolkning i Narvik kommune, med kilde for hvert tall">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="style.css?v=2026-11-04">
+</head>
+<body>
+<div class="wrap">
+  <div class="site-head">
+    <nav class="site-nav" aria-label="Sider"><a class="brand" href="./">Åpne tall for Narvik</a><a href="saker">Utvalgte saker</a><a href="okonomi" aria-current="true">Økonomi</a><a href="befolkning">Befolkning</a><a href="bolig">Bolig</a><a href="arbeid">Arbeid</a><a href="naering">Næringsliv</a><a href="andre-tall">Andre tall</a><a href="om">Om siden</a></nav>
+    <nav class="sub-nav" aria-label="Økonomi"><a href="okonomi" data-aar>Utgifter</a><a href="inntekter" data-aar>Inntekter</a><a href="gjeld" data-aar>Gjeld</a><a href="selskaper/" aria-current="page">Selskaper</a><span class="sub-sep" aria-hidden="true"></span><a href="budsjett">Budsjett</a><a href="tiltak">Innsparinger</a><a href="lopende">Året så langt</a></nav>
+  </div>
+  <header>
+    <div class="eyebrow">Narvik kommune · tall fra årsregnskapet og Brønnøysundregistrene</div>
+    <h1>Kommunalt eide selskaper</h1>
+    <p class="lead" id="lead"></p>
+  </header>
+
+  <section aria-label="Nøkkeltall">
+    <div class="stats3 one" id="summary"></div>
+    <p class="caption" id="summary-caption"></p>
+  </section>
+
+  <section aria-labelledby="h-list" id="liste">
+    <div class="section-head">
+      <h2 id="h-list">Selskapene</h2>
+      <p class="lead" id="list-lead"></p>
+    </div>
+    <div class="seg cmp-pick" role="group" aria-label="Vis selskaper" id="pick"></div>
+    <div class="ptable"><table id="list"></table></div>
+    <p class="caption" id="list-caption"></p>
+  </section>
+
+  <section aria-labelledby="h-money" id="penger">
+    <div class="section-head">
+      <h2 id="h-money">Penger og ansvar mellom kommunen og selskapene</h2>
+      <p class="lead" id="money-lead"></p>
+    </div>
+    <div class="ptable"><table id="money"></table></div>
+    <p class="caption" id="money-caption"></p>
+    <h3 class="sub-h">Garantier kommunen har stilt for selskaper den eier</h3>
+    <div class="ptable"><table id="guarantees"></table></div>
+    <p class="caption" id="guarantees-caption"></p>
+  </section>
+
+  <section aria-labelledby="h-notes">
+    <h2 id="h-notes">Slik leser du tallene</h2>
+    <div class="notes">
+      <div><h3>Bokført verdi</h3><p>Det kommunen betalte for aksjene eller andelene, slik de står i kommunens balanse. Den endres ikke når selskapet tjener penger, og er ikke det selskapet er verdt i dag.</p></div>
+      <div><h3>Egenkapital</h3><p>Selskapets eiendeler minus gjelden, slik selskapet selv fører dem. Den tilhører alle eierne etter eierandel. Heller ikke egenkapitalen er en markedsverdi.</p></div>
+      <div><h3>Selskap og konsern</h3><p>Noen selskaper eier egne datterselskaper. Konserntallene tar med datterselskapene. Tabellen viser konserntallene der de finnes.</p></div>
+      <div><h3>Kommunale foretak</h3><p>Narvik Havn KF og Narvik Vann KF er en del av kommunen som juridisk person. De har egne regnskap, men de står ikke i Regnskapsregisteret.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Kilde: <span id="sources"></span> Hentet <span id="generated"></span>. <a href="https://github.com/jtkarlsen/narvik-kommune-budsjett" target="_blank" rel="noopener">Kildekode</a>.</span>
+    <span>Et åpent hobbyprosjekt laget av <a href="https://janamundsen.dev" target="_blank" rel="noopener">Jan Tore Amundsen</a>, ikke av Narvik kommune. <a href="om">Om siden</a>.</span>
+  </footer>
+</div>
+<script src="common.js?v=2026-11-04"></script>
+<script src="selskaper.js?v=2026-11-04"></script>
+</body>
+</html>

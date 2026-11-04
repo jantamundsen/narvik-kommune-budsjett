@@ -652,3 +652,25 @@ a.front-area:hover b, .front-area > a:hover b { color: var(--accent); }
 .sankey-tip { position: absolute; z-index: 2; max-width: min(320px, calc(100% - 24px)); background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; box-shadow: 0 6px 20px rgba(0,0,0,0.12); padding: 10px 12px; font-size: 0.85rem; pointer-events: none; }
 .sankey-tip b { display: block; margin-bottom: 4px; }
 .sankey-tip ul { margin: 0; padding-left: 16px; color: var(--ink-2); }
+
+/* selskaper/<id>: facts about the company from Enhetsregisteret. */
+dl.facts { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 8px 20px; background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 16px 20px; }
+dl.facts dt { font-weight: 600; color: var(--ink-2); font-size: 0.9rem; }
+dl.facts dd { margin: 0; }
+.ptable td.wrap-cell { white-space: normal; text-align: left; }
+.ptable table.own { min-width: 0; }
+.ptable table.own td:last-child { white-space: normal; text-align: left; }
+@media (max-width: 560px) { dl.facts { grid-template-columns: 1fr; gap: 2px; } dl.facts dd { margin-bottom: 8px; } }
+#selskap { display: grid; gap: 56px; min-width: 0; }
+#selskap > *, #selskap section > * { min-width: 0; }
+#selskap header { display: grid; gap: 12px; }
+.ptable table.own th:not(:first-child) { text-align: left; }
+@media (max-width: 680px) { #regnskap .ptable { overflow-x: auto; } }
+.ptable table#acc-table { min-width: 0; }
+@media (max-width: 680px) {
+  #selskap .stats3, #summary.stats3.one { grid-template-columns: 1fr; }
+  #list.stack tr { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #acc-table { font-size: 0.85rem; }
+  #acc-table th, #acc-table td { padding: 8px 6px; }
+  .ptable table.own.stack tr { grid-template-columns: 1fr; }
+}
