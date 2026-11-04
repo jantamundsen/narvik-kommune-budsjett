@@ -29,6 +29,15 @@ function latest(s, typ = accType(s)) {
   return { typ, y, r: ys[y] };
 }
 const page = s => (s.orgnr ? `selskaper/${s.id}` : null);
+// The kommune's share of the equity, worked out here: its share of the company times the equity in the company's
+// latest accounts (the group's where there is one). Not a number anyone has published, so it is marked «beregnet».
+function ownEquity(s) {
+  const L = latest(s);
+  if (!L || s.eierandel == null || L.r.egenkapital == null) return null;
+  return { v: s.eierandel / 100 * L.r.egenkapital, L };
+}
+const calcTag = ' <span class="tag">beregnet</span>';
+const law = k => `<a href="${h(D.lover[k].url)}" target="_blank" rel="noopener">${h(D.lover[k].navn)}</a>`;
 
 async function start() {
   try {
@@ -56,13 +65,15 @@ function drawList() {
     + `Aksjene og andelene står med ${kr(T.bokfort.belop)} i kommunens balanse ved utgangen av ${y}. Hvert selskap har en egen side med eierskapet og selskapets eget regnskap.`;
 
   const ownGuar = S.flatMap(s => s.garantier || []).concat(D.andre_garantier || []);
-  const guarSum = ownGuar.reduce((a, g) => a + g.saldo, 0);
+  const eq = S.map(ownEquity).filter(Boolean);
+  const eqSum = eq.reduce((a, x) => a + x.v, 0);
+  const eqYears = [...new Set(eq.map(x => x.L.y))].sort();
   document.getElementById('summary').innerHTML = [
     ['Aksjer og andeler i kommunens balanse', kr(T.bokfort.belop), `bokført verdi 31.12.${y}`, rs(T.bokfort.side)],
     ['Utbytte til kommunen', kr(T.utbytte.belop), `i ${y}, mot ${kr(T.utbytte.forrige)} i ${y - 1}`, rs(T.utbytte.side)],
-    ['Garantier for selskaper kommunen eier', kr(guarSum), `31.12.${y}, av ${kr(T.garantier.belop)} i garantier i alt`, rs(N.garantier_side)],
+    [`Kommunens andel av selskapenes egenkapital${calcTag}`, kr(eqSum), `eierandel ganger egenkapital, ${eq.length} selskaper`, 'eierandel fra årsregnskapet, egenkapital fra Regnskapsregisteret'],
   ].map(([label, big, sub, src]) => `<div class="stat"><span class="sub">${label}</span><span class="big num">${big}</span><span class="sub">${sub}</span><span class="caption">Kilde: ${src}</span></div>`).join('');
-  document.getElementById('summary-caption').textContent = 'Årsregnskapet viser ikke hvilke selskaper utbyttet kom fra.';
+  document.getElementById('summary-caption').textContent = `Årsregnskapet viser ikke hvilke selskaper utbyttet kom fra. Andelen av egenkapitalen er regnet ut her for selskapene som har både oppgitt eierandel og regnskap i Regnskapsregisteret, med siste regnskapsår (${eqYears.join(', ')}). Der selskapet er morselskap, er konsernets egenkapital brukt, og den kan inneholde andeler som tilhører andre eiere av datterselskapene.`;
 
   const withAcc = S.filter(s => latest(s));
   document.getElementById('list-lead').textContent = `Eierandel og bokført verdi fra kommunens årsregnskap for ${y}. Inntekter, resultat og egenkapital er selskapenes egne tall fra Regnskapsregisteret, for det siste året selskapet har levert, og for hele konsernet der selskapet eier datterselskaper. ${withAcc.length} av selskapene har regnskap der.`;
@@ -92,14 +103,15 @@ function drawList() {
   const table = document.getElementById('list');
   const drawTable = () => {
     const rows = order.filter(s => pick === 'alle' || (pick === 'hel' ? s.eierandel === 100 : s.eierandel !== 100));
-    table.innerHTML = `<thead><tr><th>Selskap</th><th>Kommunens eierandel</th><th>Bokført verdi i kommunens balanse</th><th>Driftsinntekter</th><th>Årsresultat</th><th>Egenkapital</th></tr></thead><tbody>`
+    table.innerHTML = `<thead><tr><th>Selskap</th><th>Kommunens eierandel</th><th>Bokført verdi i kommunens balanse</th><th>Driftsinntekter</th><th>Årsresultat</th><th>Egenkapital</th><th>Kommunens andel av egenkapitalen (beregnet)</th></tr></thead><tbody>`
       + rows.map(s => {
         const L = latest(s), p = page(s);
         const what = L ? `${s.form} · ${L.typ === 'konsern' ? 'konsern, ' : ''}${L.y}` : `${s.form} · ${s.ingen_regnskap ? 'ikke et vanlig selskapsregnskap' : s.orgnr ? 'ikke i Regnskapsregisteret' : 'ikke funnet i Enhetsregisteret'}`;
         const v = k => (L ? kr(L.r[k]) : '');
         return `<tr><td>${p ? `<a href="${p}">${h(s.navn)}</a>` : h(s.navn)}<br><span class="muted">${h(what)}</span></td>`
           + `<td class="num">${share(s.eierandel)}</td><td class="num">${kr(s.bokfort)}</td>`
-          + ['driftsinntekter', 'aarsresultat', 'egenkapital'].map(k => `<td class="num${L ? '' : ' empty'}">${v(k)}</td>`).join('') + '</tr>';
+          + ['driftsinntekter', 'aarsresultat', 'egenkapital'].map(k => `<td class="num${L ? '' : ' empty'}">${v(k)}</td>`).join('')
+          + (E => `<td class="num${E ? '' : ' empty'}">${E ? kr(E.v) : ''}</td>`)(ownEquity(s)) + '</tr>';
       }).join('') + '</tbody>';
     stackable(table);
   };
@@ -112,6 +124,35 @@ function drawList() {
 
   drawMoney(ownGuar);
   document.getElementById('sources').innerHTML = `${rs(N.aksjer_side, D.kilder[D.kilde].full)}; Regnskapsregisteret og Enhetsregisteret, Brønnøysundregistrene (<a href="https://data.brreg.no/" target="_blank" rel="noopener">data.brreg.no</a>, NLOD).`;
+}
+
+// What the kommune answers for in a KF or IKS: all of a KF's debt, an IKS's debt times the share. For Narvik Vann KF
+// the loans are taken up by the kommune and listed in its own note on loans. An IKS's share is worked out here from
+// the company's own accounts (not the group's: the IKS answers only for its own debt).
+function debtShare(s) {
+  if (s.kf_lan) return { v: s.kf_lan.belop, text: `${h(s.kf_lan.tekst)}: ${kr(s.kf_lan.belop)} 31.12.${D.aar} (${rs(D.noter.lan_side)}). Lånene er med i kommunens egen gjeld.`, src: rs(D.noter.lan_side) };
+  if (s.form === 'KF') return { v: null, text: 'Gjelden står i foretakets eget årsregnskap, som ikke er lagt inn her.' };
+  const L = latest(s, s.regnskap?.selskap ? 'selskap' : null);
+  if (!L || L.r.gjeld == null) return { v: null, text: 'Selskapet har ikke regnskap i Regnskapsregisteret, så gjelden er ikke lagt inn her.' };
+  const v = s.eierandel / 100 * L.r.gjeld;
+  return { v, gjeld: L.r.gjeld, y: L.y, text: `${share(s.eierandel)} av ${kr(L.r.gjeld)} gjeld i selskapet 31.12.${L.y} er ${kr(v)} (beregnet).` };
+}
+
+function drawDebt() {
+  // Foretakene first, where the kommune answers for all of it, then the IKS by share.
+  const list = D.selskaper.filter(s => s.gjeldsansvar).sort((a, b) => (b.form === 'KF') - (a.form === 'KF') || (b.kf_lan ? 1 : 0) - (a.kf_lan ? 1 : 0) || b.eierandel - a.eierandel);
+  const cite = k => `${h(D.lover[k].tekst.replace(/\.$/, ''))} (${law(k)}).`;
+  document.getElementById('debt-lead').innerHTML = `${cite('kf')} ${cite('iks')}`;
+  const t = document.getElementById('debt');
+  t.innerHTML = '<thead><tr><th>Selskap</th><th>Kommunen svarer for</th><th>Selskapets gjeld</th><th>Kommunens del</th></tr></thead><tbody>'
+    + list.map(s => {
+      const g = debtShare(s);
+      const own = s.kf_lan ? `Lån tatt opp av kommunen<br><span class="muted">${rs(D.noter.lan_side)}</span>` : g.gjeld != null ? `${kr(g.gjeld)}<br><span class="muted">${g.y}, <a href="${brregAcc(s.orgnr)}" target="_blank" rel="noopener">Regnskapsregisteret</a></span>` : '<span class="muted">ikke lagt inn</span>';
+      return `<tr><td><a href="${page(s)}">${h(s.navn)}</a></td><td>${s.form === 'KF' ? 'All gjeld' : `${share(s.eierandel)} av gjelden`}</td><td class="num">${own}</td><td class="num">${g.v != null ? kr(g.v) + (s.kf_lan ? '' : calcTag) : '<span class="muted">·</span>'}</td></tr>`;
+    }).join('') + '</tbody>';
+  stackable(t);
+  document.getElementById('debt-caption').innerHTML = `Kilder: listen over gjeldsansvar i ${rs(D.noter.gjeldsansvar_side, D.kilder[D.kilde].navn)}, ${law('kf')} og ${law('iks')}. `
+    + 'Narvik Havn KF, Ofoten brann og redning IKS, KomRev Nord IKS og K-Sekretariatet IKS har ikke regnskap i Regnskapsregisteret, så gjelden deres er ikke lagt inn ennå. For interkommunale selskaper er selskapets egen gjeld brukt, ikke konsernets.';
 }
 
 function drawMoney(guar) {
@@ -129,6 +170,8 @@ function drawMoney(guar) {
   stackable(t);
   document.getElementById('money-caption').textContent = 'Kolonnen for ' + (y - 1) + ' er tallene slik de står i årsregnskapet for ' + y + '.';
 
+  drawDebt();
+  document.getElementById('guarantees-lead').textContent = 'En garanti betyr at kommunen betaler hvis selskapet ikke klarer å betale lånet. Garantiene kommer i tillegg til gjeldsansvaret over, og gjelder selskaper der kommunen ellers ikke svarer for gjelden.';
   const g = document.getElementById('guarantees');
   g.innerHTML = '<thead><tr><th>Garantien gjelder</th><th>Formål</th><th>Garantiramme</th><th>Garantert beløp 31.12.' + y + '</th><th>Utløper</th></tr></thead><tbody>'
     + guar.map(x => {
@@ -151,14 +194,15 @@ function drawCompany(main) {
     return;
   }
   setCanonical('selskaper/' + s.id);
-  const b = s.brreg || {}, y = D.aar, L = latest(s);
+  const b = s.brreg || {}, y = D.aar, L = latest(s), E = ownEquity(s);
   const formText = FORMS[s.form] || s.form;
   const lead = `${s.navn} er et ${formText}${b.kommune ? ` med forretningsadresse i ${b.kommune}` : ''}. `
     + (s.eierandel == null ? 'Narvik kommune har andeler i selskapet, men årsregnskapet oppgir ikke hvor stor andel.' : s.eierandel === 100 ? 'Narvik kommune eier hele selskapet.' : `Narvik kommune eier ${share(s.eierandel)}.`);
   const stats = [
     ['Kommunens eierandel', share(s.eierandel), `31.12.${y}`, rs(D.noter[s.note + '_side'])],
     ['Bokført verdi i kommunens balanse', kr(s.bokfort), `31.12.${y}`, rs(D.noter[s.note + '_side'])],
-    L ? [`Egenkapital${L.typ === 'konsern' ? ', konsern' : ''}`, kr(L.r.egenkapital), `31.12.${L.y}, selskapets eget regnskap`, `<a href="${brregAcc(s.orgnr)}" target="_blank" rel="noopener">Regnskapsregisteret</a>`]
+    E ? [`Kommunens andel av egenkapitalen${calcTag}`, kr(E.v), `${share(s.eierandel)} av ${kr(L.r.egenkapital)} egenkapital i ${L.typ === 'konsern' ? 'konsernet' : 'selskapet'} 31.12.${L.y}`, `<a href="${brregAcc(s.orgnr)}" target="_blank" rel="noopener">Regnskapsregisteret</a> og årsregnskapet`]
+    : L ? [`Egenkapital${L.typ === 'konsern' ? ', konsern' : ''}`, kr(L.r.egenkapital), `31.12.${L.y}, selskapets eget regnskap`, `<a href="${brregAcc(s.orgnr)}" target="_blank" rel="noopener">Regnskapsregisteret</a>`]
       : ['Ansatte', b.ansatte != null ? nb(b.ansatte) : '·', 'registrert i Enhetsregisteret', `<a href="${brregPage(s.orgnr)}" target="_blank" rel="noopener">Enhetsregisteret</a>`],
   ];
   main.innerHTML = `<header><nav class="crumbs" aria-label="Brødsmuler"><a href="selskaper/">Kommunalt eide selskaper</a><span aria-hidden="true">›</span><span aria-current="page">${h(s.navn)}</span></nav>
@@ -218,7 +262,10 @@ function drawOwnership(s) {
   if (s.gruppe) rows.push([`Gruppe ${s.gruppe} i eierskapsmeldingen`, h(D.grupper[s.gruppe]), em(D.grupper.side)]);
   (s.garantier || []).forEach(g => rows.push([`Garanti fra kommunen${g.type ? ` (${h(g.type.toLowerCase())})` : ''}`,
     `${kr(g.saldo)} <span class="muted">31.12.${y}${g.ramme ? `, ramme ${kr(g.ramme)}` : ''}${g.utloper ? `, utløper ${h(g.utloper)}` : ''}</span>`, rs(D.noter.garantier_side)]));
-  if (s.gjeldsansvar) rows.push(['Gjeldsansvar', s.form === 'KF' ? 'Kommunen svarer for all gjeld i foretaket.' : `Kommunen svarer for selskapets gjeld etter eierandelen sin, ${share(s.eierandel)}.`, rs(D.noter.gjeldsansvar_side)]);
+  if (s.gjeldsansvar) {
+    const g = debtShare(s);
+    rows.push(['Gjeldsansvar', `${h(D.lover[s.form === 'KF' ? 'kf' : 'iks'].tekst)}${g.text ? `<br><span class="muted">${g.text}</span>` : ''}`, `${rs(D.noter.gjeldsansvar_side)}; ${law(s.form === 'KF' ? 'kf' : 'iks')}`]);
+  }
   const sec = document.getElementById('eierskap');
   sec.innerHTML = `<div class="section-head"><h2 id="h-own">Kommunens eierskap</h2>
       <p class="lead">Fra kommunens årsregnskap for ${y}${s.gruppe ? ' og eierskapsmeldingen fra 2022' : ''}.</p></div>

@@ -18,13 +18,18 @@
   "aksjer_side": 16,
   "andeler_side": 17,
   "garantier_side": 21,
-  "gjeldsansvar_side": 21
+  "gjeldsansvar_side": 21,
+  "lan_side": 19
  },
  "totaler": {
   "bokfort": {"belop": 274797572, "aksjer": 152310703, "andeler": 122486869, "side": 9, "forrige": 272986774},
   "utbytte": {"belop": 46312082, "forrige": 61397766, "side": 4},
   "aksjekjop": {"belop": 8033800, "forrige": 11993604, "side": 6},
   "garantier": {"belop": 155071775, "side": 21}
+ },
+ "lover": {
+  "kf": {"navn": "kommuneloven § 9-1", "url": "https://lovdata.no/lov/2018-06-22-83/%C2%A79-1", "tekst": "Et kommunalt foretak er en del av kommunen, så kommunen svarer for all gjeld i foretaket."},
+  "iks": {"navn": "IKS-loven § 3", "url": "https://lovdata.no/lov/1999-01-29-6/%C2%A73", "tekst": "Hver eier av et interkommunalt selskap svarer for en like stor del av selskapets gjeld som eierandelen, hvis ikke selskapsavtalen sier noe annet. Kreditor må først kreve selskapet."}
  },
  "grupper": {
   "1": "Selskaper med stor betydning for kommunal tjenesteyting, som utfører lovpålagte oppgaver eller oppgaver som anses viktige for kommunens tjenester til befolkningen.",
@@ -61,7 +66,8 @@
   {"id": "kjeldebotn-helse-og-aldersbygg", "navn": "Kjeldebotn Helse- og aldersbygg SA", "orgnr": "963458746", "form": "SA", "eierandel": null, "bokfort": 6000, "note": "andeler"},
   {"id": "biblioteksentralen", "navn": "Biblioteksentralen SA", "orgnr": "910568183", "form": "SA", "eierandel": 11.11, "bokfort": 5405, "note": "andeler"},
   {"id": "narvik-havn", "navn": "Narvik Havn KF", "orgnr": "974789019", "form": "KF", "eierandel": 100, "bokfort": 1, "note": "andeler", "gruppe": "1", "em_side": 50, "gjeldsansvar": true},
-  {"id": "narvik-vann", "navn": "Narvik Vann KF", "orgnr": "986377395", "form": "KF", "eierandel": 100, "bokfort": 1, "note": "andeler", "gruppe": "1", "em_side": 52, "gjeldsansvar": true},
+  {"id": "narvik-vann", "navn": "Narvik Vann KF", "orgnr": "986377395", "form": "KF", "eierandel": 100, "bokfort": 1, "note": "andeler", "gruppe": "1", "em_side": 52, "gjeldsansvar": true,
+   "kf_lan": {"belop": 851252590, "forrige": 754650000, "tekst": "Lån kommunen har tatt opp til vann og avløp, ført som lån til andres investeringer i note 7"}},
   {"id": "klp", "navn": "KLP (Kommunal Landspensjonskasse)", "orgnr": "938708606", "form": "GFS", "eierandel": null, "bokfort": 117893237, "note": "andeler", "ingen_regnskap": true,
    "merknad": "Egenkapitalinnskudd i pensjonsselskapet KLP. Alle kommuner med pensjonsordning i KLP må skyte inn egenkapital, så dette er ikke et selskap kommunen har valgt å eie."},
   {"id": "filmparken", "navn": "Filmparken AS", "orgnr": null, "form": "AS", "eierandel": 0.5, "bokfort": 1, "note": "aksjer"},

@@ -25,7 +25,7 @@
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="stylesheet" href="style.css?v=2026-11-04">
+<link rel="stylesheet" href="style.css?v=2026-11-04b">
 </head>
 <body>
 <div class="wrap">
@@ -61,7 +61,12 @@
     </div>
     <div class="ptable"><table id="money"></table></div>
     <p class="caption" id="money-caption"></p>
-    <h3 class="sub-h">Garantier kommunen har stilt for selskaper den eier</h3>
+    <h3 class="sub-h">Gjeld kommunen svarer for etter loven</h3>
+    <p id="debt-lead"></p>
+    <div class="ptable"><table id="debt"></table></div>
+    <p class="caption" id="debt-caption"></p>
+    <h3 class="sub-h">Garantier kommunen har stilt i tillegg</h3>
+    <p id="guarantees-lead"></p>
     <div class="ptable"><table id="guarantees"></table></div>
     <p class="caption" id="guarantees-caption"></p>
   </section>
@@ -72,7 +77,8 @@
       <div><h3>Bokført verdi</h3><p>Det kommunen betalte for aksjene eller andelene, slik de står i kommunens balanse. Den endres ikke når selskapet tjener penger, og er ikke det selskapet er verdt i dag.</p></div>
       <div><h3>Egenkapital</h3><p>Selskapets eiendeler minus gjelden, slik selskapet selv fører dem. Den tilhører alle eierne etter eierandel. Heller ikke egenkapitalen er en markedsverdi.</p></div>
       <div><h3>Selskap og konsern</h3><p>Noen selskaper eier egne datterselskaper. Konserntallene tar med datterselskapene. Tabellen viser konserntallene der de finnes.</p></div>
-      <div><h3>Kommunale foretak</h3><p>Narvik Havn KF og Narvik Vann KF er en del av kommunen som juridisk person. De har egne regnskap, men de står ikke i Regnskapsregisteret.</p></div>
+      <div><h3>Kommunale foretak</h3><p>Narvik Havn KF og Narvik Vann KF er en del av kommunen som juridisk person, så kommunen svarer for all gjelden deres. De har egne regnskap, men de står ikke i Regnskapsregisteret.</p></div>
+      <div><h3>Kommunens andel av egenkapitalen</h3><p>Eierandelen ganget med selskapets egenkapital, regnet ut her og merket «beregnet». Det er ikke en markedsverdi.</p></div>
     </div>
   </section>
 
@@ -81,7 +87,7 @@
     <span>Et åpent hobbyprosjekt laget av <a href="https://janamundsen.dev" target="_blank" rel="noopener">Jan Tore Amundsen</a>, ikke av Narvik kommune. <a href="om">Om siden</a>.</span>
   </footer>
 </div>
-<script src="common.js?v=2026-11-04"></script>
-<script src="selskaper.js?v=2026-11-04"></script>
+<script src="common.js?v=2026-11-04b"></script>
+<script src="selskaper.js?v=2026-11-04b"></script>
 </body>
 </html>
