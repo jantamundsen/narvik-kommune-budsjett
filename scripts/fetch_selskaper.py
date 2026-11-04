@@ -10,8 +10,9 @@ note 5 of the kommune's årsregnskap. For each organisation number this script f
                           company is the parent of a group, for the group (KONSERN)
 
 Regnskapsregisteret only gives the last three years. Years already in the data file are kept when they drop out
-of the API, so the series grows each year. Kommunale foretak (KF) and some IKS do not report to the register;
-their pages show the ownership only.
+of the API, so the series grows each year. Kommunale foretak (KF) and some IKS do not report to the register; for
+those, the accounts can be typed in from their own årsregnskap under «regnskap_pdf» in the config, with the
+document and pages for each year.
 
 If Brønnøysund cannot be reached, the numbers from the last run are kept. Only the standard library is used.
 
@@ -114,10 +115,20 @@ def main() -> int:
             try:
                 s["brreg"] = enhet(s["orgnr"])
                 r = {} if s.get("ingen_regnskap") else regnskap(s["orgnr"])
-                # Keep the years that have dropped out of the API (it only gives the last three).
+                # Keep the years that have dropped out of the API (it only gives the last three). Years typed in from
+                # a PDF come from the config each time, so a correction there is not hidden by the old data file.
                 for typ, years in (prev.get("regnskap") or {}).items():
                     for y, v in years.items():
-                        r.setdefault(typ, {}).setdefault(y, v)
+                        if not v.get("fra_pdf"):
+                            r.setdefault(typ, {}).setdefault(y, v)
+                # Companies that do not report to the register: the accounts typed in from their own årsregnskap
+                # (config «regnskap_pdf»), each year with document and pages. The register wins where both exist.
+                pdf = s.pop("regnskap_pdf", None)
+                if pdf:
+                    for typ in ("selskap", "konsern"):
+                        for y, v in (pdf.get(typ) or {}).items():
+                            r.setdefault(typ, {}).setdefault(y, {**v, "fra_pdf": True})
+                    s["regnskap_merknad"] = " ".join(x for x in (pdf.get("enhet"), pdf.get("merknad")) if x) or None
                 s["regnskap"] = {t: dict(sorted(ys.items())) for t, ys in sorted(r.items())}
             except Exception as e:
                 if not prev:
@@ -137,7 +148,7 @@ def main() -> int:
     }
     OUT.write_text(json.dumps(data, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
     with_acc = sum(1 for s in out if s.get("regnskap"))
-    print(f"Skrev {OUT.relative_to(ROOT)}: {len(out)} selskaper, {with_acc} med regnskap fra Brønnøysund", file=sys.stderr)
+    print(f"Skrev {OUT.relative_to(ROOT)}: {len(out)} selskaper, {with_acc} med regnskap", file=sys.stderr)
     return 0
 
 
