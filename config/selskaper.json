@@ -1,0 +1,85 @@
+{
+ "_comment": "Selskapene Narvik kommune eier eller har andeler i, tastet inn fra note 5 i årsregnskapet (eierandel i prosent og bokført verdi 31.12 i kroner). Garantier fra note 10, gjeldsansvar fra listen under note 10. Gruppe og eierskapsmelding-side fra Eierskapsmelding 2022. scripts/fetch_selskaper.py henter selskapsopplysninger og regnskap fra Brønnøysundregistrene for hvert orgnr og skriver site/data/selskaper.json. Sider er sidetall i PDF-en. Legg inn nytt år fra note 5 når neste årsregnskap kommer (juni).",
+ "kilder": {
+  "rs-2025": {
+   "navn": "Årsregnskap 2025",
+   "full": "Narvik kommunes årsregnskap 2025, formannskapet 04.06.2026 (sak 025/26)",
+   "pdf": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022268851&dokid=2060597&versjon=1&variant=A"
+  },
+  "em-2022": {
+   "navn": "Eierskapsmelding 2022",
+   "full": "Narvik kommunes eierskapsmelding 2022, med oversikt over eierskapet i 2021",
+   "pdf": "https://www.narvik.kommune.no/_f/p1/i0c71d48c-5fd9-4057-8d4d-79b60839adef/eierskapsmelding-2022.pdf"
+  }
+ },
+ "aar": "2025",
+ "kilde": "rs-2025",
+ "noter": {
+  "aksjer_side": 16,
+  "andeler_side": 17,
+  "garantier_side": 21,
+  "gjeldsansvar_side": 21,
+  "lan_side": 19
+ },
+ "totaler": {
+  "bokfort": {"belop": 274797572, "aksjer": 152310703, "andeler": 122486869, "side": 9, "forrige": 272986774},
+  "utbytte": {"belop": 46312082, "forrige": 61397766, "side": 4},
+  "aksjekjop": {"belop": 8033800, "forrige": 11993604, "side": 6},
+  "garantier": {"belop": 155071775, "side": 21}
+ },
+ "lover": {
+  "kf": {"navn": "kommuneloven § 9-1", "url": "https://lovdata.no/lov/2018-06-22-83/%C2%A79-1", "tekst": "Et kommunalt foretak er en del av kommunen, så kommunen svarer for all gjeld i foretaket."},
+  "iks": {"navn": "IKS-loven § 3", "url": "https://lovdata.no/lov/1999-01-29-6/%C2%A73", "tekst": "Hver eier av et interkommunalt selskap svarer for en like stor del av selskapets gjeld som eierandelen, hvis ikke selskapsavtalen sier noe annet. Kreditor må først kreve selskapet."}
+ },
+ "grupper": {
+  "1": "Selskaper med stor betydning for kommunal tjenesteyting, som utfører lovpålagte oppgaver eller oppgaver som anses viktige for kommunens tjenester til befolkningen.",
+  "2": "Selskaper som er viktige for å gjennomføre kommunens strategier og planer, og der kommunen har en langsiktig horisont på eierskapet.",
+  "3": "Virksomheter som helt eller delvis driver utenfor kommunens kjerneområde.",
+  "side": 46
+ },
+ "selskaper": [
+  {"id": "nordkraft", "navn": "Nordkraft AS", "orgnr": "986947884", "form": "AS", "eierandel": 35.6, "bokfort": 86559000, "note": "aksjer", "gruppe": "1", "em_side": 61},
+  {"id": "narvikgarden", "navn": "Narvikgården AS", "orgnr": "983387381", "form": "AS", "eierandel": 100, "bokfort": 57500000, "note": "aksjer", "gruppe": "1", "em_side": 59,
+   "merknad": "Narvikgården kjøpte kommunens aksjer i Narvik Kapital AS for 1 krone i 2025."},
+  {"id": "agenda-aktiv", "navn": "Agenda Aktiv AS", "orgnr": "872414762", "form": "AS", "eierandel": 100, "bokfort": 5000001, "note": "aksjer", "gruppe": "1", "em_side": 53,
+   "merknad": "Står som Agenda AS i årsregnskapet og eierskapsmeldingen, med samme organisasjonsnummer. Kommunens eierandel økte med 11,7 prosentpoeng i 2025.",
+   "garantier": [{"navn": "Agenda Aktiv AS", "formal": "Omsorg", "type": "Selvskyldnergaranti", "saldo": 3527801, "utloper": "2029"}]},
+  {"id": "hrs", "navn": "Hålogaland Ressursselskap IKS", "orgnr": "959019126", "form": "IKS", "eierandel": 33.34, "bokfort": 3110900, "note": "andeler", "gruppe": "1", "em_side": 63, "gjeldsansvar": true},
+  {"id": "futurum", "navn": "Futurum AS", "orgnr": "974645130", "form": "AS", "eierandel": 100, "bokfort": 1677000, "note": "aksjer", "gruppe": "1", "em_side": 57},
+  {"id": "ballangen-flerbrukshall", "navn": "Ballangen Flerbrukshall SA", "orgnr": "983082807", "form": "SA", "eierandel": null, "bokfort": 1200000, "note": "andeler", "gruppe": "2", "em_side": 73,
+   "garantier": [{"navn": "Ballangen Flerbrukshall SA", "formal": "Idrett", "type": null, "ramme": 9000000, "saldo": 6538106, "utloper": "2040"}]},
+  {"id": "en-helt-ra-by", "navn": "En Helt Rå By AS", "orgnr": "935188725", "form": "AS", "eierandel": 33.33, "bokfort": 510000, "note": "aksjer", "merknad": "Kommunen kom inn som eier i 2025."},
+  {"id": "ballangen-energi", "navn": "Ballangen Energi AS", "orgnr": "971592117", "form": "AS", "eierandel": 67, "bokfort": 455600, "note": "aksjer", "gruppe": "2", "em_side": 71},
+  {"id": "kjeldebotn-bygdeutviklingsselskap", "navn": "Kjeldebotn Bygdeutviklingsselskap AS", "orgnr": "960603451", "form": "AS", "eierandel": 46.77, "bokfort": 300000, "note": "aksjer"},
+  {"id": "arena-nord-utvikling", "navn": "Arena Nord Utvikling AS", "orgnr": "928095134", "form": "AS", "eierandel": 15, "bokfort": 200000, "note": "aksjer",
+   "garantier": [{"navn": "Arena Nord", "formal": "FOU", "type": "Selvskyldnergaranti", "ramme": 2250000, "saldo": 2250000, "utloper": "2026"}]},
+  {"id": "komrev-nord", "navn": "KomRev Nord IKS", "orgnr": "986574689", "form": "IKS", "eierandel": 3.94, "bokfort": 90001, "note": "andeler", "gruppe": "2", "em_side": 74, "gjeldsansvar": true},
+  {"id": "k-sekretariatet", "navn": "K-Sekretariatet IKS", "orgnr": "988064920", "form": "IKS", "eierandel": 6.24, "bokfort": 83000, "note": "andeler", "gjeldsansvar": true},
+  {"id": "narvikhallen", "navn": "Narvikhallen AS", "orgnr": "967888451", "form": "AS", "eierandel": 100, "bokfort": 68000, "note": "aksjer", "gruppe": "2", "em_side": 70},
+  {"id": "beisfjord-vannverk", "navn": "Beisfjord Vannverk SA", "orgnr": "970235760", "form": "SA", "eierandel": null, "bokfort": 48000, "note": "andeler"},
+  {"id": "ofoten-brann", "navn": "Ofoten brann og redning IKS", "orgnr": "993194964", "form": "IKS", "eierandel": 87.33, "bokfort": 40724, "note": "andeler", "gruppe": "1", "em_side": 66, "gjeldsansvar": true,
+   "merknad": "Står som Ofoten interkommunale brann- og redningsvesen IKS i årsregnskapet."},
+  {"id": "vardobaiki", "navn": "Várdobáiki AS", "orgnr": "985425329", "form": "AS", "eierandel": 6.44, "bokfort": 20000, "note": "aksjer", "merknad": "Står som Vardobaiki Samiske Senter AS i årsregnskapet."},
+  {"id": "nordnorsk-reiseliv", "navn": "Nordnorsk Reiseliv AS", "orgnr": "994153862", "form": "AS", "eierandel": 0.26, "bokfort": 11000, "note": "aksjer"},
+  {"id": "arn-narvik", "navn": "Arn Narvik AS", "orgnr": "915413943", "form": "AS", "eierandel": 33.33, "bokfort": 10000, "note": "aksjer"},
+  {"id": "kjeldebotn-vannverk", "navn": "Kjeldebotn Vannverk SA", "orgnr": "970921982", "form": "SA", "eierandel": null, "bokfort": 9600, "note": "andeler"},
+  {"id": "kjeldebotn-helse-og-aldersbygg", "navn": "Kjeldebotn Helse- og aldersbygg SA", "orgnr": "963458746", "form": "SA", "eierandel": null, "bokfort": 6000, "note": "andeler"},
+  {"id": "biblioteksentralen", "navn": "Biblioteksentralen SA", "orgnr": "910568183", "form": "SA", "eierandel": 11.11, "bokfort": 5405, "note": "andeler"},
+  {"id": "narvik-havn", "navn": "Narvik Havn KF", "orgnr": "974789019", "form": "KF", "eierandel": 100, "bokfort": 1, "note": "andeler", "gruppe": "1", "em_side": 50, "gjeldsansvar": true},
+  {"id": "narvik-vann", "navn": "Narvik Vann KF", "orgnr": "986377395", "form": "KF", "eierandel": 100, "bokfort": 1, "note": "andeler", "gruppe": "1", "em_side": 52, "gjeldsansvar": true,
+   "kf_lan": {"belop": 851252590, "forrige": 754650000, "tekst": "Lån kommunen har tatt opp til vann og avløp, ført som lån til andres investeringer i note 7"}},
+  {"id": "klp", "navn": "KLP (Kommunal Landspensjonskasse)", "orgnr": "938708606", "form": "GFS", "eierandel": null, "bokfort": 117893237, "note": "andeler", "ingen_regnskap": true,
+   "merknad": "Egenkapitalinnskudd i pensjonsselskapet KLP. Alle kommuner med pensjonsordning i KLP må skyte inn egenkapital, så dette er ikke et selskap kommunen har valgt å eie."},
+  {"id": "filmparken", "navn": "Filmparken AS", "orgnr": null, "form": "AS", "eierandel": 0.5, "bokfort": 1, "note": "aksjer"},
+  {"id": "sagat", "navn": "Sagat AS", "orgnr": null, "form": "AS", "eierandel": 0.04, "bokfort": 100, "note": "aksjer"},
+  {"id": "skjomen-golfpark", "navn": "Skjomen Golfpark AS", "orgnr": "965135383", "form": "AS", "eierandel": 11.96, "bokfort": 1, "note": "aksjer"}
+ ],
+ "andre_garantier": [
+  {"navn": "Aktiv Ballangen AS", "formal": "Omsorg", "type": "Selvskyldnergaranti", "saldo": 11000000, "utloper": "2029",
+   "merknad": "Aktiv Ballangen AS (989315374) er slettet i Enhetsregisteret 31.10.2023."}
+ ],
+ "borte": [
+  {"navn": "Narvik Kapital AS", "tekst": "solgt til Narvikgården AS for 1 krone i 2025"},
+  {"navn": "Syllaveien 24 AS", "tekst": "oppløst i 2025"}
+ ]
+}

@@ -4,13 +4,14 @@
 saker.html and omrade.html draw their content with JavaScript from ?sak= and ?omrade=,
 so to a search engine every case looked like the same empty page. This script copies
 the two templates to site/sak/<id>.html and site/utgifter/<key>.html, which GitHub Pages
-serves as narviktall.no/sak/<id> and narviktall.no/utgifter/<key>. Each copy gets its own
+serves as narviktall.no/sak/<id> and narviktall.no/utgifter/<key>, and selskap.html to
+site/selskaper/<id>.html for each company the kommune owns (narviktall.no/selskaper/<id>). Each copy gets its own
 title, description and canonical address, and the header (and for a case the key
 numbers with their sources) written into the HTML. saker.js and omrade.js then draw the
 full page as before, reading the id from data-sak / data-omrade.
 
 <base href="/"> keeps the templates' relative links (style.css, data/..., okonomi) working
-one folder down. Run after build_saker.py and fetch_data.py; it also rewrites
+one folder down. Run after build_saker.py, fetch_data.py and fetch_selskaper.py; it also rewrites
 site/sitemap.xml, so new cases and areas are listed there.
 """
 import html
@@ -23,8 +24,8 @@ SITE = ROOT / "site"
 BASE = "https://narviktall.no/"
 BRAND = "Åpne tall for Narvik"
 # Pages with their own HTML file, in sitemap order. The generated pages follow.
-STATIC = ["", "okonomi", "budsjett", "lopende", "tiltak", "inntekter", "gjeld", "befolkning", "bolig", "arbeid",
-          "naering", "saker", "andre-tall", "om"]
+STATIC = ["", "okonomi", "budsjett", "lopende", "tiltak", "inntekter", "gjeld", "selskaper/", "befolkning", "bolig",
+          "arbeid", "naering", "saker", "andre-tall", "om"]
 
 esc = lambda s: html.escape(str(s), quote=True)
 
@@ -98,8 +99,31 @@ def main():
         keep_omr.add(f'{c["key"]}.html')
         urls.append(path)
 
-    # A case or area that is gone should not leave its page behind.
-    for folder, names in (("sak", keep), ("utgifter", keep_omr)):
+    # One page per company the kommune owns, at selskaper/<id>. selskaper/index.html is the list, written by hand.
+    selskaper = json.loads((SITE / "data/selskaper.json").read_text())
+    tpl_sel = (SITE / "selskap.html").read_text()
+    keep_sel = {"index.html"}
+    forms = {"AS": "aksjeselskap", "IKS": "interkommunalt selskap", "KF": "kommunalt foretak", "SA": "samvirkeforetak",
+             "GFS": "gjensidig forsikringsselskap"}
+    for S in selskaper["selskaper"]:
+        if not S.get("orgnr"):
+            continue
+        andel = S.get("eierandel")
+        andel_txt = ("har andeler i" if andel is None else "eier hele" if andel == 100
+                     else f"eier {str(andel).replace('.', ',')} % av")
+        desc = (f"Narvik kommune {andel_txt} {S['navn']}, et {forms.get(S['form'], S['form'])}. Eierandel, bokført verdi "
+                f"og selskapets regnskap med inntekter, resultat og egenkapital fra Brønnøysundregistrene.")
+        body = (f'<header><nav class="crumbs" aria-label="Brødsmuler"><a href="selskaper/">Kommunalt eide selskaper</a>'
+                f'<span aria-hidden="true">›</span><span aria-current="page">{esc(S["navn"])}</span></nav>'
+                f'<h1>{esc(S["navn"])}</h1><p class="lead">{esc(desc)}</p></header>')
+        path = f'selskaper/{S["id"]}'
+        write(SITE / f"{path}.html", page(tpl_sel, f'{S["navn"]}: eierandel og regnskap · {BRAND}', desc, path,
+                                          f'data-selskap="{esc(S["id"])}"', body))
+        keep_sel.add(f'{S["id"]}.html')
+        urls.append(path)
+
+    # A case, area or company that is gone should not leave its page behind.
+    for folder, names in (("sak", keep), ("utgifter", keep_omr), ("selskaper", keep_sel)):
         for f in (SITE / folder).glob("*.html"):
             if f.name not in names:
                 f.unlink()
@@ -107,7 +131,7 @@ def main():
     sitemap = ('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
                + "".join(f"  <url><loc>{BASE}{u}</loc></url>\n" for u in urls) + "</urlset>\n")
     write(SITE / "sitemap.xml", sitemap)
-    print(f"Skrev {len(keep)} saker, {len(keep_omr)} tjenesteområder og sitemap.xml med {len(urls)} adresser.")
+    print(f"Skrev {len(keep)} saker, {len(keep_omr)} tjenesteområder, {len(keep_sel) - 1} selskaper og sitemap.xml med {len(urls)} adresser.")
 
 
 if __name__ == "__main__":
