@@ -88,7 +88,7 @@ function render() {
   document.getElementById('s-top-sub').textContent = `${mill(top.narvik_1000kr[year])} mill. kr · ${nb(top.narvik_1000kr[year] / svcTotal * 100)} % av tjenestene`;
   document.getElementById('equation').innerHTML = `Tjenester <b>${mill(svcTotal)} mill. kr</b> ${offTotal < 0 ? '−' : '+'} pensjonsposter og gebyrfinansiert vann, avløp og renovasjon <b>${mill(Math.abs(offTotal))} mill. kr</b> = netto <b>${mill(total)} mill. kr</b>`;
 
-  drawNote(svcTotal);
+  drawNote();
 
   const ledger = document.getElementById('ledger');
   ledger.querySelectorAll('.row').forEach(r => r.remove());
@@ -108,24 +108,18 @@ function render() {
   drawMultiples();
 }
 
-function drawNote(svcTotal) {
-  const pos = services.filter(c => c.narvik_1000kr[year] > svcTotal * 0.0005).sort((a, b) => b.narvik_1000kr[year] - a.narvik_1000kr[year]);
-  const posTotal = pos.reduce((t, c) => t + c.narvik_1000kr[year], 0);
-  const bar = document.getElementById('note-bar'); bar.replaceChildren();
-  const legend = document.getElementById('note-legend'); legend.replaceChildren();
-  pos.forEach((c, i) => {
-    const kr = c.narvik_1000kr[year] / posTotal * 100;
-    const op = Math.max(0.22, 1 - i * 0.11);
-    const b = el('a', { href: areaHref(c.key), title: `${c.name}: ${nb(kr, 1)} kr av 100`, 'aria-label': `${c.name}, ${nb(kr)} kroner av hundre` });
-    b.style.flex = `0 0 ${kr}%`;
-    b.style.background = `color-mix(in srgb, var(--accent) ${Math.round(op * 100)}%, var(--surface))`;
-    if (kr >= 9) b.appendChild(el('span', {}, nb(kr) + ' kr'));
-    bar.appendChild(b);
-    const li = el('li');
-    li.appendChild(el('span', { class: 'kr' }, nb(kr, kr < 1 ? 1 : 0) + ' kr'));
-    li.appendChild(el('span', {}, c.name));
-    legend.appendChild(li);
-  });
+// The site's own grouping of the service areas for the grouped bar. Areas not listed fall into the last group.
+const AREA_GROUPS = [
+  { name: 'Helse og sosial', color: '--g1', keys: ['helse', 'sosial'] },
+  { name: 'Oppvekst', color: '--g2', keys: ['skole', 'barnehage', 'barnevern'] },
+  { name: 'Fellesfunksjoner og beredskap', color: '--g3', keys: ['admin', 'brann', 'kirke'] },
+  { name: 'Kultur, veier og samfunn', color: '--g4', keys: null },
+];
+function drawNote() {
+  const listed = AREA_GROUPS.flatMap(g => g.keys || []);
+  const groups = AREA_GROUPS.map(g => ({ ...g, items: services.filter(c => g.keys ? g.keys.includes(c.key) : !listed.includes(c.key))
+    .map(c => ({ name: c.name, v: c.narvik_1000kr[year], href: areaHref(c.key) })) }));
+  groupedBar(document.getElementById('note-bar'), document.getElementById('note-groups'), groups);
 }
 
 // Each area links to omrade.html, which drills down into its services and cost types.

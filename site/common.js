@@ -8,6 +8,37 @@ function el(tag, attrs = {}, text) {
 }
 const pct = (a, b) => (b ? (a - b) / Math.abs(b) * 100 : null);
 const chgText = p => (p === null ? '–' : (p > 0 ? '+' : p < 0 ? '−' : '') + nb(Math.abs(p), 1) + ' %');
+// A horizontal bar split into groups (one colour each) and the items inside them (lighter shades), with a list per
+// group below it. groups: [{ name, color: '--g1', items: [{ name, v, href? }] }]. Items at or below zero are left out;
+// shares are of what is left. Used for spending on okonomi.html and income on inntekter.html.
+function groupedBar(barEl, listEl, groups) {
+  groups = groups.map(g => ({ ...g, items: g.items.filter(i => i.v > 0).sort((a, b) => b.v - a.v) })).filter(g => g.items.length);
+  const total = groups.reduce((t, g) => t + g.items.reduce((u, i) => u + i.v, 0), 0);
+  const share = (v, d) => { const p = v / total * 100; return p < 0.05 ? '<0,1 %' : nb(p, d ?? (p < 1 ? 1 : 0)) + ' %'; };
+  const shade = (g, i) => `color-mix(in srgb, var(${g.color}) ${Math.max(30, 100 - i * 22)}%, var(--surface))`;
+  barEl.replaceChildren(); listEl.replaceChildren();
+  groups.forEach(g => {
+    const gsum = g.items.reduce((t, i) => t + i.v, 0);
+    const box = el('div', { class: 'gbar-group' });
+    const head = el('h3', { style: `border-color: var(${g.color})` });
+    head.append(el('span', {}, g.name), el('span', { class: 'num' }, share(gsum, 0)));
+    const ul = el('ul');
+    g.items.forEach((it, i) => {
+      const p = it.v / total * 100;
+      const seg = el(it.href ? 'a' : 'span', { title: `${it.name}: ${share(it.v, 1)}`, 'aria-label': `${it.name}, ${share(it.v, 1)}` });
+      if (it.href) seg.href = it.href;
+      seg.style.flex = `0 0 ${p}%`; seg.style.background = shade(g, i);
+      if (p >= 7) seg.appendChild(el('span', { class: p < 14 ? 'gbar-small' : '' }, share(it.v, 0)));
+      barEl.appendChild(seg);
+      const li = el('li'), name = el(it.href ? 'a' : 'span', it.href ? { href: it.href } : {});
+      name.append(el('i', { style: `background: ${shade(g, i)}` }), document.createTextNode(it.name));
+      li.append(name, el('span', { class: 'num' }, share(it.v)));
+      ul.appendChild(li);
+    });
+    box.append(head, ul); listEl.appendChild(box);
+  });
+}
+
 // The year in the address (?aar=2024), so the two pages can link to the same year.
 const urlYear = () => new URLSearchParams(location.search).get('aar');
 // Link to the SSB 12362 query behind a per-capita comparison: these regions, these functions, net (AGD2), per inhabitant.
