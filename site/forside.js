@@ -19,13 +19,13 @@ const dateText = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nb-NO', 
   heroMap(B);
 })();
 
-// The population on 1 January in the newest year, as the page's headline.
+// The population on 1 January in the newest year, as a big number under the page title.
 function hero(B) {
   if (!B) return;
   const y = B.last, n = [...B.pyramid[y].f, ...B.pyramid[y].m].reduce((s, v) => s + v, 0);
-  document.getElementById('hero-when').textContent = `Narvik kommune 1. januar ${y}`;
   document.getElementById('hero-num').textContent = nb(n);
-  document.getElementById('hero-what').textContent = 'innbyggere';
+  document.getElementById('hero-what').textContent = `innbyggere 1. januar ${y}`;
+  document.getElementById('hero-stat').hidden = false;
 }
 
 // A still version of the dot map on Befolkning (prikkart.js): one dot per 250 m cell where someone lives, its area
