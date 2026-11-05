@@ -859,3 +859,21 @@ header.hero { grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr); gap: 8
 .front-out-points .so-name { font-size: 0.85rem; font-weight: 500; }
 .front-out-points b { font: 700 1.2rem var(--font-display); }
 .front-out-points .so-diff { font-size: 0.9rem; }
+
+/* «Gjett tallet» on the front page: the chosen answer is struck through when wrong, the right one is marked with the
+   accent and a check, never with red or green. */
+.quiz { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 12px; }
+.quiz-q { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 16px; display: grid; gap: 12px; align-content: start; }
+.quiz-ask { font: 600 1.05rem/1.35 var(--font-display); }
+.quiz-opts { display: grid; gap: 6px; }
+.quiz-opts button { font: 500 0.95rem var(--font-body); text-align: left; color: var(--ink); background: var(--paper); border: 1px solid var(--rule); border-radius: 8px; padding: 9px 12px; cursor: pointer; min-height: 42px; }
+.quiz-opts button:hover:not(:disabled) { border-color: var(--accent); }
+.quiz-opts button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.quiz-opts button:disabled { cursor: default; }
+.quiz-opts button.right { border-color: var(--accent); background: var(--accent-soft); font-weight: 700; }
+.quiz-opts button.right::after { content: " ✓"; color: var(--accent); }
+.quiz-opts button.picked:not(.right) { color: var(--ink-2); text-decoration: line-through; }
+.quiz-ans { display: grid; gap: 6px; font-size: 0.95rem; }
+.quiz-ans b { font-family: var(--font-display); }
+.quiz-go { font-weight: 600; text-decoration: none; }
+@media (prefers-reduced-motion: no-preference) { .quiz-opts button { transition: background-color .15s, border-color .15s; } }

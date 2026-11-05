@@ -1,5 +1,5 @@
 // index.html: the front page. A small map of where people live with the population, key numbers from each area with a
-// small line over the years, the fact sheets in «Utvalgte saker», and a chosen set of the numbers where Narvik stands
+// small line over the years, three «Gjett tallet» questions, the fact sheets in «Utvalgte saker», and a chosen set of the numbers where Narvik stands
 // out from the average it is compared with, drawn as bars from the average. Everything is read from the same
 // data files as the area pages, so the front page changes when they do. Helpers are in common.js.
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
@@ -12,6 +12,7 @@ const dateText = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nb-NO', 
     'arbeid.json', 'naering.json', 'saker.json', 'sammenhenger.json'].map(load));
   hero(B);
   keyNumbers(N, F, B, H, A, V);
+  quiz(N, B, A);
   cases(K);
   standOut(S);
   const dates = [N, F, B, H, A, V].filter(Boolean).map(d => d.generated.slice(0, 10)).sort();
@@ -159,6 +160,62 @@ function spark(series) {
   return `<span class="spark" aria-hidden="true"><svg viewBox="0 -3 100 34" preserveAspectRatio="none">
     <polygon class="spark-area" points="0,${H + 3} ${pts} ${W},${H + 3}"></polygon><polyline class="spark-line" points="${pts}"></polyline>
   </svg><span class="spark-ends"><span>${esc(series[0][0])}</span><span>${esc(series.at(-1)[0])}</span></span></span>`;
+}
+
+// «Gjett tallet»: three questions with fixed answer options. The answer is read from the data files, so it follows
+// new numbers; the right option is the one nearest the newest figure. No score and nothing is stored.
+function quiz(N, B, A) {
+  const nearest = (v, opts) => opts.reduce((best, o, i) => (Math.abs(o - v) < Math.abs(opts[best] - v) ? i : best), 0);
+  const link = (href, text) => `<a href="${esc(href)}" target="_blank" rel="noopener">${esc(text)}</a>`;
+  const Q = [];
+  if (A) {
+    const C = A.commuting.narvik, y = Object.keys(C).sort().at(-1), out = C[y].Utpendlere, inn = C[y].Innpendlere;
+    const top = A.flows.year === y ? A.flows.ut.slice(0, 3).map(f => f.name.split(' - ')[0]) : [];
+    const list = top.length === 3 ? ` Flest pendler til ${top[0]}, ${top[1]} og ${top[2]}.` : '';
+    Q.push({ q: 'Hvor mange som bor i Narvik, har arbeidet sitt i en annen kommune?', o: ['Rundt 300', 'Rundt 1 200', 'Rundt 3 000'],
+      r: nearest(out, [300, 1200, 3000]),
+      a: `<b>${nb(out)} personer</b> i ${y}, mot ${nb(inn)} som bor i en annen kommune og jobber i Narvik.${list}`,
+      src: `SSB, ${link(A.sources['03321'].url, 'tabell 03321')}`, href: 'arbeid#pendling', go: 'Se pendlerkartet' });
+  }
+  if (B) {
+    const ys = Object.keys(B.change).filter(y => B.change[y].born != null).sort(), y = ys.at(-1), c = B.change[y];
+    const r = c.born > c.died * 1.05 ? 0 : c.born < c.died * 0.95 ? 2 : 1;
+    const moved = c.moved_in - c.moved_out;
+    const why = c.growth > 0 && c.born < c.died ? ` Folketallet økte likevel med ${nb(c.growth)}, fordi ${nb(moved)} flere flyttet inn enn ut.`
+      : ` Folketallet endret seg med ${c.growth > 0 ? '+' : c.growth < 0 ? '−' : ''}${nb(Math.abs(c.growth))}.`;
+    Q.push({ q: `Ble det født flere enn det døde i Narvik i ${y}?`, o: ['Ja, flere ble født', 'Omtrent like mange', 'Nei, flere døde'], r,
+      a: `<b>${nb(c.born)} født og ${nb(c.died)} døde.</b>${why}`,
+      src: `SSB, ${link(B.sources['06913'].url, 'tabell 06913')}`, href: 'befolkning#trend', go: 'Se befolkningens regnskap' });
+  }
+  if (N) {
+    const y = N.years.at(-1), tot = N.total_1000kr[y], cat = k => N.categories.find(c => c.key === k)?.narvik_1000kr[y];
+    const helse = cat('helse'), skole = cat('skole'), share = helse / tot * 100;
+    Q.push({ q: 'Hvor stor del av kommunens netto driftsutgifter går til helse og omsorg?', o: ['Omtrent en firedel', 'Omtrent en tredel', 'Omtrent halvparten'],
+      r: nearest(share, [25, 33, 50]),
+      a: `<b>${nb(share)} %</b> i ${y}, ${nb(helse / 1000)} av ${nb(tot / 1000)} millioner kroner. Grunnskole er nest størst med ${nb(skole / tot * 100)} %.`,
+      src: `SSB, ${link(N.source.url, 'tabell 12362')}, andelen er regnet ut her`, href: 'okonomi', go: 'Se hva kommunen bruker penger på' });
+  }
+  if (!Q.length) return;
+  const box = document.getElementById('quiz');
+  box.innerHTML = Q.map((q, i) => `<div class="quiz-q" data-i="${i}">
+    <p class="quiz-ask" id="quiz-q${i}">${esc(q.q)}</p>
+    <div class="quiz-opts" role="group" aria-labelledby="quiz-q${i}">${q.o.map((o, j) => `<button type="button" id="quiz-${i}-${j}" data-j="${j}">${esc(o)}</button>`).join('')}</div>
+    <div class="quiz-ans" aria-live="polite" hidden><p>${q.a}</p><p class="caption">Kilde: ${q.src}.</p><a class="quiz-go" href="${esc(q.href)}">${esc(q.go)} ›</a></div>
+  </div>`).join('');
+  box.addEventListener('click', e => {
+    const b = e.target.closest('.quiz-opts button'), card = b?.closest('.quiz-q');
+    if (!b || !card) return;
+    const q = Q[card.dataset.i];
+    card.querySelectorAll('.quiz-opts button').forEach(x => {
+      const right = +x.dataset.j === q.r;
+      x.classList.toggle('right', right);
+      x.disabled = true;
+      if (right) x.setAttribute('aria-label', `${x.textContent}, riktig svar`);
+    });
+    b.classList.add('picked');
+    card.querySelector('.quiz-ans').hidden = false;
+  });
+  document.getElementById('quiz-section').hidden = false;
 }
 
 // Every fact sheet, in the order of config/saker.json, with its first key number. The sources are on the sheet.
