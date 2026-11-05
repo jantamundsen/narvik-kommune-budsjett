@@ -75,7 +75,9 @@ function cases(K) {
 }
 
 // The numbers from the pages' «Skiller seg ut» that the front page shows, chosen by Jan, as [page, start of the name].
-// They follow the newest numbers in data/sammenhenger.json; one that no longer stands out drops off.
+// They follow the newest numbers in data/sammenhenger.json; one that no longer stands out drops off. Økonomi has no
+// «Skiller seg ut» of its own (the comparison chart there shows the same areas, Jan 2026-11-05), so its numbers
+// link to the chart.
 const PICKS = [
   ['utgifter', 'Kommunens netto utgifter til administrasjon'], ['utgifter', 'Kommunens netto utgifter til helse og omsorg'],
   ['inntekter', 'Eiendomsskatt'], ['inntekter', 'Kommunens disposisjonsfond'],
@@ -96,7 +98,7 @@ function standOut(S) {
   const arrow = m => `<span class="arrow" aria-hidden="true">${(usePoints(m) ? m.avvik.points : m.avvik.share) > 0 ? '▲' : '▼'}</span> `;
   const picks = PICKS.map(([k, start]) => [k, S.skiller_seg_ut?.[k]?.find(m => m.navn.startsWith(start))]).filter(p => p[1]);
   document.getElementById('out-lead').textContent = `Tall fra sidene der Narvik ligger minst ${S.grense.niva_prosent} % fra snittet det sammenlignes med, eller ${nb(S.grense.endring_poeng)} prosentpoeng for endringer og andeler. Trykk på et tall for å se det i sammenheng.`;
-  document.getElementById('out').innerHTML = picks.map(([k, m]) => `<li><a class="so so-link" href="${esc(S.sider[k].href)}#skiller-seg-ut">
+  document.getElementById('out').innerHTML = picks.map(([k, m]) => `<li><a class="so so-link" href="${esc(S.sider[k].href)}#${k === 'utgifter' ? 'sammenligning' : 'skiller-seg-ut'}">
     <span class="eyebrow">${esc(S.sider[k].navn)} · ${esc(m.aar)}</span>
     <span class="so-name">${esc(m.navn)}${m.beregnet ? ' <span class="tag">beregnet</span>' : ''}</span>
     <b class="so-me num">${val(m, m.verdier.narvik)}</b>
