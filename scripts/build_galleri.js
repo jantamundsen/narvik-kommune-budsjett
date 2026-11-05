@@ -1,11 +1,11 @@
-// Takes the small pictures for «Se Narvik i bilder» on the front page: one screenshot of each visualisation on its
+// Takes the small pictures for «Visualiseringer for Narvik kommune» on the front page: one screenshot of each visualisation on its
 // own page, in light and dark mode, cut to 4:3 from the top. Run by hand when a visualisation changes:
 //
 //   npm install playwright   (or use one that is already installed)
 //   node scripts/build_galleri.js
 //
 // It serves site/ on a local port, so the pages read the same data files as on narviktall.no, and writes
-// site/img/galleri/<name>-lys.jpg and <name>-mork.jpg. The list must match the «Se Narvik i bilder» section in
+// site/img/galleri/<name>-lys.jpg and <name>-mork.jpg. The list must match the «Visualiseringer for Narvik kommune» section in
 // site/index.html.
 const http = require('http');
 const fs = require('fs');

@@ -878,7 +878,7 @@ header.hero { grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr); gap: 8
 .quiz-go { font-weight: 600; text-decoration: none; }
 @media (prefers-reduced-motion: no-preference) { .quiz-opts button { transition: background-color .15s, border-color .15s; } }
 
-/* «Se Narvik i bilder» on the front page: a picture of each visualisation (scripts/build_galleri.js), in the dark
+/* «Visualiseringer for Narvik kommune» on the front page: a picture of each visualisation (scripts/build_galleri.js), in the dark
    version when the reader uses dark mode. */
 .gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
 @media (max-width: 760px) { .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
