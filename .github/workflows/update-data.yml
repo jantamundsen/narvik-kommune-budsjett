@@ -30,6 +30,7 @@ jobs:
           python scripts/build_fakta.py
           python scripts/build_saker.py
           python scripts/build_andre_tall.py
+          python scripts/build_nytt.py
           python scripts/fetch_befolkning.py
           python scripts/fetch_prikkart.py
           python scripts/fetch_finans.py

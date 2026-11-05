@@ -1,0 +1,16 @@
+{
+  "om": "«Nytt på siden» på forsiden. Skriv inn en linje når en ny side, et nytt kart, en ny graf eller nye tall fra kommunens dokumenter kommer på siden. Tall som hentes automatisk hver uke, skal ikke stå her. type er en av: Ny side, Nytt kart, Ny graf, Nye tall, Ny sak. lenke er en adresse på siden, uten .html, gjerne med #seksjon.",
+  "nytt": [
+    {"dato": "2026-11-05", "type": "Nytt kart", "tekst": "Hvor i kommunen folk bor, med én prikk der noen bor", "lenke": "befolkning#areas"},
+    {"dato": "2026-11-05", "type": "Nytt kart", "tekst": "Hvem som pendler inn og ut av Narvik, og hvor", "lenke": "arbeid#pendling"},
+    {"dato": "2026-11-05", "type": "Ny graf", "tekst": "Ledighetskalenderen: helt ledige måned for måned siden 2020", "lenke": "arbeid#kalender"},
+    {"dato": "2026-11-05", "type": "Ny graf", "tekst": "Befolkningens regnskap: fødte, døde og flytting år for år", "lenke": "befolkning#trend"},
+    {"dato": "2026-11-05", "type": "Ny graf", "tekst": "Utgiftene område for område, 2021–2025", "lenke": "okonomi#h-multi"},
+    {"dato": "2026-11-04", "type": "Ny side", "tekst": "Kommunalt eide selskaper, med regnskap og eierandel", "lenke": "selskaper/"},
+    {"dato": "2026-11-03", "type": "Nye tall", "tekst": "Sykehjem og andre institusjoner, med plasser per sted", "lenke": "utgifter/helse#institusjon"},
+    {"dato": "2026-11-01", "type": "Nye tall", "tekst": "Kommunedirektørens forslag til budsjett 2027", "lenke": "sak/budsjett-2027"},
+    {"dato": "2026-11-01", "type": "Ny graf", "tekst": "Hva som skjedde med innsparingene, tiltak for tiltak", "lenke": "tiltak#flow"},
+    {"dato": "2026-10-31", "type": "Ny side", "tekst": "Andre tall: tall om kommunen som ikke står andre steder", "lenke": "andre-tall"},
+    {"dato": "2026-10-31", "type": "Nye tall", "tekst": "Hvorfor gjelden oppgis med ulike tall", "lenke": "gjeld#bridge"}
+  ]
+}

@@ -1,6 +1,6 @@
 // index.html: the front page. A small map of where people live with the population, key numbers from each area with a
 // small line over the years, three «Gjett tallet» questions, the fact sheets in «Utvalgte saker», and a chosen set of the numbers where Narvik stands
-// out from the average it is compared with, drawn as bars from the average. Everything is read from the same
+// out from the average it is compared with, drawn as bars from the average, and «Nytt på siden». Everything is read from the same
 // data files as the area pages, so the front page changes when they do. Helpers are in common.js.
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 const load = f => fetch('data/' + f, { cache: 'no-cache' }).then(r => (r.ok ? r.json() : null)).catch(() => null);
@@ -8,13 +8,14 @@ const MONTHS = ['januar', 'februar', 'mars', 'april', 'mai', 'juni', 'juli', 'au
 const dateText = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nb-NO', { day: 'numeric', month: 'long', year: 'numeric' });
 
 (async () => {
-  const [N, F, B, H, A, V, K, S] = await Promise.all(['narvik.json', 'finans.json', 'befolkning.json', 'bolig.json',
-    'arbeid.json', 'naering.json', 'saker.json', 'sammenhenger.json'].map(load));
+  const [N, F, B, H, A, V, K, S, U] = await Promise.all(['narvik.json', 'finans.json', 'befolkning.json', 'bolig.json',
+    'arbeid.json', 'naering.json', 'saker.json', 'sammenhenger.json', 'nytt.json'].map(load));
   hero(B);
   keyNumbers(N, F, B, H, A, V);
   quiz(N, B, A);
   cases(K);
   standOut(S);
+  news(U);
   const dates = [N, F, B, H, A, V].filter(Boolean).map(d => d.generated.slice(0, 10)).sort();
   if (dates.length) document.getElementById('generated').textContent = dateText(dates.at(-1));
   heroMap(B);
@@ -216,6 +217,21 @@ function quiz(N, B, A) {
     card.querySelector('.quiz-ans').hidden = false;
   });
   document.getElementById('quiz-section').hidden = false;
+}
+
+// «Nytt på siden»: the newest five lines from config/nytt.json (scripts/build_nytt.py), the rest behind «Vis alt».
+function news(U) {
+  if (!U?.nytt?.length) return;
+  const short = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nb-NO', { day: 'numeric', month: 'short', year: 'numeric' });
+  const li = n => `<li><a href="${esc(n.lenke)}"><time datetime="${esc(n.dato)}">${short(n.dato)}</time>
+    <span><b>${esc(n.type)}:</b> ${esc(n.tekst)}</span></a></li>`;
+  const SHOW = 5;
+  document.getElementById('news').innerHTML = U.nytt.slice(0, SHOW).map(li).join('');
+  if (U.nytt.length > SHOW) {
+    document.getElementById('news-rest').innerHTML = U.nytt.slice(SHOW).map(li).join('');
+    document.getElementById('news-more').hidden = false;
+  }
+  document.getElementById('new-section').hidden = false;
 }
 
 // Every fact sheet, in the order of config/saker.json, with its first key number. The sources are on the sheet.
