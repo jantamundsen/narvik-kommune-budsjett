@@ -209,7 +209,7 @@ async function startPopulation() {
   const lg = document.getElementById('ledger-legend');
   lg.innerHTML = '';
   const lgItem = (style, n) => { const s = el('span'); s.append(el('i', { style }), n); lg.append(s); };
-  lgItem('background:var(--ink)', 'Innbyggere 1. januar');
+  lgItem('background:var(--accent)', 'Innbyggere 1. januar');
   Object.values(parts).forEach(([n, c]) => lgItem(`background:${c};border-radius:2px`, n));
   lgItem('background:var(--surface);border:2px solid var(--ink);box-sizing:border-box', 'Endring i året');
   const ledgerBox = document.getElementById('ledger-chart');
@@ -226,15 +226,12 @@ async function startPopulation() {
     const ty = 210, by = 470, zero = (ty + by) / 2, H = by + 26, sc = (zero - ty) / top;
     let g = `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="Innbyggere 1. januar: ${popYears.map((y, i) => `${y} ${nb(pv[i])}`).join(', ')}. Hva som endret folketallet: ` +
       cy.map(y => `${y}: ${C[y].born} fødte, ${C[y].moved_in} flyttet inn, ${C[y].died} døde, ${C[y].moved_out} flyttet ut, endring ${signed(C[y].growth)}`).join('; ') + '">';
-    [lo, hi].forEach(v => { g += `<line class="grid" x1="${lx}" x2="${rx}" y1="${PY(v)}" y2="${PY(v)}"/><text x="${lx - 8}" y="${PY(v) + 4}" text-anchor="end">${nb(v)}</text>`; });
+    [lo, (lo + hi) / 2, hi].forEach(v => { g += `<line class="grid" x1="${lx}" x2="${rx}" y1="${PY(v)}" y2="${PY(v)}"/><text x="${lx - 8}" y="${PY(v) + 4}" text-anchor="end">${nb(v)}</text>`; });
     g += `<polyline class="pop-line" points="${pv.map((v, i) => `${PX(i)},${PY(v)}`).join(' ')}"/>`;
     const iMin = pv.indexOf(Math.min(...pv)), iMax = pv.indexOf(Math.max(...pv)), iLast = pv.length - 1;
     pv.forEach((v, i) => {
-      g += `<circle class="pop-dot" cx="${PX(i)}" cy="${PY(v)}" r="4.5"><title>1. januar ${popYears[i]}: ${nb(v)} innbyggere</title></circle>`;
-      if (!narrow || [0, iMin, iMax, iLast].includes(i)) {
-        const below = i > 0 && i < iLast && v <= pv[i - 1] && v <= pv[i + 1];
-        g += `<text class="v" x="${PX(i)}" y="${below ? PY(v) + 18 : PY(v) - 10}" text-anchor="middle">${nb(v)}</text>`;
-      }
+      g += `<circle class="pop-dot" cx="${PX(i)}" cy="${PY(v)}" r="${i === iLast ? 5 : 4}"><title>1. januar ${popYears[i]}: ${nb(v)} innbyggere</title></circle>`;
+      if ([iMin, iMax, iLast].includes(i)) g += `<text class="v" x="${PX(i)}" y="${i === iMin ? PY(v) + 20 : PY(v) - 10}" text-anchor="middle">${nb(v)}</text>`;
       g += `<text x="${PX(i)}" y="${pb + 22}" text-anchor="middle" class="date">1.1.${narrow ? String(popYears[i]).slice(2) : popYears[i]}</text>`;
     });
     for (let t = -top; t <= top; t += step) {
