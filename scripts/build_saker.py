@@ -124,9 +124,17 @@ def main() -> int:
                     err(f"{name} {i + 1}: {len(r['celler'])} celler, ventet {width}")
                 check_src(f"{name} {i + 1}", r.get("kilde"))
         # «oppsummering»: a short summary at the top, each point linking to the section on the page that has the sources.
+        # The sections a summary point can link to (the ids saker.js gives them).
+        targets = {"rolle", "tidslinje"} | ({"savner"} if s.get("savner") else set()) | {t["id"] for t in s.get("temaer", []) if t.get("id")}
+        targets |= {"budsjett"} if s.get("tabell") else set()
+        targets |= {t["id"] for t in s.get("tabeller", []) if t.get("id")}
+        targets |= {"innsparinger"} if s.get("tiltak_omrade") else set()
+        targets |= {"forskjell", "institusjon", "plasser-brukere"} if s.get("ssb_institusjon") else set()
         for i, o in enumerate(s.get("oppsummering", [])):
             if not o.get("tekst") or not str(o.get("lenke", "")).startswith("#"):
                 err(f"oppsummering {i + 1}: trenger tekst og lenke til en seksjon (#…)")
+            elif o["lenke"][1:] not in targets:
+                err(f"oppsummering {i + 1}: fant ingen seksjon {o['lenke']} på siden")
         # «savner»: numbers that are not published, each pointing to its entry under «Tall som savnes» on om.html.
         for i, m in enumerate(s.get("savner", [])):
             if not m.get("tittel") or not m.get("tekst") or not str(m.get("href", "")).startswith("om#savner-"):

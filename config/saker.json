@@ -41,6 +41,34 @@
       "full": "Formannskapet, møteprotokoll 15.10.2026",
       "pdf": "https://prod02.elementscloud.no/publikum/Documents/ShowMeetingDocument/c1d7f777-8235-4817-8203-ebd49ff36bb5/4/MP/20"
     },
+    "ks-protokoll-2026-10-29": {
+      "navn": "Kommunestyret 29.10.2026, protokoll",
+      "full": "Narvik kommunestyre, møteprotokoll 29.10.2026, med sak 176/26 om innbyggerinitiativet om Ankenes bo- og servicesenter, sak 179/26 om skoleruter og sak 182/26 Tertialrapport 2/2026",
+      "pdf": "https://prod02.elementscloud.no/publikum/Documents/ShowMeetingDocument/c1d7f777-8235-4817-8203-ebd49ff36bb5/67/MP/29"
+    },
+    "skiforbundet-vm-dato-2026": {
+      "navn": "Norges Skiforbund: VM-datoene besluttet",
+      "full": "Norges Skiforbund, «VM-datoene besluttet», 08.05.2026",
+      "url": "https://www.skiforbundet.no/alpint/nyhetsarkiv/2026/5/vm-datoen-satt/"
+    },
+    "fremover-abs-godkjent-2026": {
+      "type": "media",
+      "navn": "Fremover, 25.09.2026",
+      "full": "Fremover, «Underskriftene er godkjent – ABS til politisk behandling», 25.09.2026 (for abonnenter)",
+      "url": "https://www.fremover.no/underskriftene-er-godkjent-abs-til-politisk-behandling/s/80-17-11775"
+    },
+    "fremover-selg-abs-2026": {
+      "type": "media",
+      "navn": "Fremover, 23.10.2026",
+      "full": "Fremover, «Klar anbefaling: – Selg ABS», 23.10.2026 (for abonnenter)",
+      "url": "https://www.fremover.no/klar-anbefaling-selg-abs/s/80-17-22521"
+    },
+    "fremover-vm-skolerute-2026": {
+      "type": "media",
+      "navn": "Fremover, 09.10.2026",
+      "full": "Fremover, «Kommunedirektøren overkjører advarslene – mener VM må veie tyngst», 09.10.2026 (for abonnenter)",
+      "url": "https://www.fremover.no/kommunedirektoren-overkjorer-advarslene-mener-vm-ma-veie-tyngst/s/80-17-16560"
+    },
     "nyhet-budsjett-2027": {
       "navn": "Narvik kommune: Budsjettforslaget for 2027",
       "full": "Narvik kommune, nyhetssak «Budsjettforslaget for 2027: Millionomfordeling til helse og omsorg»",
@@ -398,6 +426,13 @@
       "tittel": "Budsjett 2027",
       "ingress": "Kommunedirektøren la fram forslaget til budsjett for 2027 og økonomiplan for 2027–2030 i kommunestyret 30. oktober 2026. Formannskapet innstiller 19. november, og kommunestyret vedtar budsjettet 3. desember. Tallene her er fra forslaget, og vedtaket kan bli et annet.",
       "kontrollert": "2026-11-01",
+      "oppsummering": [
+        { "tekst": "Forslaget gir tjenesteområdene 1 995,1 mill. kr i netto driftsrammer for 2027, mot 1 837,4 mill. kr vedtatt for 2026. Helse og omsorg får 800,6 mill. kr, mot 740,7 mill. kr vedtatt for 2026 og 801,4 mill. kr brukt i 2025.", "lenke": "#budsjett" },
+        { "tekst": "30 mill. kr flyttes til helse og omsorg: 10 mill. kr fra oppvekst, 5 mill. kr fra virksomhetsstyring, 10 mill. kr fra høyere inntektsanslag og 5 mill. kr fra lavere avsetninger. Det største nye tiltaket er 10 plasser for avlastning til hjemmeboende med demens, 16,6 mill. kr i 2027.", "lenke": "#flytting" },
+        { "tekst": "Renteutgiftene er budsjettert til 135,7 mill. kr og avdragene til 83,0 mill. kr, mot 156,5 og 127,8 mill. kr i budsjettet for 2026. Netto driftsresultat er 29,5 mill. kr, mot 48,5 mill. kr i budsjettet for 2026.", "lenke": "#inntekter" },
+        { "tekst": "Vedlikeholdsetterslepet på kommunens bygg er beregnet til ca. 2,5 milliarder kr. Ekstra vedlikeholdsmidler er ikke lagt inn.", "lenke": "#andre-tall" },
+        { "tekst": "Formannskapet lager innstillingen 19. november, og kommunestyret vedtar budsjettet 3. desember. Tallene her er fra forslaget og kan bli endret.", "lenke": "#tidslinje" }
+      ],
       "nokkeltall": [
         { "navn": "Til tjenesteområdene i 2027", "verdi": "1 995,1 mill. kr", "tekst": "netto driftsramme i forslaget, mot 1 837,4 mill. kr vedtatt for 2026", "kilde": { "id": "okplan-2027-1b" } },
         { "navn": "Til helse og omsorg i 2027", "verdi": "800,6 mill. kr", "tekst": "mot 740,7 mill. kr vedtatt for 2026 og 801,4 mill. kr brukt i 2025", "kilde": { "id": "okplan-2027-1b" } },
@@ -437,6 +472,7 @@
       ],
       "temaer": [
         {
+          "id": "flytting",
           "tittel": "Hvordan pengene flyttes",
           "punkter": [
             { "tekst": "Helse og omsorg får 30 mill. kr mer. Oppvekst får 10 mill. kr mindre og virksomhetsstyring 5 mill. kr mindre. Inntektsanslagene økes med 10 mill. kr, og avsetningene reduseres med 5 mill. kr. Omfordelingen begrunnes med endringer i demografi.", "kilde": { "id": "presentasjon-budsjett-2027", "side": 24 } },
@@ -453,6 +489,7 @@
           ]
         },
         {
+          "id": "inntekter",
           "tittel": "Inntekter, renter og avdrag",
           "punkter": [
             { "tekst": "De største inntektene i 2027 er rammetilskudd fra staten (972,7 mill. kr), inntekts- og formuesskatt (904,8 mill. kr) og eiendomsskatt (152,7 mill. kr).", "kilde": { "id": "okplan-2027-1a" } },
@@ -462,6 +499,7 @@
           ]
         },
         {
+          "id": "andre-tall",
           "tittel": "Andre tall i forslaget",
           "punkter": [
             {
@@ -556,7 +594,7 @@
         { "tittel": "Status for innsparingene", "tekst": "Rapportene omtaler en del av de vedtatte innsparingene. For resten har jeg ikke funnet noen status, se «Innsparingene» over.", "href": "om#savner-innsparinger-status" }
       ],
       "temaer": [
-        { "tittel": "Konkurranseutsetting", "punkter": [
+        { "id": "konkurranse", "tittel": "Konkurranseutsetting", "punkter": [
           {"tekst": "Fremover skriver i oktober 2025 at en konsulentrapport bestilt av kommunestyret konkluderer med at helse- og omsorgstjenestene i Narvik er 130 mill. kr dyrere å drive enn i sammenlignbare kommuner, og at kommunen kan spare mellom 20 og 70 mill. kr ved konkurranseutsetting.", "kilde": {"id": "fremover-denstad-2025"}},
           {"sitat": "Jeg har ikke tro på at konkurranseutsetting skal løse våre utfordringer.", "hvem": "Tina Denstad, gruppeleder for Narvik Ap", "tekst": "Til Fremover i oktober 2025. Hun viser til endringene i eldreomsorgen, lavere sykefravær og rekruttering.", "kilde": {"id": "fremover-denstad-2025"}},
           {"sitat": "Det kan nok komme en debatt om privatisering når vi nå skal inn i en budsjettdebatt, men det er ikke mulig å spare inn 70 millioner kroner på neste års budsjett. Det finnes ingen quick fix.", "hvem": "Tina Denstad, gruppeleder for Narvik Ap", "kilde": {"id": "fremover-denstad-2025"}},
@@ -585,6 +623,13 @@
       "tittel": "Omsorgsboliger i Bjerkvik",
       "ingress": "Kommunen har avtalt å kjøpe 40 omsorgsboliger som en privat utbygger skal bygge i Bjerkvik, og utbyggeren regulerer nå en tomt på skoleområdet. Her er vedtakene, prisene og plansaken fra kommunens egne sakspapirer.",
       "kontrollert": "2026-10-30",
+      "oppsummering": [
+        { "tekst": "Kommunestyret vedtok i mars 2026 å kjøpe 40 omsorgsboliger som en privat utbygger bygger i Bjerkvik. Prisen for kjøper er 2,84 mill. kr per leilighet, og kommunen kjøper i 2028/29.", "lenke": "#rolle" },
+        { "tekst": "For å få tilskudd fra Husbanken må boligene tildeles «reelt pleietrengende». Kommunens sak beregner behovet for eldre, mens utbyggerens planinitiativ også nevner andre innbyggere med behov for tilrettelagt bolig.", "lenke": "#malgruppe" },
+        { "tekst": "Et notat fra 2024 anslår behovet til 40 nye boenheter i Bjerkvik de neste fem årene. Det var 34 søkere til kommunale omsorgsboliger i hele kommunen da saken ble skrevet.", "lenke": "#behov" },
+        { "tekst": "Boligene skal stå på fotballbanen nord for skolen og svømmehallen. Planen skal konsekvensutredes, og kommunestyret har bedt om en utredning av hva det betyr for skolen i Bjerkvik.", "lenke": "#tomt" },
+        { "tekst": "Boligene kan stå ferdig i 2. kvartal 2028, hvis planprosessene går som planlagt.", "lenke": "#tidslinje" }
+      ],
       "nokkeltall": [
         { "navn": "Boliger i planen", "verdi": "41", "tekst": "omsorgsboliger med fellesarealer og vinterhage. Kommunestyret vedtok kjøp av 40", "kilde": { "id": "ks-sak-129-2026", "side": 7 } },
         { "navn": "Pris for kjøper per leilighet", "verdi": "2,84 mill. kr", "tekst": "byggekostnad 4,60 mill. kr minus 1,765 mill. kr i tilskudd fra Husbanken", "kilde": { "id": "ks-sak-28-2026", "side": 4 } },
@@ -608,7 +653,7 @@
         { "tekst": "Kontrakten skal ikke binde kommunestyret som planmyndighet. Reguleringen behandles for seg etter plan- og bygningsloven.", "kilde": [{ "id": "ks-sak-28-2026", "side": 6 }, { "id": "ks-sak-129-2026", "side": 6 }] }
       ],
       "temaer": [
-        { "tittel": "Hvem boligene er for", "punkter": [
+        { "id": "malgruppe", "tittel": "Hvem boligene er for", "punkter": [
           { "tekst": "Behovet i saken er beregnet for «målgruppen eldre med behov for universelt utformet bolig for eie/leie».", "kilde": { "id": "ks-sak-28-2026", "side": 3 } },
           { "tekst": "Boligene skal tilpasses Husbankens krav til tilskudd for boliger med heldøgns omsorg. For å få tilskuddet må de tildeles gjennom kommunens tildelingsenhet «til reelt pleietrengende». Endres målgruppen, kan tilskuddet måtte betales tilbake.", "kilde": [{ "id": "ks-sak-28-2026", "side": 3 }, { "id": "ks-sak-28-2026", "side": 4 }] },
           { "tekst": "Husbanken skriver om investeringstilskuddet til sykehjem og omsorgsboliger at de som får plass, må ha vedtak fra kommunen om behov for heldøgns helse- og omsorgstjenester. Målgruppen omfatter «eldre og mennesker med demens, utviklingshemming, annen funksjonshemming, psykiske problemer, rus/sosiale problemer».", "kilde": { "id": "husbanken-investeringstilskudd" } },
@@ -617,13 +662,13 @@
           { "tekst": "I høringsutkastet til kommunens forskrift om tildeling av kommunale boliger er omsorgsboliger et tilbud til personer som «på grunn av alder, helse, funksjonsnedsettelser eller av andre årsaker» har et omfattende behov for tilrettelagt bolig med helse- og omsorgstjenester.", "kilde": { "id": "forskrift-boliger-horing", "side": 3 } },
           { "tekst": "Leilighetene blir på om lag 55 m² og tilpasset par, med fellesarealer for beboerne og lokaler for hjemmetjenesten.", "kilde": { "id": "ks-sak-28-2026", "side": 4 } }
         ] },
-        { "tittel": "Behovet", "punkter": [
+        { "id": "behov", "tittel": "Behovet", "punkter": [
           {"tekst": "Fremover skriver i juni 2026 at beboere i kommunale omsorgsboliger i Bjerkvik er sagt opp, og at de skal få tilbud om andre boliger.", "kilde": {"id": "fremover-oppsagt-bjerkvik-2026"}},
           { "tekst": "Et notat fra kommunalsjefen for helse og omsorg 19.12.2024 anslår behovet til 40 nye boenheter i Bjerkvik på kort sikt (5 år) og 40 til på lang sikt (10 år). For Narvikhalvøya er tallene 60 og 60, for Ballangen 40 og 20.", "kilde": { "id": "ks-sak-28-2026", "side": 3 } },
           { "tekst": "Det var 34 søkere til kommunale omsorgsboliger i hele kommunen da saken ble skrevet. Alleen borettslag oppgir om lag 120 personer på sin venteliste.", "kilde": { "id": "ks-sak-28-2026", "side": 3 } },
           { "tekst": "Kommunestyret ba kommunedirektøren legge fram en sak om 40 omsorgsleiligheter i Ballangen «når kommunens økonomiske situasjonen tillater det».", "kilde": { "id": "ks-sak-28-2026", "side": 2 } }
         ] },
-        { "tittel": "Tomten og reguleringen", "punkter": [
+        { "id": "tomt", "tittel": "Tomten og reguleringen", "punkter": [
           { "tekst": "Tomten er regulert til offentlig bebyggelse i reguleringsplanen for Bjerkvik sentrum sør fra 1983, og er i dag i bruk som skole med uteområde og svømmehall.", "kilde": { "id": "ks-sak-129-2026", "side": 5 } },
           { "tekst": "Planinitiativet har to plasseringer: fotballbanen nord for svømmehallen og skolen (alternativ B), eller skolens uteområder sør for skolen (alternativ A).", "kilde": [{ "id": "oppstart-omsorg-bjerkvik", "side": 1 }, { "id": "ks-sak-129-2026", "side": 7 }] },
           { "tekst": "Etter oppstartsmøtet 06.07.2026 kunne planadministrasjonen ikke anbefale oppstart, fordi planen ikke var i tråd med overordnet plan. Utbyggeren krevde da saken lagt fram for kommunestyret.", "kilde": { "id": "ks-sak-129-2026", "side": 5 } },
@@ -660,15 +705,22 @@
     {
       "id": "omstilling-eldreomsorgen",
       "tittel": "Omstillingen i eldreomsorgen",
-      "ingress": "I februar 2025 vedtok kommunestyret å legge ned Ankenes bo- og servicesenter, redusere antall sykehjemsplasser i distriktene og bygge opp korttidsplasser og tjenester hjemme. Her er vedtakene, tallene og striden om bygget på Ankenes, fra kommunens egne sakspapirer.",
-      "kontrollert": "2026-10-20",
+      "ingress": "I februar 2025 vedtok kommunestyret å legge ned Ankenes bo- og servicesenter, redusere antall sykehjemsplasser i distriktene og bygge opp korttidsplasser og tjenester hjemme. I oktober 2026 ba kommunestyret om at salget av bygget på Ankenes stoppes, og om en evaluering av hele omstillingen. Her er vedtakene, tallene og striden om bygget, fra kommunens egne sakspapirer.",
+      "kontrollert": "2026-11-05",
+      "oppsummering": [
+        { "tekst": "Kommunestyret vedtok i februar 2025, med 19 mot 12 stemmer, å fase ut Ankenes bo- og servicesenter med 33 plasser, ta ned 8 plasser i Bjerkvik og Ballangen og fylle Helsehuset med korttidsplasser.", "lenke": "#vedtak-2025" },
+        { "tekst": "Senteret stengte i februar 2026. Kommunedirektøren oppgir en netto effekt på om lag 27 mill. kr, der 8 mill. kr gikk til 9 nye plasser på Furumoen sykehjem.", "lenke": "#tidslinje" },
+        { "tekst": "Kommunestyret ga i desember 2025 fullmakt til å selge bygget, men ba 29.10.2026 om at salget stoppes. Kommunestyret vil også ha en helhetlig evaluering av omstillingen senest i junimøtet.", "lenke": "#ankenes" },
+        { "tekst": "20 av 40 korttidsplasser på Helsehuset er ikke tatt i bruk. 10 er planlagt i 2027 og 10 i 2028.", "lenke": "#kjopsvik-helsehuset" },
+        { "tekst": "Prestegårdstunet i Kjøpsvik ble redusert fra 16 til 12 plasser og skal ned til inntil 8, etter tertialrapport 2/2026 som kommunestyret vedtok i oktober 2026.", "lenke": "#kjopsvik-helsehuset" }
+      ],
       "nokkeltall": [
         { "navn": "Plasser lagt ned ved Ankenes bo- og servicesenter", "verdi": "33", "tekst": "anslått til å spare om lag 31 mill. kr i lønn og frigjøre om lag 35 årsverk", "kilde": { "id": "ks-sak-5-2025", "side": 39 } },
         { "navn": "Netto effekt av å avvikle senteret", "verdi": "ca. 27 mill. kr", "tekst": "ifølge kommunedirektøren. 8 mill. kr gikk til 9 nye plasser på Furumoen sykehjem", "kilde": { "id": "tertial-2-2026", "side": 32 } },
-        { "navn": "Korttidsplasser på Helsehuset ikke tatt i bruk", "verdi": "20 av 40", "tekst": "10 avlastningsplasser er planlagt i løpet av første tertial 2027", "kilde": { "id": "ks-sak-111-2026", "side": 4 } }
+        { "navn": "Korttidsplasser på Helsehuset ikke tatt i bruk", "verdi": "20 av 40", "tekst": "10 nye plasser er planlagt i 2027 og 10 til i 2028", "kilde": [{ "id": "ks-sak-111-2026", "side": 4 }, { "id": "tertial-2-2026", "side": 26 }] }
       ],
       "aktorer": [
-        { "navn": "Kommunestyret", "rolle": "Vedtok strukturen i februar 2025 og ga i desember 2025 kommunedirektøren fullmakt til å selge bygget på Ankenes.", "kilde": [{ "id": "ks-prot-2025-02-07", "side": 12 }, { "id": "ks-prot-2025-12-11", "side": 20 }] },
+        { "navn": "Kommunestyret", "rolle": "Vedtok strukturen i februar 2025 og ga i desember 2025 kommunedirektøren fullmakt til å selge bygget på Ankenes. Ba i oktober 2026 om at salget stoppes.", "kilde": [{ "id": "ks-prot-2025-02-07", "side": 12 }, { "id": "ks-prot-2025-12-11", "side": 20 }, { "id": "ks-protokoll-2026-10-29", "side": 8 }] },
         { "navn": "Helse og omsorg", "rolle": "Kommunalområdet som gjennomfører omstillingen, med om lag 850 ansatte.", "kilde": { "id": "ks-sak-111-2026", "side": 4 } },
         { "navn": "Eldrerådet", "rolle": "Rådgivende organ med møte- og talerett, men ikke forslagsrett, i kommunestyret. Ba i 2026 om en ny vurdering av nedleggelsen.", "kilde": { "id": "ks-sak-40-2026", "side": 2 } },
         { "navn": "Narvik boligstiftelse (NaBo)", "rolle": "Eier 9 leiligheter i bygget på Ankenes. Kommunen eier resten, også et offentlig tilfluktsrom.", "kilde": { "id": "ks-sak-111-2026", "side": 3 } },
@@ -681,10 +733,11 @@
         { "tekst": "Å øke Helsehuset fra 20 til 40 korttidsplasser er anslått til om lag 30 mill. kr, å øke Furumoen sykehjem fra 95 til 104 plasser til om lag 7 mill. kr, og flere tjenester lenger ned i innsatstrappa til 6 mill. kr.", "kilde": { "id": "ks-sak-5-2025", "side": 39 } },
         { "tekst": "Helse og omsorg startet 2026 med 740,7 mill. kr i vedtatt budsjett, mens regnskapet for 2025 viste et forbruk på om lag 800 mill. kr. Kommunedirektøren hadde varslet at en omstilling på minst 58 mill. kr på ett år ville være krevende.", "kilde": { "id": "tertial-2-2026", "side": 31 } },
         { "tekst": "Det tomme bygget på Ankenes koster kommunen om lag 400 000–500 000 kr i året i drift og vedlikehold. NaBo taper 70 583 kr i husleie i måneden på sine 9 tomme leiligheter, og kommunen kan få krav om tomgangsleie.", "kilde": { "id": "ks-sak-111-2026", "side": 3 } },
-        { "tekst": "Planen er å redusere kommunens gjeld ved å selge bygget.", "kilde": { "id": "ks-sak-111-2026", "side": 3 } }
+        { "tekst": "I juni 2026 var planen å redusere kommunens gjeld ved å selge bygget.", "kilde": { "id": "ks-sak-111-2026", "side": 3 } },
+        { "tekst": "Kommunestyret har bedt om en helhetlig evaluering av omorganiseringen fra februar 2025, med en fullstendig oversikt over de økonomiske konsekvensene av tiltakene i helse og omsorg. Den skal legges fram snarest mulig og senest i kommunestyrets junimøte.", "kilde": { "id": "ks-protokoll-2026-10-29", "side": 8 } }
       ],
       "temaer": [
-        { "tittel": "Hva som ble vedtatt i 2025", "punkter": [
+        { "id": "vedtak-2025", "tittel": "Hva som ble vedtatt i 2025", "punkter": [
           { "tekst": "Kommunestyret vedtok full utnyttelse av Helsehuset til korttidsplasser, full drift ved Furumoen sykehjem og flere tjenester lenger ned i innsatstrappa i hele kommunen.", "kilde": { "id": "ks-prot-2025-02-07", "side": 12 } },
           { "tekst": "Bjerkvik og Ballangen skulle få robuste hjemmebaserte tjenester og til sammen 8 færre sykehjemsplasser. Kjøpsvik omsorg skulle ha 12 langtidsplasser, og ordningen med to avdelinger skal evalueres før utgangen av 2027.", "kilde": { "id": "ks-prot-2025-02-07", "side": 12 } },
           { "tekst": "Driften ved Ankenes bo- og servicesenter skulle «omstruktureres og fases ut». I vedtaket fra februar 2025 står det at bygningsmassen «skal ikke avhendes», men vurderes brukt til kommunale boliger og forebyggende tiltak.", "kilde": { "id": "ks-prot-2025-02-07", "side": 12 } },
@@ -692,14 +745,22 @@
           { "tekst": "Rådmannens opprinnelige forslag var 15 færre plasser i distriktene og at Ankenes ble lagt ned. Kommunestyret vedtok i stedet et alternativt forslag fra SV, Ap, H og KrF, med 19 mot 12 stemmer.", "kilde": [{ "id": "ks-sak-5-2025", "side": 1 }, { "id": "ks-prot-2025-02-07", "side": 10 }] },
           { "tekst": "Kommunestyret skal få kvartalsvise rapporter om omstillingen, med en forsvarlighetsvurdering og status for personell, ventelister og økonomi.", "kilde": { "id": "ks-prot-2025-02-07", "side": 12 } }
         ] },
-        { "tittel": "Bygget på Ankenes", "punkter": [
+        { "id": "ankenes", "tittel": "Bygget på Ankenes", "punkter": [
           {"tekst": "Fremover skriver at Ankenes bo- og servicesenter før omstillingen hadde 17 somatiske sykehjemsplasser og 16 plasser i bofellesskap, og at bygget har ett av kommunens fire offentlige tilfluktsrom, med plass til 445 personer.", "kilde": {"id": "fremover-abs-underskrifter-2026"}},
           { "tekst": "I økonomiplanen for 2026–2029 ga kommunestyret kommunedirektøren fullmakt til å selge Ankenes bo- og servicesenter og servicebygget i Ballangen.", "kilde": { "id": "ks-prot-2025-12-11", "side": 20 } },
           { "tekst": "Ankenes bo- og servicesenter var i drift fram til midten av februar 2026.", "kilde": { "id": "tertial-1-2026", "side": 26 } },
           { "tekst": "Kommunen har siden desember 2025 snakket med NaBo om å selge hele bygget til stiftelsen, så det kan bygges om til utleieleiligheter.", "kilde": { "id": "ks-sak-111-2026", "side": 3 } },
           { "tekst": "Eldrerådet mente at en nedleggelse ikke burde gjennomføres før kommunen kan dokumentere at det er etablert nok kapasitet andre steder, siden flere omsorgsboliger og flere plasser på Helsehuset ennå ligger fram i tid.", "kilde": { "id": "ks-sak-40-2026", "side": 2 } },
           { "tekst": "Før møtet 21. mai 2026 ba 12 representanter fra Frp, INP, Sp og Rødt om at salget ble satt i bero og at mulig ny omsorgsdrift i bygget ble utredet.", "kilde": { "id": "ks-sak-111-2026", "side": 2 } },
-          { "tekst": "Kommunedirektøren anbefalte å holde fast på vedtaket og pekte blant annet på arbeidet med de siste 20 plassene på Helsehuset og nytt journalsystem for alle ansatte i helse og omsorg høsten 2027.", "kilde": [{ "id": "ks-sak-111-2026", "side": 4 }, { "id": "ks-sak-111-2026", "side": 6 }] }
+          { "tekst": "Kommunedirektøren anbefalte å holde fast på vedtaket og pekte blant annet på arbeidet med de siste 20 plassene på Helsehuset og nytt journalsystem for alle ansatte i helse og omsorg høsten 2027.", "kilde": [{ "id": "ks-sak-111-2026", "side": 4 }, { "id": "ks-sak-111-2026", "side": 6 }] },
+          { "tekst": "Et innbyggerinitiativ fra Aksjonsgruppa Verdig alderdom ba om en ny avklaring av bygget. Kommunestyret behandlet det 29.10.2026, ba kommunedirektøren stoppe salget og vedtok at bygget kan leies ut med kontrakter som gir kommunen mulighet til å ta det tilbake med rimelig kort frist.", "kilde": [{ "id": "ks-protokoll-2026-10-29", "side": 7 }, { "id": "ks-protokoll-2026-10-29", "side": 8 }] },
+          { "tekst": "Andre forslag i samme møte, om at kommunen skal eie og drive bygget videre og utrede ny omsorgsdrift der, eller leie det ut til NaBo, fikk ikke flertall.", "kilde": [{ "id": "ks-protokoll-2026-10-29", "side": 7 }, { "id": "ks-protokoll-2026-10-29", "side": 8 }] }
+        ] },
+        { "id": "kjopsvik-helsehuset", "tittel": "Kjøpsvik og Helsehuset", "punkter": [
+          { "tekst": "Kjøpsvik omsorg er evaluert, slik vedtaket fra 2025 krevde. Reduksjonen fra 16 til 12 plasser ved Prestegårdstunet og felles sykepleierturnus har gitt om lag 3 mill. kr lavere utgifter til vikarbyrå hittil i 2026, men tjenesten hadde om lag 4,1 mill. kr i merforbruk per juli.", "kilde": { "id": "tertial-2-2026", "side": 27 } },
+          { "tekst": "Kommunedirektøren vil redusere Prestegårdstunet videre til inntil 8 plasser på én avdeling, og hjemmetjenesten fra 4 til 3 ruter på dagtid. Rapporten skriver at få venter på langtidsplass i Kjøpsvik.", "kilde": { "id": "tertial-2-2026", "side": 27 } },
+          { "tekst": "Et forslag om å ta reduksjonen i Kjøpsvik ut av tertialrapporten og behandle den som egen sak fikk 4 stemmer i formannskapet og 10 i kommunestyret.", "kilde": [{ "id": "fsk-protokoll-2026-10-15", "side": 4 }, { "id": "ks-protokoll-2026-10-29", "side": 12 }] },
+          { "tekst": "Helsehuset skal få 10 nye plasser tidlig i 2027 og 10 til i 2028. Kommunedirektøren anbefaler at de første 10 blir avlastningsplasser, der 2–3 pasienter deler en plass.", "kilde": [{ "id": "tertial-2-2026", "side": 26 }, { "id": "tertial-2-2026", "side": 27 }] }
         ] }
       ],
       "tidslinje": [
@@ -717,7 +778,10 @@
         {"dato": "21.07.2026", "tekst": "Fremover skriver at Statsforvalteren i Nordland har fått en klage fra Aksjonskomiteen Verdig Alderdom om habiliteten til kommunalsjefen for helse og omsorg da kommunestyret behandlet ABS-saken i juni. Klagen viser til at kommunalsjefen er varamedlem i styret for Narvik Boligstiftelse, som skulle overta bygget. Statsforvalteren skriver at det kan være grunnlag for å åpne lovlighetskontroll, og ga kommunen frist til 24. august med å uttale seg.", "sitat": "Før vi tar endelig stilling til spørsmålet, ber vi kommunen om å uttale seg til saken.", "hvem": "Emil Nyheim, underdirektør hos Statsforvalteren i Nordland", "kilde": {"id": "fremover-statsforvalter-abs-2026"}},
         {"dato": "13.08.2026", "tekst": "Fremover melder at Aksjonsgruppa Verdig alderdom har samlet over 300 underskrifter på MinSak for et innbyggerforslag om å stoppe salget av Ankenes bo- og servicesenter og få en ny avklaring om bygget. Etter kommuneloven kapittel 12 skal kommunestyret da behandle forslaget innen seks måneder.", "sitat": "Det gjør jo ingenting om det er private som driver det. Vi vil ha det til eldreomsorgen.", "hvem": "Wivi-Ann Tingvoll, leder av Aksjonsgruppa Verdig alderdom", "kilde": {"id": "fremover-abs-underskrifter-2026"}},
         {"dato": "31.08.2026", "tekst": "Narvik Senterparti skriver i et debattinnlegg at Ankenes bo- og servicesenter og sykehjemmet i Kjøpsvik bør tas i bruk, og at nedbyggingen kommer før alternativene er klare.", "sitat": "Vi bygger ned eldreomsorgen uten at vi har fremtidens løsninger klare.", "hvem": "Narvik Senterparti, debattinnlegg", "kilde": {"id": "fremover-sp-eldre-2026"}},
-        { "dato": "15.10.2026", "tekst": "Tertialrapport 2/2026: avviklingen av Ankenes har gitt en netto effekt på om lag 27 mill. kr.", "kilde": { "id": "tertial-2-2026", "side": 32 } }
+        {"dato": "25.09.2026", "tekst": "Fremover skriver at innbyggerinitiativet om Ankenes bo- og servicesenter har fått de 300 underskriftene som trengs, og blir sak for kommunestyret.", "kilde": {"id": "fremover-abs-godkjent-2026"}},
+        { "dato": "15.10.2026", "tekst": "Tertialrapport 2/2026: avviklingen av Ankenes har gitt en netto effekt på om lag 27 mill. kr. Rapporten legger opp til å redusere Prestegårdstunet i Kjøpsvik fra 12 til inntil 8 plasser. Formannskapet innstiller på rapporten med 6 mot 4 stemmer (sak 45/26).", "kilde": [{ "id": "tertial-2-2026", "side": 32 }, { "id": "tertial-2-2026", "side": 27 }, { "id": "fsk-protokoll-2026-10-15", "side": 4 }] },
+        {"dato": "23.10.2026", "tekst": "Fremover skriver at kommunedirektørens råd til kommunestyret i svaret på innbyggerinitiativet er å selge bygget.", "kilde": {"id": "fremover-selg-abs-2026"}},
+        { "dato": "29.10.2026", "tekst": "Kommunestyret ber kommunedirektøren stoppe salget av bygget og ber om en helhetlig evaluering av omorganiseringen fra 2025, senest i junimøtet (sak 176/26, 27 stemmer for). Samme dag vedtas tertialrapport 2/2026 med reduksjonen i Kjøpsvik (sak 182/26).", "kilde": [{ "id": "ks-protokoll-2026-10-29", "side": 8 }, { "id": "ks-protokoll-2026-10-29", "side": 12 }] }
       ],
       "lenker": [
         { "href": "?sak=helse-og-omsorg", "navn": "Merforbruk i helse og omsorg", "tekst": "Faktaarket om budsjettet til helse og omsorg." },
@@ -732,6 +796,12 @@
       "sok_tittel": "Datasenteret i Bjerkvik: strøm, MW og arbeidsplasser",
       "ingress": "Aker Nscale bygger datasentre på Skoglund industriområde i Bjerkvik. Kommunen har regulert området og er høringsinstans, mens strømtillatelsene gis av NVE. Her er hvor mye strøm i MW som er tildelt og reservert, hvor mange arbeidsplasser datasenteret er anslått å gi, og vedtakene fra plandokumentene og NVE-sakene, med noen utsagn fra aviser og NRK, merket som det.",
       "kontrollert": "2026-11-01",
+      "oppsummering": [
+        { "tekst": "Aker Nscale har fått tildelt 130 MW, og 230 MW er reservert hos Statnett. NRK skriver at de neste byggetrinnene ikke har fått reservert strøm etter at Statnett stanset nye tildelinger i Nord-Norge i april 2026.", "lenke": "#strom" },
+        { "tekst": "Anslagene for arbeidsplasser spriker: trafikkanalysen fra 2020 la til grunn høyst 150 ansatte, mens Menon Economics anslår at rundt 250 personer vil ha datasenteret som fast arbeidsplass. Menon skriver selv at usikkerheten ikke er ubetydelig.", "lenke": "#arbeidsplasser" },
+        { "tekst": "NVE har varslet tvangsmulkt hvis Nscale ikke leverer analysen av overskuddsvarme innen 15. november 2026. NVE skriver at byggingen startet uten analysen.", "lenke": "#varme" },
+        { "tekst": "Kommunen regulerte området i 2021 og skal behandle reguleringsplanen for kjølevann. Datasenteret står ikke blant investeringsprosjektene i kommunens økonomiplan.", "lenke": "#rolle" }
+      ],
       "nokkeltall": [
         { "navn": "Strøm tildelt Aker Nscale", "verdi": "130 MW", "tekst": "tildelt av Nordkraft Industrinett fra Skoglund transformatorstasjon", "kilde": { "id": "nve-brev-2025", "side": 2 } },
         { "navn": "Reservert hos Statnett", "verdi": "230 MW", "tekst": "under Kvandal transformatorstasjon, 100 MW av dem med særlige vilkår", "kilde": { "id": "statnett-2026", "side": 2 } },
@@ -753,7 +823,7 @@
         { "tekst": "Datasenteret står ikke blant investeringsprosjektene i kommunens økonomiplan for 2026–2029.", "kilde": { "id": "okplan-2026", "side": 14 } }
       ],
       "temaer": [
-        { "tittel": "Arbeidsplasser", "punkter": [
+        { "id": "arbeidsplasser", "tittel": "Arbeidsplasser", "punkter": [
           { "tekst": "Trafikkanalysen til reguleringsplanen fra 2020 legger til grunn høyst 150 ansatte i tre skift, og at det tar flere år før det høyeste antallet er nådd. Tallet er brukt til å beregne trafikk og parkering.", "kilde": { "id": "trafikk-datasenter-2020", "side": 13 } },
           { "tekst": "Menon Economics anslår i en rapport på oppdrag fra Stargate Norway (august 2025) at rundt 250 personer vil ha datasenteret som fast arbeidsplass. Tallet omfatter fast ansatte, innleid personell og kundens ansatte på stedet, og bemanningstallet kommer fra utbyggeren.", "kilde": [{ "id": "menon-2025", "side": 7 }, { "id": "menon-2025", "side": 11 }] },
           { "tekst": "Ifølge rapporten er stillingene teknisk driftspersonell, sikkerhet, administrasjon, kundeservice og støttefunksjoner for drift av bygg og anlegg. Den anslår i tillegg 145 årsverk hos leverandører, til sammen nesten 400 årsverk i driften, og nesten 280 av dem i Narvik.", "kilde": [{ "id": "menon-2025", "side": 19 }, { "id": "menon-2025", "side": 20 }] },
@@ -762,7 +832,7 @@
           { "sitat": "Vi trenger alt fra noen spesialister til vanlige håndverkere, elektrikere, kjølemekanikere og industrimekanikere.", "hvem": "Stian Jenssen, sjef for Skandinavia i Nscale", "tekst": "Til NRK i mai 2026, om hvem datasenteret skal ansette.", "kilde": { "id": "nrk-jenssen-2026" } },
           { "tekst": "Fremover skriver at Narvik Bygg har fått en kontrakt på 200 millioner kroner med Nscale, og at den alene er verdt mer enn selskapets totale omsetning noe tidligere år.", "kilde": { "id": "fremover-narvik-bygg-2026" } }
         ] },
-        { "tittel": "Strøm og nett", "punkter": [
+        { "id": "strom", "tittel": "Strøm og nett", "punkter": [
           { "sitat": "Vil nok se en betydelig økt strømpris, ja.", "hvem": "Eirik Frantzen, administrerende direktør i Nordkraft", "tekst": "Til NRK i august 2025, om strømprisene i Nord-Norge når datasenteret og andre kraftkrevende prosjekter kommer.", "kilde": { "id": "nrk-frantzen-2025" } },
           { "sitat": "Vi vil fortsatt ha mer strøm enn vi forbruker. Så for en vanlig forbruker vil dette være relativt uproblematisk.", "hvem": "Eirik Frantzen, administrerende direktør i Nordkraft", "kilde": { "id": "nrk-frantzen-2025" } },
           { "tekst": "NRK skriver at Statnett i april 2026 stanset flere nye tildelinger av kraft til industriprosjekter i Nord-Norge, og at de neste byggetrinnene i Bjerkvik ikke har fått reservert strøm.", "kilde": { "id": "nrk-jenssen-2026" } },
@@ -772,12 +842,12 @@
           {"tekst": "Fremover skriver i mai 2026 at Statnett ikke lenger tillater industri nord for Svartisen med behov over 5 MW å koble seg på nettet, og at det er søkt om 290 MW til et trinn to i Bjerkvik. Nordkraft har likevel bestilt en ny transformator for trinn to.", "sitat": "Blir beslutningen om å nekte tilknytning stående, så må bestillingen kanselleres, eventuelt må transformatoren selges der det er bruk for den.", "hvem": "Eirik Frantzen, konserndirektør i Nordkraft", "kilde": {"id": "fremover-transformator-2026"}},
           {"sitat": "Det er ikke fullt så lenge køen er full av luft.", "hvem": "Eirik Frantzen, konserndirektør i Nordkraft", "tekst": "Til Fremover, om energiministerens beskrivelse av et fullt strømnett i nord. Nordkraft vil rydde i nettkøen, tillate tilknytning på vilkår og bygge mer nett.", "kilde": {"id": "fremover-transformator-2026"}}
         ] },
-        { "tittel": "Natur, vann og støy", "punkter": [
+        { "id": "natur", "tittel": "Natur, vann og støy", "punkter": [
           { "tekst": "Konsekvensutredningen til reguleringsplanen satte samlet konsekvens for naturmangfold til «betydelig miljøskade», med vekt på registrerte naturtyper.", "kilde": { "id": "nve-brev-2025", "side": 3 } },
           { "tekst": "Reguleringsbestemmelsene krever at det ikke kommer slam, sedimenter eller organisk materiale i vassdragene i anleggsfasen, og at grøftevann og drensvann infiltreres i grunnen før det renner ut i vassdraget.", "kilde": { "id": "plan-datasenter-2021", "side": 1 } },
           { "tekst": "Støy fra vifter og kjøleanlegg skal holde seg innenfor statens retningslinje for støy (T-1442), og støy fra driften skal være beregnet før det gis igangsettingstillatelse.", "kilde": { "id": "plan-datasenter-2021", "side": 5 } }
         ] },
-        { "tittel": "Overskuddsvarme", "punkter": [
+        { "id": "varme", "tittel": "Overskuddsvarme", "punkter": [
           { "tekst": "Etter energiloven § 7-2 må datasentre over 2 MW lage en kost-nytteanalyse av mulighetene for å bruke overskuddsvarmen, og NVE må godkjenne den før byggestart. Regelen har gjeldt siden 1. april 2025. Den krever at muligheten vurderes; NVE skriver at det er lovpålagt «å vurdere om overskuddsvarmen kan benyttes».", "kilde": { "id": "nve-tvangsmulkt-2026" } },
           { "tekst": "NVE skriver at Nscale Norway AS startet byggingen uten å ha levert analysen, og at det er et brudd på energiloven. NVE har pålagt Nscale å levere den og varslet tvangsmulkt hvis den ikke er kommet innen 15. november 2026.", "kilde": { "id": "nve-tvangsmulkt-2026" } },
           { "tekst": "Kjølevannsplanen skal også legge til rette for at overskuddsvarmen kan brukes, for eksempel på Lallasletta eller langs traseen. Nscale opplyser at de er i dialog med Futurum og kommunen om dette.", "kilde": { "id": "kjolevann-2026", "side": 8 } },
@@ -809,8 +879,14 @@
       "id": "alpin-vm-2029",
       "tittel": "Alpin-VM 2029",
       "sok_tittel": "Alpin-VM 2029 i Narvik: dato, kostnader og hvem som betaler",
-      "ingress": "Narvik skal arrangere VM i alpint i månedsskiftet februar og mars 2029. Arrangementet og utbyggingen i Narvikfjellet ligger i egne selskaper, ikke i kommunen. Her er det Stortinget og kommunen har vedtatt og satt av penger til, fra stortingsvedtaket, økonomiplanen og plansakene.",
-      "kontrollert": "2026-10-20",
+      "ingress": "Narvik skal arrangere VM i alpint 13.–25. februar 2029. Arrangementet og utbyggingen i Narvikfjellet ligger i egne selskaper, ikke i kommunen. Her er det Stortinget og kommunen har vedtatt og satt av penger til, fra stortingsvedtaket, økonomiplanen og plansakene.",
+      "kontrollert": "2026-11-05",
+      "oppsummering": [
+        { "tekst": "VM arrangeres 13.–25. februar 2029. Staten bidrar med inntil 342 mill. kr til anlegget, og kommunen har satt av 31,25 mill. kr i 2027.", "lenke": "#rolle" },
+        { "tekst": "Etter vertskapsavtalen med FIS er kommunen, Skiforbundet og arrangørselskapet solidarisk ansvarlige for forpliktelsene om mesterskapet. Kontrollutvalget har bedt kommunedirektøren redegjøre for risikoen.", "lenke": "#rolle" },
+        { "tekst": "Partene ble i august 2026 enige om ansvarsfordelingen i en firepartsavtale. Kommunedirektøren sa til NRK at kommunen ikke påtok seg flere kostnader.", "lenke": "#hvem-betaler" },
+        { "tekst": "Arrangøren sa i oktober 2026 fra seg verdenscuprennet for kvinner i mars 2027. Samme måned vedtok kommunestyret skolerutene for de to skoleårene før VM.", "lenke": "#tidslinje" }
+      ],
       "nokkeltall": [
         { "navn": "Statens bidrag til VM-anlegget", "verdi": "inntil 342 mill. kr", "tekst": "over årene 2025–2028, vedtatt av Stortinget", "kilde": { "id": "innst-85s-2024", "side": 7 } },
         { "navn": "Kommunens bidrag til VM-anlegget", "verdi": "31,25 mill. kr", "tekst": "satt av i 2027 i investeringsbudsjettet, prosjekt 832028", "kilde": { "id": "okplan-2026", "side": 14 } },
@@ -827,7 +903,7 @@
       ],
       "rolle": [
         { "tekst": "Norges Skiforbund og Narvik kommune er tildelt VM i alpine grener i 2029.", "kilde": { "id": "innst-85s-2024", "side": 2 } },
-        { "tekst": "VM skal arrangeres i Narvik i månedsskiftet februar og mars 2029, ifølge kommunen.", "kilde": { "id": "vm-organisering" } },
+        { "tekst": "VM skal arrangeres i Narvik 13.–25. februar 2029. Det internasjonale skiforbundet FIS fastsatte datoene i mai 2026, om lag en uke senere enn vanlig for et alpin-VM.", "kilde": { "id": "skiforbundet-vm-dato-2026" } },
         { "tekst": "Narvikfjellet Allmenn AS bygger ut anlegget, og arrangørselskapet (LOC) gjennomfører mesterskapet. Kommunen oppgir at det ikke går penger fra kommunen inn i de to selskapene, verken til drift eller investering, utenom bidraget i økonomiplanen.", "kilde": { "id": "vm-organisering" } },
         { "tekst": "Kommunen og Norges Skiforbund er parter i vertskapsavtalen (Hosting Contract) med det internasjonale skiforbundet FIS, signert 4. juni 2024. Etter avtalens punkt 2.7 er Skiforbundet, kommunen og arrangørselskapet solidarisk ansvarlige («jointly and severally responsible») for alle forpliktelser de inngår, hver for seg eller sammen, om organiseringen og gjennomføringen av mesterskapet.", "kilde": { "id": "ku-2025-12-01", "side": 30 } },
         { "tekst": "Advokatfirmaet PwC vurderte at den største risikoen i vertskapsavtalen er at kommunen hefter solidarisk for økonomiske forpliktelser som kan oppstå ved framtidige avtaler. Kommunen har brukt advokatfirmaet Harris til å vurdere avtalene etter tildelingen, og arbeider med en avtale som skal fordele ansvaret mellom de fire partene.", "kilde": { "id": "ku-2025-12-01", "side": 36 } },
@@ -838,7 +914,7 @@
         { "tekst": "Veg og park har prioritert uttalelser til reguleringsplanene for VM.", "kilde": { "id": "tertial-2-2026", "side": 41 } }
       ],
       "temaer": [
-        { "tittel": "Hvem betaler for hva", "punkter": [
+        { "id": "hvem-betaler", "tittel": "Hvem betaler for hva", "punkter": [
           {"tekst": "NRK skriver i juni 2026 at kommunen og Skiforbundet ennå ikke var enige om hva «nøkkelferdig anlegg» i vertskapsavtalen betyr, blant annet om ekstra tråkkemaskiner, smøreboder og kommentatorbokser.", "kilde": {"id": "nrk-vm-strid-2026"}},
           {"tekst": "Fremover skriver i juni 2026 at kommunen mener anlegget trenger tre faste tråkkemaskiner, mens Skiforbundet ifølge kommunen forventer fem. Én tråkkemaskin koster seks til sju millioner kroner, ifølge Narvikfjellet Allmenn.", "kilde": {"id": "fremover-vm-uenig-2026"}},
           {"sitat": "Jo flere maskiner som man ønsker å ha fast i bakken, vil redusere kostnadene for arrangør av mesterskapet. Det er derfor en uenighet om hvem som skal ta deler av kostnadene.", "hvem": "Rolf M. Lossius, kommunalsjef for virksomhetsstyring og styremedlem i Narvikfjellet Allmenn", "tekst": "Til Fremover i juni 2026. Han sier det ikke er uenighet om hvor mange maskiner selve mesterskapet trenger.", "kilde": {"id": "fremover-vm-uenig-2026"}},
@@ -860,8 +936,11 @@
         { "dato": "27.10.2025", "tekst": "Kontrollutvalget ber kommunedirektøren redegjøre skriftlig for risikoen ved solidarisk ansvar og garantier, juridisk kvalitetssikring av avtalene, risikohåndtering og erfaringer fra tidligere VM (sak 48/25).", "kilde": { "id": "ku-2025-12-01", "side": 9 } },
         { "dato": "01.12.2025", "tekst": "Kontrollutvalget stiller oppfølgingsspørsmål om hva det solidariske ansvaret innebærer, hvem kreditorer kan kreve, og om forsikringen dekker kommunens ansvar ved avlysning (sak 58/25).", "kilde": { "id": "ku-2025-12-01", "side": 26 } },
         { "dato": "23.02.2026", "tekst": "Kontrollutvalget sender kommunedirektørens svar av 15.01.2026 til kommunestyret og anbefaler at kommunestyret får jevnlige orienteringer om kommunens samlede risiko knyttet til VM (sak 05/26).", "kilde": { "id": "ku-2026-02-23", "side": 5 } },
+        { "dato": "08.05.2026", "tekst": "FIS fastsetter datoene for VM til 13.–25. februar 2029.", "kilde": { "id": "skiforbundet-vm-dato-2026" } },
         {"dato": "18.08.2026", "tekst": "Narvik kommune, Norges Skiforbund, Narvikfjellet Allmenn og Narvik 2029 AS blir enige om den overordnede ansvarsfordelingen i firepartsavtalen, ifølge NRK.", "kilde": {"id": "nrk-vm-avtale-2026"}},
+        {"dato": "09.10.2026", "tekst": "Fremover skriver at kommunedirektøren innstiller på å endre skolerutene for de to skoleårene før VM for å gi plass til mesterskapet, til tross for motstand.", "kilde": {"id": "fremover-vm-skolerute-2026"}},
         {"dato": "19.10.2026", "tekst": "Narvik 2029 AS sier fra seg verdenscuprennet for kvinner i mars 2027 etter FIS sin inspeksjon av anlegget, ifølge NRK. Arrangørene sier det ikke endrer planene for VM i 2029.", "sitat": "Det er selvfølgelig en uønsket, men samtidig helt udramatisk avgjørelse.", "hvem": "Eirik Frantzen, styreleder i Narvik 2029 AS", "kilde": {"id": "nrk-vm-verdenscup-2026"}},
+        { "dato": "29.10.2026", "tekst": "Kommunestyret vedtar skolerutene for 2027/28 og 2028/29 (sak 179/26, 24 mot 7 stemmer). Kommunedirektøren skal innen juni 2027 legge fram en sak om tiltak som kan veie opp for endringene for de minste barna, for eksempel gratis SFO.", "kilde": { "id": "ks-protokoll-2026-10-29", "side": 10 } },
         { "dato": "2027", "tekst": "Kommunens bidrag på 31,25 mill. kr ligger i økonomiplanen for 2027.", "kilde": { "id": "okplan-2026", "side": 14 } }
       ],
       "lenker": [
@@ -874,7 +953,13 @@
       "id": "framneslia-indre-havn",
       "tittel": "Framneslia og Indre havn",
       "ingress": "Kommunen kjøpte Framneslia, det gamle flyplassområdet, av Statsbygg i 2022. Kommunestyret har gitt fullmakt til å selge området og har bedt om en sak om salg eller utvikling av både Framneslia og Indre havn. Her er det som er vedtatt og rapportert, fra kommunens egne sakspapirer.",
-      "kontrollert": "2026-10-20",
+      "kontrollert": "2026-11-05",
+      "oppsummering": [
+        { "tekst": "Kommunen kjøpte Framneslia av Statsbygg for 151,5 mill. kr i 2022, og har siden desember 2025 fullmakt til å selge hele eller deler av området.", "lenke": "#rolle" },
+        { "tekst": "Ifølge tertialrapport 1/2026 ventet kommunen at en avtale om salg av Indre havn og Framnesodden til LKAB ville være klar før sommeren 2026.", "lenke": "#rolle" },
+        { "tekst": "Kommunestyret har bedt om en egen sak om Framneslia og Indre havn i desember 2025 og i juni 2026. I september 2026 spurte en interpellasjon fra H, Sp og Frp hvorfor saken ikke er kommet.", "lenke": "#tidslinje" },
+        { "tekst": "Planinitiativet for Indre havn, med om lag 500 boenheter, ble sendt tilbake av kommunestyret i juni 2025 med 22 mot 8 stemmer.", "lenke": "#indre-havn" }
+      ],
       "nokkeltall": [
         { "navn": "Kjøp av tomt i Framneslia", "verdi": "151,5 mill. kr", "tekst": "kommunens største investering i 2022", "kilde": { "id": "ar-2022", "side": 14 } },
         { "navn": "Boenheter i planinitiativet for Indre havn", "verdi": "ca. 500", "tekst": "i forslaget fra Narvikgården og Narvik havn, som kommunestyret sendte tilbake i juni 2025", "kilde": { "id": "ks-sak-72-2025", "side": 4 } },
@@ -896,7 +981,7 @@
         { "tekst": "Planarbeidet for Indre havn betales av Narvikgården AS og Narvik havn KF, som er forslagsstillere.", "kilde": { "id": "ks-sak-72-2025", "side": 5 } }
       ],
       "temaer": [
-        { "tittel": "Planene for Indre havn", "punkter": [
+        { "id": "indre-havn", "tittel": "Planene for Indre havn", "punkter": [
           {"sitat": "Vi snakker ikke om et boligområde, men en ny bydel.", "hvem": "Bjørnar Evenrud, direktør i Narvikgården", "tekst": "Til Fremover i oktober 2025, om Indre havn.", "kilde": {"id": "fremover-evenrud-2025"}},
           {"sitat": "Selskapet ønsker både å overta arealene som Narvik kommune eier i Framneslia, og deler av Indre havn som i dag er festet av LKAB.", "hvem": "Marit Waleniussen, daglig leder for LKAB Norge", "tekst": "I et skriftlig svar til Fremover i november 2025. Ifølge saken vil LKAB kjøpe om lag 42 000 m² i Indre havn, og står sammen med Industrigruppen i Indre Narvik havn for å beholde dagens industriområder.", "kilde": {"id": "fremover-lkab-2025"}},
           { "tekst": "Planinitiativet delte området i tre: industri og næring i nord, kombinert bebyggelse i midten, og hotell, marin næring og boliger i sør, med havnepromenade og småbåthavn.", "kilde": { "id": "ks-sak-72-2025", "side": 4 } },
@@ -905,7 +990,7 @@
           { "tekst": "Kommunestyret sendte planinitiativet tilbake med 22 mot 8 stemmer: «Eksisterende industri må hensyntas i større grad og grensesnittet mellom industri, bolig og reiseliv tydeliggjøres og justeres».", "kilde": { "id": "ks-sak-72-2025", "side": 2 } },
           { "tekst": "Høsten 2025 bestilte Narvikgården en spørreundersøkelse fra Norstat. Etter at den ble publisert, krevde en tredjedel av kommunestyret en sak om oppfølging av vedtaket og eierstyringen.", "kilde": { "id": "ks-sak-144-2025", "side": 2 } }
         ] },
-        { "tittel": "Framneslia i arealplanen", "punkter": [
+        { "id": "arealplan", "tittel": "Framneslia i arealplanen", "punkter": [
           {"tekst": "LKAB skriver til Fremover at arealet kommunen har satt av til selskapet på Framnesodden er for lite til større industrielle etableringer, og at LKAB vil kjøpe hele Framneslia.", "sitat": "LKAB, som de fleste selskaper, har strenge krav til avkastning på sin kapital. Det gjør at LKAB aldri vil kunne la et areal ligge brakk.", "hvem": "Marit Waleniussen, daglig leder for LKAB Norge", "kilde": {"id": "fremover-lkab-2025"}},
           {"tekst": "Fremover skriver i november 2025 at også Aker Nscale vil ha arealer i Framneslia, og at Akers pressekontakt bekrefter innledende samtaler med kommunen.", "kilde": {"id": "fremover-aker-framneslia-2025"}},
           { "tekst": "Da kommuneplanens arealdel ble lagt ut på høring, falt et forslag fra Sp, SV, Frp, R og INP om å redusere næringsarealet i Framneslia mot øst og nord, med 15 mot 16 stemmer.", "kilde": { "id": "ks-prot-2026-02-05", "side": 11 } },

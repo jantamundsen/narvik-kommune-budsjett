@@ -69,13 +69,13 @@ const dateText = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nb-NO', 
         <p class="lead">Tall som ville vist mer om hvor kostnadene oppstår, men som jeg ikke har funnet i offentlige dokumenter. Hvert punkt sier hva som finnes i stedet.</p></div>
       <ul class="fact-list">${S.savner.map(m => `<li class="fact"><p><strong>${esc(m.tittel)}.</strong> ${esc(m.tekst)}</p><p class="caption fact-src">${m.kilde ? `Kilde: ${srcGroup([].concat(m.kilde))} · ` : ''}<a href="${esc(m.href)}">Tall som savnes</a></p></li>`).join('')}</ul>
     </section>` : '';
-  const role = `<section aria-labelledby="h-role">
+  const role = `<section aria-labelledby="h-role" id="rolle">
       <div class="section-head"><h2 id="h-role">Kommunens rolle og penger</h2></div>
       <ul class="fact-list">${S.rolle.map(r => `<li class="fact"><p>${esc(r.tekst)}</p><p class="caption fact-src">Kilde: ${note(r.kilde)}</p></li>`).join('')}</ul>
     </section>`;
   // Topics such as jobs or environment, each a short list of sourced points.
   (S.temaer || []).forEach(t => t.punkter.forEach(p => [].concat(p.kilde).forEach(k => sources.set(k.id, D.kilder[k.id]))));
-  const topics = (S.temaer || []).map((t, n) => `<section aria-labelledby="h-topic-${n}">
+  const topics = (S.temaer || []).map((t, n) => `<section aria-labelledby="h-topic-${n}"${t.id ? ` id="${esc(t.id)}"` : ''}>
       <div class="section-head"><h2 id="h-topic-${n}">${esc(t.tittel)}</h2></div>
       <ul class="fact-list">${t.punkter.map(p => `<li class="fact${isMedia(p.kilde) ? ' fact-media' : ''}">${mediaTag(p)}${p.sitat ? quote(p) : `<p>${esc(p.tekst)}</p>`}<p class="caption fact-src">Kilde: ${srcGroup([].concat(p.kilde))}</p></li>`).join('')}</ul>
     </section>`).join('');
