@@ -813,3 +813,49 @@ dl.facts dd { margin: 0; }
 .gbar-group .num, .gbar-group h3 span:last-child { white-space: nowrap; flex: none; font-variant-numeric: tabular-nums; }
 .gbar-group li .num { color: var(--ink-2); }
 @media (max-width: 680px) { .gbar { height: 56px; } .gbar .gbar-small { display: none; } }
+
+/* Front page: the population with a still dot map as the opening, small lines in the key numbers, and «Skiller seg
+   ut» as bars from the average. */
+header.hero { grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr); gap: 8px; align-items: center; }
+.hero-copy { display: grid; gap: 14px; align-content: center; }
+.hero h1 { font-size: clamp(1.8rem, 4vw, 2.3rem); }
+.hero-stat { display: grid; gap: 2px; font-family: var(--font-display); margin-top: 6px; }
+.hero-num { font-size: clamp(3.2rem, 9vw, 4.6rem); font-weight: 700; line-height: 1; color: var(--accent); letter-spacing: -0.02em; }
+.hero-what { font-size: 1.15rem; font-weight: 600; color: var(--ink-2); }
+.hero-fig { margin: 0; display: grid; gap: 6px; min-width: 0; }
+.hero-fig > a { display: block; border-radius: 10px; }
+.hero-fig > a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+/* No frame: outside the kommune is the page itself, so the kommune's own shape stands on the page rather than a
+   picture in a box. */
+.hero-fig > a:hover #hero-map .dm-dots circle { fill-opacity: 0.9; }
+#hero-map { display: block; width: 100%; height: auto; font-family: var(--font-body); }
+@media (max-width: 680px) { header.hero { grid-template-columns: 1fr; gap: 20px; } }
+
+.front-stat .spark { display: grid; gap: 1px; margin: 6px 0 2px; }
+.front-stat .spark svg { display: block; width: 100%; height: 34px; overflow: visible; }
+.spark-line { fill: none; stroke: var(--accent); stroke-width: 2; vector-effect: non-scaling-stroke; stroke-linejoin: round; }
+.spark-area { fill: var(--accent-soft); stroke: none; }
+.spark-ends { display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+
+.front-out { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 4px 16px; display: grid; }
+.out-row { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(80px, 1fr) 7.5rem; gap: 16px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--rule); color: inherit; text-decoration: none; }
+.out-row:last-child { border-bottom: 0; }
+.out-row:hover .out-name { color: var(--accent); }
+.out-name { display: grid; gap: 1px; font-size: 0.92rem; font-weight: 600; line-height: 1.3; }
+.out-name .eyebrow { color: var(--accent); font-size: 0.7rem; }
+.out-name small { font-weight: 400; color: var(--ink-2); font-size: 0.82rem; }
+.out-diff { display: grid; text-align: right; font-weight: 700; color: var(--accent); font-size: 1.05rem; }
+.out-diff small { font-weight: 400; color: var(--ink-2); font-size: 0.78rem; }
+.front-out .dev { height: 12px; border-radius: 6px; }
+.front-out .dev span { border-radius: 6px; }
+@media (max-width: 600px) {
+  .out-row { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "name diff" "bar bar"; gap: 8px 12px; }
+  .out-name { grid-area: name; } .out-diff { grid-area: diff; } .out-row .dev { grid-area: bar; }
+}
+.front-out-points { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); gap: 10px; }
+.front-out-points a { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 12px 14px; display: grid; gap: 2px; height: 100%; color: inherit; text-decoration: none; }
+.front-out-points a:hover { border-color: var(--accent); }
+.front-out-points .eyebrow { color: var(--accent); }
+.front-out-points .so-name { font-size: 0.85rem; font-weight: 500; }
+.front-out-points b { font: 700 1.2rem var(--font-display); }
+.front-out-points .so-diff { font-size: 0.9rem; }

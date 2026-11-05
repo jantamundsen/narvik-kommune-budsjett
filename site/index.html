@@ -24,7 +24,7 @@
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="stylesheet" href="style.css?v=2026-11-05u">
+<link rel="stylesheet" href="style.css?v=2026-11-05zz">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebSite","name":"Åpne tall for Narvik","alternateName":"narviktall.no","url":"https://narviktall.no/","inLanguage":"nb","description":"Åpne tall om Narvik kommune: økonomi, budsjett, regnskap, befolkning, bolig, arbeid og næringsliv, med kilde for hvert tall.","creator":{"@type":"Person","name":"Jan Tore Amundsen","url":"https://janamundsen.dev"}}
 </script>
@@ -34,10 +34,16 @@
   <div class="site-head">
     <nav class="site-nav" aria-label="Sider"><a class="brand" href="./"><img src="favicon.svg" alt="" width="28" height="28">Åpne tall for Narvik</a><a href="saker">Utvalgte saker</a><a href="okonomi">Økonomi</a><a href="befolkning">Befolkning</a><a href="bolig">Bolig</a><a href="arbeid">Arbeid</a><a href="naering">Næringsliv</a><a href="andre-tall">Andre tall</a><a href="om">Om siden</a></nav>
   </div>
-  <header>
-    <div class="eyebrow">Narvik kommune · offentlige tall på ett sted</div>
-    <h1>Åpne tall for Narvik</h1>
-    <p class="lead">Regnskap og budsjett, befolkning, bolig, arbeid og næringsliv i Narvik kommune, sammenlignet med lignende kommuner. Hvert tall har lenke til kilden, enten det er SSB, Nav, Brønnøysundregistrene, andre offentlige etater eller kommunens egne dokumenter.</p>
+  <header class="hero">
+    <div class="hero-copy">
+      <h1>Åpne tall om Narvik kommune</h1>
+      <p class="hero-stat" id="hero-stat" hidden><span class="hero-num num" id="hero-num"></span> <span class="hero-what" id="hero-what"></span></p>
+      <p class="lead">Her finner du regnskap og budsjett, befolkning, bolig, arbeid og næringsliv i Narvik kommune, sammenlignet med lignende kommuner. Hvert tall har lenke til kilden.</p>
+    </div>
+    <figure class="hero-fig" id="hero-fig" hidden>
+      <a href="befolkning#areas" aria-label="Se kartet over hvor folk bor på Befolkning-siden"><svg id="hero-map" role="img"></svg></a>
+      <figcaption class="caption" id="hero-caption"></figcaption>
+    </figure>
   </header>
 
   <section aria-labelledby="h-key">
@@ -59,7 +65,8 @@
       <h2 id="h-out">Skiller seg ut</h2>
       <p class="lead" id="out-lead"></p>
     </div>
-    <ul class="so-list front-out" id="out"></ul>
+    <div class="front-out" id="out"></div>
+    <ul class="front-out-points" id="out-points"></ul>
     <p class="caption" id="out-src"></p>
   </section>
 
@@ -81,7 +88,7 @@
     <span>Et åpent hobbyprosjekt laget av <a href="https://janamundsen.dev" target="_blank" rel="noopener">Jan Tore Amundsen</a>, ikke av Narvik kommune. <a href="https://github.com/jtkarlsen/narvik-kommune-budsjett" target="_blank" rel="noopener">Kildekode</a>.</span>
   </footer>
 </div>
-<script src="common.js?v=2026-11-05u"></script>
-<script src="forside.js?v=2026-11-05u"></script>
+<script src="common.js?v=2026-11-05zz"></script>
+<script src="forside.js?v=2026-11-05zz"></script>
 </body>
 </html>
