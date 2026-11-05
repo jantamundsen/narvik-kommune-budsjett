@@ -263,7 +263,7 @@ function drawCommuting() {
   document.getElementById('comm-cmp-caption').innerHTML = `Sysselsatte 15–74 år, november ${y}. For Nordland er det pendling inn og ut av fylket. Andelen er regnet ut her. ${ssb('11616', 'SSB tabell 11616')}.`;
 }
 
-// Unemployment as a calendar: one row per year (oldest on top, as calendars read; Jan 2026-11-05), one column per month, darker cell for a higher
+// Unemployment as a calendar: one row per year (oldest on top, as calendars read; Jan 2026-11-05), one column per month, stronger blue (darker in light mode, lighter in dark mode) for a higher
 // per cent. The steps are the same for every region, so a colour means the same per cent whichever region is shown.
 const CAL_STEPS = [1.3, 1.5, 2, 3, 5];
 const CAL_LABELS = ['under 1,3 %', '1,3–1,4 %', '1,5–1,9 %', '2,0–2,9 %', '3,0–4,9 %', '5,0 % og over'];
@@ -285,7 +285,7 @@ function drawCalendar(key) {
     + `<thead><tr><th scope="col"><span class="sr-only">År</span></th>${MONTHS.map(m => `<th scope="col"><abbr title="${m}">${m.slice(0, 3)}</abbr></th>`).join('')}</tr></thead>`
     + `<tbody>${years.map(y => `<tr><th scope="row">${y}</th>${MONTHS.map((_, i) => cell(`${y}-${String(i + 1).padStart(2, '0')}`)).join('')}</tr>`).join('')}</tbody>`;
   document.getElementById('cal-key').innerHTML = CAL_LABELS.map((t, i) => `<li><i class="c${i}"></i>${t}</li>`).join('');
-  document.getElementById('cal-caption').innerHTML = `Hver rute er én måned, med prosenten helt ledige ved utgangen av måneden. Jo mørkere rute, jo høyere prosent. Fargetrinnene er de samme for alle stedene du kan velge. Hold over en rute for å se antall personer. Tomme ruter er måneder Nav ikke har publisert ennå. Kilde: Nav, tabell HL060, ${month(ms[0])} til ${month(last)}, ${nav('HL060', last.slice(0, 4), 'siste fil')}.`;
+  document.getElementById('cal-caption').innerHTML = `Hver rute er én måned, med prosenten helt ledige ved utgangen av måneden. Jo sterkere blåfarge, jo høyere prosent. Fargetrinnene er de samme for alle stedene du kan velge. Hold over en rute for å se antall personer. Tomme ruter er måneder Nav ikke har publisert ennå. Kilde: Nav, tabell HL060, ${month(ms[0])} til ${month(last)}, ${nav('HL060', last.slice(0, 4), 'siste fil')}.`;
 }
 
 // The commuting map: an arc between Narvik and every kommune on the map, as wide as the number of people, with
