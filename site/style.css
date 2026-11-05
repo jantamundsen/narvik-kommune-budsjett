@@ -738,7 +738,7 @@ dl.facts dd { margin: 0; }
 .dm-panel { display: grid; gap: 12px; }
 .dm-ctl { display: flex; flex-wrap: wrap; gap: 10px 16px; }
 .dm-box { position: relative; }
-#dm-map { display: block; width: 100%; height: auto; max-height: 78vh; font-family: var(--font-body); touch-action: pan-y; }
+#dm-map { display: block; width: 100%; height: auto; font-family: var(--font-body); touch-action: pan-y; }
 .dm-land { fill: var(--dm-land); }
 .dm-town { fill: var(--dm-town); fill-rule: evenodd; }
 .dm-water { fill: var(--dm-water); fill-rule: evenodd; }
@@ -746,10 +746,16 @@ dl.facts dd { margin: 0; }
 .dm-rail { fill: none; stroke: var(--dm-road); stroke-dasharray: 4 3; }
 .dm-road { fill: none; stroke: var(--dm-road); stroke-linecap: round; stroke-linejoin: round; }
 .dm-dots circle { fill: var(--accent); fill-opacity: 0.72; stroke: var(--surface); }
-.dm-dots circle.on { fill: var(--ink); fill-opacity: 1; }
+.dm-mark { fill: var(--ink); stroke: var(--surface); pointer-events: none; }
 .dm-labels text { fill: var(--ink); paint-order: stroke; stroke: var(--dm-land); stroke-linejoin: round; pointer-events: none; font-weight: 600; }
-.dm-scale line { stroke: var(--ink-2); }
-.dm-scale text { fill: var(--ink-2); paint-order: stroke; stroke: var(--surface); stroke-linejoin: round; }
+.dm-box { border-radius: 8px; overflow: hidden; }
+#dm-map { cursor: default; user-select: none; -webkit-user-select: none; }
+#dm-map.dragging { cursor: grabbing; }
+.dm-zoom { position: absolute; top: 8px; right: 8px; display: grid; gap: 4px; }
+.dm-zoom button { width: 36px; height: 36px; display: grid; place-items: center; font: 600 1.15rem/1 var(--font-body); color: var(--ink); background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; cursor: pointer; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12); }
+.dm-zoom button:disabled { color: var(--muted); cursor: default; box-shadow: none; }
+.dm-zoom button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.dm-scale { position: absolute; left: 12px; bottom: 10px; border-bottom: 2px solid var(--ink-2); font-size: 0.75rem; color: var(--ink-2); line-height: 1.2; padding-bottom: 1px; text-shadow: 0 0 3px var(--surface), 0 0 3px var(--surface); pointer-events: none; }
 .dm-legend { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; font-size: 0.9rem; color: var(--ink-2); }
 .dm-legend span { display: inline-flex; align-items: center; gap: 6px; }
 .dm-legend i { display: inline-block; border-radius: 50%; background: var(--accent); opacity: 0.72; }
