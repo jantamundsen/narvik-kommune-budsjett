@@ -30,7 +30,7 @@ async function startDotMap() {
   const TOWN = new Set(['180603', '180604', '180605', '180606', '180607', '180608', '180609', '180610', '180612']);
   // Places named in the whole-kommune view; the town gets one label for all its delområder.
   // In order of priority: where labels would overlap (on a phone), the later ones are left out.
-  const PLACES = ['180612', '180601', '180615', '180616', '180614', '180611', '180602', '180613'];
+  const PLACES = ['180612', '180601', '180615', '180616', '180614', '180611', '180613'];
   const years = D.years, cells = D.cells;
   // The map shows the whole kommune in the newest year; a dot's text also gives the first year.
   const state = { view: 'alle', yi: years.length - 1 };
