@@ -877,3 +877,18 @@ header.hero { grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr); gap: 8
 .quiz-ans b { font-family: var(--font-display); }
 .quiz-go { font-weight: 600; text-decoration: none; }
 @media (prefers-reduced-motion: no-preference) { .quiz-opts button { transition: background-color .15s, border-color .15s; } }
+
+/* «Se Narvik i bilder» on the front page: a picture of each visualisation (scripts/build_galleri.js), in the dark
+   version when the reader uses dark mode. */
+.gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 760px) { .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 460px) { .gallery { grid-template-columns: 1fr; } }
+.gal-card { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; display: grid; grid-template-rows: auto 1fr; color: inherit; text-decoration: none; }
+.gal-card:hover { border-color: var(--accent); }
+.gal-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.gal-card picture { display: block; aspect-ratio: 4 / 3; overflow: hidden; border-bottom: 1px solid var(--rule); background: var(--surface); }
+.gal-card img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top center; max-width: 100%; }
+.gal-text { padding: 12px 14px 14px; display: grid; gap: 2px; }
+.gal-text b { font: 600 1.02rem/1.3 var(--font-display); }
+.gal-card:hover .gal-text b { color: var(--accent); }
+.gal-text span { font-size: 0.88rem; color: var(--ink-2); }
