@@ -31,6 +31,7 @@ jobs:
           python scripts/build_saker.py
           python scripts/build_andre_tall.py
           python scripts/fetch_befolkning.py
+          python scripts/fetch_prikkart.py
           python scripts/fetch_finans.py
           python scripts/fetch_bolig.py
           python scripts/fetch_arbeid.py
