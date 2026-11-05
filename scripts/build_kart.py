@@ -38,6 +38,13 @@ Y0, Y1 = 7_440_000, 7_760_000
 SCALE = 500          # metres per viewBox unit
 TOLERANCE = 400      # metres
 
+# Places in SSB 03321 that are not kommuner, as (longitude, latitude).
+EXTRA = {
+    "2111-2211": ("Svalbard", 15.63, 78.22),     # Longyearbyen, Bjørnøya, Hopen og Jan Mayen: Longyearbyen
+    "2311": ("Sokkelen sør", 2.5, 60.5),         # Sokkelen sør for 62 grader N: the North Sea, where most fields are
+    "2321": ("Sokkelen nord", 8.0, 66.0),        # Sokkelen nord for 62 grader N: the Norwegian Sea
+}
+
 GML = "{http://www.opengis.net/gml/3.2}"
 
 
@@ -80,6 +87,26 @@ def cross(a, b, axis, limit):
     p = [a[0] + t * (b[0] - a[0]), a[1] + t * (b[1] - a[1])]
     p[axis] = limit
     return tuple(p)
+
+
+def utm33(lon: float, lat: float) -> tuple[float, float]:
+    """Longitude and latitude (ETRS89) to EUREF89 UTM sone 33, the usual transverse Mercator series."""
+    import math
+    a, f, k0 = 6378137.0, 1 / 298.257222101, 0.9996
+    e2 = f * (2 - f)
+    ep2 = e2 / (1 - e2)
+    phi, lam = math.radians(lat), math.radians(lon - 15)
+    n = a / math.sqrt(1 - e2 * math.sin(phi) ** 2)
+    t, c = math.tan(phi) ** 2, ep2 * math.cos(phi) ** 2
+    A = math.cos(phi) * lam
+    m = a * ((1 - e2 / 4 - 3 * e2 ** 2 / 64 - 5 * e2 ** 3 / 256) * phi
+             - (3 * e2 / 8 + 3 * e2 ** 2 / 32 + 45 * e2 ** 3 / 1024) * math.sin(2 * phi)
+             + (15 * e2 ** 2 / 256 + 45 * e2 ** 3 / 1024) * math.sin(4 * phi)
+             - (35 * e2 ** 3 / 3072) * math.sin(6 * phi))
+    x = 500000 + k0 * n * (A + (1 - t + c) * A ** 3 / 6 + (5 - 18 * t + t * t + 72 * c - 58 * ep2) * A ** 5 / 120)
+    y = k0 * (m + n * math.tan(phi) * (A * A / 2 + (5 - t + 9 * c + 4 * c * c) * A ** 4 / 24
+                                       + (61 - 58 * t + t * t + 600 * c - 330 * ep2) * A ** 6 / 720))
+    return x, y
 
 
 def thin(pts, tol=TOLERANCE):
@@ -188,13 +215,15 @@ def main() -> int:
     z = zipfile.ZipFile(io.BytesIO(data))
     name = lambda part: next(n for n in z.namelist() if n.endswith(f"N1000{part}_GML.gml"))
 
-    kommuner = {}
+    kommuner, far = {}, {}
     for _, el in ET.iterparse(z.open(name("AdministrativeOmrader"))):
         if el.tag.endswith("}Kommune"):
             code = el.findtext("{*}kommunenummer")
             polys = rings(el)
             if overlaps(polys):
                 kommuner[code] = {"name": el.findtext("{*}kommunenavn"), "polys": polys}
+            elif polys:
+                far[code] = centroid(max((p[0] for p in polys), key=lambda r: abs(area(r))))
             el.clear()
 
     sea, towns = [], []
@@ -232,6 +261,11 @@ def main() -> int:
             continue
         x, y = vb(main_point(k["polys"], towns, sea))
         out["kommuner"].append({"code": code, "name": norsk.get(code, k["name"]), "d": d, "x": x, "y": y})
+    # Where every other place lies, so the map can point toward it from its edge: the centre of the largest
+    # polygon of each kommune outside the map, and a point for the places in SSB 03321 that are not kommuner.
+    out["far"] = {code: [*vb(p), norsk.get(code, code)] for code, p in sorted(far.items())}
+    for code, (label, lon, lat) in EXTRA.items():
+        out["far"][code] = [*vb(utm33(lon, lat)), label]
     args.out.write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
     print(f"Skrev {args.out} ({len(out['kommuner'])} kommuner, {args.out.stat().st_size // 1024} kB)")
     return 0

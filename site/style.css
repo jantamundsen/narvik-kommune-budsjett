@@ -675,10 +675,10 @@ dl.facts dd { margin: 0; }
   .ptable table.own.stack tr { grid-template-columns: 1fr; }
 }
 
-/* arbeid.html: the commuting map */
-:root { --map-land: #dde3e8; --map-sea: #eef4fa; --map-abroad: #ebeef1; --map-border: #f7f9fa; }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --map-land: #2e3944; --map-sea: #141c24; --map-abroad: #222a32; --map-border: #1a222a; } }
-:root[data-theme="dark"] { --map-land: #2e3944; --map-sea: #141c24; --map-abroad: #222a32; --map-border: #1a222a; }
+/* arbeid.html: the commuting map. Blue: lives in Narvik, works elsewhere. Orange: works in Narvik, lives elsewhere. */
+:root { --map-land: #dde3e8; --map-sea: #eef4fa; --map-abroad: #ebeef1; --map-border: #f7f9fa; --pk-ut: #005fbe; --pk-inn: #c26a12; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --map-land: #2e3944; --map-sea: #141c24; --map-abroad: #222a32; --map-border: #1a222a; --pk-ut: #6aacf2; --pk-inn: #f0a85a; } }
+:root[data-theme="dark"] { --map-land: #2e3944; --map-sea: #141c24; --map-abroad: #222a32; --map-border: #1a222a; --pk-ut: #6aacf2; --pk-inn: #f0a85a; }
 .pk-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px 16px; }
 .pk-head h3 { font-size: 1.05rem; font-weight: 600; }
 .pk-body { display: grid; grid-template-columns: minmax(0, 3fr) minmax(220px, 2fr); gap: 20px; align-items: start; }
@@ -690,20 +690,23 @@ dl.facts dd { margin: 0; }
 .pk-country { fill: var(--muted); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; }
 .pk-arc { cursor: pointer; outline: none; }
 .pk-arc .hit { fill: none; stroke: transparent; stroke-width: 16; }
-.pk-arc .line { fill: none; stroke: var(--accent); stroke-linecap: round; opacity: 0.75; }
+.pk-arc .line { fill: none; stroke-linecap: round; opacity: 0.8; }
+.pk-arc.ut .line { stroke: var(--pk-ut); }
+.pk-arc.inn .line { stroke: var(--pk-inn); }
 .pk-arc:hover .line, .pk-arc:focus-visible .line, .pk-arc.on .line { opacity: 1; stroke: var(--ink); }
-.pk-far-arrow { fill: none; stroke: var(--ink-2); stroke-width: 2; stroke-dasharray: 3 5; }
-.pk-far-head { fill: var(--ink-2); }
 .pk-dots circle { fill: var(--ink-2); }
 .pk-dots .pk-home { fill: var(--ink); stroke: var(--surface); stroke-width: 3; }
 .pk-labels text { fill: var(--ink); font-size: 13px; paint-order: stroke; stroke: var(--map-land); stroke-width: 3px; stroke-linejoin: round; pointer-events: none; }
-.pk-labels .n { font-weight: 600; }
+.pk-labels .n { font-weight: 700; }
+.pk-labels .n.ut { fill: var(--pk-ut); } .pk-labels .n.inn { fill: var(--pk-inn); }
 .pk-labels .pk-home-label { font-weight: 700; font-size: 15px; }
-.pk-labels .pk-far-label { stroke: var(--map-sea); }
-@media (max-width: 520px) { .pk-labels text { font-size: 22px; stroke-width: 4px; } .pk-labels .pk-home-label { font-size: 24px; } .pk-country { font-size: 20px; } .pk-dots circle { r: 4; } }
-.pk-side { display: grid; gap: 16px; align-content: start; }
-.pk-side h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 8px; }
-.pk-info { font-size: 0.95rem; min-height: 3em; }
-.pk-side .hbars .hb.ab { grid-template-columns: minmax(0, 1.4fr) minmax(40px, 1fr) 44px; }
-.pk-side .hbars .hb.ab .track { grid-column: auto; grid-row: auto; }
-.pk-side .hbars .hb.ab .muted { display: none; }
+.pk-labels .pk-far-h { font-weight: 700; }
+.pk-labels .pk-far-rest { fill: var(--ink-2); }
+@media (max-width: 520px) { .pk-labels text { font-size: 22px; stroke-width: 4px; } .pk-labels .pk-home-label { font-size: 24px; } .pk-country { font-size: 20px; } }
+.pk-side { display: grid; gap: 14px; align-content: start; }
+.pk-legend { display: grid; gap: 10px; }
+.pk-legend p { display: flex; gap: 10px; align-items: baseline; font-size: 0.95rem; }
+.pk-key { flex: none; width: 22px; height: 6px; border-radius: 3px; transform: translateY(-3px); }
+.pk-key.ut { background: var(--pk-ut); } .pk-key.inn { background: var(--pk-inn); }
+.pk-info { font-size: 0.9rem; color: var(--ink-2); min-height: 2.6em; }
+#pk-table .sum td { font-weight: 600; border-top: 2px solid var(--ink); }

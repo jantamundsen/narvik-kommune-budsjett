@@ -114,20 +114,22 @@
       <div class="pk-head">
         <h3 id="pk-h"></h3>
         <div class="seg cmp-pick" role="group" aria-label="Retning" id="pk-pick">
-          <button type="button" data-dir="ut" aria-pressed="true">Bor i Narvik, jobber andre steder</button>
+          <button type="button" data-dir="begge" aria-pressed="true">Begge veier</button>
+          <button type="button" data-dir="ut" aria-pressed="false">Bor i Narvik, jobber andre steder</button>
           <button type="button" data-dir="inn" aria-pressed="false">Jobber i Narvik, bor andre steder</button>
         </div>
       </div>
       <div class="pk-body">
         <svg id="pk-map" role="img"></svg>
         <div class="pk-side">
+          <div class="pk-legend" id="pk-legend"></div>
           <p class="pk-info" id="pk-info" aria-live="polite"></p>
-          <div><h4 id="pk-far-h"></h4><div class="hbars" id="pk-far"></div></div>
         </div>
       </div>
+      <details class="all-numbers"><summary>Vis alle tallene</summary><div class="detail-scroll"><table class="num-table" id="pk-table"></table></div></details>
       <p class="caption" id="pk-caption"></p>
     </div>
-    <div class="two">
+    <div class="two" id="comm-bars">
       <div class="panel bars-panel"><h3 id="out-h"></h3><div class="hbars" id="out-bars"></div></div>
       <div class="panel bars-panel"><h3 id="in-h"></h3><div class="hbars" id="in-bars"></div></div>
     </div>
