@@ -15,7 +15,7 @@ one folder down. Run after build_saker.py, fetch_data.py and fetch_selskaper.py;
 site/sitemap.xml, so new cases and areas are listed there.
 
 It also writes the newest numbers into the lead paragraphs, title and description of befolkning.html and
-bolig.html (prerender below), so the answer to «hvor mange bor i Narvik» or the price per square metre is in
+bolig.html, and the population under the title of index.html (prerender below), so the answer to «hvor mange bor i Narvik» or the price per square metre is in
 the HTML a search engine reads, not only in what befolkning.js and bolig.js draw. The texts are the same as the
 JavaScript writes; change them both places. Run after fetch_befolkning.py and fetch_bolig.py.
 """
@@ -130,6 +130,16 @@ def prerender():
                  f"framskrivinger til {max(P)}, hvor i kommunen folk bor, innvandrere og husholdninger, med kilde for hvert tall.")
     s = set_text(s, "lead", f"{nb(now)} bodde i Narvik 1. januar {last}, {nb(abs(now - then))} {'færre' if now < then else 'flere'} "
                             f"enn i {first}. Medianalderen er {row['narvik']['median']} år, mot {row['landet']['median']} i landet uten Oslo.")
+    write(f, s)
+
+    # The big population number under the title on the front page (hero() in forside.js).
+    f = SITE / "index.html"
+    s = f.read_text()
+    s, n = re.subn(r'<p class="hero-stat" id="hero-stat"( hidden)?><span class="hero-num num" id="hero-num">[^<]*</span> '
+                   r'<span class="hero-what" id="hero-what">[^<]*</span></p>',
+                   f'<p class="hero-stat" id="hero-stat"><span class="hero-num num" id="hero-num">{nb(now)}</span> '
+                   f'<span class="hero-what" id="hero-what">innbyggere 1. januar {last}</span></p>', s, count=1)
+    assert n == 1, "fant ikke hero-stat i index.html"
     write(f, s)
 
     H = json.loads((SITE / "data/bolig.json").read_text())
