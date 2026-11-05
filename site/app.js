@@ -238,9 +238,10 @@ function drawTrend() {
   });
   // A line through the bar tops, with the change from the year before written over each segment.
   const cx = i => left + i * band + band / 2;
-  svg.appendChild(s('path', { d: 'M' + vals.map((v, i) => `${cx(i)} ${Y(v)}`).join(' L'), fill: 'none', stroke: 'var(--ink)', 'stroke-width': 2, 'stroke-linejoin': 'round' }));
+  // Same style as «Folketallet år for år» on befolkning: accent line, filled dots, the last one larger.
+  svg.appendChild(s('polyline', { points: vals.map((v, i) => `${cx(i)},${Y(v)}`).join(' '), fill: 'none', stroke: 'var(--accent)', 'stroke-width': 2.5, 'stroke-linejoin': 'round' }));
   vals.forEach((v, i) => {
-    svg.appendChild(s('circle', { cx: cx(i), cy: Y(v), r: 4, fill: 'var(--surface)', stroke: 'var(--ink)', 'stroke-width': 2 }));
+    svg.appendChild(s('circle', { cx: cx(i), cy: Y(v), r: i === vals.length - 1 ? 5 : 4, fill: 'var(--accent)', stroke: 'var(--surface)', 'stroke-width': 1.5 }));
     if (!i) return;
     const c = pct(v, vals[i - 1]);
     const t = s('text', { x: (cx(i - 1) + cx(i)) / 2, y: (Y(vals[i - 1]) + Y(v)) / 2 - 12, 'text-anchor': 'middle', 'font-size': 12, 'font-weight': 600, fill: 'var(--ink)' }, chgText(c));
@@ -277,11 +278,11 @@ function drawMultiples() {
     a.append(el('span', { class: 'm-name' }, c.name), el('span', { class: 'm-chg num' }, chgText(pct(v.at(-1), v[0]))));
     const svg = s('svg', { viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': `${c.name}, mill. kr: ` + YEARS.map((y, i) => `${y} ${mill(v[i] * 1000)}`).join(', ') });
     const pts = v.map((t, i) => `${X(i).toFixed(1)} ${Y(t).toFixed(1)}`);
-    svg.appendChild(s('path', { d: 'M' + pts.join(' L') + ` L${X(v.length - 1)} ${base + 4} L${X(0)} ${base + 4} Z`, fill: 'var(--accent-soft)' }));
-    svg.appendChild(s('path', { d: 'M' + pts.join(' L'), fill: 'none', stroke: 'var(--accent)', 'stroke-width': 2.2, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }));
+    svg.appendChild(s('line', { x1: pad, x2: W - pad, y1: base + 0.5, y2: base + 0.5, stroke: 'var(--rule)' }));
+    svg.appendChild(s('path', { d: 'M' + pts.join(' L'), fill: 'none', stroke: 'var(--accent)', 'stroke-width': 2.5, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }));
     YEARS.forEach((y, i) => {
       const sel = y === year;
-      const dot = s('circle', { cx: X(i), cy: Y(v[i]), r: sel ? 4 : 2.2, fill: sel ? 'var(--accent)' : 'var(--surface)', stroke: 'var(--accent)', 'stroke-width': sel ? 2 : 1.4 });
+      const dot = s('circle', { cx: X(i), cy: Y(v[i]), r: sel ? 4 : 3, fill: 'var(--accent)', stroke: sel ? 'var(--surface)' : 'none', 'stroke-width': 1.5 });
       dot.appendChild(s('title', {}, `${y}: ${nb(v[i], v[i] < 10 ? 1 : 0)} mill. kr`));
       svg.appendChild(dot);
     });
