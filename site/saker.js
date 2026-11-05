@@ -278,16 +278,17 @@ function gapSection(M, E, G, ssbSrc) {
       if (!n?.per1000 || g?.per1000 == null) return null;
       const exp = n.antall * g.per1000 / n.per1000;
       sumN += n.antall; sumE += exp;
-      return `<tr><td>${name}</td><td>${nb(n.antall)}</td><td>${nb(n.per1000, 1)}</td><td>${nb(g.per1000, 1)}</td><td>${nb(Math.round(exp))}</td><td>${sign(n.antall - exp)}</td></tr>`;
+      return `<tr><td>${name}</td><td>${nb(n.antall)}</td><td>${nb(Math.round(exp))}</td><td>${sign(n.antall - exp)}</td></tr>`;
     });
     // SSB's own share of 80+ with a stay in an institution is measured differently and can point the other way.
     const i80 = (E.ssb || []).find(x => x.key === 'inst80'), a = i80?.values.narvik?.[uy], b = i80?.values.gruppe?.[uy];
     const inst80 = a != null && b != null ? ` SSBs eget nøkkeltall for andelen innbyggere 80 år og over med opphold i institusjon, som måles på en annen måte, var ${nb(a, 1)} % i Narvik og ${nb(b, 1)} % i ${esc(G)} i ${uy}.` : '';
     if (urows.every(Boolean)) {
-      html += `<h3 class="sub-h">Brukere av institusjonstjenester 67 år og over i ${uy}</h3>
-        <div class="detail-scroll"><table class="num-table"><tr><th>Alder</th><th>Brukere i Narvik</th><th>Per 1 000, Narvik</th><th>Per 1 000, gruppen</th><th>Med gruppens andel</th><th>Forskjell</th></tr>
-          ${urows.join('')}<tr class="sum"><td>67 år og over</td><td>${nb(sumN)}</td><td></td><td></td><td>${nb(Math.round(sumE))}</td><td>${sign(sumN - sumE)}</td></tr></table></div>
-        <p class="caption">«Med gruppens andel» er hvor mange brukere Narvik ville hatt med like mange brukere per 1 000 innbyggere i hver aldersgruppe som snittet i ${esc(G)}. Beregnet her. Brukere er personer SSB har registrert med institusjonstjenester, ikke antall døgn eller plasser. Aldersgruppene er små, så noen få brukere endrer tallene mye.${inst80} Kilde: ${ssbSrc(U.table, U.query, 'omsorgstjenester, brukere etter alder')}${inst80 ? ` og ${ssbSrc(i80.table, i80.query, 'utvalgte nøkkeltall for helse og omsorg')}` : ''}.</p>`;
+      html += `<h3 class="sub-h">Brukere av sykehjem og andre institusjoner i ${uy}, Narvik mot ${esc(G)}</h3>
+        <p>Hvor mange eldre i Narvik som brukte institusjonene, og hvor mange det ville vært hvis like stor del av hver aldersgruppe brukte dem som i snitt i ${esc(G)}.</p>
+        <div class="detail-scroll"><table class="num-table"><tr><th>Alder</th><th>Brukere i Narvik</th><th>Hvis Narvik var som snittet</th><th>Flere (+) eller færre (−)</th></tr>
+          ${urows.join('')}<tr class="sum"><td>67 år og over</td><td>${nb(sumN)}</td><td>${nb(Math.round(sumE))}</td><td>${sign(sumN - sumE)}</td></tr></table></div>
+        <p class="caption">«Hvis Narvik var som snittet» er antall innbyggere i Narvik i aldersgruppen ganget med andelen brukere i ${esc(G)}. Beregnet her. Andelene per 1 000 innbyggere står i tabellen «Brukere av institusjonstjenester per 1 000 innbyggere i aldersgruppen» under. Brukere er personer SSB har registrert med institusjonstjenester, ikke antall døgn eller plasser. Aldersgruppene er små, så noen få brukere endrer tallene mye.${inst80} Kilde: ${ssbSrc(U.table, U.query, 'omsorgstjenester, brukere etter alder')}${inst80 ? ` og ${ssbSrc(i80.table, i80.query, 'utvalgte nøkkeltall for helse og omsorg')}` : ''}.</p>`;
     }
   }
   const P = I?.dognpris?.values, py = P && Object.keys(P.narvik || {}).pop();
