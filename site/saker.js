@@ -96,7 +96,7 @@ const dateText = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nb-NO', 
   const media = [...sources.values()].filter(s => s.type === 'media');
   const docs = `<section aria-labelledby="h-docs">
       <div class="section-head"><h2 id="h-docs">Dokumentene</h2>
-        <p class="lead">Alle kildene for saken. Har vi oversett et vedtak eller et dokument, <a href="om#feil">si fra</a>.</p></div>
+        <p class="lead">Alle kildene for saken. Har jeg oversett et vedtak eller et dokument, <a href="om#feil">si fra</a>.</p></div>
       ${docList([...sources.values()].filter(s => s.type !== 'media'))}
       ${media.length ? `<h3 class="doc-sub">Medieoppslag</h3><p class="caption">Artikler som utsagnene og medieoppslagene over er hentet fra.</p>${docList(media)}` : ''}
     </section>`;
