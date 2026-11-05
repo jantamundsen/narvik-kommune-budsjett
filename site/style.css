@@ -149,7 +149,7 @@ a.cta:hover { filter: brightness(1.08); }
 footer { border-top: 1px solid var(--rule); padding-top: 20px; font-size: 0.85rem; color: var(--ink-2); display: grid; gap: 6px; }
 
 @media (max-width: 680px) {
-  .site-nav .brand { flex-basis: 100%; }
+  .site-nav .brand { flex-basis: 100%; margin-bottom: 12px; }
   .ledger-head { display: none; }
   .row-btn { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "name amt" "share share" "pc chg"; gap: 6px 12px; }
   .row-btn .c-name { grid-area: name; } .row-btn .c-amt { grid-area: amt; }
