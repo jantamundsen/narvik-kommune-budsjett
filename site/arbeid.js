@@ -53,6 +53,7 @@ async function start() {
   drawStatus();
   drawIndustry();
   drawCommuting();
+  drawCommuteMap();
 }
 
 // New vacancies in the twelve months up to m, and in the twelve before.
@@ -259,6 +260,115 @@ function drawCommuting() {
     { label: 'Jobber der', get: k => num(C[k]?.[y]?.Arbeidssted) },
   ], KEYS.filter(k => k !== 'norge'));
   document.getElementById('comm-cmp-caption').innerHTML = `Sysselsatte 15–74 år, november ${y}. For Nordland er det pendling inn og ut av fylket. Andelen er regnet ut her. ${ssb('11616', 'SSB tabell 11616')}.`;
+}
+
+// The commuting map: an arc from Narvik to every kommune on the map, as wide as the number of people, and a list of
+// the places outside the map. The base map is site/data/kart.json (scripts/build_kart.py, Kartverket N1000).
+async function drawCommuteMap() {
+  let K;
+  try {
+    const res = await fetch('data/kart.json');
+    if (!res.ok) return;
+    K = await res.json();
+  } catch (e) { return; }
+  const box = document.getElementById('pk'), svg = document.getElementById('pk-map'), info = document.getElementById('pk-info');
+  const NS = 'http://www.w3.org/2000/svg', W = K.width, H = K.height;
+  const s = (tag, attrs, parent, text) => {
+    const n = document.createElementNS(NS, tag);
+    for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v);
+    if (text !== undefined) n.textContent = text;
+    if (parent) parent.appendChild(n);
+    return n;
+  };
+  const byCode = Object.fromEntries(K.kommuner.map(k => [k.code, k]));
+  const onMap = k => k && k.x >= 0 && k.x <= W && k.y >= 0 && k.y <= H;
+  const me = byCode['1806'], y = A.flows.year, C = A.commuting.narvik[y];
+  // One scale for both directions, so the arcs can be compared when switching.
+  const max = Math.max(...['ut', 'inn'].flatMap(d => A.flows[d].filter(f => onMap(byCode[f.code])).map(f => f.n)));
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  box.hidden = false;
+  document.getElementById('pk-caption').innerHTML = `Sysselsatte 15–74 år etter bostedskommune og arbeidskommune, november ${y}. Streken går til det største tettstedet i kommunen, men tallet gjelder hele kommunen. Noen pendler langt og jobber bare deler av tiden der, for eksempel i turnus. ${ssb('03321', 'Se tallene hos SSB')} (tabell 03321). Kart: <a href="${K.source.url}" target="_blank" rel="noopener">${K.source.name}</a>.`;
+
+  function draw(dir) {
+    const flows = A.flows[dir], total = dir === 'ut' ? C.Utpendlere : C.Innpendlere;
+    const near = flows.filter(f => onMap(byCode[f.code])), far = flows.filter(f => !onMap(byCode[f.code]));
+    const farSum = far.reduce((a, f) => a + f.n, 0);
+    const verb = dir === 'ut' ? 'bor i Narvik og jobber i' : 'jobber i Narvik og bor i';
+    const says = (name, n) => `${nb(n)} ${n === 1 ? 'person' : 'personer'} ${verb} ${name}`;
+    document.getElementById('pk-h').textContent = dir === 'ut'
+      ? `${nb(total)} som bor i Narvik, jobber i en annen kommune, ${y}`
+      : `${nb(total)} som jobber i Narvik, bor i en annen kommune, ${y}`;
+    svg.setAttribute('aria-label', `Kart over pendling ${dir === 'ut' ? 'fra' : 'til'} Narvik, ${y}. ${near.slice(0, 6).map(f => `${byCode[f.code].name} ${f.n}`).join(', ')}. ${nb(farSum)} utenfor kartet.`);
+    const intro = `Pek på eller trykk på en strek for å se tallet. ${nb(total - farSum)} av dem ${dir === 'ut' ? 'jobber' : 'bor'} i kommunene på kartet, ${nb(farSum)} lenger unna.`;
+    info.textContent = intro;
+    svg.innerHTML = '';
+    s('rect', { class: 'pk-abroad', x: 0, y: 0, width: W, height: H }, svg);
+    const land = s('g', { class: 'pk-land' }, svg);
+    K.kommuner.forEach(k => s('path', { d: k.d, 'data-code': k.code }, land));
+    s('path', { class: 'pk-sea', d: K.sea }, svg);
+    s('text', { class: 'pk-country', x: W - 14, y: H - 150, 'text-anchor': 'end' }, svg, 'Sverige');
+    const arcs = s('g', { class: `pk-arcs ${dir}` }, svg), dots = s('g', { class: 'pk-dots' }, svg), labels = s('g', { class: 'pk-labels' }, svg);
+    let active = null;
+    const focus = (f, el) => {
+      if (active) active.classList.remove('on');
+      active = el;
+      if (el) el.classList.add('on');
+      info.textContent = f ? says(byCode[f.code]?.name || f.name, f.n) + '.' : intro;
+    };
+    // Smallest first, so the wide arcs lie on top.
+    [...near].reverse().forEach(f => {
+      const k = byCode[f.code], dx = k.x - me.x, dy = k.y - me.y, len = Math.hypot(dx, dy);
+      const bend = Math.min(0.22 * len, 60), cx = (me.x + k.x) / 2 + dy / len * bend, cy = (me.y + k.y) / 2 - dx / len * bend;
+      const d = dir === 'ut' ? `M${me.x} ${me.y}Q${cx} ${cy} ${k.x} ${k.y}` : `M${k.x} ${k.y}Q${cx} ${cy} ${me.x} ${me.y}`;
+      const g = s('g', { class: 'pk-arc', tabindex: 0, role: 'img', 'aria-label': says(k.name, f.n) }, arcs);
+      s('title', {}, g, says(k.name, f.n));
+      s('path', { class: 'hit', d }, g);
+      s('path', { class: 'line', d, 'stroke-width': Math.max(1, f.n / max * 14) }, g);
+      ['pointerenter', 'focus', 'click'].forEach(e => g.addEventListener(e, () => focus(f, g)));
+      g.addEventListener('pointerleave', () => focus(null, null));
+      s('circle', { cx: k.x, cy: k.y, r: 3 }, dots);
+    });
+    s('circle', { class: 'pk-home', cx: me.x, cy: me.y, r: 7 }, dots);
+    const home = s('text', { class: 'pk-home-label', x: me.x + 10, y: me.y + 20 }, labels, 'Narvik');
+    // Labels for the larger flows, biggest first, on the side away from Narvik; one that would overlap a label
+    // already placed tries the other side and is otherwise left out (the number is still on the arc).
+    const placed = [home.getBBox()];
+    const free = b => b.x >= 0 && b.x + b.width <= W && placed.every(p => b.x > p.x + p.width || b.x + b.width < p.x || b.y > p.y + p.height || b.y + b.height < p.y);
+    near.filter(f => f.n >= 10).forEach(f => {
+      const k = byCode[f.code], first = k.x >= me.x - 20;
+      for (const right of [first, !first]) {
+        const t = s('text', { x: k.x + (right ? 7 : -7), y: k.y + 4, 'text-anchor': right ? 'start' : 'end' }, labels, `${k.name} `);
+        s('tspan', { class: 'n' }, t, nb(f.n));
+        const b = t.getBBox();
+        if (free(b)) { placed.push(b); break; }
+        t.remove();
+      }
+    });
+    // The places outside the map, as an arrow toward the bottom edge.
+    if (farSum) {
+      // A thin dashed arrow, not as wide as the number: it is many places, not one flow.
+      const ex = me.x + 30, ey = H - 10;
+      s('path', { class: 'pk-far-arrow', d: `M${me.x} ${me.y + 10}C${me.x + 10} ${me.y + 120} ${ex + 10} ${H - 140} ${ex} ${ey - 8}` }, arcs);
+      s('path', { class: 'pk-far-head', d: `M${ex - 6} ${ey - 12}L${ex} ${ey}L${ex + 6} ${ey - 12}Z` }, arcs);
+      const t = s('text', { class: 'pk-far-label', x: ex + 12, y: ey - 4 }, labels, 'Utenfor kartet ');
+      s('tspan', { class: 'n' }, t, nb(farSum));
+      const b = t.getBBox();
+      if (b.x + b.width > W) { t.setAttribute('x', ex - 12); t.setAttribute('text-anchor', 'end'); }
+    }
+    document.getElementById('pk-far-h').textContent = `Utenfor kartet, ${nb(farSum)} personer`;
+    const top = 7, rest = far.slice(top).reduce((a, f) => a + f.n, 0);
+    const rows = far.slice(0, top).map(f => [f.name, f.n, '']);
+    if (rest) rows.push([`${far.length - top} andre kommuner og steder`, rest, '']);
+    document.getElementById('pk-far').innerHTML = bars(rows);
+  }
+  const pick = document.getElementById('pk-pick');
+  pick.addEventListener('click', e => {
+    const b = e.target.closest('button');
+    if (!b) return;
+    pick.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+    draw(b.dataset.dir);
+  });
+  draw('ut');
 }
 
 start();

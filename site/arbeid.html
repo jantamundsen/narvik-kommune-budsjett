@@ -24,7 +24,7 @@
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="stylesheet" href="style.css?v=2026-11-04">
+<link rel="stylesheet" href="style.css?v=2026-11-05">
 </head>
 <body>
 <div class="wrap">
@@ -110,6 +110,23 @@
       <h2 id="h-comm">Pendling</h2>
       <p class="lead" id="comm-lead"></p>
     </div>
+    <div class="panel pk-panel" id="pk" hidden>
+      <div class="pk-head">
+        <h3 id="pk-h"></h3>
+        <div class="seg cmp-pick" role="group" aria-label="Retning" id="pk-pick">
+          <button type="button" data-dir="ut" aria-pressed="true">Bor i Narvik, jobber andre steder</button>
+          <button type="button" data-dir="inn" aria-pressed="false">Jobber i Narvik, bor andre steder</button>
+        </div>
+      </div>
+      <div class="pk-body">
+        <svg id="pk-map" role="img"></svg>
+        <div class="pk-side">
+          <p class="pk-info" id="pk-info" aria-live="polite"></p>
+          <div><h4 id="pk-far-h"></h4><div class="hbars" id="pk-far"></div></div>
+        </div>
+      </div>
+      <p class="caption" id="pk-caption"></p>
+    </div>
     <div class="two">
       <div class="panel bars-panel"><h3 id="out-h"></h3><div class="hbars" id="out-bars"></div></div>
       <div class="panel bars-panel"><h3 id="in-h"></h3><div class="hbars" id="in-bars"></div></div>
@@ -137,7 +154,7 @@
     <span>Et åpent hobbyprosjekt laget av <a href="https://janamundsen.dev" target="_blank" rel="noopener">Jan Tore Amundsen</a>, ikke av Narvik kommune. <a href="om">Om siden</a>.</span>
   </footer>
 </div>
-<script src="common.js?v=2026-11-04"></script>
-<script src="arbeid.js?v=2026-11-04"></script>
+<script src="common.js?v=2026-11-05"></script>
+<script src="arbeid.js?v=2026-11-05"></script>
 </body>
 </html>
