@@ -262,43 +262,28 @@ a.rank-row:hover { background: var(--accent-soft); }
 .cmp-pick button:last-child { border-right: 0; }
 .cmp-pick button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
 .cmp-list { border-top: 2px solid var(--ink); }
-.cmp-row { display: grid; grid-template-columns: minmax(0, 200px) minmax(0, 1fr) 72px 72px 84px; gap: 16px; align-items: center; padding: 10px 4px; border-bottom: 1px solid var(--rule); color: inherit; text-decoration: none; }
+.cmp-row { display: grid; grid-template-columns: minmax(0, 1fr) 80px 80px 150px 72px; gap: 16px; align-items: center; padding: 12px 4px; border-bottom: 1px solid var(--rule); color: inherit; text-decoration: none; }
 .cmp-row .r { text-align: right; }
 a.cmp-row:hover { background: var(--accent-soft); }
 a.cmp-row .c-name { font-weight: 600; }
 a.cmp-row .c-name::after { content: " \203A"; color: var(--accent); font-weight: 700; }
 .cmp-row .c-n { font-weight: 600; }
 .cmp-row .c-r { color: var(--ink-2); }
-.cmp-row .c-d { white-space: nowrap; }
 .cmp-head { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-2); font-weight: 600; padding: 10px 4px; }
-.cmp-row.total { font-weight: 700; border-bottom: 0; border-top: 1px solid var(--rule); }
-/* Dumbbell: Narvik (blue), the chosen region (grey) and a line between; other regions as faint rings */
-.c-track { position: relative; height: 18px; }
-.db-line { position: absolute; top: 50%; height: 2px; margin-top: -1px; background: var(--muted); }
-.db-dot { position: absolute; top: 50%; border-radius: 50%; transform: translate(-50%, -50%); }
-.db-other { width: 7px; height: 7px; border: 1.5px solid var(--muted); opacity: 0.6; }
-.db-ref { width: 11px; height: 11px; background: var(--muted); box-shadow: 0 0 0 2px var(--surface); }
-.db-me { width: 13px; height: 13px; background: var(--accent); box-shadow: 0 0 0 2px var(--surface); }
+.cmp-row.total { font-weight: 700; border-bottom: 0; }
+.dev .more { left: 50%; background: var(--accent); }
+.dev .less { right: 50%; background: var(--muted); }
 .cmp-scale button { min-height: 34px; font-size: 0.8rem; }
-.db-none { position: absolute; inset: 0; font-size: 0.75rem; color: var(--ink-2); line-height: 18px; }
-.db-tick.first { transform: none; }
-.db-tick.last { transform: translateX(-100%); }
-.db-tick.zero { font-weight: 700; color: var(--ink); }
-.cmp-axis { border-bottom: 0; padding-top: 2px; padding-bottom: 6px; }
-.cmp-axis .c-track { height: 16px; border-top: 1px solid var(--rule); }
-.c-track::before { content: ""; position: absolute; top: -10px; bottom: -10px; left: var(--zero, 50%); width: 1px; background: var(--rule); }
-.cmp-axis .c-track::before, .cmp-row.total .c-track::before, .c-track:has(.db-none)::before { display: none; }
-.db-tick { position: absolute; top: 2px; transform: translateX(-50%); font-size: 0.72rem; color: var(--ink-2); white-space: nowrap; }
+.dev-none { display: block; font-size: 0.75rem; color: var(--ink-2); text-align: center; }
 @media (max-width: 680px) {
   .cmp-head { display: none; }
-  .cmp-row { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "name d" "track track" "n r"; gap: 4px 12px; }
-  .cmp-row .c-name { grid-area: name; } .cmp-row .c-d { grid-area: d; font-weight: 600; } .cmp-row .c-track { grid-area: track; }
+  .cmp-row { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "name d" "dev dev" "n r"; gap: 6px 12px; }
+  .cmp-row .c-name { grid-area: name; } .cmp-row .c-d { grid-area: d; font-weight: 600; } .cmp-row .c-dev { grid-area: dev; }
   .cmp-row .c-n { grid-area: n; text-align: left; font-weight: 400; } .cmp-row .c-r { grid-area: r; }
   .cmp-row .c-n::before { content: "Narvik "; color: var(--ink-2); }
   .cmp-row .c-r::before { content: "mot "; }
   .cmp-row .c-d::after { content: " kr"; color: var(--ink-2); font-weight: 400; }
-  .cmp-axis { grid-template-areas: "track track"; } .cmp-axis > span:first-child { display: none; }
-  .cmp-row.total { grid-template-areas: "name d" "n r"; }
+  .cmp-list.pst .cmp-row .c-d::after { content: none; }
 }
 /* omrade.html: one area against the comparison regions */
 .cmp-bars .rank-fill { background: var(--muted); }
