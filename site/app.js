@@ -102,6 +102,7 @@ function render() {
 
   drawCompare();
   drawTrend();
+  drawMultiples();
 }
 
 function drawNote(svcTotal) {
@@ -239,6 +240,40 @@ function drawTrend() {
   document.getElementById('trend-chart').replaceChildren(svg);
   const first = vals[0], last = vals.at(-1), y1 = YEARS[0], y2 = YEARS.at(-1);
   document.getElementById('trend-lead').textContent = `Netto driftsutgifter økte fra ${nb(first)} til ${nb(last)} millioner kroner fra ${y1} til ${y2}, ${nb((last / first - 1) * 100)} %. Folketallet var omtrent det samme, ${nb(DATA.population[y1])} mot ${nb(DATA.population[y2])}.`;
+}
+
+// One small bar chart per service area, each starting at zero on its own scale, so the shape shows the change without exaggerating it.
+// Areas with a negative or zero year are left out of the grid, since a percentage change across zero has no meaning.
+function drawMultiples() {
+  const y1 = YEARS[0], y2 = YEARS.at(-1);
+  const ok = c => YEARS.every(y => c.narvik_1000kr[y] > 0);
+  const shown = services.filter(ok).sort((a, b) => b.narvik_1000kr[y2] - a.narvik_1000kr[y2]);
+  const left = services.filter(c => !ok(c));
+  const box = document.getElementById('multiples'); box.replaceChildren();
+  const W = 150, H = 64, top = 4, base = 60, band = W / YEARS.length, bw = band * 0.62;
+  shown.forEach(c => {
+    const v = YEARS.map(y => c.narvik_1000kr[y] / 1000);
+    const max = Math.max(...v);
+    const a = el('a', { class: 'multiple', href: areaHref(c.key) });
+    a.append(el('span', { class: 'm-name' }, c.name), el('span', { class: 'm-chg num' }, chgText(pct(v.at(-1), v[0]))));
+    const svg = s('svg', { viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': `${c.name}, mill. kr: ` + YEARS.map((y, i) => `${y} ${mill(v[i] * 1000)}`).join(', ') });
+    YEARS.forEach((y, i) => {
+      const h = Math.max(1, v[i] / max * (base - top)), sel = y === year;
+      const r = s('rect', { x: i * band + (band - bw) / 2, y: base - h, width: bw, height: h, rx: 2, fill: sel ? 'var(--accent)' : 'var(--muted)', 'fill-opacity': sel ? 1 : 0.55 });
+      r.appendChild(s('title', {}, `${y}: ${nb(v[i], v[i] < 10 ? 1 : 0)} mill. kr`));
+      svg.appendChild(r);
+    });
+    svg.appendChild(s('line', { x1: 0, x2: W, y1: base + 0.5, y2: base + 0.5, stroke: 'var(--rule)' }));
+    a.appendChild(svg);
+    const d = n => nb(n, n < 10 ? 1 : 0);
+    a.appendChild(el('span', { class: 'm-sub num' }, `${d(v[0])} → ${d(v.at(-1))} mill. kr`));
+    box.appendChild(a);
+  });
+  document.getElementById('multi-lead').textContent = `Netto driftsutgifter per område, ${y1}–${y2}. Hver graf har sin egen skala som starter på null, så høyden viser endringen innen området, ikke størrelsen mot de andre. Tallet er endringen fra ${y1} til ${y2}. Valgt år (${year}) er markert. Trykk på et område for å gå inn i det.`;
+  const names = left.map(c => lower1(c.name));
+  document.getElementById('multi-caption').textContent = 'Løpende kroner, ikke justert for prisvekst. Endring i prosent er beregnet fra SSB-tallene.' +
+    (names.length ? ` ${names.join(' og ').replace(/^./, ch => ch.toUpperCase())} er ikke med fordi de er negative eller null i minst ett år, og da gir en prosentvis endring ikke mening.` : '') +
+    ' Pensjonsjusteringer og vann, avløp og renovasjon vises under «Trekker fra i netto» over.';
 }
 
 start();
