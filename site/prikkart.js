@@ -30,8 +30,8 @@ async function startDotMap() {
   // Places named in the whole-kommune view; the town gets one label for all its delområder.
   // In order of priority: where labels would overlap (on a phone), the later ones are left out.
   const PLACES = ['180601', '180615', '180616', '180614', '180611', '180602', '180613'];
-  const VIEWS = { alle: 'Hele kommunen', by: 'Narvik by' };
   const years = D.years, cells = D.cells;
+  // The map shows the whole kommune in the newest year; a dot's text also gives the first year.
   const state = { view: 'alle', yi: years.length - 1 };
   const maxPop = Math.max(...cells.map(c => Math.max(c[2], c[3])));
 
@@ -45,20 +45,6 @@ async function startDotMap() {
   // Dot radius in pixels: the area is proportional to the residents, the same scale in both years. The largest
   // dot grows as you zoom in, up to 18 pixels.
   const radius = (v, R) => Math.max(1.2, Math.sqrt(v / maxPop) * R);
-
-  const seg = (id, items, current, pick) => {
-    const box = document.getElementById(id);
-    box.replaceChildren(...items.map(([v, text]) => {
-      const b = el('button', { type: 'button', role: 'radio', 'aria-checked': String(v === current) }, text);
-      b.addEventListener('click', () => {
-        box.querySelectorAll('button').forEach(x => x.setAttribute('aria-checked', String(x === b)));
-        pick(v);
-      });
-      return b;
-    }));
-  };
-  seg('dm-view', Object.entries(VIEWS), state.view, v => { state.view = v; draw(); });
-  seg('dm-year', years.map((y, i) => [i, String(y)]), state.yi, v => { state.yi = v; redraw(); });
 
   const intro = () => `Pek på eller trykk en prikk for å se hvor mange som bodde i ruten 1. januar ${years[state.yi]}. ` +
     'Zoom med knappene, dobbeltklikk, Ctrl og musehjulet eller to fingre, og dra for å flytte kartet.';
@@ -138,7 +124,7 @@ async function startDotMap() {
     const k = ppu(), px = n => n / k, R = Math.min(18, Math.max(8, k * 1.1)), yi = 2 + state.yi;
     lastWidth = svg.getBoundingClientRect().width;
     roads.setAttribute('stroke-width', k < 5 ? 1.5 : 2.5);
-    svg.setAttribute('aria-label', `Kart over ${state.view === 'alle' ? 'Narvik kommune' : 'Narvik by'} med én prikk for hver rute på 250 × 250 meter der noen bodde 1. januar ${years[state.yi]}.`);
+    svg.setAttribute('aria-label', `Kart over Narvik kommune med én prikk for hver rute på 250 × 250 meter der noen bodde 1. januar ${years[state.yi]}.`);
 
     // Dots, biggest first so the small ones stay on top and can be reached.
     dots.replaceChildren();
@@ -165,8 +151,8 @@ async function startDotMap() {
       else placed.push(b);
     });
 
-    // Scale bar, about 60–150 pixels long. One cell is 250 m.
-    const km = [0.5, 1, 2, 5, 10, 20].find(v => v * 1000 / K.cell * k >= 60) || 20;
+    // Scale bar, about 45–110 pixels long. One cell is 250 m.
+    const km = [0.5, 1, 2, 5, 10, 20].find(v => v * 1000 / K.cell * k >= 45) || 20;
     scaleEl.style.width = `${km * 1000 / K.cell * k}px`;
     scaleEl.textContent = km < 1 ? `${km * 1000} m` : `${nb(km)} km`;
 

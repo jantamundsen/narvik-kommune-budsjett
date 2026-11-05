@@ -736,7 +736,6 @@ dl.facts dd { margin: 0; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --dm-land: #2c3640; --dm-town: #3a4651; --dm-water: #0f1a24; --dm-road: #5f6a74; --dm-edge: #45525e; } }
 :root[data-theme="dark"] { --dm-land: #2c3640; --dm-town: #3a4651; --dm-water: #0f1a24; --dm-road: #5f6a74; --dm-edge: #45525e; }
 .dm-panel { display: grid; gap: 12px; }
-.dm-ctl { display: flex; flex-wrap: wrap; gap: 10px 16px; }
 .dm-box { position: relative; }
 #dm-map { display: block; width: 100%; height: auto; font-family: var(--font-body); touch-action: pan-y; }
 .dm-land { fill: var(--dm-land); }
@@ -751,7 +750,7 @@ dl.facts dd { margin: 0; }
 .dm-box { border-radius: 8px; overflow: hidden; }
 #dm-map { cursor: default; user-select: none; -webkit-user-select: none; }
 #dm-map.dragging { cursor: grabbing; }
-.dm-zoom { position: absolute; top: 8px; right: 8px; display: grid; gap: 4px; }
+.dm-zoom { position: absolute; bottom: 8px; right: 8px; display: grid; gap: 4px; }
 .dm-zoom button { width: 36px; height: 36px; display: grid; place-items: center; font: 600 1.15rem/1 var(--font-body); color: var(--ink); background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; cursor: pointer; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12); }
 .dm-zoom button:disabled { color: var(--muted); cursor: default; box-shadow: none; }
 .dm-zoom button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
