@@ -29,7 +29,7 @@ function hero(B) {
 }
 
 // A still version of the dot map on Befolkning (prikkart.js): one dot per 250 m cell where someone lives, its area
-// following the residents, on the same Kartverket base map (sea, lakes, towns, roads, railway, delområde lines). The whole map links to the full one. The map data
+// following the residents, on the same Kartverket base map (sea, lakes, towns, roads, railway; without the dashed delområde lines, so the kommune's edge is just its shape). The whole map links to the full one. The map data
 // (about 300 kB) loads after the rest of the page.
 async function heroMap(B) {
   const [D, K] = await Promise.all([load('prikkart.json'), load('prikkart-kart.json')]);
@@ -53,7 +53,6 @@ async function heroMap(B) {
   s('path', { class: 'dm-land', d: K.kommune.map(p => p.map(ring).join('')).join('') }, svg);
   s('path', { class: 'dm-town', d: K.town.map(p => p.map(ring).join('')).join('') }, svg);
   s('path', { class: 'dm-water', d: K.water.map(p => p.map(ring).join('')).join('') }, svg);
-  s('path', { class: 'dm-del', d: Object.values(K.del).flatMap(d => d.map(p => ring(p[0]))).join(''), 'stroke-width': 1, 'vector-effect': 'non-scaling-stroke' }, svg);
   s('path', { class: 'dm-rail', d: K.rail.map(line).join(''), 'stroke-width': 1.2, 'vector-effect': 'non-scaling-stroke' }, svg);
   const roads = s('path', { class: 'dm-road', d: K.roads.map(line).join(''), 'vector-effect': 'non-scaling-stroke' }, svg);
   const dots = s('g', { class: 'dm-dots' }, svg), labels = s('g', { class: 'dm-labels' }, svg);
