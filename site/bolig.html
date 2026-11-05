@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Boligene i Narvik: hvor mange og hvilke typer, hvor mange nye som bygges, kvadratmeterpris, hvor mange som eier og leier, og kommunale boliger, sammenlignet med lignende kommuner.">
-<title>Boliger i Narvik: bygging, priser og kommunale boliger · Åpne tall for Narvik</title>
+<meta name="description" content="Boliger i Narvik ble solgt for 31 116 kr per kvadratmeter i snitt i 3. kvartal 2026. Boligpriser kvartal for kvartal, kommunale avgifter og eiendomsskatt, nye boliger, eie og leie og kommunale boliger, sammenlignet med lignende kommuner.">
+<title>Boligpriser i Narvik, kommunale avgifter og boligbygging · Åpne tall for Narvik</title>
 <link rel="canonical" href="https://narviktall.no/bolig">
 <meta property="og:url" content="https://narviktall.no/bolig">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Åpne tall for Narvik">
 <meta property="og:locale" content="nb_NO">
-<meta property="og:title" content="Boliger i Narvik: bygging, priser og kommunale boliger · Åpne tall for Narvik">
-<meta property="og:description" content="Boligene i Narvik: hvor mange og hvilke typer, hvor mange nye som bygges, kvadratmeterpris, hvor mange som eier og leier, og kommunale boliger, sammenlignet med lignende kommuner.">
+<meta property="og:title" content="Boligpriser i Narvik, kommunale avgifter og boligbygging · Åpne tall for Narvik">
+<meta property="og:description" content="Boliger i Narvik ble solgt for 31 116 kr per kvadratmeter i snitt i 3. kvartal 2026. Boligpriser kvartal for kvartal, kommunale avgifter og eiendomsskatt, nye boliger, eie og leie og kommunale boliger, sammenlignet med lignende kommuner.">
 <meta property="og:image" content="https://narviktall.no/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -24,7 +24,7 @@
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="stylesheet" href="style.css?v=2026-11-05-11">
+<link rel="stylesheet" href="style.css?v=2026-11-05-12">
 </head>
 <body>
 <div class="wrap">
@@ -33,7 +33,7 @@
   </div>
   <header>
     <h1>Bolig i Narvik</h1>
-    <p class="lead" id="lead"></p>
+    <p class="lead" id="lead">Narvik hadde 11 978 boliger i 2026 og 10 738 husholdninger i 2025. 51 % av boligene er eneboliger. 72,8 % av husholdningene eier boligen de bor i. Boligene ble solgt for 31 116 kr per kvadratmeter i snitt i 3. kvartal 2026.</p>
   </header>
 
   <section aria-label="Nøkkeltall">
@@ -78,12 +78,24 @@
   <section aria-labelledby="h-price" id="priser">
     <div class="section-head">
       <h2 id="h-price">Boligpriser</h2>
-      <p class="lead" id="price-lead"></p>
+      <p class="lead" id="price-lead">Boliger i Narvik ble solgt for 31 116 kr per kvadratmeter i snitt i 3. kvartal 2026, 44 % lavere enn snittet i landet. Eneboliger 23 835 kr, Småhus 23 206 kr, Blokkleiligheter 41 745 kr.</p>
     </div>
     <div class="chart-box"><h3>Gjennomsnittlig kvadratmeterpris per kvartal, alle boligtyper, kr</h3><div class="mini-chart" id="price-chart"></div></div>
     <p class="caption" id="price-caption"></p>
     <div class="ptable"><table id="price-cmp"></table></div>
     <p class="caption" id="price-cmp-caption"></p>
+  </section>
+
+  <section aria-labelledby="h-fees" id="avgifter">
+    <div class="section-head">
+      <h2 id="h-fees">Kommunale avgifter og eiendomsskatt</h2>
+      <p class="lead" id="fees-lead">En standard bolig på 120 m² i Narvik betaler 14 286 kr i året i kommunale gebyrer i 2026, uten mva: vann 3 976 kr, avløp 4 930 kr, avfall 4 750 kr og feiing og tilsyn 630 kr. Det er 21 % lavere enn snittet for landet uten Oslo. Narvik har eiendomsskatt på boliger, med en sats på 3,25 promille i 2026 og 100 000 kr i bunnfradrag. I snitt betalte en bolig 4 381 kr i eiendomsskatt i 2025.</p>
+    </div>
+    <div class="ptable"><table id="fees-cmp"></table></div>
+    <p class="caption" id="fees-cmp-caption"></p>
+    <h3 class="sub-h">Narvik år for år</h3>
+    <div class="ptable"><table id="fees-years"></table></div>
+    <p class="caption" id="fees-caption"></p>
   </section>
 
   <section aria-labelledby="h-tenure" id="eie">
@@ -118,6 +130,7 @@
     <div class="notes">
       <div><h3>Bolig</h3><p>SSB teller alle boliger, både bebodde og ubebodde, ut fra Matrikkelen og Folkeregisteret. Derfor er det flere boliger enn husholdninger.</p></div>
       <div><h3>Kvadratmeterpris</h3><p>Gjennomsnittlig pris per kvadratmeter innvendig bruksareal for boliger som ble solgt i kvartalet. Med under hundre salg i kvartalet kan prisen svinge mye fra kvartal til kvartal.</p></div>
+      <div><h3>Kommunale avgifter</h3><p>SSBs årsgebyrer for en standard bolig på 120 m², uten merverdiavgift. Det en husstand faktisk betaler, avhenger av forbruk, boligens størrelse og om gebyret er fast eller etter måler, og vann, avløp, avfall og feiing har 25 % mva i tillegg. Eiendomsskatten er SSBs gjennomsnitt for alle boliger i kommunen.</p></div>
       <div><h3>Bor trangt</h3><p>En husholdning bor trangt når boligen har færre rom enn personer, eller én person bor på ett rom, og samtidig har under 25 kvadratmeter per person.</p></div>
       <div><h3>Kommunalt disponerte boliger</h3><p>Boliger kommunen eier, leier inn fra andre, eller har rett til å tildele i privateide bygg. Kommunen tildeler dem blant annet til folk som ikke klarer å skaffe seg bolig selv.</p></div>
     </div>
@@ -128,7 +141,7 @@
     <span>Et åpent hobbyprosjekt laget av <a href="https://janamundsen.dev" target="_blank" rel="noopener">Jan Tore Amundsen</a>, ikke av Narvik kommune. <a href="om">Om siden</a>.</span>
   </footer>
 </div>
-<script src="common.js?v=2026-11-05-11"></script>
-<script src="bolig.js?v=2026-11-05-11"></script>
+<script src="common.js?v=2026-11-05-12"></script>
+<script src="bolig.js?v=2026-11-05-12"></script>
 </body>
 </html>

@@ -15,6 +15,8 @@ Tables:
     14903  crowded households
     12008  dwellings the kommune has at its disposal (KOSTRA)
     12012  applications for and refusals of those dwellings (KOSTRA)
+    12842  yearly municipal fees for a standard dwelling of 120 m² (KOSTRA)
+    14674  property tax on dwellings: rate, basic deduction and average tax per dwelling (KOSTRA)
 
 The comparison is Harstad, Rana and Alta, Nordland and the whole country, and for the two KOSTRA tables
 also KOSTRA-gruppe 9 and the country without Oslo, as on the rest of the site. Harstad and Alta have old
@@ -68,6 +70,22 @@ APPLICATIONS = {
     "KOSantallavslag0000": "refusals",
     "KOSandelavslag0000": "refused_pct",
     "KOSnyesoknader0000": "new_applications",
+}
+# Yearly fees for a standard dwelling of 120 m², excluding VAT, from 12842.
+FEES = {
+    "KOSaarsgebyrvann0000": "vann",
+    "KOSaarsgebyravlo0000": "avlop",
+    "KOSaarsgebyravfa0000": "avfall",
+    "KOSfeiingtilsyn0000": "feiing",
+}
+# Property tax on dwellings from 14674. SSB has these only for each kommune, not for the groups.
+PROPERTY_TAX = {
+    "KOShareskatt0000": "has_tax",
+    "KOSgenskatt0000": "rate_general",
+    "KOSdiffskatt0000": "rate_housing",
+    "KOSbunnfradrag0000": "deduction",
+    "KOSgjsnittskattb0000": "avg_housing",
+    "KOSskattenebolig0000": "house_120",
 }
 
 
@@ -222,6 +240,20 @@ def main() -> int:
             if c[KOSTRA_REGION] in cs:
                 municipal.setdefault(k, {}).setdefault(c["Tid"], {}).setdefault(APPLICATIONS[c["ContentsCode"]], v)
 
+    # Municipal fees and property tax for a dwelling (KOSTRA).
+    fees: dict = {}
+    for table, codes, key in (("12842", FEES, "fees"), ("14674", PROPERTY_TAX, "tax")):
+        q = url(table, **{KOSTRA_REGION: all_kostra}, ContentsCode=",".join(codes), Tid=f"from({FIRST})")
+        sources[table] = source(table, q)
+        for c, v in cells(get(q)):
+            if v is None:
+                continue
+            for k, cs in kostra.items():
+                if c[KOSTRA_REGION] in cs:
+                    fees.setdefault(key, {}).setdefault(k, {}).setdefault(c["Tid"], {}).setdefault(codes[c["ContentsCode"]], v)
+    # For the groups 14674 only counts kommuner, so keep the kommuner.
+    fees["tax"] = {k: v for k, v in fees.get("tax", {}).items() if k not in ("gruppe", "landet", "nordland")}
+
     data = {
         "generated": dt.date.today().isoformat(),
         "region": REGION,
@@ -239,6 +271,8 @@ def main() -> int:
         "tenure": tenure,
         "crowded": crowded,
         "municipal": municipal,
+        "fees": fees.get("fees", {}),
+        "property_tax": fees.get("tax", {}),
         "sources": sources,
     }
     total = sum(stock[year].values())

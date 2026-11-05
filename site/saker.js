@@ -34,7 +34,7 @@ const dateText = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nb-NO', 
   setCanonical(S ? 'sak/' + S.id : 'saker');
   if (!S) return list(main, D);
 
-  document.title = `${S.tittel}: faktaark · Åpne tall for Narvik`;
+  document.title = `${S.sok_tittel || S.tittel + ": faktaark"} · Åpne tall for Narvik`;
   document.querySelector('meta[name="description"]')?.setAttribute('content', S.ingress);
   document.querySelector('meta[property="og:title"]')?.setAttribute('content', document.title);
   document.querySelector('meta[property="og:description"]')?.setAttribute('content', S.ingress);
