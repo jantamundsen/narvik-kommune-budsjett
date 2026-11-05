@@ -757,3 +757,7 @@ dl.facts dd { margin: 0; }
 .ledger-chart .legend i { width: 12px; height: 12px; }
 .ledger-chart .pop-line { stroke: var(--accent); stroke-width: 2.5; fill: none; }
 .ledger-chart .pop-dot { fill: var(--accent); }
+.ledger-chart .year-edge { stroke: var(--rule); stroke-dasharray: 2 4; }
+.ledger-chart text.pv { paint-order: stroke; stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round; }
+.ledger-chart text.pv { fill: var(--ink-2); }
+.ledger-chart text.unit { font-size: 11px; }
