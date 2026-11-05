@@ -12,6 +12,13 @@ const SOURCES = [
   { art: 'AG10', name: 'Eiendomsskatt' },
   { art: 'AD729', name: 'Momskompensasjon', note: 'Merverdiavgift kommunen får tilbake for driften' },
 ];
+// The site's own grouping of the income sources for the grouped bar.
+const INCOME_GROUPS = [
+  { name: 'Fra staten', color: '--g1', arts: ['A800', 'A810', 'AD729'] },
+  { name: 'Skatter', color: '--g2', arts: ['AG12', 'AG10'] },
+  { name: 'Gebyrer, salg og leie', color: '--g3', arts: ['AGD16'] },
+  { name: 'Refusjoner og overføringer', color: '--g4', arts: ['AGD62'] },
+];
 
 const amt = (art, y = year) => F.amounts[art]?.[y] ?? null;
 const mill = (v, d = 0) => nb(v / 1000, d);
@@ -67,21 +74,10 @@ function render() {
 
 function drawSources(total, prev) {
   const rows = SOURCES.map(s => ({ ...s, v: amt(s.art) })).filter(s => s.v != null).sort((a, b) => b.v - a.v);
-  const bar = document.getElementById('note-bar'), legend = document.getElementById('note-legend');
-  bar.replaceChildren(); legend.replaceChildren();
-  rows.forEach((r, i) => {
-    const kr = r.v / total * 100;
-    const b = el('span', { title: `${r.name}: ${nb(kr, 1)} kr av 100` });
-    b.style.flex = `0 0 ${kr}%`;
-    b.style.background = `color-mix(in srgb, var(--good) ${Math.round(Math.max(0.22, 1 - i * 0.12) * 100)}%, var(--surface))`;
-    if (kr >= 9) b.appendChild(el('span', {}, nb(kr) + ' kr'));
-    bar.appendChild(b);
-    const li = el('li');
-    li.append(el('span', { class: 'kr' }, nb(kr, kr < 1 ? 1 : 0) + ' kr'), el('span', {}, r.name));
-    legend.appendChild(li);
-  });
+  const byArt = Object.fromEntries(rows.map(r => [r.art, { name: r.name, v: r.v }]));
+  groupedBar(document.getElementById('note-bar'), document.getElementById('note-groups'), INCOME_GROUPS.map(g => ({ ...g, items: g.arts.filter(a => byArt[a]).map(a => byArt[a]) })));
   const top = rows.slice(0, 2);
-  document.getElementById('note-lead').textContent = `Av hver 100 kroner kommunen fikk inn til driften i ${year}, kom ${nb(top[0].v / total * 100)} kroner fra ${top[0].name.toLowerCase()} og ${nb(top[1].v / total * 100)} fra ${top[1].name.toLowerCase()}.`;
+  document.getElementById('note-lead').textContent = `Av inntektene til driften i ${year} kom ${nb(top[0].v / total * 100)} % fra ${top[0].name.toLowerCase()} og ${nb(top[1].v / total * 100)} % fra ${top[1].name.toLowerCase()}.`;
 
   const t = document.getElementById('inc-table');
   t.innerHTML = `<thead><tr><th>Inntekt</th><th>SSB-art</th><th>Mill. kr</th><th>Andel</th><th>Endring fra ${prev || 'året før'}</th></tr></thead><tbody>${rows.map(r => {
