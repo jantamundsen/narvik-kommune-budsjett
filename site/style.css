@@ -686,3 +686,5 @@ dl.facts dd { margin: 0; }
 .ledger-chart .net { stroke: var(--ink); stroke-width: 2; }
 .ledger-chart .net-dot { fill: var(--surface); stroke: var(--ink); stroke-width: 2.5; }
 .ledger-chart .legend i { width: 12px; height: 12px; }
+.ledger-chart .pop-line { stroke: var(--ink); stroke-width: 2.5; fill: none; }
+.ledger-chart .pop-dot { fill: var(--ink); stroke: var(--surface); stroke-width: 2; }

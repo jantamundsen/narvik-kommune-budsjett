@@ -191,50 +191,52 @@ async function startPopulation() {
     `, summert over grunnkretsene. 04362 kan avvike med noen få personer fra 04317 fordi SSB justerer små tall.${A.unknown ? ` ${nb(A.unknown)} personer har ukjent delområde i ${A.last}.` : ''}`);
   document.getElementById('areas').hidden = false;
 
-  // Population year by year, and what changed it.
+  // Population year by year, and what changed it («befolkningens regnskap»), on one time axis:
+  // the population on 1 January sits on the year boundaries, and each year's column between two
+  // boundaries shows who was added (born, moved in) above the line and who left (died, moved out) below.
   const popYears = Object.keys(C).filter(y => C[y].population != null).sort();
-  const pv = popYears.map(y => C[y].population);
-  const lo = Math.floor((Math.min(...pv) - 150) / 100) * 100, hi = Math.ceil((Math.max(...pv) + 150) / 100) * 100;
-  const W = 760, H = 210, x0 = 56, x1 = W - 24, y0 = 20, y1 = H - 34;
-  const X = i => x0 + (x1 - x0) * (popYears.length > 1 ? i / (popYears.length - 1) : 0.5);
-  const Y = v => y1 - (v - lo) / (hi - lo) * (y1 - y0);
-  const iMin = pv.indexOf(Math.min(...pv)), iMax = pv.indexOf(Math.max(...pv)), iLast = pv.length - 1;
-  let svg = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Folketall 1. januar ${popYears[0]}–${popYears.at(-1)}: ${popYears.map((y, i) => `${y} ${nb(pv[i])}`).join(', ')}">`;
-  [lo, (lo + hi) / 2, hi].forEach(v => { svg += `<line class="grid" x1="${x0}" x2="${x1}" y1="${Y(v)}" y2="${Y(v)}"/><text x="0" y="${Y(v) + 4}">${nb(v)}</text>`; });
-  svg += `<polyline class="line" points="${pv.map((v, i) => `${X(i)},${Y(v)}`).join(' ')}"/>`;
-  pv.forEach((v, i) => {
-    svg += `<circle class="dot" cx="${X(i)}" cy="${Y(v)}" r="${i === iLast ? 5 : 4}"/><text x="${X(i)}" y="${H - 8}" text-anchor="middle">${popYears[i]}</text>`;
-    if ([iMin, iMax, iLast].includes(i)) svg += `<text class="v" x="${X(i)}" y="${i === iMin ? Y(v) + 20 : Y(v) - 10}" text-anchor="middle">${nb(v)}</text>`;
-  });
-  document.getElementById('trend-chart').innerHTML = svg + '</svg>';
-  caption('trend-caption', `Folketallet er per 1. januar. Aksen starter på ${nb(lo)} for å vise endringene. Kilde: `, src('06913'), '.');
-  document.getElementById('trend').hidden = false;
-
-  // Befolkningens regnskap: what was added (born, moved in) above the line,
-  // what was taken away (died, moved out) below, and the year's change as a dot.
   const cy = Object.keys(C).filter(y => C[y].born != null).sort();
   const parts = {
-    born: ['Fødte', 'var(--accent)'], moved_in: ['Flyttet inn', 'color-mix(in srgb, var(--accent) 45%, var(--surface))'],
-    died: ['Døde', 'var(--ink-2)'], moved_out: ['Flyttet ut', 'color-mix(in srgb, var(--muted) 60%, var(--surface))'],
+    born: ['Fødte', 'var(--male)'], moved_in: ['Flyttet inn', 'var(--male-bar)'],
+    died: ['Døde', 'var(--female)'], moved_out: ['Flyttet ut', 'var(--female-bar)'],
   };
   const allYears = k => sum(cy.map(y => C[y][k]));
+  const p0 = C[popYears[0]].population, p1 = C[popYears.at(-1)].population;
   document.getElementById('ledger-lead').textContent =
-    `Folketallet endrer seg når noen blir født, dør eller flytter. Over streken er de som ble født eller flyttet til Narvik i løpet av året, under streken de som døde eller flyttet ut. ` +
-    `Prikken er hvor mye folketallet endret seg det året. Fra ${cy[0]} til ${cy.at(-1)} ble ${nb(allYears('born'))} født og ${nb(allYears('died'))} døde, mens ${nb(allYears('moved_in'))} flyttet inn og ${nb(allYears('moved_out'))} flyttet ut.`;
-  document.getElementById('ledger-title').textContent = `Hva som endret folketallet i Narvik, ${cy[0]}–${cy.at(-1)}`;
+    `Folketallet 1. januar øverst, og under det hva som endret det i løpet av hvert år: de som ble født eller flyttet til Narvik over streken, de som døde eller flyttet ut under streken. ` +
+    `Prikken på streken er endringen i året. Fra ${popYears[0]} til ${popYears.at(-1)} gikk folketallet fra ${nb(p0)} til ${nb(p1)}. I årene ${cy[0]}–${cy.at(-1)} ble ${nb(allYears('born'))} født og ${nb(allYears('died'))} døde, mens ${nb(allYears('moved_in'))} flyttet inn og ${nb(allYears('moved_out'))} flyttet ut.`;
+  document.getElementById('ledger-title').textContent = `Innbyggere i Narvik og hva som endret tallet, ${popYears[0]}–${popYears.at(-1)}`;
   const lg = document.getElementById('ledger-legend');
   lg.innerHTML = '';
-  Object.values(parts).forEach(([n, c]) => { const s = el('span'); s.append(el('i', { style: `background:${c};border-radius:2px` }), n); lg.append(s); });
-  const dl = el('span'); dl.append(el('i', { style: 'background:var(--surface);border:2px solid var(--ink);box-sizing:border-box' }), 'Endring i året'); lg.append(dl);
+  const lgItem = (style, n) => { const s = el('span'); s.append(el('i', { style }), n); lg.append(s); };
+  lgItem('background:var(--ink)', 'Innbyggere 1. januar');
+  Object.values(parts).forEach(([n, c]) => lgItem(`background:${c};border-radius:2px`, n));
+  lgItem('background:var(--surface);border:2px solid var(--ink);box-sizing:border-box', 'Endring i året');
   const ledgerBox = document.getElementById('ledger-chart');
+  const pv = popYears.map(y => C[y].population);
+  const lo = Math.floor((Math.min(...pv) - 100) / 100) * 100, hi = Math.ceil((Math.max(...pv) + 100) / 100) * 100;
   const maxUp = Math.max(...cy.map(y => C[y].born + C[y].moved_in)), maxDown = Math.max(...cy.map(y => C[y].died + C[y].moved_out));
   const step = 500, top = Math.ceil(Math.max(maxUp, maxDown) / step) * step;
   const drawLedger = () => {
-    const W = Math.max(340, Math.round(ledgerBox.clientWidth)) || 760, H = 340;
-    const lx = 46, rx = W - 4, ty = 28, by = H - 26, zero = (ty + by) / 2;
-    const sc = (zero - ty) / top, cw = (rx - lx) / cy.length, bw = Math.min(56, cw * 0.56);
-    let g = `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="Befolkningens regnskap ${cy[0]}–${cy.at(-1)}: ` +
+    const W = Math.max(340, Math.round(ledgerBox.clientWidth)) || 760, narrow = W < 560;
+    const lx = 52, rx = W - 22, cw = (rx - lx) / cy.length, bw = Math.min(56, cw * 0.56);
+    // Top panel: population on 1 January, on the boundaries between the year columns.
+    const pt = 30, pb = 150, PY = v => pb - (v - lo) / (hi - lo) * (pb - pt), PX = i => lx + cw * i;
+    // Bottom panel: the year's ledger.
+    const ty = 210, by = 470, zero = (ty + by) / 2, H = by + 26, sc = (zero - ty) / top;
+    let g = `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="Innbyggere 1. januar: ${popYears.map((y, i) => `${y} ${nb(pv[i])}`).join(', ')}. Hva som endret folketallet: ` +
       cy.map(y => `${y}: ${C[y].born} fødte, ${C[y].moved_in} flyttet inn, ${C[y].died} døde, ${C[y].moved_out} flyttet ut, endring ${signed(C[y].growth)}`).join('; ') + '">';
+    [lo, hi].forEach(v => { g += `<line class="grid" x1="${lx}" x2="${rx}" y1="${PY(v)}" y2="${PY(v)}"/><text x="${lx - 8}" y="${PY(v) + 4}" text-anchor="end">${nb(v)}</text>`; });
+    g += `<polyline class="pop-line" points="${pv.map((v, i) => `${PX(i)},${PY(v)}`).join(' ')}"/>`;
+    const iMin = pv.indexOf(Math.min(...pv)), iMax = pv.indexOf(Math.max(...pv)), iLast = pv.length - 1;
+    pv.forEach((v, i) => {
+      g += `<circle class="pop-dot" cx="${PX(i)}" cy="${PY(v)}" r="4.5"><title>1. januar ${popYears[i]}: ${nb(v)} innbyggere</title></circle>`;
+      if (!narrow || [0, iMin, iMax, iLast].includes(i)) {
+        const below = i > 0 && i < iLast && v <= pv[i - 1] && v <= pv[i + 1];
+        g += `<text class="v" x="${PX(i)}" y="${below ? PY(v) + 18 : PY(v) - 10}" text-anchor="middle">${nb(v)}</text>`;
+      }
+      g += `<text x="${PX(i)}" y="${pb + 22}" text-anchor="middle" class="date">1.1.${narrow ? String(popYears[i]).slice(2) : popYears[i]}</text>`;
+    });
     for (let t = -top; t <= top; t += step) {
       const yy = zero - t * sc;
       g += `<line class="${t ? 'grid' : 'zero'}" x1="${lx}" x2="${rx}" y1="${yy}" y2="${yy}"/><text x="${lx - 8}" y="${yy + 4}" text-anchor="end">${t ? signed(t) : '0'}</text>`;
@@ -274,8 +276,8 @@ async function startPopulation() {
   gr.append(el('td', {}, 'Endring i året'), ...cy.map(y => el('td', {}, signed(C[y].growth))));
   tb2.append(gr); tt.append(tb2);
   document.getElementById('trend-table').replaceChildren(stackable(tt));
-  caption('ledger-caption', 'Antall personer i løpet av hvert år. Endringen i året er SSBs folketilvekst, og den summerer ikke alltid nøyaktig til fødte, døde og flytting fordi SSB etterregistrerer noen personer. Flytting gjelder flytting over kommunegrensen, også til og fra utlandet. Kilde: ', src('06913'), '.');
-  document.getElementById('ledger').hidden = false;
+  caption('ledger-caption', 'Folketallet er per 1. januar, og aksen øverst starter på ' + nb(lo) + ' for å vise endringene. Fødte, døde og flytting er antall personer i løpet av hvert år. Endringen i året er SSBs folketilvekst, og den summerer ikke alltid nøyaktig til fødte, døde og flytting fordi SSB etterregistrerer noen personer. Flytting gjelder flytting over kommunegrensen, også til og fra utlandet. Kilde: ', src('06913'), '.');
+  document.getElementById('trend').hidden = false;
 
   // Narvik against the comparison regions.
   const R = B.compare.rows;
