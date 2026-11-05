@@ -119,6 +119,11 @@ const dateText = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nb-NO', 
     [savings, 'innsparinger', 'Innsparingene'], [inst, 'forskjell', 'Hvor forskjellen mot lignende kommuner ligger'],
     [inst, 'institusjon', 'Sykehjem og institusjoner'], [inst, 'plasser-brukere', 'Plasser og beboere som ikke går opp'], [missing, 'savner', 'Det som ikke er publisert'], [time, 'tidslinje', 'Tidslinje']];
   const jump = long ? `<nav class="jump" aria-label="Innhold på siden"><span class="eyebrow">På siden</span><ul>${parts.filter(([html, id]) => html && html.includes(`id="${id}"`)).map(([, id, name]) => `<li><a href="#${id}">${esc(name)}</a></li>`).join('')}</ul></nav>` : '';
+  // «Kort oppsummert»: the main numbers in a few sentences, each pointing to the section with its sources.
+  const summary = S.oppsummering?.length ? `<section aria-labelledby="h-sum" id="oppsummert">
+      <div class="section-head"><h2 id="h-sum">Kort oppsummert</h2><p class="lead">Hovedtallene på siden. Kildene står i seksjonen hvert punkt lenker til.</p></div>
+      <ul class="fact-list">${S.oppsummering.map(o => `<li class="fact"><p>${esc(o.tekst)}</p><p class="caption fact-src"><a href="${esc(o.lenke)}">Les mer</a></p></li>`).join('')}</ul>
+    </section>` : '';
   main.innerHTML = `<header>
       <nav class="crumbs" aria-label="Brødsmuler"><a href="saker">Utvalgte saker</a><span aria-hidden="true">›</span><span aria-current="page">${esc(S.tittel)}</span></nav>
       <div class="eyebrow">Sist kontrollert ${dateText(S.kontrollert)}</div>
@@ -127,7 +132,7 @@ const dateText = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nb-NO', 
       ${S.mangler ? `<p class="status-note">${esc(S.mangler)}</p>` : ''}
     </header>
     <section aria-label="Nøkkeltall"><div class="stats3 sak-stats" style="--n:${S.nokkeltall.length}">${stats}</div></section>
-    ${jump}${long ? '' : actors}${tab}${role}${tables}${savings}${inst}${missing}${long ? actors : ''}${topics}${time}${facts}${links}${docs}`;
+    ${summary}${jump}${long ? '' : actors}${tab}${role}${tables}${savings}${inst}${missing}${long ? actors : ''}${topics}${time}${facts}${links}${docs}`;
   document.getElementById('tl-more')?.addEventListener('click', e => {
     document.querySelectorAll('#timeline li[hidden]').forEach(li => { li.hidden = false; });
     e.currentTarget.remove();

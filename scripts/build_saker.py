@@ -123,6 +123,10 @@ def main() -> int:
                 if len(r["celler"]) != width:
                     err(f"{name} {i + 1}: {len(r['celler'])} celler, ventet {width}")
                 check_src(f"{name} {i + 1}", r.get("kilde"))
+        # «oppsummering»: a short summary at the top, each point linking to the section on the page that has the sources.
+        for i, o in enumerate(s.get("oppsummering", [])):
+            if not o.get("tekst") or not str(o.get("lenke", "")).startswith("#"):
+                err(f"oppsummering {i + 1}: trenger tekst og lenke til en seksjon (#…)")
         # «savner»: numbers that are not published, each pointing to its entry under «Tall som savnes» on om.html.
         for i, m in enumerate(s.get("savner", [])):
             if not m.get("tittel") or not m.get("tekst") or not str(m.get("href", "")).startswith("om#savner-"):

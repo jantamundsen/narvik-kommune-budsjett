@@ -1218,6 +1218,32 @@
      "merknad": "– betyr at rapporten ikke oppgir tallet på samme måte. Årsrapport 2025 (s. 49) oppgir vikarbyrå i 2024 som 45,9 mill. kr, ikke 43,1. Årsrapportene og tertialrapport 2/2026 har vikarbyrå og overtid også per enhet, se «Det kommunens rapporter sier» lenger ned. Kommunen betalte for 525 døgn med utskrivningsklare pasienter i 2022 og 806 i 2023 (årsmelding 2022, s. 36, og årsrapport 2023, s. 14)."
     }
    ],
+   "oppsummering": [
+    {
+     "tekst": "Budsjettet for 2025 og 2026 ble satt om lag 61 mill. kr under regnskapet året før. I 2025 ble budsjettet økt med 72 mill. kr i løpet av året, og forbruket endte 20,0 mill. kr over. For 2026 er prognosen 83,9 mill. kr over budsjett.",
+     "lenke": "#budsjett"
+    },
+    {
+     "tekst": "Rapportene forklarer merforbruket med vikarbyrå, overtid, sykefravær og utskrivningsklare pasienter. Per august 2026 lå vikarbyrå 13,5 mill. kr og overtid og sommeravtaler 12,6 mill. kr over budsjett.",
+     "lenke": "#kostnader"
+    },
+    {
+     "tekst": "Ingen av innsparingene i Helse og omsorg i budsjettet for 2025 er meldt gjennomført i rapportene. 12,5 mill. kr er meldt forsinket, 3,0 mill. kr ikke gjennomført, og for 27,8 mill. kr har jeg ikke funnet noen status.",
+     "lenke": "#innsparinger"
+    },
+    {
+     "tekst": "Omsorgstjenestene kostet 12,6 % mer per innbygger 67 år og over enn i snitt i KOSTRA-gruppe 9 i 2025. Sykehjem og lokaler til institusjonene ligger over snittet, hjemmetjenestene på snittet og aktivitet og service for eldre under. Narvik har flere beboere i alderen 67–79 år enn snittet, mens Narvik ligger omtrent på snittet for dem over 80.",
+     "lenke": "#forskjell"
+    },
+    {
+     "tekst": "Utgiften per døgn i institusjon økte 13,5 % i 2025, mens antall beboere gikk ned og antall plasser var omtrent det samme. Narvik har færre beboere per plass enn snittet i gruppen, samtidig som døgnene med utskrivningsklare pasienter på sykehuset økte til 1 125.",
+     "lenke": "#plasser-brukere"
+    },
+    {
+     "tekst": "Kostnad og belegg per sykehjem, vikarer per enhet og måned, ventelister og budsjett per enhet er ikke publisert.",
+     "lenke": "#savner"
+    }
+   ],
    "tiltak_omrade": "helse",
    "savner": [
     {
