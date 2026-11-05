@@ -681,9 +681,7 @@ dl.facts dd { margin: 0; }
 :root[data-theme="dark"] { --map-land: #2e3944; --map-sea: #141c24; --map-abroad: #222a32; --map-border: #1a222a; --pk-ut: #6aacf2; --pk-inn: #f0a85a; }
 .pk-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px 16px; }
 .pk-head h3 { font-size: 1.05rem; font-weight: 600; }
-.pk-body { display: grid; grid-template-columns: minmax(0, 3fr) minmax(220px, 2fr); gap: 20px; align-items: start; }
-@media (max-width: 720px) { .pk-body { grid-template-columns: minmax(0, 1fr); } }
-#pk-map { display: block; width: 100%; height: auto; border-radius: 8px; overflow: hidden; font-family: var(--font-body); }
+#pk-map { display: block; width: 100%; max-width: 860px; height: auto; border-radius: 8px; overflow: hidden; font-family: var(--font-body); }
 .pk-abroad { fill: var(--map-abroad); }
 .pk-land path { fill: var(--map-land); stroke: var(--map-border); stroke-width: 1; fill-rule: evenodd; }
 .pk-sea { fill: var(--map-sea); fill-rule: evenodd; }
@@ -697,16 +695,16 @@ dl.facts dd { margin: 0; }
 .pk-dots circle { fill: var(--ink-2); }
 .pk-dots .pk-home { fill: var(--ink); stroke: var(--surface); stroke-width: 3; }
 .pk-labels text { fill: var(--ink); font-size: 13px; paint-order: stroke; stroke: var(--map-land); stroke-width: 3px; stroke-linejoin: round; pointer-events: none; }
+@media (min-width: 521px) { .pk-labels text { font-size: 11px; } .pk-labels .pk-home-label { font-size: 13px; } }
 .pk-labels .n { font-weight: 700; }
 .pk-labels .n.ut { fill: var(--pk-ut); } .pk-labels .n.inn { fill: var(--pk-inn); }
 .pk-labels .pk-home-label { font-weight: 700; font-size: 15px; }
 .pk-labels .pk-far-h { font-weight: 700; }
 .pk-labels .pk-far-rest { fill: var(--ink-2); }
 @media (max-width: 520px) { .pk-labels text { font-size: 22px; stroke-width: 4px; } .pk-labels .pk-home-label { font-size: 24px; } .pk-country { font-size: 20px; } }
-.pk-side { display: grid; gap: 14px; align-content: start; }
-.pk-legend { display: grid; gap: 10px; }
+.pk-legend { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 10px 24px; max-width: 860px; }
 .pk-legend p { display: flex; gap: 10px; align-items: baseline; font-size: 0.95rem; }
 .pk-key { flex: none; width: 22px; height: 6px; border-radius: 3px; transform: translateY(-3px); }
 .pk-key.ut { background: var(--pk-ut); } .pk-key.inn { background: var(--pk-inn); }
-.pk-info { font-size: 0.9rem; color: var(--ink-2); min-height: 2.6em; }
+.pk-info { font-size: 0.9rem; color: var(--ink-2); min-height: 1.5em; }
 #pk-table .sum td { font-weight: 600; border-top: 2px solid var(--ink); }
