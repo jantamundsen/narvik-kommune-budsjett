@@ -105,6 +105,7 @@ function render() {
 
   drawCompare();
   drawTrend();
+  drawMultiples();
 }
 
 function drawNote(svcTotal) {
@@ -237,7 +238,10 @@ const lower1 = t => t.charAt(0).toLowerCase() + t.slice(1);
 const esc1 = t => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 
 function drawTrend() {
-  const W = 760, H = 260, left = 56, right = 740, y0 = 20, base = 220;
+  // On a narrow screen the chart is drawn narrower, so it shrinks to fit instead of scrolling sideways.
+  const box = document.getElementById('trend-chart');
+  const narrow = box.clientWidth > 0 && box.clientWidth < 560;
+  const W = narrow ? 400 : 760, H = narrow ? 250 : 270, left = narrow ? 44 : 56, right = W - (narrow ? 8 : 20), y0 = 50, base = H - 40;
   const vals = YEARS.map(y => DATA.total_1000kr[y] / 1000);
   const max = Math.ceil(Math.max(...vals) / 500) * 500;
   const Y = v => base - v / max * (base - y0);
@@ -253,13 +257,79 @@ function drawTrend() {
     r.appendChild(s('title', {}, `${y}: ${nb(v)} mill. kr`));
     r.addEventListener('click', () => setYear(y));
     svg.appendChild(r);
-    svg.appendChild(s('text', { x: x + bw / 2, y: Y(v) - 8, 'text-anchor': 'middle', 'font-size': 13, 'font-weight': sel ? 700 : 500, fill: sel ? 'var(--ink)' : 'var(--ink-2)' }, nb(v)));
+    svg.appendChild(s('text', { x: x + bw / 2, y: Y(v) + (narrow ? 30 : 24), 'text-anchor': 'middle', 'font-size': narrow ? 12 : 13, 'font-weight': sel ? 700 : 500, fill: sel ? 'var(--surface)' : 'var(--ink)' }, nb(v)));
     svg.appendChild(s('text', { x: x + bw / 2, y: base + 20, 'text-anchor': 'middle', 'font-size': 13, 'font-weight': sel ? 700 : 400, fill: sel ? 'var(--ink)' : 'var(--ink-2)' }, y));
   });
-  svg.appendChild(s('text', { x: left - 8, y: 10, 'text-anchor': 'end', 'font-size': 11, fill: 'var(--ink-2)' }, 'mill. kr'));
-  document.getElementById('trend-chart').replaceChildren(svg);
+  // A line through the bar tops, with the change from the year before written over each segment.
+  const cx = i => left + i * band + band / 2;
+  // Same style as «Folketallet år for år» on befolkning: accent line, filled dots, the last one larger.
+  svg.appendChild(s('polyline', { points: vals.map((v, i) => `${cx(i)},${Y(v)}`).join(' '), fill: 'none', stroke: 'var(--accent)', 'stroke-width': 2.5, 'stroke-linejoin': 'round' }));
+  vals.forEach((v, i) => {
+    svg.appendChild(s('circle', { cx: cx(i), cy: Y(v), r: i === vals.length - 1 ? 5 : 4, fill: 'var(--accent)', stroke: 'var(--surface)', 'stroke-width': 1.5 }));
+    if (!i) return;
+    const c = pct(v, vals[i - 1]);
+    const t = s('text', { x: (cx(i - 1) + cx(i)) / 2, y: (Y(vals[i - 1]) + Y(v)) / 2 - 12, 'text-anchor': 'middle', 'font-size': 12, 'font-weight': 600, fill: 'var(--ink)' }, chgText(c));
+    t.appendChild(s('title', {}, `${YEARS[i - 1]} til ${YEARS[i]}: ${chgText(c)}`));
+    svg.appendChild(t);
+  });
+  svg.appendChild(s('text', { x: left - 8, y: y0 - 12, 'text-anchor': 'end', 'font-size': 11, fill: 'var(--ink-2)' }, 'mill. kr'));
+  box.replaceChildren(svg);
+  box.dataset.narrow = narrow;
   const first = vals[0], last = vals.at(-1), y1 = YEARS[0], y2 = YEARS.at(-1);
   document.getElementById('trend-lead').textContent = `Netto driftsutgifter økte fra ${nb(first)} til ${nb(last)} millioner kroner fra ${y1} til ${y2}, ${nb((last / first - 1) * 100)} %. Folketallet var omtrent det samme, ${nb(DATA.population[y1])} mot ${nb(DATA.population[y2])}.`;
 }
+
+// One small bar chart per service area, each starting at zero on its own scale, so the shape shows the change without exaggerating it.
+// Areas with a negative or zero year are left out of the grid, since a percentage change across zero has no meaning.
+function drawMultiples() {
+  const y1 = YEARS[0], y2 = YEARS.at(-1);
+  const ok = c => YEARS.every(y => c.narvik_1000kr[y] > 0);
+  const shown = services.filter(ok).sort((a, b) => b.narvik_1000kr[y2] - a.narvik_1000kr[y2]);
+  const left = services.filter(c => !ok(c));
+  const box = document.getElementById('multiples'); box.replaceChildren();
+  const W = 150, H = 70, pad = 6, top = 8, base = 54;
+  // Same vertical scale in percent for every area (top = lowest year plus the largest rise among areas), so a steep line means a large change.
+  // Very small areas (under 10 mill. kr in some year) swing a lot in percent and get their own scale, marked on the chart.
+  const SMALL = 10000;
+  const isSmall = c => YEARS.some(y => c.narvik_1000kr[y] < SMALL);
+  const ratio = c => { const v = YEARS.map(y => c.narvik_1000kr[y]); return Math.max(...v) / Math.min(...v); };
+  const R = Math.max(...shown.filter(c => !isSmall(c)).map(ratio));
+  shown.forEach(c => {
+    const v = YEARS.map(y => c.narvik_1000kr[y] / 1000);
+    const own = isSmall(c);
+    const lo = Math.min(...v), hi = own ? Math.max(...v) : lo * R, span = hi - lo || 1;
+    const X = i => pad + i * (W - 2 * pad) / (YEARS.length - 1), Y = t => base - (t - lo) / span * (base - top);
+    const a = el('a', { class: 'multiple', href: areaHref(c.key) });
+    a.append(el('span', { class: 'm-name' }, c.name), el('span', { class: 'm-chg num' }, chgText(pct(v.at(-1), v[0]))));
+    const svg = s('svg', { viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': `${c.name}, mill. kr: ` + YEARS.map((y, i) => `${y} ${mill(v[i] * 1000)}`).join(', ') });
+    const pts = v.map((t, i) => `${X(i).toFixed(1)} ${Y(t).toFixed(1)}`);
+    svg.appendChild(s('line', { x1: pad, x2: W - pad, y1: base + 0.5, y2: base + 0.5, stroke: 'var(--rule)' }));
+    svg.appendChild(s('path', { d: 'M' + pts.join(' L'), fill: 'none', stroke: 'var(--accent)', 'stroke-width': 2.5, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }));
+    YEARS.forEach((y, i) => {
+      const sel = y === year;
+      const dot = s('circle', { cx: X(i), cy: Y(v[i]), r: sel ? 4 : 3, fill: 'var(--accent)', stroke: sel ? 'var(--surface)' : 'none', 'stroke-width': 1.5 });
+      dot.appendChild(s('title', {}, `${y}: ${nb(v[i], v[i] < 10 ? 1 : 0)} mill. kr`));
+      svg.appendChild(dot);
+    });
+    svg.appendChild(s('text', { x: X(0), y: H - 1, 'font-size': 10, fill: 'var(--ink-2)' }, YEARS[0]));
+    svg.appendChild(s('text', { x: X(YEARS.length - 1), y: H - 1, 'font-size': 10, 'text-anchor': 'end', fill: 'var(--ink-2)' }, YEARS.at(-1)));
+    if (own) svg.appendChild(s('text', { x: W / 2, y: H - 1, 'font-size': 10, 'text-anchor': 'middle', fill: 'var(--ink-2)' }, 'egen skala'));
+    a.appendChild(svg);
+    const d = n => nb(n, n < 10 ? 1 : 0);
+    a.appendChild(el('span', { class: 'm-sub num' }, `${d(v[0])} → ${d(v.at(-1))} mill. kr`));
+    box.appendChild(a);
+  });
+  document.getElementById('multi-lead').textContent = `Netto driftsutgifter per område, ${y1}–${y2}. Alle grafene har samme skala i prosent, målt fra områdets laveste år, så en bratt linje betyr stor endring. Skalaen starter ikke på null, og grafene viser ikke hvor store områdene er mot hverandre. Tallet er endringen fra ${y1} til ${y2}. Valgt år (${year}) er markert. Trykk på et område for å gå inn i det.`;
+  const names = left.map(c => lower1(c.name));
+  document.getElementById('multi-caption').textContent = 'Løpende kroner, ikke justert for prisvekst. Endring i prosent er beregnet fra SSB-tallene.' +
+    (names.length ? ` ${names.join(' og ').replace(/^./, ch => ch.toUpperCase())} er ikke med fordi de er negative eller null i minst ett år, og da gir en prosentvis endring ikke mening.` : '') +
+    ' Områder under 10 mill. kr har egen skala, fordi små beløp svinger mye i prosent. Pensjonsjusteringer og vann, avløp og renovasjon vises under «Trekker fra i netto» over.';
+}
+
+// Redraw the trend chart when the screen crosses the narrow/wide breakpoint.
+addEventListener('resize', () => {
+  const box = document.getElementById('trend-chart');
+  if (DATA && box && String(box.clientWidth > 0 && box.clientWidth < 560) !== box.dataset.narrow) drawTrend();
+});
 
 start();

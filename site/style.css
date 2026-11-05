@@ -678,6 +678,25 @@ dl.facts dd { margin: 0; }
   .ptable table.own.stack tr { grid-template-columns: 1fr; }
 }
 
+/* Arbeid: ledighetskalender (arbeid.js drawCalendar). One hue, six fixed steps from light to dark; numbers in every cell. */
+.cal-wrap { overflow-x: auto; }
+.cal { width: 100%; table-layout: fixed; border-collapse: separate; border-spacing: 2px; font-size: 0.82rem; }
+@media (max-width: 520px) { .cal { border-spacing: 1px; font-size: 0.66rem; letter-spacing: -0.02em; } .cal td { padding: 6px 0; } .cal thead th:first-child, .cal tbody th { width: 2.6em; } #kalender { padding: 14px 10px; } }
+.cal th { font-weight: 500; color: var(--ink-2); padding: 2px 0; text-align: center; }
+.cal thead th:first-child, .cal tbody th { width: 2.9em; text-align: left; }
+.cal abbr { text-decoration: none; }
+.cal td { text-align: center; padding: 7px 0; border-radius: 4px; color: var(--ink); white-space: nowrap; }
+.cal td.none { background: transparent; outline: 1px dashed var(--rule); outline-offset: -2px; }
+.cal .c0, .cal-key .c0 { background: color-mix(in srgb, var(--accent) 12%, var(--surface)); }
+.cal .c1, .cal-key .c1 { background: color-mix(in srgb, var(--accent) 26%, var(--surface)); }
+.cal .c2, .cal-key .c2 { background: color-mix(in srgb, var(--accent) 42%, var(--surface)); }
+.cal .c3, .cal-key .c3 { background: color-mix(in srgb, var(--accent) 60%, var(--surface)); }
+.cal td.c4, .cal td.c5 { color: var(--surface); font-weight: 600; }
+.cal .c4, .cal-key .c4 { background: color-mix(in srgb, var(--accent) 80%, var(--surface)); }
+.cal .c5, .cal-key .c5 { background: var(--accent); }
+.cal-key { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 0.82rem; color: var(--ink-2); }
+.cal-key i { display: inline-block; width: 14px; height: 14px; border-radius: 3px; margin-right: 6px; vertical-align: -2px; }
+
 /* arbeid.html: the commuting map. Blue: lives in Narvik, works elsewhere. Orange: works in Narvik, lives elsewhere. */
 :root { --map-land: #dde3e8; --map-sea: #eef4fa; --map-abroad: #ebeef1; --map-border: #f7f9fa; --pk-ut: #005fbe; --pk-inn: #c26a12; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --map-land: #2e3944; --map-sea: #141c24; --map-abroad: #222a32; --map-border: #1a222a; --pk-ut: #6aacf2; --pk-inn: #f0a85a; } }
@@ -737,3 +756,15 @@ dl.facts dd { margin: 0; }
 .dm-legend .dm-key-road { width: 22px; height: 3px; border-radius: 2px; background: var(--dm-road); opacity: 1; }
 .dm-legend .dm-key-town { width: 14px; height: 14px; border-radius: 3px; background: var(--dm-town); opacity: 1; }
 .dm-info { font-size: 0.9rem; color: var(--ink); min-height: 1.5em; font-variant-numeric: tabular-nums; }
+/* Small multiples: one bar chart per area on /okonomi */
+.multiples-head { margin: 28px 0 4px; font-size: 1.05rem; }
+.multiples { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin: 12px 0 10px; }
+.multiple { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2px; align-content: start; background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 10px 12px; color: inherit; text-decoration: none; }
+.multiple:hover { border-color: var(--accent); }
+.multiple:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.multiple .m-name { font-size: 0.85rem; line-height: 1.25; color: var(--ink); min-height: 2.5em; overflow-wrap: anywhere; }
+.multiple .m-chg { font: 600 1.1rem var(--font-display); }
+.multiple svg { display: block; width: 100%; height: auto; margin-top: 6px; }
+.multiple .m-sub { font-size: 0.78rem; color: var(--ink-2); }
+@media (max-width: 400px) { .multiples { grid-template-columns: 1fr 1fr; } }
+.fit-chart svg { min-width: 0; }
