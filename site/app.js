@@ -217,7 +217,10 @@ const lower1 = t => t.charAt(0).toLowerCase() + t.slice(1);
 const esc1 = t => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 
 function drawTrend() {
-  const W = 760, H = 270, left = 56, right = 740, y0 = 50, base = 230;
+  // On a narrow screen the chart is drawn narrower, so it shrinks to fit instead of scrolling sideways.
+  const box = document.getElementById('trend-chart');
+  const narrow = box.clientWidth > 0 && box.clientWidth < 560;
+  const W = narrow ? 400 : 760, H = narrow ? 250 : 270, left = narrow ? 44 : 56, right = W - (narrow ? 8 : 20), y0 = 50, base = H - 40;
   const vals = YEARS.map(y => DATA.total_1000kr[y] / 1000);
   const max = Math.ceil(Math.max(...vals) / 500) * 500;
   const Y = v => base - v / max * (base - y0);
@@ -233,7 +236,7 @@ function drawTrend() {
     r.appendChild(s('title', {}, `${y}: ${nb(v)} mill. kr`));
     r.addEventListener('click', () => setYear(y));
     svg.appendChild(r);
-    svg.appendChild(s('text', { x: x + bw / 2, y: Y(v) + 24, 'text-anchor': 'middle', 'font-size': 13, 'font-weight': sel ? 700 : 500, fill: sel ? 'var(--surface)' : 'var(--ink)' }, nb(v)));
+    svg.appendChild(s('text', { x: x + bw / 2, y: Y(v) + (narrow ? 30 : 24), 'text-anchor': 'middle', 'font-size': narrow ? 12 : 13, 'font-weight': sel ? 700 : 500, fill: sel ? 'var(--surface)' : 'var(--ink)' }, nb(v)));
     svg.appendChild(s('text', { x: x + bw / 2, y: base + 20, 'text-anchor': 'middle', 'font-size': 13, 'font-weight': sel ? 700 : 400, fill: sel ? 'var(--ink)' : 'var(--ink-2)' }, y));
   });
   // A line through the bar tops, with the change from the year before written over each segment.
@@ -249,7 +252,8 @@ function drawTrend() {
     svg.appendChild(t);
   });
   svg.appendChild(s('text', { x: left - 8, y: y0 - 12, 'text-anchor': 'end', 'font-size': 11, fill: 'var(--ink-2)' }, 'mill. kr'));
-  document.getElementById('trend-chart').replaceChildren(svg);
+  box.replaceChildren(svg);
+  box.dataset.narrow = narrow;
   const first = vals[0], last = vals.at(-1), y1 = YEARS[0], y2 = YEARS.at(-1);
   document.getElementById('trend-lead').textContent = `Netto driftsutgifter økte fra ${nb(first)} til ${nb(last)} millioner kroner fra ${y1} til ${y2}, ${nb((last / first - 1) * 100)} %. Folketallet var omtrent det samme, ${nb(DATA.population[y1])} mot ${nb(DATA.population[y2])}.`;
 }
@@ -300,5 +304,11 @@ function drawMultiples() {
     (names.length ? ` ${names.join(' og ').replace(/^./, ch => ch.toUpperCase())} er ikke med fordi de er negative eller null i minst ett år, og da gir en prosentvis endring ikke mening.` : '') +
     ' Områder under 10 mill. kr har egen skala, fordi små beløp svinger mye i prosent. Pensjonsjusteringer og vann, avløp og renovasjon vises under «Trekker fra i netto» over.';
 }
+
+// Redraw the trend chart when the screen crosses the narrow/wide breakpoint.
+addEventListener('resize', () => {
+  const box = document.getElementById('trend-chart');
+  if (DATA && box && String(box.clientWidth > 0 && box.clientWidth < 560) !== box.dataset.narrow) drawTrend();
+});
 
 start();

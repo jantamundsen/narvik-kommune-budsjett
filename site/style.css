@@ -686,3 +686,4 @@ dl.facts dd { margin: 0; }
 .multiple svg { display: block; width: 100%; height: auto; margin-top: 6px; }
 .multiple .m-sub { font-size: 0.78rem; color: var(--ink-2); }
 @media (max-width: 400px) { .multiples { grid-template-columns: 1fr 1fr; } }
+.fit-chart svg { min-width: 0; }
