@@ -217,7 +217,7 @@ const lower1 = t => t.charAt(0).toLowerCase() + t.slice(1);
 const esc1 = t => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 
 function drawTrend() {
-  const W = 760, H = 330, left = 56, right = 740, y0 = 110, base = 290;
+  const W = 760, H = 270, left = 56, right = 740, y0 = 50, base = 230;
   const vals = YEARS.map(y => DATA.total_1000kr[y] / 1000);
   const max = Math.ceil(Math.max(...vals) / 500) * 500;
   const Y = v => base - v / max * (base - y0);
@@ -233,24 +233,19 @@ function drawTrend() {
     r.appendChild(s('title', {}, `${y}: ${nb(v)} mill. kr`));
     r.addEventListener('click', () => setYear(y));
     svg.appendChild(r);
-    svg.appendChild(s('text', { x: x + bw / 2, y: Y(v) - 8, 'text-anchor': 'middle', 'font-size': 13, 'font-weight': sel ? 700 : 500, fill: sel ? 'var(--ink)' : 'var(--ink-2)' }, nb(v)));
+    svg.appendChild(s('text', { x: x + bw / 2, y: Y(v) + 24, 'text-anchor': 'middle', 'font-size': 13, 'font-weight': sel ? 700 : 500, fill: sel ? 'var(--surface)' : 'var(--ink)' }, nb(v)));
     svg.appendChild(s('text', { x: x + bw / 2, y: base + 20, 'text-anchor': 'middle', 'font-size': 13, 'font-weight': sel ? 700 : 400, fill: sel ? 'var(--ink)' : 'var(--ink-2)' }, y));
   });
-  // The change from the year before as its own small line in a band above the bars, so the line's height is the percentage, not the amount.
+  // A line through the bar tops, with the change from the year before written over each segment.
   const cx = i => left + i * band + band / 2;
-  const chg = vals.map((v, i) => (i ? pct(v, vals[i - 1]) : null));
-  const cMax = Math.max(...chg.filter(c => c != null), 1), bTop = 22, bBot = 62;
-  const CY = c => bBot - Math.max(0, c) / cMax * (bBot - bTop);
-  svg.appendChild(s('text', { x: left - 8, y: 12, 'font-size': 11, fill: 'var(--ink-2)' }, 'Endring fra året før'));
-  svg.appendChild(s('text', { x: cx(1) - 24, y: bBot + 4, 'text-anchor': 'end', 'font-size': 11, fill: 'var(--ink-2)' }, '0 %'));
-  svg.appendChild(s('line', { x1: cx(1) - 20, x2: right, y1: bBot, y2: bBot, stroke: 'var(--rule)' }));
-  svg.appendChild(s('path', { d: 'M' + chg.map((c, i) => c == null ? null : `${cx(i)} ${CY(c)}`).filter(Boolean).join(' L'), fill: 'none', stroke: 'var(--ink-2)', 'stroke-width': 2, 'stroke-linejoin': 'round' }));
-  chg.forEach((c, i) => {
-    if (c == null) return;
-    const dot = s('circle', { cx: cx(i), cy: CY(c), r: 3.5, fill: 'var(--surface)', stroke: 'var(--ink-2)', 'stroke-width': 2 });
-    dot.appendChild(s('title', {}, `${YEARS[i - 1]} til ${YEARS[i]}: ${chgText(c)}`));
-    svg.appendChild(dot);
-    svg.appendChild(s('text', { x: cx(i) + 8, y: CY(c) - 6, 'font-size': 12, 'font-weight': 600, fill: 'var(--ink)' }, chgText(c)));
+  svg.appendChild(s('path', { d: 'M' + vals.map((v, i) => `${cx(i)} ${Y(v)}`).join(' L'), fill: 'none', stroke: 'var(--ink)', 'stroke-width': 2, 'stroke-linejoin': 'round' }));
+  vals.forEach((v, i) => {
+    svg.appendChild(s('circle', { cx: cx(i), cy: Y(v), r: 4, fill: 'var(--surface)', stroke: 'var(--ink)', 'stroke-width': 2 }));
+    if (!i) return;
+    const c = pct(v, vals[i - 1]);
+    const t = s('text', { x: (cx(i - 1) + cx(i)) / 2, y: (Y(vals[i - 1]) + Y(v)) / 2 - 12, 'text-anchor': 'middle', 'font-size': 12, 'font-weight': 600, fill: 'var(--ink)' }, chgText(c));
+    t.appendChild(s('title', {}, `${YEARS[i - 1]} til ${YEARS[i]}: ${chgText(c)}`));
+    svg.appendChild(t);
   });
   svg.appendChild(s('text', { x: left - 8, y: y0 - 12, 'text-anchor': 'end', 'font-size': 11, fill: 'var(--ink-2)' }, 'mill. kr'));
   document.getElementById('trend-chart').replaceChildren(svg);
