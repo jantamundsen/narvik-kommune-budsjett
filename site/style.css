@@ -273,6 +273,8 @@ a.cmp-row .c-name::after { content: " \203A"; color: var(--accent); font-weight:
 .cmp-row.total { font-weight: 700; border-bottom: 0; }
 .dev .more { left: 50%; background: var(--accent); }
 .dev .less { right: 50%; background: var(--muted); }
+.cmp-scale button { min-height: 34px; font-size: 0.8rem; }
+.dev-none { display: block; font-size: 0.75rem; color: var(--ink-2); text-align: center; }
 @media (max-width: 680px) {
   .cmp-head { display: none; }
   .cmp-row { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "name d" "dev dev" "n r"; gap: 6px 12px; }
@@ -281,6 +283,7 @@ a.cmp-row .c-name::after { content: " \203A"; color: var(--accent); font-weight:
   .cmp-row .c-n::before { content: "Narvik "; color: var(--ink-2); }
   .cmp-row .c-r::before { content: "mot "; }
   .cmp-row .c-d::after { content: " kr"; color: var(--ink-2); font-weight: 400; }
+  .cmp-list.pst .cmp-row .c-d::after { content: none; }
 }
 /* omrade.html: one area against the comparison regions */
 .cmp-bars .rank-fill { background: var(--muted); }
