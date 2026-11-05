@@ -42,7 +42,7 @@ async function startRunning() {
 
   document.title = `Narvik kommunes økonomi så langt i ${L.year} · Åpne tall for Narvik`;
   document.getElementById('title').textContent = `${L.year} så langt`;
-  document.getElementById('eyebrow').textContent = `Narvik kommune · budsjett og forbruk i ${L.year}, oppdatert med ${R.name.split(',')[0].toLowerCase()}`;
+  document.getElementById('eyebrow').textContent = `Oppdatert med ${R.name.split(',')[0].toLowerCase()}`;
   const overNow = over(T.avvik_hia), overYear = over(T.prognose_aarsavvik);
   document.getElementById('lead').textContent =
     `Fra ${R.period} brukte kommunen ${mk(T.regnskap_hia)} mill. kr på tjenesteområdene, ${mk(Math.abs(overNow))} mill. kr ${overNow >= 0 ? 'mer' : 'mindre'} enn budsjettert for de samme månedene. ` +
