@@ -177,7 +177,7 @@ async function startTiltak() {
     document.getElementById('flow-caption').textContent = (unit === 'kr'
       ? `${nKr} tiltak, ${mk(total)} mill. kr for ${y}.` + (partly.length ? ` Der kommunestyret bare tok ut en del av et kutt, er kuttet delt mellom «Tatt ut av kommunestyret» og status for resten.` : '')
       : `${list.length} tiltak. Et tiltak telles én gang, med status fra rapportene. Er det ikke omtalt og kommunestyret tok ut hele kuttet, står det under «Tatt ut av kommunestyret».`)
-      + ` «Ingen status i rapportene» betyr at vi ikke har funnet tiltaket omtalt, ikke at kuttet ikke ble gjort. Kilder: beløpene fra Framsikt og statusene fra rapportene, med side, står ved hvert tiltak under.`;
+      + ` «Ingen status i rapportene» betyr at jeg ikke har funnet tiltaket omtalt, ikke at kuttet ikke ble gjort. Kilder: beløpene fra Framsikt og statusene fra rapportene, med side, står ved hvert tiltak under.`;
     document.getElementById('flow-table').innerHTML = `<thead><tr><th>Område</th>${right.map(n => `<th>${esc(n.name)}</th>`).join('')}<th>Sum</th></tr></thead><tbody>`
       + left.map(a => `<tr><td>${esc(a.name)}</td>${right.map(r => { const k = links.find(x => x.from === a.key && x.to === r.key); return `<td>${k ? (unit === 'kr' ? mk(k.v) : k.v) : '–'}</td>`; }).join('')}<td>${unit === 'kr' ? mk(a.v) : a.v}</td></tr>`).join('')
       + `<tr class="sum"><td>Sum</td>${right.map(r => `<td>${unit === 'kr' ? mk(r.v) : r.v}</td>`).join('')}<td>${unit === 'kr' ? mk(total) : total}</td></tr></tbody>`;
@@ -199,7 +199,7 @@ async function startTiltak() {
     document.getElementById('h-sum').textContent = `Innsparingene i budsjettet for ${y}`;
     document.getElementById('sum-lead').textContent = `${proposal ? 'Kommunedirektørens forslag' : 'Budsjettet kommunestyret vedtok'} for ${y} hadde ${S.length} innsparinger på til sammen ${mk(sum(S, cut))} mill. kr. `
       + (sum(S, back) ? `Kommunestyret tok ut ${mk(sum(S, back))} mill. kr av dem i samme vedtak. ` : '')
-      + `For ${mk(sum(silent, kept))} mill. kr av det som sto igjen, har vi ikke funnet noen status i kommunens rapporter.`
+      + `For ${mk(sum(silent, kept))} mill. kr av det som sto igjen, har jeg ikke funnet noen status i kommunens rapporter.`
       + (U.length ? ` I tillegg ${U.length === 1 ? 'står ett kutt' : `står ${U.length} kutt`} uten beløp i budsjettet.` : '');
     const st = document.getElementById('sum-status');
     st.textContent = proposal ? `Tallene for ${y} er kommunedirektørens forslag. Kommunestyrets endringer i desember finnes ikke på Framsikt, så kutt som ble tatt ut eller endret i vedtaket vises ikke her. Rapportene viser bare enkelte vedtatte beløp.` : '';

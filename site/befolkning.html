@@ -24,15 +24,14 @@
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="stylesheet" href="style.css?v=2026-11-05e">
+<link rel="stylesheet" href="style.css?v=2026-11-05-5">
 </head>
 <body>
 <div class="wrap">
   <div class="site-head">
-    <nav class="site-nav" aria-label="Sider"><a class="brand" href="./">Åpne tall for Narvik</a><a href="saker">Utvalgte saker</a><a href="okonomi">Økonomi</a><a href="befolkning" aria-current="page">Befolkning</a><a href="bolig">Bolig</a><a href="arbeid">Arbeid</a><a href="naering">Næringsliv</a><a href="andre-tall">Andre tall</a><a href="om">Om siden</a></nav>
+    <nav class="site-nav" aria-label="Sider"><a class="brand" href="./"><img src="favicon.svg" alt="" width="28" height="28">Åpne tall for Narvik</a><a href="saker">Utvalgte saker</a><a href="okonomi">Økonomi</a><a href="befolkning" aria-current="page">Befolkning</a><a href="bolig">Bolig</a><a href="arbeid">Arbeid</a><a href="naering">Næringsliv</a><a href="andre-tall">Andre tall</a><a href="om">Om siden</a></nav>
   </div>
   <header>
-    <div class="eyebrow">Narvik kommune · befolkningstall fra SSB</div>
     <h1>Befolkning i Narvik</h1>
     <p class="lead" id="lead"></p>
   </header>
@@ -64,15 +63,38 @@
       <h2 id="h-areas">Hvor i kommunen folk bor</h2>
       <p class="lead" id="areas-lead"></p>
     </div>
+    <div class="panel dm-panel" id="dm" hidden>
+      <div class="dm-box">
+        <svg id="dm-map" role="img"></svg>
+        <div class="dm-zoom">
+          <button type="button" id="dm-in" aria-label="Zoom inn">+</button>
+          <button type="button" id="dm-out" aria-label="Zoom ut" disabled>−</button>
+          <button type="button" id="dm-reset" aria-label="Vis hele kommunen" title="Vis hele kommunen" disabled>⤢</button>
+        </div>
+        <div class="dm-scale" id="dm-scale"></div>
+      </div>
+      <div class="dm-legend" id="dm-legend"></div>
+      <p class="dm-info" id="dm-info" aria-live="polite"></p>
+      <p class="caption" id="dm-caption"></p>
+    </div>
     <div class="ptable" id="areas-table"></div>
     <p class="caption" id="areas-caption"></p>
   </section>
 
   <section aria-labelledby="h-trend" id="trend" hidden>
-    <h2 id="h-trend">Folketallet år for år</h2>
-    <div class="chart line-chart" id="trend-chart"></div>
-    <div class="ptable" id="trend-table"></div>
+    <div class="section-head">
+      <h2 id="h-trend">Folketallet år for år</h2>
+      <p class="lead" id="ledger-lead"></p>
+    </div>
+    <div class="chart line-chart fit-chart" id="trend-chart"></div>
     <p class="caption" id="trend-caption"></p>
+    <div class="chart ledger-chart">
+      <h3 id="ledger-title"></h3>
+      <div class="legend" id="ledger-legend"></div>
+      <div id="ledger-chart"></div>
+    </div>
+    <div class="ptable" id="trend-table"></div>
+    <p class="caption" id="ledger-caption"></p>
   </section>
 
   <section aria-labelledby="h-cmp" id="compare" hidden>
@@ -113,6 +135,7 @@
     <div class="notes">
       <div><h3>Registrert og framskrevet</h3><p>Tallene til og med i år er SSBs registrerte folketall 1. januar. Fra neste år er de SSBs framskriving, hovedalternativet. Framskrivingen bygger på antakelser om fødsler, levealder og flytting, og er ikke en fasit.</p></div>
       <div><h3>Beregnet</h3><p>Medianalder, menn per 100 kvinner og tallene for landet uten Oslo og KOSTRA-gruppen er regnet ut her fra SSBs tall per alder. Landet uten Oslo er hele landet minus Oslo, og KOSTRA-gruppen er summen av kommunene i gruppen.</p></div>
+      <div><h3>Prikkartet</h3><p>Hver prikk er én rute på 250 × 250 meter der minst én person var registrert bosatt 1. januar, og arealet av prikken følger antall innbyggere i ruten. Prikken står midt i ruten, ikke der husene ligger. Tallene er SSBs egne for hver rute.</p></div>
       <div><h3>Fra 2020</h3><p>Dagens Narvik ble til i 2020, da Ballangen og en del av Tysfjord ble slått sammen med gamle Narvik. SSB har ikke tall for kommunen med dagens grenser før det.</p></div>
     </div>
   </section>
@@ -122,7 +145,8 @@
     <span>Et åpent hobbyprosjekt laget av <a href="https://janamundsen.dev" target="_blank" rel="noopener">Jan Tore Amundsen</a>, ikke av Narvik kommune. <a href="om">Om siden</a>.</span>
   </footer>
 </div>
-<script src="common.js?v=2026-11-05e"></script>
-<script src="befolkning.js?v=2026-11-05e"></script>
+<script src="common.js?v=2026-11-05-5"></script>
+<script src="befolkning.js?v=2026-11-05-5"></script>
+<script src="prikkart.js?v=2026-11-05-5"></script>
 </body>
 </html>

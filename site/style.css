@@ -12,6 +12,7 @@
   --good: #2f7a52;
   --bad: #a3412a;
   --female: #a85a00; --female-bar: #e9a456; --male: #005fbe; --male-bar: #5a9be0;
+  --g1: #005fbe; --g2: #2f8f83; --g3: #b4691f; --g4: #7a5aa6;
   --font-display: "Familjen Grotesk", "Helvetica Neue", Arial, sans-serif;
   --font-body: "Public Sans", "Segoe UI", system-ui, sans-serif;
 }
@@ -19,12 +20,14 @@
   :root:not([data-theme="light"]) {
     --paper: #12181e; --surface: #1a222a; --ink: #e8edf1; --ink-2: #a4b0bb; --rule: #2c3741;
     --accent: #6aacf2; --accent-soft: rgba(106, 172, 242, 0.16); --muted: #6c7a87; --good: #6cc394; --bad: #e98a6f; --female: #f0b36a; --female-bar: #c98536; --male: #8fc0f5; --male-bar: #3f7fc4;
+    --g1: #4f97e3; --g2: #45b0a2; --g3: #d58b45; --g4: #a387cc;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --paper: #12181e; --surface: #1a222a; --ink: #e8edf1; --ink-2: #a4b0bb; --rule: #2c3741;
   --accent: #6aacf2; --accent-soft: rgba(106, 172, 242, 0.16); --muted: #6c7a87; --good: #6cc394; --bad: #e98a6f; --female: #f0b36a; --female-bar: #c98536; --male: #8fc0f5; --male-bar: #3f7fc4;
+  --g1: #4f97e3; --g2: #45b0a2; --g3: #d58b45; --g4: #a387cc;
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
@@ -50,6 +53,7 @@ section { display: grid; gap: 20px; }
 /* site nav */
 .site-nav { display: flex; flex-wrap: wrap; gap: 4px 20px; align-items: baseline; padding-top: 20px; border-bottom: 1px solid var(--rule); padding-bottom: 12px; }
 .site-nav .brand { font: 700 1rem var(--font-display); color: var(--ink); text-decoration: none; margin-right: auto; }
+.site-nav .brand img { width: 28px; height: 28px; display: inline-block; vertical-align: middle; margin: -6px 9px -6px 0; }
 .site-nav a:not(.brand) { font-size: 0.95rem; color: var(--ink-2); text-decoration: none; padding: 2px 0; border-bottom: 2px solid transparent; }
 .site-nav a:not(.brand):hover { color: var(--ink); }
 .site-nav a[aria-current] { color: var(--ink); border-bottom-color: var(--accent); font-weight: 600; }
@@ -145,7 +149,7 @@ a.cta:hover { filter: brightness(1.08); }
 footer { border-top: 1px solid var(--rule); padding-top: 20px; font-size: 0.85rem; color: var(--ink-2); display: grid; gap: 6px; }
 
 @media (max-width: 680px) {
-  .site-nav .brand { flex-basis: 100%; }
+  .site-nav .brand { flex-basis: 100%; margin-bottom: 12px; }
   .ledger-head { display: none; }
   .row-btn { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "name amt" "share share" "pc chg"; gap: 6px 12px; }
   .row-btn .c-name { grid-area: name; } .row-btn .c-amt { grid-area: amt; }
@@ -562,15 +566,6 @@ details .fact-list { margin-top: 4px; }
 .front-case-num .num { font: 700 1.25rem var(--font-display); }
 .front-case-num .sub { color: var(--ink-2); font-size: 0.9rem; }
 .so .eyebrow { color: var(--accent); }
-.front-areas { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); gap: 12px; }
-.front-area { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 16px 18px; display: grid; gap: 6px; align-content: start; color: var(--ink-2); text-decoration: none; font-size: 0.95rem; }
-.front-area b { font: 600 1.1rem var(--font-display); color: var(--ink); }
-.front-area a { color: inherit; text-decoration: none; }
-.front-area small { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
-.front-area small a { font-size: 0.85rem; color: var(--ink-2); padding: 3px 10px; border-radius: 999px; border: 1px solid var(--rule); background: var(--paper); }
-.front-area small a:hover { color: var(--accent); border-color: var(--accent); }
-.front-area:hover { border-color: var(--accent); }
-a.front-area:hover b, .front-area > a:hover b { color: var(--accent); }
 .front-case-num { display: grid; }
 @media (max-width: 680px) { .stats3.front-stats { grid-template-columns: 1fr 1fr; } .front-stat { padding: 14px; } .front-stat .big { font-size: 1.5rem; } }
 .front-out { gap: 10px; }
@@ -730,3 +725,172 @@ dl.facts dd { margin: 0; }
 .pk-key.ut { background: var(--pk-ut); } .pk-key.inn { background: var(--pk-inn); }
 .pk-info { font-size: 0.9rem; color: var(--ink-2); min-height: 1.5em; }
 #pk-table .sum td { font-weight: 600; border-top: 2px solid var(--ink); }
+
+/* befolkning.html: dot map of where people live (prikkart.js). One blue dot per 250 m grid cell, area by residents. */
+:root { --dm-land: #eceae4; --dm-town: #dedad0; --dm-water: #d3e2ee; --dm-road: #b3a99b; --dm-edge: #c3c8cc; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --dm-land: #2c3640; --dm-town: #3a4651; --dm-water: #0f1a24; --dm-road: #5f6a74; --dm-edge: #45525e; } }
+:root[data-theme="dark"] { --dm-land: #2c3640; --dm-town: #3a4651; --dm-water: #0f1a24; --dm-road: #5f6a74; --dm-edge: #45525e; }
+.dm-panel { display: grid; gap: 12px; }
+.dm-box { position: relative; }
+#dm-map { display: block; width: 100%; height: auto; font-family: var(--font-body); touch-action: pan-y; }
+.dm-land { fill: var(--dm-land); }
+.dm-town { fill: var(--dm-town); fill-rule: evenodd; }
+.dm-water { fill: var(--dm-water); fill-rule: evenodd; }
+.dm-del { fill: none; stroke: var(--dm-edge); stroke-dasharray: 3 3; }
+.dm-rail { fill: none; stroke: var(--dm-road); stroke-dasharray: 4 3; }
+.dm-road { fill: none; stroke: var(--dm-road); stroke-linecap: round; stroke-linejoin: round; }
+.dm-dots circle { fill: var(--accent); fill-opacity: 0.72; stroke: var(--surface); }
+.dm-mark { fill: var(--ink); stroke: var(--surface); pointer-events: none; }
+.dm-labels text { fill: var(--ink); paint-order: stroke; stroke: var(--dm-land); stroke-linejoin: round; pointer-events: none; font-weight: 600; }
+.dm-box { border-radius: 8px; overflow: hidden; }
+#dm-map { cursor: default; user-select: none; -webkit-user-select: none; }
+#dm-map.dragging { cursor: grabbing; }
+.dm-zoom { position: absolute; bottom: 8px; right: 8px; display: grid; gap: 4px; }
+.dm-zoom button { width: 36px; height: 36px; display: grid; place-items: center; font: 600 1.15rem/1 var(--font-body); color: var(--ink); background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; cursor: pointer; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12); }
+.dm-zoom button:disabled { color: var(--muted); cursor: default; box-shadow: none; }
+.dm-zoom button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.dm-scale { position: absolute; left: 12px; bottom: 10px; border-bottom: 2px solid var(--ink-2); font-size: 0.75rem; color: var(--ink-2); line-height: 1.2; padding-bottom: 1px; text-shadow: 0 0 3px var(--surface), 0 0 3px var(--surface); pointer-events: none; }
+.dm-legend { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; font-size: 0.9rem; color: var(--ink-2); }
+.dm-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.dm-legend i { display: inline-block; border-radius: 50%; background: var(--accent); opacity: 0.72; }
+.dm-legend .dm-key-road { width: 22px; height: 3px; border-radius: 2px; background: var(--dm-road); opacity: 1; }
+.dm-legend .dm-key-town { width: 14px; height: 14px; border-radius: 3px; background: var(--dm-town); opacity: 1; }
+.dm-info { font-size: 0.9rem; color: var(--ink); min-height: 1.5em; font-variant-numeric: tabular-nums; }
+/* Small multiples: one bar chart per area on /okonomi */
+.multiples-head { margin: 28px 0 4px; font-size: 1.05rem; }
+.multiples { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin: 12px 0 10px; }
+.multiple { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2px; align-content: start; background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 10px 12px; color: inherit; text-decoration: none; }
+.multiple:hover { border-color: var(--accent); }
+.multiple:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.multiple .m-name { font-size: 0.85rem; line-height: 1.25; color: var(--ink); min-height: 2.5em; overflow-wrap: anywhere; }
+.multiple .m-chg { font: 600 1.1rem var(--font-display); }
+.multiple svg { display: block; width: 100%; height: auto; margin-top: 6px; }
+.multiple .m-sub { font-size: 0.78rem; color: var(--ink-2); }
+@media (max-width: 400px) { .multiples { grid-template-columns: 1fr 1fr; } }
+.fit-chart svg { min-width: 0; }
+
+/* Befolkningens regnskap (befolkning.html): drawn at the box's own width, so no horizontal scroll. */
+.ledger-chart { display: grid; gap: 10px; overflow: visible; padding-bottom: 12px; }
+.ledger-chart h3 { font-size: 1.05rem; font-weight: 600; }
+.ledger-chart svg { min-width: 0; width: 100%; height: auto; overflow: visible; }
+.ledger-chart text { fill: var(--ink-2); font-size: 12px; font-variant-numeric: tabular-nums; }
+.ledger-chart text.v { fill: var(--ink); font-weight: 600; }
+.ledger-chart .grid { stroke: var(--rule); }
+.ledger-chart .zero { stroke: var(--ink); stroke-width: 1.5; }
+.ledger-chart .net { stroke: var(--ink); stroke-width: 2; }
+.ledger-chart .net-dot { fill: var(--surface); stroke: var(--ink); stroke-width: 2.5; }
+.ledger-chart .legend i { width: 12px; height: 12px; }
+.ledger-chart .pop-line { stroke: var(--accent); stroke-width: 2.5; fill: none; }
+.ledger-chart .pop-dot { fill: var(--accent); }
+.ledger-chart .year-edge { stroke: var(--rule); stroke-dasharray: 2 4; }
+.ledger-chart text.pv { paint-order: stroke; stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round; }
+.ledger-chart text.pv { fill: var(--ink-2); }
+.ledger-chart text.unit { font-size: 11px; }
+
+/* grouped bar (groupedBar in common.js): one colour per group, shades per item */
+.gbar { display: flex; height: 72px; border-radius: 8px; overflow: hidden; background: var(--rule); }
+.gbar > a, .gbar > span { min-width: 0; border: 0; border-right: 2px solid var(--surface); display: flex; align-items: flex-end; color: var(--surface); font: 700 0.95rem var(--font-display); text-decoration: none; }
+.gbar > :last-child { border-right: 0; }
+.gbar > a:hover { filter: brightness(1.12); }
+.gbar > * > span { padding: 0 0 8px 8px; white-space: nowrap; overflow: hidden; }
+.gbar-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px 28px; }
+.gbar-group h3 { font: 600 1rem var(--font-display); display: flex; justify-content: space-between; gap: 8px; border-bottom: 2px solid; padding-bottom: 4px; margin: 0 0 6px; }
+.gbar-group .gbar-amt { margin: -2px 0 6px; font-size: 0.85rem; color: var(--ink-2); }
+.gbar-group ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 3px; font-size: 0.92rem; }
+.gbar-group li { display: flex; justify-content: space-between; gap: 8px; }
+.gbar-group li a { color: inherit; text-decoration: none; }
+.gbar-group li a:hover { color: var(--accent); text-decoration: underline; }
+.gbar-group i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 7px; }
+.gbar-group .num, .gbar-group h3 span:last-child { white-space: nowrap; flex: none; font-variant-numeric: tabular-nums; }
+.gbar-group li .num { color: var(--ink-2); }
+@media (max-width: 680px) { .gbar { height: 56px; } .gbar .gbar-small { display: none; } }
+
+/* Front page: the population with a still dot map as the opening, small lines in the key numbers, and «Skiller seg
+   ut» as bars from the average. */
+header.hero { grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr); gap: 8px; align-items: center; }
+.hero-copy { display: grid; gap: 14px; align-content: center; }
+.hero h1 { font-size: clamp(1.8rem, 4vw, 2.3rem); }
+.hero-stat { display: grid; gap: 2px; font-family: var(--font-display); margin-top: 6px; }
+.hero-num { font-size: clamp(3.2rem, 9vw, 4.6rem); font-weight: 700; line-height: 1; color: var(--accent); letter-spacing: -0.02em; }
+.hero-what { font-size: 1.15rem; font-weight: 600; color: var(--ink-2); }
+.hero-fig { margin: 0; display: grid; gap: 6px; min-width: 0; }
+.hero-fig > a { display: block; border-radius: 10px; }
+.hero-fig > a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+/* No frame: outside the kommune is the page itself, so the kommune's own shape stands on the page rather than a
+   picture in a box. */
+.hero-fig > a:hover #hero-map .dm-dots circle { fill-opacity: 0.9; }
+#hero-map { display: block; width: 100%; height: auto; font-family: var(--font-body); }
+@media (max-width: 680px) { header.hero { grid-template-columns: 1fr; gap: 20px; } }
+
+.front-stat .spark { display: grid; gap: 1px; margin: 6px 0 2px; }
+.front-stat .spark svg { display: block; width: 100%; height: 34px; overflow: visible; }
+.spark-line { fill: none; stroke: var(--accent); stroke-width: 2; vector-effect: non-scaling-stroke; stroke-linejoin: round; }
+.spark-area { fill: var(--accent-soft); stroke: none; }
+.spark-ends { display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+
+.front-out { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 4px 16px; display: grid; }
+.out-row { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(80px, 1fr) 7.5rem; gap: 16px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--rule); color: inherit; text-decoration: none; }
+.out-row:last-child { border-bottom: 0; }
+.out-row:hover .out-name { color: var(--accent); }
+.out-name { display: grid; gap: 1px; font-size: 0.92rem; font-weight: 600; line-height: 1.3; }
+.out-name .eyebrow { color: var(--accent); font-size: 0.7rem; }
+.out-name small { font-weight: 400; color: var(--ink-2); font-size: 0.82rem; }
+.out-diff { display: grid; text-align: right; font-weight: 700; color: var(--accent); font-size: 1.05rem; }
+.out-diff small { font-weight: 400; color: var(--ink-2); font-size: 0.78rem; }
+.front-out .dev { height: 12px; border-radius: 6px; }
+.front-out .dev span { border-radius: 6px; }
+@media (max-width: 600px) {
+  .out-row { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "name diff" "bar bar"; gap: 8px 12px; }
+  .out-name { grid-area: name; } .out-diff { grid-area: diff; } .out-row .dev { grid-area: bar; }
+}
+.front-out-points { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); gap: 10px; }
+.front-out-points a { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 12px 14px; display: grid; gap: 2px; height: 100%; color: inherit; text-decoration: none; }
+.front-out-points a:hover { border-color: var(--accent); }
+.front-out-points .eyebrow { color: var(--accent); }
+.front-out-points .so-name { font-size: 0.85rem; font-weight: 500; }
+.front-out-points b { font: 700 1.2rem var(--font-display); }
+.front-out-points .so-diff { font-size: 0.9rem; }
+
+/* «Gjett tallet» on the front page: the chosen answer is struck through when wrong, the right one is marked with the
+   accent and a check, never with red or green. */
+.quiz { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 12px; }
+.quiz-q { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 16px; display: grid; gap: 12px; align-content: start; }
+.quiz-ask { font: 600 1.05rem/1.35 var(--font-display); }
+.quiz-opts { display: grid; gap: 6px; }
+.quiz-opts button { font: 500 0.95rem var(--font-body); text-align: left; color: var(--ink); background: var(--paper); border: 1px solid var(--rule); border-radius: 8px; padding: 9px 12px; cursor: pointer; min-height: 42px; }
+.quiz-opts button:hover:not(:disabled) { border-color: var(--accent); }
+.quiz-opts button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.quiz-opts button:disabled { cursor: default; }
+.quiz-opts button.right { border-color: var(--accent); background: var(--accent-soft); font-weight: 700; }
+.quiz-opts button.right::after { content: " ✓"; color: var(--accent); }
+.quiz-opts button.picked:not(.right) { color: var(--ink-2); text-decoration: line-through; }
+.quiz-ans { display: grid; gap: 6px; font-size: 0.95rem; }
+.quiz-ans b { font-family: var(--font-display); }
+.quiz-go { font-weight: 600; text-decoration: none; }
+@media (prefers-reduced-motion: no-preference) { .quiz-opts button { transition: background-color .15s, border-color .15s; } }
+
+/* «Visualiseringer for Narvik kommune» on the front page: a picture of each visualisation (scripts/build_galleri.js), in the dark
+   version when the reader uses dark mode. */
+.gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 760px) { .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 460px) { .gallery { grid-template-columns: 1fr; } }
+.gal-card { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; display: grid; grid-template-rows: auto 1fr; color: inherit; text-decoration: none; }
+.gal-card:hover { border-color: var(--accent); }
+.gal-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.gal-card picture { display: block; aspect-ratio: 4 / 3; overflow: hidden; border-bottom: 1px solid var(--rule); background: var(--surface); }
+.gal-card img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top center; max-width: 100%; }
+.gal-text { padding: 12px 14px 14px; display: grid; gap: 2px; }
+.gal-text b { font: 600 1.02rem/1.3 var(--font-display); }
+.gal-card:hover .gal-text b { color: var(--accent); }
+.gal-text span { font-size: 0.88rem; color: var(--ink-2); }
+
+/* «Nytt på siden» on the front page: date and line, newest first. */
+.news { list-style: none; margin: 0; padding: 0 16px; background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; display: grid; }
+.news li + li { border-top: 1px solid var(--rule); }
+.news a { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 12px; padding: 11px 0; color: inherit; text-decoration: none; align-items: baseline; }
+.news a:hover span { color: var(--accent); }
+.news time { font-size: 0.85rem; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.news b { color: var(--accent); font-weight: 600; }
+@media (max-width: 480px) { .news a { grid-template-columns: 1fr; gap: 0; } }
+.news-more summary { cursor: pointer; color: var(--accent); font-weight: 600; padding: 4px 0 10px; }
+.news-more .news { margin-top: 2px; }
