@@ -801,8 +801,9 @@ dl.facts dd { margin: 0; }
 .gbar > :last-child { border-right: 0; }
 .gbar > a:hover { filter: brightness(1.12); }
 .gbar > * > span { padding: 0 0 8px 8px; white-space: nowrap; overflow: hidden; }
-.gbar-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 18px 24px; }
+.gbar-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px 28px; }
 .gbar-group h3 { font: 600 1rem var(--font-display); display: flex; justify-content: space-between; gap: 8px; border-bottom: 2px solid; padding-bottom: 4px; margin: 0 0 6px; }
+.gbar-group .gbar-amt { margin: -2px 0 6px; font-size: 0.85rem; color: var(--ink-2); }
 .gbar-group ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 3px; font-size: 0.92rem; }
 .gbar-group li { display: flex; justify-content: space-between; gap: 8px; }
 .gbar-group li a { color: inherit; text-decoration: none; }

@@ -9,7 +9,7 @@ function el(tag, attrs = {}, text) {
 const pct = (a, b) => (b ? (a - b) / Math.abs(b) * 100 : null);
 const chgText = p => (p === null ? '–' : (p > 0 ? '+' : p < 0 ? '−' : '') + nb(Math.abs(p), 1) + ' %');
 // A horizontal bar split into groups (one colour each) and the items inside them (lighter shades), with a list per
-// group below it. groups: [{ name, color: '--g1', items: [{ name, v, href? }] }]. Items at or below zero are left out;
+// group below it. groups: [{ name, color: '--g1', items: [{ name, v, href? }] }], v in 1000 kr. Items at or below zero are left out;
 // shares are of what is left. Used for spending on okonomi.html and income on inntekter.html.
 function groupedBar(barEl, listEl, groups) {
   groups = groups.map(g => ({ ...g, items: g.items.filter(i => i.v > 0).sort((a, b) => b.v - a.v) })).filter(g => g.items.length);
@@ -22,6 +22,7 @@ function groupedBar(barEl, listEl, groups) {
     const box = el('div', { class: 'gbar-group' });
     const head = el('h3', { style: `border-color: var(${g.color})` });
     head.append(el('span', {}, g.name), el('span', { class: 'num' }, share(gsum, 0)));
+    const amount = el('p', { class: 'gbar-amt num' }, `${nb(gsum / 1000)} mill. kr`);
     const ul = el('ul');
     g.items.forEach((it, i) => {
       const p = it.v / total * 100;
@@ -35,7 +36,7 @@ function groupedBar(barEl, listEl, groups) {
       li.append(name, el('span', { class: 'num' }, share(it.v)));
       ul.appendChild(li);
     });
-    box.append(head, ul); listEl.appendChild(box);
+    box.append(head, amount, ul); listEl.appendChild(box);
   });
 }
 
