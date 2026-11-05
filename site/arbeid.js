@@ -398,13 +398,6 @@ async function drawCommuteMap() {
         }
       });
   }
-  const pick = document.getElementById('pk-pick');
-  pick.addEventListener('click', e => {
-    const b = e.target.closest('button');
-    if (!b) return;
-    pick.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
-    draw(b.dataset.dir);
-  });
   draw('begge');
 }
 
