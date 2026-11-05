@@ -674,3 +674,22 @@ dl.facts dd { margin: 0; }
   #acc-table th, #acc-table td { padding: 8px 6px; }
   .ptable table.own.stack tr { grid-template-columns: 1fr; }
 }
+
+/* Arbeid: ledighetskalender (arbeid.js drawCalendar). One hue, six fixed steps from light to dark; numbers in every cell. */
+.cal-wrap { overflow-x: auto; }
+.cal { width: 100%; table-layout: fixed; border-collapse: separate; border-spacing: 2px; font-size: 0.82rem; }
+@media (max-width: 520px) { .cal { border-spacing: 1px; font-size: 0.66rem; letter-spacing: -0.02em; } .cal td { padding: 6px 0; } .cal thead th:first-child, .cal tbody th { width: 2.6em; } #kalender { padding: 14px 10px; } }
+.cal th { font-weight: 500; color: var(--ink-2); padding: 2px 0; text-align: center; }
+.cal thead th:first-child, .cal tbody th { width: 2.9em; text-align: left; }
+.cal abbr { text-decoration: none; }
+.cal td { text-align: center; padding: 7px 0; border-radius: 4px; color: var(--ink); white-space: nowrap; }
+.cal td.none { background: transparent; outline: 1px dashed var(--rule); outline-offset: -2px; }
+.c0 { background: color-mix(in srgb, var(--accent) 12%, var(--surface)); }
+.c1 { background: color-mix(in srgb, var(--accent) 26%, var(--surface)); }
+.c2 { background: color-mix(in srgb, var(--accent) 42%, var(--surface)); }
+.c3 { background: color-mix(in srgb, var(--accent) 60%, var(--surface)); }
+.cal td.c4, .cal td.c5 { color: var(--surface); font-weight: 600; }
+.c4 { background: color-mix(in srgb, var(--accent) 80%, var(--surface)); }
+.c5 { background: var(--accent); }
+.cal-key { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 0.82rem; color: var(--ink-2); }
+.cal-key i { display: inline-block; width: 14px; height: 14px; border-radius: 3px; margin-right: 6px; vertical-align: -2px; }

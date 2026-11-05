@@ -48,6 +48,7 @@ async function start() {
   ].map(([label, big, sub]) => `<div class="stat"><span class="sub">${label}</span><span class="big num">${big}</span><span class="sub">${sub}</span></div>`).join('');
 
   drawUnemployment(last);
+  drawCalendar('narvik');
   drawVacancies();
   drawEmployment(y);
   drawStatus();
@@ -259,6 +260,31 @@ function drawCommuting() {
     { label: 'Jobber der', get: k => num(C[k]?.[y]?.Arbeidssted) },
   ], KEYS.filter(k => k !== 'norge'));
   document.getElementById('comm-cmp-caption').innerHTML = `Sysselsatte 15–74 år, november ${y}. For Nordland er det pendling inn og ut av fylket. Andelen er regnet ut her. ${ssb('11616', 'SSB tabell 11616')}.`;
+}
+
+// Unemployment as a calendar: one row per year (newest on top), one column per month, darker cell for a higher
+// per cent. The steps are the same for every region, so a colour means the same per cent whichever region is shown.
+const CAL_STEPS = [1.3, 1.5, 2, 3, 5];
+const CAL_LABELS = ['under 1,3 %', '1,3–1,4 %', '1,5–1,9 %', '2,0–2,9 %', '3,0–4,9 %', '5,0 % og over'];
+const calStep = v => CAL_STEPS.filter(t => v >= t).length;
+function drawCalendar(key) {
+  const L = A.nav.ledige[key] || {}, ms = Object.keys(L), last = ms.at(-1);
+  const years = [...new Set(ms.map(m => m.slice(0, 4)))].reverse();
+  const name = region(key).name;
+  document.getElementById('cal-h').textContent = `Helt ledige i ${name} måned for måned, prosent av arbeidsstyrken`;
+  const pick = document.getElementById('cal-pick');
+  pick.innerHTML = KEYS.filter(k => A.nav.ledige[k]).map(k => `<button type="button" data-k="${k}" aria-pressed="${k === key}">${region(k).name}</button>`).join('');
+  pick.querySelectorAll('button').forEach(b => b.addEventListener('click', () => drawCalendar(b.dataset.k)));
+  const cell = m => {
+    const x = L[m];
+    if (x?.pct == null) return `<td class="none"><span class="sr-only">ikke kommet</span></td>`;
+    return `<td class="c${calStep(x.pct)}" title="${month(m)}: ${pc(x.pct)}, ${nb(x.n)} personer">${nb(x.pct, 1)}</td>`;
+  };
+  document.getElementById('cal').innerHTML = `<caption class="sr-only">Helt ledige i ${name}, prosent av arbeidsstyrken, per måned og år</caption>`
+    + `<thead><tr><th scope="col"><span class="sr-only">År</span></th>${MONTHS.map(m => `<th scope="col"><abbr title="${m}">${m.slice(0, 3)}</abbr></th>`).join('')}</tr></thead>`
+    + `<tbody>${years.map(y => `<tr><th scope="row">${y}</th>${MONTHS.map((_, i) => cell(`${y}-${String(i + 1).padStart(2, '0')}`)).join('')}</tr>`).join('')}</tbody>`;
+  document.getElementById('cal-key').innerHTML = CAL_LABELS.map((t, i) => `<li><i class="c${i}"></i>${t}</li>`).join('');
+  document.getElementById('cal-caption').innerHTML = `Hver rute er én måned, med prosenten helt ledige ved utgangen av måneden. Jo mørkere rute, jo høyere prosent. Fargetrinnene er de samme for alle stedene du kan velge. Hold over en rute for å se antall personer. Tomme ruter er måneder Nav ikke har publisert ennå. Kilde: Nav, tabell HL060, ${month(ms[0])} til ${month(last)}, ${nav('HL060', last.slice(0, 4), 'siste fil')}.`;
 }
 
 start();
