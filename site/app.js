@@ -250,30 +250,43 @@ function drawMultiples() {
   const shown = services.filter(ok).sort((a, b) => b.narvik_1000kr[y2] - a.narvik_1000kr[y2]);
   const left = services.filter(c => !ok(c));
   const box = document.getElementById('multiples'); box.replaceChildren();
-  const W = 150, H = 64, top = 4, base = 60, band = W / YEARS.length, bw = band * 0.62;
+  const W = 150, H = 70, pad = 6, top = 8, base = 54;
+  // Same vertical scale in percent for every area (top = lowest year plus the largest rise among areas), so a steep line means a large change.
+  // Very small areas (under 10 mill. kr in some year) swing a lot in percent and get their own scale, marked on the chart.
+  const SMALL = 10000;
+  const isSmall = c => YEARS.some(y => c.narvik_1000kr[y] < SMALL);
+  const ratio = c => { const v = YEARS.map(y => c.narvik_1000kr[y]); return Math.max(...v) / Math.min(...v); };
+  const R = Math.max(...shown.filter(c => !isSmall(c)).map(ratio));
   shown.forEach(c => {
     const v = YEARS.map(y => c.narvik_1000kr[y] / 1000);
-    const max = Math.max(...v);
+    const own = isSmall(c);
+    const lo = Math.min(...v), hi = own ? Math.max(...v) : lo * R, span = hi - lo || 1;
+    const X = i => pad + i * (W - 2 * pad) / (YEARS.length - 1), Y = t => base - (t - lo) / span * (base - top);
     const a = el('a', { class: 'multiple', href: areaHref(c.key) });
     a.append(el('span', { class: 'm-name' }, c.name), el('span', { class: 'm-chg num' }, chgText(pct(v.at(-1), v[0]))));
     const svg = s('svg', { viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': `${c.name}, mill. kr: ` + YEARS.map((y, i) => `${y} ${mill(v[i] * 1000)}`).join(', ') });
+    const pts = v.map((t, i) => `${X(i).toFixed(1)} ${Y(t).toFixed(1)}`);
+    svg.appendChild(s('path', { d: 'M' + pts.join(' L') + ` L${X(v.length - 1)} ${base + 4} L${X(0)} ${base + 4} Z`, fill: 'var(--accent-soft)' }));
+    svg.appendChild(s('path', { d: 'M' + pts.join(' L'), fill: 'none', stroke: 'var(--accent)', 'stroke-width': 2.2, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }));
     YEARS.forEach((y, i) => {
-      const h = Math.max(1, v[i] / max * (base - top)), sel = y === year;
-      const r = s('rect', { x: i * band + (band - bw) / 2, y: base - h, width: bw, height: h, rx: 2, fill: sel ? 'var(--accent)' : 'var(--muted)', 'fill-opacity': sel ? 1 : 0.55 });
-      r.appendChild(s('title', {}, `${y}: ${nb(v[i], v[i] < 10 ? 1 : 0)} mill. kr`));
-      svg.appendChild(r);
+      const sel = y === year;
+      const dot = s('circle', { cx: X(i), cy: Y(v[i]), r: sel ? 4 : 2.2, fill: sel ? 'var(--accent)' : 'var(--surface)', stroke: 'var(--accent)', 'stroke-width': sel ? 2 : 1.4 });
+      dot.appendChild(s('title', {}, `${y}: ${nb(v[i], v[i] < 10 ? 1 : 0)} mill. kr`));
+      svg.appendChild(dot);
     });
-    svg.appendChild(s('line', { x1: 0, x2: W, y1: base + 0.5, y2: base + 0.5, stroke: 'var(--rule)' }));
+    svg.appendChild(s('text', { x: X(0), y: H - 1, 'font-size': 10, fill: 'var(--ink-2)' }, YEARS[0]));
+    svg.appendChild(s('text', { x: X(YEARS.length - 1), y: H - 1, 'font-size': 10, 'text-anchor': 'end', fill: 'var(--ink-2)' }, YEARS.at(-1)));
+    if (own) svg.appendChild(s('text', { x: W / 2, y: H - 1, 'font-size': 10, 'text-anchor': 'middle', fill: 'var(--ink-2)' }, 'egen skala'));
     a.appendChild(svg);
     const d = n => nb(n, n < 10 ? 1 : 0);
     a.appendChild(el('span', { class: 'm-sub num' }, `${d(v[0])} → ${d(v.at(-1))} mill. kr`));
     box.appendChild(a);
   });
-  document.getElementById('multi-lead').textContent = `Netto driftsutgifter per område, ${y1}–${y2}. Hver graf har sin egen skala som starter på null, så høyden viser endringen innen området, ikke størrelsen mot de andre. Tallet er endringen fra ${y1} til ${y2}. Valgt år (${year}) er markert. Trykk på et område for å gå inn i det.`;
+  document.getElementById('multi-lead').textContent = `Netto driftsutgifter per område, ${y1}–${y2}. Alle grafene har samme skala i prosent, målt fra områdets laveste år, så en bratt linje betyr stor endring. Skalaen starter ikke på null, og grafene viser ikke hvor store områdene er mot hverandre. Tallet er endringen fra ${y1} til ${y2}. Valgt år (${year}) er markert. Trykk på et område for å gå inn i det.`;
   const names = left.map(c => lower1(c.name));
   document.getElementById('multi-caption').textContent = 'Løpende kroner, ikke justert for prisvekst. Endring i prosent er beregnet fra SSB-tallene.' +
     (names.length ? ` ${names.join(' og ').replace(/^./, ch => ch.toUpperCase())} er ikke med fordi de er negative eller null i minst ett år, og da gir en prosentvis endring ikke mening.` : '') +
-    ' Pensjonsjusteringer og vann, avløp og renovasjon vises under «Trekker fra i netto» over.';
+    ' Områder under 10 mill. kr har egen skala, fordi små beløp svinger mye i prosent. Pensjonsjusteringer og vann, avløp og renovasjon vises under «Trekker fra i netto» over.';
 }
 
 start();
