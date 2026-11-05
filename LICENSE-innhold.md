@@ -18,7 +18,7 @@ Bruker du dette innholdet, skal du oppgi «narviktall.no» eller «Åpne tall fo
 
 ## Tallene fra kildene
 
-Selve tallene er ikke våre, og de følger vilkårene til kilden de kommer fra. Kilden står ved hvert tall på siden.
+Selve tallene er ikke mine, og de følger vilkårene til kilden de kommer fra. Kilden står ved hvert tall på siden.
 
 - **SSB**: [CC BY 4.0](https://www.ssb.no/diverse/lisens). Oppgi SSB som kilde.
 - **Nav**: [Norsk lisens for offentlige data (NLOD) 2.0](https://data.norge.no/nlod/no/2.0). Oppgi Nav som kilde.
