@@ -22,14 +22,15 @@ async function startDotMap() {
     return n;
   };
   const names = Object.fromEntries(B.areas.rows.map(r => [r.code, r.name]));
-  // SSB calls the delområde Tysfjord Nord; on the map it is the place people know, Kjøpsvik.
-  const LABEL = { '180616': 'Kjøpsvik' };
+  // On the map, the places people know: SSB's Tysfjord Nord is Kjøpsvik, Ankenesstrand is Ankenes, and
+  // Håkvik - Vidrek is Håkvik (shorter, there is little room).
+  const LABEL = { '180616': 'Kjøpsvik', '180612': 'Ankenes', '180613': 'Håkvik' };
   const nameOf = c => LABEL[c] || names[c] || c;
   // The delområder that make up Narvik by.
   const TOWN = new Set(['180603', '180604', '180605', '180606', '180607', '180608', '180609', '180610', '180612']);
   // Places named in the whole-kommune view; the town gets one label for all its delområder.
   // In order of priority: where labels would overlap (on a phone), the later ones are left out.
-  const PLACES = ['180601', '180615', '180616', '180614', '180611', '180602', '180613'];
+  const PLACES = ['180612', '180601', '180615', '180616', '180614', '180611', '180602', '180613'];
   const years = D.years, cells = D.cells;
   // The map shows the whole kommune in the newest year; a dot's text also gives the first year.
   const state = { view: 'alle', yi: years.length - 1 };
@@ -111,8 +112,8 @@ async function startDotMap() {
     cells.forEach(c => { const v = c[3] || c[2]; if (v && test(c[4])) { x += (c[0] + 0.5) * v; y += (c[1] + 0.5) * v; n += v; } });
     return n ? [x / n, y / n] : null;
   };
-  const OVERVIEW = [['Narvik by', code => TOWN.has(code)], ...PLACES.map(code => [nameOf(code), c => c === code])];
-  const DETAIL = [...TOWN, ...PLACES].map(code => [nameOf(code), c => c === code]);
+  const OVERVIEW = [['Narvik by', code => TOWN.has(code) && code !== '180612'], ...PLACES.map(code => [nameOf(code), c => c === code])];
+  const DETAIL = [...new Set([...TOWN, ...PLACES])].map(code => [nameOf(code), c => c === code]);
 
   let pending = false;
   function redraw() {
@@ -258,7 +259,7 @@ async function startDotMap() {
     (folketall ? `, mens SSBs folketall er ${nb(folketall)}, fordi noen ikke har en adresse som kan plasseres på kartet. ` : '. ') +
     'Kart: Kartverket, ', link(K.kilder.n50, 'N50 Kartdata'), ' (sjø, vann, tettsteder, veier og jernbane) og ',
     link(K.kilder.grunnkretser, 'grunnkretser'), ' (stiplede grenser mellom SSBs delområder), CC BY 4.0. ' +
-    'Delområdet SSB kaller Tysfjord Nord, er merket Kjøpsvik på kartet.');
+    'Delområdene SSB kaller Tysfjord Nord, Ankenesstrand og Håkvik - Vidrek, er merket Kjøpsvik, Ankenes og Håkvik på kartet.');
 
   document.getElementById('dm').hidden = false;
   draw();
