@@ -2,6 +2,12 @@
  "nytt": [
   {
    "dato": "2026-11-05",
+   "type": "Nye tall",
+   "tekst": "Merforbruk i helse og omsorg: hva merforbruket består av, innsparingene og hvor forskjellen mot lignende kommuner ligger",
+   "lenke": "sak/helse-og-omsorg#forskjell"
+  },
+  {
+   "dato": "2026-11-05",
    "type": "Nytt kart",
    "tekst": "Hvor i kommunen folk bor, med én prikk der noen bor",
    "lenke": "befolkning#dm"

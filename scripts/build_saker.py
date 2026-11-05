@@ -113,13 +113,22 @@ def main() -> int:
         dates = [t["dato"] for t in s.get("tidslinje", []) if DATE.match(t.get("dato", ""))]
         if dates != sorted(dates, key=sort_key):
             err("tidslinjen må stå i datorekkefølge")
-        tab = s.get("tabell")
-        if tab:
+        # «tabell» is the budget table; «tabeller» are further tables, each its own section with a heading.
+        for n, tab in enumerate(([s["tabell"]] if s.get("tabell") else []) + s.get("tabeller", [])):
+            name = "tabellrad" if n == 0 and s.get("tabell") else f"{tab.get('overskrift', 'tabell')}, rad"
+            if n and (not tab.get("id") or not tab.get("overskrift")):
+                err("en tabell under «tabeller» mangler «id» eller «overskrift»")
             width = len(tab["kolonner"]) - 1  # the last column is the source
             for i, r in enumerate(tab["rader"]):
                 if len(r["celler"]) != width:
-                    err(f"tabellrad {i + 1}: {len(r['celler'])} celler, ventet {width}")
-                check_src(f"tabellrad {i + 1}", r.get("kilde"))
+                    err(f"{name} {i + 1}: {len(r['celler'])} celler, ventet {width}")
+                check_src(f"{name} {i + 1}", r.get("kilde"))
+        # «savner»: numbers that are not published, each pointing to its entry under «Tall som savnes» on om.html.
+        for i, m in enumerate(s.get("savner", [])):
+            if not m.get("tittel") or not m.get("tekst") or not str(m.get("href", "")).startswith("om#savner-"):
+                err(f"savner {i + 1}: trenger tittel, tekst og href til om#savner-…")
+            if "kilde" in m:
+                check_src(f"savner {i + 1}", m["kilde"])
 
         case = {k: v for k, v in s.items() if k != "fakta"}
         f = s.get("fakta")
