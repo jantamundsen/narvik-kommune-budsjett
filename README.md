@@ -1,6 +1,6 @@
 # Åpne tall for Narvik
 
-Tall og innsikt om Narvik kommune, med kilde for hvert tall. Forsiden (`index.html`, `forside.js`) samler ett nøkkeltall fra hvert område, alle faktaarkene i *Utvalgte saker* og et utvalg av tallene som skiller seg ut på sidene (listen `PICKS` i `forside.js`), og lenker til alle områdene: *Økonomi*, *Befolkning*, *Bolig*, *Arbeid* og *Næringsliv*. Alt leses fra de samme datafilene som områdesidene, så forsiden oppdateres når de gjør det. Et tall i utvalget vises bare så lenge det fortsatt skiller seg ut.
+Tall og innsikt om Narvik kommune, med kilde for hvert tall. Forsiden (`index.html`, `forside.js`) åpner med folketallet og et prikkart over hvor folk bor, og samler ett nøkkeltall med en liten linje over årene fra hvert område, tre spørsmål i «Gjett tallet», alle faktaarkene i *Utvalgte saker*, bilder av kartene og grafene på sidene («Visualiseringer for Narvik kommune»), et utvalg av tallene som skiller seg ut på sidene (listen `PICKS` i `forside.js`), og lenker til alle områdene: *Økonomi*, *Befolkning*, *Bolig*, *Arbeid* og *Næringsliv*. Alt leses fra de samme datafilene som områdesidene, så forsiden oppdateres når de gjør det. Et tall i utvalget vises bare så lenge det fortsatt skiller seg ut.
 
 Økonomisiden (`okonomi.html`) viser kommunens netto driftsutgifter fordelt på tjenester, år for år, og sammenlignet med lignende kommuner.
 
@@ -55,6 +55,8 @@ scripts/build_kart.py     lager grunnkartet til pendlerkartet fra Kartverkets N1
 scripts/fetch_prikkart.py henter SSBs befolkning på 250 m-rutenett og skriver site/data/prikkart.json
 scripts/build_prikkart_kart.py lager bakgrunnskartet til prikkartet fra Kartverkets N50 og grunnkretser og skriver
                           site/data/prikkart-kart.json og config/prikkart_delomrader.json (kjøres for hånd, trenger shapely)
+scripts/build_galleri.js  tar bildene til «Visualiseringer for Narvik kommune» på forsiden (lys og mørk) og skriver
+                          site/img/galleri/; kjøres for hånd med Node og Playwright når en visning endres
 scripts/build_fakta.py    sjekker punktene i config/fakta.json (kilde, side, område) og skriver site/data/fakta.json
 scripts/build_saker.py    sjekker sakene i config/saker.json (kilde, side, dato) og skriver site/data/saker.json
 scripts/build_pages.py    lager én side per sak (site/sak/<id>.html) og per tjenesteområde (site/utgifter/<key>.html)
