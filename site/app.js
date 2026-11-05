@@ -217,7 +217,7 @@ const lower1 = t => t.charAt(0).toLowerCase() + t.slice(1);
 const esc1 = t => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 
 function drawTrend() {
-  const W = 760, H = 260, left = 56, right = 740, y0 = 20, base = 220;
+  const W = 760, H = 330, left = 56, right = 740, y0 = 110, base = 290;
   const vals = YEARS.map(y => DATA.total_1000kr[y] / 1000);
   const max = Math.ceil(Math.max(...vals) / 500) * 500;
   const Y = v => base - v / max * (base - y0);
@@ -236,7 +236,23 @@ function drawTrend() {
     svg.appendChild(s('text', { x: x + bw / 2, y: Y(v) - 8, 'text-anchor': 'middle', 'font-size': 13, 'font-weight': sel ? 700 : 500, fill: sel ? 'var(--ink)' : 'var(--ink-2)' }, nb(v)));
     svg.appendChild(s('text', { x: x + bw / 2, y: base + 20, 'text-anchor': 'middle', 'font-size': 13, 'font-weight': sel ? 700 : 400, fill: sel ? 'var(--ink)' : 'var(--ink-2)' }, y));
   });
-  svg.appendChild(s('text', { x: left - 8, y: 10, 'text-anchor': 'end', 'font-size': 11, fill: 'var(--ink-2)' }, 'mill. kr'));
+  // The change from the year before as its own small line in a band above the bars, so the line's height is the percentage, not the amount.
+  const cx = i => left + i * band + band / 2;
+  const chg = vals.map((v, i) => (i ? pct(v, vals[i - 1]) : null));
+  const cMax = Math.max(...chg.filter(c => c != null), 1), bTop = 22, bBot = 62;
+  const CY = c => bBot - Math.max(0, c) / cMax * (bBot - bTop);
+  svg.appendChild(s('text', { x: left - 8, y: 12, 'font-size': 11, fill: 'var(--ink-2)' }, 'Endring fra året før'));
+  svg.appendChild(s('text', { x: cx(1) - 24, y: bBot + 4, 'text-anchor': 'end', 'font-size': 11, fill: 'var(--ink-2)' }, '0 %'));
+  svg.appendChild(s('line', { x1: cx(1) - 20, x2: right, y1: bBot, y2: bBot, stroke: 'var(--rule)' }));
+  svg.appendChild(s('path', { d: 'M' + chg.map((c, i) => c == null ? null : `${cx(i)} ${CY(c)}`).filter(Boolean).join(' L'), fill: 'none', stroke: 'var(--ink-2)', 'stroke-width': 2, 'stroke-linejoin': 'round' }));
+  chg.forEach((c, i) => {
+    if (c == null) return;
+    const dot = s('circle', { cx: cx(i), cy: CY(c), r: 3.5, fill: 'var(--surface)', stroke: 'var(--ink-2)', 'stroke-width': 2 });
+    dot.appendChild(s('title', {}, `${YEARS[i - 1]} til ${YEARS[i]}: ${chgText(c)}`));
+    svg.appendChild(dot);
+    svg.appendChild(s('text', { x: cx(i) + 8, y: CY(c) - 6, 'font-size': 12, 'font-weight': 600, fill: 'var(--ink)' }, chgText(c)));
+  });
+  svg.appendChild(s('text', { x: left - 8, y: y0 - 12, 'text-anchor': 'end', 'font-size': 11, fill: 'var(--ink-2)' }, 'mill. kr'));
   document.getElementById('trend-chart').replaceChildren(svg);
   const first = vals[0], last = vals.at(-1), y1 = YEARS[0], y2 = YEARS.at(-1);
   document.getElementById('trend-lead').textContent = `Netto driftsutgifter økte fra ${nb(first)} til ${nb(last)} millioner kroner fra ${y1} til ${y2}, ${nb((last / first - 1) * 100)} %. Folketallet var omtrent det samme, ${nb(DATA.population[y1])} mot ${nb(DATA.population[y2])}.`;
