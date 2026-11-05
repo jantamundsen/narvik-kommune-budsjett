@@ -29,7 +29,8 @@ async function start() {
   const qs = Object.keys(B.prices.narvik).sort();
   const households = ten['0']?.n, owns = ten['1'].pct + ten['2'].pct;
 
-  document.getElementById('lead').textContent = `Narvik hadde ${nb(total)} boliger i ${y} og ${nb(households)} husholdninger i ${tYear}. ${nb(stock['01'] / total * 100)} % av boligene er eneboliger. ${nb(owns, 1)} % av husholdningene eier boligen de bor i.`;
+  const lq = qs.filter(q => B.prices.narvik[q]['00']?.price != null).at(-1);
+  document.getElementById('lead').textContent = `Narvik hadde ${nb(total)} boliger i ${y} og ${nb(households)} husholdninger i ${tYear}. ${nb(stock['01'] / total * 100)} % av boligene er eneboliger. ${nb(owns, 1)} % av husholdningene eier boligen de bor i. Boligene ble solgt for ${nb(B.prices.narvik[lq]['00'].price)} kr per kvadratmeter i snitt i ${quarter(lq)}.`;
   const first = Object.keys(B.stock)[0], fTotal = Object.values(B.stock[first]).reduce((a, b) => a + b, 0);
   const NB = B.built.narvik, nYears = Object.keys(NB).sort(), nLast = nYears.at(-1), nSpan = nYears.slice(-5);
   document.getElementById('summary').innerHTML = [
@@ -42,6 +43,7 @@ async function start() {
   drawAge(y);
   drawNew();
   drawPrices(qs);
+  drawFees();
   drawTenure(tYear);
   drawMunicipal();
 }
@@ -134,6 +136,46 @@ function drawPrices(qs) {
     { label: 'Antall salg', get: k => num(g(k, '00', 'sales')) },
   ], PLAIN);
   document.getElementById('price-cmp-caption').innerHTML = `Gjennomsnittlig kvadratmeterpris, ${quarter(lq)}. · betyr at SSB ikke har tallet, for eksempel fordi det var for få salg. ${ssb('14310')}.`;
+}
+
+// Yearly fees for a standard dwelling (12842) and property tax on dwellings (14674). The sum is only shown when
+// all four fees have a value.
+const FEE_KEYS = [['vann', 'Vann'], ['avlop', 'Avløp'], ['avfall', 'Avfall'], ['feiing', 'Feiing og tilsyn']];
+const feeSum = f => (f && FEE_KEYS.every(([k]) => f[k] != null) ? FEE_KEYS.reduce((a, [k]) => a + f[k], 0) : null);
+
+function drawFees() {
+  const F = B.fees?.narvik, T = B.property_tax?.narvik;
+  if (!F) return;
+  const ys = Object.keys(F).filter(x => feeSum(F[x]) != null).sort(), y = ys.at(-1), f = F[y], sumN = feeSum(f);
+  const tYs = Object.keys(T ?? {}).sort();
+  const avgY = tYs.filter(x => T[x].avg_housing != null).at(-1), rateY = tYs.filter(x => T[x].has_tax != null).at(-1);
+  const rate = t => t?.has_tax === 0 ? 'ingen' : (t?.rate_housing ?? t?.rate_general) != null ? nb(t.rate_housing ?? t.rate_general, 2).replace(/,?0+$/, '') + ' ‰' : '·';
+  const land = feeSum(B.fees.landet?.[y]);
+  let lead = `En standard bolig på 120 m² i Narvik betaler ${nb(sumN)} kr i året i kommunale gebyrer i ${y}, uten mva: ${FEE_KEYS.map(([k, n]) => `${n.toLowerCase()} ${nb(f[k])} kr`).join(', ').replace(/, ([^,]*)$/, ' og $1')}.`;
+  if (land) lead += ` Det er ${nb(Math.abs(sumN / land - 1) * 100)} % ${sumN < land ? 'lavere' : 'høyere'} enn snittet for landet uten Oslo.`;
+  if (rateY && T[rateY].has_tax) {
+    const t = T[rateY];
+    lead += ` Narvik har eiendomsskatt på boliger, med en sats på ${rate(t).replace(' ‰', ' promille')} i ${rateY}${t.deduction ? ` og ${nb(t.deduction)} kr i bunnfradrag` : ''}.`;
+    if (avgY) lead += ` I snitt betalte en bolig ${nb(T[avgY].avg_housing)} kr i eiendomsskatt i ${avgY}.`;
+  }
+  document.getElementById('fees-lead').textContent = lead;
+  const g = k => B.fees[k]?.[y];
+  table('fees-cmp', [
+    ...FEE_KEYS.map(([k, n]) => ({ label: n, get: r => num(g(r)?.[k]) })),
+    { label: 'Sum gebyrer, beregnet', get: r => num(feeSum(g(r))) },
+    { label: `Eiendomsskatt per bolig i snitt, ${avgY ?? ''}`, get: r => num(B.property_tax[r]?.[avgY]?.avg_housing) },
+    { label: `Skattesats bolig, ${rateY ?? ''}`, get: r => (B.property_tax[r] ? rate(B.property_tax[r][rateY]) : '·') },
+  ], KOSTRA);
+  document.getElementById('fees-cmp-caption').innerHTML = `Årsgebyr i kroner for en standard bolig på 120 m², uten mva, ${y}. Summen er regnet ut her. SSB har eiendomsskatten bare for hver kommune, ikke for KOSTRA-gruppe 9, Nordland og landet uten Oslo. ${ssb('12842', 'Gebyrene hos SSB')} (tabell 12842), ${ssb('14674', 'eiendomsskatten hos SSB')} (tabell 14674).`;
+  const all = [...new Set([...Object.keys(F), ...tYs])].sort().reverse();
+  const t = document.getElementById('fees-years');
+  const cols = ['Vann', 'Avløp', 'Avfall', 'Feiing og tilsyn', 'Sum, beregnet', 'Endring i sum, beregnet', 'Eiendomsskatt per bolig i snitt', 'Eiendomsskatt, enebolig 120 m²', 'Skattesats bolig'];
+  t.innerHTML = `<thead><tr><th></th>${cols.map(c => `<th>${c}</th>`).join('')}</tr></thead><tbody>${all.map((yr, i) => {
+    const s = feeSum(F[yr]), prev = feeSum(F[all[i + 1]]);
+    return `<tr><td>${yr}</td>${FEE_KEYS.map(([k]) => `<td>${num(F[yr]?.[k])}</td>`).join('')}<td>${num(s)}</td><td>${s != null && prev ? chgText(pct(s, prev)) : '·'}</td><td>${num(T?.[yr]?.avg_housing)}</td><td>${num(T?.[yr]?.house_120)}</td><td>${T?.[yr] ? rate(T[yr]) : '·'}</td></tr>`;
+  }).join('')}</tbody>`;
+  stackable(t);
+  document.getElementById('fees-caption').innerHTML = `Kroner per år. Gebyrene er uten mva. Endringen er i prosent fra året før. · betyr at SSB ikke har tallet. Narvik fikk dagens grenser i 2020. ${ssb('12842')}, ${ssb('14674')}.`;
 }
 
 function drawTenure(y) {
