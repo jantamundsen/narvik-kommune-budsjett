@@ -262,14 +262,14 @@ function drawCommuting() {
   document.getElementById('comm-cmp-caption').innerHTML = `Sysselsatte 15–74 år, november ${y}. For Nordland er det pendling inn og ut av fylket. Andelen er regnet ut her. ${ssb('11616', 'SSB tabell 11616')}.`;
 }
 
-// Unemployment as a calendar: one row per year (newest on top), one column per month, darker cell for a higher
+// Unemployment as a calendar: one row per year (oldest on top, as calendars read; Jan 2026-11-05), one column per month, darker cell for a higher
 // per cent. The steps are the same for every region, so a colour means the same per cent whichever region is shown.
 const CAL_STEPS = [1.3, 1.5, 2, 3, 5];
 const CAL_LABELS = ['under 1,3 %', '1,3–1,4 %', '1,5–1,9 %', '2,0–2,9 %', '3,0–4,9 %', '5,0 % og over'];
 const calStep = v => CAL_STEPS.filter(t => v >= t).length;
 function drawCalendar(key) {
   const L = A.nav.ledige[key] || {}, ms = Object.keys(L), last = ms.at(-1);
-  const years = [...new Set(ms.map(m => m.slice(0, 4)))].reverse();
+  const years = [...new Set(ms.map(m => m.slice(0, 4)))];
   const name = region(key).name;
   document.getElementById('cal-h').textContent = `Helt ledige i ${name} måned for måned, prosent av arbeidsstyrken`;
   const pick = document.getElementById('cal-pick');
