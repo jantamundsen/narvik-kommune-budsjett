@@ -24,7 +24,7 @@
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="stylesheet" href="style.css?v=2026-11-04">
+<link rel="stylesheet" href="style.css?v=2026-11-05">
 </head>
 <body>
 <div class="wrap">
@@ -71,8 +71,21 @@
   <section aria-labelledby="h-trend" id="trend" hidden>
     <h2 id="h-trend">Folketallet år for år</h2>
     <div class="chart line-chart" id="trend-chart"></div>
-    <div class="ptable" id="trend-table"></div>
     <p class="caption" id="trend-caption"></p>
+  </section>
+
+  <section aria-labelledby="h-ledger" id="ledger" hidden>
+    <div class="section-head">
+      <h2 id="h-ledger">Befolkningens regnskap</h2>
+      <p class="lead" id="ledger-lead"></p>
+    </div>
+    <div class="chart ledger-chart">
+      <h3 id="ledger-title"></h3>
+      <div class="legend" id="ledger-legend"></div>
+      <div id="ledger-chart"></div>
+    </div>
+    <div class="ptable" id="trend-table"></div>
+    <p class="caption" id="ledger-caption"></p>
   </section>
 
   <section aria-labelledby="h-cmp" id="compare" hidden>
@@ -122,7 +135,7 @@
     <span>Et åpent hobbyprosjekt laget av <a href="https://janamundsen.dev" target="_blank" rel="noopener">Jan Tore Amundsen</a>, ikke av Narvik kommune. <a href="om">Om siden</a>.</span>
   </footer>
 </div>
-<script src="common.js?v=2026-11-04"></script>
-<script src="befolkning.js?v=2026-11-04"></script>
+<script src="common.js?v=2026-11-05"></script>
+<script src="befolkning.js?v=2026-11-05"></script>
 </body>
 </html>

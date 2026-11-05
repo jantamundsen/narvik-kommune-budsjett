@@ -207,18 +207,75 @@ async function startPopulation() {
     if ([iMin, iMax, iLast].includes(i)) svg += `<text class="v" x="${X(i)}" y="${i === iMin ? Y(v) + 20 : Y(v) - 10}" text-anchor="middle">${nb(v)}</text>`;
   });
   document.getElementById('trend-chart').innerHTML = svg + '</svg>';
-  const tt = el('table');
+  caption('trend-caption', `Folketallet er per 1. januar. Aksen starter på ${nb(lo)} for å vise endringene. Kilde: `, src('06913'), '.');
+  document.getElementById('trend').hidden = false;
+
+  // Befolkningens regnskap: what was added (born, moved in) above the line,
+  // what was taken away (died, moved out) below, and the year's change as a dot.
   const cy = Object.keys(C).filter(y => C[y].born != null).sort();
+  const parts = {
+    born: ['Fødte', 'var(--accent)'], moved_in: ['Flyttet inn', 'color-mix(in srgb, var(--accent) 45%, var(--surface))'],
+    died: ['Døde', 'var(--ink-2)'], moved_out: ['Flyttet ut', 'color-mix(in srgb, var(--muted) 60%, var(--surface))'],
+  };
+  const allYears = k => sum(cy.map(y => C[y][k]));
+  document.getElementById('ledger-lead').textContent =
+    `Folketallet endrer seg når noen blir født, dør eller flytter. Over streken er de som ble født eller flyttet til Narvik i løpet av året, under streken de som døde eller flyttet ut. ` +
+    `Prikken er hvor mye folketallet endret seg det året. Fra ${cy[0]} til ${cy.at(-1)} ble ${nb(allYears('born'))} født og ${nb(allYears('died'))} døde, mens ${nb(allYears('moved_in'))} flyttet inn og ${nb(allYears('moved_out'))} flyttet ut.`;
+  document.getElementById('ledger-title').textContent = `Hva som endret folketallet i Narvik, ${cy[0]}–${cy.at(-1)}`;
+  const lg = document.getElementById('ledger-legend');
+  lg.innerHTML = '';
+  Object.values(parts).forEach(([n, c]) => { const s = el('span'); s.append(el('i', { style: `background:${c};border-radius:2px` }), n); lg.append(s); });
+  const dl = el('span'); dl.append(el('i', { style: 'background:var(--surface);border:2px solid var(--ink);box-sizing:border-box' }), 'Endring i året'); lg.append(dl);
+  const ledgerBox = document.getElementById('ledger-chart');
+  const maxUp = Math.max(...cy.map(y => C[y].born + C[y].moved_in)), maxDown = Math.max(...cy.map(y => C[y].died + C[y].moved_out));
+  const step = 500, top = Math.ceil(Math.max(maxUp, maxDown) / step) * step;
+  const drawLedger = () => {
+    const W = Math.max(340, Math.round(ledgerBox.clientWidth)) || 760, H = 340;
+    const lx = 46, rx = W - 4, ty = 28, by = H - 26, zero = (ty + by) / 2;
+    const sc = (zero - ty) / top, cw = (rx - lx) / cy.length, bw = Math.min(56, cw * 0.56);
+    let g = `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="Befolkningens regnskap ${cy[0]}–${cy.at(-1)}: ` +
+      cy.map(y => `${y}: ${C[y].born} fødte, ${C[y].moved_in} flyttet inn, ${C[y].died} døde, ${C[y].moved_out} flyttet ut, endring ${signed(C[y].growth)}`).join('; ') + '">';
+    for (let t = -top; t <= top; t += step) {
+      const yy = zero - t * sc;
+      g += `<line class="${t ? 'grid' : 'zero'}" x1="${lx}" x2="${rx}" y1="${yy}" y2="${yy}"/><text x="${lx - 8}" y="${yy + 4}" text-anchor="end">${t ? signed(t) : '0'}</text>`;
+    }
+    cy.forEach((y, i) => {
+      const c = C[y], cx = lx + cw * i + cw / 2, x = cx - bw / 2;
+      let up = zero, down = zero;
+      ['born', 'moved_in'].forEach(k => {
+        const h = c[k] * sc; up -= h;
+        g += `<rect x="${x}" y="${up + 1}" width="${bw}" height="${Math.max(h - 1, 1)}" rx="2" fill="${parts[k][1]}"><title>${y}: ${parts[k][0].toLowerCase()} ${nb(c[k])}</title></rect>`;
+      });
+      ['died', 'moved_out'].forEach(k => {
+        const h = c[k] * sc;
+        g += `<rect x="${x}" y="${down}" width="${bw}" height="${Math.max(h - 1, 1)}" rx="2" fill="${parts[k][1]}"><title>${y}: ${parts[k][0].toLowerCase()} ${nb(c[k])}</title></rect>`;
+        down += h;
+      });
+      const gy = zero - c.growth * sc;
+      g += `<line class="net" x1="${x - 4}" x2="${x + bw + 4}" y1="${gy}" y2="${gy}"/><circle class="net-dot" cx="${cx}" cy="${gy}" r="5.5"><title>${y}: endring ${signed(c.growth)}</title></circle>`;
+      g += `<text class="v" x="${cx}" y="${up - 8}" text-anchor="middle">${signed(c.growth)}</text>`;
+      g += `<text x="${cx}" y="${H - 6}" text-anchor="middle">${y}</text>`;
+    });
+    ledgerBox.innerHTML = g + '</svg>';
+  };
+  drawLedger();
+  let ledgerW = ledgerBox.clientWidth;
+  new ResizeObserver(() => { if (Math.abs(ledgerBox.clientWidth - ledgerW) > 8) { ledgerW = ledgerBox.clientWidth; drawLedger(); } }).observe(ledgerBox);
+
+  const tt = el('table');
   const lines = [['Fødte', 'born'], ['Døde', 'died'], ['Flyttet inn', 'moved_in'], ['Flyttet ut', 'moved_out']];
   tt.innerHTML = `<thead><tr><th scope="col">Hva endret folketallet</th>${cy.map(y => `<th scope="col">${y}</th>`).join('')}</tr></thead>`;
   const tb2 = el('tbody');
   lines.forEach(([n, k]) => { const tr = el('tr'); tr.append(el('td', {}, n), ...cy.map(y => el('td', {}, nb(C[y][k])))); tb2.append(tr); });
+  const sub2 = (n, f) => { const tr = el('tr'); tr.append(el('td', {}, n), ...cy.map(y => el('td', {}, signed(f(C[y]))))); tb2.append(tr); };
+  sub2('Fødte minus døde', c => c.born - c.died);
+  sub2('Innflyttet minus utflyttet', c => c.moved_in - c.moved_out);
   const gr = el('tr', { class: 'total' });
-  gr.append(el('td', {}, 'Endring i året'), ...cy.map(y => el('td', { class: C[y].growth > 0 ? 'pos' : C[y].growth < 0 ? 'neg' : '' }, signed(C[y].growth))));
+  gr.append(el('td', {}, 'Endring i året'), ...cy.map(y => el('td', {}, signed(C[y].growth))));
   tb2.append(gr); tt.append(tb2);
   document.getElementById('trend-table').replaceChildren(stackable(tt));
-  caption('trend-caption', `Folketallet er per 1. januar. Aksen starter på ${nb(lo)} for å vise endringene. Fødte, døde og flytting summerer ikke alltid nøyaktig til endringen; resten er SSBs etterregistreringer. Kilde: `, src('06913'), '.');
-  document.getElementById('trend').hidden = false;
+  caption('ledger-caption', 'Antall personer i løpet av hvert år. Endringen i året er SSBs folketilvekst, og den summerer ikke alltid nøyaktig til fødte, døde og flytting fordi SSB etterregistrerer noen personer. Flytting gjelder flytting over kommunegrensen, også til og fra utlandet. Kilde: ', src('06913'), '.');
+  document.getElementById('ledger').hidden = false;
 
   // Narvik against the comparison regions.
   const R = B.compare.rows;
