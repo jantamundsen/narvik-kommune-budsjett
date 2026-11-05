@@ -251,7 +251,8 @@ def main() -> int:
     ]
 
     # «Skiller seg ut»: each page lists its own numbers where Narvik differs clearly from the average. A number
-    # belongs to the page it is shown on; the links above borrow them. Utgifter also gets every service area. The area pages
+    # belongs to the page it is shown on; the links above borrow them. Utgifter also gets every service area; that list is
+    # only used by the front page, since the comparison chart on Økonomi shows the same areas. The area pages
     # already compare their own numbers, so they get no list.
     home = {
         "Andel av innbyggerne som er": ["befolkning"], "Endring i antall innbyggere": ["befolkning"], "Andel av husholdningene": ["befolkning"],
