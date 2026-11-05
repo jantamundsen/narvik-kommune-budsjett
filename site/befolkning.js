@@ -195,7 +195,10 @@ async function startPopulation() {
   const popYears = Object.keys(C).filter(y => C[y].population != null).sort();
   const pv = popYears.map(y => C[y].population);
   const lo = Math.floor((Math.min(...pv) - 150) / 100) * 100, hi = Math.ceil((Math.max(...pv) + 150) / 100) * 100;
-  const W = 760, H = 210, x0 = 56, x1 = W - 24, y0 = 20, y1 = H - 34;
+  // Drawn at the box's own width, so it fits a phone without scrolling sideways.
+  const trendBox = document.getElementById('trend-chart');
+  const drawTrendLine = () => {
+  const W = Math.max(300, trendBox.clientWidth - 32) || 760, H = 210, x0 = 56, x1 = W - 24, y0 = 20, y1 = H - 34;
   const X = i => x0 + (x1 - x0) * (popYears.length > 1 ? i / (popYears.length - 1) : 0.5);
   const Y = v => y1 - (v - lo) / (hi - lo) * (y1 - y0);
   const iMin = pv.indexOf(Math.min(...pv)), iMax = pv.indexOf(Math.max(...pv)), iLast = pv.length - 1;
@@ -206,7 +209,11 @@ async function startPopulation() {
     svg += `<circle class="dot" cx="${X(i)}" cy="${Y(v)}" r="${i === iLast ? 5 : 4}"/><text x="${X(i)}" y="${H - 8}" text-anchor="middle">${popYears[i]}</text>`;
     if ([iMin, iMax, iLast].includes(i)) svg += `<text class="v" x="${X(i)}" y="${i === iMin ? Y(v) + 20 : Y(v) - 10}" text-anchor="middle">${nb(v)}</text>`;
   });
-  document.getElementById('trend-chart').innerHTML = svg + '</svg>';
+  trendBox.innerHTML = svg.replace('<svg ', `<svg width="${W}" height="${H}" `) + '</svg>';
+  };
+  drawTrendLine();
+  let trendW = trendBox.clientWidth;
+  new ResizeObserver(() => { if (Math.abs(trendBox.clientWidth - trendW) > 8) { trendW = trendBox.clientWidth; drawTrendLine(); } }).observe(trendBox);
   caption('trend-caption', `Innbyggere 1. januar. Aksen starter på ${nb(lo)} for å vise endringene. Kilde: `, src('06913'), '.');
 
   // Befolkningens regnskap: who was added (born, moved in) above the line, who left (died, moved out) below,
