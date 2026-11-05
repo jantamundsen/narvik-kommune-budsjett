@@ -29,7 +29,7 @@ function hero(B) {
 }
 
 // A still version of the dot map on Befolkning (prikkart.js): one dot per 250 m cell where someone lives, its area
-// following the residents, on the same Kartverket base map. The whole map links to the full one. The map data
+// following the residents, on the same Kartverket base map (sea, lakes, towns, roads, railway, delområde lines). The whole map links to the full one. The map data
 // (about 300 kB) loads after the rest of the page.
 async function heroMap(B) {
   const [D, K] = await Promise.all([load('prikkart.json'), load('prikkart-kart.json')]);
@@ -43,7 +43,7 @@ async function heroMap(B) {
     return n;
   };
   const cells = D.cells, yi = 2 + D.years.length - 1, maxPop = Math.max(...cells.map(c => Math.max(c[2], c[3])));
-  const pad = 4, x0 = Math.min(...cells.map(c => c[0])) - pad, x1 = Math.max(...cells.map(c => c[0])) + 1 + pad;
+  const pad = 6, x0 = Math.min(...cells.map(c => c[0])) - pad, x1 = Math.max(...cells.map(c => c[0])) + 1 + pad;
   const y0 = Math.min(...cells.map(c => c[1])) - pad, y1 = Math.max(...cells.map(c => c[1])) + 1 + pad;
   svg.setAttribute('viewBox', `${x0} ${-y1} ${x1 - x0} ${y1 - y0}`);
   svg.setAttribute('aria-label', `Kart over Narvik kommune med én prikk for hvert sted der folk bodde 1. januar ${D.years.at(-1)}. Flest bor i Narvik by.`);
@@ -51,7 +51,9 @@ async function heroMap(B) {
   s('path', { class: 'dm-land', d: K.kommune.map(p => p.map(ring).join('')).join('') }, svg);
   s('path', { class: 'dm-town', d: K.town.map(p => p.map(ring).join('')).join('') }, svg);
   s('path', { class: 'dm-water', d: K.water.map(p => p.map(ring).join('')).join('') }, svg);
-  s('path', { class: 'dm-road', d: K.roads.map(line).join(''), 'stroke-width': 1.2, 'vector-effect': 'non-scaling-stroke' }, svg);
+  s('path', { class: 'dm-del', d: Object.values(K.del).flatMap(d => d.map(p => ring(p[0]))).join(''), 'stroke-width': 1, 'vector-effect': 'non-scaling-stroke' }, svg);
+  s('path', { class: 'dm-rail', d: K.rail.map(line).join(''), 'stroke-width': 1.2, 'vector-effect': 'non-scaling-stroke' }, svg);
+  const roads = s('path', { class: 'dm-road', d: K.roads.map(line).join(''), 'vector-effect': 'non-scaling-stroke' }, svg);
   const dots = s('g', { class: 'dm-dots' }, svg), labels = s('g', { class: 'dm-labels' }, svg);
 
   // Sizes in pixels are turned into map units from the drawn width, so dots and labels keep their size on a phone.
@@ -71,6 +73,7 @@ async function heroMap(B) {
     if (!w || Math.abs(w - lastWidth) < 4) return;
     lastWidth = w;
     const k = w / (x1 - x0), px = n => n / k, R = Math.min(18, Math.max(11, k * 1.6));
+    roads.setAttribute('stroke-width', k < 5 ? 1.5 : 2.5);
     dots.replaceChildren();
     cells.filter(c => c[yi] > 0).sort((a, b) => b[yi] - a[yi]).forEach(c => s('circle', {
       cx: c[0] + 0.5, cy: -(c[1] + 0.5), r: px(Math.max(1, Math.sqrt(c[yi] / maxPop) * R)).toFixed(3),
