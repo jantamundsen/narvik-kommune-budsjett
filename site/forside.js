@@ -43,8 +43,10 @@ async function heroMap(B) {
     return n;
   };
   const cells = D.cells, yi = 2 + D.years.length - 1, maxPop = Math.max(...cells.map(c => Math.max(c[2], c[3])));
-  const pad = 6, x0 = Math.min(...cells.map(c => c[0])) - pad, x1 = Math.max(...cells.map(c => c[0])) + 1 + pad;
-  const y0 = Math.min(...cells.map(c => c[1])) - pad, y1 = Math.max(...cells.map(c => c[1])) + 1 + pad;
+  // The frame holds the whole kommune, so its shape stands on the page without being cut at the edges.
+  const pts = K.kommune.flat(2), pad = 2;
+  const x0 = Math.min(...pts.map(p => p[0])) - pad, x1 = Math.max(...pts.map(p => p[0])) + pad;
+  const y0 = Math.min(...pts.map(p => p[1])) - pad, y1 = Math.max(...pts.map(p => p[1])) + pad;
   svg.setAttribute('viewBox', `${x0} ${-y1} ${x1 - x0} ${y1 - y0}`);
   svg.setAttribute('aria-label', `Kart over Narvik kommune med én prikk for hvert sted der folk bodde 1. januar ${D.years.at(-1)}. Flest bor i Narvik by.`);
   const P = p => p[0] + ' ' + (-p[1]), ring = r => 'M' + r.map(P).join('L') + 'Z', line = l => 'M' + l.map(P).join('L');
