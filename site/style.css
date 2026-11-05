@@ -773,3 +773,21 @@ dl.facts dd { margin: 0; }
 .multiple .m-sub { font-size: 0.78rem; color: var(--ink-2); }
 @media (max-width: 400px) { .multiples { grid-template-columns: 1fr 1fr; } }
 .fit-chart svg { min-width: 0; }
+
+/* Befolkningens regnskap (befolkning.html): drawn at the box's own width, so no horizontal scroll. */
+.ledger-chart { display: grid; gap: 10px; overflow: visible; padding-bottom: 12px; }
+.ledger-chart h3 { font-size: 1.05rem; font-weight: 600; }
+.ledger-chart svg { min-width: 0; width: 100%; height: auto; overflow: visible; }
+.ledger-chart text { fill: var(--ink-2); font-size: 12px; font-variant-numeric: tabular-nums; }
+.ledger-chart text.v { fill: var(--ink); font-weight: 600; }
+.ledger-chart .grid { stroke: var(--rule); }
+.ledger-chart .zero { stroke: var(--ink); stroke-width: 1.5; }
+.ledger-chart .net { stroke: var(--ink); stroke-width: 2; }
+.ledger-chart .net-dot { fill: var(--surface); stroke: var(--ink); stroke-width: 2.5; }
+.ledger-chart .legend i { width: 12px; height: 12px; }
+.ledger-chart .pop-line { stroke: var(--accent); stroke-width: 2.5; fill: none; }
+.ledger-chart .pop-dot { fill: var(--accent); }
+.ledger-chart .year-edge { stroke: var(--rule); stroke-dasharray: 2 4; }
+.ledger-chart text.pv { paint-order: stroke; stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round; }
+.ledger-chart text.pv { fill: var(--ink-2); }
+.ledger-chart text.unit { font-size: 11px; }
