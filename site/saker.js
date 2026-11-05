@@ -49,15 +49,26 @@ const dateText = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nb-NO', 
       <div class="section-head"><h2 id="h-actors">Hvem er involvert</h2></div>
       <dl class="actors">${S.aktorer.map(a => `<div><dt>${esc(a.navn)}</dt><dd>${esc(a.rolle)} <span class="caption">Kilde: ${srcGroup([].concat(a.kilde))}</span></dd></div>`).join('')}</dl>
     </section>` : '';
-  const tab = S.tabell ? `<section aria-labelledby="h-tab">
-      <div class="section-head"><h2 id="h-tab">Budsjett og regnskap</h2></div>
-      <div class="ptable"><table id="sak-table"><caption class="sr-only">${esc(S.tabell.tittel)}</caption>
-        <thead><tr>${S.tabell.kolonner.map(c => `<th scope="col">${esc(c)}</th>`).join('')}</tr></thead>
-        <tbody>${S.tabell.rader.map(r => `<tr>${r.celler.map(c => `<td>${esc(c)}</td>`).join('')}<td class="muted">${note(r.kilde)}</td></tr>`).join('')}</tbody>
+  // A table with one source per row: the budget table («tabell») and any further tables («tabeller»).
+  const sakTable = (T, id, head, lead) => `<section aria-labelledby="h-${id}" id="${id}">
+      <div class="section-head"><h2 id="h-${id}">${esc(head)}</h2>${lead ? `<p class="lead">${esc(lead)}</p>` : ''}</div>
+      <div class="ptable"><table class="sak-table"><caption class="sr-only">${esc(T.tittel)}</caption>
+        <thead><tr>${T.kolonner.map(c => `<th scope="col">${esc(c)}</th>`).join('')}</tr></thead>
+        <tbody>${T.rader.map(r => `<tr>${r.celler.map(c => `<td>${esc(c)}</td>`).join('')}<td class="muted">${note(r.kilde)}</td></tr>`).join('')}</tbody>
       </table></div>
-      <p class="caption">${esc(S.tabell.tittel)}. ${esc(S.tabell.merknad || '')}</p>
-    </section>` : '';
+      <p class="caption">${esc(T.tittel)}. ${esc(T.merknad || '')}</p>
+    </section>`;
+  const tab = S.tabell ? sakTable(S.tabell, 'budsjett', 'Budsjett og regnskap') : '';
+  const tables = (S.tabeller || []).map(T => sakTable(T, T.id, T.overskrift, T.lead)).join('');
+  const savings = S.tiltak_omrade ? await savingsSection(S.tiltak_omrade) : '';
   const inst = S.ssb_institusjon ? await institutionTables(sources) : '';
+  // Numbers that are not published, each with what exists instead and a link to «Tall som savnes».
+  (S.savner || []).forEach(m => m.kilde && [].concat(m.kilde).forEach(k => sources.set(k.id, D.kilder[k.id])));
+  const missing = S.savner?.length ? `<section aria-labelledby="h-savner" id="savner">
+      <div class="section-head"><h2 id="h-savner">Det som ikke er publisert</h2>
+        <p class="lead">Tall som ville vist mer om hvor kostnadene oppstår, men som jeg ikke har funnet i offentlige dokumenter. Hvert punkt sier hva som finnes i stedet.</p></div>
+      <ul class="fact-list">${S.savner.map(m => `<li class="fact"><p><strong>${esc(m.tittel)}.</strong> ${esc(m.tekst)}</p><p class="caption fact-src">${m.kilde ? `Kilde: ${srcGroup([].concat(m.kilde))} · ` : ''}<a href="${esc(m.href)}">Tall som savnes</a></p></li>`).join('')}</ul>
+    </section>` : '';
   const role = `<section aria-labelledby="h-role">
       <div class="section-head"><h2 id="h-role">Kommunens rolle og penger</h2></div>
       <ul class="fact-list">${S.rolle.map(r => `<li class="fact"><p>${esc(r.tekst)}</p><p class="caption fact-src">Kilde: ${note(r.kilde)}</p></li>`).join('')}</ul>
@@ -71,7 +82,7 @@ const dateText = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nb-NO', 
   // Newest first. The config keeps them oldest first (build_saker.py checks the order); after the first few,
   // the rest are behind a button so a long timeline doesn't push the rest of the page down.
   const SHOWN = 5, events = [...S.tidslinje].reverse();
-  const time = `<section aria-labelledby="h-time">
+  const time = `<section aria-labelledby="h-time" id="tidslinje">
       <div class="section-head"><h2 id="h-time">Tidslinje</h2><p class="lead">Nyeste først.</p></div>
       <ol class="timeline" id="timeline">${events.map((t, i) => `<li${isMedia(t.kilde) ? ' class="tl-media"' : ''}${i >= SHOWN ? ' hidden' : ''}><span class="tl-date num">${esc(t.dato)}</span><div>${mediaTag(t)}<p>${esc(t.tekst)}</p>${t.sitat ? `<blockquote class="fact-quote sak-quote"><p>«${esc(t.sitat)}»</p><p class="caption quote-who">– ${esc(t.hvem)}</p></blockquote>` : ''}<p class="caption">Kilde: ${note(t.kilde)}</p></div></li>`).join('')}</ol>
       ${events.length > SHOWN ? `<button type="button" class="btn tl-more" id="tl-more">Vis hele tidslinjen (${events.length - SHOWN} til)</button>` : ''}
@@ -101,6 +112,18 @@ const dateText = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nb-NO', 
       ${media.length ? `<h3 class="doc-sub">Medieoppslag</h3><p class="caption">Artikler som utsagnene og medieoppslagene over er hentet fra.</p>${docList(media)}` : ''}
     </section>`;
 
+  // A long sheet (one with further tables) starts with jump links to its sections, in the order they come, and
+  // keeps «Hvem er involvert» until after the numbers.
+  const long = !!S.tabeller?.length;
+  const parts = [[tab, 'budsjett', 'Budsjett og regnskap'], ...(S.tabeller || []).map(T => [tables, T.id, T.overskrift]),
+    [savings, 'innsparinger', 'Innsparingene'], [inst, 'forskjell', 'Hvor forskjellen mot lignende kommuner ligger'],
+    [inst, 'institusjon', 'Sykehjem og institusjoner'], [inst, 'plasser-brukere', 'Plasser og beboere som ikke går opp'], [missing, 'savner', 'Det som ikke er publisert'], [time, 'tidslinje', 'Tidslinje']];
+  const jump = long ? `<nav class="jump" aria-label="Innhold på siden"><span class="eyebrow">På siden</span><ul>${parts.filter(([html, id]) => html && html.includes(`id="${id}"`)).map(([, id, name]) => `<li><a href="#${id}">${esc(name)}</a></li>`).join('')}</ul></nav>` : '';
+  // «Kort oppsummert»: the main numbers in a few sentences, each pointing to the section with its sources.
+  const summary = S.oppsummering?.length ? `<section aria-labelledby="h-sum" id="oppsummert">
+      <div class="section-head"><h2 id="h-sum">Kort oppsummert</h2><p class="lead">Hovedtallene på siden. Kildene står i seksjonen hvert punkt lenker til.</p></div>
+      <ul class="fact-list">${S.oppsummering.map(o => `<li class="fact"><p>${esc(o.tekst)}</p><p class="caption fact-src"><a href="${esc(o.lenke)}">Les mer</a></p></li>`).join('')}</ul>
+    </section>` : '';
   main.innerHTML = `<header>
       <nav class="crumbs" aria-label="Brødsmuler"><a href="saker">Utvalgte saker</a><span aria-hidden="true">›</span><span aria-current="page">${esc(S.tittel)}</span></nav>
       <div class="eyebrow">Sist kontrollert ${dateText(S.kontrollert)}</div>
@@ -109,13 +132,12 @@ const dateText = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nb-NO', 
       ${S.mangler ? `<p class="status-note">${esc(S.mangler)}</p>` : ''}
     </header>
     <section aria-label="Nøkkeltall"><div class="stats3 sak-stats" style="--n:${S.nokkeltall.length}">${stats}</div></section>
-    ${actors}${tab}${inst}${role}${topics}${time}${facts}${links}${docs}`;
+    ${summary}${jump}${long ? '' : actors}${tab}${role}${tables}${savings}${inst}${missing}${long ? actors : ''}${topics}${time}${facts}${links}${docs}`;
   document.getElementById('tl-more')?.addEventListener('click', e => {
     document.querySelectorAll('#timeline li[hidden]').forEach(li => { li.hidden = false; });
     e.currentTarget.remove();
   });
-  const t = document.getElementById('sak-table');
-  if (t) stackable(t);
+  document.querySelectorAll('.sak-table').forEach(stackable);
   // The page is drawn after the data has loaded, so the browser cannot jump to #institusjon by itself.
   if (location.hash) document.getElementById(location.hash.slice(1))?.scrollIntoView();
 })();
@@ -125,7 +147,7 @@ const dateText = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nb-NO', 
 // Narvik against the KOSTRA group only, every year SSB has, with a source under each table. No interpretation.
 async function institutionTables(sources) {
   const get = u => fetch(u, { cache: 'no-cache' }).then(r => (r.ok ? r.json() : null)).catch(() => null);
-  const [E, M] = await Promise.all([get('data/eldre.json'), get('data/malgruppe.json')]);
+  const [E, M, DT] = await Promise.all([get('data/eldre.json'), get('data/malgruppe.json'), get('data/detaljer.json')]);
   const I = E?.institusjon;
   if (!I) return '';
   const G = 'KOSTRA-gruppe 9';
@@ -138,7 +160,36 @@ async function institutionTables(sources) {
     ${rows.map(r => `<tr${r.sum ? ' class="sum"' : ''}><td>${esc(r.name)}</td>${ys.map(y => `<td>${r.cell(y) ?? '·'}</td>`).join('')}</tr>`).join('')}</table></div>`;
   const vs = (a, b) => (a == null || b == null ? null : chgText(pct(a, b)));
   let html = '';
-
+  // Net running costs and premises for the institutions in the newest year, in mill. kr, with the change from the year before.
+  const fy = DT?.years || [], fv = DT?.values?.konsern || {}, last = fy.length - 1;
+  const net = f => fv[f]?.[DT.net_art];
+  const P = I.dognpris, pv = P.values, pys = Object.keys(pv.narvik || {});
+  if (net('253') && net('261') && last > 0) {
+    const stat = (label, v, prev, unit, text) => `<div class="stat"><span class="sub">${esc(label)}</span><span class="big num">${v}<small> ${unit}</small></span><span class="sub">${text} (${chgText(pct(...prev))} fra året før)</span></div>`;
+    const py = pys.at(-1), pp = pys.at(-2);
+    sources.set('ssb-12362', { full: 'SSB, tabell 12362: netto driftsutgifter per funksjon', url: 'https://www.ssb.no/statbank/table/12362' });
+    html += `<div class="stats3 sak-stats" style="--n:3">
+        ${stat(`Drift av sykehjem og institusjoner i ${fy[last]}`, nb(net('253')[last] / 1000, 1), [net('253')[last], net('253')[last - 1]], 'mill. kr', 'netto driftsutgifter, funksjon 253')}
+        ${stat(`Lokaler til institusjonene i ${fy[last]}`, nb(net('261')[last] / 1000, 1), [net('261')[last], net('261')[last - 1]], 'mill. kr', 'netto driftsutgifter, funksjon 261')}
+        ${py && pp ? stat(`Utgift per oppholdsdøgn i ${py}`, nb(pv.narvik[py]), [pv.narvik[py], pv.narvik[pp]], 'kr', 'drift og lokaler per døgn') : ''}
+      </div>
+      <p class="caption">Hele kommunen med foretak. SSB samler alle sykehjemmene og de andre institusjonene i de to funksjonene, så tallene sier ikke hvordan kostnadene fordeler seg mellom sykehjemmene. Kilde: <a href="https://www.ssb.no/statbank/table/12362" target="_blank" rel="noopener">SSB, tabell 12362</a> og <a href="${esc(P.url)}" target="_blank" rel="noopener">tabell ${P.table}</a>.</p>`;
+  }
+  // Places, users and the price per day in Narvik, year by year, so the three can be read together.
+  const pl = (E.ssb || []).find(x => x.key === 'plasser'), un = I.brukere?.values?.narvik;
+  if (pl && un && pys.length) {
+    const ys = pys.filter(y => pl.values.narvik?.[y] != null || un['F000-120']?.[y]);
+    const chg = (o, y, i) => (i && o[y] != null && o[ys[i - 1]] != null ? chgText(pct(o[y], o[ys[i - 1]])) : null);
+    html += `<h3 class="sub-h">Plasser, brukere og utgift per døgn i Narvik</h3>
+      ${table('Narvik', ys, [
+        { name: 'Plasser i institusjon', cell: y => (pl.values.narvik[y] == null ? null : nb(pl.values.narvik[y], pl.values.narvik[y] % 1 ? 1 : 0)) },
+        { name: 'Brukere, alle aldre', cell: y => (un['F000-120']?.[y] ? nb(un['F000-120'][y].antall) : null) },
+        { name: 'Brukere 80 år og over', cell: y => (un['F080-120']?.[y] ? nb(un['F080-120'][y].antall) : null) },
+        { name: 'Utgift per oppholdsdøgn, kr', sum: true, cell: y => (pv.narvik[y] == null ? null : nb(pv.narvik[y])) },
+        { name: 'Utgift per døgn, endring fra året før', cell: y => chg(pv.narvik, y, ys.indexOf(y)) },
+      ])}
+      <p class="caption">Brukerne er personer som hadde institusjonstjenester 31. desember, både langtidsopphold og korttidsopphold. Plassene er alle plasser i institusjon ved utgangen av året. Utgiften per døgn er i løpende kroner. · betyr at SSB ikke har tall. Kilde: ${ssbSrc(pl.table, pl.query, 'plasser i institusjon')}, ${ssbSrc(I.brukere.table, I.brukere.query, 'omsorgstjenester, brukere etter alder')} og ${ssbSrc(P.table, P.query, 'utvalgte nøkkeltall for helse og omsorg')}.</p>`;
+  }
   // Institution running costs (253) per inhabitant 67+, computed on the site from 12362 and 07459.
   const m = (M?.measures || []).find(x => x.area === 'helse' && x.service === '253' && x.key === '67');
   if (m) {
@@ -153,14 +204,12 @@ async function institutionTables(sources) {
   }
 
   // Cost per day in an institution, SSB's own key figure.
-  const P = I.dognpris, pv = P.values, pys = Object.keys(pv.narvik || {});
   if (pys.length) {
     html += `<h3 class="sub-h">Utgifter per oppholdsdøgn i institusjon, kroner</h3>
       ${table('Kr per døgn', pys, [
         { name: 'Narvik', sum: true, cell: y => (pv.narvik[y] == null ? null : nb(pv.narvik[y])) },
         { name: G, cell: y => (pv.gruppe?.[y] == null ? null : nb(pv.gruppe[y])) },
         { name: `Narvik mot ${G}`, cell: y => vs(pv.narvik[y], pv.gruppe?.[y]) },
-        { name: 'Narvik, endring fra året før', cell: (y, i = pys.indexOf(y)) => (i ? vs(pv.narvik[y], pv.narvik[pys[i - 1]]) : null) },
       ])}
       <p class="caption">SSBs nøkkeltall «${esc(P.name)}». Utgiftene omfatter både driften (funksjon 253) og lokalene (261), delt på antall døgn beboerne har bodd på institusjonen. Løpende kroner. Kilde: ${ssbSrc(P.table, P.query, 'utvalgte nøkkeltall for helse og omsorg')}.</p>`;
   }
@@ -178,10 +227,43 @@ async function institutionTables(sources) {
       <p class="caption">Personer SSB har registrert med institusjonstjenester (sykehjem og andre helse- og omsorgsinstitusjoner), ikke antall plasser. Tallet i parentes er antall brukere i Narvik. Kilde: ${ssbSrc(U.table, U.query, 'omsorgstjenester, brukere etter alder og tjenestegrupper')}.</p>`;
   }
   if (!html) return '';
-  return `<section aria-labelledby="h-inst" id="institusjon">
+  return `${gapSection(M, E, G, ssbSrc)}<section aria-labelledby="h-inst" id="institusjon">
       <div class="section-head"><h2 id="h-inst">Sykehjem og institusjoner i SSB-tallene</h2>
         <p class="lead">Tall fra SSBs KOSTRA-statistikk for Narvik og snittet i ${G}, kommunene SSB regner som sammenlignbare. KOSTRA deler tjenestene inn på en annen måte enn kommunalområdet i tabellen over (<a href="okonomi#inndeling">hvorfor tallene er ulike</a>). Tallene oppdateres når SSB publiserer nye. Flere sammenligninger står på <a href="utgifter/helse#institusjon">Helse og omsorg</a>.</p></div>
       ${html}
+    </section>${placesSection(E, G, ssbSrc, table)}`;
+}
+
+// «Plasser og beboere som ikke går opp»: institution places (11875) next to the people in an institution on
+// 31 December (12003), Narvik and the KOSTRA group, and the kommune's own count of days with patients waiting at the
+// hospital. Two registers that are not built to be compared, so the page says what the numbers cannot tell.
+function placesSection(E, G, ssbSrc, table) {
+  const pl = (E?.ssb || []).find(x => x.key === 'plasser'), U = E?.institusjon?.brukere;
+  if (!pl || !U) return '';
+  const ys = Object.keys(pl.values.narvik || {}).filter(y => U.values.narvik?.['F000-120']?.[y]);
+  if (!ys.length) return '';
+  const users = (r, y) => U.values[r]?.['F000-120']?.[y]?.antall;
+  const per100 = (r, y) => (users(r, y) && pl.values[r]?.[y] ? nb(users(r, y) / pl.values[r][y] * 100) : null);
+  const ol = Object.fromEntries((E.kommunens_overliggerdogn || []).filter(o => o.periode === 'hele året').map(o => [o.aar, o.dogn]));
+  const last = ys.at(-1);
+  return `<section aria-labelledby="h-plasser" id="plasser-brukere">
+      <div class="section-head"><h2 id="h-plasser">Plasser og beboere som ikke går opp</h2>
+        <p class="lead">Narvik har hatt færre beboere i institusjon enn plasser ved hvert årsskifte siden ${ys[0]}: ${nb(users('narvik', last))} beboere på ${nb(Math.round(pl.values.narvik[last]))} plasser 31. desember ${last}. I snitt i ${esc(G)} er det flere beboere enn plasser. Samtidig har kommunen betalt for hundrevis av døgn der utskrivningsklare pasienter ventet på sykehuset på et kommunalt tilbud. Tallene under viser dette side om side.</p></div>
+      ${table('', ys, [
+        { name: 'Plasser i institusjon, Narvik', cell: y => nb(pl.values.narvik[y], pl.values.narvik[y] % 1 ? 1 : 0) },
+        { name: 'Beboere 31. desember, Narvik', cell: y => nb(users('narvik', y)) },
+        { name: 'Beboere per 100 plasser, Narvik', sum: true, cell: y => per100('narvik', y) },
+        { name: `Beboere per 100 plasser, ${G}`, cell: y => per100('gruppe', y) },
+        { name: 'Døgn med utskrivningsklare pasienter på sykehuset, Narvik', cell: y => (ol[y] == null ? null : nb(ol[y])) },
+      ])}
+      <p class="caption">Plassene og beboerne kommer fra to ulike registreringer hos SSB. Plassene er alle plasser i institusjon ved utgangen av året, også for korttidsopphold. Beboerne er personer som hadde institusjonstjenester 31. desember. Beboere per 100 plasser er beregnet her. Døgnene med utskrivningsklare pasienter er kommunens egne tall fra årsrapportene (2022 s. 36, 2023 s. 14, 2024 s. 44, 2025 s. 45). · betyr at tallet ikke finnes. Kilde: ${ssbSrc(pl.table, pl.query, 'plasser i institusjon')} og ${ssbSrc(U.table, U.query, 'omsorgstjenester, brukere etter alder')}.</p>
+      <h3 class="sub-h">Det tallene ikke sier</h3>
+      <ul class="plain-list">
+        <li>Om plassene står tomme. En plass kan være registrert uten å være i bruk, for eksempel når det mangler bemanning eller en avdeling er under avvikling. Ankenes bo- og servicesenter var i drift fram til midten av februar 2026.</li>
+        <li>Hvilke typer plasser som er i bruk, og om de passer for pasientene som venter på sykehuset.</li>
+        <li>Hvor fullt hvert sykehjem er. SSBs nøkkeltall for belegg (tabell 12293) står med 0 for alle kommuner de siste årene, og kommunen publiserer ikke belegget per sykehjem.</li>
+      </ul>
+      <p class="caption">Ankenes: Tertialrapport 1/2026, s. 26. <a href="om#savner-sykehjemsplass">Tall som savnes</a></p>
     </section>`;
 }
 
@@ -196,4 +278,99 @@ function list(main, D) {
       <p>${esc(s.ingress)}</p>
       <a class="cross-link" href="sak/${encodeURIComponent(s.id)}">Les faktaarket →</a>
     </article>`).join('')}</div></section>`;
+}
+// «Hvor forskjellen ligger»: the omsorg services per inhabitant 67+ in the newest year, Narvik against the KOSTRA
+// group, one row per service so the rows add up to the total. Then the institution users 67+ per age group, with
+// how many Narvik would have had at the group's share. Both are computed here and marked so. Facts only.
+function gapSection(M, E, G, ssbSrc) {
+  const I = E?.institusjon;
+  const ms = (M?.measures || []).filter(x => x.area === 'helse' && x.key === '67');
+  const total = ms.find(x => x.service === null);
+  if (!total) return '';
+  const rows = [
+    ['253', 'Sykehjem og andre institusjoner (253)'],
+    ['261', 'Lokaler til institusjonene (261)'],
+    ['hjemmetjenester', 'Hjemmetjenester (254, 257, 258)'],
+    ['234', 'Aktivitet og service for eldre (234)'],
+  ].map(([k, name]) => ({ name, m: ms.find(x => x.service === k) })).filter(r => r.m);
+  const y = Object.keys(total.values.narvik).filter(k => total.values.narvik[k] != null && total.values.gruppe?.[k] != null).pop();
+  if (!y) return '';
+  const cell = m => ({ n: m.values.narvik[y], g: m.values.gruppe[y] });
+  const sign = d => (d > 0 ? '+' : d < 0 ? '−' : '') + nb(Math.abs(Math.round(d)));
+  const line = (name, m, sum) => {
+    const { n, g } = cell(m);
+    return `<tr${sum ? ' class="sum"' : ''}><td>${esc(name)}</td><td>${nb(n)}</td><td>${nb(g)}</td><td>${sign(n - g)}</td><td>${chgText(pct(n, g))}</td></tr>`;
+  };
+  const T = cell(total);
+  let html = `<h3 class="sub-h">Omsorgstjenester per innbygger 67 år og over i ${y}, kroner</h3>
+    <div class="detail-scroll"><table class="num-table"><tr><th>KOSTRA-funksjon</th><th>Narvik</th><th>${esc(G)}</th><th>Forskjell, kr</th><th>Narvik mot ${esc(G)}</th></tr>
+      ${rows.map(r => line(r.name, r.m)).join('')}${line('Omsorgstjenestene i alt', total, true)}</table></div>
+    <p class="caption">Netto driftsutgifter per funksjon, kommunekonsern, delt på innbyggere 67 år og over 1. januar året etter. Beregnet her fordi SSB ikke publiserer tallet. De fire radene summerer seg til omsorgstjenestene i alt. Aktivitet og service for eldre (234) gjelder også yngre brukere, men er delt på innbyggere 67 år og over som de andre radene. Kilde: ${ssbSrc(total.table, total.query, 'netto driftsutgifter per funksjon')} og ${ssbSrc(total.population.table, total.population.query, 'befolkning etter alder')}.</p>`;
+  // Users 67+ per age group, and how many Narvik would have had with the group's share of each age group.
+  const U = I?.brukere, uy = U && Object.keys(U.values.narvik?.['F080-120'] || {}).pop();
+  if (uy) {
+    const ages = [['F067-079', '67–79 år'], ['F080-120', '80 år og over']];
+    let sumN = 0, sumE = 0;
+    const urows = ages.map(([code, name]) => {
+      const n = U.values.narvik[code]?.[uy], g = U.values.gruppe?.[code]?.[uy];
+      if (!n?.per1000 || g?.per1000 == null) return null;
+      const exp = n.antall * g.per1000 / n.per1000;
+      sumN += n.antall; sumE += exp;
+      return `<tr><td>${name}</td><td>${nb(n.antall)}</td><td>${nb(Math.round(exp))}</td><td>${sign(n.antall - exp)}</td></tr>`;
+    });
+    // SSB's own share of 80+ with a stay in an institution is measured differently and can point the other way.
+    const i80 = (E.ssb || []).find(x => x.key === 'inst80'), a = i80?.values.narvik?.[uy], b = i80?.values.gruppe?.[uy];
+    const inst80 = a != null && b != null ? ` SSBs eget nøkkeltall for andelen innbyggere 80 år og over med opphold i institusjon, som måles på en annen måte, var ${nb(a, 1)} % i Narvik og ${nb(b, 1)} % i ${esc(G)} i ${uy}.` : '';
+    if (urows.every(Boolean)) {
+      html += `<h3 class="sub-h">Brukere av sykehjem og andre institusjoner i ${uy}, Narvik mot ${esc(G)}</h3>
+        <p>Hvor mange eldre i Narvik som brukte institusjonene, og hvor mange det ville vært hvis like stor del av hver aldersgruppe brukte dem som i snitt i ${esc(G)}.</p>
+        <div class="detail-scroll"><table class="num-table"><tr><th>Alder</th><th>Brukere i Narvik</th><th>Hvis Narvik var som snittet</th><th>Flere (+) eller færre (−)</th></tr>
+          ${urows.join('')}<tr class="sum"><td>67 år og over</td><td>${nb(sumN)}</td><td>${nb(Math.round(sumE))}</td><td>${sign(sumN - sumE)}</td></tr></table></div>
+        <p class="caption">«Hvis Narvik var som snittet» er antall innbyggere i Narvik i aldersgruppen ganget med andelen brukere i ${esc(G)}. Beregnet her. Andelene per 1 000 innbyggere står i tabellen «Brukere av institusjonstjenester per 1 000 innbyggere i aldersgruppen» under. Brukere er personer som hadde institusjonstjenester 31. desember, både langtidsopphold og korttidsopphold, ikke antall døgn eller plasser. Aldersgruppene er små, så noen få brukere endrer tallene mye.${inst80} Kilde: ${ssbSrc(U.table, U.query, 'omsorgstjenester, brukere etter alder')}${inst80 ? ` og ${ssbSrc(i80.table, i80.query, 'utvalgte nøkkeltall for helse og omsorg')}` : ''}.</p>`;
+    }
+  }
+  const P = I?.dognpris?.values, py = P && Object.keys(P.narvik || {}).pop();
+  const priceText = py && P.gruppe?.[py] != null
+    ? ` Et oppholdsdøgn i institusjon kostet ${nb(P.narvik[py])} kr i Narvik og ${nb(P.gruppe[py])} kr i snitt i ${esc(G)} i ${py} (${chgText(pct(P.narvik[py], P.gruppe[py]))}), se «Sykehjem og institusjoner» under.` : '';
+  return `<section aria-labelledby="h-gap" id="forskjell">
+      <div class="section-head"><h2 id="h-gap">Hvor forskjellen mot lignende kommuner ligger</h2>
+        <p class="lead">Narvik brukte ${nb(T.n)} kr per innbygger 67 år og over på omsorgstjenester i ${y}, mot ${nb(T.g)} kr i snitt i ${esc(G)} (${chgText(pct(T.n, T.g))}). Tabellene viser hvilke tjenester forskjellen ligger i, og hvor mange som bruker institusjonene.${priceText} Tallene er fra SSBs KOSTRA-statistikk, som deler tjenestene inn på en annen måte enn kommunalområdet i «Budsjett og regnskap» (<a href="okonomi#inndeling">hvorfor tallene er ulike</a>).</p></div>
+      ${html}
+    </section>`;
+}
+// «Innsparingene»: the cuts in the newest adopted budget for one area, from data/tiltak.json (the same data and rules
+// as tiltak.html), with what the kommune's reports say happened to each, and the total for the whole kommune.
+async function savingsSection(area) {
+  const T = await fetch('data/tiltak.json', { cache: 'no-cache' }).then(r => (r.ok ? r.json() : null)).catch(() => null);
+  const y = T && Object.keys(T.sources).filter(k => T.sources[k].status === 'vedtatt').pop();
+  if (!y) return '';
+  const LABEL = { 'gjennomfort': 'Gjennomført', 'i-arbeid': 'I arbeid', 'forsinket': 'Forsinket eller mindre effekt', 'ikke-gjennomfort': 'Ikke gjennomført', 'ikke-oppgitt': 'Nevnt uten status', 'reversert': 'Tatt ut av kommunestyret', 'ingen': 'Ingen status i rapportene' };
+  const cut = l => (l.uten_belop ? 0 : -l['1000kr'][y]), back = l => Math.min(cut(l), l.reversert?.[y] || 0);
+  const status = l => l.oppfolging?.status || (back(l) > 0 && back(l) >= cut(l) ? 'reversert' : 'ingen');
+  const kept = l => cut(l) - back(l);
+  const mk = v => nb(v / 1000, 1);
+  const sum = (list, f) => list.reduce((s, l) => s + f(l), 0);
+  const all = T.lines.filter(l => l.aar === y && l.innsparing);
+  const mine = all.filter(l => l.omrade === area);
+  if (!mine.length) return '';
+  const name = T.areas.find(a => a.key === area)?.name || area;
+  const facts = list => {
+    const S = list.filter(l => !l.uten_belop), by = {};
+    S.forEach(l => { const s = status(l); if (s !== 'reversert') by[s] = (by[s] || 0) + kept(l); });
+    return { total: sum(S, cut), back: sum(S, back), by, n: S.length };
+  };
+  const A = facts(mine), K = facts(all);
+  const reported = ['gjennomfort', 'i-arbeid', 'forsinket', 'ikke-gjennomfort'];
+  const part = (F, keys) => keys.filter(k => F.by[k]).map(k => `${mk(F.by[k])} mill. kr ${LABEL[k].toLowerCase()}`);
+  const silent = F => (F.by['ingen'] || 0) + (F.by['ikke-oppgitt'] || 0);
+  const line = F => `${mk(F.total)} mill. kr${F.back ? `, der kommunestyret tok ut ${mk(F.back)} mill. kr i samme vedtak` : ''}. Av resten er ${[...part(F, reported), `${mk(silent(F))} mill. kr uten status i rapportene`].join(', ')}`;
+  const rows = [...mine].sort((a, b) => cut(b) - cut(a)).map(l => `<tr><td>${esc(l.navn)}</td><td>${l.uten_belop ? 'uten beløp' : mk(cut(l))}</td><td>${esc(LABEL[status(l)])}</td></tr>`).join('');
+  return `<section aria-labelledby="h-sav" id="innsparinger">
+      <div class="section-head"><h2 id="h-sav">Innsparingene i budsjettet for ${y}</h2>
+        <p class="lead">Budsjettet kommunestyret vedtok for ${y}, hadde innsparinger i ${esc(name)} på ${line(A)}. For hele kommunen var innsparingene ${line(K)}.</p></div>
+      <div class="ptable"><table class="sak-table"><caption class="sr-only">Innsparingene i ${esc(name)} i budsjettet for ${y}</caption>
+        <thead><tr><th scope="col">Tiltak</th><th scope="col">Mill. kr i ${y}</th><th scope="col">Status i rapportene</th></tr></thead>
+        <tbody>${rows}</tbody></table></div>
+      <p class="caption">«Ingen status i rapportene» betyr at jeg ikke har funnet tiltaket omtalt i tertialrapportene eller årsrapporten, ikke at kuttet ikke ble gjort. «Uten beløp» er tiltak som står med 0 eller 1 000 kr i budsjettet. Beløpene er fra kommunens budsjett i Framsikt. Statusene, med side i rapportene, og alle tiltakene i kommunen står på <a href="tiltak?aar=${y}">Innsparinger</a>.</p>
+    </section>`;
 }
