@@ -730,3 +730,16 @@ dl.facts dd { margin: 0; }
 .pk-key.ut { background: var(--pk-ut); } .pk-key.inn { background: var(--pk-inn); }
 .pk-info { font-size: 0.9rem; color: var(--ink-2); min-height: 1.5em; }
 #pk-table .sum td { font-weight: 600; border-top: 2px solid var(--ink); }
+
+/* Small multiples: one bar chart per area on /okonomi */
+.multiples-head { margin: 28px 0 4px; font-size: 1.05rem; }
+.multiples { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin: 12px 0 10px; }
+.multiple { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2px; align-content: start; background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 10px 12px; color: inherit; text-decoration: none; }
+.multiple:hover { border-color: var(--accent); }
+.multiple:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.multiple .m-name { font-size: 0.85rem; line-height: 1.25; color: var(--ink); min-height: 2.5em; overflow-wrap: anywhere; }
+.multiple .m-chg { font: 600 1.1rem var(--font-display); }
+.multiple svg { display: block; width: 100%; height: auto; margin-top: 6px; }
+.multiple .m-sub { font-size: 0.78rem; color: var(--ink-2); }
+@media (max-width: 400px) { .multiples { grid-template-columns: 1fr 1fr; } }
+.fit-chart svg { min-width: 0; }
