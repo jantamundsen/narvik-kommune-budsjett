@@ -103,7 +103,7 @@ const dateText = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nb-NO', 
 
   main.innerHTML = `<header>
       <nav class="crumbs" aria-label="Brødsmuler"><a href="saker">Utvalgte saker</a><span aria-hidden="true">›</span><span aria-current="page">${esc(S.tittel)}</span></nav>
-      <div class="eyebrow">Utvalgt sak · sist kontrollert ${dateText(S.kontrollert)}</div>
+      <div class="eyebrow">Sist kontrollert ${dateText(S.kontrollert)}</div>
       <h1>${esc(S.tittel)}</h1>
       <p class="lead">${esc(S.ingress)}</p>
       ${S.mangler ? `<p class="status-note">${esc(S.mangler)}</p>` : ''}
@@ -187,7 +187,6 @@ async function institutionTables(sources) {
 
 function list(main, D) {
   main.innerHTML = `<header>
-      <div class="eyebrow">Utvalgte saker</div>
       <h1>Utvalgte saker</h1>
       <p class="lead">Faktaark om saker mange i Narvik snakker om. Hvert ark samler vedtak, datoer og tall fra kommunens egne dokumenter og andre offentlige kilder, med lenke til siden tallet står på. Noen ark har også utsagn og oppslag fra aviser og NRK, tydelig merket.</p>
     </header>
