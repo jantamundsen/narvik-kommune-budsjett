@@ -117,7 +117,7 @@ const dateText = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nb-NO', 
   const long = !!S.tabeller?.length;
   const parts = [[tab, 'budsjett', 'Budsjett og regnskap'], ...(S.tabeller || []).map(T => [tables, T.id, T.overskrift]),
     [savings, 'innsparinger', 'Innsparingene'], [inst, 'forskjell', 'Hvor forskjellen mot lignende kommuner ligger'],
-    [inst, 'institusjon', 'Sykehjem og institusjoner'], [missing, 'savner', 'Det som ikke er publisert'], [time, 'tidslinje', 'Tidslinje']];
+    [inst, 'institusjon', 'Sykehjem og institusjoner'], [inst, 'plasser-brukere', 'Plasser og beboere som ikke går opp'], [missing, 'savner', 'Det som ikke er publisert'], [time, 'tidslinje', 'Tidslinje']];
   const jump = long ? `<nav class="jump" aria-label="Innhold på siden"><span class="eyebrow">På siden</span><ul>${parts.filter(([html, id]) => html && html.includes(`id="${id}"`)).map(([, id, name]) => `<li><a href="#${id}">${esc(name)}</a></li>`).join('')}</ul></nav>` : '';
   main.innerHTML = `<header>
       <nav class="crumbs" aria-label="Brødsmuler"><a href="saker">Utvalgte saker</a><span aria-hidden="true">›</span><span aria-current="page">${esc(S.tittel)}</span></nav>
@@ -226,6 +226,39 @@ async function institutionTables(sources) {
       <div class="section-head"><h2 id="h-inst">Sykehjem og institusjoner i SSB-tallene</h2>
         <p class="lead">Tall fra SSBs KOSTRA-statistikk for Narvik og snittet i ${G}, kommunene SSB regner som sammenlignbare. KOSTRA deler tjenestene inn på en annen måte enn kommunalområdet i tabellen over (<a href="okonomi#inndeling">hvorfor tallene er ulike</a>). Tallene oppdateres når SSB publiserer nye. Flere sammenligninger står på <a href="utgifter/helse#institusjon">Helse og omsorg</a>.</p></div>
       ${html}
+    </section>${placesSection(E, G, ssbSrc, table)}`;
+}
+
+// «Plasser og beboere som ikke går opp»: institution places (11875) next to the people in an institution on
+// 31 December (12003), Narvik and the KOSTRA group, and the kommune's own count of days with patients waiting at the
+// hospital. Two registers that are not built to be compared, so the page says what the numbers cannot tell.
+function placesSection(E, G, ssbSrc, table) {
+  const pl = (E?.ssb || []).find(x => x.key === 'plasser'), U = E?.institusjon?.brukere;
+  if (!pl || !U) return '';
+  const ys = Object.keys(pl.values.narvik || {}).filter(y => U.values.narvik?.['F000-120']?.[y]);
+  if (!ys.length) return '';
+  const users = (r, y) => U.values[r]?.['F000-120']?.[y]?.antall;
+  const per100 = (r, y) => (users(r, y) && pl.values[r]?.[y] ? nb(users(r, y) / pl.values[r][y] * 100) : null);
+  const ol = Object.fromEntries((E.kommunens_overliggerdogn || []).filter(o => o.periode === 'hele året').map(o => [o.aar, o.dogn]));
+  const last = ys.at(-1);
+  return `<section aria-labelledby="h-plasser" id="plasser-brukere">
+      <div class="section-head"><h2 id="h-plasser">Plasser og beboere som ikke går opp</h2>
+        <p class="lead">Narvik har hatt færre beboere i institusjon enn plasser ved hvert årsskifte siden ${ys[0]}: ${nb(users('narvik', last))} beboere på ${nb(Math.round(pl.values.narvik[last]))} plasser 31. desember ${last}. I snitt i ${esc(G)} er det flere beboere enn plasser. Samtidig har kommunen betalt for hundrevis av døgn der utskrivningsklare pasienter ventet på sykehuset på et kommunalt tilbud. Tallene under viser dette side om side.</p></div>
+      ${table('', ys, [
+        { name: 'Plasser i institusjon, Narvik', cell: y => nb(pl.values.narvik[y], pl.values.narvik[y] % 1 ? 1 : 0) },
+        { name: 'Beboere 31. desember, Narvik', cell: y => nb(users('narvik', y)) },
+        { name: 'Beboere per 100 plasser, Narvik', sum: true, cell: y => per100('narvik', y) },
+        { name: `Beboere per 100 plasser, ${G}`, cell: y => per100('gruppe', y) },
+        { name: 'Døgn med utskrivningsklare pasienter på sykehuset, Narvik', cell: y => (ol[y] == null ? null : nb(ol[y])) },
+      ])}
+      <p class="caption">Plassene og beboerne kommer fra to ulike registreringer hos SSB. Plassene er alle plasser i institusjon ved utgangen av året, også for korttidsopphold. Beboerne er personer som hadde institusjonstjenester 31. desember. Beboere per 100 plasser er beregnet her. Døgnene med utskrivningsklare pasienter er kommunens egne tall fra årsrapportene (2022 s. 36, 2023 s. 14, 2024 s. 44, 2025 s. 45). · betyr at tallet ikke finnes. Kilde: ${ssbSrc(pl.table, pl.query, 'plasser i institusjon')} og ${ssbSrc(U.table, U.query, 'omsorgstjenester, brukere etter alder')}.</p>
+      <h3 class="sub-h">Det tallene ikke sier</h3>
+      <ul class="plain-list">
+        <li>Om plassene står tomme. En plass kan være registrert uten å være i bruk, for eksempel når det mangler bemanning eller en avdeling er under avvikling. Ankenes bo- og servicesenter var i drift fram til midten av februar 2026.</li>
+        <li>Hvilke typer plasser som er i bruk, og om de passer for pasientene som venter på sykehuset.</li>
+        <li>Hvor fullt hvert sykehjem er. SSBs nøkkeltall for belegg (tabell 12293) står med 0 for alle kommuner de siste årene, og kommunen publiserer ikke belegget per sykehjem.</li>
+      </ul>
+      <p class="caption">Ankenes: Tertialrapport 1/2026, s. 26. <a href="om#savner-sykehjemsplass">Tall som savnes</a></p>
     </section>`;
 }
 
