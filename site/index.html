@@ -24,7 +24,7 @@
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="stylesheet" href="style.css?v=2026-11-05-2">
+<link rel="stylesheet" href="style.css?v=2026-11-05-4">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebSite","name":"Åpne tall for Narvik","alternateName":"narviktall.no","url":"https://narviktall.no/","inLanguage":"nb","description":"Åpne tall om Narvik kommune: økonomi, budsjett, regnskap, befolkning, bolig, arbeid og næringsliv, med kilde for hvert tall.","creator":{"@type":"Person","name":"Jan Tore Amundsen","url":"https://janamundsen.dev"}}
 </script>
@@ -41,7 +41,7 @@
       <p class="lead">Her finner du regnskap og budsjett, befolkning, bolig, arbeid og næringsliv i Narvik kommune, sammenlignet med lignende kommuner. Hvert tall har lenke til kilden.</p>
     </div>
     <figure class="hero-fig" id="hero-fig" hidden>
-      <a href="befolkning#areas" aria-label="Se kartet over hvor folk bor på Befolkning-siden"><svg id="hero-map" role="img"></svg></a>
+      <a href="befolkning#dm" aria-label="Se kartet over hvor folk bor på Befolkning-siden"><svg id="hero-map" role="img"></svg></a>
       <figcaption class="caption" id="hero-caption"></figcaption>
     </figure>
   </header>
@@ -74,7 +74,7 @@
       <p class="lead">Kart og grafer fra sidene. Trykk på et bilde for å se det med tallene og kildene.</p>
     </div>
     <div class="gallery">
-      <a class="gal-card" href="arbeid#pendling">
+      <a class="gal-card" href="arbeid#pk">
         <picture><source srcset="img/galleri/pendlerkart-mork.jpg" media="(prefers-color-scheme: dark)"><img src="img/galleri/pendlerkart-lys.jpg" alt="" width="600" height="450" loading="lazy" decoding="async"></picture>
         <span class="gal-text"><b>Hvem pendler hvor</b><span>Hvor de som bor i Narvik jobber, og hvor de som jobber i Narvik bor.</span></span>
       </a>
@@ -82,7 +82,7 @@
         <picture><source srcset="img/galleri/ledighetskalender-mork.jpg" media="(prefers-color-scheme: dark)"><img src="img/galleri/ledighetskalender-lys.jpg" alt="" width="600" height="450" loading="lazy" decoding="async"></picture>
         <span class="gal-text"><b>Ledighetskalenderen</b><span>Helt ledige måned for måned siden 2020, i Narvik og andre steder.</span></span>
       </a>
-      <a class="gal-card" href="befolkning#trend">
+      <a class="gal-card" href="befolkning#ledger-title">
         <picture><source srcset="img/galleri/befolkningens-regnskap-mork.jpg" media="(prefers-color-scheme: dark)"><img src="img/galleri/befolkningens-regnskap-lys.jpg" alt="" width="600" height="450" loading="lazy" decoding="async"></picture>
         <span class="gal-text"><b>Befolkningens regnskap</b><span>Fødte, døde, innflyttede og utflyttede, år for år.</span></span>
       </a>
@@ -111,17 +111,13 @@
     <p class="caption" id="out-src"></p>
   </section>
 
-  <section aria-labelledby="h-areas">
-    <div class="section-head"><h2 id="h-areas">Alle områdene</h2></div>
-    <div class="front-areas">
-      <div class="front-area"><a href="okonomi"><b>Økonomi</b></a><span>Hva kommunen bruker penger på, hvor pengene kommer fra, gjeld og investeringer.</span><small><a href="okonomi">Utgifter</a><a href="inntekter">Inntekter</a><a href="gjeld">Gjeld</a><a href="budsjett">Budsjett</a><a href="tiltak">Innsparinger</a><a href="lopende">Året så langt</a></small></div>
-      <a class="front-area" href="befolkning"><b>Befolkning</b><span>Hvor mange som bor i Narvik, alder, delområder og SSBs framskriving til 2050.</span></a>
-      <a class="front-area" href="bolig"><b>Bolig</b><span>Boligtyper, nye boliger, priser, eie og leie, og kommunale boliger.</span></a>
-      <a class="front-area" href="arbeid"><b>Arbeid</b><span>Ledighet og ledige stillinger fra Nav, hvem som har arbeid, og pendling.</span></a>
-      <a class="front-area" href="naering"><b>Næringsliv</b><span>Bedrifter, nye foretak, konkurser og de største arbeidsplassene.</span></a>
-      <a class="front-area" href="saker"><b>Utvalgte saker</b><span>Faktaark om saker mange snakker om.</span></a>
-      <a class="front-area" href="andre-tall"><b>Andre tall</b><span>Tall om kommunen som ikke står andre steder, fra kommunens dokumenter, foretak, tilsyn og statistikkbanker.</span></a>
+  <section aria-labelledby="h-new" id="new-section" hidden>
+    <div class="section-head">
+      <h2 id="h-new">Nytt på siden</h2>
+      <p class="lead">Nye sider, kart, grafer og tall fra kommunens dokumenter. Tallene fra SSB, Nav og Brønnøysundregistrene oppdateres hver uke og står ikke her.</p>
     </div>
+    <ul class="news" id="news"></ul>
+    <details class="news-more" id="news-more" hidden><summary>Vis alt som er nytt</summary><ul class="news" id="news-rest"></ul></details>
   </section>
 
   <footer>
@@ -129,7 +125,7 @@
     <span>Et åpent hobbyprosjekt laget av <a href="https://janamundsen.dev" target="_blank" rel="noopener">Jan Tore Amundsen</a>, ikke av Narvik kommune. <a href="https://github.com/jtkarlsen/narvik-kommune-budsjett" target="_blank" rel="noopener">Kildekode</a>.</span>
   </footer>
 </div>
-<script src="common.js?v=2026-11-05-2"></script>
-<script src="forside.js?v=2026-11-05-2"></script>
+<script src="common.js?v=2026-11-05-4"></script>
+<script src="forside.js?v=2026-11-05-4"></script>
 </body>
 </html>

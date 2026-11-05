@@ -226,3 +226,25 @@ function setCanonical(path, params = {}) {
     node.setAttribute(sel.startsWith('link') ? 'href' : 'content', url);
   }
 }
+
+// Links to a part of a page (arbeid#pendling) land there even when charts above it are drawn after the page has
+// loaded and push it down. While the page grows during the first seconds, the part is scrolled back into view,
+// unless the reader has started to scroll or press keys.
+(() => {
+  const id = decodeURIComponent(location.hash.slice(1));
+  if (!id || typeof ResizeObserver === 'undefined') return;
+  let done = false;
+  const stop = () => { done = true; };
+  ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(e => addEventListener(e, stop, { once: true, passive: true }));
+  let last = null;
+  const go = () => {
+    const el = document.getElementById(id);
+    if (done || !el || el.closest('[hidden]')) return;
+    const top = el.getBoundingClientRect().top;
+    if (last === null || Math.abs(top) > 2) el.scrollIntoView();
+    last = top;
+  };
+  const ro = new ResizeObserver(go);
+  ro.observe(document.body);
+  setTimeout(() => { ro.disconnect(); stop(); }, 5000);
+})();

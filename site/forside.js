@@ -1,6 +1,6 @@
 // index.html: the front page. A small map of where people live with the population, key numbers from each area with a
 // small line over the years, three «Gjett tallet» questions, the fact sheets in «Utvalgte saker», and a chosen set of the numbers where Narvik stands
-// out from the average it is compared with, drawn as bars from the average. Everything is read from the same
+// out from the average it is compared with, drawn as bars from the average, and «Nytt på siden». Everything is read from the same
 // data files as the area pages, so the front page changes when they do. Helpers are in common.js.
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 const load = f => fetch('data/' + f, { cache: 'no-cache' }).then(r => (r.ok ? r.json() : null)).catch(() => null);
@@ -8,13 +8,14 @@ const MONTHS = ['januar', 'februar', 'mars', 'april', 'mai', 'juni', 'juli', 'au
 const dateText = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nb-NO', { day: 'numeric', month: 'long', year: 'numeric' });
 
 (async () => {
-  const [N, F, B, H, A, V, K, S] = await Promise.all(['narvik.json', 'finans.json', 'befolkning.json', 'bolig.json',
-    'arbeid.json', 'naering.json', 'saker.json', 'sammenhenger.json'].map(load));
+  const [N, F, B, H, A, V, K, S, U] = await Promise.all(['narvik.json', 'finans.json', 'befolkning.json', 'bolig.json',
+    'arbeid.json', 'naering.json', 'saker.json', 'sammenhenger.json', 'nytt.json'].map(load));
   hero(B);
   keyNumbers(N, F, B, H, A, V);
   quiz(N, B, A);
   cases(K);
   standOut(S);
+  news(U);
   const dates = [N, F, B, H, A, V].filter(Boolean).map(d => d.generated.slice(0, 10)).sort();
   if (dates.length) document.getElementById('generated').textContent = dateText(dates.at(-1));
   heroMap(B);
@@ -175,7 +176,7 @@ function quiz(N, B, A) {
     Q.push({ q: 'Hvor mange som bor i Narvik, har arbeidet sitt i en annen kommune?', o: ['Rundt 300', 'Rundt 1 200', 'Rundt 3 000'],
       r: nearest(out, [300, 1200, 3000]),
       a: `<b>${nb(out)} personer</b> i ${y}, mot ${nb(inn)} som bor i en annen kommune og jobber i Narvik.${list}`,
-      src: `SSB, ${link(A.sources['03321'].url, 'tabell 03321')}`, href: 'arbeid#pendling', go: 'Se pendlerkartet' });
+      src: `SSB, ${link(A.sources['03321'].url, 'tabell 03321')}`, href: 'arbeid#pk', go: 'Se pendlerkartet' });
   }
   if (B) {
     const ys = Object.keys(B.change).filter(y => B.change[y].born != null).sort(), y = ys.at(-1), c = B.change[y];
@@ -185,7 +186,7 @@ function quiz(N, B, A) {
       : ` Folketallet endret seg med ${c.growth > 0 ? '+' : c.growth < 0 ? '−' : ''}${nb(Math.abs(c.growth))}.`;
     Q.push({ q: `Ble det født flere enn det døde i Narvik i ${y}?`, o: ['Ja, flere ble født', 'Omtrent like mange', 'Nei, flere døde'], r,
       a: `<b>${nb(c.born)} født og ${nb(c.died)} døde.</b>${why}`,
-      src: `SSB, ${link(B.sources['06913'].url, 'tabell 06913')}`, href: 'befolkning#trend', go: 'Se befolkningens regnskap' });
+      src: `SSB, ${link(B.sources['06913'].url, 'tabell 06913')}`, href: 'befolkning#ledger-title', go: 'Se befolkningens regnskap' });
   }
   if (N) {
     const y = N.years.at(-1), tot = N.total_1000kr[y], cat = k => N.categories.find(c => c.key === k)?.narvik_1000kr[y];
@@ -216,6 +217,21 @@ function quiz(N, B, A) {
     card.querySelector('.quiz-ans').hidden = false;
   });
   document.getElementById('quiz-section').hidden = false;
+}
+
+// «Nytt på siden»: the newest five lines from config/nytt.json (scripts/build_nytt.py), the rest behind «Vis alt».
+function news(U) {
+  if (!U?.nytt?.length) return;
+  const short = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nb-NO', { day: 'numeric', month: 'short', year: 'numeric' });
+  const li = n => `<li><a href="${esc(n.lenke)}"><time datetime="${esc(n.dato)}">${short(n.dato)}</time>
+    <span><b>${esc(n.type)}:</b> ${esc(n.tekst)}</span></a></li>`;
+  const SHOW = 5;
+  document.getElementById('news').innerHTML = U.nytt.slice(0, SHOW).map(li).join('');
+  if (U.nytt.length > SHOW) {
+    document.getElementById('news-rest').innerHTML = U.nytt.slice(SHOW).map(li).join('');
+    document.getElementById('news-more').hidden = false;
+  }
+  document.getElementById('new-section').hidden = false;
 }
 
 // Every fact sheet, in the order of config/saker.json, with its first key number. The sources are on the sheet.
