@@ -176,7 +176,7 @@ function quiz(N, B, A) {
     Q.push({ q: 'Hvor mange som bor i Narvik, har arbeidet sitt i en annen kommune?', o: ['Rundt 300', 'Rundt 1 200', 'Rundt 3 000'],
       r: nearest(out, [300, 1200, 3000]),
       a: `<b>${nb(out)} personer</b> i ${y}, mot ${nb(inn)} som bor i en annen kommune og jobber i Narvik.${list}`,
-      src: `SSB, ${link(A.sources['03321'].url, 'tabell 03321')}`, href: 'arbeid#pendling', go: 'Se pendlerkartet' });
+      src: `SSB, ${link(A.sources['03321'].url, 'tabell 03321')}`, href: 'arbeid#pk', go: 'Se pendlerkartet' });
   }
   if (B) {
     const ys = Object.keys(B.change).filter(y => B.change[y].born != null).sort(), y = ys.at(-1), c = B.change[y];
@@ -186,7 +186,7 @@ function quiz(N, B, A) {
       : ` Folketallet endret seg med ${c.growth > 0 ? '+' : c.growth < 0 ? '−' : ''}${nb(Math.abs(c.growth))}.`;
     Q.push({ q: `Ble det født flere enn det døde i Narvik i ${y}?`, o: ['Ja, flere ble født', 'Omtrent like mange', 'Nei, flere døde'], r,
       a: `<b>${nb(c.born)} født og ${nb(c.died)} døde.</b>${why}`,
-      src: `SSB, ${link(B.sources['06913'].url, 'tabell 06913')}`, href: 'befolkning#trend', go: 'Se befolkningens regnskap' });
+      src: `SSB, ${link(B.sources['06913'].url, 'tabell 06913')}`, href: 'befolkning#ledger-title', go: 'Se befolkningens regnskap' });
   }
   if (N) {
     const y = N.years.at(-1), tot = N.total_1000kr[y], cat = k => N.categories.find(c => c.key === k)?.narvik_1000kr[y];

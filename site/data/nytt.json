@@ -4,13 +4,13 @@
    "dato": "2026-11-05",
    "type": "Nytt kart",
    "tekst": "Hvor i kommunen folk bor, med én prikk der noen bor",
-   "lenke": "befolkning#areas"
+   "lenke": "befolkning#dm"
   },
   {
    "dato": "2026-11-05",
    "type": "Nytt kart",
    "tekst": "Hvem som pendler inn og ut av Narvik, og hvor",
-   "lenke": "arbeid#pendling"
+   "lenke": "arbeid#pk"
   },
   {
    "dato": "2026-11-05",
@@ -22,7 +22,7 @@
    "dato": "2026-11-05",
    "type": "Ny graf",
    "tekst": "Befolkningens regnskap: fødte, døde og flytting år for år",
-   "lenke": "befolkning#trend"
+   "lenke": "befolkning#ledger-title"
   },
   {
    "dato": "2026-11-05",
