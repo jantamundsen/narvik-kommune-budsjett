@@ -48,11 +48,13 @@ async function start() {
   ].map(([label, big, sub]) => `<div class="stat"><span class="sub">${label}</span><span class="big num">${big}</span><span class="sub">${sub}</span></div>`).join('');
 
   drawUnemployment(last);
+  drawCalendar('narvik');
   drawVacancies();
   drawEmployment(y);
   drawStatus();
   drawIndustry();
   drawCommuting();
+  drawCommuteMap();
 }
 
 // New vacancies in the twelve months up to m, and in the twelve before.
@@ -259,6 +261,170 @@ function drawCommuting() {
     { label: 'Jobber der', get: k => num(C[k]?.[y]?.Arbeidssted) },
   ], KEYS.filter(k => k !== 'norge'));
   document.getElementById('comm-cmp-caption').innerHTML = `Sysselsatte 15–74 år, november ${y}. For Nordland er det pendling inn og ut av fylket. Andelen er regnet ut her. ${ssb('11616', 'SSB tabell 11616')}.`;
+}
+
+// Unemployment as a calendar: one row per year (oldest on top, as calendars read; Jan 2026-11-05), one column per month, darker cell for a higher
+// per cent. The steps are the same for every region, so a colour means the same per cent whichever region is shown.
+const CAL_STEPS = [1.3, 1.5, 2, 3, 5];
+const CAL_LABELS = ['under 1,3 %', '1,3–1,4 %', '1,5–1,9 %', '2,0–2,9 %', '3,0–4,9 %', '5,0 % og over'];
+const calStep = v => CAL_STEPS.filter(t => v >= t).length;
+function drawCalendar(key) {
+  const L = A.nav.ledige[key] || {}, ms = Object.keys(L), last = ms.at(-1);
+  const years = [...new Set(ms.map(m => m.slice(0, 4)))];
+  const name = region(key).name;
+  document.getElementById('cal-h').textContent = `Helt ledige i ${name} måned for måned, prosent av arbeidsstyrken`;
+  const pick = document.getElementById('cal-pick');
+  pick.innerHTML = KEYS.filter(k => A.nav.ledige[k]).map(k => `<button type="button" data-k="${k}" aria-pressed="${k === key}">${region(k).name}</button>`).join('');
+  pick.querySelectorAll('button').forEach(b => b.addEventListener('click', () => drawCalendar(b.dataset.k)));
+  const cell = m => {
+    const x = L[m];
+    if (x?.pct == null) return `<td class="none"><span class="sr-only">ikke kommet</span></td>`;
+    return `<td class="c${calStep(x.pct)}" title="${month(m)}: ${pc(x.pct)}, ${nb(x.n)} personer">${nb(x.pct, 1)}</td>`;
+  };
+  document.getElementById('cal').innerHTML = `<caption class="sr-only">Helt ledige i ${name}, prosent av arbeidsstyrken, per måned og år</caption>`
+    + `<thead><tr><th scope="col"><span class="sr-only">År</span></th>${MONTHS.map(m => `<th scope="col"><abbr title="${m}">${m.slice(0, 3)}</abbr></th>`).join('')}</tr></thead>`
+    + `<tbody>${years.map(y => `<tr><th scope="row">${y}</th>${MONTHS.map((_, i) => cell(`${y}-${String(i + 1).padStart(2, '0')}`)).join('')}</tr>`).join('')}</tbody>`;
+  document.getElementById('cal-key').innerHTML = CAL_LABELS.map((t, i) => `<li><i class="c${i}"></i>${t}</li>`).join('');
+  document.getElementById('cal-caption').innerHTML = `Hver rute er én måned, med prosenten helt ledige ved utgangen av måneden. Jo mørkere rute, jo høyere prosent. Fargetrinnene er de samme for alle stedene du kan velge. Hold over en rute for å se antall personer. Tomme ruter er måneder Nav ikke har publisert ennå. Kilde: Nav, tabell HL060, ${month(ms[0])} til ${month(last)}, ${nav('HL060', last.slice(0, 4), 'siste fil')}.`;
+}
+
+// The commuting map: an arc between Narvik and every kommune on the map, as wide as the number of people, with
+// the commuters who live in Narvik in blue on one side and those who work in Narvik in orange on the other. The
+// largest places outside the map are named in a corner, «Lenger sør» or «Lenger nord». The base map is
+// site/data/kart.json (scripts/build_kart.py, Kartverket N1000). If it is missing, the bar lists are shown instead.
+async function drawCommuteMap() {
+  let K;
+  try {
+    const res = await fetch('data/kart.json');
+    if (!res.ok) return;
+    K = await res.json();
+  } catch (e) { return; }
+  const svg = document.getElementById('pk-map'), info = document.getElementById('pk-info');
+  const NS = 'http://www.w3.org/2000/svg', W = K.width, H = K.height, LABEL_MIN = 10, FAR_TOP = { sor: 6, nord: 3 };
+  const s = (tag, attrs, parent, text) => {
+    const n = document.createElementNS(NS, tag);
+    for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v);
+    if (text !== undefined) n.textContent = text;
+    if (parent) parent.appendChild(n);
+    return n;
+  };
+  const byCode = Object.fromEntries(K.kommuner.map(k => [k.code, k]));
+  const onMap = k => k && k.x >= 0 && k.x <= W && k.y >= 0 && k.y <= H;
+  const me = byCode['1806'], y = A.flows.year, C = A.commuting.narvik[y];
+  const short = name => name.split(' - ')[0];
+  const DIR = {
+    ut: { total: C.Utpendlere, verb: 'bor i Narvik og jobber i', head: 'bor i Narvik og jobber i en annen kommune' },
+    inn: { total: C.Innpendlere, verb: 'jobber i Narvik og bor i', head: 'jobber i Narvik og bor i en annen kommune' },
+  };
+  const says = (dir, name, n) => `${nb(n)} ${n === 1 ? 'person' : 'personer'} ${DIR[dir].verb} ${name}`;
+  // One scale for both directions, so the arcs can be compared.
+  const max = Math.max(...A.flows.ut.map(f => f.n), ...A.flows.inn.map(f => f.n));
+  const width = n => Math.max(1, n / max * 14);
+  // Each direction's arcs (the kommuner on the map) and the places outside it, south or north of Narvik.
+  const arcsFor = dir => {
+    const arcs = [], far = [];
+    A.flows[dir].forEach(f => {
+      const k = byCode[f.code];
+      if (onMap(k)) arcs.push({ dir, code: f.code, name: k.name, n: f.n, x: k.x, y: k.y });
+      else far.push({ dir, code: f.code, name: K.far[f.code]?.[2] || short(f.name), n: f.n, side: (K.far[f.code]?.[1] ?? H) < me.y ? 'nord' : 'sor' });
+    });
+    return { arcs, far, farSum: far.reduce((a, f) => a + f.n, 0) };
+  };
+  const data = { ut: arcsFor('ut'), inn: arcsFor('inn') };
+
+  document.getElementById('pk').hidden = false;
+  document.getElementById('comm-bars').hidden = true;
+  document.getElementById('comm-caption').hidden = true;
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  document.getElementById('pk-caption').innerHTML = `Sysselsatte 15–74 år etter bostedskommune og arbeidskommune, november ${y}. Streken går til det største tettstedet i kommunen, men tallet gjelder hele kommunen. Noen pendler langt og jobber bare deler av tiden der, for eksempel i turnus. ${ssb('03321', 'Se tallene hos SSB')} (tabell 03321). Kart: <a href="${K.source.url}" target="_blank" rel="noopener">${K.source.name}</a>.`;
+
+  // The full table: every place, both directions.
+  const all = {};
+  ['ut', 'inn'].forEach(d => A.flows[d].forEach(f => { (all[f.code] ||= { name: f.name, ut: 0, inn: 0 })[d] = f.n; }));
+  const rows = Object.values(all).sort((a, b) => b.ut + b.inn - a.ut - a.inn || a.name.localeCompare(b.name, 'nb'));
+  document.getElementById('pk-table').innerHTML = `<thead><tr><th>Kommune eller sted</th><th>Bor i Narvik, jobber der</th><th>Jobber i Narvik, bor der</th></tr></thead><tbody>${rows.map(r => `<tr><td>${r.name}</td><td>${r.ut ? nb(r.ut) : '–'}</td><td>${r.inn ? nb(r.inn) : '–'}</td></tr>`).join('')}<tr class="sum"><td>Alle</td><td>${nb(C.Utpendlere)}</td><td>${nb(C.Innpendlere)}</td></tr></tbody>`;
+
+  function draw(mode) {
+    const dirs = mode === 'begge' ? ['ut', 'inn'] : [mode];
+    document.getElementById('pk-h').textContent = mode === 'begge' ? `Pendling til og fra Narvik, ${y}` : `${nb(DIR[mode].total)} ${DIR[mode].head}, ${y}`;
+    document.getElementById('pk-legend').innerHTML = dirs.map(d => {
+      return `<p><i class="pk-key ${d}"></i><span><b>${nb(DIR[d].total)}</b> ${DIR[d].head}. ${nb(data[d].farSum)} av dem ${d === 'ut' ? 'jobber' : 'bor'} utenfor kartet.</span></p>`;
+    }).join('');
+    const intro = 'Pek på eller trykk på en strek for å se tallet.';
+    info.textContent = intro;
+    svg.setAttribute('aria-label', `Kart over pendling ${mode === 'begge' ? 'til og fra' : mode === 'ut' ? 'fra' : 'til'} Narvik, ${y}. ` +
+      dirs.map(d => `${DIR[d].head}: ${data[d].arcs.slice(0, 6).map(a => `${a.name} ${a.n}`).join(', ')}`).join('. ') + '.');
+    svg.innerHTML = '';
+    s('rect', { class: 'pk-abroad', x: 0, y: 0, width: W, height: H }, svg);
+    const land = s('g', { class: 'pk-land' }, svg);
+    K.kommuner.forEach(k => s('path', { d: k.d }, land));
+    s('path', { class: 'pk-sea', d: K.sea }, svg);
+    s('text', { class: 'pk-country', x: W - 14, y: me.y - 20, 'text-anchor': 'end' }, svg, 'Sverige');
+    const arcG = s('g', { class: 'pk-arcs' }, svg), dots = s('g', { class: 'pk-dots' }, svg), labels = s('g', { class: 'pk-labels' }, svg);
+    let active = null;
+    const focus = (a, g) => {
+      if (active) active.classList.remove('on');
+      active = g;
+      if (g) g.classList.add('on');
+      info.textContent = a ? says(a.dir, a.name, a.n) + '.' : intro;
+    };
+    // Smallest first, so the wide arcs lie on top. Out-commuters bend to one side, in-commuters to the other.
+    dirs.flatMap(d => data[d].arcs).sort((a, b) => a.n - b.n).forEach(a => {
+      const dx = a.x - me.x, dy = a.y - me.y, len = Math.hypot(dx, dy), side = a.dir === 'ut' ? 1 : -1;
+      const bend = side * Math.min(0.22 * len, 60);
+      const cx = (me.x + a.x) / 2 + dy / len * bend, cy = (me.y + a.y) / 2 - dx / len * bend;
+      const d = `M${me.x} ${me.y}Q${cx} ${cy} ${a.x} ${a.y}`;
+      const g = s('g', { class: `pk-arc ${a.dir}`, tabindex: 0, role: 'img', 'aria-label': says(a.dir, a.name, a.n) }, arcG);
+      s('title', {}, g, says(a.dir, a.name, a.n));
+      s('path', { class: 'hit', d }, g);
+      s('path', { class: 'line', d, 'stroke-width': width(a.n) }, g);
+      ['pointerenter', 'focus', 'click'].forEach(e => g.addEventListener(e, () => focus(a, g)));
+      g.addEventListener('pointerleave', () => focus(null, null));
+    });
+    s('circle', { class: 'pk-home', cx: me.x, cy: me.y, r: 7 }, dots);
+    const home = s('text', { class: 'pk-home-label', x: me.x + 10, y: me.y + 20 }, labels, 'Narvik');
+
+    const label = (name, n, x, yy, anchor, cls = '') => {
+      const t = s('text', { x, y: yy, 'text-anchor': anchor, class: cls }, labels, name);
+      dirs.forEach(d => { if (n[d]) s('tspan', { class: `n ${d}` }, t, ` ${nb(n[d])}`); });
+      return t;
+    };
+    // The places outside the map, largest first: south in the bottom right corner, north in the top left.
+    const placed = [home.getBBox()];
+    ['sor', 'nord'].forEach(side => {
+      const by = {};
+      dirs.forEach(d => data[d].far.filter(f => f.side === side).forEach(f => { (by[f.code] ||= { name: f.name, n: {} }).n[d] = f.n; }));
+      const list = Object.values(by).sort((a, b) => Math.max(...Object.values(b.n)) - Math.max(...Object.values(a.n)));
+      if (!list.length) return;
+      const top = list.slice(0, FAR_TOP[side]), rest = list.slice(FAR_TOP[side]), restN = {};
+      rest.forEach(p => dirs.forEach(d => { if (p.n[d]) restN[d] = (restN[d] || 0) + p.n[d]; }));
+      const lines = [[side === 'sor' ? '↓ Lenger sør' : '↑ Lenger nord', {}, 'pk-far-h'], ...top.map(p => [p.name, p.n, '']),
+        ...(rest.length ? [[`${rest.length} andre steder`, restN, 'pk-far-rest']] : [])];
+      const step = parseFloat(getComputedStyle(labels).fontSize || 13) * 1.35 || 17;
+      const x = side === 'sor' ? W - 10 : 10, anchor = side === 'sor' ? 'end' : 'start';
+      const y0 = side === 'sor' ? H - 10 - (lines.length - 1) * step : 22;
+      lines.forEach(([name, n, cls], i) => placed.push(label(name, n, x, y0 + i * step, anchor, cls).getBBox()));
+    });
+
+    // The kommuner on the map, one label with the number in each direction, biggest first, on the side away from
+    // Narvik; a label that would overlap one already placed is moved or left out (the number is still on the arc).
+    const places = {};
+    dirs.forEach(d => data[d].arcs.forEach(a => { (places[a.code] ||= { name: a.name, x: a.x, y: a.y, n: {} }).n[d] = a.n; }));
+    dots.append(...Object.values(places).map(p => s('circle', { cx: p.x, cy: p.y, r: 3 })));
+    const free = b => b.x >= 2 && b.x + b.width <= W - 2 && b.y >= 2 && b.y + b.height <= H - 2 &&
+      placed.every(p => b.x > p.x + p.width || b.x + b.width < p.x || b.y > p.y + p.height || b.y + b.height < p.y);
+    Object.values(places).filter(p => Math.max(...Object.values(p.n)) >= LABEL_MIN)
+      .sort((a, b) => Math.max(...Object.values(b.n)) - Math.max(...Object.values(a.n)))
+      .forEach(p => {
+        const first = p.x >= me.x - 20;
+        for (const [x, yy, anchor] of [[p.x + (first ? 7 : -7), p.y + 4, first ? 'start' : 'end'], [p.x + (first ? -7 : 7), p.y + 4, first ? 'end' : 'start'], [p.x, p.y - 8, 'middle'], [p.x, p.y + 17, 'middle']]) {
+          const t = label(p.name, p.n, x, yy, anchor), b = t.getBBox();
+          if (free(b)) { placed.push(b); return; }
+          t.remove();
+        }
+      });
+  }
+  draw('begge');
 }
 
 start();
