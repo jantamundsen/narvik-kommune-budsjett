@@ -281,9 +281,13 @@ a.cmp-row .c-name::after { content: " \203A"; color: var(--accent); font-weight:
 .db-me { width: 13px; height: 13px; background: var(--accent); box-shadow: 0 0 0 2px var(--surface); }
 .cmp-scale button { min-height: 34px; font-size: 0.8rem; }
 .db-none { position: absolute; inset: 0; font-size: 0.75rem; color: var(--ink-2); line-height: 18px; }
+.db-tick.first { transform: none; }
+.db-tick.last { transform: translateX(-100%); }
 .db-tick.zero { font-weight: 700; color: var(--ink); }
 .cmp-axis { border-bottom: 0; padding-top: 2px; padding-bottom: 6px; }
 .cmp-axis .c-track { height: 16px; border-top: 1px solid var(--rule); }
+.c-track::before { content: ""; position: absolute; top: -10px; bottom: -10px; left: var(--zero, 50%); width: 1px; background: var(--rule); }
+.cmp-axis .c-track::before, .cmp-row.total .c-track::before, .c-track:has(.db-none)::before { display: none; }
 .db-tick { position: absolute; top: 2px; transform: translateX(-50%); font-size: 0.72rem; color: var(--ink-2); white-space: nowrap; }
 @media (max-width: 680px) {
   .cmp-head { display: none; }
