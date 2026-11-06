@@ -61,9 +61,9 @@ async function heroMap(B) {
 
   // Sizes in pixels are turned into map units from the drawn width, so dots and labels keep their size on a phone.
   const names = Object.fromEntries(B.areas.rows.map(r => [r.code, r.name]));
-  const LABEL = { '180616': 'Kjøpsvik', '180612': 'Ankenes' };
+  const LABEL = { '180616': 'Kjøpsvik', '180612': 'Ankenes', '180613': 'Håkvik' };
   const TOWN = new Set(['180603', '180604', '180605', '180606', '180607', '180608', '180609', '180610']);
-  const PLACES = [['Narvik by', c => TOWN.has(c)], ...['180612', '180601', '180615', '180616', '180614', '180611']
+  const PLACES = [['Narvik by', c => TOWN.has(c)], ...['180612', '180601', '180615', '180616', '180614', '180611', '180613']
     .map(code => [LABEL[code] || names[code] || code, c => c === code])];
   const centre = test => {
     let x = 0, y = 0, n = 0;
@@ -89,8 +89,9 @@ async function heroMap(B) {
       const p = centre(test);
       if (!p) return;
       // Most names stand above their dots. Ankenes would then stand on Narvik by, so it stands on its dots, a little
-      // to the left. Håkvik, just south-west of Ankenes, has no name here: there is no room for both.
-      const [x, y, anchor] = name === 'Ankenes' ? [p[0] - px(w < 420 ? 24 : 18), -p[1] + fs * 0.35, 'middle'] : [p[0], -p[1] - fs * 0.9, 'middle'];
+      // to the left, and Håkvik, just south-west of Ankenes, stands under its dots and a little to the right.
+      const [x, y, anchor] = name === 'Ankenes' ? [p[0] - px(w < 420 ? 24 : 18), -p[1] + fs * 0.35, 'middle']
+        : name === 'Håkvik' ? [p[0] + px(8), -p[1] + px(8) + fs * 0.8, 'middle'] : [p[0], -p[1] - fs * 0.9, 'middle'];
       const t = s('text', { x, y, 'text-anchor': anchor }, labels, name);
       const b = t.getBBox();
       if (placed.some(o => b.x < o.x + o.width && o.x < b.x + b.width && b.y < o.y + o.height && o.y < b.y + b.height)) t.remove();
