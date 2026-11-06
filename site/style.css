@@ -743,7 +743,6 @@ dl.facts dd { margin: 0; }
 .dm-road { fill: none; stroke: var(--dm-road); stroke-linecap: round; stroke-linejoin: round; }
 .dm-dots circle { fill: var(--accent); fill-opacity: 0.72; stroke: var(--surface); }
 .dm-mark { fill: var(--ink); stroke: var(--surface); pointer-events: none; }
-.dm-leader { fill: none; stroke: var(--ink-2); stroke-linecap: round; }
 .dm-labels text { fill: var(--ink); paint-order: stroke; stroke: var(--dm-land); stroke-linejoin: round; pointer-events: none; font-weight: 600; }
 .dm-box { border-radius: 8px; overflow: hidden; }
 #dm-map { cursor: default; user-select: none; -webkit-user-select: none; }
