@@ -88,7 +88,11 @@ async function heroMap(B) {
     PLACES.forEach(([name, test]) => {
       const p = centre(test);
       if (!p) return;
-      const t = s('text', { x: p[0], y: -p[1] - fs * 0.9, 'text-anchor': 'middle' }, labels, name);
+      // Most names stand above their dots. Ankenes would then stand on Narvik by, so it stands on its dots, a little
+      // to the left, and Håkvik, just south-west of Ankenes, stands under its dots and a little to the right.
+      const [x, y, anchor] = name === 'Ankenes' ? [p[0] - px(w < 420 ? 24 : 18), -p[1] + fs * 0.35, 'middle']
+        : name === 'Håkvik' ? [p[0] + px(8), -p[1] + px(8) + fs * 0.8, 'middle'] : [p[0], -p[1] - fs * 0.9, 'middle'];
+      const t = s('text', { x, y, 'text-anchor': anchor }, labels, name);
       const b = t.getBBox();
       if (placed.some(o => b.x < o.x + o.width && o.x < b.x + b.width && b.y < o.y + o.height && o.y < b.y + b.height)) t.remove();
       else placed.push(b);
