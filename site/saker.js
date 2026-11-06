@@ -91,12 +91,12 @@ const dateText = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nb-NO', 
   const tables = (S.tabeller || []).map(T => sakTable(T, T.id, T.overskrift, T.lead)).join('');
   const savings = S.tiltak_omrade ? await savingsSection(S.tiltak_omrade) : '';
   const inst = S.ssb_institusjon ? await institutionTables(sources) : '';
-  // Numbers that are not published, each with what exists instead and a link to «Tall som savnes».
+  // Numbers that are not published, each with what exists instead and a link to «Tall som ikke er publisert».
   (S.savner || []).forEach(m => m.kilde && [].concat(m.kilde).forEach(k => sources.set(k.id, D.kilder[k.id])));
   const missing = S.savner?.length ? `<section aria-labelledby="h-savner" id="savner">
       <div class="section-head"><h2 id="h-savner">Det som ikke er publisert</h2>
         <p class="lead">Tall som ville vist mer om hvor kostnadene oppstår, men som jeg ikke har funnet i offentlige dokumenter. Hvert punkt sier hva som finnes i stedet.</p></div>
-      <ul class="fact-list">${S.savner.map(m => `<li class="fact"><p><strong>${esc(m.tittel)}.</strong> ${esc(m.tekst)}</p><p class="caption fact-src">${m.kilde ? `Kilde: ${srcGroup([].concat(m.kilde))} · ` : ''}${m.se ? `<a href="${esc(m.se.href)}">${esc(m.se.navn)}</a> · ` : ''}<a href="${esc(m.href)}">Tall som savnes</a></p></li>`).join('')}</ul>
+      <ul class="fact-list">${S.savner.map(m => `<li class="fact"><p><strong>${esc(m.tittel)}.</strong> ${esc(m.tekst)}</p><p class="caption fact-src">${m.kilde ? `Kilde: ${srcGroup([].concat(m.kilde))} · ` : ''}${m.se ? `<a href="${esc(m.se.href)}">${esc(m.se.navn)}</a> · ` : ''}<a href="${esc(m.href)}">Tall som ikke er publisert</a></p></li>`).join('')}</ul>
     </section>` : '';
   const role = `<section aria-labelledby="h-role" id="rolle">
       <div class="section-head"><h2 id="h-role">Kommunens rolle og penger</h2></div>
@@ -132,7 +132,8 @@ const dateText = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nb-NO', 
       <div class="section-head"><h2 id="h-links">Mer på siden</h2></div>
       <div class="link-cards">${S.lenker.map(l => `<article class="link-card"><h3>${esc(l.navn)}</h3><p>${esc(l.tekst)}</p><a class="cross-link" href="${esc(l.href)}">Gå til ${esc(l.navn.toLowerCase())} →</a></article>`).join('')}</div>
     </section>`;
-  const docList = list => `<ul class="doc-list">${list.map(s => `<li><a href="${esc(s.url || s.pdf)}" target="_blank" rel="noopener">${esc(s.full)}</a>${s.url && s.pdf ? ` · <a href="${esc(s.pdf)}" target="_blank" rel="noopener">PDF</a>` : ''}</li>`).join('')}</ul>`;
+  // A newspaper or NRK article is listed by outlet, date and a neutral subject («om»); the headline stays in the hover text.
+  const docList = list => `<ul class="doc-list">${list.map(s => `<li><a href="${esc(s.url || s.pdf)}" target="_blank" rel="noopener"${s.om ? ` title="${esc(s.full)}"` : ''}>${esc(s.om ? `${s.navn}, om ${s.om}` : s.full)}</a>${s.url && s.pdf ? ` · <a href="${esc(s.pdf)}" target="_blank" rel="noopener">PDF</a>` : ''}</li>`).join('')}</ul>`;
   const media = [...sources.values()].filter(s => s.type === 'media');
   const docs = `<section aria-labelledby="h-docs">
       <div class="section-head"><h2 id="h-docs">Dokumentene</h2>
@@ -315,7 +316,7 @@ function placesSection(E, G, ssbSrc, table) {
         <li>Hvilke typer plasser som er i bruk, og om de passer for pasientene som venter på sykehuset.</li>
         <li>Hvor fullt hvert sykehjem er. SSBs nøkkeltall for belegg (tabell 12293) står med 0 for alle kommuner de siste årene, og kommunen publiserer ikke belegget per sykehjem.</li>
       </ul>
-      <p class="caption">Ankenes: Tertialrapport 1/2026, s. 26. <a href="om#savner-sykehjemsplass">Tall som savnes</a></p>
+      <p class="caption">Ankenes: Tertialrapport 1/2026, s. 26. <a href="om#savner-sykehjemsplass">Tall som ikke er publisert</a></p>
     </section>`;
 }
 
