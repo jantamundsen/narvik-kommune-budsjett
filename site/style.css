@@ -53,7 +53,8 @@ section { display: grid; gap: 20px; }
 /* site nav */
 .site-nav { display: flex; flex-wrap: wrap; gap: 4px 20px; align-items: baseline; padding-top: 20px; border-bottom: 1px solid var(--rule); padding-bottom: 12px; }
 .site-nav .brand { font: 700 1rem var(--font-display); color: var(--ink); text-decoration: none; margin-right: auto; }
-.site-nav .brand img { width: 28px; height: 28px; display: inline-block; vertical-align: middle; margin: -6px 9px -6px 0; }
+/* Logo centred on the title's cap height (vertical-align: middle sat it on the x-height, 1.5px low). With the -4px margins: 0.35em = half cap height, 8px = 12px half logo - 4px margin. */
+.site-nav .brand img { width: 24px; height: 24px; display: inline-block; vertical-align: calc(0.35em - 8px); margin: -4px 8px -4px 0; }
 .site-nav a:not(.brand) { font-size: 0.95rem; color: var(--ink-2); text-decoration: none; padding: 2px 0; border-bottom: 2px solid transparent; }
 .site-nav a:not(.brand):hover { color: var(--ink); }
 .site-nav a[aria-current] { color: var(--ink); border-bottom-color: var(--accent); font-weight: 600; }
