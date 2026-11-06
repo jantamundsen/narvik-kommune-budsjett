@@ -359,6 +359,18 @@
       "url": "https://www.narvik.kommune.no/innsyn.aspx?response=mote&moteid=551&scripturi=/innsyn.aspx&Mid1=396",
       "pdf": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022215240&dokid=1933054&versjon=7&variant=A"
     },
+    "ks-sak-5-2025-faktaark": {
+      "navn": "Faktaark til sak 5/25",
+      "full": "Vedlegg 1 «Fakta-ark, enheter berørt i sak til kommunestyret om eldreomsorg» til saksframlegg «Omstilling og struktur i Eldreomsorgen 2025», kommunestyret 07.02.2025 (sak 5/25), arkivsak 24/5312",
+      "url": "https://www.narvik.kommune.no/innsyn.aspx?response=mote&moteid=551&scripturi=/innsyn.aspx&Mid1=396",
+      "pdf": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022215240&dokid=1941924&versjon=1&variant=A"
+    },
+    "ks-sak-85-2024": {
+      "navn": "Kommunestyret 20.06.2024, sak 85/24",
+      "full": "Saksframlegg «Omstilling og struktur i eldreomsorg i et 5-årsperspektiv» med behandling og vedtak, formannskapet 06.06.2024 (sak 12/24) og kommunestyret 20.06.2024 (sak 85/24), arkivsak 24/1794",
+      "url": "https://www.narvik.kommune.no/innsyn.aspx?response=mote&moteid=460&scripturi=/innsyn.aspx&Mid1=396",
+      "pdf": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022189650&dokid=1875519&versjon=6&variant=A"
+    },
     "ks-prot-2025-02-07": {
       "navn": "Protokoll, kommunestyret 07.02.2025",
       "full": "Møteprotokoll, Narvik kommunestyre 07.02.2025",
@@ -587,10 +599,10 @@
       ],
       "tiltak_omrade": "helse",
       "savner": [
-        { "tittel": "Kostnad per sykehjem og per plass", "tekst": "Hva en plass koster på hvert sykehjem, fordelt på bemanning, bygg og andre kostnader. SSB samler alle sykehjemmene i to funksjoner, drift (253) og lokaler (261), og kommunens rapporter viser bare sektorene. Det eneste tallet per sykehjem jeg har funnet, er lønnskostnaden per plass i Kjøpsvik og ved Ankenes bo- og servicesenter, som Fremover gjengir fra kommunestyret 05.02.2026 (se tidslinjen).", "href": "om#savner-sykehjemsplass", "kilde": { "id": "fremover-kjopsvik-2026" } },
+        { "tittel": "Kostnad per sykehjem og per plass", "tekst": "Hva en plass koster på hvert sykehjem, fordelt på bemanning, bygg og andre kostnader. SSB samler alle sykehjemmene i to funksjoner, drift (253) og lokaler (261), og kommunens rapporter viser bare sektorene. Det eneste dokumentet jeg har funnet med tall per sykehjem, er faktaarket kommunestyret fikk i februar 2025. Det har lønn og andre driftsutgifter per plass i 2024 for sju sykehjem og bofellesskap, men ikke byggene. Se saken om omstillingen i eldreomsorgen.", "href": "om#savner-sykehjemsplass", "kilde": { "id": "ks-sak-5-2025-faktaark", "side": 3 } },
         { "tittel": "Vikarer, overtid og innleie per enhet og måned", "tekst": "Årsrapportene oppgir vikarbyrå og overtid per enhet for hele året, og tertialrapport 2/2026 for årets første åtte måneder. Tall per måned, og hvor mange stillinger som står ubesatt på hver enhet, er ikke publisert.", "href": "om#savner-vikarer", "kilde": [{ "id": "ar-2025", "side": 49 }, { "id": "tertial-2-2026", "side": 32 }] },
         { "tittel": "Ventelister for sykehjem og omsorgsbolig", "tekst": "Kommunen følger ventelistene for langtidsplass, dagsenter og trygghetsrom hver måned, men tallene er ikke publisert.", "href": "om#savner-ventelister", "kilde": { "id": "tertial-2-2026", "side": 26 } },
-        { "tittel": "Budsjett og regnskap per enhet", "tekst": "Rapportene viser budsjett og regnskap for de tre sektorene i Helse og omsorg, ikke for hvert sykehjem eller hver enhet.", "href": "om#savner-enheter", "kilde": { "id": "tertial-2-2026", "side": 31 } },
+        { "tittel": "Budsjett og regnskap per enhet", "tekst": "Rapportene viser budsjett og regnskap for de tre sektorene i Helse og omsorg, ikke for hvert sykehjem eller hver enhet. Unntaket er faktaarket fra februar 2025, med regnskap 2023 og prognose og budsjett 2024 for 11 enheter i eldreomsorgen.", "href": "om#savner-enheter", "kilde": { "id": "tertial-2-2026", "side": 31 } },
         { "tittel": "Status for innsparingene", "tekst": "Rapportene omtaler en del av de vedtatte innsparingene. For resten har jeg ikke funnet noen status, se «Innsparingene» over.", "href": "om#savner-innsparinger-status" }
       ],
       "temaer": [
@@ -707,10 +719,51 @@
       "tittel": "Omstillingen i eldreomsorgen",
       "ingress": "I februar 2025 vedtok kommunestyret å legge ned Ankenes bo- og servicesenter, redusere antall sykehjemsplasser i distriktene og bygge opp korttidsplasser og tjenester hjemme. I oktober 2026 ba kommunestyret om at salget av bygget på Ankenes stoppes, og om en evaluering av hele omstillingen. Her er vedtakene, tallene og striden om bygget, fra kommunens egne sakspapirer.",
       "kontrollert": "2026-11-05",
+      "tabeller": [
+        {
+          "id": "kostnad-per-plass",
+          "overskrift": "Hva en plass kostet i 2024",
+          "lead": "Før vedtaket i februar 2025 fikk kommunestyret et faktaark med lønn og andre utgifter per plass for sju sykehjem og bofellesskap. Bygningene er ikke med.",
+          "tittel": "Kostnad per plass i 2024, kroner",
+          "kolonner": ["", "Type plass", "Plasser", "Lønn per plass", "Andre utgifter minus inntekter per plass", "Sum", "Kilde"],
+          "rader": [
+            { "celler": ["Furumoen sykehjem", "Sykehjem", "95", "1 301 795", "−51 448", "1 250 347"], "kilde": { "id": "ks-sak-5-2025-faktaark", "side": 3 } },
+            { "celler": ["Ellas Minne, Bjerkvik", "Sykehjem", "39", "1 256 779", "−122 548", "1 134 231"], "kilde": { "id": "ks-sak-5-2025-faktaark", "side": 3 } },
+            { "celler": ["Ankenes bo- og servicesenter", "Sykehjem", "17", "1 092 766", "158 822", "1 251 588"], "kilde": { "id": "ks-sak-5-2025-faktaark", "side": 3 } },
+            { "celler": ["Ballangen sykehjem", "Sykehjem", "29", "1 064 379", "90 520", "1 154 899"], "kilde": { "id": "ks-sak-5-2025-faktaark", "side": 3 } },
+            { "celler": ["Prestegårdstunet, Kjøpsvik", "Sykehjem", "17", "1 535 166", "188 295", "1 723 461"], "kilde": { "id": "ks-sak-5-2025-faktaark", "side": 3 } },
+            { "celler": ["Oscarsborg bo- og servicesenter", "Bofellesskap", "27", "1 032 476", "−24 774", "1 007 702"], "kilde": { "id": "ks-sak-5-2025-faktaark", "side": 3 } },
+            { "celler": ["Ankenes bo- og servicesenter", "Bofellesskap", "16", "686 708", "−19 343", "667 365"], "kilde": { "id": "ks-sak-5-2025-faktaark", "side": 3 } }
+          ],
+          "merknad": "Faktaarket sier at utgifter til bygget ikke er med. «Andre utgifter minus inntekter» er andre driftsutgifter minus inntekter, blant annet betaling fra beboerne. Et minus betyr at inntektene var større enn de andre utgiftene. «Sum» er lønn pluss andre utgifter minus inntekter, regnet ut av meg. Lønnen for Ballangen, Ellas Minne og sykehjemsplassene ved Ankenes er inkludert vaskeri. Fremover oppga 05.02.2026 lønnskostnaden per sykehjemsplass ved Ankenes til 1 169 711 kr, uten at det står hvilket år tallet gjelder (se tidslinjen)."
+        },
+        {
+          "id": "enhetene-2024",
+          "overskrift": "Enhetene i 2024",
+          "lead": "Faktaarket viser også regnskap, budsjett, vikarbyrå og sykefravær for hver av de 11 enhetene som ble berørt. Det er det eneste offentlige dokumentet jeg har funnet med regnskap per sykehjem.",
+          "tittel": "Regnskap, prognose og budsjett per enhet, mill. kr, med vikarbyrå og sykefravær i 2024",
+          "kolonner": ["", "Regnskap 2023", "Prognose 2024", "Budsjett 2024", "Prognose minus budsjett", "Vikarbyrå, andel av lønnsrammen", "Sykefravær 2024", "Kilde"],
+          "rader": [
+            { "celler": ["Furumoen sykehjem", "107,4", "108,5", "101,1", "+7,4", "9,1 %", "14,9 %"], "kilde": { "id": "ks-sak-5-2025-faktaark", "side": 2 } },
+            { "celler": ["Narvik hjemmesykepleie", "88,5", "91,5", "85,0", "+6,5", "5,7 %", "15,7 %"], "kilde": { "id": "ks-sak-5-2025-faktaark", "side": 2 } },
+            { "celler": ["Ellas Minne, Bjerkvik", "42,8", "46,0", "45,7", "+0,3", "1,7 %", "10,8 %"], "kilde": { "id": "ks-sak-5-2025-faktaark", "side": 2 } },
+            { "celler": ["Ballangen sykehjem", "28,1", "30,0", "27,0", "+3,0", "17,4 %", "19,6 %"], "kilde": { "id": "ks-sak-5-2025-faktaark", "side": 1 } },
+            { "celler": ["Ankenes bo- og servicesenter", "24,4", "26,5", "27,3", "−0,8", "17,1 %", "19 %"], "kilde": { "id": "ks-sak-5-2025-faktaark", "side": 1 } },
+            { "celler": ["Oscarsborg bo- og servicesenter", "26,6", "27,2", "24,3", "+2,9", "0 %", "12,1 %"], "kilde": { "id": "ks-sak-5-2025-faktaark", "side": 1 } },
+            { "celler": ["Helsehuset, korttid og rehabilitering", "26,7", "30,2", "24,5", "+5,7", "15,3 %", "7,7 %"], "kilde": { "id": "ks-sak-5-2025-faktaark", "side": 2 } },
+            { "celler": ["Prestegårdstunet, Kjøpsvik", "24,7", "26,0", "21,1", "+4,9", "19,1 %", "11,3 %"], "kilde": { "id": "ks-sak-5-2025-faktaark", "side": 1 } },
+            { "celler": ["Ballangen hjemmetjeneste", "22,5", "24,7", "22,0", "+2,7", "3,7 %", "12,3 %"], "kilde": { "id": "ks-sak-5-2025-faktaark", "side": 1 } },
+            { "celler": ["Kjøpsvik hjemmetjeneste", "14,7", "17,6", "12,9", "+4,7", "25,2 %", "23,6 %"], "kilde": { "id": "ks-sak-5-2025-faktaark", "side": 1 } },
+            { "celler": ["Bjerkvik hjemmetjeneste", "11,5", "12,5", "9,6", "+2,9", "2,6 %", "12,3 %"], "kilde": { "id": "ks-sak-5-2025-faktaark", "side": 2 } }
+          ],
+          "merknad": "Prognosen og andelene for vikarbyrå er per 16.01.2025, før regnskapet for 2024 var ferdig. «Prognose minus budsjett» er regnet ut av meg. Faktaarket oppgir ikke regnskapet for 2024. Sykefraværet er snittet for 2024."
+        }
+      ],
       "oppsummering": [
         { "tekst": "Kommunestyret vedtok i februar 2025, med 19 mot 12 stemmer, å fase ut Ankenes bo- og servicesenter med 33 plasser, ta ned 8 plasser i Bjerkvik og Ballangen og fylle Helsehuset med korttidsplasser.", "lenke": "#vedtak-2025" },
         { "tekst": "Senteret stengte i februar 2026. Kommunedirektøren oppgir en netto effekt på om lag 27 mill. kr, der 8 mill. kr gikk til 9 nye plasser på Furumoen sykehjem.", "lenke": "#tidslinje" },
         { "tekst": "Kommunestyret ga i desember 2025 fullmakt til å selge bygget, men ba 29.10.2026 om at salget stoppes. Kommunestyret vil også ha en helhetlig evaluering av omstillingen senest i junimøtet.", "lenke": "#ankenes" },
+        { "tekst": "Før vedtaket fikk kommunestyret lønn per plass for hvert sykehjem. En sykehjemsplass ved Ankenes kostet 1,09 mill. kr i lønn i 2024, mot 1,30 mill. kr på Furumoen og 1,54 mill. kr på Prestegårdstunet. Ankenes var den eneste av de 11 enhetene med prognose under budsjett for 2024. Utgifter til byggene var ikke med.", "lenke": "#kostnad-per-plass" },
         { "tekst": "20 av 40 korttidsplasser på Helsehuset er ikke tatt i bruk. 10 er planlagt i 2027 og 10 i 2028.", "lenke": "#kjopsvik-helsehuset" },
         { "tekst": "Prestegårdstunet i Kjøpsvik ble redusert fra 16 til 12 plasser og skal ned til inntil 8, etter tertialrapport 2/2026 som kommunestyret vedtok i oktober 2026.", "lenke": "#kjopsvik-helsehuset" }
       ],
@@ -764,7 +817,7 @@
         ] }
       ],
       "tidslinje": [
-        { "dato": "06.2024", "tekst": "Kommunestyret behandler «Omstilling og struktur i eldreomsorg i et 5-årsperspektiv» (sak 85/24).", "kilde": { "id": "ks-sak-5-2025", "side": 34 } },
+        { "dato": "20.06.2024", "tekst": "Kommunestyret behandler «Omstilling og struktur i eldreomsorg i et 5-årsperspektiv» (sak 85/24). Rådmannen anbefalte å beholde Ankenes og heller endre driften ved Oscarsborg. Å legge ned Ankenes var anslått å spare 17,7 mill. kr i lønn. Kommunestyret stemte enstemmig mot innstillingen og vedtok med 29 mot 1 stemme å redusere Furumoen fra 95 til 86 langtidsplasser og etablere dagsenter ved Ankenes.", "kilde": [{ "id": "ks-sak-85-2024", "side": 3 }, { "id": "ks-sak-85-2024", "side": 7 }, { "id": "ks-sak-85-2024", "side": 10 }] },
         { "dato": "05.12.2024", "tekst": "Økonomiplanen 2025–2028 (sak 143/24) vedtar en dreining i innsatstrappa for tjenester til eldre.", "kilde": { "id": "ks-sak-5-2025", "side": 34 } },
         { "dato": "30.01.2025", "tekst": "Formannskapet innstiller på rådmannens forslag med 5 mot 4 stemmer (sak 2/25).", "kilde": { "id": "ks-prot-2025-02-07", "side": 7 } },
         { "dato": "07.02.2025", "tekst": "Kommunestyret vedtar omstillingen (sak 5/25) med 19 mot 12 stemmer: Ankenes fases ut, Kjøpsvik får 12 langtidsplasser.", "kilde": { "id": "ks-prot-2025-02-07", "side": 12 } },
