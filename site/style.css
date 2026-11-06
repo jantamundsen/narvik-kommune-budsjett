@@ -426,6 +426,8 @@ details .fact-list { margin-top: 4px; }
   .ptable table.stack td { display: block; padding: 0; border: 0; text-align: left; white-space: normal; background: none; }
   .ptable table.stack td:first-child { grid-column: 1 / -1; font-weight: 600; }
   .ptable table.stack td.empty { display: none; }
+  /* The source cell in a fact sheet table gets its own row, so it never pushes the card wider than the screen. */
+  .ptable table.stack.sak-table td.muted:last-child { grid-column: 1 / -1; min-width: 0; }
   #cmp-table table.stack tr { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .ptable table.stack .chg-bar { display: none; }
   .ptable table.stack td[data-label]::before { content: attr(data-label); display: block; font-size: 0.72rem; font-weight: 500; color: var(--ink-2); }
