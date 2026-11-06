@@ -49,9 +49,38 @@ const dateText = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nb-NO', 
       <div class="section-head"><h2 id="h-actors">Hvem er involvert</h2></div>
       <dl class="actors">${S.aktorer.map(a => `<div><dt>${esc(a.navn)}</dt><dd>${esc(a.rolle)} <span class="caption">Kilde: ${srcGroup([].concat(a.kilde))}</span></dd></div>`).join('')}</dl>
     </section>` : '';
+  // «figurer»: charts typed into config/saker.json. «avvik» is bars for deviations from budget, one set per «valg»
+  // (a year) with buttons to switch; «linjer» is small line charts. A figure with «i» goes at the top of that
+  // section, under its heading; one without is a section of its own after the budget table.
+  const figs = S.figurer || [];
+  const figChart = f => {
+    if (f.type === 'avvik') {
+      const vals = f.valg.flatMap(v => [...v.rader, ...(v.sum ? [v.sum] : [])].map(r => r.verdi));
+      const dom = [Math.min(0, ...vals), Math.max(0, ...vals)];
+      const pick = f.valg.length > 1 ? `<div class="seg fig-pick" role="radiogroup" aria-label="Velg år">${f.valg.map((v, i) => `<button type="button" role="radio" aria-checked="${!i}" data-i="${i}">${esc(v.navn)}</button>`).join('')}</div>` : '';
+      return `${pick}${f.valg.map((v, i) => `<div class="fig-panel" data-i="${i}"${i ? ' hidden' : ''}>
+          <div class="chart hb-chart" role="figure" aria-label="${esc(f.tittel || f.overskrift)}, ${esc(v.navn)}">${hbars(v.rader, v.sum, { dom, unit: f.enhet ? " " + f.enhet : "" })}</div>
+          <p class="caption">${v.tekst ? esc(v.tekst) + ' ' : ''}Kilde: ${note(v.kilde)}.</p></div>`).join('')}
+        ${f.merknad ? `<p class="caption">${esc(f.merknad)}</p>` : ''}`;
+    }
+    const panels = f.grafer.map(g => {
+      const d = g.desimaler ?? 0, h = g.hittil, unit = g.enhet === '%' ? ' %' : ' ' + g.enhet;
+      const prev = h && String(Number(h.periode.slice(-4)) - 1);
+      return { navn: g.navn, unit: g.enhet, digits: d, years: g.punkter.map(p => p.aar), series: [{ navn: g.navn, vals: Object.fromEntries(g.punkter.map(p => [p.aar, p.verdi])) }],
+        under: h ? `${esc(h.periode)}: ${nb(h.verdi, d)}${esc(unit)}${h.fjor != null ? `, ${chgText(pct(h.verdi, h.fjor))} fra samme måneder i ${prev} (${nb(h.fjor, d)})` : ''}` : '' };
+    });
+    const ks = [...new Map(f.grafer.flatMap(g => [...g.punkter.map(p => p.kilde), ...(g.hittil ? [g.hittil.kilde] : [])]).map(k => [k.id + '/' + k.side, k])).values()];
+    return `${miniLines(panels)}<p class="caption">${f.merknad ? esc(f.merknad) + ' ' : ''}Kilder: ${note(ks)}.</p>`;
+  };
+  const figIn = id => figs.filter(f => f.i === id).map(f => `<div class="sak-fig" id="${esc(f.id)}"><h3 class="sub-h">${esc(f.overskrift)}</h3>${f.lead ? `<p>${esc(f.lead)}</p>` : ''}${figChart(f)}</div>`).join('');
+  const ownFigs = figs.filter(f => !f.i).map(f => `<section aria-labelledby="h-${esc(f.id)}" id="${esc(f.id)}">
+      <div class="section-head"><h2 id="h-${esc(f.id)}">${esc(f.overskrift)}</h2>${f.lead ? `<p class="lead">${esc(f.lead)}</p>` : ''}</div>
+      ${figChart(f)}
+    </section>`).join('');
   // A table with one source per row: the budget table («tabell») and any further tables («tabeller»).
   const sakTable = (T, id, head, lead) => `<section aria-labelledby="h-${id}" id="${id}">
       <div class="section-head"><h2 id="h-${id}">${esc(head)}</h2>${lead ? `<p class="lead">${esc(lead)}</p>` : ''}</div>
+      ${figIn(id)}${figIn(id) ? `<h3 class="sub-h">${esc(T.tittel)}</h3>` : ''}
       <div class="ptable"><table class="sak-table"><caption class="sr-only">${esc(T.tittel)}</caption>
         <thead><tr>${T.kolonner.map(c => `<th scope="col">${esc(c)}</th>`).join('')}</tr></thead>
         <tbody>${T.rader.map(r => `<tr>${r.celler.map(c => `<td${String(c).length <= 12 ? ' class="nw"' : ''}>${esc(c)}</td>`).join('')}<td class="muted">${note(r.kilde)}</td></tr>`).join('')}</tbody>
@@ -115,7 +144,7 @@ const dateText = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nb-NO', 
   // A long sheet (one with further tables) starts with jump links to its sections, in the order they come, and
   // keeps «Hvem er involvert» until after the numbers.
   const long = !!S.tabeller?.length;
-  const parts = [[tab, 'budsjett', 'Budsjett og regnskap'], ...(S.tabeller || []).map(T => [tables, T.id, T.overskrift]),
+  const parts = [[tab, 'budsjett', 'Budsjett og regnskap'], ...figs.filter(f => !f.i).map(f => [ownFigs, f.id, f.overskrift]), ...(S.tabeller || []).map(T => [tables, T.id, T.overskrift]),
     [savings, 'innsparinger', 'Innsparingene'], [inst, 'forskjell', 'Hvor forskjellen mot lignende kommuner ligger'],
     [inst, 'institusjon', 'Sykehjem og institusjoner'], [inst, 'plasser-brukere', 'Plasser og beboere som ikke går opp'], [missing, 'savner', 'Det som ikke er publisert'], [time, 'tidslinje', 'Tidslinje']];
   const jump = long ? `<nav class="jump" aria-label="Innhold på siden"><span class="eyebrow">På siden</span><ul>${parts.filter(([html, id]) => html && html.includes(`id="${id}"`)).map(([, id, name]) => `<li><a href="#${id}">${esc(name)}</a></li>`).join('')}</ul></nav>` : '';
@@ -132,12 +161,18 @@ const dateText = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nb-NO', 
       ${S.mangler ? `<p class="status-note">${esc(S.mangler)}</p>` : ''}
     </header>
     <section aria-label="Nøkkeltall"><div class="stats3 sak-stats" style="--n:${S.nokkeltall.length}">${stats}</div></section>
-    ${summary}${jump}${long ? '' : actors}${tab}${role}${tables}${savings}${inst}${missing}${long ? actors : ''}${topics}${time}${facts}${links}${docs}`;
+    ${summary}${jump}${long ? '' : actors}${tab}${ownFigs}${role}${tables}${savings}${inst}${missing}${long ? actors : ''}${topics}${time}${facts}${links}${docs}`;
   document.getElementById('tl-more')?.addEventListener('click', e => {
     document.querySelectorAll('#timeline li[hidden]').forEach(li => { li.hidden = false; });
     e.currentTarget.remove();
   });
   document.querySelectorAll('.sak-table').forEach(stackable);
+  // Year buttons over a figure: show that year's bars.
+  document.querySelectorAll('.fig-pick').forEach(g => g.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    g.querySelectorAll('button').forEach(x => x.setAttribute('aria-checked', String(x === b)));
+    g.parentElement.querySelectorAll('.fig-panel').forEach(p => { p.hidden = p.dataset.i !== b.dataset.i; });
+  }));
   // The page is drawn after the data has loaded, so the browser cannot jump to #institusjon by itself.
   if (location.hash) document.getElementById(location.hash.slice(1))?.scrollIntoView();
 })();
@@ -174,6 +209,23 @@ async function institutionTables(sources) {
         ${py && pp ? stat(`Utgift per oppholdsdøgn i ${py}`, nb(pv.narvik[py]), [pv.narvik[py], pv.narvik[pp]], 'kr', 'drift og lokaler per døgn') : ''}
       </div>
       <p class="caption">Hele kommunen med foretak. SSB samler alle sykehjemmene og de andre institusjonene i de to funksjonene, så tallene sier ikke hvordan kostnadene fordeler seg mellom sykehjemmene. Kilde: <a href="https://www.ssb.no/statbank/table/12362" target="_blank" rel="noopener">SSB, tabell 12362</a> og <a href="${esc(P.url)}" target="_blank" rel="noopener">tabell ${P.table}</a>.</p>`;
+  }
+  // Three small line charts before the tables: places and residents, residents per 100 places, and the price per day,
+  // Narvik against the group. Each from zero on its own scale.
+  {
+    const pl = (E.ssb || []).find(x => x.key === 'plasser'), U = I.brukere?.values;
+    const users = (r, y) => U?.[r]?.['F000-120']?.[y]?.antall;
+    const ys = pl ? Object.keys(pl.values.narvik || {}).filter(y => users('narvik', y)) : [];
+    const per100 = r => Object.fromEntries(ys.filter(y => users(r, y) && pl.values[r]?.[y]).map(y => [y, users(r, y) / pl.values[r][y] * 100]));
+    if (ys.length > 1 && pys.length > 1) {
+      html += `<h3 class="sub-h">Plasser, beboere og utgift per døgn</h3>
+        ${miniLines([
+          { navn: 'Plasser og beboere i Narvik', zero: false, years: ys, series: [{ navn: 'Plasser', vals: Object.fromEntries(ys.map(y => [y, pl.values.narvik[y]])), cls: 'alt' }, { navn: 'Beboere 31. desember', vals: Object.fromEntries(ys.map(y => [y, users('narvik', y)])) }] },
+          { navn: 'Beboere per 100 plasser', zero: false, years: ys, series: [{ navn: 'Narvik', vals: per100('narvik') }, { navn: G, vals: per100('gruppe'), cls: 'alt' }] },
+          { navn: 'Utgift per oppholdsdøgn', unit: 'kroner', zero: false, years: pys, series: [{ navn: 'Narvik', vals: pv.narvik }, { navn: G, vals: pv.gruppe || {}, cls: 'alt' }] },
+        ])}
+        <p class="caption">Grafene starter ikke på null, så forskjeller og endringer ser større ut enn de er. Beboere er personer med institusjonstjenester 31. desember. Beboere per 100 plasser er beregnet her. Utgift per døgn i løpende kroner. Tallene står i tabellene under. Kilde: ${ssbSrc(pl.table, pl.query, 'plasser i institusjon')}, ${ssbSrc(I.brukere.table, I.brukere.query, 'omsorgstjenester, brukere etter alder')} og ${ssbSrc(P.table, P.query, 'utvalgte nøkkeltall for helse og omsorg')}.</p>`;
+    }
   }
   // Places, users and the price per day in Narvik, year by year, so the three can be read together.
   const pl = (E.ssb || []).find(x => x.key === 'plasser'), un = I.brukere?.values?.narvik;
@@ -296,13 +348,19 @@ function gapSection(M, E, G, ssbSrc) {
   const y = Object.keys(total.values.narvik).filter(k => total.values.narvik[k] != null && total.values.gruppe?.[k] != null).pop();
   if (!y) return '';
   const cell = m => ({ n: m.values.narvik[y], g: m.values.gruppe[y] });
+  const T0 = cell(total);
   const sign = d => (d > 0 ? '+' : d < 0 ? '−' : '') + nb(Math.abs(Math.round(d)));
   const line = (name, m, sum) => {
     const { n, g } = cell(m);
     return `<tr${sum ? ' class="sum"' : ''}><td>${esc(name)}</td><td>${nb(n)}</td><td>${nb(g)}</td><td>${sign(n - g)}</td><td>${chgText(pct(n, g))}</td></tr>`;
   };
   const T = cell(total);
-  let html = `<h3 class="sub-h">Omsorgstjenester per innbygger 67 år og over i ${y}, kroner</h3>
+  // The same rows as bars first: kroner more or less than the group per inhabitant 67+, blue and grey as on /okonomi.
+  const bars = hbars(rows.map(r => ({ navn: r.name, verdi: cell(r.m).n - cell(r.m).g })), { navn: 'Omsorgstjenestene i alt', verdi: T0.n - T0.g }, { unit: ' kr', digits: 0, tone: 'cmp' });
+  let html = `<h3 class="sub-h">Narvik mot ${esc(G)} per innbygger 67 år og over i ${y}, kroner</h3>
+    <div class="chart hb-chart" role="figure" aria-label="Kroner mer eller mindre enn ${esc(G)} per innbygger 67 år og over, ${y}">${bars}</div>
+    <p class="caption">Kroner mer (+) eller mindre (−) enn snittet i ${esc(G)}. Tallene og kildene står i tabellen under.</p>
+    <h3 class="sub-h">Omsorgstjenester per innbygger 67 år og over i ${y}, kroner</h3>
     <div class="detail-scroll"><table class="num-table"><tr><th>KOSTRA-funksjon</th><th>Narvik</th><th>${esc(G)}</th><th>Forskjell, kr</th><th>Narvik mot ${esc(G)}</th></tr>
       ${rows.map(r => line(r.name, r.m)).join('')}${line('Omsorgstjenestene i alt', total, true)}</table></div>
     <p class="caption">Netto driftsutgifter per funksjon, kommunekonsern, delt på innbyggere 67 år og over 1. januar året etter. Beregnet her fordi SSB ikke publiserer tallet. De fire radene summerer seg til omsorgstjenestene i alt. Aktivitet og service for eldre (234) gjelder også yngre brukere, men er delt på innbyggere 67 år og over som de andre radene. Kilde: ${ssbSrc(total.table, total.query, 'netto driftsutgifter per funksjon')} og ${ssbSrc(total.population.table, total.population.query, 'befolkning etter alder')}.</p>`;
@@ -364,13 +422,77 @@ async function savingsSection(area) {
   const part = (F, keys) => keys.filter(k => F.by[k]).map(k => `${mk(F.by[k])} mill. kr ${LABEL[k].toLowerCase()}`);
   const silent = F => (F.by['ingen'] || 0) + (F.by['ikke-oppgitt'] || 0);
   const line = F => `${mk(F.total)} mill. kr${F.back ? `, der kommunestyret tok ut ${mk(F.back)} mill. kr i samme vedtak` : ''}. Av resten er ${[...part(F, reported), `${mk(silent(F))} mill. kr uten status i rapportene`].join(', ')}`;
+  // The area's cuts as one bar split by what the reports say happened, in the order of the sankey on tiltak.html:
+  // blue where a report gives a status, grey where it doesn't, light grey for what the kommunestyre took out.
+  const ORDER = ['gjennomfort', 'i-arbeid', 'forsinket', 'ikke-gjennomfort', 'ikke-oppgitt', 'ingen'];
+  const segs = [...ORDER.filter(k => A.by[k] > 0).map(k => [k, LABEL[k], A.by[k]]), ...(A.back ? [['reversert', LABEL.reversert, A.back]] : [])];
+  const done = mine.filter(l => status(l) === 'gjennomfort');
+  const stack = `<div class="chart stack-chart" role="figure" aria-label="Innsparingene i ${esc(name)} for ${y} etter status: ${segs.map(([, n, v]) => `${n} ${mk(v)} mill. kr`).join(', ')}">
+      <div class="stack-bar">${segs.map(([k, n, v]) => `<span class="st-${k}" style="flex-basis:${(v / A.total * 100).toFixed(2)}%" title="${esc(n)}: ${mk(v)} mill. kr">${v / A.total > 0.08 ? mk(v) : ''}</span>`).join('')}</div>
+      <ul class="flow-legend stack-legend">${segs.map(([k, n, v]) => `<li><i class="st-${k}"></i>${esc(n)}: <b class="num">${mk(v)}</b></li>`).join('')}</ul>
+    </div>
+    <p class="caption">Mill. kr av ${mk(A.total)} mill. kr i kutt for ${y}.${A.by.gjennomfort ? '' : ` Ingen kutt med beløp er meldt gjennomført.`}${done.some(l => l.uten_belop) ? ` ${done.filter(l => l.uten_belop).length === 1 ? 'Ett kutt' : 'Noen kutt'} uten beløp er gjennomført og står i tabellen under.` : ''}</p>`;
   const rows = [...mine].sort((a, b) => cut(b) - cut(a)).map(l => `<tr><td>${esc(l.navn)}</td><td>${l.uten_belop ? 'uten beløp' : mk(cut(l))}</td><td>${esc(LABEL[status(l)])}</td></tr>`).join('');
   return `<section aria-labelledby="h-sav" id="innsparinger">
       <div class="section-head"><h2 id="h-sav">Innsparingene i budsjettet for ${y}</h2>
         <p class="lead">Budsjettet kommunestyret vedtok for ${y}, hadde innsparinger i ${esc(name)} på ${line(A)}. For hele kommunen var innsparingene ${line(K)}.</p></div>
+      ${stack}
+      <h3 class="sub-h">Tiltak for tiltak</h3>
       <div class="ptable"><table class="sak-table"><caption class="sr-only">Innsparingene i ${esc(name)} i budsjettet for ${y}</caption>
         <thead><tr><th scope="col">Tiltak</th><th scope="col">Mill. kr i ${y}</th><th scope="col">Status i rapportene</th></tr></thead>
         <tbody>${rows}</tbody></table></div>
       <p class="caption">«Ingen status i rapportene» betyr at jeg ikke har funnet tiltaket omtalt i tertialrapportene eller årsrapporten, ikke at kuttet ikke ble gjort. «Uten beløp» er tiltak som står med 0 eller 1 000 kr i budsjettet. Beløpene er fra kommunens budsjett i Framsikt. Statusene, med side i rapportene, og alle tiltakene i kommunen står på <a href="tiltak?aar=${y}">Innsparinger</a>.</p>
     </section>`;
+}
+
+// Charts for the fact sheets. Plain HTML and SVG strings, drawn into the page with the rest of the sheet.
+// Horizontal bars from a zero line with the value at the end of each bar, like the comparison on /okonomi.
+// tone 'budget' is for deviations from budget: red over, green under (the only place the site uses red and green).
+// tone 'cmp' is for comparisons with other kommuner: blue more, grey less. dom = [lo, hi] shares a scale between sets.
+function hbars(rows, sum, { unit = '', digits = 1, tone = 'budget', dom } = {}) {
+  const all = [...rows, ...(sum ? [sum] : [])].map(r => r.verdi);
+  const [min, max] = dom || [Math.min(0, ...all), Math.max(0, ...all)];
+  // Room beyond the longest bar for its label, which can be long («+83,9 mill. kr»).
+  const room = (0.08 + 0.022 * (6 + unit.length)) * (max - min);
+  const lo = min < 0 ? min - room : 0, hi = max > 0 ? max + room : 0;
+  const pos = v => (v - lo) / (hi - lo) * 100, z = pos(0);
+  const sign = v => (v > 0 ? '+' : v < 0 ? '−' : '') + nb(Math.abs(v), digits);
+  const cls = v => (tone === 'budget' ? (v > 0 ? 'over' : 'under') : (v > 0 ? 'more' : 'less'));
+  const row = (r, isSum) => `<div class="hb-row${isSum ? ' sum' : ''}"><div class="hb-name">${esc(r.navn)}${r.tekst ? `<small>${esc(r.tekst)}</small>` : ''}</div>
+    <div class="hb-track" style="--z:${z.toFixed(2)}%"><span class="hb-bar ${cls(r.verdi)}" style="left:${Math.min(z, pos(r.verdi)).toFixed(2)}%;width:${Math.max(0.4, Math.abs(pos(r.verdi) - z)).toFixed(2)}%"></span><span class="hb-val num ${r.verdi < 0 ? 'neg' : ''}" style="${r.verdi < 0 ? `right:${(100 - pos(r.verdi)).toFixed(2)}%` : `left:${pos(r.verdi).toFixed(2)}%`}">${sign(r.verdi)}${unit ? `<span class="hb-unit">${unit}</span>` : ''}</span></div></div>`;
+  return `<div class="hbars">${rows.map(r => row(r)).join('')}${sum ? row(sum, true) : ''}</div>`;
+}
+
+// Small line charts side by side, each on its own scale from zero, every point labelled with its value.
+// A panel: { navn, years, series: [{ navn, vals: {year: value}, cls }], digits, unit, under }.
+function miniLines(panels) {
+  const W = 240, H = 128, padX = 22, top = 22, base = 100;
+  const card = p => {
+    const ys = p.years, vs = p.series.flatMap(s => ys.map(y => s.vals[y]).filter(v => v != null));
+    // From zero, or (zero: false) from a little under the lowest value, so the gap between two lines shows.
+    const max = Math.max(...vs), min = p.zero === false ? Math.min(...vs) : 0, lo = p.zero === false ? min - (max - min) * 0.6 : 0, hi = max + (max - lo) * 0.08;
+    const X = i => (ys.length === 1 ? W / 2 : padX + i * (W - 2 * padX) / (ys.length - 1)), Y = v => base - (v - lo) / (hi - lo) * (base - top);
+    const one = p.series.length === 1, d = p.digits ?? 0;
+    let svg = `<line x1="${padX - 8}" x2="${W - padX + 8}" y1="${base + 0.5}" y2="${base + 0.5}" stroke="var(--rule)"/>`;
+    p.series.forEach(s => {
+      const pts = ys.map((y, i) => (s.vals[y] == null ? null : [X(i), Y(s.vals[y]), s.vals[y]])).filter(Boolean);
+      svg += `<path d="M${pts.map(q => `${q[0].toFixed(1)} ${q[1].toFixed(1)}`).join(' L')}" class="ml-line ${s.cls || ''}"/>`;
+      pts.forEach((q, i) => {
+        svg += `<circle cx="${q[0].toFixed(1)}" cy="${q[1].toFixed(1)}" r="3.5" class="ml-dot ${s.cls || ''}"/>`;
+        // One line: every value over its point. Two lines: only the last value, above the higher line and below the lower.
+        if (one) svg += `<text x="${q[0].toFixed(1)}" y="${(q[1] - 8).toFixed(1)}" text-anchor="middle" class="ml-val">${nb(q[2], d)}</text>`;
+      });
+      if (!one) {
+        const q = pts.at(-1), other = p.series.find(o => o !== s).vals[ys.at(-1)];
+        const above = other == null || q[2] >= other;
+        svg += `<text x="${(q[0] + 2).toFixed(1)}" y="${(q[1] + (above ? -8 : 16)).toFixed(1)}" text-anchor="end" class="ml-val">${nb(q[2], d)}</text>`;
+      }
+    });
+    ys.forEach((y, i) => { if (ys.length <= 4 || i === 0 || i === ys.length - 1) svg += `<text x="${X(i).toFixed(1)}" y="${H - 8}" text-anchor="middle" class="ml-year">${y}</text>`; });
+    const label = p.series.map(s => `${s.navn}: ${ys.filter(y => s.vals[y] != null).map(y => `${y} ${nb(s.vals[y], d)}`).join(', ')}`).join('. ');
+    const legend = one ? '' : `<span class="ml-legend">${p.series.map(s => `<span><i class="${s.cls || ''}"></i>${esc(s.navn)}</span>`).join('')}</span>`;
+    return `<div class="multiple ml-card"><span class="m-name">${esc(p.navn)}${p.unit ? `, ${esc(p.unit)}` : ''}</span>
+      <svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(p.navn)}. ${esc(label)}">${svg}</svg>${legend}${p.under ? `<span class="m-sub">${p.under}</span>` : ''}</div>`;
+  };
+  return `<div class="multiples ml-grid">${panels.map(card).join('')}</div>`;
 }
