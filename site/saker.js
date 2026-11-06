@@ -54,7 +54,7 @@ const dateText = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nb-NO', 
       <div class="section-head"><h2 id="h-${id}">${esc(head)}</h2>${lead ? `<p class="lead">${esc(lead)}</p>` : ''}</div>
       <div class="ptable"><table class="sak-table"><caption class="sr-only">${esc(T.tittel)}</caption>
         <thead><tr>${T.kolonner.map(c => `<th scope="col">${esc(c)}</th>`).join('')}</tr></thead>
-        <tbody>${T.rader.map(r => `<tr>${r.celler.map(c => `<td>${esc(c)}</td>`).join('')}<td class="muted">${note(r.kilde)}</td></tr>`).join('')}</tbody>
+        <tbody>${T.rader.map(r => `<tr>${r.celler.map(c => `<td${String(c).length <= 12 ? ' class="nw"' : ''}>${esc(c)}</td>`).join('')}<td class="muted">${note(r.kilde)}</td></tr>`).join('')}</tbody>
       </table></div>
       <p class="caption">${esc(T.tittel)}. ${esc(T.merknad || '')}</p>
     </section>`;

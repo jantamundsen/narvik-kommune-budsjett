@@ -903,6 +903,11 @@ header.hero { grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr); gap: 8
 .jump a { display: inline-block; padding: 4px 10px; border: 1px solid var(--rule); border-radius: 999px; font-size: 0.9rem; text-decoration: none; }
 .jump a:hover { border-color: var(--accent); }
 /* Fact sheet tables: a row can rest on several pages, so the source column wraps instead of running off the edge. */
-.ptable .sak-table td:first-child { min-width: 12em; }
-.ptable .sak-table td.muted:last-child { white-space: normal; text-align: left; min-width: 11em; }
+.ptable table.sak-table { min-width: 0; }
+.ptable .sak-table td { white-space: normal; }
+/* On wide screens short cells («14,5 %», «om lag 21») stay on one line; longer ones («605,6 per august») may wrap. */
+@media (min-width: 901px) { .ptable .sak-table td.nw { white-space: nowrap; } }
+.ptable .sak-table td.muted:last-child { text-align: left; min-width: 8em; }
+@media (max-width: 900px) and (min-width: 681px) { .ptable .sak-table th, .ptable .sak-table td { padding-left: 8px; padding-right: 8px; } .ptable .sak-table { font-size: 0.9rem; } .ptable .sak-table td.muted:last-child { min-width: 6em; } .ptable .sak-table thead th { hyphens: auto; } }
+
 .plain-list { margin: 0 0 8px; padding-left: 1.2em; display: grid; gap: 6px; max-width: 68ch; }
