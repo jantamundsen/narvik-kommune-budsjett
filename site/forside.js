@@ -65,6 +65,9 @@ async function heroMap(B) {
   const TOWN = new Set(['180603', '180604', '180605', '180606', '180607', '180608', '180609', '180610']);
   const PLACES = [['Narvik by', c => TOWN.has(c)], ...['180612', '180601', '180615', '180616', '180614', '180611', '180613']
     .map(code => [LABEL[code] || names[code] || code, c => c === code])];
+  // From the middle of the dots to the name: pixels across, text heights down, and which end of the name is there.
+  // On a phone Håkvik goes under its dots, as Ballangen takes the room to the left.
+  const side = (name, w) => ({ Ankenes: [-22, -0.45, 'end'], 'Håkvik': w < 420 ? [0, 2.1, 'middle'] : [-16, 0.9, 'end'] })[name];
   const centre = test => {
     let x = 0, y = 0, n = 0;
     cells.forEach(c => { const v = c[yi]; if (v && test(c[4])) { x += (c[0] + 0.5) * v; y += (c[1] + 0.5) * v; n += v; } });
@@ -88,9 +91,16 @@ async function heroMap(B) {
     PLACES.forEach(([name, test]) => {
       const p = centre(test);
       if (!p) return;
-      const t = s('text', { x: p[0], y: -p[1] - fs * 0.9, 'text-anchor': 'middle' }, labels, name);
+      // Most names stand above their dots. Ankenes and Håkvik lie close together just south-west of the town, so
+      // their names stand one over the other in the fjord west of them, each with a short line to the middle of its
+      // own dots; otherwise one name would look like it named the other place.
+      const off = side(name, w), dy = off && off[1] * fs;
+      const leader = off && s('path', { class: 'dm-leader', 'stroke-width': 1, 'vector-effect': 'non-scaling-stroke',
+        d: off[2] === 'end' ? `M${p[0] + px(off[0] + 3)} ${-p[1] + dy}L${p[0]} ${-p[1]}` : `M${p[0]} ${-p[1] + dy - fs * 0.75}L${p[0]} ${-p[1]}` }, labels);
+      const [x, y, anchor] = off ? [p[0] + px(off[0]), -p[1] + dy + fs * 0.35, off[2]] : [p[0], -p[1] - fs * 0.9, 'middle'];
+      const t = s('text', { x, y, 'text-anchor': anchor }, labels, name);
       const b = t.getBBox();
-      if (placed.some(o => b.x < o.x + o.width && o.x < b.x + b.width && b.y < o.y + o.height && o.y < b.y + b.height)) t.remove();
+      if (placed.some(o => b.x < o.x + o.width && o.x < b.x + b.width && b.y < o.y + o.height && o.y < b.y + b.height)) { t.remove(); if (leader) leader.remove(); }
       else placed.push(b);
     });
   };
