@@ -13,7 +13,8 @@ A source with "type": "media" is a newspaper or NRK article. It may back what
 someone in a public role said («sitat» + «hvem») or what the paper reports. The
 page marks every line that rests on such a source as an utsagn or a
 medieoppslag, so readers can tell it from what the documents say. A media
-source needs a link and a date (dd.mm.åååå) at the end of its «navn».
+source needs a link and a date (dd.mm.åååå) at the end of its «navn», and an
+«om»: a neutral subject that the document list shows instead of the headline.
 
 Only the standard library is used, and nothing is fetched.
 
@@ -52,6 +53,8 @@ def main() -> int:
     for kid, k in cfg["kilder"].items():
         if k.get("type") == "media" and (not k.get("url") or not MEDIA_NAME.search(k.get("navn", ""))):
             errors.append(f"kilde «{kid}»: en mediekilde trenger url og dato (dd.mm.åååå) sist i navnet")
+        if k.get("type") == "media" and not k.get("om"):
+            errors.append(f"kilde «{kid}»: en mediekilde trenger «om», et nøytralt tema som vises i dokumentlisten")
     out = []
     for s in cfg["saker"]:
         sid = s.get("id", "?")
@@ -152,7 +155,7 @@ def main() -> int:
                 err(f"oppsummering {i + 1}: trenger tekst og lenke til en seksjon (#…)")
             elif o["lenke"][1:] not in targets:
                 err(f"oppsummering {i + 1}: fant ingen seksjon {o['lenke']} på siden")
-        # «savner»: numbers that are not published, each pointing to its entry under «Tall som savnes» on om.html.
+        # «savner»: numbers that are not published, each pointing to its entry under «Tall som ikke er publisert» on om.html.
         for i, m in enumerate(s.get("savner", [])):
             if not m.get("tittel") or not m.get("tekst") or not str(m.get("href", "")).startswith("om#savner-"):
                 err(f"savner {i + 1}: trenger tittel, tekst og href til om#savner-…")

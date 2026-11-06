@@ -1,9 +1,9 @@
 // Innsparinger: renders site/data/tiltak.json (written by scripts/fetch_tiltak.py) on tiltak.html. Helpers are in common.js.
 const STATUS = {
-  'gjennomfort': ['Gjennomført', 'good'],
+  'gjennomfort': ['Gjennomført', ''],
   'i-arbeid': ['I arbeid', ''],
-  'forsinket': ['Forsinket eller mindre effekt', 'bad'],
-  'ikke-gjennomfort': ['Ikke gjennomført', 'bad'],
+  'forsinket': ['Forsinket eller mindre effekt', ''],
+  'ikke-gjennomfort': ['Ikke gjennomført', ''],
   'ikke-oppgitt': ['Nevnt uten status', 'none'],
   'reversert': ['Tatt ut av kommunestyret', ''],
   'ingen': ['Ingen status i rapportene', 'none'],
