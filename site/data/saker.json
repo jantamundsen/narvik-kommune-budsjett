@@ -6,6 +6,12 @@
    "url": "https://www.narvik.kommune.no/innsyn.aspx?response=mote&moteid=350&scripturi=/innsyn.aspx&Mid1=396",
    "pdf": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022086312&dokid=1725035&versjon=1&variant=A"
   },
+  "ar-2023": {
+   "navn": "Årsrapport 2023",
+   "full": "Årsrapport 2023, vedlegg til årsregnskapet, formannskapet 06.06.2024 (sak 011/24)",
+   "url": "https://www.narvik.kommune.no/innsyn.aspx?response=mote&moteid=458&scripturi=/innsyn.aspx&Mid1=396",
+   "pdf": "https://oldweb.narvik.kommune.no/innsynfront/wfdocument.ashx?journalpostid=2022192412&dokid=1881953&versjon=1&variant=A"
+  },
   "ar-2024": {
    "navn": "Årsrapport 2024",
    "full": "Årsrapport 2024, vedlegg til årsregnskapet, formannskapet 05.06.2025 (sak 013/25)",
@@ -1289,6 +1295,10 @@
      "lenke": "#budsjett"
     },
     {
+     "tekst": "Alle tre sektorene brukte mer enn budsjettert i 2024 og 2025, og prognosen for 2026 sier det samme. I 2025 var sektorene til sammen 65,5 mill. kr over budsjett, men fellesområdet fikk 60 mill. kr saldert inn mot slutten av året, så kommunalområdet endte 20,0 mill. kr over.",
+     "lenke": "#sektorer"
+    },
+    {
      "tekst": "Rapportene forklarer merforbruket med vikarbyrå, overtid, sykefravær og utskrivningsklare pasienter. Per august 2026 lå vikarbyrå 13,5 mill. kr og overtid og sommeravtaler 12,6 mill. kr over budsjett.",
      "lenke": "#kostnader"
     },
@@ -1307,6 +1317,355 @@
     {
      "tekst": "Kostnad og belegg per sykehjem, vikarer per enhet og måned, ventelister og budsjett per enhet er ikke publisert.",
      "lenke": "#savner"
+    }
+   ],
+   "figurer": [
+    {
+     "id": "sektorer",
+     "type": "avvik",
+     "enhet": "mill. kr",
+     "overskrift": "Mer enn budsjettert, sektor for sektor",
+     "lead": "Hvor mye hver sektor i Helse og omsorg brukte mer (+) eller mindre (−) enn kommunens eget budsjett for året. Det er ikke en sammenligning med andre kommuner. Den står under «Hvor forskjellen mot lignende kommuner ligger», og der ligger for eksempel hjemmetjenestene omtrent på snittet.",
+     "tittel": "Avvik mot revidert budsjett per sektor i Helse og omsorg, mill. kr",
+     "valg": [
+      {
+       "navn": "2026 (prognose)",
+       "tekst": "Kommunedirektørens prognose for hele 2026, per august.",
+       "kilde": {
+        "id": "tertial-2-2026",
+        "side": 31
+       },
+       "rader": [
+        {
+         "navn": "Hjemmebaserte tjenester",
+         "verdi": 26.0
+        },
+        {
+         "navn": "Institusjon og distrikt",
+         "tekst": "sykehjemmene og hjemmetjenesten i distriktene",
+         "verdi": 26.1
+        },
+        {
+         "navn": "Mestring og oppfølging",
+         "verdi": 33.2
+        },
+        {
+         "navn": "Fellesområdet",
+         "verdi": -1.4
+        }
+       ],
+       "sum": {
+        "navn": "Helse og omsorg i alt",
+        "verdi": 83.9
+       }
+      },
+      {
+       "navn": "2025",
+       "tekst": "Regnskapet for 2025.",
+       "kilde": {
+        "id": "ar-2025",
+        "side": 46
+       },
+       "rader": [
+        {
+         "navn": "Hjemmebaserte tjenester",
+         "verdi": 21.1
+        },
+        {
+         "navn": "Institusjon og distrikt",
+         "tekst": "sykehjemmene og hjemmetjenesten i distriktene",
+         "verdi": 17.2
+        },
+        {
+         "navn": "Mestring og oppfølging",
+         "verdi": 27.3
+        },
+        {
+         "navn": "Fellesområdet",
+         "tekst": "fikk 60 mill. kr saldert inn mot slutten av året",
+         "verdi": -45.5
+        }
+       ],
+       "sum": {
+        "navn": "Helse og omsorg i alt",
+        "verdi": 20.0
+       }
+      },
+      {
+       "navn": "2024",
+       "tekst": "Regnskapet for 2024.",
+       "kilde": {
+        "id": "ar-2024",
+        "side": 46
+       },
+       "rader": [
+        {
+         "navn": "Hjemmebaserte tjenester",
+         "verdi": 13.3
+        },
+        {
+         "navn": "Institusjon og distrikt",
+         "tekst": "sykehjemmene og hjemmetjenesten i distriktene",
+         "verdi": 31.3
+        },
+        {
+         "navn": "Mestring og oppfølging",
+         "verdi": 14.5
+        },
+        {
+         "navn": "Fellesområdet",
+         "verdi": 8.3
+        }
+       ],
+       "sum": {
+        "navn": "Helse og omsorg i alt",
+        "verdi": 67.5
+       }
+      }
+     ],
+     "merknad": "Mill. kr, avvik mot revidert budsjett. Rødt er mer enn budsjettert, grønt mindre. Fellesområdet har blant annet lisenser, Tildelingskontoret, kjøp av plasser i spesialinstitusjon og eldre innsparingsvedtak som ikke er fordelt på enhetene (Årsrapport 2025, s. 46). Årsrapport 2024 oppgir 7,7 mill. kr for fellesområdet i teksten og 8,3 i tabellen."
+    },
+    {
+     "id": "fordeling-august",
+     "type": "avvik",
+     "i": "kostnader",
+     "enhet": "mill. kr",
+     "overskrift": "Hva som er brukt mer enn budsjettert per august 2026",
+     "lead": "Postene kommunedirektøren oppgir i tertialrapport 2, størst først. Under hver post står om det er lønn, drift eller kjøp av tjenester.",
+     "tittel": "Mer enn budsjettert januar–august 2026 i Helse og omsorg, mill. kr",
+     "valg": [
+      {
+       "navn": "Januar–august 2026",
+       "kilde": {
+        "id": "tertial-2-2026",
+        "side": 31
+       },
+       "rader": [
+        {
+         "navn": "Kjøpte individtiltak",
+         "tekst": "kjøp av tjenester",
+         "verdi": 15.3
+        },
+        {
+         "navn": "Vikarbyrå",
+         "tekst": "drift",
+         "verdi": 13.5
+        },
+        {
+         "navn": "Overtid og sommeravtaler",
+         "tekst": "lønn",
+         "verdi": 12.6
+        },
+        {
+         "navn": "Ekstrahjelp",
+         "tekst": "lønn",
+         "verdi": 7.4
+        },
+        {
+         "navn": "Variabel lønn",
+         "tekst": "lønn",
+         "verdi": 6.6
+        },
+        {
+         "navn": "Fastlønn",
+         "tekst": "lønn",
+         "verdi": 3.1
+        },
+        {
+         "navn": "Utskrivningsklare pasienter",
+         "tekst": "kjøp av tjenester",
+         "verdi": 2.6
+        },
+        {
+         "navn": "Leasingbiler",
+         "tekst": "drift",
+         "verdi": 2.5
+        },
+        {
+         "navn": "Husleie",
+         "tekst": "drift",
+         "verdi": 1.8
+        },
+        {
+         "navn": "Lisenser",
+         "tekst": "drift",
+         "verdi": 1.7
+        },
+        {
+         "navn": "BPA",
+         "tekst": "kjøp av tjenester",
+         "verdi": 1.4
+        },
+        {
+         "navn": "Andre poster",
+         "tekst": "drift 8,3 og kjøp av tjenester 3,7",
+         "verdi": 12.0
+        },
+        {
+         "navn": "Inntekter utover budsjett",
+         "tekst": "refusjoner 5,7 og brukerbetaling 3,1",
+         "verdi": -8.9
+        }
+       ],
+       "sum": {
+        "navn": "Summen av postene",
+        "verdi": 71.6
+       }
+      }
+     ],
+     "merknad": "Mill. kr mer enn budsjettert januar–august 2026. Postene summerer seg til 71,6 mill. kr, mens rapporten oppgir 73,4 mill. kr samlet for de samme månedene. «Andre poster» er resten av drift (27,8) og kjøp av tjenester (23,0) etter postene over, blant annet vaskeri og arbeidstøy, kurs og kjøp av plasser i Gratangen. Refusjoner og brukerbetaling summerer seg til 8,8, rapporten oppgir 8,9."
+    },
+    {
+     "id": "utviklingen",
+     "type": "linjer",
+     "i": "kostnader",
+     "overskrift": "Det rapportene peker på, år for år",
+     "lead": "Tallene rapportene bruker når de forklarer merforbruket. Grafene viser hele år. Tallene for 2026 hittil står under hver graf, sammenlignet med de samme månedene året før der rapportene oppgir det.",
+     "grafer": [
+      {
+       "navn": "Vikarbyrå",
+       "enhet": "mill. kr",
+       "desimaler": 1,
+       "punkter": [
+        {
+         "aar": "2024",
+         "verdi": 43.1,
+         "kilde": {
+          "id": "ar-2024",
+          "side": 47
+         }
+        },
+        {
+         "aar": "2025",
+         "verdi": 30.6,
+         "kilde": {
+          "id": "ar-2025",
+          "side": 49
+         }
+        }
+       ],
+       "hittil": {
+        "periode": "Januar–august 2026",
+        "verdi": 15.4,
+        "fjor": 18.1,
+        "kilde": {
+         "id": "tertial-2-2026",
+         "side": 32
+        }
+       }
+      },
+      {
+       "navn": "Overtid",
+       "enhet": "mill. kr",
+       "desimaler": 1,
+       "punkter": [
+        {
+         "aar": "2024",
+         "verdi": 21.2,
+         "kilde": {
+          "id": "ar-2025",
+          "side": 49
+         }
+        },
+        {
+         "aar": "2025",
+         "verdi": 23.8,
+         "kilde": {
+          "id": "ar-2025",
+          "side": 49
+         }
+        }
+       ],
+       "hittil": {
+        "periode": "Januar–august 2026",
+        "verdi": 14.8,
+        "fjor": 14.7,
+        "kilde": {
+         "id": "tertial-2-2026",
+         "side": 32
+        }
+       }
+      },
+      {
+       "navn": "Døgn med utskrivningsklare pasienter på sykehuset",
+       "enhet": "døgn",
+       "desimaler": 0,
+       "punkter": [
+        {
+         "aar": "2022",
+         "verdi": 525,
+         "kilde": {
+          "id": "ar-2022",
+          "side": 36
+         }
+        },
+        {
+         "aar": "2023",
+         "verdi": 806,
+         "kilde": {
+          "id": "ar-2023",
+          "side": 14
+         }
+        },
+        {
+         "aar": "2024",
+         "verdi": 715,
+         "kilde": {
+          "id": "ar-2024",
+          "side": 44
+         }
+        },
+        {
+         "aar": "2025",
+         "verdi": 1125,
+         "kilde": {
+          "id": "ar-2025",
+          "side": 45
+         }
+        }
+       ],
+       "hittil": {
+        "periode": "Januar–august 2026",
+        "verdi": 618,
+        "kilde": {
+         "id": "tertial-2-2026",
+         "side": 26
+        }
+       }
+      },
+      {
+       "navn": "Sykefravær januar–august hvert år",
+       "enhet": "%",
+       "desimaler": 1,
+       "punkter": [
+        {
+         "aar": "2024",
+         "verdi": 14.5,
+         "kilde": {
+          "id": "t2-2025",
+          "side": 4
+         }
+        },
+        {
+         "aar": "2025",
+         "verdi": 11.8,
+         "kilde": {
+          "id": "t2-2025",
+          "side": 4
+         }
+        },
+        {
+         "aar": "2026",
+         "verdi": 14.5,
+         "kilde": {
+          "id": "tertial-2-2026",
+          "side": 4
+         }
+        }
+       ]
+      }
+     ],
+     "merknad": "Hver graf har sin egen skala som starter på null. Overtid i 2024 er 21,2 mill. kr slik Årsrapport 2025 oppgir det; Årsrapport 2024 sier «om lag 21». Vikarbyrå i 2024 er 43,1 mill. kr slik Årsrapport 2024 oppgir det; Årsrapport 2025 oppgir 45,9. Døgnene med utskrivningsklare pasienter for 2022 og 2023 gjelder kommunen før Helse og omsorg fikk dagens inndeling."
     }
    ],
    "tiltak_omrade": "helse",

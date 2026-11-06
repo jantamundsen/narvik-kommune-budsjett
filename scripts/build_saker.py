@@ -123,12 +123,29 @@ def main() -> int:
                 if len(r["celler"]) != width:
                     err(f"{name} {i + 1}: {len(r['celler'])} celler, ventet {width}")
                 check_src(f"{name} {i + 1}", r.get("kilde"))
+        # «figurer»: charts drawn by saker.js. «avvik» is bars for deviations from budget (one set per «valg», e.g. a
+        # year), «linjer» is small line charts. A figure with «i» goes into that section; one without is its own
+        # section after the budget table. Every bar and every point needs a source with page.
+        for f in s.get("figurer", []):
+            fid = f.get("id", "?")
+            if not f.get("id") or not f.get("overskrift") or f.get("type") not in ("avvik", "linjer"):
+                err(f"figur {fid}: trenger id, overskrift og type avvik eller linjer")
+            for v in f.get("valg", []):
+                check_src(f"figur {fid}, {v.get('navn')}", v.get("kilde"))
+                if not v.get("rader"):
+                    err(f"figur {fid}, {v.get('navn')}: mangler rader")
+            for g in f.get("grafer", []):
+                for pt in g.get("punkter", []):
+                    check_src(f"figur {fid}, {g.get('navn')} {pt.get('aar')}", pt.get("kilde"))
+                if g.get("hittil"):
+                    check_src(f"figur {fid}, {g.get('navn')} hittil", g["hittil"].get("kilde"))
         # «oppsummering»: a short summary at the top, each point linking to the section on the page that has the sources.
         # The sections a summary point can link to (the ids saker.js gives them).
         targets = {"rolle", "tidslinje"} | ({"savner"} if s.get("savner") else set()) | {t["id"] for t in s.get("temaer", []) if t.get("id")}
         targets |= {"budsjett"} if s.get("tabell") else set()
         targets |= {t["id"] for t in s.get("tabeller", []) if t.get("id")}
         targets |= {"innsparinger"} if s.get("tiltak_omrade") else set()
+        targets |= {f["id"] for f in s.get("figurer", []) if f.get("id")}
         targets |= {"forskjell", "institusjon", "plasser-brukere"} if s.get("ssb_institusjon") else set()
         for i, o in enumerate(s.get("oppsummering", [])):
             if not o.get("tekst") or not str(o.get("lenke", "")).startswith("#"):
