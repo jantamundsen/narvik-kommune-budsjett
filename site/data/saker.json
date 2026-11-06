@@ -1313,8 +1313,12 @@
    "savner": [
     {
      "tittel": "Kostnad per sykehjem og per plass",
-     "tekst": "Hva en plass koster på hvert sykehjem, fordelt på bemanning, bygg og andre kostnader. SSB samler alle sykehjemmene i to funksjoner, drift (253) og lokaler (261), og kommunens rapporter viser bare sektorene. Det eneste dokumentet jeg har funnet med tall per sykehjem, er faktaarket kommunestyret fikk i februar 2025. Det har lønn og andre driftsutgifter per plass i 2024 for sju sykehjem og bofellesskap, men ikke byggene. Se saken om omstillingen i eldreomsorgen.",
+     "tekst": "Hva en plass koster på hvert sykehjem, fordelt på bemanning, bygg og andre kostnader. SSB samler alle sykehjemmene i to funksjoner, drift (253) og lokaler (261), og kommunens rapporter viser bare sektorene. Det eneste dokumentet jeg har funnet med tall per sykehjem, er faktaarket kommunestyret fikk i februar 2025. Det har lønn og andre driftsutgifter per plass i 2024 for sju sykehjem og bofellesskap, men ikke byggene.",
      "href": "om#savner-sykehjemsplass",
+     "se": {
+      "href": "sak/omstilling-eldreomsorgen#kostnad-per-plass",
+      "navn": "Tallene i saken om eldreomsorgen"
+     },
      "kilde": {
       "id": "ks-sak-5-2025-faktaark",
       "side": 3
@@ -1348,6 +1352,10 @@
      "tittel": "Budsjett og regnskap per enhet",
      "tekst": "Rapportene viser budsjett og regnskap for de tre sektorene i Helse og omsorg, ikke for hvert sykehjem eller hver enhet. Unntaket er faktaarket fra februar 2025, med regnskap 2023 og prognose og budsjett 2024 for 11 enheter i eldreomsorgen.",
      "href": "om#savner-enheter",
+     "se": {
+      "href": "sak/omstilling-eldreomsorgen#enhetene-2024",
+      "navn": "Tallene i saken om eldreomsorgen"
+     },
      "kilde": {
       "id": "tertial-2-2026",
       "side": 31

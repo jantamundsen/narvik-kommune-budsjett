@@ -67,7 +67,7 @@ const dateText = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nb-NO', 
   const missing = S.savner?.length ? `<section aria-labelledby="h-savner" id="savner">
       <div class="section-head"><h2 id="h-savner">Det som ikke er publisert</h2>
         <p class="lead">Tall som ville vist mer om hvor kostnadene oppstår, men som jeg ikke har funnet i offentlige dokumenter. Hvert punkt sier hva som finnes i stedet.</p></div>
-      <ul class="fact-list">${S.savner.map(m => `<li class="fact"><p><strong>${esc(m.tittel)}.</strong> ${esc(m.tekst)}</p><p class="caption fact-src">${m.kilde ? `Kilde: ${srcGroup([].concat(m.kilde))} · ` : ''}<a href="${esc(m.href)}">Tall som savnes</a></p></li>`).join('')}</ul>
+      <ul class="fact-list">${S.savner.map(m => `<li class="fact"><p><strong>${esc(m.tittel)}.</strong> ${esc(m.tekst)}</p><p class="caption fact-src">${m.kilde ? `Kilde: ${srcGroup([].concat(m.kilde))} · ` : ''}${m.se ? `<a href="${esc(m.se.href)}">${esc(m.se.navn)}</a> · ` : ''}<a href="${esc(m.href)}">Tall som savnes</a></p></li>`).join('')}</ul>
     </section>` : '';
   const role = `<section aria-labelledby="h-role" id="rolle">
       <div class="section-head"><h2 id="h-role">Kommunens rolle og penger</h2></div>
